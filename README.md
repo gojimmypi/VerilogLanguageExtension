@@ -4,7 +4,8 @@
 ## Installation
 
 ```
-cd workspace
+c:
+cd \workspace
 git clone https://github.com/gojimmypi/VerilogLanguageExtension.git
 "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VSIXInstaller.exe"  C:\workspace\VerilogLanguageExtension\bin\Release\VerilogLanguage.vsix
 ```

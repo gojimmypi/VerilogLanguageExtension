@@ -23,7 +23,7 @@ using Microsoft.VisualStudio.Utilities;
 namespace VerilogLanguage
 {
     [Export(typeof(ICompletionSourceProvider))]
-    [ContentType("always")]
+    [ContentType("verilog")]
     [Name("VerilogCompletion")]
     class VerilogCompletionSourceProvider : ICompletionSourceProvider
     {

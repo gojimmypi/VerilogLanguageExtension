@@ -29,7 +29,7 @@ namespace VerilogLanguage
     #region Command Filter
 
     [Export(typeof(IVsTextViewCreationListener))]
-    [ContentType("always")]
+    [ContentType("verilog")]
     [TextViewRole(PredefinedTextViewRoles.Interactive)]
     internal sealed class VsTextViewCreationListener : IVsTextViewCreationListener
     {

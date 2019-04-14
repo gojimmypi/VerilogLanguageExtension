@@ -22,7 +22,7 @@ namespace VSLTK.Intellisense
 
     [Export(typeof(IIntellisenseControllerProvider))]
     [Name("Template QuickInfo Controller")]
-    [ContentType("text")]
+    [ContentType("verilog")]
     internal class TemplateQuickInfoControllerProvider : IIntellisenseControllerProvider
     {
         #region Asset Imports

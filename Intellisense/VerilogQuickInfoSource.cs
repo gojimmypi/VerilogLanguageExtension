@@ -26,7 +26,7 @@ namespace VerilogLanguage
     /// Factory for quick info sources
     /// </summary>
     [Export(typeof(IQuickInfoSourceProvider))]
-    [ContentType("always")]
+    [ContentType("verilog")]
     [Name("VerilogQuickInfo")]
     class VerilogQuickInfoSourceProvider : IQuickInfoSourceProvider
     {

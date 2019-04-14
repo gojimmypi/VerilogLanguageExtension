@@ -4,7 +4,8 @@
 ## Installation
 
 ```
-cd workspace
+c:
+cd \workspace
 git clone https://github.com/gojimmypi/VerilogLanguageExtension.git
 "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VSIXInstaller.exe"  C:\workspace\VerilogLanguageExtension\bin\Release\VerilogLanguage.vsix
 ```
@@ -17,7 +18,7 @@ git clone https://github.com/gojimmypi/VerilogLanguageExtension.git
 
 ## Modifications
 
-Add a `public enum VerilogTokenTypes` value (there cacn be more items listed here than actually implemented) in `VerilogTokenTypes.cs`: 
+Add a `public enum VerilogTokenTypes` value (there can be more items listed here than actually implemented) in [VerilogTokenTypes.cs](VerilogTokenTypes.cs#L19): 
 ```
         Verilog_begin,
 ```

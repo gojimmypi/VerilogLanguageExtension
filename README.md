@@ -1,12 +1,15 @@
 ﻿# Verilog Language Extension
 
-
 ## Installation
+
+Find the location of your `VSIXInstaller.exe`, typpically in `.\Common7\IDE\` of Developer Command Prompt. Shown is an example of VS2017 Enterprise:
 
 ```
 c:
 cd \workspace
 git clone https://github.com/gojimmypi/VerilogLanguageExtension.git
+cd VerilogLanguageExtension
+msbuild VerilogLanguage.csproj
 "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VSIXInstaller.exe"  C:\workspace\VerilogLanguageExtension\bin\Release\VerilogLanguage.vsix
 ```
 
@@ -16,7 +19,14 @@ git clone https://github.com/gojimmypi/VerilogLanguageExtension.git
 "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VSIXInstaller.exe" /uninstall:CF0DCF14-5B8F-4B42-8386-9D37BB99F98E
 ```
 
+## Testing
+
+Open the project and press `F5` to launch an experimental versional of Visual Studio.
+
 ## Modifications
+
+To make modifications, the [Visual Studio Extension Development Workload Toolset](https://visualstudio.microsoft.com/vs/support/selecting-workloads-visual-studio-2017/) needs to be installed.
+
 
 Add a `public enum VerilogTokenTypes` value (there can be more items listed here than actually implemented) in [VerilogTokenTypes.cs](VerilogTokenTypes.cs#L19): 
 ```
@@ -82,4 +92,15 @@ Optional: add `AugmentQuickInfoSession` section in `VerilogQuickInfoSource.cs`:
                     applicableToSpan = _buffer.CurrentSnapshot.CreateTrackingSpan(tagSpan, SpanTrackingMode.EdgeExclusive);
                     quickInfoContent.Add("Question Begin?");
                 }
+```
+
+## Resources
+
+https://www.xilinx.com/support/documentation/sw_manuals/xilinx11/ite_r_verilog_reserved_words.htm
+https://www.xilinx.com/support/documentation/sw_manuals/xilinx10/isehelp/ism_r_verlang_compiler_directives.htm
+https://github.com/Microsoft/VSSDK-Extensibility-Samples
+https://docs.microsoft.com/en-us/visualstudio/extensibility/visual-studio-sdk?view=vs-2019
+https://github.com/madskristensen/ExtensibilityTools
+https://docs.microsoft.com/en-us/visualstudio/extensibility/walkthrough-displaying-matching-braces?view=vs-2019
+https://social.technet.microsoft.com/wiki/contents/articles/37071.visual-studio-extensibility-creating-visual-studio-vsix-package-extension.aspx
 ```

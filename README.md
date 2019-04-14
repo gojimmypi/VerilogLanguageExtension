@@ -18,7 +18,7 @@ git clone https://github.com/gojimmypi/VerilogLanguageExtension.git
 
 ## Modifications
 
-Add a `public enum VerilogTokenTypes` value (there cacn be more items listed here than actually implemented) in `VerilogTokenTypes.cs`: 
+Add a `public enum VerilogTokenTypes` value (there can be more items listed here than actually implemented) in [VerilogTokenTypes.cs](VerilogTokenTypes.cs#L19): 
 ```
         Verilog_begin,
 ```

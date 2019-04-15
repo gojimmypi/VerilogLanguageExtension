@@ -95,7 +95,7 @@ Optional: add `AugmentQuickInfoSession` section in `VerilogQuickInfoSource.cs`:
 ```
 
 ## Resources
-
+https://www.codeproject.com/Articles/1245021/Extending-Visual-Studio-to-Provide-a-Colorful-Lang
 https://www.xilinx.com/support/documentation/sw_manuals/xilinx11/ite_r_verilog_reserved_words.htm
 https://www.xilinx.com/support/documentation/sw_manuals/xilinx10/isehelp/ism_r_verlang_compiler_directives.htm
 https://github.com/Microsoft/VSSDK-Extensibility-Samples
@@ -103,4 +103,6 @@ https://docs.microsoft.com/en-us/visualstudio/extensibility/visual-studio-sdk?vi
 https://github.com/madskristensen/ExtensibilityTools
 https://docs.microsoft.com/en-us/visualstudio/extensibility/walkthrough-displaying-matching-braces?view=vs-2019
 https://social.technet.microsoft.com/wiki/contents/articles/37071.visual-studio-extensibility-creating-visual-studio-vsix-package-extension.aspx
-```
+
+
+

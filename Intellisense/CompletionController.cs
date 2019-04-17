@@ -99,8 +99,13 @@ namespace VerilogLanguage
                 }
             }
 
+            // this next line was suggested by the IDE, as relating to the next hresult = Next.Exec() call
+            Microsoft.VisualStudio.Shell.ThreadHelper.ThrowIfNotOnUIThread();
+
             if (!handled)
+            {
                 hresult = Next.Exec(pguidCmdGroup, nCmdID, nCmdexecopt, pvaIn, pvaOut);
+            }
 
             if (ErrorHandler.Succeeded(hresult))
             {
@@ -198,6 +203,9 @@ namespace VerilogLanguage
 
         public int QueryStatus(ref Guid pguidCmdGroup, uint cCmds, OLECMD[] prgCmds, IntPtr pCmdText)
         {
+            // this next line was suggested by the IDE, as relating to the next hresult = Next.Exec() call
+            Microsoft.VisualStudio.Shell.ThreadHelper.ThrowIfNotOnUIThread();
+
             if (pguidCmdGroup == VSConstants.VSStd2K)
             {
                 switch ((VSConstants.VSStd2KCmdID)prgCmds[0].cmdID)

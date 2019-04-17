@@ -29,12 +29,32 @@ using System.ComponentModel.Composition;
 using System.Windows.Media;
 using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Utilities;
+using MColor = System.Windows.Media.Color; // yes, this can be simplified, but given the same names this adds clarity
+using DColor = System.Drawing.Color;
+using Microsoft.VisualStudio.PlatformUI;
+using Microsoft.VisualStudio.Shell.Interop;
 
 namespace VerilogLanguage
 {
     #region Format definition
 
-#region Keyword always 
+    #region ColorConverter
+    public static class ColorConverter
+    {
+        /// <summary>
+        /// Converts a System.Drawing.Color obtained from GetThemedColor to a System.Windows.Media.Color needed for EditorFormatDefinitions
+        /// </summary>
+        public static MColor ToMediaColor(this DColor color)
+        {
+            // thank you https://stackoverflow.com/questions/6096299/extension-methods-must-be-defined-in-a-non-generic-static-class
+            // thank you https://stackoverflow.com/questions/4104910/convert-system-drawing-color-to-system-windows-media-color
+            return MColor.FromArgb(color.A, color.R, color.G, color.B);
+        }
+    }
+    #endregion
+
+
+    #region Keyword always 
     /// <summary>
     /// Defines the editor format for the Verilog_always classification type. Text is colored BlueViolet
     /// </summary>
@@ -42,7 +62,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "always")]
     [Name("always")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_always : ClassificationFormatDefinition
@@ -50,10 +70,18 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "always" classification type
         /// </summary>
-        public Verilog_always()
+        public Verilog_always()  
         {
-            DisplayName = "always"; //human readable version of the name
+            DisplayName = "Verilog - always"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
+                                              //System.Drawing.Color thisColor = Microsoft.VisualStudio.PlatformUI.VSColorTheme.GetThemedColor(Microsoft.VisualStudio.PlatformUI.EnvironmentColors.ClassDesignerCommentTextColorKey);
+                                              //ForegroundColor = MColor.FromArgb(thisColor.A, thisColor.R, thisColor.G, thisColor.B);
+
+            // ForegroundColor = ColorConverter.ToMediaColor(VSColorTheme.GetThemedColor(EnvironmentColors.ClassDesignerCommentTextColorKey));
             ForegroundColor = Colors.BlueViolet;
+
+            // https://docs.microsoft.com/en-us/dotnet/api/system.attribute.getcustomattributes?view=netframework-4.7.2
+            // System.Windows.Media.Colors mc = Microsoft.VisualStudio.Text.Classification.ClassificationTypeAttribute.GetCustomAttributes();
+            // EditorFormatDefinition.DisplayName();
         }
     }
 
@@ -69,7 +97,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "assign")]
     [Name("assign")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_assign : ClassificationFormatDefinition
@@ -79,7 +107,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_assign()
         {
-            DisplayName = "assign"; //human readable version of the name
+            DisplayName = "Verilog - assign"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -96,7 +124,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "automatic")]
     [Name("automatic")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_automatic : ClassificationFormatDefinition
@@ -106,7 +134,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_automatic()
         {
-            DisplayName = "automatic"; //human readable version of the name
+            DisplayName = "Verilog - automatic"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -123,7 +151,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "begin")]
     [Name("begin")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_begin : ClassificationFormatDefinition
@@ -133,7 +161,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_begin()
         {
-            DisplayName = "begin"; //human readable version of the name
+            DisplayName = "Verilog - begin"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -150,7 +178,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "case")]
     [Name("case")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_case : ClassificationFormatDefinition
@@ -160,7 +188,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_case()
         {
-            DisplayName = "case"; //human readable version of the name
+            DisplayName = "Verilog - case"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -177,7 +205,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "casex")]
     [Name("casex")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_casex : ClassificationFormatDefinition
@@ -187,7 +215,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_casex()
         {
-            DisplayName = "casex"; //human readable version of the name
+            DisplayName = "Verilog - casex"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -204,7 +232,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "casez")]
     [Name("casez")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_casez : ClassificationFormatDefinition
@@ -214,7 +242,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_casez()
         {
-            DisplayName = "casez"; //human readable version of the name
+            DisplayName = "Verilog - casez"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -231,7 +259,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "cell")]
     [Name("cell")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_cell : ClassificationFormatDefinition
@@ -241,7 +269,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_cell()
         {
-            DisplayName = "cell"; //human readable version of the name
+            DisplayName = "Verilog - cell"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -258,7 +286,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "config")]
     [Name("config")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_config : ClassificationFormatDefinition
@@ -268,7 +296,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_config()
         {
-            DisplayName = "config"; //human readable version of the name
+            DisplayName = "Verilog - config"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -285,7 +313,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "deassign")]
     [Name("deassign")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_deassign : ClassificationFormatDefinition
@@ -295,7 +323,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_deassign()
         {
-            DisplayName = "deassign"; //human readable version of the name
+            DisplayName = "Verilog - deassign"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -312,7 +340,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "default")]
     [Name("default")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_default : ClassificationFormatDefinition
@@ -322,7 +350,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_default()
         {
-            DisplayName = "default"; //human readable version of the name
+            DisplayName = "Verilog - default"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -339,7 +367,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "defparam")]
     [Name("defparam")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_defparam : ClassificationFormatDefinition
@@ -349,7 +377,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_defparam()
         {
-            DisplayName = "defparam"; //human readable version of the name
+            DisplayName = "Verilog - defparam"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -366,7 +394,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "design")]
     [Name("design")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_design : ClassificationFormatDefinition
@@ -376,7 +404,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_design()
         {
-            DisplayName = "design"; //human readable version of the name
+            DisplayName = "Verilog - design"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -393,7 +421,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "disable")]
     [Name("disable")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_disable : ClassificationFormatDefinition
@@ -403,7 +431,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_disable()
         {
-            DisplayName = "disable"; //human readable version of the name
+            DisplayName = "Verilog - disable"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -420,7 +448,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "edge")]
     [Name("edge")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_edge : ClassificationFormatDefinition
@@ -430,7 +458,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_edge()
         {
-            DisplayName = "edge"; //human readable version of the name
+            DisplayName = "Verilog - edge"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -447,7 +475,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "else")]
     [Name("else")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_else : ClassificationFormatDefinition
@@ -457,7 +485,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_else()
         {
-            DisplayName = "else"; //human readable version of the name
+            DisplayName = "Verilog - else"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -474,7 +502,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "end")]
     [Name("end")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_end : ClassificationFormatDefinition
@@ -484,7 +512,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_end()
         {
-            DisplayName = "end"; //human readable version of the name
+            DisplayName = "Verilog - end"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -501,7 +529,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "endcase")]
     [Name("endcase")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_endcase : ClassificationFormatDefinition
@@ -511,7 +539,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_endcase()
         {
-            DisplayName = "endcase"; //human readable version of the name
+            DisplayName = "Verilog - endcase"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -528,7 +556,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "endconfig")]
     [Name("endconfig")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_endconfig : ClassificationFormatDefinition
@@ -538,7 +566,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_endconfig()
         {
-            DisplayName = "endconfig"; //human readable version of the name
+            DisplayName = "Verilog - endconfig"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -555,7 +583,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "endfunction")]
     [Name("endfunction")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_endfunction : ClassificationFormatDefinition
@@ -565,7 +593,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_endfunction()
         {
-            DisplayName = "endfunction"; //human readable version of the name
+            DisplayName = "Verilog - endfunction"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -582,7 +610,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "endgenerate")]
     [Name("endgenerate")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_endgenerate : ClassificationFormatDefinition
@@ -592,7 +620,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_endgenerate()
         {
-            DisplayName = "endgenerate"; //human readable version of the name
+            DisplayName = "Verilog - endgenerate"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -609,7 +637,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "endmodule")]
     [Name("endmodule")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_endmodule : ClassificationFormatDefinition
@@ -619,7 +647,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_endmodule()
         {
-            DisplayName = "endmodule"; //human readable version of the name
+            DisplayName = "Verilog - endmodule"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -636,7 +664,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "endprimitive")]
     [Name("endprimitive")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_endprimitive : ClassificationFormatDefinition
@@ -646,7 +674,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_endprimitive()
         {
-            DisplayName = "endprimitive"; //human readable version of the name
+            DisplayName = "Verilog - endprimitive"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -663,7 +691,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "endspecify")]
     [Name("endspecify")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_endspecify : ClassificationFormatDefinition
@@ -673,7 +701,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_endspecify()
         {
-            DisplayName = "endspecify"; //human readable version of the name
+            DisplayName = "Verilog - endspecify"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -690,7 +718,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "endtable")]
     [Name("endtable")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_endtable : ClassificationFormatDefinition
@@ -700,7 +728,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_endtable()
         {
-            DisplayName = "endtable"; //human readable version of the name
+            DisplayName = "Verilog - endtable"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -717,7 +745,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "endtask")]
     [Name("endtask")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_endtask : ClassificationFormatDefinition
@@ -727,7 +755,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_endtask()
         {
-            DisplayName = "endtask"; //human readable version of the name
+            DisplayName = "Verilog - endtask"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -744,7 +772,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "event")]
     [Name("event")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_event : ClassificationFormatDefinition
@@ -754,7 +782,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_event()
         {
-            DisplayName = "event"; //human readable version of the name
+            DisplayName = "Verilog - event"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -771,7 +799,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "for")]
     [Name("for")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_for : ClassificationFormatDefinition
@@ -781,7 +809,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_for()
         {
-            DisplayName = "for"; //human readable version of the name
+            DisplayName = "Verilog - for"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -798,7 +826,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "force")]
     [Name("force")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_force : ClassificationFormatDefinition
@@ -808,7 +836,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_force()
         {
-            DisplayName = "force"; //human readable version of the name
+            DisplayName = "Verilog - force"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -825,7 +853,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "forever")]
     [Name("forever")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_forever : ClassificationFormatDefinition
@@ -835,7 +863,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_forever()
         {
-            DisplayName = "forever"; //human readable version of the name
+            DisplayName = "Verilog - forever"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -852,7 +880,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "fork")]
     [Name("fork")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_fork : ClassificationFormatDefinition
@@ -862,7 +890,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_fork()
         {
-            DisplayName = "fork"; //human readable version of the name
+            DisplayName = "Verilog - fork"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -879,7 +907,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "function")]
     [Name("function")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_function : ClassificationFormatDefinition
@@ -889,7 +917,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_function()
         {
-            DisplayName = "function"; //human readable version of the name
+            DisplayName = "Verilog - function"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -906,7 +934,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "generate")]
     [Name("generate")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_generate : ClassificationFormatDefinition
@@ -916,7 +944,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_generate()
         {
-            DisplayName = "generate"; //human readable version of the name
+            DisplayName = "Verilog - generate"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -933,7 +961,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "genvar")]
     [Name("genvar")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_genvar : ClassificationFormatDefinition
@@ -943,7 +971,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_genvar()
         {
-            DisplayName = "genvar"; //human readable version of the name
+            DisplayName = "Verilog - genvar"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -960,7 +988,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "if")]
     [Name("if")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_if : ClassificationFormatDefinition
@@ -970,7 +998,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_if()
         {
-            DisplayName = "if"; //human readable version of the name
+            DisplayName = "Verilog - if"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -987,7 +1015,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "ifnone")]
     [Name("ifnone")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_ifnone : ClassificationFormatDefinition
@@ -997,7 +1025,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_ifnone()
         {
-            DisplayName = "ifnone"; //human readable version of the name
+            DisplayName = "Verilog - ifnone"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1014,7 +1042,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "incdir")]
     [Name("incdir")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_incdir : ClassificationFormatDefinition
@@ -1024,7 +1052,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_incdir()
         {
-            DisplayName = "incdir"; //human readable version of the name
+            DisplayName = "Verilog - incdir"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1041,7 +1069,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "include")]
     [Name("include")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_include : ClassificationFormatDefinition
@@ -1051,7 +1079,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_include()
         {
-            DisplayName = "include"; //human readable version of the name
+            DisplayName = "Verilog - include"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1068,7 +1096,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "initial")]
     [Name("initial")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_initial : ClassificationFormatDefinition
@@ -1078,7 +1106,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_initial()
         {
-            DisplayName = "initial"; //human readable version of the name
+            DisplayName = "Verilog - initial"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1095,7 +1123,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "inout")]
     [Name("inout")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_inout : ClassificationFormatDefinition
@@ -1105,7 +1133,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_inout()
         {
-            DisplayName = "inout"; //human readable version of the name
+            DisplayName = "Verilog - inout"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1122,7 +1150,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "input")]
     [Name("input")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_input : ClassificationFormatDefinition
@@ -1132,7 +1160,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_input()
         {
-            DisplayName = "input"; //human readable version of the name
+            DisplayName = "Verilog - input"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1149,7 +1177,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "instance")]
     [Name("instance")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_instance : ClassificationFormatDefinition
@@ -1159,7 +1187,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_instance()
         {
-            DisplayName = "instance"; //human readable version of the name
+            DisplayName = "Verilog - instance"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1176,7 +1204,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "join")]
     [Name("join")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_join : ClassificationFormatDefinition
@@ -1186,7 +1214,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_join()
         {
-            DisplayName = "join"; //human readable version of the name
+            DisplayName = "Verilog - join"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1203,7 +1231,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "liblist")]
     [Name("liblist")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_liblist : ClassificationFormatDefinition
@@ -1213,7 +1241,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_liblist()
         {
-            DisplayName = "liblist"; //human readable version of the name
+            DisplayName = "Verilog - liblist"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1230,7 +1258,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "library")]
     [Name("library")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_library : ClassificationFormatDefinition
@@ -1240,7 +1268,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_library()
         {
-            DisplayName = "library"; //human readable version of the name
+            DisplayName = "Verilog - library"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1257,7 +1285,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "localparam")]
     [Name("localparam")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_localparam : ClassificationFormatDefinition
@@ -1267,7 +1295,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_localparam()
         {
-            DisplayName = "localparam"; //human readable version of the name
+            DisplayName = "Verilog - localparam"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1284,7 +1312,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "macromodule")]
     [Name("macromodule")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_macromodule : ClassificationFormatDefinition
@@ -1294,7 +1322,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_macromodule()
         {
-            DisplayName = "macromodule"; //human readable version of the name
+            DisplayName = "Verilog - macromodule"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1311,7 +1339,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "module")]
     [Name("module")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_module : ClassificationFormatDefinition
@@ -1321,7 +1349,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_module()
         {
-            DisplayName = "module"; //human readable version of the name
+            DisplayName = "Verilog - module"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1338,7 +1366,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "negedge")]
     [Name("negedge")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_negedge : ClassificationFormatDefinition
@@ -1348,7 +1376,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_negedge()
         {
-            DisplayName = "negedge"; //human readable version of the name
+            DisplayName = "Verilog - negedge"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1365,7 +1393,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "noshowcancelled")]
     [Name("noshowcancelled")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_noshowcancelled : ClassificationFormatDefinition
@@ -1375,7 +1403,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_noshowcancelled()
         {
-            DisplayName = "noshowcancelled"; //human readable version of the name
+            DisplayName = "Verilog - noshowcancelled"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1392,7 +1420,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "output")]
     [Name("output")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_output : ClassificationFormatDefinition
@@ -1402,7 +1430,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_output()
         {
-            DisplayName = "output"; //human readable version of the name
+            DisplayName = "Verilog - output"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1419,7 +1447,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "parameter")]
     [Name("parameter")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_parameter : ClassificationFormatDefinition
@@ -1429,7 +1457,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_parameter()
         {
-            DisplayName = "parameter"; //human readable version of the name
+            DisplayName = "Verilog - parameter"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1446,7 +1474,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "posedge")]
     [Name("posedge")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_posedge : ClassificationFormatDefinition
@@ -1456,7 +1484,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_posedge()
         {
-            DisplayName = "posedge"; //human readable version of the name
+            DisplayName = "Verilog - posedge"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1473,7 +1501,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "primitive")]
     [Name("primitive")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_primitive : ClassificationFormatDefinition
@@ -1483,7 +1511,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_primitive()
         {
-            DisplayName = "primitive"; //human readable version of the name
+            DisplayName = "Verilog - primitive"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1500,7 +1528,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "pulsestyle_ondetect")]
     [Name("pulsestyle_ondetect")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_pulsestyle_ondetect : ClassificationFormatDefinition
@@ -1510,7 +1538,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_pulsestyle_ondetect()
         {
-            DisplayName = "pulsestyle_ondetect"; //human readable version of the name
+            DisplayName = "Verilog - pulsestyle_ondetect"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1527,7 +1555,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "pulsestyle_onevent")]
     [Name("pulsestyle_onevent")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_pulsestyle_onevent : ClassificationFormatDefinition
@@ -1537,7 +1565,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_pulsestyle_onevent()
         {
-            DisplayName = "pulsestyle_onevent"; //human readable version of the name
+            DisplayName = "Verilog - pulsestyle_onevent"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1554,7 +1582,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "reg")]
     [Name("reg")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_reg : ClassificationFormatDefinition
@@ -1564,7 +1592,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_reg()
         {
-            DisplayName = "reg"; //human readable version of the name
+            DisplayName = "Verilog - reg"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1581,7 +1609,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "release")]
     [Name("release")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_release : ClassificationFormatDefinition
@@ -1591,7 +1619,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_release()
         {
-            DisplayName = "release"; //human readable version of the name
+            DisplayName = "Verilog - release"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1608,7 +1636,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "repeat")]
     [Name("repeat")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_repeat : ClassificationFormatDefinition
@@ -1618,7 +1646,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_repeat()
         {
-            DisplayName = "repeat"; //human readable version of the name
+            DisplayName = "Verilog - repeat"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1635,7 +1663,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "scalared")]
     [Name("scalared")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_scalared : ClassificationFormatDefinition
@@ -1645,7 +1673,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_scalared()
         {
-            DisplayName = "scalared"; //human readable version of the name
+            DisplayName = "Verilog - scalared"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1662,7 +1690,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "showcancelled")]
     [Name("showcancelled")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_showcancelled : ClassificationFormatDefinition
@@ -1672,7 +1700,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_showcancelled()
         {
-            DisplayName = "showcancelled"; //human readable version of the name
+            DisplayName = "Verilog - showcancelled"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1689,7 +1717,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "signed")]
     [Name("signed")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_signed : ClassificationFormatDefinition
@@ -1699,7 +1727,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_signed()
         {
-            DisplayName = "signed"; //human readable version of the name
+            DisplayName = "Verilog - signed"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1716,7 +1744,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "specify")]
     [Name("specify")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_specify : ClassificationFormatDefinition
@@ -1726,7 +1754,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_specify()
         {
-            DisplayName = "specify"; //human readable version of the name
+            DisplayName = "Verilog - specify"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1743,7 +1771,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "specparam")]
     [Name("specparam")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_specparam : ClassificationFormatDefinition
@@ -1753,7 +1781,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_specparam()
         {
-            DisplayName = "specparam"; //human readable version of the name
+            DisplayName = "Verilog - specparam"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1770,7 +1798,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "strength")]
     [Name("strength")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_strength : ClassificationFormatDefinition
@@ -1780,7 +1808,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_strength()
         {
-            DisplayName = "strength"; //human readable version of the name
+            DisplayName = "Verilog - strength"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1797,7 +1825,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "table")]
     [Name("table")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_table : ClassificationFormatDefinition
@@ -1807,7 +1835,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_table()
         {
-            DisplayName = "table"; //human readable version of the name
+            DisplayName = "Verilog - table"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1824,7 +1852,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "task")]
     [Name("task")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_task : ClassificationFormatDefinition
@@ -1834,7 +1862,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_task()
         {
-            DisplayName = "task"; //human readable version of the name
+            DisplayName = "Verilog - task"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1851,7 +1879,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "tri")]
     [Name("tri")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_tri : ClassificationFormatDefinition
@@ -1861,7 +1889,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_tri()
         {
-            DisplayName = "tri"; //human readable version of the name
+            DisplayName = "Verilog - tri"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1878,7 +1906,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "tri0")]
     [Name("tri0")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_tri0 : ClassificationFormatDefinition
@@ -1888,7 +1916,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_tri0()
         {
-            DisplayName = "tri0"; //human readable version of the name
+            DisplayName = "Verilog - tri0"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1905,7 +1933,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "tri1")]
     [Name("tri1")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_tri1 : ClassificationFormatDefinition
@@ -1915,7 +1943,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_tri1()
         {
-            DisplayName = "tri1"; //human readable version of the name
+            DisplayName = "Verilog - tri1"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1932,7 +1960,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "triand")]
     [Name("triand")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_triand : ClassificationFormatDefinition
@@ -1942,7 +1970,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_triand()
         {
-            DisplayName = "triand"; //human readable version of the name
+            DisplayName = "Verilog - triand"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1959,7 +1987,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "wand")]
     [Name("wand")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_wand : ClassificationFormatDefinition
@@ -1969,7 +1997,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_wand()
         {
-            DisplayName = "wand"; //human readable version of the name
+            DisplayName = "Verilog - wand"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -1986,7 +2014,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "trior")]
     [Name("trior")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_trior : ClassificationFormatDefinition
@@ -1996,7 +2024,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_trior()
         {
-            DisplayName = "trior"; //human readable version of the name
+            DisplayName = "Verilog - trior"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -2013,7 +2041,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "wor")]
     [Name("wor")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_wor : ClassificationFormatDefinition
@@ -2023,7 +2051,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_wor()
         {
-            DisplayName = "wor"; //human readable version of the name
+            DisplayName = "Verilog - wor"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -2040,7 +2068,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "trireg")]
     [Name("trireg")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_trireg : ClassificationFormatDefinition
@@ -2050,7 +2078,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_trireg()
         {
-            DisplayName = "trireg"; //human readable version of the name
+            DisplayName = "Verilog - trireg"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -2067,7 +2095,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "unsigned")]
     [Name("unsigned")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_unsigned : ClassificationFormatDefinition
@@ -2077,7 +2105,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_unsigned()
         {
-            DisplayName = "unsigned"; //human readable version of the name
+            DisplayName = "Verilog - unsigned"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -2094,7 +2122,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "use")]
     [Name("use")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_use : ClassificationFormatDefinition
@@ -2104,7 +2132,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_use()
         {
-            DisplayName = "use"; //human readable version of the name
+            DisplayName = "Verilog - use"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -2121,7 +2149,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "vectored")]
     [Name("vectored")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_vectored : ClassificationFormatDefinition
@@ -2131,7 +2159,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_vectored()
         {
-            DisplayName = "vectored"; //human readable version of the name
+            DisplayName = "Verilog - vectored"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -2148,7 +2176,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "wait")]
     [Name("wait")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_wait : ClassificationFormatDefinition
@@ -2158,7 +2186,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_wait()
         {
-            DisplayName = "wait"; //human readable version of the name
+            DisplayName = "Verilog - wait"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -2175,7 +2203,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "while")]
     [Name("while")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_while : ClassificationFormatDefinition
@@ -2185,7 +2213,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_while()
         {
-            DisplayName = "while"; //human readable version of the name
+            DisplayName = "Verilog - while"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }
@@ -2202,7 +2230,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "wire")]
     [Name("wire")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_wire : ClassificationFormatDefinition
@@ -2212,7 +2240,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_wire()
         {
-            DisplayName = "wire"; //human readable version of the name
+            DisplayName = "Verilog - wire"; //human readable version of the name
             ForegroundColor = Colors.BlueViolet;
         }
     }

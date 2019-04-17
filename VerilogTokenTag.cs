@@ -163,7 +163,8 @@ namespace VerilogLanguage
             {
                 ITextSnapshotLine containingLine = curSpan.Start.GetContainingLine();
                 int curLoc = containingLine.Start.Position;
-                string[] tokens = containingLine.GetText().ToLower().Split(new char[] { ' ', '\t', '[', ']', ';' }, StringSplitOptions.None);
+                string[] tokens = containingLine.GetText().ToLower().Split(separator: new char[] { ' ', '\t', '[', ';' }, 
+                                                                             options: StringSplitOptions.None);
 
                 foreach (string VerilogToken in tokens)
                 {

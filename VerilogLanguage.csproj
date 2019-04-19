@@ -177,6 +177,8 @@
     <Compile Include="Intellisense\CompletionController.cs" />
     <Compile Include="Intellisense\CompletionSource.cs" />
     <Compile Include="Intellisense\VerilogQuickInfoSource.cs" />
+    <Compile Include="Outlining\OutliningTagger.cs" />
+    <Compile Include="Outlining\OutliningTaggerProvider.cs" />
     <Compile Include="Tagger\BraceMatchingTagger.cs" />
     <Compile Include="Tagger\BraceMatchingTaggerProvider.cs" />
     <Compile Include="Tagger\OutliningTagger.cs" />

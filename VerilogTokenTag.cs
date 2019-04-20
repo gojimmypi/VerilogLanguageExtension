@@ -148,6 +148,27 @@ namespace VerilogLanguage
             _VerilogTypes["wait"] = VerilogTokenTypes.Verilog_wait;
             _VerilogTypes["while"] = VerilogTokenTypes.Verilog_while;
             _VerilogTypes["wire"] = VerilogTokenTypes.Verilog_wire;
+
+            // all of the Verilog directives are the same color
+            _VerilogTypes["`celldefine"] = VerilogTokenTypes.Verilog_Directive;
+            _VerilogTypes["`endcelldefine"] = VerilogTokenTypes.Verilog_Directive;
+            _VerilogTypes["`default_nettype"] = VerilogTokenTypes.Verilog_Directive;
+            _VerilogTypes["`define"] = VerilogTokenTypes.Verilog_Directive;
+            _VerilogTypes["`undef"] = VerilogTokenTypes.Verilog_Directive;
+            _VerilogTypes["`ifdef"] = VerilogTokenTypes.Verilog_Directive;
+            _VerilogTypes["`ifndef"] = VerilogTokenTypes.Verilog_Directive;
+            _VerilogTypes["`elsif"] = VerilogTokenTypes.Verilog_Directive;
+            _VerilogTypes["`else"] = VerilogTokenTypes.Verilog_Directive;
+            _VerilogTypes["`endif"] = VerilogTokenTypes.Verilog_Directive;
+            _VerilogTypes["`include"] = VerilogTokenTypes.Verilog_Directive;
+            _VerilogTypes["`resetall"] = VerilogTokenTypes.Verilog_Directive;
+            _VerilogTypes["`line"] = VerilogTokenTypes.Verilog_Directive;
+            _VerilogTypes["`timescale"] = VerilogTokenTypes.Verilog_Directive;
+            _VerilogTypes["`unconnected_drive"] = VerilogTokenTypes.Verilog_Directive;
+            _VerilogTypes["`nounconnected_driv"] = VerilogTokenTypes.Verilog_Directive;
+
+            _VerilogTypes["//"] = VerilogTokenTypes.Verilog_Comment;
+
         }
 
         public event EventHandler<SnapshotSpanEventArgs> TagsChanged

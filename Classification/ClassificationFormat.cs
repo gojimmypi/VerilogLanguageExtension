@@ -70,7 +70,7 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "always" classification type
         /// </summary>
-        public Verilog_always()  
+        public Verilog_always()
         {
             DisplayName = "Verilog - always"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
                                               //System.Drawing.Color thisColor = Microsoft.VisualStudio.PlatformUI.VSColorTheme.GetThemedColor(Microsoft.VisualStudio.PlatformUI.EnvironmentColors.ClassDesignerCommentTextColorKey);
@@ -85,11 +85,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword always
+    #endregion // Keyword always
 
 
 
-#region Keyword assign 
+    #region Keyword assign 
     /// <summary>
     /// Defines the editor format for the Verilog_assign classification type. Text is colored BlueViolet
     /// </summary>
@@ -112,11 +112,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword assign
+    #endregion // Keyword assign
 
 
 
-#region Keyword automatic 
+    #region Keyword automatic 
     /// <summary>
     /// Defines the editor format for the Verilog_automatic classification type. Text is colored BlueViolet
     /// </summary>
@@ -139,11 +139,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword automatic
+    #endregion // Keyword automatic
 
 
 
-#region Keyword begin 
+    #region Keyword begin 
     /// <summary>
     /// Defines the editor format for the Verilog_begin classification type. Text is colored BlueViolet
     /// </summary>
@@ -166,11 +166,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword begin
+    #endregion // Keyword begin
 
 
 
-#region Keyword case 
+    #region Keyword case 
     /// <summary>
     /// Defines the editor format for the Verilog_case classification type. Text is colored BlueViolet
     /// </summary>
@@ -193,11 +193,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword case
+    #endregion // Keyword case
 
 
 
-#region Keyword casex 
+    #region Keyword casex 
     /// <summary>
     /// Defines the editor format for the Verilog_casex classification type. Text is colored BlueViolet
     /// </summary>
@@ -220,11 +220,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword casex
+    #endregion // Keyword casex
 
 
 
-#region Keyword casez 
+    #region Keyword casez 
     /// <summary>
     /// Defines the editor format for the Verilog_casez classification type. Text is colored BlueViolet
     /// </summary>
@@ -247,11 +247,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword casez
+    #endregion // Keyword casez
 
 
 
-#region Keyword cell 
+    #region Keyword cell 
     /// <summary>
     /// Defines the editor format for the Verilog_cell classification type. Text is colored BlueViolet
     /// </summary>
@@ -274,11 +274,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword cell
+    #endregion // Keyword cell
 
 
 
-#region Keyword config 
+    #region Keyword config 
     /// <summary>
     /// Defines the editor format for the Verilog_config classification type. Text is colored BlueViolet
     /// </summary>
@@ -301,11 +301,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword config
+    #endregion // Keyword config
 
 
 
-#region Keyword deassign 
+    #region Keyword deassign 
     /// <summary>
     /// Defines the editor format for the Verilog_deassign classification type. Text is colored BlueViolet
     /// </summary>
@@ -328,11 +328,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword deassign
+    #endregion // Keyword deassign
 
 
 
-#region Keyword default 
+    #region Keyword default 
     /// <summary>
     /// Defines the editor format for the Verilog_default classification type. Text is colored BlueViolet
     /// </summary>
@@ -355,11 +355,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword default
+    #endregion // Keyword default
 
 
 
-#region Keyword defparam 
+    #region Keyword defparam 
     /// <summary>
     /// Defines the editor format for the Verilog_defparam classification type. Text is colored BlueViolet
     /// </summary>
@@ -382,11 +382,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword defparam
+    #endregion // Keyword defparam
 
 
 
-#region Keyword design 
+    #region Keyword design 
     /// <summary>
     /// Defines the editor format for the Verilog_design classification type. Text is colored BlueViolet
     /// </summary>
@@ -409,11 +409,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword design
+    #endregion // Keyword design
 
 
 
-#region Keyword disable 
+    #region Keyword disable 
     /// <summary>
     /// Defines the editor format for the Verilog_disable classification type. Text is colored BlueViolet
     /// </summary>
@@ -436,11 +436,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword disable
+    #endregion // Keyword disable
 
 
 
-#region Keyword edge 
+    #region Keyword edge 
     /// <summary>
     /// Defines the editor format for the Verilog_edge classification type. Text is colored BlueViolet
     /// </summary>
@@ -463,11 +463,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword edge
+    #endregion // Keyword edge
 
 
 
-#region Keyword else 
+    #region Keyword else 
     /// <summary>
     /// Defines the editor format for the Verilog_else classification type. Text is colored BlueViolet
     /// </summary>
@@ -490,11 +490,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword else
+    #endregion // Keyword else
 
 
 
-#region Keyword end 
+    #region Keyword end 
     /// <summary>
     /// Defines the editor format for the Verilog_end classification type. Text is colored BlueViolet
     /// </summary>
@@ -517,11 +517,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword end
+    #endregion // Keyword end
 
 
 
-#region Keyword endcase 
+    #region Keyword endcase 
     /// <summary>
     /// Defines the editor format for the Verilog_endcase classification type. Text is colored BlueViolet
     /// </summary>
@@ -544,11 +544,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword endcase
+    #endregion // Keyword endcase
 
 
 
-#region Keyword endconfig 
+    #region Keyword endconfig 
     /// <summary>
     /// Defines the editor format for the Verilog_endconfig classification type. Text is colored BlueViolet
     /// </summary>
@@ -571,11 +571,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword endconfig
+    #endregion // Keyword endconfig
 
 
 
-#region Keyword endfunction 
+    #region Keyword endfunction 
     /// <summary>
     /// Defines the editor format for the Verilog_endfunction classification type. Text is colored BlueViolet
     /// </summary>
@@ -598,11 +598,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword endfunction
+    #endregion // Keyword endfunction
 
 
 
-#region Keyword endgenerate 
+    #region Keyword endgenerate 
     /// <summary>
     /// Defines the editor format for the Verilog_endgenerate classification type. Text is colored BlueViolet
     /// </summary>
@@ -625,11 +625,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword endgenerate
+    #endregion // Keyword endgenerate
 
 
 
-#region Keyword endmodule 
+    #region Keyword endmodule 
     /// <summary>
     /// Defines the editor format for the Verilog_endmodule classification type. Text is colored BlueViolet
     /// </summary>
@@ -652,11 +652,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword endmodule
+    #endregion // Keyword endmodule
 
 
 
-#region Keyword endprimitive 
+    #region Keyword endprimitive 
     /// <summary>
     /// Defines the editor format for the Verilog_endprimitive classification type. Text is colored BlueViolet
     /// </summary>
@@ -679,11 +679,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword endprimitive
+    #endregion // Keyword endprimitive
 
 
 
-#region Keyword endspecify 
+    #region Keyword endspecify 
     /// <summary>
     /// Defines the editor format for the Verilog_endspecify classification type. Text is colored BlueViolet
     /// </summary>
@@ -706,11 +706,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword endspecify
+    #endregion // Keyword endspecify
 
 
 
-#region Keyword endtable 
+    #region Keyword endtable 
     /// <summary>
     /// Defines the editor format for the Verilog_endtable classification type. Text is colored BlueViolet
     /// </summary>
@@ -733,11 +733,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword endtable
+    #endregion // Keyword endtable
 
 
 
-#region Keyword endtask 
+    #region Keyword endtask 
     /// <summary>
     /// Defines the editor format for the Verilog_endtask classification type. Text is colored BlueViolet
     /// </summary>
@@ -760,11 +760,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword endtask
+    #endregion // Keyword endtask
 
 
 
-#region Keyword event 
+    #region Keyword event 
     /// <summary>
     /// Defines the editor format for the Verilog_event classification type. Text is colored BlueViolet
     /// </summary>
@@ -787,11 +787,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword event
+    #endregion // Keyword event
 
 
 
-#region Keyword for 
+    #region Keyword for 
     /// <summary>
     /// Defines the editor format for the Verilog_for classification type. Text is colored BlueViolet
     /// </summary>
@@ -814,11 +814,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword for
+    #endregion // Keyword for
 
 
 
-#region Keyword force 
+    #region Keyword force 
     /// <summary>
     /// Defines the editor format for the Verilog_force classification type. Text is colored BlueViolet
     /// </summary>
@@ -841,11 +841,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword force
+    #endregion // Keyword force
 
 
 
-#region Keyword forever 
+    #region Keyword forever 
     /// <summary>
     /// Defines the editor format for the Verilog_forever classification type. Text is colored BlueViolet
     /// </summary>
@@ -868,11 +868,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword forever
+    #endregion // Keyword forever
 
 
 
-#region Keyword fork 
+    #region Keyword fork 
     /// <summary>
     /// Defines the editor format for the Verilog_fork classification type. Text is colored BlueViolet
     /// </summary>
@@ -895,11 +895,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword fork
+    #endregion // Keyword fork
 
 
 
-#region Keyword function 
+    #region Keyword function 
     /// <summary>
     /// Defines the editor format for the Verilog_function classification type. Text is colored BlueViolet
     /// </summary>
@@ -922,11 +922,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword function
+    #endregion // Keyword function
 
 
 
-#region Keyword generate 
+    #region Keyword generate 
     /// <summary>
     /// Defines the editor format for the Verilog_generate classification type. Text is colored BlueViolet
     /// </summary>
@@ -949,11 +949,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword generate
+    #endregion // Keyword generate
 
 
 
-#region Keyword genvar 
+    #region Keyword genvar 
     /// <summary>
     /// Defines the editor format for the Verilog_genvar classification type. Text is colored BlueViolet
     /// </summary>
@@ -976,11 +976,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword genvar
+    #endregion // Keyword genvar
 
 
 
-#region Keyword if 
+    #region Keyword if 
     /// <summary>
     /// Defines the editor format for the Verilog_if classification type. Text is colored BlueViolet
     /// </summary>
@@ -1003,11 +1003,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword if
+    #endregion // Keyword if
 
 
 
-#region Keyword ifnone 
+    #region Keyword ifnone 
     /// <summary>
     /// Defines the editor format for the Verilog_ifnone classification type. Text is colored BlueViolet
     /// </summary>
@@ -1030,11 +1030,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword ifnone
+    #endregion // Keyword ifnone
 
 
 
-#region Keyword incdir 
+    #region Keyword incdir 
     /// <summary>
     /// Defines the editor format for the Verilog_incdir classification type. Text is colored BlueViolet
     /// </summary>
@@ -1057,11 +1057,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword incdir
+    #endregion // Keyword incdir
 
 
 
-#region Keyword include 
+    #region Keyword include 
     /// <summary>
     /// Defines the editor format for the Verilog_include classification type. Text is colored BlueViolet
     /// </summary>
@@ -1084,11 +1084,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword include
+    #endregion // Keyword include
 
 
 
-#region Keyword initial 
+    #region Keyword initial 
     /// <summary>
     /// Defines the editor format for the Verilog_initial classification type. Text is colored BlueViolet
     /// </summary>
@@ -1111,11 +1111,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword initial
+    #endregion // Keyword initial
 
 
 
-#region Keyword inout 
+    #region Keyword inout 
     /// <summary>
     /// Defines the editor format for the Verilog_inout classification type. Text is colored BlueViolet
     /// </summary>
@@ -1138,11 +1138,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword inout
+    #endregion // Keyword inout
 
 
 
-#region Keyword input 
+    #region Keyword input 
     /// <summary>
     /// Defines the editor format for the Verilog_input classification type. Text is colored BlueViolet
     /// </summary>
@@ -1165,11 +1165,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword input
+    #endregion // Keyword input
 
 
 
-#region Keyword instance 
+    #region Keyword instance 
     /// <summary>
     /// Defines the editor format for the Verilog_instance classification type. Text is colored BlueViolet
     /// </summary>
@@ -1192,11 +1192,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword instance
+    #endregion // Keyword instance
 
 
 
-#region Keyword join 
+    #region Keyword join 
     /// <summary>
     /// Defines the editor format for the Verilog_join classification type. Text is colored BlueViolet
     /// </summary>
@@ -1219,11 +1219,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword join
+    #endregion // Keyword join
 
 
 
-#region Keyword liblist 
+    #region Keyword liblist 
     /// <summary>
     /// Defines the editor format for the Verilog_liblist classification type. Text is colored BlueViolet
     /// </summary>
@@ -1246,11 +1246,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword liblist
+    #endregion // Keyword liblist
 
 
 
-#region Keyword library 
+    #region Keyword library 
     /// <summary>
     /// Defines the editor format for the Verilog_library classification type. Text is colored BlueViolet
     /// </summary>
@@ -1273,11 +1273,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword library
+    #endregion // Keyword library
 
 
 
-#region Keyword localparam 
+    #region Keyword localparam 
     /// <summary>
     /// Defines the editor format for the Verilog_localparam classification type. Text is colored BlueViolet
     /// </summary>
@@ -1300,11 +1300,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword localparam
+    #endregion // Keyword localparam
 
 
 
-#region Keyword macromodule 
+    #region Keyword macromodule 
     /// <summary>
     /// Defines the editor format for the Verilog_macromodule classification type. Text is colored BlueViolet
     /// </summary>
@@ -1327,11 +1327,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword macromodule
+    #endregion // Keyword macromodule
 
 
 
-#region Keyword module 
+    #region Keyword module 
     /// <summary>
     /// Defines the editor format for the Verilog_module classification type. Text is colored BlueViolet
     /// </summary>
@@ -1354,11 +1354,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword module
+    #endregion // Keyword module
 
 
 
-#region Keyword negedge 
+    #region Keyword negedge 
     /// <summary>
     /// Defines the editor format for the Verilog_negedge classification type. Text is colored BlueViolet
     /// </summary>
@@ -1381,11 +1381,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword negedge
+    #endregion // Keyword negedge
 
 
 
-#region Keyword noshowcancelled 
+    #region Keyword noshowcancelled 
     /// <summary>
     /// Defines the editor format for the Verilog_noshowcancelled classification type. Text is colored BlueViolet
     /// </summary>
@@ -1408,11 +1408,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword noshowcancelled
+    #endregion // Keyword noshowcancelled
 
 
 
-#region Keyword output 
+    #region Keyword output 
     /// <summary>
     /// Defines the editor format for the Verilog_output classification type. Text is colored BlueViolet
     /// </summary>
@@ -1435,11 +1435,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword output
+    #endregion // Keyword output
 
 
 
-#region Keyword parameter 
+    #region Keyword parameter 
     /// <summary>
     /// Defines the editor format for the Verilog_parameter classification type. Text is colored BlueViolet
     /// </summary>
@@ -1462,11 +1462,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword parameter
+    #endregion // Keyword parameter
 
 
 
-#region Keyword posedge 
+    #region Keyword posedge 
     /// <summary>
     /// Defines the editor format for the Verilog_posedge classification type. Text is colored BlueViolet
     /// </summary>
@@ -1489,11 +1489,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword posedge
+    #endregion // Keyword posedge
 
 
 
-#region Keyword primitive 
+    #region Keyword primitive 
     /// <summary>
     /// Defines the editor format for the Verilog_primitive classification type. Text is colored BlueViolet
     /// </summary>
@@ -1516,11 +1516,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword primitive
+    #endregion // Keyword primitive
 
 
 
-#region Keyword pulsestyle_ondetect 
+    #region Keyword pulsestyle_ondetect 
     /// <summary>
     /// Defines the editor format for the Verilog_pulsestyle_ondetect classification type. Text is colored BlueViolet
     /// </summary>
@@ -1543,11 +1543,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword pulsestyle_ondetect
+    #endregion // Keyword pulsestyle_ondetect
 
 
 
-#region Keyword pulsestyle_onevent 
+    #region Keyword pulsestyle_onevent 
     /// <summary>
     /// Defines the editor format for the Verilog_pulsestyle_onevent classification type. Text is colored BlueViolet
     /// </summary>
@@ -1570,11 +1570,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword pulsestyle_onevent
+    #endregion // Keyword pulsestyle_onevent
 
 
 
-#region Keyword reg 
+    #region Keyword reg 
     /// <summary>
     /// Defines the editor format for the Verilog_reg classification type. Text is colored BlueViolet
     /// </summary>
@@ -1597,11 +1597,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword reg
+    #endregion // Keyword reg
 
 
 
-#region Keyword release 
+    #region Keyword release 
     /// <summary>
     /// Defines the editor format for the Verilog_release classification type. Text is colored BlueViolet
     /// </summary>
@@ -1624,11 +1624,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword release
+    #endregion // Keyword release
 
 
 
-#region Keyword repeat 
+    #region Keyword repeat 
     /// <summary>
     /// Defines the editor format for the Verilog_repeat classification type. Text is colored BlueViolet
     /// </summary>
@@ -1651,11 +1651,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword repeat
+    #endregion // Keyword repeat
 
 
 
-#region Keyword scalared 
+    #region Keyword scalared 
     /// <summary>
     /// Defines the editor format for the Verilog_scalared classification type. Text is colored BlueViolet
     /// </summary>
@@ -1678,11 +1678,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword scalared
+    #endregion // Keyword scalared
 
 
 
-#region Keyword showcancelled 
+    #region Keyword showcancelled 
     /// <summary>
     /// Defines the editor format for the Verilog_showcancelled classification type. Text is colored BlueViolet
     /// </summary>
@@ -1705,11 +1705,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword showcancelled
+    #endregion // Keyword showcancelled
 
 
 
-#region Keyword signed 
+    #region Keyword signed 
     /// <summary>
     /// Defines the editor format for the Verilog_signed classification type. Text is colored BlueViolet
     /// </summary>
@@ -1732,11 +1732,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword signed
+    #endregion // Keyword signed
 
 
 
-#region Keyword specify 
+    #region Keyword specify 
     /// <summary>
     /// Defines the editor format for the Verilog_specify classification type. Text is colored BlueViolet
     /// </summary>
@@ -1759,11 +1759,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword specify
+    #endregion // Keyword specify
 
 
 
-#region Keyword specparam 
+    #region Keyword specparam 
     /// <summary>
     /// Defines the editor format for the Verilog_specparam classification type. Text is colored BlueViolet
     /// </summary>
@@ -1786,11 +1786,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword specparam
+    #endregion // Keyword specparam
 
 
 
-#region Keyword strength 
+    #region Keyword strength 
     /// <summary>
     /// Defines the editor format for the Verilog_strength classification type. Text is colored BlueViolet
     /// </summary>
@@ -1813,11 +1813,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword strength
+    #endregion // Keyword strength
 
 
 
-#region Keyword table 
+    #region Keyword table 
     /// <summary>
     /// Defines the editor format for the Verilog_table classification type. Text is colored BlueViolet
     /// </summary>
@@ -1840,11 +1840,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword table
+    #endregion // Keyword table
 
 
 
-#region Keyword task 
+    #region Keyword task 
     /// <summary>
     /// Defines the editor format for the Verilog_task classification type. Text is colored BlueViolet
     /// </summary>
@@ -1867,11 +1867,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword task
+    #endregion // Keyword task
 
 
 
-#region Keyword tri 
+    #region Keyword tri 
     /// <summary>
     /// Defines the editor format for the Verilog_tri classification type. Text is colored BlueViolet
     /// </summary>
@@ -1894,11 +1894,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword tri
+    #endregion // Keyword tri
 
 
 
-#region Keyword tri0 
+    #region Keyword tri0 
     /// <summary>
     /// Defines the editor format for the Verilog_tri0 classification type. Text is colored BlueViolet
     /// </summary>
@@ -1921,11 +1921,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword tri0
+    #endregion // Keyword tri0
 
 
 
-#region Keyword tri1 
+    #region Keyword tri1 
     /// <summary>
     /// Defines the editor format for the Verilog_tri1 classification type. Text is colored BlueViolet
     /// </summary>
@@ -1948,11 +1948,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword tri1
+    #endregion // Keyword tri1
 
 
 
-#region Keyword triand 
+    #region Keyword triand 
     /// <summary>
     /// Defines the editor format for the Verilog_triand classification type. Text is colored BlueViolet
     /// </summary>
@@ -1975,11 +1975,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword triand
+    #endregion // Keyword triand
 
 
 
-#region Keyword wand 
+    #region Keyword wand 
     /// <summary>
     /// Defines the editor format for the Verilog_wand classification type. Text is colored BlueViolet
     /// </summary>
@@ -2002,11 +2002,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword wand
+    #endregion // Keyword wand
 
 
 
-#region Keyword trior 
+    #region Keyword trior 
     /// <summary>
     /// Defines the editor format for the Verilog_trior classification type. Text is colored BlueViolet
     /// </summary>
@@ -2029,11 +2029,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword trior
+    #endregion // Keyword trior
 
 
 
-#region Keyword wor 
+    #region Keyword wor 
     /// <summary>
     /// Defines the editor format for the Verilog_wor classification type. Text is colored BlueViolet
     /// </summary>
@@ -2056,11 +2056,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword wor
+    #endregion // Keyword wor
 
 
 
-#region Keyword trireg 
+    #region Keyword trireg 
     /// <summary>
     /// Defines the editor format for the Verilog_trireg classification type. Text is colored BlueViolet
     /// </summary>
@@ -2083,11 +2083,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword trireg
+    #endregion // Keyword trireg
 
 
 
-#region Keyword unsigned 
+    #region Keyword unsigned 
     /// <summary>
     /// Defines the editor format for the Verilog_unsigned classification type. Text is colored BlueViolet
     /// </summary>
@@ -2110,11 +2110,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword unsigned
+    #endregion // Keyword unsigned
 
 
 
-#region Keyword use 
+    #region Keyword use 
     /// <summary>
     /// Defines the editor format for the Verilog_use classification type. Text is colored BlueViolet
     /// </summary>
@@ -2137,11 +2137,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword use
+    #endregion // Keyword use
 
 
 
-#region Keyword vectored 
+    #region Keyword vectored 
     /// <summary>
     /// Defines the editor format for the Verilog_vectored classification type. Text is colored BlueViolet
     /// </summary>
@@ -2164,11 +2164,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword vectored
+    #endregion // Keyword vectored
 
 
 
-#region Keyword wait 
+    #region Keyword wait 
     /// <summary>
     /// Defines the editor format for the Verilog_wait classification type. Text is colored BlueViolet
     /// </summary>
@@ -2191,11 +2191,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword wait
+    #endregion // Keyword wait
 
 
 
-#region Keyword while 
+    #region Keyword while 
     /// <summary>
     /// Defines the editor format for the Verilog_while classification type. Text is colored BlueViolet
     /// </summary>
@@ -2218,11 +2218,11 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword while
+    #endregion // Keyword while
 
 
 
-#region Keyword wire 
+    #region Keyword wire 
     /// <summary>
     /// Defines the editor format for the Verilog_wire classification type. Text is colored BlueViolet
     /// </summary>
@@ -2245,8 +2245,52 @@ namespace VerilogLanguage
         }
     }
 
-#endregion // Keyword wire
+    #endregion // Keyword wire
 
 
     #endregion //Format definition
+
+    #region directives
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "directive")]
+    [Name("directive")]
+    //this should be visible to the end user
+    [UserVisible(true)]
+    //set the priority to be after the default classifiers
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_directive : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "directive" classification type
+        /// </summary>
+        public Verilog_directive()
+        {
+            DisplayName = "Verilog - Directive"; //human readable version of the name
+            ForegroundColor = Colors.IndianRed;
+        }
+    }
+    #endregion
+
+    #region comments
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "vcomment")]
+    [Name("vcomment")]
+    //this should be visible to the end user
+    [UserVisible(true)]
+    //set the priority to be after the default classifiers
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_comment : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "directive" classification type
+        /// </summary>
+        public Verilog_comment()
+        {
+            DisplayName = "Verilog - Comment"; //human readable version of the name
+            ForegroundColor = Colors.LightSeaGreen;
+        }
+    }
+    #endregion
 }

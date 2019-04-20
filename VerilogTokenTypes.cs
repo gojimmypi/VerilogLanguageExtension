@@ -34,8 +34,6 @@ namespace VerilogLanguage
 {
     public enum VerilogTokenTypes
     {
-        VerilogAssign,  
-
         Verilog_always,
         Verilog_assign,
         Verilog_automatic,
@@ -116,7 +114,11 @@ namespace VerilogLanguage
         Verilog_vectored,
         Verilog_wait,
         Verilog_while,
-        Verilog_wire
+        Verilog_wire,
+
+        Verilog_Directive,
+
+        Verilog_Comment
 
     }
 }

@@ -44,11 +44,14 @@ namespace VerilogLanguage
         [Export]
         [Name("verilog")]
         [BaseDefinition("code")]
+        [BaseDefinition("projection")]
         internal static ContentTypeDefinition VerilogContentType = null;
 
         [Export]
         [FileExtension(".v")]
         [ContentType("verilog")]
+        [BaseDefinition("code")]
+        [BaseDefinition("projection")]
         internal static FileExtensionToContentTypeDefinition VerilogFileType = null;
 
         [Import]
@@ -164,6 +167,9 @@ namespace VerilogLanguage
             _VerilogTypes[VerilogTokenTypes.Verilog_wait] = typeService.GetClassificationType("wait");
             _VerilogTypes[VerilogTokenTypes.Verilog_while] = typeService.GetClassificationType("while");
             _VerilogTypes[VerilogTokenTypes.Verilog_wire] = typeService.GetClassificationType("wire");
+
+            _VerilogTypes[VerilogTokenTypes.Verilog_Directive] = typeService.GetClassificationType("directive"); // must be one of VerilogTokenTagger 
+            _VerilogTypes[VerilogTokenTypes.Verilog_Comment] = typeService.GetClassificationType("comment"); // must be one of VerilogTokenTagger 
         }
 
         public event EventHandler<SnapshotSpanEventArgs> TagsChanged
@@ -177,13 +183,27 @@ namespace VerilogLanguage
         /// </summary>
         public IEnumerable<ITagSpan<ClassificationTag>> GetTags(NormalizedSnapshotSpanCollection spans)
         {
+            Boolean IsComment = false;
             foreach (var tagSpan in _aggregator.GetTags(spans))
             {
                 var tagSpans = tagSpan.Span.GetSpans(spans[0].Snapshot);
                 // each of the text values found for tagSpan.Tag.type must be defined above in VerilogClassifier
-                yield return 
-                    new TagSpan<ClassificationTag>(tagSpans[0], 
-                                                   new ClassificationTag(_VerilogTypes[tagSpan.Tag.type]));
+                if (tagSpans[0].GetText().Substring(0,2) == "//") {
+                    IsComment = true;
+                }
+                if (IsComment)
+                {
+                    yield return
+                        new TagSpan<ClassificationTag>(tagSpans[0],
+                                                       new ClassificationTag(_VerilogTypes[VerilogTokenTypes.Verilog_Comment]));
+                }
+                else
+                {
+                    IsComment = false;
+                    yield return
+                        new TagSpan<ClassificationTag>(tagSpans[0],
+                                                       new ClassificationTag(_VerilogTypes[tagSpan.Tag.type]));
+                }
             }
         }
     }

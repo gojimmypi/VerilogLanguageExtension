@@ -174,15 +174,17 @@
     <Compile Include="EditorClassifier1ClassificationDefinition.cs" />
     <Compile Include="EditorClassifier1Format.cs" />
     <Compile Include="EditorClassifier1Provider.cs" />
+    <Compile Include="Highlighting\HighlightWordFormatDefinition.cs" />
+    <Compile Include="Highlighting\HighlightWordTag.cs" />
+    <Compile Include="Highlighting\HighlightWordTagger.cs" />
+    <Compile Include="Highlighting\HighlightWordTaggerProvider.cs" />
     <Compile Include="Intellisense\CompletionController.cs" />
     <Compile Include="Intellisense\CompletionSource.cs" />
     <Compile Include="Intellisense\VerilogQuickInfoSource.cs" />
     <Compile Include="Outlining\OutliningTagger.cs" />
     <Compile Include="Outlining\OutliningTaggerProvider.cs" />
-    <Compile Include="Tagger\BraceMatchingTagger.cs" />
-    <Compile Include="Tagger\BraceMatchingTaggerProvider.cs" />
-    <Compile Include="Tagger\OutliningTagger.cs" />
-    <Compile Include="Tagger\OutliningTaggerProvider.cs" />
+    <Compile Include="BraceMatching\BraceMatchingTagger.cs" />
+    <Compile Include="BraceMatching\BraceMatchingTaggerProvider.cs" />
     <Compile Include="VerilogTokenTag.cs" />
     <Compile Include="VerilogTokenTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -217,6 +219,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="images\" />
+    <Folder Include="Tagger\" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="packages\Microsoft.VisualStudio.SDK.Analyzers.15.8.33\analyzers\cs\Microsoft.VisualStudio.SDK.Analyzers.dll" />

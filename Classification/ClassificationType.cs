@@ -684,5 +684,25 @@ namespace VerilogLanguage
 
 
         #endregion
+
+        #region directives
+        /// <summary>
+        /// Defines the "Verilog_Directive" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Directive")]
+        internal static ClassificationTypeDefinition Verilog_Directive = null;
+
+        #endregion
+
+        #region comments
+        /// <summary>
+        /// Defines the "Verilog_Comment" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Comment")]
+        internal static ClassificationTypeDefinition Verilog_Comment = null;
+        #endregion
+
     }
 }

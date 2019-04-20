@@ -183,23 +183,10 @@ namespace VerilogLanguage
         /// </summary>
         public IEnumerable<ITagSpan<ClassificationTag>> GetTags(NormalizedSnapshotSpanCollection spans)
         {
-            Boolean IsComment = false;
             foreach (var tagSpan in _aggregator.GetTags(spans))
             {
                 var tagSpans = tagSpan.Span.GetSpans(spans[0].Snapshot);
                 // each of the text values found for tagSpan.Tag.type must be defined above in VerilogClassifier
-                if (tagSpans[0].GetText().Substring(0,2) == "//") {
-                    IsComment = true;
-                }
-                if (IsComment)
-                {
-                    yield return
-                        new TagSpan<ClassificationTag>(tagSpans[0],
-                                                       new ClassificationTag(_VerilogTypes[VerilogTokenTypes.Verilog_Comment]));
-                }
-                else
-                {
-                    IsComment = false;
                     yield return
                         new TagSpan<ClassificationTag>(tagSpans[0],
                                                        new ClassificationTag(_VerilogTypes[tagSpan.Tag.type]));

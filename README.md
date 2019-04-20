@@ -51,7 +51,7 @@ Add a ClassificationFormat.cs
     [ClassificationType(ClassificationTypeNames = "begin")]
     [Name("begin")]
     //this should be visible to the end user
-    [UserVisible(false)]
+    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
     internal sealed class Verilog_begin : ClassificationFormatDefinition

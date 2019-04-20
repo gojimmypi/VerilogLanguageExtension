@@ -17,6 +17,7 @@ namespace VerilogLanguage
         /// </summary>
         [Export(typeof(ClassificationTypeDefinition))]
         [Name("EditorClassifier1")]
+        [BaseDefinition("code")]
         private static ClassificationTypeDefinition typeDefinition;
 
 #pragma warning restore 169

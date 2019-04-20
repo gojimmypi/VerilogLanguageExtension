@@ -1,22 +1,28 @@
-﻿// adapted from https://github.com/madskristensen/ExtensibilityTools
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.Text.Tagging;
 
-namespace VerilogLanguage
+// adapted from https://github.com/madskristensen/ExtensibilityTools
+// See also https://docs.microsoft.com/en-us/visualstudio/extensibility/walkthrough-displaying-matching-braces?view=vs-2015
+
+namespace VerilogLanguage.BraceMatching
 {
+    // Step 3: Define a class BraceMatchingTagger that inherits from ITagger<T> of type TextMarkerTag.
     public class BraceMatchingTagger : ITagger<TextMarkerTag>
     {
-
+        // Step 4: Add properties for the text view, the source buffer, and the current snapshot point, and also a set of brace pairs.
         ITextView View { get; set; }
         ITextBuffer SourceBuffer { get; set; }
         SnapshotPoint? CurrentChar { get; set; }
-        private readonly Dictionary<char, char> _braceList;
+        private Dictionary<char, char> m_braceList;
 
+
+        // Step 5: In the tagger constructor, set the properties and subscribe to the view change events 
+        // PositionChanged and LayoutChanged. In this example, for illustrative purposes, the 
+        // matching pairs are also defined in the constructor.
         internal BraceMatchingTagger(ITextView view, ITextBuffer sourceBuffer)
         {
             //here the keys are the open braces, and the values are the close braces
@@ -25,14 +31,15 @@ namespace VerilogLanguage
                 { '{', '}' },
                 { '(', ')' }
             };
-            View = view;
-            SourceBuffer = sourceBuffer;
-            CurrentChar = null;
+            this.View = view;
+            this.SourceBuffer = sourceBuffer;
+            this.CurrentChar = null;
 
-            View.Caret.PositionChanged += CaretPositionChanged;
-            View.LayoutChanged += ViewLayoutChanged;
+            this.View.Caret.PositionChanged += CaretPositionChanged;
+            this.View.LayoutChanged += ViewLayoutChanged;
         }
 
+        // Step 7: The event handlers update the current caret position of the CurrentChar property and raise the TagsChanged event.
         void ViewLayoutChanged(object sender, TextViewLayoutChangedEventArgs e)
         {
             if (e.NewSnapshot != e.OldSnapshot) //make sure that there has really been a change
@@ -41,6 +48,28 @@ namespace VerilogLanguage
             }
         }
 
+        void CaretPositionChanged(object sender, CaretPositionChangedEventArgs e)
+        {
+            UpdateAtCaretPosition(e.NewPosition);
+        }
+
+        void UpdateAtCaretPosition(CaretPosition caretPosition)
+        {
+            CurrentChar = caretPosition.Point.GetPoint(SourceBuffer, caretPosition.Affinity);
+
+            if (!CurrentChar.HasValue)
+                return;
+
+            var tempEvent = TagsChanged;
+            if (tempEvent != null)
+                tempEvent(this, new SnapshotSpanEventArgs(new SnapshotSpan(SourceBuffer.CurrentSnapshot, 0,
+                    SourceBuffer.CurrentSnapshot.Length)));
+        }
+
+        // Step 8: Implement the GetTags method to match braces either when the current character 
+        // is an open brace or when the previous character is a close brace, as in Visual Studio. 
+        // When the match is found, this method instantiates two tags, one for the open brace and 
+        // one for the close brace.
         public IEnumerable<ITagSpan<TextMarkerTag>> GetTags(NormalizedSnapshotSpanCollection spans)
         {
             if (spans.Count == 0)   //there is no content in the buffer
@@ -59,45 +88,36 @@ namespace VerilogLanguage
                 currentChar = currentChar.TranslateTo(spans[0].Snapshot, PointTrackingMode.Positive);
             }
 
-            char currentText;
-            
-            try
-            {
-                //get the current char and the previous char
-                currentText = currentChar.GetChar();
-            }
-            catch (Exception)
-            {
-                yield break;
-            }
-
+            //get the current char and the previous char
+            char currentText = currentChar.GetChar();
             SnapshotPoint lastChar = currentChar == 0 ? currentChar : currentChar - 1; //if currentChar is 0 (beginning of buffer), don't move it back
             char lastText = lastChar.GetChar();
             SnapshotSpan pairSpan = new SnapshotSpan();
 
-            if (_braceList.ContainsKey(currentText))   //the key is the open brace
+            if (m_braceList.ContainsKey(currentText))   //the key is the open brace
             {
                 char closeChar;
-                _braceList.TryGetValue(currentText, out closeChar);
+                m_braceList.TryGetValue(currentText, out closeChar);
                 if (BraceMatchingTagger.FindMatchingCloseChar(currentChar, currentText, closeChar, View.TextViewLines.Count, out pairSpan) == true)
                 {
-                    yield return new TagSpan<TextMarkerTag>(new SnapshotSpan(currentChar, 1), new TextMarkerTag("MarkerFormatDefinition/HighlightWordFormatDefinition"));
-                    yield return new TagSpan<TextMarkerTag>(pairSpan, new TextMarkerTag("MarkerFormatDefinition/HighlightWordFormatDefinition"));
+                    yield return new TagSpan<TextMarkerTag>(new SnapshotSpan(currentChar, 1), new TextMarkerTag("blue"));
+                    yield return new TagSpan<TextMarkerTag>(pairSpan, new TextMarkerTag("blue"));
                 }
             }
-            else if (_braceList.ContainsValue(lastText))    //the value is the close brace, which is the *previous* character 
+            else if (m_braceList.ContainsValue(lastText))    //the value is the close brace, which is the *previous* character 
             {
-                var open = from n in _braceList
+                var open = from n in m_braceList
                            where n.Value.Equals(lastText)
                            select n.Key;
-                if (FindMatchingOpenChar(lastChar, open.ElementAt(0), lastText, View.TextViewLines.Count, out pairSpan))
+                if (BraceMatchingTagger.FindMatchingOpenChar(lastChar, (char)open.ElementAt<char>(0), lastText, View.TextViewLines.Count, out pairSpan) == true)
                 {
-                    yield return new TagSpan<TextMarkerTag>(new SnapshotSpan(lastChar, 1), new TextMarkerTag("MarkerFormatDefinition/HighlightWordFormatDefinition"));
-                    yield return new TagSpan<TextMarkerTag>(pairSpan, new TextMarkerTag("MarkerFormatDefinition/HighlightWordFormatDefinition"));
+                    yield return new TagSpan<TextMarkerTag>(new SnapshotSpan(lastChar, 1), new TextMarkerTag("blue"));
+                    yield return new TagSpan<TextMarkerTag>(pairSpan, new TextMarkerTag("blue"));
                 }
             }
         }
 
+        // Step 9: The following private methods find the matching brace at any level of nesting. The first method finds the close character that matches the open character:
         private static bool FindMatchingCloseChar(SnapshotPoint startPoint, char open, char close, int maxLines, out SnapshotSpan pairSpan)
         {
             pairSpan = new SnapshotSpan(startPoint.Snapshot, 1, 1);
@@ -148,6 +168,7 @@ namespace VerilogLanguage
             return false;
         }
 
+        // Step 10: The following helper method finds the open character that matches a close character:
         private static bool FindMatchingOpenChar(SnapshotPoint startPoint, char open, char close, int maxLines, out SnapshotSpan pairSpan)
         {
             pairSpan = new SnapshotSpan(startPoint, startPoint);
@@ -158,7 +179,7 @@ namespace VerilogLanguage
             int offset = startPoint - line.Start - 1; //move the offset to the character before this one
 
             //if the offset is negative, move to the previous line
-            if (offset < 0 && lineNumber > 0)
+            if (offset < 0)
             {
                 line = line.Snapshot.GetLineFromLineNumber(--lineNumber);
                 offset = line.Length - 1;
@@ -209,24 +230,7 @@ namespace VerilogLanguage
             return false;
         }
 
-        void CaretPositionChanged(object sender, CaretPositionChangedEventArgs e)
-        {
-            UpdateAtCaretPosition(e.NewPosition);
-        }
-
-        void UpdateAtCaretPosition(CaretPosition caretPosition)
-        {
-            CurrentChar = caretPosition.Point.GetPoint(SourceBuffer, caretPosition.Affinity);
-
-            if (!CurrentChar.HasValue)
-                return;
-
-            var tempEvent = TagsChanged;
-            if (tempEvent != null)
-                tempEvent(this, new SnapshotSpanEventArgs(new SnapshotSpan(SourceBuffer.CurrentSnapshot, 0,
-                    SourceBuffer.CurrentSnapshot.Length)));
-        }
-
+        // Step 6: As part of the ITagger<T> implementation, declare a TagsChanged event.
         public event EventHandler<SnapshotSpanEventArgs> TagsChanged;
     }
 }

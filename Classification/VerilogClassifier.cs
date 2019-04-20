@@ -63,7 +63,7 @@ namespace VerilogLanguage
         public ITagger<T> CreateTagger<T>(ITextBuffer buffer) where T : ITag
         {
 
-            ITagAggregator<VerilogTokenTag> VerilogTagAggregator = 
+            ITagAggregator<VerilogTokenTag> VerilogTagAggregator =
                                             aggregatorFactory.CreateTagAggregator<VerilogTokenTag>(buffer);
 
             return new VerilogClassifier(buffer, VerilogTagAggregator, ClassificationTypeRegistry) as ITagger<T>;
@@ -79,8 +79,8 @@ namespace VerilogLanguage
         /// <summary>
         /// Construct the classifier and define search tokens
         /// </summary>
-        internal VerilogClassifier(ITextBuffer buffer, 
-                               ITagAggregator<VerilogTokenTag> VerilogTagAggregator, 
+        internal VerilogClassifier(ITextBuffer buffer,
+                               ITagAggregator<VerilogTokenTag> VerilogTagAggregator,
                                IClassificationTypeRegistryService typeService)
         {
             _buffer = buffer;
@@ -187,11 +187,11 @@ namespace VerilogLanguage
             {
                 var tagSpans = tagSpan.Span.GetSpans(spans[0].Snapshot);
                 // each of the text values found for tagSpan.Tag.type must be defined above in VerilogClassifier
-                    yield return
-                        new TagSpan<ClassificationTag>(tagSpans[0],
-                                                       new ClassificationTag(_VerilogTypes[tagSpan.Tag.type]));
-                }
+                yield return
+                    new TagSpan<ClassificationTag>(tagSpans[0],
+                                                   new ClassificationTag(_VerilogTypes[tagSpan.Tag.type]));
             }
         }
     }
 }
+

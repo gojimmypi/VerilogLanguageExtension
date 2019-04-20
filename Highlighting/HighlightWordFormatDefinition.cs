@@ -22,8 +22,8 @@ namespace VerilogLanguage.Highlighting
     {
         public HighlightWordFormatDefinition()
         {
-            this.BackgroundColor = Colors.LightBlue;
-            this.ForegroundColor = Colors.DarkBlue;
+            this.BackgroundColor = Colors.DarkGray;
+            // this.ForegroundColor = Colors.DarkBlue;
             this.DisplayName = "Highlight Word";
             this.ZOrder = 5;
         }

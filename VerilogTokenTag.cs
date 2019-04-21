@@ -255,63 +255,85 @@ namespace VerilogLanguage
 
                     string thisCommentBlock = "";
                     string thisNonCommentBlock = "";
+                    string previousChar = "";
+                    string thisChar = "";
+                    string nextChar = "";
                     if (this.IsMinimumSize && (this.HasBlockStartComment || this.HasOpenLineComment))
                     {
                         string thisTag = "";
                         for (int i = 0; i <= this.thisLine.Length - 1; i++)
                         {
                             thisTag = "";
-
-                            if (i <= this.thisLine.Length - 2)
+                            nextChar = "";
+                            thisChar = thisLine.Substring(i, 1);
+                            if (i < this.thisLine.Length - 1)
                             {
-                                thisTag = thisLine.Substring(i, 2);
+                                nextChar = thisLine.Substring(i + 1, 1);
                             }
+                            thisTag = thisChar + nextChar;
+                            //if (i <= this.thisLine.Length - 2)
+                            //{
+                            //    thisTag = thisLine.Substring(i, 2);
+                            //}
 
                             if (thisTag == "//")
                             {
-                                HasOpenLineComment = true;
-                                thisCommentBlock += thisTag;
-                                i++;
+                                if (HasBlockStartComment)
+                                {
+                                    // nothing to do, this "//" is inside a block comment
+                                }
+                                else
+                                {
+                                    HasOpenLineComment = true;
+                                    if (thisNonCommentBlock != "")
+                                    {
+                                        CommentItems.Add(new CommentItem(thisNonCommentBlock, false));
+                                        thisNonCommentBlock = "";
+                                    }
+                                }
+                                //thisCommentBlock += thisTag;
+                                //i++;
                             }
                             else if (thisTag == "/*")
                             {
-                                if ((thisNonCommentBlock != "") && (!HasBlockStartComment))
+                                if (thisNonCommentBlock != "") 
                                 {
                                     CommentItems.Add(new CommentItem(thisNonCommentBlock, false));
                                     thisNonCommentBlock = "";
-
-                                    thisCommentBlock += thisTag;
-                                    HasBlockStartComment = true;
-                                    i++;
                                 }
-
+                                if (!HasOpenLineComment)
+                                {
+                                    HasBlockStartComment = true;
+                                }
                             }
                             else if (thisTag == "*/")
                             {
-                                if (HasBlockStartComment)
+                                if (HasBlockStartComment && !HasOpenLineComment)
                                 {
-                                    thisCommentBlock += thisTag;
-                                    i++;
+                                    thisCommentBlock += thisChar; i++;
+                                    thisCommentBlock += nextChar; i++; 
                                     CommentItems.Add(new CommentItem(thisCommentBlock, true));
                                     thisCommentBlock = "";
+                                    HasBlockStartComment = false;
                                 }
                                 else
                                 {
                                     // closing block comment found without opening, so it is not a comment
-                                    thisNonCommentBlock += thisTag;
                                 }
-
                                 HasBlockStartComment = false;
-                                i++;
                             }
 
-                            if (HasBlockStartComment || HasOpenLineComment)
+                            // we may have incremented above, so ensure we are still inside the string
+                            if (i < this.thisLine.Length)
                             {
-                                thisCommentBlock += thisLine.Substring(i, 1);
-                            }
-                            else
-                            {
-                                thisNonCommentBlock += thisLine.Substring(i, 1);
+                                if (HasBlockStartComment || HasOpenLineComment)
+                                {
+                                    thisCommentBlock += thisLine.Substring(i, 1);
+                                }
+                                else
+                                {
+                                    thisNonCommentBlock += thisLine.Substring(i, 1);
+                                }
                             }
                         } // end of for loop checking each char
 

@@ -346,20 +346,21 @@ namespace VerilogLanguage
                             }
                             else
                             {
+                                AppendBlockChar(thisChar); // append this char to the comment or non-comment block as appropriate
+                                AppendBlockChar(nextChar); // append the next char to the comment or non-comment block as appropriate
+                                i++;
                                 if (HasBlockStartComment)
                                 {
-                                    AppendBlockChar(thisChar); // append this char to the comment or non-comment block as appropriate
-                                    AppendBlockChar(nextChar); // append this char to the comment or non-comment block as appropriate
-                                    i++;
-
                                     CommentItems.Add(new CommentItem(thisCommentBlock, true));
                                     thisCommentBlock = "";
-                                    HasBlockStartComment = false;
                                 }
                                 else
                                 {
                                     // closing block comment found without opening, so it is not a comment
+                                    CommentItems.Add(new CommentItem(thisNonCommentBlock, false));
+                                    thisNonCommentBlock = "";
                                 }
+                                HasBlockStartComment = false;
                                 HasBlockEndComment = false; // once we find an end, we cannot have another
 
                             } // else not HasOpenLineComment: this "*/" is not after "//"

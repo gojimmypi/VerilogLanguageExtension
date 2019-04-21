@@ -181,9 +181,11 @@ namespace VerilogLanguage
         class CommentHelper
         {
             readonly string thisLine = "";
-            private readonly int posLineComment = -1; // position of first line comment
-            private readonly int posBlockStartComment = -1;
-            private readonly int posBlockEndComment = -1;
+            private  int posLineComment = -1; // position of first line comment
+            private  int posBlockStartComment = -1;
+            private  int posBlockEndComment = -1;
+            private  string thisCommentBlock = "";
+            private  string thisNonCommentBlock = "";
 
             public bool IsMinimumSize  
             {
@@ -198,7 +200,7 @@ namespace VerilogLanguage
 
             public bool HasBlockStartComment { get; } = false;
 
-            public bool HasBlockEndComment { get; } = false;
+            private bool HasBlockEndComment { get; } = false; // for internal use only
 
             public bool HasOpenLineComment { get; } = false;
 
@@ -217,6 +219,29 @@ namespace VerilogLanguage
 
             public List<CommentItem> CommentItems { get; }
 
+            private void AppendBlockChar(string thisChar)
+            {
+                // depending on the logic above, append the current character 
+                if (HasBlockStartComment || HasOpenLineComment)
+                {
+                    thisCommentBlock += thisChar;
+                }
+                else
+                {
+                    thisNonCommentBlock += thisChar;
+                }
+            }
+
+            private void AppendCommentListItem(string AdditionalCommentBlock = "")
+            {
+                thisCommentBlock += AdditionalCommentBlock;
+                if (thisCommentBlock != "")
+                {
+                    CommentItems.Add(new CommentItem(thisCommentBlock, true));
+                    thisCommentBlock = "";
+                }
+            }
+
             // init our CommentHelper
             public CommentHelper(string item, bool IsContinuedLineComment, bool IsContinuedBlockComment)
             {
@@ -226,7 +251,11 @@ namespace VerilogLanguage
                 this.HasOpenLineComment = IsContinuedLineComment;// we may be string with a string (or tag) on a line after a "//", set to be re-used again
                 if (IsContinuedLineComment)
                 {
-                    CommentItems.Add(new CommentItem(item, true)); // if we start knowing that this is a continuation of a line comment, everthing is still part of that comment
+                    this.HasBlockEndComment = false;
+                    this.HasBlockStartComment = false; // we can never have an open block comment when there's an open line comment (e.g. "// comment /* this is still ine comment, not block")
+                    AppendCommentListItem(item);
+                    //thisCommentBlock = item;
+                    //CommentItems.Add(new CommentItem(item, true)); // if we start knowing that this is a continuation of a line comment, everthing is still part of that comment
                     return;
                 }
 
@@ -236,10 +265,10 @@ namespace VerilogLanguage
                 posBlockEndComment = thisLine.IndexOf("*/");
                 HasBlockStartComment = (posBlockStartComment > -1) || IsContinuedBlockComment;
                 HasBlockEndComment = (posBlockEndComment > -1);
-                HasOpenLineComment = IsContinuedLineComment || (posLineComment > -1);
+                HasOpenLineComment = (posLineComment > -1); // is there a new opening line comment in this item?
 
                 // there's only something to do when we find starting or ending block comment tags
-                if (HasBlockStartComment || HasBlockEndComment )
+                if (HasBlockStartComment || HasBlockEndComment || HasOpenLineComment)
                 {
                     if (HasOpenLineComment && (posBlockStartComment > posLineComment))
                     {
@@ -253,65 +282,76 @@ namespace VerilogLanguage
                         HasBlockEndComment = false;
                     }
 
-                    string thisCommentBlock = "";
-                    string thisNonCommentBlock = "";
-                    string previousChar = "";
+                    if (HasOpenLineComment && (posLineComment > posBlockStartComment))
+                    {
+                        posLineComment = -1; // ignore this line comment for now, being after the opening block
+                        HasOpenLineComment = false;
+                    }
+
+                    thisCommentBlock = "";
+                    thisNonCommentBlock = "";
                     string thisChar = "";
                     string nextChar = "";
-                    if (this.IsMinimumSize && (this.HasBlockStartComment || this.HasOpenLineComment))
+                    string thisTag = "";
+                    //if (this.IsMinimumSize && (this.HasBlockStartComment || this.HasOpenLineComment))
+                    //{
+                    for (int i = 0; i <= this.thisLine.Length - 1; i++)
                     {
-                        string thisTag = "";
-                        for (int i = 0; i <= this.thisLine.Length - 1; i++)
+                        thisTag = "";
+                        nextChar = "";
+                        thisChar = thisLine.Substring(i, 1);
+                        if (i < this.thisLine.Length - 1)
                         {
-                            thisTag = "";
-                            nextChar = "";
-                            thisChar = thisLine.Substring(i, 1);
-                            if (i < this.thisLine.Length - 1)
-                            {
-                                nextChar = thisLine.Substring(i + 1, 1);
-                            }
-                            thisTag = thisChar + nextChar;
-                            //if (i <= this.thisLine.Length - 2)
-                            //{
-                            //    thisTag = thisLine.Substring(i, 2);
-                            //}
+                            nextChar = thisLine.Substring(i + 1, 1);
+                        }
+                        thisTag = thisChar + nextChar;
 
-                            if (thisTag == "//")
+                        if (thisTag == "//")
+                        {
+                            if (HasBlockStartComment)
                             {
-                                if (HasBlockStartComment)
-                                {
-                                    // nothing to do, this "//" is inside a block comment
-                                }
-                                else
-                                {
-                                    HasOpenLineComment = true;
-                                    if (thisNonCommentBlock != "")
-                                    {
-                                        CommentItems.Add(new CommentItem(thisNonCommentBlock, false));
-                                        thisNonCommentBlock = "";
-                                    }
-                                }
-                                //thisCommentBlock += thisTag;
-                                //i++;
+                                // nothing to do, this "//" is inside a block comment
+                                HasOpenLineComment = false; // we cannot have an active open line comment "//" inside of a block comment "/"
                             }
-                            else if (thisTag == "/*")
+                            else
                             {
-                                if (thisNonCommentBlock != "") 
+                                HasOpenLineComment = true;
+                                if (thisNonCommentBlock != "")
                                 {
                                     CommentItems.Add(new CommentItem(thisNonCommentBlock, false));
                                     thisNonCommentBlock = "";
                                 }
-                                if (!HasOpenLineComment)
-                                {
-                                    HasBlockStartComment = true;
-                                }
                             }
-                            else if (thisTag == "*/")
+                            AppendBlockChar(thisChar); // append this char to the comment or non-comment block as appropriate
+                        }
+                        else if (thisTag == "/*")
+                        {
+                            if (thisNonCommentBlock != "")
                             {
-                                if (HasBlockStartComment && !HasOpenLineComment)
+                                CommentItems.Add(new CommentItem(thisNonCommentBlock, false));
+                                thisNonCommentBlock = "";
+                            }
+                            if (!HasOpenLineComment)
+                            {
+                                // we can only open a block comment outside of an open line comment
+                                HasBlockStartComment = true;
+                            }
+                            AppendBlockChar(thisChar); // append this char to the comment or non-comment block as appropriate
+                        }
+                        else if (thisTag == "*/")
+                        {
+                            if (HasOpenLineComment)
+                            {
+                                // nothing to do, closing block after open line comment
+                            }
+                            else
+                            {
+                                if (HasBlockStartComment)
                                 {
-                                    thisCommentBlock += thisChar; i++;
-                                    thisCommentBlock += nextChar; i++; 
+                                    AppendBlockChar(thisChar); // append this char to the comment or non-comment block as appropriate
+                                    AppendBlockChar(nextChar); // append this char to the comment or non-comment block as appropriate
+                                    i++;
+
                                     CommentItems.Add(new CommentItem(thisCommentBlock, true));
                                     thisCommentBlock = "";
                                     HasBlockStartComment = false;
@@ -320,37 +360,33 @@ namespace VerilogLanguage
                                 {
                                     // closing block comment found without opening, so it is not a comment
                                 }
-                                HasBlockStartComment = false;
-                            }
+                                HasBlockEndComment = false; // once we find an end, we cannot have another
 
-                            // we may have incremented above, so ensure we are still inside the string
-                            if (i < this.thisLine.Length)
-                            {
-                                if (HasBlockStartComment || HasOpenLineComment)
-                                {
-                                    thisCommentBlock += thisLine.Substring(i, 1);
-                                }
-                                else
-                                {
-                                    thisNonCommentBlock += thisLine.Substring(i, 1);
-                                }
-                            }
-                        } // end of for loop checking each char
-
-                        // add any outstanding comment text to our list
-                        if (thisCommentBlock != "")
+                            } // else not HasOpenLineComment: this "*/" is not after "//"
+                        } //  else if (thisTag == "*/")
+                        else
                         {
-                            CommentItems.Add(new CommentItem(thisCommentBlock, true));
-                            thisCommentBlock = "";
+                            // not comment state change, so append thisChar as appropriate
+                            AppendBlockChar(thisChar);
                         }
 
-                        // add any outstanding regaular, non-comment text to our list
-                        if (thisNonCommentBlock != "")
-                        {
-                            CommentItems.Add(new CommentItem(thisNonCommentBlock, false));
-                            thisNonCommentBlock = "";
-                        }
-                    } // end if we had a comment block start or open line comment
+                    } // end of for loop checking each char
+
+                    // AppendBlockChar(thisChar);
+                    // add any outstanding comment text to our list
+                    if (thisCommentBlock != "")
+                    {
+                        CommentItems.Add(new CommentItem(thisCommentBlock, true));
+                        thisCommentBlock = "";
+                    }
+
+                    // add any outstanding regaular, non-comment text to our list
+                    if (thisNonCommentBlock != "")
+                    {
+                        CommentItems.Add(new CommentItem(thisNonCommentBlock, false));
+                        thisNonCommentBlock = "";
+                    }
+                    //} // end if we had a comment block start or open line comment
                 }
                 else
                 {
@@ -460,11 +496,11 @@ namespace VerilogLanguage
             {
                 ITextSnapshotLine containingLine = curSpan.Start.GetContainingLine();
                 int curLoc = containingLine.Start.Position;
-                string[] tokens = containingLine.GetText().ToLower().Split(separator: new char[] { ' ', '\t', '[', ';' }, 
-                                                                             options: StringSplitOptions.None);
+                string[] tokens = containingLine.GetText().Split(separator: new char[] { ' ', '\t', '[', ';' }, 
+                                                                 options: StringSplitOptions.None);
 
                 Boolean IsContinuedLineComment = false; // comments with "//" are only effective forthe currentl line
-                foreach (string VerilogToken in tokens)
+                foreach (string VerilogToken in tokens) // this group of tokens in in a single line
                 {
                     // by the time we get here, we might have a tag with adjacent comments:
                     //     assign//
@@ -474,6 +510,7 @@ namespace VerilogLanguage
                     //     assign/*comment*/
                     CommentHelper commentHelper = new CommentHelper(VerilogToken, IsContinuedLineComment, IsContinuedBlockComment);
                     IsContinuedBlockComment = commentHelper.HasBlockStartComment;
+                    IsContinuedLineComment = commentHelper.HasOpenLineComment;
                     foreach (CommentHelper.CommentItem Item in commentHelper.CommentItems)
                     {
                         var tokenSpan = new SnapshotSpan(curSpan.Snapshot, new Span(curLoc, Item.ItemText.Length));

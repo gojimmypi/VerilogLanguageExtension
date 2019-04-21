@@ -254,21 +254,15 @@ namespace VerilogLanguage
                     this.HasBlockEndComment = false;
                     this.HasBlockStartComment = false; // we can never have an open block comment when there's an open line comment (e.g. "// comment /* this is still ine comment, not block")
                     AppendCommentListItem(item);
-                    //thisCommentBlock = item;
-                    //CommentItems.Add(new CommentItem(item, true)); // if we start knowing that this is a continuation of a line comment, everthing is still part of that comment
                     return;
                 }
 
                 HasBlockStartComment = IsContinuedBlockComment;
 
                 posLineComment = thisLine.IndexOf("//");
-                // NonCommentLength = thisLine.Length; // we'll consider the entire string, unless line comment tag found
                 posBlockStartComment = thisLine.IndexOf("/*");
                 posBlockEndComment = thisLine.IndexOf("*/");
-                // HasBlockEndComment = (posBlockEndComment > -1);
-                // HasOpenLineComment = (posLineComment > -1); // is there a new opening line comment in this item?
 
-                // there's only something to do when we find starting or ending block comment tags
                 if (IsContinuedBlockComment || (posBlockStartComment > -1) || (posBlockEndComment > -1) || (posLineComment > -1))
                 {
                     if (HasOpenLineComment && (posBlockStartComment > posLineComment))
@@ -294,8 +288,7 @@ namespace VerilogLanguage
                     string thisChar = "";
                     string nextChar = "";
                     string thisTag = "";
-                    //if (this.IsMinimumSize && (this.HasBlockStartComment || this.HasOpenLineComment))
-                    //{
+
                     for (int i = 0; i <= this.thisLine.Length - 1; i++)
                     {
                         thisTag = "";
@@ -311,8 +304,8 @@ namespace VerilogLanguage
                         {
                             if (HasBlockStartComment)
                             {
-                                // nothing to do, this "//" is inside a block comment
-                                HasOpenLineComment = false; // we cannot have an active open line comment "//" inside of a block comment "/"
+                                // nothing to do, this "//" comment is arleady inside a block comment
+                                HasOpenLineComment = false; // for completness, we cannot have an active open line comment "//" inside of a block comment "/"
                             }
                             else
                             {
@@ -325,6 +318,8 @@ namespace VerilogLanguage
                             }
                             AppendBlockChar(thisChar); // append this char to the comment or non-comment block as appropriate
                         }
+
+                        // else check for an opening comment block "/*"
                         else if (thisTag == "/*")
                         {
                             if (thisNonCommentBlock != "")
@@ -339,6 +334,8 @@ namespace VerilogLanguage
                             }
                             AppendBlockChar(thisChar); // append this char to the comment or non-comment block as appropriate
                         }
+
+                        // else check for closing comment block "*/"
                         else if (thisTag == "*/")
                         {
                             if (HasOpenLineComment)
@@ -366,15 +363,16 @@ namespace VerilogLanguage
 
                             } // else not HasOpenLineComment: this "*/" is not after "//"
                         } //  else if (thisTag == "*/")
+
+                        // if none of the comment tags are found, continue appaending with whatever state we are in (comment or no-commnet)
                         else
                         {
-                            // not comment state change, so append thisChar as appropriate
+                            // as this is not a comment state change, append thisChar as appropriate
                             AppendBlockChar(thisChar);
                         }
 
                     } // end of for loop checking each char
 
-                    // AppendBlockChar(thisChar);
                     // add any outstanding comment text to our list
                     if (thisCommentBlock != "")
                     {
@@ -388,7 +386,6 @@ namespace VerilogLanguage
                         CommentItems.Add(new CommentItem(thisNonCommentBlock, false));
                         thisNonCommentBlock = "";
                     }
-                    //} // end if we had a comment block start or open line comment
                 }
                 else
                 {
@@ -419,72 +416,8 @@ namespace VerilogLanguage
                     CommentHelper commentHelper = new CommentHelper(thisLine.GetText(), isLocalLineComment,  isLocalBlockComment); // we are starting at the beginning of a string, so there's of course no prior "//" continued line comment
                     isLocalBlockComment = commentHelper.HasBlockStartComment;
                     isLocalLineComment = false; // we are sending entire lines here, so we are neverworried about continued line comments previously starting with "//"
-
-                    #region OldCode
-                    //// quit as early as possible for performance.  nothing to do if the line is less than 2 chars long
-                    //if ((thisLine != null) && (thisLine.GetText().Length > 2) && (pos < ToPosition))
-                    //{
-                    //    int posBlockComment = thisLine.GetText().IndexOf("/*");
-                    //    int posBlockEndComment = thisLine.GetText().IndexOf("*/");
-                    //    bool hasBlockComment = (posBlockComment > -1);
-                    //    bool hasBlockEndComment = (posBlockEndComment > -1);
-
-                    //    // there's only something to do when we find starting or ending block comment tags
-                    //    if (hasBlockComment || hasBlockEndComment)
-                    //    {
-                    //        // block comment tag text found after line comments are not considered
-                    //        int posLineComment = thisLine.GetText().IndexOf("//");
-
-                    //        int maxLen = thisLine.GetText().Length; // we'll consider the entire string, unless line comment tag found
-                    //        if (posLineComment > -1)
-                    //        {
-                    //            maxLen = posLineComment; // we've never interested in chars beyond line comment tag
-                    //        }
-                    //        bool hasLineComment = (posLineComment > -1);
-                    //        if (hasLineComment && (posBlockComment > posLineComment))
-                    //        {
-                    //            posBlockComment = -1; // we are not interested in any starting block comments after a line comment tag
-                    //            hasBlockComment = false;
-                    //        }
-                    //        if (hasLineComment && (posBlockEndComment > posLineComment))
-                    //        {
-                    //            posBlockEndComment = -1; // we are not interested in any ending block comments after a line comment tag
-                    //            hasBlockEndComment = false;
-                    //        }
-
-
-                    //        // we'll still need to determine effective comment blocks, but 
-                    //        // let'ssee if we even have an interesting starting or ending tag
-                    //        //bool hasBlockComment = (!hasLineComment && (posBlockComment > -1)) // no line comment, and beging block comment found
-                    //        //                             ||
-                    //        //                       (hasLineComment && (posBlockComment > -1) && (posBlockComment < posLineComment)); // has line comment, block comment found before it
-
-                    //        //bool hasBlockEndComment = (!hasLineComment && (posBlockEndComment > -1))
-                    //        //                             ||
-                    //        //                          (hasLineComment && (posBlockEndComment > -1) && (posBlockEndComment < posLineComment));
-
-                    //        // re-check if we still have interesting block comment tags after considering those that may have been found after line comment tag
-                    //        if (hasBlockComment || hasBlockEndComment) // we only have something to do here if starting or ending block comment tags are found
-                    //        {
-                    //            for (int i = 0; i < maxLen -2; i++)
-                    //            {
-                    //                string thisTag = thisLine.GetText().Substring(i, 2);
-                    //                if (thisTag == "/*") {
-                    //                    isLocalBlockComment = true;
-                    //                }
-                    //                if (thisTag == "*/")
-                    //                {
-                    //                    isLocalBlockComment = false;
-                    //                }
-                    //            }
-                    //        }
-
-                    //    }
-
-                    //}
-                    #endregion
-                }
-            }
+                } // for each thisLine
+            } // if sc is not blank
             return isLocalBlockComment;
         }
 
@@ -516,12 +449,16 @@ namespace VerilogLanguage
                     foreach (CommentHelper.CommentItem Item in commentHelper.CommentItems)
                     {
                         var tokenSpan = new SnapshotSpan(curSpan.Snapshot, new Span(curLoc, Item.ItemText.Length));
+                            
+                        // is this item a comment? If so, color as appropriate
                         if (Item.IsComment)
                         {
                             if (tokenSpan.IntersectsWith(curSpan))
                                 yield return new TagSpan<VerilogTokenTag>(tokenSpan,
                                                                       new VerilogTokenTag(_VerilogTypes["//"]));
                         }
+
+                        // otherwise check to see if it is a keyword
                         else
                         {
                             if (_VerilogTypes.ContainsKey(Item.ItemText))
@@ -539,51 +476,7 @@ namespace VerilogLanguage
 
                     }
 
-
-                    #region old code
-                    //if ((VerilogToken != null) && (VerilogToken.Length >= 2))
-                    //{
-                    //    int posBlockComment = VerilogToken.IndexOf("/*");
-                    //    int posBlockEndComment = VerilogToken.IndexOf("*/");
-                    //    bool hasBlockComment = (posBlockComment > -1);
-                    //    bool hasBlockEndComment = (posBlockEndComment > -1);
-                    //
-                    //}
-                    //
-                    //if (VerilogToken.Length >= 2)
-                    //{
-                    //    if (VerilogToken.Substring(0, 2) == "//")
-                    //    {
-                    //        IsContinuedLineComment = true;
-                    //    }
-                    //
-                    //    if (!IsContinuedLineComment && VerilogToken.Substring(0, 2) == "/*")
-                    //    {
-                    //        IsContinuedBlockComment = true;
-                    //    }
-                    //}
-                    #endregion
-
-                    //if (IsContinuedLineComment || IsContinuedBlockComment)
-                    //{
-                    //    var tokenSpan = new SnapshotSpan(curSpan.Snapshot, new Span(curLoc, VerilogToken.Length));
-                    //    if (tokenSpan.IntersectsWith(curSpan))
-                    //        yield return new TagSpan<VerilogTokenTag>(tokenSpan,
-                    //                                              new VerilogTokenTag(_VerilogTypes["//"]));
-                    //}
-
-                    //else // no start comment delimiter, colorize as usual
-                    //{
-                    //}
-
-                    //if ( (VerilogToken.Length >=2) && VerilogToken.Substring(VerilogToken.Length-2,2) == "*/")
-                    //{
-                    //    // when we find a "*/" this is the end of the block comment, 
-                    //    // the next toekn will not be considered part of comments
-                    //    IsContinuedBlockComment = false;
-                    //}
-
-                    //add an extra char location because of the delimiter
+                    //add an extra char location because of the tag delimiters:  ' ', '\t', '[', ';'
                     curLoc +=  + 1;
                 }
             }

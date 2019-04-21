@@ -259,16 +259,17 @@ namespace VerilogLanguage
                     return;
                 }
 
+                HasBlockStartComment = IsContinuedBlockComment;
+
                 posLineComment = thisLine.IndexOf("//");
                 // NonCommentLength = thisLine.Length; // we'll consider the entire string, unless line comment tag found
                 posBlockStartComment = thisLine.IndexOf("/*");
                 posBlockEndComment = thisLine.IndexOf("*/");
-                HasBlockStartComment = (posBlockStartComment > -1) || IsContinuedBlockComment;
-                HasBlockEndComment = (posBlockEndComment > -1);
-                HasOpenLineComment = (posLineComment > -1); // is there a new opening line comment in this item?
+                // HasBlockEndComment = (posBlockEndComment > -1);
+                // HasOpenLineComment = (posLineComment > -1); // is there a new opening line comment in this item?
 
                 // there's only something to do when we find starting or ending block comment tags
-                if (HasBlockStartComment || HasBlockEndComment || HasOpenLineComment)
+                if (IsContinuedBlockComment || (posBlockStartComment > -1) || (posBlockEndComment > -1) || (posLineComment > -1))
                 {
                     if (HasOpenLineComment && (posBlockStartComment > posLineComment))
                     {

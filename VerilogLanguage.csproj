@@ -171,10 +171,11 @@
     <Compile Include="Classification\ClassificationFormat.cs" />
     <Compile Include="Classification\ClassificationType.cs" />
     <Compile Include="Classification\VerilogClassifier.cs" />
-    <Compile Include="EditorClassifier1.cs" />
-    <Compile Include="EditorClassifier1ClassificationDefinition.cs" />
-    <Compile Include="EditorClassifier1Format.cs" />
-    <Compile Include="EditorClassifier1Provider.cs" />
+    <Compile Include="CommentHelper\CommentHelper.cs" />
+    <Compile Include="EditorClassifier\EditorClassifier1.cs" />
+    <Compile Include="EditorClassifier\EditorClassifier1ClassificationDefinition.cs" />
+    <Compile Include="EditorClassifier\EditorClassifier1Format.cs" />
+    <Compile Include="EditorClassifier\EditorClassifier1Provider.cs" />
     <Compile Include="Highlighting\HighlightWordFormatDefinition.cs" />
     <Compile Include="Highlighting\HighlightWordTag.cs" />
     <Compile Include="Highlighting\HighlightWordTagger.cs" />

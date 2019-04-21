@@ -97,15 +97,19 @@ Optional: add `AugmentQuickInfoSession` section in `VerilogQuickInfoSource.cs`:
 ## Resources
 [Colors and Styling for Visual Studio](https://docs.microsoft.com/en-us/visualstudio/extensibility/ux-guidelines/colors-and-styling-for-visual-studio?view=vs-2019)
 https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.platformui.environmentcolors?view=visualstudiosdk-2017#applies-to
-
+[Walkthrough: Display matching braces](https://docs.microsoft.com/en-us/visualstudio/extensibility/walkthrough-displaying-matching-braces?view=vs-2019)
+[SnapshotSpan Structure](https://docs.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2013/dd821299(v%3Dvs.120))
 https://www.codeproject.com/Articles/1245021/Extending-Visual-Studio-to-Provide-a-Colorful-Lang
 https://www.xilinx.com/support/documentation/sw_manuals/xilinx11/ite_r_verilog_reserved_words.htm
 https://www.xilinx.com/support/documentation/sw_manuals/xilinx10/isehelp/ism_r_verlang_compiler_directives.htm
-https://github.com/Microsoft/VSSDK-Extensibility-Samples
+[GitHub Microsoft/VSSDK-Extensibility-Samples](https://github.com/Microsoft/VSSDK-Extensibility-Samples)
 https://docs.microsoft.com/en-us/visualstudio/extensibility/visual-studio-sdk?view=vs-2019
 https://github.com/madskristensen/ExtensibilityTools
 https://docs.microsoft.com/en-us/visualstudio/extensibility/walkthrough-displaying-matching-braces?view=vs-2019
 https://social.technet.microsoft.com/wiki/contents/articles/37071.visual-studio-extensibility-creating-visual-studio-vsix-package-extension.aspx
+[Visual Studio SDK](https://docs.microsoft.com/en-us/visualstudio/extensibility/visual-studio-sdk?view=vs-2019)
+[Visual Studio Extensibility (VSX)](http://www.visualstudioextensibility.com/samples/packages/) 
 [Asm-Dude](https://github.com/HJLebbink/asm-dude)
-
-
+[Visual Studio Extensibility: Creating Visual Studio VSIX package extension](https://social.technet.microsoft.com/wiki/contents/articles/37071.visual-studio-extensibility-creating-visual-studio-vsix-package-extension.aspx)
+[Walkthrough: Publish a Visual Studio extension](https://docs.microsoft.com/en-us/visualstudio/extensibility/walkthrough-publishing-a-visual-studio-extension?view=vs-2019)
+[What is the yield keyword used for in C#?](https://stackoverflow.com/questions/39476/what-is-the-yield-keyword-used-for-in-c)

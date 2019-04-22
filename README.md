@@ -1,6 +1,10 @@
 ﻿# Verilog Language Extension
 
-## Installation
+## Installation - Visual Studio Market Place
+
+https://marketplace.visualstudio.com/items?itemName=gojimmypi.gojimmypi-verilog-language-extension
+
+## Installation - Manual install with source code 
 
 Find the location of your `VSIXInstaller.exe`, typpically in `.\Common7\IDE\` of Developer Command Prompt. Shown is an example of VS2017 Enterprise:
 

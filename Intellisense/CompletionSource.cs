@@ -50,8 +50,9 @@ namespace VerilogLanguage
 
             List<Completion> completions = new List<Completion>()
             {
-                new Completion("always"),
-                new Completion("assign")
+                // autocomplete words here
+                //new Completion("always"),
+                //new Completion("assign")
             };
             
             ITextSnapshot snapshot = _buffer.CurrentSnapshot;

@@ -195,6 +195,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="CODE_OF_CONDUCT.md" />
+    <Content Include="images\Verilog-Tools-Options-Colors.png" />
+    <Content Include="images\VisualStudio-Automatic-Extension-Install-RestorePoint.png" />
+    <Content Include="images\VisualStudio-Automatic-Extension-Install.png" />
+    <Content Include="images\VisualStudio-ExtensionsAndUpdates.png" />
+    <Content Include="images\VisualStudio-Installer-Workloads-VSIX.png" />
+    <Content Include="images\VisualStudio-Installer.png" />
+    <Content Include="images\VisualStudio-Missing-Extension-Development.png" />
+    <Content Include="images\VisualStudio2019-Automatic-Extension-References-Not-Found.png" />
+    <Content Include="images\VisualStufio2019-F5-Debug-Fail.png" />
     <Content Include="LICENSE.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -219,7 +228,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="images\" />
     <Folder Include="Tagger\" />
   </ItemGroup>
   <ItemGroup>

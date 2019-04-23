@@ -6,3 +6,6 @@
 /bin
 /obj
 /packages
+/examples/ColorfulEditor/.vs/ColorfulEditor/v16
+/examples/ColorfulEditor/ColorfulEditor/bin/Debug
+/examples/ColorfulEditor/ColorfulEditor/obj/Release

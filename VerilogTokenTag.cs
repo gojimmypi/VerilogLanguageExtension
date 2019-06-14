@@ -214,6 +214,8 @@ namespace VerilogLanguage
             {
                 ITextSnapshotLine containingLine = curSpan.Start.GetContainingLine();
                 int curLoc = containingLine.Start.Position;
+                int thisSpanStart, thisSpanLength;
+                int thisLoc = 0;
                 string[] tokens = containingLine.GetText().Split(separator: new char[] { ' ', '\t', '[', ';' }, 
                                                                  options: StringSplitOptions.None);
 
@@ -231,7 +233,24 @@ namespace VerilogLanguage
                     IsContinuedLineComment = commentHelper.HasOpenLineComment;
                     foreach (CommentHelper.CommentItem Item in commentHelper.CommentItems)
                     {
-                        var tokenSpan = new SnapshotSpan(curSpan.Snapshot, new Span(curLoc, Item.ItemText.Length));
+                        thisSpanStart = curLoc;
+                        thisSpanLength = Item.ItemText.Length;
+
+                        // check for non-blank delimiters, the span will need to be adjusted to include them. 
+                        // this fixed the problem with embedded delimiter characters in a comment not being colorized as a comment (e.g. "// test; [test]")
+                        if ((thisLoc > 1) && (thisSpanLength > 1))
+                        {
+                            string PriorChar = containingLine.GetText().Substring(thisLoc - 1, 1);
+                            if ((PriorChar == "[") || (PriorChar == ";") )
+                            {
+                                thisSpanStart -= 1;
+                                thisSpanLength += 1;
+                            }
+
+                        }
+                        
+
+                        var tokenSpan = new SnapshotSpan(curSpan.Snapshot, new Span(thisSpanStart, thisSpanLength));
                             
                         // is this item a comment? If so, color as appropriate
                         if (Item.IsComment)
@@ -256,7 +275,7 @@ namespace VerilogLanguage
                             }
                         }
                         curLoc += Item.ItemText.Length;
-
+                        thisLoc += Item.ItemText.Length;
                     }
 
                     //add an extra char location because of the tag delimiters:  ' ', '\t', '[', ';'

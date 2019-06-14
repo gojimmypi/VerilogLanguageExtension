@@ -111,6 +111,18 @@ If this error is encountered in Visual Studio 2019 when attempting to F5/Debug:
 Try opening the [project file](VerilogLanguage.csproj) rather than the [solution](./VerilogLanguageExtension.sln).
 
 
+# Notes
+
+[ – minimum version inclusive.
+
+] – maximum version inclusive. 
+
+( – minimum version exclusive. 
+
+) – maximum version exclusive.
+
+
+
 ## Microsoft Resources
 * [Visual Studio SDK](https://docs.microsoft.com/en-us/visualstudio/extensibility/visual-studio-sdk?view=vs-2019)
 * [Visual Studio Extensibility (VSX)](http://www.visualstudioextensibility.com/samples/packages/) 

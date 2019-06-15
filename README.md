@@ -29,7 +29,7 @@ msbuild VerilogLanguage.csproj
 
 ## Testing
 
-Open the project and press `F5` to launch an experimental versional of Visual Studio.
+Open the project and press `F5` to launch an experimental version of Visual Studio.
 
 ## Modifications
 

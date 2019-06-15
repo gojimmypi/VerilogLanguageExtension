@@ -203,7 +203,55 @@ namespace VerilogLanguage
             } // if sc is not blank
             return isLocalBlockComment;
         }
+ 
+        bool IsDelimeter(string theString)
+        {
+            return (theString == " ") ||
+                   (theString == "[") ||
+                   (theString == ";") ||
+                   (theString == "\t");
+        }
 
+        public string[] VerilogKeywordSplit(string theString)
+        {
+            List<string> parts = new List<string>();
+            string thisItem = "";
+            string priorChar = "";
+            bool priorCharIsDelimiter = false;
+            bool thisCharIsDelimiter = false;
+            string thisChar = "";
+            for (int i=0; i < theString.Length; i++ )
+            {
+                thisChar = theString.Substring(i, 1);
+                thisCharIsDelimiter = IsDelimeter(thisChar);
+                if (thisCharIsDelimiter || priorCharIsDelimiter) {
+                    if (thisChar == priorChar)
+                    {
+                        thisItem += thisChar; // a string of multiple delimmiters!
+                    }
+                    else
+                    {
+                        parts.Add(thisItem);
+                        thisItem = thisChar;
+                    }
+                }
+                else
+                {
+                    thisItem += thisChar;
+                }
+                priorCharIsDelimiter = thisCharIsDelimiter;
+                priorChar = thisChar;
+            }
+            if (thisItem != "")
+            {
+                parts.Add(thisItem);
+            }
+            if (parts.Count == 0)
+            {
+                parts.Add("");
+            }
+            return parts.ToArray();
+        }
         public IEnumerable<ITagSpan<VerilogTokenTag>> GetTags(NormalizedSnapshotSpanCollection spans)
         {
 
@@ -215,9 +263,11 @@ namespace VerilogLanguage
                 ITextSnapshotLine containingLine = curSpan.Start.GetContainingLine();
                 int curLoc = containingLine.Start.Position;
                 int thisSpanStart, thisSpanLength;
-                int thisLoc = 0;
-                string[] tokens = containingLine.GetText().Split(separator: new char[] { ' ', '\t', '[', ';' }, 
-                                                                 options: StringSplitOptions.None);
+       
+                string thisLine = containingLine.GetText();
+                string[] tokens = VerilogKeywordSplit(thisLine);
+                //string[] tokens = thisLine.Split(separator: new char[] { ' ', '\t' }, 
+                //                                                 options: StringSplitOptions.None);
 
                 Boolean IsContinuedLineComment = false; // comments with "//" are only effective forthe currentl line
                 foreach (string VerilogToken in tokens) // this group of tokens in in a single line
@@ -238,16 +288,16 @@ namespace VerilogLanguage
 
                         // check for non-blank delimiters, the span will need to be adjusted to include them. 
                         // this fixed the problem with embedded delimiter characters in a comment not being colorized as a comment (e.g. "// test; [test]")
-                        if ((thisLoc > 1) && (thisSpanLength > 1))
-                        {
-                            string PriorChar = containingLine.GetText().Substring(thisLoc - 1, 1);
-                            if ((PriorChar == "[") || (PriorChar == ";") )
-                            {
-                                thisSpanStart -= 1;
-                                thisSpanLength += 1;
-                            }
+                        //if ((thisLoc > 1) && (thisSpanLength > 1))
+                        //{
+                        //    string PriorChar = containingLine.GetText().Substring(thisLoc - 1, 1);
+                        //    if ((PriorChar == "[") || (PriorChar == ";") )
+                        //    {
+                        //        thisSpanStart -= 1;
+                        //        thisSpanLength += 1;
+                        //    }
 
-                        }
+                        //}
                         
 
                         var tokenSpan = new SnapshotSpan(curSpan.Snapshot, new Span(thisSpanStart, thisSpanLength));
@@ -275,11 +325,16 @@ namespace VerilogLanguage
                             }
                         }
                         curLoc += Item.ItemText.Length;
-                        thisLoc += Item.ItemText.Length;
+                        // thisLoc += Item.ItemText.Length;
                     }
 
-                    //add an extra char location because of the tag delimiters:  ' ', '\t', '[', ';'
-                    curLoc +=  + 1;
+                    ////add an extra char location because of the tag delimiters:  ' ', '\t', '[', ';'
+                    //if ((VerilogToken.Length == 0) || (!(VerilogToken.EndsWith(";") || VerilogToken.Substring(0,1) == "[")))
+                    //{
+                    //    curLoc += +1;
+                    //}
+
+
                 }
             }
             

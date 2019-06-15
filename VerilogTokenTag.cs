@@ -262,14 +262,10 @@ namespace VerilogLanguage
             {
                 ITextSnapshotLine containingLine = curSpan.Start.GetContainingLine();
                 int curLoc = containingLine.Start.Position;
-                int thisSpanStart, thisSpanLength;
        
-                string thisLine = containingLine.GetText();
-                string[] tokens = VerilogKeywordSplit(thisLine);
-                //string[] tokens = thisLine.Split(separator: new char[] { ' ', '\t' }, 
-                //                                                 options: StringSplitOptions.None);
+                string[] tokens = VerilogKeywordSplit(containingLine.GetText());
 
-                Boolean IsContinuedLineComment = false; // comments with "//" are only effective forthe currentl line
+                Boolean IsContinuedLineComment = false; // comments with "//" are only effective for the current line
                 foreach (string VerilogToken in tokens) // this group of tokens in in a single line
                 {
                     // by the time we get here, we might have a tag with adjacent comments:
@@ -283,24 +279,7 @@ namespace VerilogLanguage
                     IsContinuedLineComment = commentHelper.HasOpenLineComment;
                     foreach (CommentHelper.CommentItem Item in commentHelper.CommentItems)
                     {
-                        thisSpanStart = curLoc;
-                        thisSpanLength = Item.ItemText.Length;
-
-                        // check for non-blank delimiters, the span will need to be adjusted to include them. 
-                        // this fixed the problem with embedded delimiter characters in a comment not being colorized as a comment (e.g. "// test; [test]")
-                        //if ((thisLoc > 1) && (thisSpanLength > 1))
-                        //{
-                        //    string PriorChar = containingLine.GetText().Substring(thisLoc - 1, 1);
-                        //    if ((PriorChar == "[") || (PriorChar == ";") )
-                        //    {
-                        //        thisSpanStart -= 1;
-                        //        thisSpanLength += 1;
-                        //    }
-
-                        //}
-                        
-
-                        var tokenSpan = new SnapshotSpan(curSpan.Snapshot, new Span(thisSpanStart, thisSpanLength));
+                        var tokenSpan = new SnapshotSpan(curSpan.Snapshot, new Span(curLoc, Item.ItemText.Length));
                             
                         // is this item a comment? If so, color as appropriate
                         if (Item.IsComment)
@@ -324,17 +303,9 @@ namespace VerilogLanguage
                                 // no tag colorization
                             }
                         }
+                        // note that no chars are lost when splitting string with VerilogKeywordSplit, so no adjustment needed in location
                         curLoc += Item.ItemText.Length;
-                        // thisLoc += Item.ItemText.Length;
                     }
-
-                    ////add an extra char location because of the tag delimiters:  ' ', '\t', '[', ';'
-                    //if ((VerilogToken.Length == 0) || (!(VerilogToken.EndsWith(";") || VerilogToken.Substring(0,1) == "[")))
-                    //{
-                    //    curLoc += +1;
-                    //}
-
-
                 }
             }
             

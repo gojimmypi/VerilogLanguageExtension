@@ -203,7 +203,55 @@ namespace VerilogLanguage
             } // if sc is not blank
             return isLocalBlockComment;
         }
+ 
+        bool IsDelimeter(string theString)
+        {
+            return (theString == " ") ||
+                   (theString == "[") ||
+                   (theString == ";") ||
+                   (theString == "\t");
+        }
 
+        public string[] VerilogKeywordSplit(string theString)
+        {
+            List<string> parts = new List<string>();
+            string thisItem = "";
+            string priorChar = "";
+            bool priorCharIsDelimiter = false;
+            bool thisCharIsDelimiter = false;
+            string thisChar = "";
+            for (int i=0; i < theString.Length; i++ )
+            {
+                thisChar = theString.Substring(i, 1);
+                thisCharIsDelimiter = IsDelimeter(thisChar);
+                if (thisCharIsDelimiter || priorCharIsDelimiter) {
+                    if (thisChar == priorChar)
+                    {
+                        thisItem += thisChar; // a string of multiple delimmiters!
+                    }
+                    else
+                    {
+                        parts.Add(thisItem);
+                        thisItem = thisChar;
+                    }
+                }
+                else
+                {
+                    thisItem += thisChar;
+                }
+                priorCharIsDelimiter = thisCharIsDelimiter;
+                priorChar = thisChar;
+            }
+            if (thisItem != "")
+            {
+                parts.Add(thisItem);
+            }
+            if (parts.Count == 0)
+            {
+                parts.Add("");
+            }
+            return parts.ToArray();
+        }
         public IEnumerable<ITagSpan<VerilogTokenTag>> GetTags(NormalizedSnapshotSpanCollection spans)
         {
 
@@ -214,10 +262,10 @@ namespace VerilogLanguage
             {
                 ITextSnapshotLine containingLine = curSpan.Start.GetContainingLine();
                 int curLoc = containingLine.Start.Position;
-                string[] tokens = containingLine.GetText().Split(separator: new char[] { ' ', '\t', '[', ';' }, 
-                                                                 options: StringSplitOptions.None);
+       
+                string[] tokens = VerilogKeywordSplit(containingLine.GetText());
 
-                Boolean IsContinuedLineComment = false; // comments with "//" are only effective forthe currentl line
+                Boolean IsContinuedLineComment = false; // comments with "//" are only effective for the current line
                 foreach (string VerilogToken in tokens) // this group of tokens in in a single line
                 {
                     // by the time we get here, we might have a tag with adjacent comments:
@@ -255,12 +303,9 @@ namespace VerilogLanguage
                                 // no tag colorization
                             }
                         }
+                        // note that no chars are lost when splitting string with VerilogKeywordSplit, so no adjustment needed in location
                         curLoc += Item.ItemText.Length;
-
                     }
-
-                    //add an extra char location because of the tag delimiters:  ' ', '\t', '[', ';'
-                    curLoc +=  + 1;
                 }
             }
             

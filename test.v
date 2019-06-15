@@ -1,9 +1,23 @@
-﻿`timescale 1 ns / 100 ps
+﻿//Before
+assign   ;;;assign   ;;; // assign   
+// this is a sample test; [delim]	[tab] ;;// test
+assign;// this is a test 
+assign/* test */ wow; assignassign;assign;;;assign;;;assigns; //test  [never] at the ;; end;  noope [ ] */ still a comment /* this too */ yes, even this
+assign	assign /* tab dellmited*/ this is not a comment // this is; as is [this]
+assign assign /* space dellmited*/ 
+assign;assign /* semi-colon dellmited*/ 
+assign[assign] /* bracket delimited*/
+assign]other bracket /*bracket not a delimiter */
+more;options;assign;stuff;always;
+more;options assign;stuff always;
+more;options;assign stuff;alwaysandevermmore
+
+`timescale 1 ns / 100 ps
 	wire i_clk;
 
 `ifdef VERILATOR
 /* verilator lint_off UNUSED */		
-// this is a sample
+// this is a sample test; [delim]	[tab] ;;// test
 module ulx3s_adda (
   input  i_clk, 
   input  reset,

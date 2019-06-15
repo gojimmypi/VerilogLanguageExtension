@@ -29,7 +29,7 @@ msbuild VerilogLanguage.csproj
 
 ## Testing
 
-Open the project and press `F5` to launch an experimental versional of Visual Studio.
+Open the project and press `F5` to launch an experimental version of Visual Studio.
 
 ## Modifications
 
@@ -106,9 +106,21 @@ Optional: add `AugmentQuickInfoSession` section in `VerilogQuickInfoSource.cs`:
 
 If this error is encountered in Visual Studio 2019 when attempting to F5/Debug:
 
-![ujprog upload](./images/VisualStufio2019-F5-Debug-Fail.png)
+![F5 Debug Fail Image](./images/VisualStudio2019-F5-Debug-Fail.png)
 
 Try opening the [project file](VerilogLanguage.csproj) rather than the [solution](./VerilogLanguageExtension.sln).
+
+
+# Notes
+
+[ – minimum version inclusive.
+
+] – maximum version inclusive. 
+
+( – minimum version exclusive. 
+
+) – maximum version exclusive.
+
 
 
 ## Microsoft Resources
@@ -120,14 +132,14 @@ Try opening the [project file](VerilogLanguage.csproj) rather than the [solution
 * [Colors and Styling for Visual Studio](https://docs.microsoft.com/en-us/visualstudio/extensibility/ux-guidelines/colors-and-styling-for-visual-studio?view=vs-2019)
 * [EnvironmentColors Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.platformui.environmentcolors?view=visualstudiosdk-2017)
 * [Walkthrough: Display matching braces](https://docs.microsoft.com/en-us/visualstudio/extensibility/walkthrough-displaying-matching-braces?view=vs-2019)
-* [SnapshotSpan Structure](https://docs.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2013/dd821299(v%3Dvs.120)
+* [SnapshotSpan Structure](https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.snapshotspan)
 * [Walkthrough: Publish a Visual Studio extension](https://docs.microsoft.com/en-us/visualstudio/extensibility/walkthrough-publishing-a-visual-studio-extension?view=vs-2019)
+* [GitHub Microsoft/VSSDK-Extensibility-Samples](https://github.com/Microsoft/VSSDK-Extensibility-Samples) [ook!](https://github.com/Microsoft/VSSDK-Extensibility-Samples/tree/master/Ook_Language_Integration)
 
 ## Other Resources
 * [CodeProject - Extending Visual Studio to Provide a Colorful Language Editor](https://www.codeproject.com/Articles/1245021/Extending-Visual-Studio-to-Provide-a-Colorful-Lang)
 * [Xilinx - Verilog Reserved Words](https://www.xilinx.com/support/documentation/sw_manuals/xilinx11/ite_r_verilog_reserved_words.htm)
 * [Xilinx - Verilog Compiler Directives](https://www.xilinx.com/support/documentation/sw_manuals/xilinx10/isehelp/ism_r_verlang_compiler_directives.htm)
-* [GitHub Microsoft/VSSDK-Extensibility-Samples](https://github.com/Microsoft/VSSDK-Extensibility-Samples)
 * [madskristensen - Extensibility Tools for Visual Studio](https://github.com/madskristensen/ExtensibilityTools)
 * [What is the yield keyword used for in C#?](https://stackoverflow.com/questions/39476/what-is-the-yield-keyword-used-for-in-c)
 

@@ -203,7 +203,7 @@
     <Content Include="images\VisualStudio-Installer.png" />
     <Content Include="images\VisualStudio-Missing-Extension-Development.png" />
     <Content Include="images\VisualStudio2019-Automatic-Extension-References-Not-Found.png" />
-    <Content Include="images\VisualStufio2019-F5-Debug-Fail.png" />
+    <Content Include="images\VisualStudio2019-F5-Debug-Fail.png" />
     <Content Include="LICENSE.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>

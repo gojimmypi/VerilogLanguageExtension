@@ -31,6 +31,11 @@ msbuild VerilogLanguage.csproj
 
 Open the project and press `F5` to launch an experimental version of Visual Studio.
 
+## Customization
+
+Set your own preferred colors in Tools - Options - Fonts and Colors:
+![Verilog-Tools-Options-Colors](./images/Verilog-Tools-Options-Colors.png)
+
 ## Modifications
 
 To make modifications, the [Visual Studio Extension Development Workload Toolset](https://visualstudio.microsoft.com/vs/support/selecting-workloads-visual-studio-2017/) needs to be installed.

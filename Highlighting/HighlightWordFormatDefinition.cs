@@ -20,12 +20,13 @@ namespace VerilogLanguage.Highlighting
     [UserVisible(true)]
     internal class HighlightWordFormatDefinition : MarkerFormatDefinition
     {
+        // customized "currently higlighted word" goes here. Disabled to use Visual Studio default.
         public HighlightWordFormatDefinition()
         {
-            this.BackgroundColor = Colors.DarkGray;
+            // this.BackgroundColor = Colors.DarkGray;
             // this.ForegroundColor = Colors.DarkBlue;
-            this.DisplayName = "Highlight Word";
-            this.ZOrder = 5;
+            // this.DisplayName = "Highlight Word";
+            // this.ZOrder = 5;
         }
     }
 

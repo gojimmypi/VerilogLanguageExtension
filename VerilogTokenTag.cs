@@ -223,16 +223,59 @@ namespace VerilogLanguage
             } // if sc is not blank
             return isLocalBlockComment;
         }
- 
+
+
+        public enum VerilogTokenContextType
+        {
+            Undetermined,
+            SquareBracketOpen,
+            SquareBracketClose,
+            SquareBracketContents,
+            Comment,
+            Text
+        }
+
+
+        private static VerilogTokenContextType VerilogTokenContextFromString(string s)
+        {
+            switch (s) {
+                case null:
+                    return VerilogTokenContextType.Undetermined;
+
+                case "":
+                    return VerilogTokenContextType.Text;
+
+                default:
+                    switch (s.Substring(0,1))
+                    {
+                        case "[":
+                           return  VerilogTokenContextType.SquareBracketOpen;
+                        case "]":
+                            return VerilogTokenContextType.SquareBracketClose;
+                        default:
+                            return VerilogTokenContextType.Text;
+                    }
+            }
+        }
+
         public struct VerilogToken
         {
             public string Part;
-            public string Context;
+            public VerilogTokenContextType Context;
+            public VerilogTokenContextType PriorContext; 
 
-            public VerilogToken(string p = "", string c = "")
+            public VerilogToken(string p = "", VerilogTokenContextType c = VerilogTokenContextType.Undetermined)
             {
                 Part = p;
-                Context = c;
+                if (c == VerilogTokenContextType.Undetermined && p.Length > 0)
+                {
+                    Context = VerilogTokenContextFromString(p);
+                }
+                else
+                {
+                    Context = c;
+                }
+                PriorContext = VerilogTokenContextType.Undetermined;
             }
         }
 
@@ -261,23 +304,17 @@ namespace VerilogLanguage
                     if (thisChar == priorChar)
                     {
                         thisItem += thisChar; // a string of multiple delimmiters!
+                        // TODO detect context change for multiple, concurrent delimiters
                     }
                     else
                     {
                         // there's a new delimiter, so add the current item and prep for the next one
                         thisToken.Part = thisItem;
-                        if ((priorDelimiter == "[")  )
-                        {
-                            thisToken.Context = "bracket";
-                        }
-                        else
-                        {
-                            thisToken.Context = "standard";
-                        }
                         tokens.Add(thisToken);
                         thisToken = new VerilogToken();
-                        thisItem = thisChar;
+                        thisItem = thisChar; // start building a new togen with the current, non-delimiter character
                     }
+                        thisToken.Context = VerilogTokenContextFromString(thisChar);
                 }
                 else
                 {
@@ -292,7 +329,7 @@ namespace VerilogLanguage
             }
             if (thisItem != "" || tokens.Count == 0)
             {
-                thisToken = new VerilogToken(thisItem, "last item");
+                thisToken = new VerilogToken(thisItem);
                 //thisToken.Part = thisItem;
                 //thisToken.Context = "last item";
                 tokens.Add(thisToken);
@@ -352,11 +389,17 @@ namespace VerilogLanguage
                             else
                             {
                                 // no tag colorization for the explicit togen, but perhaps based on context:
-                                if (VerilogToken.Context == "bracket")
+                                switch (VerilogToken.Context)
                                 {
-                                    if (tokenSpan.IntersectsWith(curSpan))
-                                        yield return new TagSpan<VerilogTokenTag>(tokenSpan,
-                                                                              new VerilogTokenTag(_VerilogTypes["bracket_type"]));
+                                    case VerilogTokenContextType.SquareBracketOpen:
+                                    case VerilogTokenContextType.SquareBracketClose:
+                                        if (tokenSpan.IntersectsWith(curSpan))
+                                            yield return new TagSpan<VerilogTokenTag>(tokenSpan,
+                                                                                  new VerilogTokenTag(_VerilogTypes["bracket_type"]));
+                                        break;
+                                    default:
+                                        // no highlighting
+                                        break;
                                 }
                             }
                         }

@@ -21,20 +21,27 @@ msbuild VerilogLanguage.csproj
 "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VSIXInstaller.exe"  C:\workspace\VerilogLanguageExtension\bin\Release\VerilogLanguage.vsix
 ```
 
+## Installation - Prior Releases
+
+See [releases](./releases/README.md) directory for prior versions.
+
 ## Removal
 
 ```
 "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VSIXInstaller.exe" /uninstall:CF0DCF14-5B8F-4B42-8386-9D37BB99F98E
 ```
 
+
 ## Testing
 
 Open the project and press `F5` to launch an experimental version of Visual Studio.
+
 
 ## Customization
 
 Set your own preferred colors in Tools - Options - Fonts and Colors:
 ![Verilog-Tools-Options-Colors](./images/Verilog-Tools-Options-Colors.png)
+
 
 ## Modifications
 
@@ -107,6 +114,13 @@ Optional: add `AugmentQuickInfoSession` section in `VerilogQuickInfoSource.cs`:
                 }
 ```
 
+## Color Reference
+
+From [Microsoft System.Windows.Media.Colors Class](https://docs.microsoft.com/en-us/dotnet/api/system.windows.media.colors?view=netframework-4.8)
+
+![art-color-table.png](./images/art-color-table.png)
+
+
 ## Troubleshooting
 
 If this error is encountered in Visual Studio 2019 when attempting to F5/Debug:
@@ -129,26 +143,56 @@ Try opening the [project file](VerilogLanguage.csproj) rather than the [solution
 
 
 ## Microsoft Resources
+
+* [System.Windows.Media.Colors Class](https://docs.microsoft.com/en-us/dotnet/api/system.windows.media.colors?view=netframework-4.8)
+
 * [Visual Studio SDK](https://docs.microsoft.com/en-us/visualstudio/extensibility/visual-studio-sdk?view=vs-2019)
+
 * [Visual Studio Extensibility (VSX)](http://www.visualstudioextensibility.com/samples/packages/) 
+
 * [Visual Studio Extensibility: Creating Visual Studio VSIX package extension](https://social.technet.microsoft.com/wiki/contents/articles/37071.visual-studio-extensibility-creating-visual-studio-vsix-package-extension.aspx)
+
 * [Implementing Syntax Coloring](https://docs.microsoft.com/en-us/visualstudio/extensibility/internals/implementing-syntax-coloring?view=vs-2019)
+
 * [Walkthrough: Display matching braces](https://docs.microsoft.com/en-us/visualstudio/extensibility/walkthrough-displaying-matching-braces?view=vs-2019)
+
 * [Colors and Styling for Visual Studio](https://docs.microsoft.com/en-us/visualstudio/extensibility/ux-guidelines/colors-and-styling-for-visual-studio?view=vs-2019)
+
 * [EnvironmentColors Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.platformui.environmentcolors?view=visualstudiosdk-2017)
+
 * [Walkthrough: Display matching braces](https://docs.microsoft.com/en-us/visualstudio/extensibility/walkthrough-displaying-matching-braces?view=vs-2019)
+
 * [SnapshotSpan Structure](https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.snapshotspan)
+
+* [SnapshotPoint Structure](https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.snapshotpoint)
+
 * [Walkthrough: Publish a Visual Studio extension](https://docs.microsoft.com/en-us/visualstudio/extensibility/walkthrough-publishing-a-visual-studio-extension?view=vs-2019)
+
 * [GitHub Microsoft/VSSDK-Extensibility-Samples](https://github.com/Microsoft/VSSDK-Extensibility-Samples) [ook!](https://github.com/Microsoft/VSSDK-Extensibility-Samples/tree/master/Ook_Language_Integration)
 
+
 ## Other Resources
+
 * [CodeProject - Extending Visual Studio to Provide a Colorful Language Editor](https://www.codeproject.com/Articles/1245021/Extending-Visual-Studio-to-Provide-a-Colorful-Lang)
+
 * [Xilinx - Verilog Reserved Words](https://www.xilinx.com/support/documentation/sw_manuals/xilinx11/ite_r_verilog_reserved_words.htm)
+
 * [Xilinx - Verilog Compiler Directives](https://www.xilinx.com/support/documentation/sw_manuals/xilinx10/isehelp/ism_r_verlang_compiler_directives.htm)
+
 * [madskristensen - Extensibility Tools for Visual Studio](https://github.com/madskristensen/ExtensibilityTools)
+
 * [What is the yield keyword used for in C#?](https://stackoverflow.com/questions/39476/what-is-the-yield-keyword-used-for-in-c)
 
+
+## FPGA Resources
+
+* [asic-world](http://www.asic-world.com/verilog/) - Verilog
+
+* [asic-world](http://www.asic-world.com/vhdl/index.html) - VHDL
+
+
 ## Interesting Examples
+
 * [Asm-Dude](https://github.com/HJLebbink/asm-dude)
 
 

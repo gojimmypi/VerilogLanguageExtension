@@ -1,4 +1,5 @@
 ﻿//Before
+assign[1:0];
 assign   ;;;assign   ;;; // assign   
 // this is a sample test; [delim]	[tab] ;;// test
 assign;// this is a test 
@@ -109,7 +110,7 @@ module top(
 		(J2_AD_PORT => i_ad_port_value) = 16;
 	endspecify
 
-  always @(posedge i_clk) begin
+  always @( posedge) begin
 		// 14ns after edge, data is stable
 		ctr <= ctr + 1;
 		 i_ad_port_value[7:0] <= J2_AD_PORT[7:0];

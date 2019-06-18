@@ -118,7 +118,9 @@ namespace VerilogLanguage
 
         Verilog_Directive,
 
-        Verilog_Comment
+        Verilog_Comment,
+
+        Verilog_Bracket
 
     }
 }

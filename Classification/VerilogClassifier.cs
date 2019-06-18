@@ -168,8 +168,9 @@ namespace VerilogLanguage
             _VerilogTypes[VerilogTokenTypes.Verilog_while] = typeService.GetClassificationType("while");
             _VerilogTypes[VerilogTokenTypes.Verilog_wire] = typeService.GetClassificationType("wire");
 
-            _VerilogTypes[VerilogTokenTypes.Verilog_Directive] = typeService.GetClassificationType("directive"); // must be one of VerilogTokenTagger 
-            _VerilogTypes[VerilogTokenTypes.Verilog_Comment] = typeService.GetClassificationType("comment"); // must be one of VerilogTokenTagger 
+            _VerilogTypes[VerilogTokenTypes.Verilog_Directive] = typeService.GetClassificationType("directive"); // type must be one of VerilogTokenTagger 
+            _VerilogTypes[VerilogTokenTypes.Verilog_Comment] = typeService.GetClassificationType("Comment"); // GetClassificationType string must be defined in ClassificationType.cs
+            _VerilogTypes[VerilogTokenTypes.Verilog_Bracket] = typeService.GetClassificationType("Bracket");
         }
 
         public event EventHandler<SnapshotSpanEventArgs> TagsChanged

@@ -2281,16 +2281,54 @@ namespace VerilogLanguage
     [UserVisible(true)]
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
-    internal sealed class Verilog_comment : ClassificationFormatDefinition
+    internal sealed class Verilog_Comment : ClassificationFormatDefinition
     {
         /// <summary>
         /// Defines the visual format for the "directive" classification type
         /// </summary>
-        public Verilog_comment()
+        public Verilog_Comment()
         {
             DisplayName = "Verilog - Comment"; //human readable version of the name
             ForegroundColor = Colors.LightSeaGreen;
         }
     }
     #endregion
+
+    #region bracket
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "Bracket")]
+    [Name("Bracket")]
+    //this should be visible to the end user
+    [UserVisible(true)]
+    //set the priority to be after the default classifiers
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_Bracket : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "directive" classification type
+        /// </summary>
+        public Verilog_Bracket()
+        {
+            DisplayName = "Verilog - Bracket Text"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
+            var defaultBackground = VSColorTheme.GetThemedColor(EnvironmentColors.ToolWindowBackgroundColorKey);
+            var defaultForeground = VSColorTheme.GetThemedColor(EnvironmentColors.ToolWindowTextColorKey);
+            //System.Drawing.Color thisColor = Microsoft.VisualStudio.PlatformUI.VSColorTheme.GetThemedColor(Microsoft.VisualStudio.PlatformUI.EnvironmentColors.ClassDesignerCommentTextColorKey);
+            //ForegroundColor = MColor.FromArgb(thisColor.A, thisColor.R, thisColor.G, thisColor.B);
+            // ForegroundColor = ColorConverter.ToMediaColor(VSColorTheme.GetThemedColor(EnvironmentColors.ClassDesignerCommentTextColorKey));
+
+            // https://docs.microsoft.com/en-us/dotnet/api/system.attribute.getcustomattributes?view=netframework-4.7.2
+            // System.Windows.Media.Colors mc = Microsoft.VisualStudio.Text.Classification.ClassificationTypeAttribute.GetCustomAttributes();
+            // EditorFormatDefinition.DisplayName();
+
+            ForegroundColor = Colors.SandyBrown;
+
+
+        }
+    }
+
+    #endregion
 }
+
+
+

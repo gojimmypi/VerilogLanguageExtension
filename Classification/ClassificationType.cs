@@ -704,5 +704,15 @@ namespace VerilogLanguage
         internal static ClassificationTypeDefinition Verilog_Comment = null;
         #endregion
 
+        #region Bracket
+        /// <summary>
+        /// Defines the "Verilog_Bracket" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Bracket")]
+        internal static ClassificationTypeDefinition Verilog_Bracket = null;
+        #endregion
+
+
     }
 }

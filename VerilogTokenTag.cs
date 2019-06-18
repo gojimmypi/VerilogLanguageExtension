@@ -168,8 +168,28 @@ namespace VerilogLanguage
             _VerilogTypes["`unconnected_drive"] = VerilogTokenTypes.Verilog_Directive;
             _VerilogTypes["`nounconnected_driv"] = VerilogTokenTypes.Verilog_Directive;
 
-            _VerilogTypes["//"] = VerilogTokenTypes.Verilog_Comment;
+            _VerilogTypes["comment_type"] = VerilogTokenTypes.Verilog_Comment;
 
+            _VerilogTypes["bracket_type"] = VerilogTokenTypes.Verilog_Bracket;
+
+
+        }
+
+        public bool IsDelimeter(string theString)
+        {
+            return (theString == " ") ||
+                   (theString == "[") ||
+                   (theString == "]") ||
+                   (theString == ";") ||
+                   (theString == "(") ||
+                   (theString == ")") ||
+                   (theString == "\t");
+        }
+
+        public bool IsEndingDelimeter(string theString)
+        {
+            return (theString == "]") ||
+                   (theString == ")") ;
         }
 
         public event EventHandler<SnapshotSpanEventArgs> TagsChanged
@@ -204,34 +224,58 @@ namespace VerilogLanguage
             return isLocalBlockComment;
         }
  
-        bool IsDelimeter(string theString)
+        public struct VerilogToken
         {
-            return (theString == " ") ||
-                   (theString == "[") ||
-                   (theString == ";") ||
-                   (theString == "\t");
+            public string Part;
+            public string Context;
+
+            public VerilogToken(string p = "", string c = "")
+            {
+                Part = p;
+                Context = c;
+            }
         }
 
-        public string[] VerilogKeywordSplit(string theString)
+        public VerilogToken[] VerilogKeywordSplit(string theString)
         {
-            List<string> parts = new List<string>();
+            List<VerilogToken> tokens = new List<VerilogToken>();
+            VerilogToken thisToken = new VerilogToken();
+
             string thisItem = "";
             string priorChar = "";
-            bool priorCharIsDelimiter = false;
-            bool thisCharIsDelimiter = false;
+            string priorDelimiter = "";
+
+            bool thisCharIsStartingDelimiter = false;
+            bool priorCharIsStartingDelimiter = false;
+
+            bool thisCharIsEndingDelimiter = false;
+            bool priorCharIsIsEndingDelimiter = false;
+
             string thisChar = "";
             for (int i=0; i < theString.Length; i++ )
             {
                 thisChar = theString.Substring(i, 1);
-                thisCharIsDelimiter = IsDelimeter(thisChar);
-                if (thisCharIsDelimiter || priorCharIsDelimiter) {
+                thisCharIsStartingDelimiter = IsDelimeter(thisChar);
+                thisCharIsEndingDelimiter = IsEndingDelimeter(thisChar);
+                if (thisCharIsStartingDelimiter || priorCharIsStartingDelimiter) {
                     if (thisChar == priorChar)
                     {
                         thisItem += thisChar; // a string of multiple delimmiters!
                     }
                     else
                     {
-                        parts.Add(thisItem);
+                        // there's a new delimiter, so add the current item and prep for the next one
+                        thisToken.Part = thisItem;
+                        if ((priorDelimiter == "[")  )
+                        {
+                            thisToken.Context = "bracket";
+                        }
+                        else
+                        {
+                            thisToken.Context = "standard";
+                        }
+                        tokens.Add(thisToken);
+                        thisToken = new VerilogToken();
                         thisItem = thisChar;
                     }
                 }
@@ -239,19 +283,23 @@ namespace VerilogLanguage
                 {
                     thisItem += thisChar;
                 }
-                priorCharIsDelimiter = thisCharIsDelimiter;
+                priorCharIsStartingDelimiter = thisCharIsStartingDelimiter;
+                priorCharIsIsEndingDelimiter = thisCharIsEndingDelimiter;
                 priorChar = thisChar;
+                if (thisCharIsStartingDelimiter) {
+                    priorDelimiter = thisChar;
+                }
             }
-            if (thisItem != "")
+            if (thisItem != "" || tokens.Count == 0)
             {
-                parts.Add(thisItem);
+                thisToken = new VerilogToken(thisItem, "last item");
+                //thisToken.Part = thisItem;
+                //thisToken.Context = "last item";
+                tokens.Add(thisToken);
             }
-            if (parts.Count == 0)
-            {
-                parts.Add("");
-            }
-            return parts.ToArray();
+            return tokens.ToArray();
         }
+
         public IEnumerable<ITagSpan<VerilogTokenTag>> GetTags(NormalizedSnapshotSpanCollection spans)
         {
 
@@ -262,11 +310,13 @@ namespace VerilogLanguage
             {
                 ITextSnapshotLine containingLine = curSpan.Start.GetContainingLine();
                 int curLoc = containingLine.Start.Position;
-       
-                string[] tokens = VerilogKeywordSplit(containingLine.GetText());
+                string thisTokenString = "";
 
-                Boolean IsContinuedLineComment = false; // comments with "//" are only effective for the current line
-                foreach (string VerilogToken in tokens) // this group of tokens in in a single line
+                VerilogToken[] tokens = VerilogKeywordSplit(containingLine.GetText());
+                
+
+                Boolean IsContinuedLineComment = false; // comments with "//" are only effective for the current line, but /* can span multiple lines
+                foreach (VerilogToken VerilogToken in tokens) // this group of tokens in in a single line
                 {
                     // by the time we get here, we might have a tag with adjacent comments:
                     //     assign//
@@ -274,9 +324,10 @@ namespace VerilogLanguage
                     //     assign//comment
                     //     /*assign*/
                     //     assign/*comment*/
-                    CommentHelper commentHelper = new CommentHelper(VerilogToken, IsContinuedLineComment, IsContinuedBlockComment);
+                    thisTokenString = VerilogToken.Part;
+                    CommentHelper commentHelper = new CommentHelper(thisTokenString, IsContinuedLineComment, IsContinuedBlockComment);
                     IsContinuedBlockComment = commentHelper.HasBlockStartComment;
-                    IsContinuedLineComment = commentHelper.HasOpenLineComment;
+                    IsContinuedLineComment = commentHelper.HasOpenLineComment; // we'll use this when processing the VerilogToken item in the commentHelper, above
                     foreach (CommentHelper.CommentItem Item in commentHelper.CommentItems)
                     {
                         var tokenSpan = new SnapshotSpan(curSpan.Snapshot, new Span(curLoc, Item.ItemText.Length));
@@ -286,7 +337,7 @@ namespace VerilogLanguage
                         {
                             if (tokenSpan.IntersectsWith(curSpan))
                                 yield return new TagSpan<VerilogTokenTag>(tokenSpan,
-                                                                      new VerilogTokenTag(_VerilogTypes["//"]));
+                                                                      new VerilogTokenTag(_VerilogTypes["comment_type"]));
                         }
 
                         // otherwise check to see if it is a keyword
@@ -300,7 +351,13 @@ namespace VerilogLanguage
                             }
                             else
                             {
-                                // no tag colorization
+                                // no tag colorization for the explicit togen, but perhaps based on context:
+                                if (VerilogToken.Context == "bracket")
+                                {
+                                    if (tokenSpan.IntersectsWith(curSpan))
+                                        yield return new TagSpan<VerilogTokenTag>(tokenSpan,
+                                                                              new VerilogTokenTag(_VerilogTypes["bracket_type"]));
+                                }
                             }
                         }
                         // note that no chars are lost when splitting string with VerilogKeywordSplit, so no adjustment needed in location

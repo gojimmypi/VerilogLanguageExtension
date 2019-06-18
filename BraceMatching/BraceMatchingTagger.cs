@@ -89,7 +89,16 @@ namespace VerilogLanguage.BraceMatching
             }
 
             //get the current char and the previous char
-            char currentText = currentChar.GetChar();
+            char currentText;
+            try
+            {
+                currentText = currentChar.GetChar();
+            }
+            catch
+            {
+                currentText = '\0';
+            }
+
             SnapshotPoint lastChar = currentChar == 0 ? currentChar : currentChar - 1; //if currentChar is 0 (beginning of buffer), don't move it back
             char lastText = lastChar.GetChar();
             SnapshotSpan pairSpan = new SnapshotSpan();

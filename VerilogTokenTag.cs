@@ -67,115 +67,117 @@ namespace VerilogLanguage
         internal VerilogTokenTagger(ITextBuffer buffer)
         {
             _buffer = buffer;
-            _VerilogTypes = new Dictionary<string, VerilogTokenTypes>();
-            _VerilogTypes["always"] = VerilogTokenTypes.Verilog_always;
-            _VerilogTypes["assign"] = VerilogTokenTypes.Verilog_assign;
-            _VerilogTypes["automatic"] = VerilogTokenTypes.Verilog_automatic;
-            _VerilogTypes["begin"] = VerilogTokenTypes.Verilog_begin;
-            _VerilogTypes["case"] = VerilogTokenTypes.Verilog_case;
-            _VerilogTypes["casex"] = VerilogTokenTypes.Verilog_casex;
-            _VerilogTypes["casez"] = VerilogTokenTypes.Verilog_casez;
-            _VerilogTypes["cell"] = VerilogTokenTypes.Verilog_cell;
-            _VerilogTypes["config"] = VerilogTokenTypes.Verilog_config;
-            _VerilogTypes["deassign"] = VerilogTokenTypes.Verilog_deassign;
-            _VerilogTypes["default"] = VerilogTokenTypes.Verilog_default;
-            _VerilogTypes["defparam"] = VerilogTokenTypes.Verilog_defparam;
-            _VerilogTypes["design"] = VerilogTokenTypes.Verilog_design;
-            _VerilogTypes["disable"] = VerilogTokenTypes.Verilog_disable;
-            _VerilogTypes["edge"] = VerilogTokenTypes.Verilog_edge;
-            _VerilogTypes["else"] = VerilogTokenTypes.Verilog_else;
-            _VerilogTypes["end"] = VerilogTokenTypes.Verilog_end;
-            _VerilogTypes["endcase"] = VerilogTokenTypes.Verilog_endcase;
-            _VerilogTypes["endconfig"] = VerilogTokenTypes.Verilog_endconfig;
-            _VerilogTypes["endfunction"] = VerilogTokenTypes.Verilog_endfunction;
-            _VerilogTypes["endgenerate"] = VerilogTokenTypes.Verilog_endgenerate;
-            _VerilogTypes["endmodule"] = VerilogTokenTypes.Verilog_endmodule;
-            _VerilogTypes["endprimitive"] = VerilogTokenTypes.Verilog_endprimitive;
-            _VerilogTypes["endspecify"] = VerilogTokenTypes.Verilog_endspecify;
-            _VerilogTypes["endtable"] = VerilogTokenTypes.Verilog_endtable;
-            _VerilogTypes["endtask"] = VerilogTokenTypes.Verilog_endtask;
-            _VerilogTypes["event"] = VerilogTokenTypes.Verilog_event;
-            _VerilogTypes["for"] = VerilogTokenTypes.Verilog_for;
-            _VerilogTypes["force"] = VerilogTokenTypes.Verilog_force;
-            _VerilogTypes["forever"] = VerilogTokenTypes.Verilog_forever;
-            _VerilogTypes["fork"] = VerilogTokenTypes.Verilog_fork;
-            _VerilogTypes["function"] = VerilogTokenTypes.Verilog_function;
-            _VerilogTypes["generate"] = VerilogTokenTypes.Verilog_generate;
-            _VerilogTypes["genvar"] = VerilogTokenTypes.Verilog_genvar;
-            _VerilogTypes["if"] = VerilogTokenTypes.Verilog_if;
-            _VerilogTypes["ifnone"] = VerilogTokenTypes.Verilog_ifnone;
-            _VerilogTypes["incdir"] = VerilogTokenTypes.Verilog_incdir;
-            _VerilogTypes["include"] = VerilogTokenTypes.Verilog_include;
-            _VerilogTypes["initial"] = VerilogTokenTypes.Verilog_initial;
-            _VerilogTypes["inout"] = VerilogTokenTypes.Verilog_inout;
-            _VerilogTypes["input"] = VerilogTokenTypes.Verilog_input;
-            _VerilogTypes["instance"] = VerilogTokenTypes.Verilog_instance;
-            _VerilogTypes["join"] = VerilogTokenTypes.Verilog_join;
-            _VerilogTypes["liblist"] = VerilogTokenTypes.Verilog_liblist;
-            _VerilogTypes["library"] = VerilogTokenTypes.Verilog_library;
-            _VerilogTypes["localparam"] = VerilogTokenTypes.Verilog_localparam;
-            _VerilogTypes["macromodule"] = VerilogTokenTypes.Verilog_macromodule;
-            _VerilogTypes["module"] = VerilogTokenTypes.Verilog_module;
-            _VerilogTypes["negedge"] = VerilogTokenTypes.Verilog_negedge;
-            _VerilogTypes["noshowcancelled"] = VerilogTokenTypes.Verilog_noshowcancelled;
-            _VerilogTypes["output"] = VerilogTokenTypes.Verilog_output;
-            _VerilogTypes["parameter"] = VerilogTokenTypes.Verilog_parameter;
-            _VerilogTypes["posedge"] = VerilogTokenTypes.Verilog_posedge;
-            _VerilogTypes["primitive"] = VerilogTokenTypes.Verilog_primitive;
-            _VerilogTypes["pulsestyle_ondetect"] = VerilogTokenTypes.Verilog_pulsestyle_ondetect;
-            _VerilogTypes["pulsestyle_onevent"] = VerilogTokenTypes.Verilog_pulsestyle_onevent;
-            _VerilogTypes["reg"] = VerilogTokenTypes.Verilog_reg;
-            _VerilogTypes["release"] = VerilogTokenTypes.Verilog_release;
-            _VerilogTypes["repeat"] = VerilogTokenTypes.Verilog_repeat;
-            _VerilogTypes["scalared"] = VerilogTokenTypes.Verilog_scalared;
-            _VerilogTypes["showcancelled"] = VerilogTokenTypes.Verilog_showcancelled;
-            _VerilogTypes["signed"] = VerilogTokenTypes.Verilog_signed;
-            _VerilogTypes["specify"] = VerilogTokenTypes.Verilog_specify;
-            _VerilogTypes["specparam"] = VerilogTokenTypes.Verilog_specparam;
-            _VerilogTypes["strength"] = VerilogTokenTypes.Verilog_strength;
-            _VerilogTypes["table"] = VerilogTokenTypes.Verilog_table;
-            _VerilogTypes["task"] = VerilogTokenTypes.Verilog_task;
-            _VerilogTypes["tri"] = VerilogTokenTypes.Verilog_tri;
-            _VerilogTypes["tri0"] = VerilogTokenTypes.Verilog_tri0;
-            _VerilogTypes["tri1"] = VerilogTokenTypes.Verilog_tri1;
-            _VerilogTypes["triand"] = VerilogTokenTypes.Verilog_triand;
-            _VerilogTypes["wand"] = VerilogTokenTypes.Verilog_wand;
-            _VerilogTypes["trior"] = VerilogTokenTypes.Verilog_trior;
-            _VerilogTypes["wor"] = VerilogTokenTypes.Verilog_wor;
-            _VerilogTypes["trireg"] = VerilogTokenTypes.Verilog_trireg;
-            _VerilogTypes["unsigned"] = VerilogTokenTypes.Verilog_unsigned;
-            _VerilogTypes["use"] = VerilogTokenTypes.Verilog_use;
-            _VerilogTypes["vectored"] = VerilogTokenTypes.Verilog_vectored;
-            _VerilogTypes["wait"] = VerilogTokenTypes.Verilog_wait;
-            _VerilogTypes["while"] = VerilogTokenTypes.Verilog_while;
-            _VerilogTypes["wire"] = VerilogTokenTypes.Verilog_wire;
+            _VerilogTypes = new Dictionary<string, VerilogTokenTypes>
+            {
+                ["always"] = VerilogTokenTypes.Verilog_always,
+                ["assign"] = VerilogTokenTypes.Verilog_assign,
+                ["automatic"] = VerilogTokenTypes.Verilog_automatic,
+                ["begin"] = VerilogTokenTypes.Verilog_begin,
+                ["case"] = VerilogTokenTypes.Verilog_case,
+                ["casex"] = VerilogTokenTypes.Verilog_casex,
+                ["casez"] = VerilogTokenTypes.Verilog_casez,
+                ["cell"] = VerilogTokenTypes.Verilog_cell,
+                ["config"] = VerilogTokenTypes.Verilog_config,
+                ["deassign"] = VerilogTokenTypes.Verilog_deassign,
+                ["default"] = VerilogTokenTypes.Verilog_default,
+                ["defparam"] = VerilogTokenTypes.Verilog_defparam,
+                ["design"] = VerilogTokenTypes.Verilog_design,
+                ["disable"] = VerilogTokenTypes.Verilog_disable,
+                ["edge"] = VerilogTokenTypes.Verilog_edge,
+                ["else"] = VerilogTokenTypes.Verilog_else,
+                ["end"] = VerilogTokenTypes.Verilog_end,
+                ["endcase"] = VerilogTokenTypes.Verilog_endcase,
+                ["endconfig"] = VerilogTokenTypes.Verilog_endconfig,
+                ["endfunction"] = VerilogTokenTypes.Verilog_endfunction,
+                ["endgenerate"] = VerilogTokenTypes.Verilog_endgenerate,
+                ["endmodule"] = VerilogTokenTypes.Verilog_endmodule,
+                ["endprimitive"] = VerilogTokenTypes.Verilog_endprimitive,
+                ["endspecify"] = VerilogTokenTypes.Verilog_endspecify,
+                ["endtable"] = VerilogTokenTypes.Verilog_endtable,
+                ["endtask"] = VerilogTokenTypes.Verilog_endtask,
+                ["event"] = VerilogTokenTypes.Verilog_event,
+                ["for"] = VerilogTokenTypes.Verilog_for,
+                ["force"] = VerilogTokenTypes.Verilog_force,
+                ["forever"] = VerilogTokenTypes.Verilog_forever,
+                ["fork"] = VerilogTokenTypes.Verilog_fork,
+                ["function"] = VerilogTokenTypes.Verilog_function,
+                ["generate"] = VerilogTokenTypes.Verilog_generate,
+                ["genvar"] = VerilogTokenTypes.Verilog_genvar,
+                ["if"] = VerilogTokenTypes.Verilog_if,
+                ["ifnone"] = VerilogTokenTypes.Verilog_ifnone,
+                ["incdir"] = VerilogTokenTypes.Verilog_incdir,
+                ["include"] = VerilogTokenTypes.Verilog_include,
+                ["initial"] = VerilogTokenTypes.Verilog_initial,
+                ["inout"] = VerilogTokenTypes.Verilog_inout,
+                ["input"] = VerilogTokenTypes.Verilog_input,
+                ["instance"] = VerilogTokenTypes.Verilog_instance,
+                ["join"] = VerilogTokenTypes.Verilog_join,
+                ["liblist"] = VerilogTokenTypes.Verilog_liblist,
+                ["library"] = VerilogTokenTypes.Verilog_library,
+                ["localparam"] = VerilogTokenTypes.Verilog_localparam,
+                ["macromodule"] = VerilogTokenTypes.Verilog_macromodule,
+                ["module"] = VerilogTokenTypes.Verilog_module,
+                ["negedge"] = VerilogTokenTypes.Verilog_negedge,
+                ["noshowcancelled"] = VerilogTokenTypes.Verilog_noshowcancelled,
+                ["output"] = VerilogTokenTypes.Verilog_output,
+                ["parameter"] = VerilogTokenTypes.Verilog_parameter,
+                ["posedge"] = VerilogTokenTypes.Verilog_posedge,
+                ["primitive"] = VerilogTokenTypes.Verilog_primitive,
+                ["pulsestyle_ondetect"] = VerilogTokenTypes.Verilog_pulsestyle_ondetect,
+                ["pulsestyle_onevent"] = VerilogTokenTypes.Verilog_pulsestyle_onevent,
+                ["reg"] = VerilogTokenTypes.Verilog_reg,
+                ["release"] = VerilogTokenTypes.Verilog_release,
+                ["repeat"] = VerilogTokenTypes.Verilog_repeat,
+                ["scalared"] = VerilogTokenTypes.Verilog_scalared,
+                ["showcancelled"] = VerilogTokenTypes.Verilog_showcancelled,
+                ["signed"] = VerilogTokenTypes.Verilog_signed,
+                ["specify"] = VerilogTokenTypes.Verilog_specify,
+                ["specparam"] = VerilogTokenTypes.Verilog_specparam,
+                ["strength"] = VerilogTokenTypes.Verilog_strength,
+                ["table"] = VerilogTokenTypes.Verilog_table,
+                ["task"] = VerilogTokenTypes.Verilog_task,
+                ["tri"] = VerilogTokenTypes.Verilog_tri,
+                ["tri0"] = VerilogTokenTypes.Verilog_tri0,
+                ["tri1"] = VerilogTokenTypes.Verilog_tri1,
+                ["triand"] = VerilogTokenTypes.Verilog_triand,
+                ["wand"] = VerilogTokenTypes.Verilog_wand,
+                ["trior"] = VerilogTokenTypes.Verilog_trior,
+                ["wor"] = VerilogTokenTypes.Verilog_wor,
+                ["trireg"] = VerilogTokenTypes.Verilog_trireg,
+                ["unsigned"] = VerilogTokenTypes.Verilog_unsigned,
+                ["use"] = VerilogTokenTypes.Verilog_use,
+                ["vectored"] = VerilogTokenTypes.Verilog_vectored,
+                ["wait"] = VerilogTokenTypes.Verilog_wait,
+                ["while"] = VerilogTokenTypes.Verilog_while,
+                ["wire"] = VerilogTokenTypes.Verilog_wire,
 
-            // all of the Verilog directives are the same color
-            _VerilogTypes["`celldefine"] = VerilogTokenTypes.Verilog_Directive;
-            _VerilogTypes["`endcelldefine"] = VerilogTokenTypes.Verilog_Directive;
-            _VerilogTypes["`default_nettype"] = VerilogTokenTypes.Verilog_Directive;
-            _VerilogTypes["`define"] = VerilogTokenTypes.Verilog_Directive;
-            _VerilogTypes["`undef"] = VerilogTokenTypes.Verilog_Directive;
-            _VerilogTypes["`ifdef"] = VerilogTokenTypes.Verilog_Directive;
-            _VerilogTypes["`ifndef"] = VerilogTokenTypes.Verilog_Directive;
-            _VerilogTypes["`elsif"] = VerilogTokenTypes.Verilog_Directive;
-            _VerilogTypes["`else"] = VerilogTokenTypes.Verilog_Directive;
-            _VerilogTypes["`endif"] = VerilogTokenTypes.Verilog_Directive;
-            _VerilogTypes["`include"] = VerilogTokenTypes.Verilog_Directive;
-            _VerilogTypes["`resetall"] = VerilogTokenTypes.Verilog_Directive;
-            _VerilogTypes["`line"] = VerilogTokenTypes.Verilog_Directive;
-            _VerilogTypes["`timescale"] = VerilogTokenTypes.Verilog_Directive;
-            _VerilogTypes["`unconnected_drive"] = VerilogTokenTypes.Verilog_Directive;
-            _VerilogTypes["`nounconnected_driv"] = VerilogTokenTypes.Verilog_Directive;
+                // all of the Verilog directives are the same color
+                ["`celldefine"] = VerilogTokenTypes.Verilog_Directive,
+                ["`endcelldefine"] = VerilogTokenTypes.Verilog_Directive,
+                ["`default_nettype"] = VerilogTokenTypes.Verilog_Directive,
+                ["`define"] = VerilogTokenTypes.Verilog_Directive,
+                ["`undef"] = VerilogTokenTypes.Verilog_Directive,
+                ["`ifdef"] = VerilogTokenTypes.Verilog_Directive,
+                ["`ifndef"] = VerilogTokenTypes.Verilog_Directive,
+                ["`elsif"] = VerilogTokenTypes.Verilog_Directive,
+                ["`else"] = VerilogTokenTypes.Verilog_Directive,
+                ["`endif"] = VerilogTokenTypes.Verilog_Directive,
+                ["`include"] = VerilogTokenTypes.Verilog_Directive,
+                ["`resetall"] = VerilogTokenTypes.Verilog_Directive,
+                ["`line"] = VerilogTokenTypes.Verilog_Directive,
+                ["`timescale"] = VerilogTokenTypes.Verilog_Directive,
+                ["`unconnected_drive"] = VerilogTokenTypes.Verilog_Directive,
+                ["`nounconnected_driv"] = VerilogTokenTypes.Verilog_Directive,
 
-            _VerilogTypes["comment_type"] = VerilogTokenTypes.Verilog_Comment;
+                ["comment_type"] = VerilogTokenTypes.Verilog_Comment,
 
-            _VerilogTypes["bracket_type"] = VerilogTokenTypes.Verilog_Bracket;
+                ["bracket_type"] = VerilogTokenTypes.Verilog_Bracket
+            };
 
 
         }
 
-        public bool IsDelimeter(string theString)
+        static public bool IsDelimeter(string theString)
         {
             return (theString == " ") ||
                    (theString == "[") ||
@@ -186,7 +188,7 @@ namespace VerilogLanguage
                    (theString == "\t");
         }
 
-        public bool IsEndingDelimeter(string theString)
+        static public bool IsEndingDelimeter(string theString)
         {
             return (theString == "]") ||
                    (theString == ")") ;
@@ -271,130 +273,86 @@ namespace VerilogLanguage
             }
         }
 
-        public struct VerilogToken
+        /// <summary>
+        ///   VerilogParseState - while processing each segment, we'll keep track of attributes in a VerilogParseState 
+        /// </summary>
+        public struct VerilogParseState
         {
-            public string Part;
-            public VerilogTokenContextType Context;
-            public int DelimiterDepth; 
-            //public VerilogTokenContextType PriorContext; 
+            public string thisItem;
+            public string priorChar;
+            public string priorDelimiter;
+            public bool thisCharIsDelimiter;
+            public bool priorCharIsDelimiter;
 
-            public VerilogToken(string p = "", VerilogTokenContextType c = VerilogTokenContextType.Undetermined)
+            public bool thisCharIsEndingDelimiter;
+            public bool priorCharIsIsEndingDelimiter;
+
+            public bool hasOpenSquareBracket;
+            public bool hasOpenRoundBracket;
+            public bool hasOpenDoubleQuote;
+
+            public bool IsNewDelimitedSegment;
+
+            private string _thisChar;
+            public string thisChar
             {
-                DelimiterDepth = 0;
-                Part = p;
-                if (c == VerilogTokenContextType.Undetermined && p.Length > 0)
+                get { return _thisChar; }
+                set
                 {
-                    Context = VerilogTokenContextFromString(p); // we'll figure out the context from the first character
+                    _thisChar = value;
+                    thisCharIsDelimiter = IsDelimeter(value);
+                    thisCharIsEndingDelimiter = IsEndingDelimeter(value);
+                    if (thisCharIsDelimiter || priorCharIsDelimiter)
+                    {
+                        IsNewDelimitedSegment = (thisChar != priorChar);
+
+                        switch (value)
+                        {
+                            case "]":
+                                hasOpenSquareBracket = false;
+                                break;
+
+                            case ")":
+                                hasOpenRoundBracket = false;
+                                break;
+
+                            case "\"":
+                                hasOpenDoubleQuote = !hasOpenDoubleQuote;
+                                break;
+
+                            default:
+                                break;
+                        }
+                        if (thisChar == priorChar)
+                        {
+                           thisItem += thisChar; // a string of multiple delimmiters!
+                           // TODO detect context change for multiple, concurrent delimiters
+                        }
+                    }
+                    else
+                    {
+                        thisItem +=  thisChar;
+                    }
+
+                    if (thisCharIsDelimiter || priorCharIsDelimiter)
+                    {
+
+                        if (thisChar == priorChar)
+                        {
+                            // nothing, 
+                        }
+                    }
                 }
-                else
-                {
-                    Context = c; // unless otherwise specified
-                }
+
             }
-        }
 
-        //public struct VerilogParseState
-        //{
-        //    public string thisItem;
-        //    public VerilogParseState(int i)
-        //    {
-        //        thisItem = "";
-        //    }
-        //}
-
-        public VerilogToken[] VerilogKeywordSplit(string theString)
-        {
-            List<VerilogToken> tokens = new List<VerilogToken>();
-            VerilogToken thisToken = new VerilogToken();
-            string thisItem = "";
-            string priorChar = "";
-            string priorDelimiter = "";
-
-
-            bool thisCharIsDelimiter = false;
-            bool priorCharIsDelimiter = false;
-
-            bool thisCharIsEndingDelimiter = false;
-            bool priorCharIsIsEndingDelimiter = false;
-
-            bool hasOpenSquareBracket = false;
-            bool hasOpenRoundBracket = false;
-            bool hasOpenDoubleQuote = false;
-
-            string thisChar = "";
-            for (int i=0; i < theString.Length; i++ )
+            public void SetPriorValues()
             {
-                thisChar = theString.Substring(i, 1);
-                thisCharIsDelimiter = IsDelimeter(thisChar);
-                thisCharIsEndingDelimiter = IsEndingDelimeter(thisChar);
-                if (thisCharIsDelimiter || priorCharIsDelimiter) {
-                    switch (thisChar)
-                    {
-                        case "]":
-                            hasOpenSquareBracket = false;
-                            break;
-
-                        case ")":
-                            hasOpenRoundBracket = false;
-                            break;
-
-                        case "\"":
-                            hasOpenDoubleQuote = !hasOpenDoubleQuote;
-                            break;
-
-                        default:
-                            break;
-                    }
-
-                    // anytime a delimiter is encountered, we start a new text segment token
-                    // note the delimiter itself is in a colorizable segment
-                    if (thisChar == priorChar)
-                    {
-                        thisItem += thisChar; // a string of multiple delimmiters!
-                        // TODO detect context change for multiple, concurrent delimiters
-                    }
-                    else
-                    {
-                        // there's a new delimiter, so add the current item and prep for the next one
-                        thisToken.Part = thisItem;
-                        tokens.Add(thisToken);
-                        thisToken = new VerilogToken();
-                        
-                        thisItem = thisChar; // start building a new token with the current, non-delimiter character, will be used to determine context in VerilogTokenContextFromString
-                    }
-
-                    if (hasOpenDoubleQuote)
-                    {
-                        thisToken.Context = VerilogTokenContextType.DoubleQuoteOpen;
-                    }
-                    else
-                    {
-                        if (hasOpenSquareBracket)
-                        {
-                            thisToken.Context = VerilogTokenContextType.SquareBracketContents;
-                        }
-                        else
-                        {
-                            if (hasOpenRoundBracket)
-                            {
-                                thisToken.Context = VerilogTokenContextType.RoundBracketContents;
-                            }
-                            else
-                            {
-                                thisToken.Context = VerilogTokenContextFromString(thisChar);
-                            }
-                        }
-                    }
-
-                }
-                else
-                {
-                    thisItem += thisChar;
-                }
                 priorCharIsDelimiter = thisCharIsDelimiter;
                 priorCharIsIsEndingDelimiter = thisCharIsEndingDelimiter;
                 priorChar = thisChar;
-                if (thisCharIsDelimiter) {
+                if (thisCharIsDelimiter)
+                {
                     priorDelimiter = thisChar;
                 }
 
@@ -409,13 +367,136 @@ namespace VerilogLanguage
                 }
 
             }
-            if (thisItem != "" || tokens.Count == 0)
+
+            // initialize this VerilogParseState at creation time
+            public VerilogParseState(int i)
             {
-                thisToken = new VerilogToken(thisItem);
-                //thisToken.Part = thisItem;
-                //thisToken.Context = "last item";
-                tokens.Add(thisToken);
+                _thisChar = "";
+                thisItem = "";
+                IsNewDelimitedSegment = false;
+                priorChar = "";
+                priorDelimiter = "";
+                thisCharIsDelimiter = false;
+                priorCharIsDelimiter = false;
+                thisCharIsEndingDelimiter = false;
+                priorCharIsIsEndingDelimiter = false;
+                hasOpenSquareBracket = false;
+                hasOpenRoundBracket =  false;
+                hasOpenDoubleQuote = false;
             }
+        }
+
+
+        /// <summary>
+        ///   VerilogToken
+        /// </summary>
+        public struct VerilogToken
+        {
+            public VerilogParseState ParseState;
+            public string Part;
+            public VerilogTokenContextType Context;
+            public int DelimiterDepth;
+
+            public void SetContext()
+            {
+                if (ParseState.hasOpenDoubleQuote)
+                {
+                    Context = VerilogTokenContextType.DoubleQuoteOpen;
+                }
+                else
+                {
+                    if (ParseState.hasOpenSquareBracket)
+                    {
+                        Context = VerilogTokenContextType.SquareBracketContents;
+                    }
+                    else
+                    {
+                        if (ParseState.hasOpenRoundBracket)
+                        {
+                            Context = VerilogTokenContextType.RoundBracketContents;
+                        }
+                        else
+                        {
+                            Context = VerilogTokenContextFromString(ParseState.thisChar);
+                        }
+                    }
+                }
+
+
+            }
+
+
+            /// <summary>
+            ///   Verilog Token Initializer
+            /// </summary>
+            /// <param name="p"></param>
+            /// <param name="c"></param>
+            public VerilogToken(string p = "", VerilogTokenContextType c = VerilogTokenContextType.Undetermined)
+            {
+                ParseState = new VerilogParseState(0);
+                DelimiterDepth = 0;
+
+                Part = p ?? ""; // ensure Part is never null (empty string if p is null)
+
+                if (c == VerilogTokenContextType.Undetermined && p.Length > 0)
+                {
+                    Context = VerilogTokenContextFromString(p); // we'll figure out the context from the first character
+                }
+                else
+                {
+                    Context = c; // unless otherwise specified
+                }
+            }
+        }
+
+        /// <summary>
+        ///    VerilogToken[] 
+        /// </summary>
+        /// <param name="theString"></param>
+        /// <returns></returns>
+        public VerilogToken[] VerilogKeywordSplit(string theString)
+        {
+            List<VerilogToken> tokens = new List<VerilogToken>();
+            VerilogToken thisToken = new VerilogToken();
+            VerilogParseState thisContinuedParseState = new VerilogParseState(0);
+
+            // AddToken - appends the current token part to the array and create a new thisToken to build
+            void AddToken()
+            {
+                if (thisToken.ParseState.thisItem != "")
+                {
+                    thisToken.Part = thisToken.ParseState.thisItem;
+                    thisContinuedParseState = thisToken.ParseState;
+                    tokens.Add(thisToken);
+                    thisToken = new VerilogToken();
+                    thisToken.ParseState = thisContinuedParseState;
+                    thisToken.ParseState.thisItem = thisToken.ParseState.thisChar; // start building a new token with the current, non-delimiter character, will be used to determine context in VerilogTokenContextFromString
+                }
+            }
+
+            for (int i=0; i < theString.Length; i++ )
+            {
+                thisToken.ParseState.thisChar = theString.Substring(i, 1); // note setting this values triggers ParseState attribute assignments
+
+                if (thisToken.ParseState.thisCharIsDelimiter || thisToken.ParseState.priorCharIsDelimiter) {
+                    // anytime a delimiter is encountered, we start a new text segment tokenm but only when the current delimiter is different from the prior one
+                    // note the delimiter itself is in a colorizable segment
+
+                    if (thisToken.ParseState.IsNewDelimitedSegment)
+                    {
+                        // there's a new delimiter, so add the current item and prep for the next one
+                        AddToken();
+                    }
+
+                    // once the ParseState is configured (above, when assigning thisChar), set the context of the item
+                    thisToken.SetContext();
+                }
+                // at the end of each loop, set the prior values
+                thisToken.ParseState.SetPriorValues();
+            } // end of for loop look at each char
+
+            // if there's anythin left, add it is as token (blank token not added)
+            AddToken();
             return tokens.ToArray();
         }
 

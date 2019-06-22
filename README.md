@@ -208,6 +208,7 @@ Try opening the [project file](VerilogLanguage.csproj) rather than the [solution
 
 ## Change History:
 
+* 2019-06022  [v0.1.5 square bracket and content colorization
 * 2019-06-17  [v0.1.4](./releases/VerilogLanguage_v0.1.4.vsix) compiled in Visual Studio 2019 instead of 2017, needed to bump version as "updates" didn't seem to see the 4th segment version change
 * 2019-06-16  v0.1.3 disable code in HighlightWordFormatDefinition to use Visual Studio default selected word higlighting.
 * 2019-06-16  [v0.1.2](./releases/VerilogLanguage_v0.1.2.vsix) fixes some syntax delimiter highlighting issues in comments.

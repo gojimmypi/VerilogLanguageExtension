@@ -116,10 +116,10 @@ namespace VerilogLanguage
         Verilog_while,
         Verilog_wire,
 
-        Verilog_Directive,
+        Verilog_Directive, // note that all directives are colorized the same
 
+        //
         Verilog_Comment,
-
         Verilog_Bracket
 
     }

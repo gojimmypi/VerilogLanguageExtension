@@ -228,9 +228,13 @@ namespace VerilogLanguage
         public enum VerilogTokenContextType
         {
             Undetermined,
+            DoubleQuoteOpen,
             SquareBracketOpen,
             SquareBracketClose,
             SquareBracketContents,
+            RoundBracketOpen,
+            RoundBracketClose,
+            RoundBracketContents,
             Comment,
             Text
         }
@@ -250,10 +254,19 @@ namespace VerilogLanguage
                     {
                         case "[":
                            return  VerilogTokenContextType.SquareBracketOpen;
+
                         case "]":
                             return VerilogTokenContextType.SquareBracketClose;
+
+                        case "(":
+                            return VerilogTokenContextType.RoundBracketOpen;
+
+                        case ")":
+                            return VerilogTokenContextType.RoundBracketClose;
+
                         default:
                             return VerilogTokenContextType.Text;
+
                     }
             }
         }
@@ -262,45 +275,79 @@ namespace VerilogLanguage
         {
             public string Part;
             public VerilogTokenContextType Context;
-            public VerilogTokenContextType PriorContext; 
+            public int DelimiterDepth; 
+            //public VerilogTokenContextType PriorContext; 
 
             public VerilogToken(string p = "", VerilogTokenContextType c = VerilogTokenContextType.Undetermined)
             {
+                DelimiterDepth = 0;
                 Part = p;
                 if (c == VerilogTokenContextType.Undetermined && p.Length > 0)
                 {
-                    Context = VerilogTokenContextFromString(p);
+                    Context = VerilogTokenContextFromString(p); // we'll figure out the context from the first character
                 }
                 else
                 {
-                    Context = c;
+                    Context = c; // unless otherwise specified
                 }
-                PriorContext = VerilogTokenContextType.Undetermined;
             }
         }
+
+        //public struct VerilogParseState
+        //{
+        //    public string thisItem;
+        //    public VerilogParseState(int i)
+        //    {
+        //        thisItem = "";
+        //    }
+        //}
 
         public VerilogToken[] VerilogKeywordSplit(string theString)
         {
             List<VerilogToken> tokens = new List<VerilogToken>();
             VerilogToken thisToken = new VerilogToken();
-
             string thisItem = "";
             string priorChar = "";
             string priorDelimiter = "";
 
-            bool thisCharIsStartingDelimiter = false;
-            bool priorCharIsStartingDelimiter = false;
+
+            bool thisCharIsDelimiter = false;
+            bool priorCharIsDelimiter = false;
 
             bool thisCharIsEndingDelimiter = false;
             bool priorCharIsIsEndingDelimiter = false;
+
+            bool hasOpenSquareBracket = false;
+            bool hasOpenRoundBracket = false;
+            bool hasOpenDoubleQuote = false;
 
             string thisChar = "";
             for (int i=0; i < theString.Length; i++ )
             {
                 thisChar = theString.Substring(i, 1);
-                thisCharIsStartingDelimiter = IsDelimeter(thisChar);
+                thisCharIsDelimiter = IsDelimeter(thisChar);
                 thisCharIsEndingDelimiter = IsEndingDelimeter(thisChar);
-                if (thisCharIsStartingDelimiter || priorCharIsStartingDelimiter) {
+                if (thisCharIsDelimiter || priorCharIsDelimiter) {
+                    switch (thisChar)
+                    {
+                        case "]":
+                            hasOpenSquareBracket = false;
+                            break;
+
+                        case ")":
+                            hasOpenRoundBracket = false;
+                            break;
+
+                        case "\"":
+                            hasOpenDoubleQuote = !hasOpenDoubleQuote;
+                            break;
+
+                        default:
+                            break;
+                    }
+
+                    // anytime a delimiter is encountered, we start a new text segment token
+                    // note the delimiter itself is in a colorizable segment
                     if (thisChar == priorChar)
                     {
                         thisItem += thisChar; // a string of multiple delimmiters!
@@ -312,20 +359,55 @@ namespace VerilogLanguage
                         thisToken.Part = thisItem;
                         tokens.Add(thisToken);
                         thisToken = new VerilogToken();
-                        thisItem = thisChar; // start building a new togen with the current, non-delimiter character
+                        
+                        thisItem = thisChar; // start building a new token with the current, non-delimiter character, will be used to determine context in VerilogTokenContextFromString
                     }
-                        thisToken.Context = VerilogTokenContextFromString(thisChar);
+
+                    if (hasOpenDoubleQuote)
+                    {
+                        thisToken.Context = VerilogTokenContextType.DoubleQuoteOpen;
+                    }
+                    else
+                    {
+                        if (hasOpenSquareBracket)
+                        {
+                            thisToken.Context = VerilogTokenContextType.SquareBracketContents;
+                        }
+                        else
+                        {
+                            if (hasOpenRoundBracket)
+                            {
+                                thisToken.Context = VerilogTokenContextType.RoundBracketContents;
+                            }
+                            else
+                            {
+                                thisToken.Context = VerilogTokenContextFromString(thisChar);
+                            }
+                        }
+                    }
+
                 }
                 else
                 {
                     thisItem += thisChar;
                 }
-                priorCharIsStartingDelimiter = thisCharIsStartingDelimiter;
+                priorCharIsDelimiter = thisCharIsDelimiter;
                 priorCharIsIsEndingDelimiter = thisCharIsEndingDelimiter;
                 priorChar = thisChar;
-                if (thisCharIsStartingDelimiter) {
+                if (thisCharIsDelimiter) {
                     priorDelimiter = thisChar;
                 }
+
+                // check for opening colorized delimiters last, since they will be in their own string segment and colored differently
+                switch (thisChar)
+                {
+                    case "[":
+                        hasOpenSquareBracket = true;
+                        break;
+                    default:
+                        break;
+                }
+
             }
             if (thisItem != "" || tokens.Count == 0)
             {
@@ -369,12 +451,12 @@ namespace VerilogLanguage
                     {
                         var tokenSpan = new SnapshotSpan(curSpan.Snapshot, new Span(curLoc, Item.ItemText.Length));
                             
-                        // is this item a comment? If so, color as appropriate
+                        // is this item a comment? If so, color as appropriate. comments take highest priority: no other condition will change color of a comment
                         if (Item.IsComment)
                         {
                             if (tokenSpan.IntersectsWith(curSpan))
                                 yield return new TagSpan<VerilogTokenTag>(tokenSpan,
-                                                                      new VerilogTokenTag(_VerilogTypes["comment_type"]));
+                                                                      new VerilogTokenTag(VerilogTokenTypes.Verilog_Comment));
                         }
 
                         // otherwise check to see if it is a keyword
@@ -388,14 +470,19 @@ namespace VerilogLanguage
                             }
                             else
                             {
-                                // no tag colorization for the explicit togen, but perhaps based on context:
+                                // no tag colorization for the explicit token, but perhaps based on context:
                                 switch (VerilogToken.Context)
                                 {
                                     case VerilogTokenContextType.SquareBracketOpen:
                                     case VerilogTokenContextType.SquareBracketClose:
                                         if (tokenSpan.IntersectsWith(curSpan))
                                             yield return new TagSpan<VerilogTokenTag>(tokenSpan,
-                                                                                  new VerilogTokenTag(_VerilogTypes["bracket_type"]));
+                                                                                  new VerilogTokenTag(VerilogTokenTypes.Verilog_Bracket));
+                                        break;
+                                    case VerilogTokenContextType.SquareBracketContents:
+                                        if (tokenSpan.IntersectsWith(curSpan))
+                                            yield return new TagSpan<VerilogTokenTag>(tokenSpan,
+                                                                                  new VerilogTokenTag(VerilogTokenTypes.Verilog_Comment));
                                         break;
                                     default:
                                         // no highlighting

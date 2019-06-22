@@ -47,6 +47,17 @@ Set your own preferred colors in Tools - Options - Fonts and Colors:
 
 To make modifications, the [Visual Studio Extension Development Workload Toolset](https://visualstudio.microsoft.com/vs/support/selecting-workloads-visual-studio-2017/) needs to be installed.
 
+### Version Change
+
+Edit the version in two places: [source.extension.vsixmanifest](./source.extension.vsixmanifest) and [Properties - AssemblyInfo.cs](./Properties/AssemblyInfo.cs).
+
+### Single word highlight
+
+When clicking on a single word, Visual Studio highlights all the matching words. This higlight happens in [HighlightWordFormatDefinition](./Highlighting/HighlightWordFormatDefinition.cs).
+
+See also the [EditorFormatDefinition Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.classification.editorformatdefinition?view=visualstudiosdk-2019)
+
+### Verilog Toke Types
 
 Add a `public enum VerilogTokenTypes` value (there can be more items listed here than actually implemented) in [VerilogTokenTypes.cs](VerilogTokenTypes.cs#L19): 
 ```
@@ -62,7 +73,6 @@ Add a declaration in `ClassificationType.cs`
         [Name("begin")]
         internal static ClassificationTypeDefinition Verilog_begin = null;
 ```
-
 
 Add a ClassificationFormat.cs
 

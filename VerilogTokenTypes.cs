@@ -120,7 +120,8 @@ namespace VerilogLanguage
 
         //
         Verilog_Comment,
-        Verilog_Bracket
+        Verilog_Bracket,
+        Verilog_BracketContent
 
     }
 }

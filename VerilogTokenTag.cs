@@ -171,7 +171,8 @@ namespace VerilogLanguage
 
                 ["comment_type"] = VerilogTokenTypes.Verilog_Comment,
 
-                ["bracket_type"] = VerilogTokenTypes.Verilog_Bracket
+                ["bracket_type"] = VerilogTokenTypes.Verilog_Bracket,
+                ["bracket_content"] = VerilogTokenTypes.Verilog_BracketContent
             };
 
 
@@ -182,15 +183,20 @@ namespace VerilogLanguage
             return (theString == " ") ||
                    (theString == "[") ||
                    (theString == "]") ||
-                   (theString == ";") ||
+                   (theString == "}") ||
+                   (theString == "{") ||
                    (theString == "(") ||
                    (theString == ")") ||
+                   (theString == ";") ||
+                   (theString == "@") ||
+                   (theString == "\"") ||
                    (theString == "\t");
         }
 
         static public bool IsEndingDelimeter(string theString)
         {
             return (theString == "]") ||
+                   (theString == "}") ||
                    (theString == ")") ;
         }
 
@@ -237,6 +243,10 @@ namespace VerilogLanguage
             RoundBracketOpen,
             RoundBracketClose,
             RoundBracketContents,
+            SquigglyBracketOpen,
+            SquigglyBracketClose,
+            SquigglyBracketContents,
+            AlwaysAt,
             Comment,
             Text
         }
@@ -265,6 +275,15 @@ namespace VerilogLanguage
 
                         case ")":
                             return VerilogTokenContextType.RoundBracketClose;
+
+                        case "{":
+                            return VerilogTokenContextType.SquigglyBracketOpen;
+
+                        case "}":
+                            return VerilogTokenContextType.SquigglyBracketClose;
+
+                        case "@":
+                            return VerilogTokenContextType.AlwaysAt;
 
                         default:
                             return VerilogTokenContextType.Text;
@@ -563,7 +582,12 @@ namespace VerilogLanguage
                                     case VerilogTokenContextType.SquareBracketContents:
                                         if (tokenSpan.IntersectsWith(curSpan))
                                             yield return new TagSpan<VerilogTokenTag>(tokenSpan,
-                                                                                  new VerilogTokenTag(VerilogTokenTypes.Verilog_Comment));
+                                                                                  new VerilogTokenTag(VerilogTokenTypes.Verilog_BracketContent));
+                                        break;
+                                    case VerilogTokenContextType.AlwaysAt:
+                                        if (tokenSpan.IntersectsWith(curSpan))
+                                            yield return new TagSpan<VerilogTokenTag>(tokenSpan,
+                                                                                  new VerilogTokenTag(VerilogTokenTypes.Verilog_always));
                                         break;
                                     default:
                                         // no highlighting

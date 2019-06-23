@@ -41,8 +41,13 @@ namespace VerilogLanguage
 
     public static class ColorThemeAttribute
     {
-        public static System.Windows.Media.Color DarkThemeInputOutput = Colors.Plum;
+        public static System.Windows.Media.Color DarkThemeDefault = Colors.CornflowerBlue;
+        public static System.Windows.Media.Color DarkThemeInputOutput = Colors.Thistle;
+        public static System.Windows.Media.Color DarkThemeEdge = Colors.Yellow;
+
+        public static System.Windows.Media.Color LightThemeDefault = Colors.Thistle;
         public static System.Windows.Media.Color LightThemeInputOutput = Colors.DarkMagenta;
+        public static System.Windows.Media.Color LightThemeEdge = Colors.Yellow;
 
         /// <summary>
         ///   IsDarkTheme - returns true if the current color scheme is dark (background brightness < 0.5)
@@ -106,11 +111,11 @@ namespace VerilogLanguage
             // ForegroundColor = ColorConverter.ToMediaColor(VSColorTheme.GetThemedColor(EnvironmentColors.ClassDesignerCommentTextColorKey));
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue;
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault;
             }
             else
             {
-                ForegroundColor = Colors.CornflowerBlue;
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault;
             }
 
             // https://docs.microsoft.com/en-us/dotnet/api/system.attribute.getcustomattributes?view=netframework-4.7.2
@@ -179,11 +184,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - automatic"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -213,11 +218,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - begin"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -247,11 +252,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - case"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -281,11 +286,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - casex"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -315,11 +320,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - casez"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -349,11 +354,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - cell"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -383,11 +388,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - config"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -421,7 +426,7 @@ namespace VerilogLanguage
             }
             else
             {
-                ForegroundColor = Colors.DarkOrange; // default color for dark background
+                ForegroundColor = Colors.DarkOrange; // default color for light background
             }
         }
     }
@@ -451,11 +456,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - default"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -485,11 +490,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - defparam"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -519,11 +524,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - design"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -553,11 +558,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - disable"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -587,11 +592,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - edge"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeEdge; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeEdge; // default color for light background
             }
         }
     }
@@ -621,11 +626,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - else"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -655,11 +660,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - end"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -689,11 +694,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - endcase"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -723,11 +728,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - endconfig"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -757,11 +762,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - endfunction"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -791,11 +796,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - endgenerate"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -825,11 +830,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - endmodule"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -894,11 +899,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - endspecify"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for light background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for dark background
             }
         }
     }
@@ -929,7 +934,7 @@ namespace VerilogLanguage
             // Note Construct Not Supported in Synthesis
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.PeachPuff; // default color for dark background
+                ForegroundColor = Colors.PeachPuff; // default color for light background
             }
             else
             {
@@ -963,11 +968,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - endtask"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -1032,11 +1037,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - for"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for light background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for dark background
             }
         }
     }
@@ -1067,7 +1072,7 @@ namespace VerilogLanguage
             // Note Construct Not Supported in Synthesis
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.PeachPuff; // default color for dark background
+                ForegroundColor = Colors.PeachPuff; // default color for light background
             }
             else
             {
@@ -1101,11 +1106,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - forever"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -1170,11 +1175,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - function"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for light background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for dark background
             }
         }
     }
@@ -1204,11 +1209,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - generate"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for light background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -1238,11 +1243,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - genvar"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -1272,11 +1277,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - if"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -1306,11 +1311,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - ifnone"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -1340,11 +1345,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - incdir"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -1374,11 +1379,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - include"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -1443,7 +1448,7 @@ namespace VerilogLanguage
             DisplayName = "Verilog - inout"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = ColorThemeAttribute.DarkThemeInputOutput; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeInputOutput; // default color for light background
             }
             else
             {
@@ -1477,7 +1482,7 @@ namespace VerilogLanguage
             DisplayName = "Verilog - input"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = ColorThemeAttribute.DarkThemeInputOutput; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeInputOutput; // default color for light background
             }
             else
             {
@@ -1511,11 +1516,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - instance"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for light background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for dark background
             }
         }
     }
@@ -1546,7 +1551,7 @@ namespace VerilogLanguage
             // Note Construct Not Supported in Synthesis
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.PeachPuff; // default color for dark background
+                ForegroundColor = Colors.PeachPuff; // default color for light background
             }
             else
             {
@@ -1580,11 +1585,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - liblist"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -1614,11 +1619,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - library"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -1648,11 +1653,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - localparam"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -1682,11 +1687,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - macromodule"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -1716,11 +1721,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - module"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -1750,11 +1755,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - negedge"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeEdge; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeEdge; // default color for light background
             }
         }
     }
@@ -1784,11 +1789,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - noshowcancelled"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -1822,7 +1827,7 @@ namespace VerilogLanguage
             }
             else
             {
-                ForegroundColor = ColorThemeAttribute.LightThemeInputOutput; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeInputOutput; // default color for light background
             }
         }
     }
@@ -1852,11 +1857,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - parameter"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -1886,11 +1891,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - posedge"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeEdge; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeEdge; // default color for light background
             }
         }
     }
@@ -1955,11 +1960,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - pulsestyle_ondetect"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for light background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for dark background
             }
         }
     }
@@ -1990,7 +1995,7 @@ namespace VerilogLanguage
             // Note Construct Not Supported in Synthesis
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.PeachPuff; // default color for dark background
+                ForegroundColor = Colors.PeachPuff; // default color for light background
             }
             else
             {
@@ -2024,11 +2029,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - reg"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -2093,11 +2098,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - repeat"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for light background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for dark background
             }
         }
     }
@@ -2127,11 +2132,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - scalared"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for light background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for dark background
             }
         }
     }
@@ -2161,11 +2166,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - showcancelled"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for light background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for dark background
             }
         }
     }
@@ -2195,11 +2200,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - signed"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for light background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for dark background
             }
         }
     }
@@ -2229,11 +2234,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - specify"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for light background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for dark background
             }
         }
     }
@@ -2263,11 +2268,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - specparam"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for light background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for dark background
             }
         }
     }
@@ -2297,11 +2302,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - strength"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for light background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for dark background
             }
         }
     }
@@ -2332,7 +2337,7 @@ namespace VerilogLanguage
             // Note Construct Not Supported in Synthesis
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.PeachPuff; // default color for dark background
+                ForegroundColor = Colors.PeachPuff; // default color for light background
             }
             else
             {
@@ -2366,11 +2371,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - task"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -2400,11 +2405,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - tri"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -2434,11 +2439,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - tri0"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -2468,11 +2473,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - tri1"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -2502,11 +2507,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - triand"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -2536,11 +2541,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - wand"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -2570,11 +2575,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - trior"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -2604,11 +2609,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - wor"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -2638,11 +2643,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - trireg"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -2672,11 +2677,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - unsigned"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -2706,11 +2711,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - use"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -2740,11 +2745,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - vectored"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -2774,11 +2779,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - wait"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -2808,11 +2813,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - while"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -2842,11 +2847,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - wire"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.CornflowerBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.MediumBlue; // default color for dark background
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
     }
@@ -2879,7 +2884,7 @@ namespace VerilogLanguage
             }
             else
             {
-                ForegroundColor = Colors.IndianRed; // default color for dark background
+                ForegroundColor = Colors.IndianRed; // default color for light background
             }
         }
     }
@@ -2908,7 +2913,7 @@ namespace VerilogLanguage
             }
             else
             {
-                ForegroundColor = Colors.LimeGreen; // default color for dark background
+                ForegroundColor = Colors.LimeGreen; // default color for light background
             }
         }
     }
@@ -2930,9 +2935,9 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_Bracket()
         {
-            DisplayName = "Verilog - Bracket Text"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
+            DisplayName = "Verilog - Bracket"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = Colors.SandyBrown;
+                ForegroundColor = Colors.Cornsilk;
             }
             else
             {
@@ -2940,6 +2945,33 @@ namespace VerilogLanguage
             }
         }
     }
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "BracketContent")]
+    [Name("BracketContent")]
+    //this should be visible to the end user
+    [UserVisible(true)]
+    //set the priority to be after the default classifiers
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_BracketContent : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "directive" classification type
+        /// </summary>
+        public Verilog_BracketContent()
+        {
+            DisplayName = "Verilog - Bracket Content"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
+            if (ColorThemeAttribute.IsDarkTheme())
+            {
+                ForegroundColor = Colors.Cornsilk;
+            }
+            else
+            {
+                ForegroundColor = Colors.Brown;
+            }
+        }
+    }
+
 
     #endregion
 }

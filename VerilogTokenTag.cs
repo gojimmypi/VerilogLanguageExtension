@@ -303,7 +303,10 @@ namespace VerilogLanguage
         public struct VerilogParseState
         {
             public string thisItem;
-            public int thisDelimiterDepth;
+            public int thisSquareBracketDepth;
+            public int thisRoundBracketDepth;
+            public int thisSquigglyBracketDepth;
+
             public string priorChar;
             public string priorDelimiter;
             public bool thisCharIsDelimiter;
@@ -337,17 +340,17 @@ namespace VerilogLanguage
                         {
                             case "]":
                                 hasOpenSquareBracket = false;
-                                thisDelimiterDepth =  (thisDelimiterDepth > 0) ? (thisDelimiterDepth--) : 0;
+                                thisSquareBracketDepth =  (thisSquareBracketDepth > 0) ? (thisSquareBracketDepth--) : 0;
                                 break;
 
                             case ")":
                                 hasOpenRoundBracket = false;
-                                thisDelimiterDepth = (thisDelimiterDepth > 0) ? (thisDelimiterDepth--) : 0;
+                                thisRoundBracketDepth = (thisRoundBracketDepth > 0) ? (thisRoundBracketDepth--) : 0;
                                 break;
 
                             case "}":
                                 hasOpenSquigglyBracket = false;
-                                thisDelimiterDepth = (thisDelimiterDepth > 0) ? (thisDelimiterDepth--) : 0;
+                                thisSquigglyBracketDepth = (thisSquigglyBracketDepth > 0) ? (thisSquigglyBracketDepth--) : 0;
                                 break;
 
                             case "\"":
@@ -359,8 +362,8 @@ namespace VerilogLanguage
                         }
                         if (thisChar == priorChar)
                         {
-                           thisItem += thisChar; // a string of multiple delimmiters!
-                           // TODO detect context change for multiple, concurrent delimiters
+                            thisItem += thisChar; // a string of multiple delimmiters!
+                                                  // TODO detect context change for multiple, concurrent delimiters
                         }
                     }
                     else
@@ -395,17 +398,17 @@ namespace VerilogLanguage
                 {
                     case "[":
                         hasOpenSquareBracket = true;
-                        thisDelimiterDepth++;
+                        thisSquareBracketDepth++;
                         break;
 
                     case "(":
                         hasOpenRoundBracket = true;
-                        thisDelimiterDepth++;
+                        thisRoundBracketDepth++;
                         break;
 
                     case "{":
                         hasOpenSquigglyBracket = true;
-                        thisDelimiterDepth++;
+                        thisSquigglyBracketDepth++;
                         break;
 
                     default:
@@ -419,7 +422,9 @@ namespace VerilogLanguage
             {
                 _thisChar = "";
                 thisItem = "";
-                thisDelimiterDepth = 0;
+                thisSquareBracketDepth = 0;
+                thisRoundBracketDepth = 0;
+                thisSquigglyBracketDepth = 0;
                 IsNewDelimitedSegment = false;
                 priorChar = "";
                 priorDelimiter = "";
@@ -443,7 +448,9 @@ namespace VerilogLanguage
             public VerilogParseState ParseState;
             public string Part;
             public VerilogTokenContextType Context;
-            public int DelimiterDepth;
+            public int SquareBracketDepth;
+            public int RoundBracketDepth;
+            public int SquigglyBracketDepth;
 
             public void SetContext()
             {
@@ -482,7 +489,9 @@ namespace VerilogLanguage
             public VerilogToken(string p = "", VerilogTokenContextType c = VerilogTokenContextType.Undetermined)
             {
                 ParseState = new VerilogParseState(0);
-                DelimiterDepth = 0;
+                SquareBracketDepth = 0;
+                RoundBracketDepth = 0;
+                SquigglyBracketDepth = 0;
 
                 Part = p ?? ""; // ensure Part is never null (empty string if p is null)
 
@@ -514,7 +523,9 @@ namespace VerilogLanguage
                 if (thisToken.ParseState.thisItem != "")
                 {
                     thisToken.Part = thisToken.ParseState.thisItem;
-                    thisToken.DelimiterDepth = thisToken.ParseState.thisDelimiterDepth;
+                    thisToken.SquareBracketDepth = thisToken.ParseState.thisSquareBracketDepth;
+                    thisToken.RoundBracketDepth = thisToken.ParseState.thisRoundBracketDepth;
+                    thisToken.SquigglyBracketDepth = thisToken.ParseState.thisSquigglyBracketDepth;
                     thisContinuedParseState = thisToken.ParseState;
                     tokens.Add(thisToken);
                     thisToken = new VerilogToken();
@@ -601,31 +612,51 @@ namespace VerilogLanguage
                             else
                             {
                                 // no tag colorization for the explicit token, but perhaps based on context:
+                                int thisDelimiterIndex = 0;
                                 switch (VerilogToken.Context)
                                 {
                                     case VerilogTokenContextType.SquareBracketOpen:
-                                    case VerilogTokenContextType.RoundBracketOpen:
-                                    case VerilogTokenContextType.SquigglyBracketOpen:
-                                    case VerilogTokenContextType.RoundBracketClose:
                                     case VerilogTokenContextType.SquareBracketClose:
+                                        thisDelimiterIndex = (VerilogToken.SquareBracketDepth % 5);
+                                        thisDelimiterIndex = (thisDelimiterIndex < 1) ? 1 : thisDelimiterIndex;
+                                        if (tokenSpan.IntersectsWith(curSpan))
+                                            yield return new TagSpan<VerilogTokenTag>(tokenSpan,
+                                                                                  // see _VerilogTypes["bracket_type1"] .. _VerilogTypes["bracket_type5"]
+                                                                                  new VerilogTokenTag(_VerilogTypes["bracket_type" + (thisDelimiterIndex).ToString()]));
+                                        break;
+
+                                    case VerilogTokenContextType.RoundBracketClose:
+                                    case VerilogTokenContextType.RoundBracketOpen:
+                                        thisDelimiterIndex = (VerilogToken.RoundBracketDepth % 5);
+                                        thisDelimiterIndex = (thisDelimiterIndex < 1) ? 1 : thisDelimiterIndex;
+                                        if (tokenSpan.IntersectsWith(curSpan))
+                                            yield return new TagSpan<VerilogTokenTag>(tokenSpan,
+                                                                                  // see _VerilogTypes["bracket_type1"] .. _VerilogTypes["bracket_type5"]
+                                                                                  new VerilogTokenTag(_VerilogTypes["bracket_type" + (thisDelimiterIndex).ToString()]));
+                                        break;
+
+                                    case VerilogTokenContextType.SquigglyBracketOpen:
                                     case VerilogTokenContextType.SquigglyBracketClose:
-                                        int thisDelimiterIndex = (VerilogToken.DelimiterDepth % 5);
+                                        thisDelimiterIndex = (VerilogToken.SquigglyBracketDepth % 5);
                                         thisDelimiterIndex = (thisDelimiterIndex < 1) ? 1 : thisDelimiterIndex;
                                         if (tokenSpan.IntersectsWith(curSpan))
                                             yield return new TagSpan<VerilogTokenTag>(tokenSpan,
                                                                                   // see _VerilogTypes["bracket_type1"] .. _VerilogTypes["bracket_type5"]
                                                                                   new VerilogTokenTag(_VerilogTypes["bracket_type" + (thisDelimiterIndex).ToString()] ));
                                         break;
+
                                     case VerilogTokenContextType.SquareBracketContents:
                                         if (tokenSpan.IntersectsWith(curSpan))
                                             yield return new TagSpan<VerilogTokenTag>(tokenSpan,
                                                                                   new VerilogTokenTag(VerilogTokenTypes.Verilog_BracketContent));
                                         break;
+
                                     case VerilogTokenContextType.AlwaysAt:
                                         if (tokenSpan.IntersectsWith(curSpan))
                                             yield return new TagSpan<VerilogTokenTag>(tokenSpan,
                                                                                   new VerilogTokenTag(VerilogTokenTypes.Verilog_always));
                                         break;
+
                                     default:
                                         // no highlighting
                                         break;

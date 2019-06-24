@@ -139,18 +139,29 @@ If this error is encountered in Visual Studio 2019 when attempting to F5/Debug:
 
 Try opening the [project file](VerilogLanguage.csproj) rather than the [solution](./VerilogLanguageExtension.sln).
 
+If the extension is installed, but syntax is not highlighted, ensure the file ends with ".v" and that the extension is _enabled_:
+
+![Verilog-Extension-Disabled.png](./images/Verilog-Extension-Disabled.png)
+
 
 # Notes
 
-[ – minimum version inclusive.
+From [VSIX Manifest Designer](https://docs.microsoft.com/en-us/visualstudio/extensibility/vsix-manifest-designer?view=vs-2019):
 
-] – maximum version inclusive. 
+| Visual Studio Product | Version |
+| --- | --- |
+| Visual Studio 2019 | 16.0 |
+| Visual Studio 2017 | 15.0 |
+| Visual Studio 2015 | 14.0 |
+| Visual Studio 2013 | 12.0 |
 
-( – minimum version exclusive. 
+* [ – minimum version inclusive.
 
-) – maximum version exclusive.
+* ] – maximum version inclusive. 
 
+* ( – minimum version exclusive. 
 
+* ) – maximum version exclusive.
 
 ## Microsoft Resources
 

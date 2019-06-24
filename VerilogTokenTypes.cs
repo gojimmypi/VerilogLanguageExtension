@@ -121,6 +121,11 @@ namespace VerilogLanguage
         //
         Verilog_Comment,
         Verilog_Bracket,
+        Verilog_Bracket1,
+        Verilog_Bracket2,
+        Verilog_Bracket3,
+        Verilog_Bracket4,
+        Verilog_Bracket5,
         Verilog_BracketContent
 
     }

@@ -2947,6 +2947,138 @@ namespace VerilogLanguage
     }
 
     [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "Bracket1")]
+    [Name("Bracket1")]
+    //this should be visible to the end user
+    [UserVisible(true)]
+    //set the priority to be after the default classifiers
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_Bracket1 : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "directive" classification type
+        /// </summary>
+        public Verilog_Bracket1()
+        {
+            DisplayName = "Verilog - Bracket Depth 1"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
+            if (ColorThemeAttribute.IsDarkTheme())
+            {
+                ForegroundColor = Colors.Red;
+            }
+            else
+            {
+                ForegroundColor = Colors.Brown;
+            }
+        }
+    }
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "Bracket2")]
+    [Name("Bracket2")]
+    //this should be visible to the end user
+    [UserVisible(true)]
+    //set the priority to be after the default classifiers
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_Bracket2 : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "directive" classification type
+        /// </summary>
+        public Verilog_Bracket2()
+        {
+            DisplayName = "Verilog - Bracket Depth 2"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
+            if (ColorThemeAttribute.IsDarkTheme())
+            {
+                ForegroundColor = Colors.Yellow;
+            }
+            else
+            {
+                ForegroundColor = Colors.Brown;
+            }
+        }
+    }
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "Bracket3")]
+    [Name("Bracket3")]
+    //this should be visible to the end user
+    [UserVisible(true)]
+    //set the priority to be after the default classifiers
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_Bracket3 : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "directive" classification type
+        /// </summary>
+        public Verilog_Bracket3()
+        {
+            DisplayName = "Verilog - Bracket Depth 3"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
+            if (ColorThemeAttribute.IsDarkTheme())
+            {
+                ForegroundColor = Colors.Blue;
+            }
+            else
+            {
+                ForegroundColor = Colors.Brown;
+            }
+        }
+    }
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "Bracket4")]
+    [Name("Bracket4")]
+    //this should be visible to the end user
+    [UserVisible(true)]
+    //set the priority to be after the default classifiers
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_Bracket4 : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "directive" classification type
+        /// </summary>
+        public Verilog_Bracket4()
+        {
+            DisplayName = "Verilog - Bracket Depth 4"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
+            if (ColorThemeAttribute.IsDarkTheme())
+            {
+                ForegroundColor = Colors.Orange;
+            }
+            else
+            {
+                ForegroundColor = Colors.Brown;
+            }
+        }
+    }
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "Bracket5")]
+    [Name("Bracket5")]
+    //this should be visible to the end user
+    [UserVisible(true)]
+    //set the priority to be after the default classifiers
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_Bracket5 : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "directive" classification type
+        /// </summary>
+        public Verilog_Bracket5()
+        {
+            DisplayName = "Verilog - Bracket Depth 5"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
+            if (ColorThemeAttribute.IsDarkTheme())
+            {
+                ForegroundColor = Colors.PaleTurquoise;
+            }
+            else
+            {
+                ForegroundColor = Colors.Brown;
+            }
+        }
+    }
+
+
+
+    [Export(typeof(EditorFormatDefinition))]
     [ClassificationType(ClassificationTypeNames = "BracketContent")]
     [Name("BracketContent")]
     //this should be visible to the end user

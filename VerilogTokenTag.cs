@@ -679,6 +679,9 @@ namespace VerilogLanguage
                     CommentHelper commentHelper = new CommentHelper(thisTokenString, IsContinuedLineComment, IsContinuedBlockComment);
                     IsContinuedBlockComment = commentHelper.HasBlockStartComment;
                     IsContinuedLineComment = commentHelper.HasOpenLineComment; // we'll use this when processing the VerilogToken item in the commentHelper, above
+
+                    string variableHoverText = "";
+
                     foreach (CommentHelper.CommentItem Item in commentHelper.CommentItems)
                     {
                         var tokenSpan = new SnapshotSpan(curSpan.Snapshot, new Span(curLoc, Item.ItemText.Length));
@@ -691,17 +694,29 @@ namespace VerilogLanguage
                                                                       new VerilogTokenTag(VerilogTokenTypes.Verilog_Comment));
                         }
 
-                        // otherwise check to see if it is a keyword
+                        // otherwise when not a comment, check to see if it is a keyword
                         else
                         {
+                            // first check to see if any new variables are being defined;
+    
+                            if ((Item.ItemText) == "output")
+                            {
+                                variableHoverText = Item.ItemText;
+                            }
+                            // example adding a variable
+                            if (!_VerilogVariables.ContainsKey("leds"))
+                            {
+                                _VerilogVariables.Add("leds", VerilogTokenTypes.Verilog_always);
+                            }
+
+                            // check for standard keyword syntax higlighting
                             if (_VerilogTypes.ContainsKey(Item.ItemText))
                             {
-                                
-
                                 if (tokenSpan.IntersectsWith(curSpan))
                                     yield return new TagSpan<VerilogTokenTag>(tokenSpan,
                                                                           new VerilogTokenTag(_VerilogTypes[Item.ItemText]));
                             }
+
                             else
                             {
                                 if (_VerilogVariables.ContainsKey(Item.ItemText))
@@ -709,6 +724,7 @@ namespace VerilogLanguage
                                     yield return new TagSpan<VerilogTokenTag>(tokenSpan,
                                                                           new VerilogTokenTag(_VerilogVariables[Item.ItemText]));
                                 }
+
                                 else
                                 {
                                     // no tag colorization for the explicit token, but perhaps based on context:

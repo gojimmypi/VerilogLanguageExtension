@@ -2947,6 +2947,32 @@ namespace VerilogLanguage
     }
 
     [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "Bracket0")]
+    [Name("Bracket0")]
+    //this should be visible to the end user
+    [UserVisible(true)]
+    //set the priority to be after the default classifiers
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_Bracket0 : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "directive" classification type
+        /// </summary>
+        public Verilog_Bracket0()
+        {
+            DisplayName = "Verilog - Bracket Depth 1"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
+            if (ColorThemeAttribute.IsDarkTheme())
+            {
+                ForegroundColor = Colors.SkyBlue;
+            }
+            else
+            {
+                ForegroundColor = Colors.RoyalBlue;
+            }
+        }
+    }
+
+    [Export(typeof(EditorFormatDefinition))]
     [ClassificationType(ClassificationTypeNames = "Bracket1")]
     [Name("Bracket1")]
     //this should be visible to the end user
@@ -2960,7 +2986,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_Bracket1()
         {
-            DisplayName = "Verilog - Bracket Depth 1"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
+            DisplayName = "Verilog - Bracket Depth 2"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
             if (ColorThemeAttribute.IsDarkTheme())
             {
                 ForegroundColor = Colors.Red;
@@ -2986,7 +3012,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_Bracket2()
         {
-            DisplayName = "Verilog - Bracket Depth 2"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
+            DisplayName = "Verilog - Bracket Depth 3"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
             if (ColorThemeAttribute.IsDarkTheme())
             {
                 ForegroundColor = Colors.Yellow;
@@ -3012,7 +3038,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_Bracket3()
         {
-            DisplayName = "Verilog - Bracket Depth 3"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
+            DisplayName = "Verilog - Bracket Depth 4"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
             if (ColorThemeAttribute.IsDarkTheme())
             {
                 ForegroundColor = Colors.Blue;
@@ -3038,7 +3064,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_Bracket4()
         {
-            DisplayName = "Verilog - Bracket Depth 4"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
+            DisplayName = "Verilog - Bracket Depth 5"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
             if (ColorThemeAttribute.IsDarkTheme())
             {
                 ForegroundColor = Colors.Orange;
@@ -3064,7 +3090,7 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_Bracket5()
         {
-            DisplayName = "Verilog - Bracket Depth 5"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
+            DisplayName = "Verilog - Bracket Depth 6"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
             if (ColorThemeAttribute.IsDarkTheme())
             {
                 ForegroundColor = Colors.PaleTurquoise;

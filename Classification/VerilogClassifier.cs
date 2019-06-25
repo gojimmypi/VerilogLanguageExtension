@@ -172,6 +172,7 @@ namespace VerilogLanguage
                 [VerilogTokenTypes.Verilog_Directive] = typeService.GetClassificationType("directive"), // type must be one of VerilogTokenTagger 
                 [VerilogTokenTypes.Verilog_Comment] = typeService.GetClassificationType("Comment"), // GetClassificationType string must be defined in ClassificationType.cs
                 [VerilogTokenTypes.Verilog_Bracket] = typeService.GetClassificationType("Bracket"),
+                [VerilogTokenTypes.Verilog_Bracket0] = typeService.GetClassificationType("Bracket0"),
                 [VerilogTokenTypes.Verilog_Bracket1] = typeService.GetClassificationType("Bracket1"),
                 [VerilogTokenTypes.Verilog_Bracket2] = typeService.GetClassificationType("Bracket2"),
                 [VerilogTokenTypes.Verilog_Bracket3] = typeService.GetClassificationType("Bracket3"),

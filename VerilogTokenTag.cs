@@ -222,7 +222,7 @@ namespace VerilogLanguage
             bool isLocalLineComment = false;
             if (sc != null && sc[0].Snapshot != null && sc[0].Start.Position > 0)
             {
-                int ToPosition = sc[0].Start.Position - 1; // we are only interesdted in text priot to our current location
+                int ToPosition = sc[0].Start.Position - 1; // we are only interested in text priot to our current location
                 // SnapshotSpan PriorText = sc[0].Snapshot(0, ToPosition);
                 foreach (ITextSnapshotLine thisLine in sc[0].Snapshot.Lines){
                     int pos = thisLine.Start.Position;
@@ -236,6 +236,69 @@ namespace VerilogLanguage
                 } // for each thisLine
             } // if sc is not blank
             return isLocalBlockComment;
+        }
+
+        private bool GetPriorBracketCounts(NormalizedSnapshotSpanCollection sc, ref VerilogToken verilogToken)
+        {
+            bool res = false;
+            verilogToken.ParseState.thisSquareBracketDepth = 0;
+            verilogToken.ParseState.thisRoundBracketDepth = 0;
+            verilogToken.ParseState.thisSquigglyBracketDepth = 0;
+            string thisChar;
+            string thisString;
+            if (sc != null && sc[0].Snapshot != null && sc[0].Start.Position > 0)
+            {
+                int ToPosition = sc[0].Start.Position - 1; // we are only interested in text priot to our current location
+                // SnapshotSpan PriorText = sc[0].Snapshot(0, ToPosition);
+                foreach (ITextSnapshotLine thisLine in sc[0].Snapshot.Lines)
+                {
+                    int pos = thisLine.Start.Position;
+                    thisString = thisLine.GetText();
+                    if (pos > ToPosition)
+                    {
+                        break; // nothing to do if the starting position is beyond our starting point, as we are only interested in prior open block
+                    }
+
+                    for (int i = 0; i < thisString.Length; i++)
+                    {
+                        thisChar = thisString.Substring(i, 1);
+
+                        switch (thisChar)
+                        {
+                            case "[":
+                                verilogToken.ParseState.thisSquareBracketDepth++;
+                                break;
+
+                            case "]":
+                                verilogToken.ParseState.thisSquareBracketDepth--;
+                                break;
+
+                            case "(":
+                                verilogToken.ParseState.thisRoundBracketDepth++;
+                                break;
+
+                            case ")":
+                                verilogToken.ParseState.thisRoundBracketDepth--;
+                                break;
+
+                            case "{":
+                                verilogToken.ParseState.thisSquigglyBracketDepth++;
+                                break;
+
+                            case "}":
+                                verilogToken.ParseState.thisSquigglyBracketDepth--;
+                                break;
+
+                            default:
+                                //
+                                break;
+
+                        }
+
+                    }
+                } // for each thisLine
+            } // if sc is not blank
+            return res;
         }
 
 
@@ -623,6 +686,8 @@ namespace VerilogLanguage
                 }
             }
 
+            thisToken.ParseState = priorToken.ParseState; // when starting, use the priorToken parseState that wouldhave come from the prior line in the span
+
             for (int i = 0; i < theString.Length; i++)
             {
                 thisToken.ParseState.thisIndex = i;
@@ -653,8 +718,10 @@ namespace VerilogLanguage
 
             // since we can start mid-text, we don't know if the current span is in the middle of a comment
             Boolean IsContinuedBlockComment = IsOpenBlockComment(spans);
+
             VerilogToken[] tokens = null; 
             VerilogToken priorToken = new VerilogToken();
+            Boolean HasPriorBrackets = GetPriorBracketCounts(spans, ref priorToken);
 
             foreach (SnapshotSpan curSpan in spans)
             {
@@ -667,7 +734,6 @@ namespace VerilogLanguage
                 string thisTokenString = "";
 
                 tokens = VerilogKeywordSplit(containingLine.GetText(), priorToken);
-               
 
                 Boolean IsContinuedLineComment = false; // comments with "//" are only effective for the current line, but /* can span multiple lines
                 foreach (VerilogToken VerilogToken in tokens) // this group of tokens in in a single line

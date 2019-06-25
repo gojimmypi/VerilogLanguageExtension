@@ -342,24 +342,24 @@ namespace VerilogLanguage
 
                         switch (value)
                         {
-                            case "]":
-                                thisSquareBracketDepth = (thisSquareBracketDepth > 0) ? (--thisSquareBracketDepth) : 0;
-                                hasOpenSquareBracket = (thisSquareBracketDepth > 0);
-                                break;
+                            //case "]":
+                            //    thisSquareBracketDepth = (thisSquareBracketDepth > 0) ? (--thisSquareBracketDepth) : 0; // decrement, but never less than zero
+                            //    hasOpenSquareBracket = (thisSquareBracketDepth > 0);
+                            //    break;
 
-                            case ")":
-                                thisRoundBracketDepth = (thisRoundBracketDepth > 0) ? (--thisRoundBracketDepth) : 0;
-                                hasOpenRoundBracket = (thisRoundBracketDepth > 0);
-                                break;
+                            //case ")":
+                            //    thisRoundBracketDepth = (thisRoundBracketDepth > 0) ? (--thisRoundBracketDepth) : 0;
+                            //    hasOpenRoundBracket = (thisRoundBracketDepth > 0);
+                            //    break;
 
-                            case "}":
-                                thisSquigglyBracketDepth = (thisSquigglyBracketDepth > 0) ? (--thisSquigglyBracketDepth) : 0;
-                                hasOpenSquigglyBracket = (thisSquigglyBracketDepth > 0);
-                                break;
+                            //case "}":
+                            //    thisSquigglyBracketDepth = (thisSquigglyBracketDepth > 0) ? (--thisSquigglyBracketDepth) : 0;
+                            //    hasOpenSquigglyBracket = (thisSquigglyBracketDepth > 0);
+                            //    break;
 
                             case "[":
                                 thisSquareBracketDepth ++;
-                                hasOpenSquareBracket = (thisSquareBracketDepth > 0);
+                                hasOpenSquareBracket = (thisSquareBracketDepth > 0); // increment
                                 break;
 
                             case "(":
@@ -406,11 +406,36 @@ namespace VerilogLanguage
             {
                 priorCharIsDelimiter = thisCharIsDelimiter;
                 priorCharIsIsEndingDelimiter = thisCharIsEndingDelimiter;
+
+                switch (priorChar)
+                {
+                    case "]":
+                        thisSquareBracketDepth = (thisSquareBracketDepth > 0) ? (--thisSquareBracketDepth) : 0; // decrement, but never less than zero
+                        hasOpenSquareBracket = (thisSquareBracketDepth > 0);
+                        break;
+
+                    case ")":
+                        thisRoundBracketDepth = (thisRoundBracketDepth > 0) ? (--thisRoundBracketDepth) : 0;
+                        hasOpenRoundBracket = (thisRoundBracketDepth > 0);
+                        break;
+
+                    case "}":
+                        thisSquigglyBracketDepth = (thisSquigglyBracketDepth > 0) ? (--thisSquigglyBracketDepth) : 0;
+                        hasOpenSquigglyBracket = (thisSquigglyBracketDepth > 0);
+                        break;
+
+                    default:
+                        break;
+                }
+
                 priorChar = thisChar;
                 if (thisCharIsDelimiter)
                 {
                     priorDelimiter = thisChar;
                 }
+
+
+
 
                 // check for opening colorized delimiters last, since they will be in their own string segment and colored differently
                 //switch (thisChar)
@@ -518,7 +543,7 @@ namespace VerilogLanguage
                 ParseState = new VerilogParseState(0);
                 SquareBracketDepth = 0;
                 RoundBracketDepth = 0;
-                SquigglyBracketDepth = 0;
+                SquigglyBracketDepth = 0; // TODO, pass prior token in parameters and set this fromthose prior values
 
                 Part = p ?? ""; // ensure Part is never null (empty string if p is null)
 
@@ -547,7 +572,8 @@ namespace VerilogLanguage
             // AddToken - appends the current token part to the array and create a new thisToken to build
             void AddToken()
             {
-                if (thisToken.ParseState.thisItem != "")
+                string thisItem = thisToken.ParseState.thisItem;
+                if (thisItem != "")
                 {
                     thisToken.Part = thisToken.ParseState.thisItem;
                     thisToken.SquareBracketDepth = thisToken.ParseState.thisSquareBracketDepth;
@@ -575,7 +601,7 @@ namespace VerilogLanguage
                     AddToken();
 
                     // once the ParseState is configured (above, when assigning thisChar), set the context of the item
-                    thisToken.SetContext();
+                    thisToken.SetContext(); // TOFO do we really need this? context is alreasy set
                     // at the end of each loop, set the prior values
                     thisToken.ParseState.SetPriorValues();
                 } // end of for loop look at each char

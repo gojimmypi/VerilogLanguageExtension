@@ -69,13 +69,11 @@ namespace VerilogLanguage
             return new VerilogClassifier(buffer, VerilogTagAggregator, ClassificationTypeRegistry) as ITagger<T>;
         }
     }
-
     internal sealed class VerilogClassifier : ITagger<ClassificationTag>
     {
         ITextBuffer _buffer;
         ITagAggregator<VerilogTokenTag> _aggregator;
         IDictionary<VerilogTokenTypes, IClassificationType> _VerilogTypeClassifications;
-        IDictionary<VerilogTokenTypes, IClassificationType> _VerilogVariableClassifications;
         /// <summary>
         /// Construct the classifier and define search tokens
         /// </summary>
@@ -86,10 +84,6 @@ namespace VerilogLanguage
             _buffer = buffer;
             _aggregator = VerilogTagAggregator;
 
-            _VerilogVariableClassifications = new Dictionary < VerilogTokenTypes, IClassificationType >
-            {
-                [VerilogTokenTypes.Verilog_always] = typeService.GetClassificationType("led")
-            };
 
             // see also VerilogTkenTag for Dictionary<string, VerilogTokenTypes>
             _VerilogTypeClassifications = new Dictionary<VerilogTokenTypes, IClassificationType>

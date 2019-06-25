@@ -48,7 +48,7 @@ namespace VerilogLanguage
         internal static ContentTypeDefinition VerilogContentType = null;
 
         [Export]
-        [FileExtension(".v")]
+        [FileExtension(".v;.verilog;.vh")] // simi-colon delimited file extensions
         [ContentType("verilog")]
         [BaseDefinition("code")]
         [BaseDefinition("projection")]
@@ -74,8 +74,8 @@ namespace VerilogLanguage
     {
         ITextBuffer _buffer;
         ITagAggregator<VerilogTokenTag> _aggregator;
-        IDictionary<VerilogTokenTypes, IClassificationType> _VerilogTypes;
-        IDictionary<VerilogTokenTypes, IClassificationType> _VerilogVariables;
+        IDictionary<VerilogTokenTypes, IClassificationType> _VerilogTypeClassifications;
+        IDictionary<VerilogTokenTypes, IClassificationType> _VerilogVariableClassifications;
         /// <summary>
         /// Construct the classifier and define search tokens
         /// </summary>
@@ -86,13 +86,13 @@ namespace VerilogLanguage
             _buffer = buffer;
             _aggregator = VerilogTagAggregator;
 
-            _VerilogVariables = new Dictionary < VerilogTokenTypes, IClassificationType >
+            _VerilogVariableClassifications = new Dictionary < VerilogTokenTypes, IClassificationType >
             {
                 [VerilogTokenTypes.Verilog_always] = typeService.GetClassificationType("led")
             };
 
             // see also VerilogTkenTag for Dictionary<string, VerilogTokenTypes>
-            _VerilogTypes = new Dictionary<VerilogTokenTypes, IClassificationType>
+            _VerilogTypeClassifications = new Dictionary<VerilogTokenTypes, IClassificationType>
             {
                 [VerilogTokenTypes.Verilog_always] = typeService.GetClassificationType("always"),
                 [VerilogTokenTypes.Verilog_assign] = typeService.GetClassificationType("assign"),
@@ -208,7 +208,7 @@ namespace VerilogLanguage
                 // each of the text values found for tagSpan.Tag.type must be defined above in VerilogClassifier
                 yield return
                     new TagSpan<ClassificationTag>(tagSpans[0],
-                                                   new ClassificationTag(_VerilogTypes[tagSpan.Tag.type]));
+                                                   new ClassificationTag(_VerilogTypeClassifications[tagSpan.Tag.type]));
             }
         }
     }

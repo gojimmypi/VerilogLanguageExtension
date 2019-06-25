@@ -75,7 +75,7 @@ namespace VerilogLanguage
         ITextBuffer _buffer;
         ITagAggregator<VerilogTokenTag> _aggregator;
         IDictionary<VerilogTokenTypes, IClassificationType> _VerilogTypes;
-
+        IDictionary<VerilogTokenTypes, IClassificationType> _VerilogVariables;
         /// <summary>
         /// Construct the classifier and define search tokens
         /// </summary>
@@ -85,6 +85,13 @@ namespace VerilogLanguage
         {
             _buffer = buffer;
             _aggregator = VerilogTagAggregator;
+
+            _VerilogVariables = new Dictionary < VerilogTokenTypes, IClassificationType >
+            {
+                [VerilogTokenTypes.Verilog_always] = typeService.GetClassificationType("led")
+            };
+
+            // see also VerilogTkenTag for Dictionary<string, VerilogTokenTypes>
             _VerilogTypes = new Dictionary<VerilogTokenTypes, IClassificationType>
             {
                 [VerilogTokenTypes.Verilog_always] = typeService.GetClassificationType("always"),
@@ -179,7 +186,9 @@ namespace VerilogLanguage
                 [VerilogTokenTypes.Verilog_Bracket4] = typeService.GetClassificationType("Bracket4"),
                 [VerilogTokenTypes.Verilog_Bracket5] = typeService.GetClassificationType("Bracket5"),
                 [VerilogTokenTypes.Verilog_BracketContent] = typeService.GetClassificationType("BracketContent"),
+                [VerilogTokenTypes.Verilog_Variable] = typeService.GetClassificationType("Variable"),
             };
+
         }
 
         public event EventHandler<SnapshotSpanEventArgs> TagsChanged

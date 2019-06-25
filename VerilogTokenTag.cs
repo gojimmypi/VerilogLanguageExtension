@@ -63,10 +63,18 @@ namespace VerilogLanguage
 
         ITextBuffer _buffer;
         IDictionary<string, VerilogTokenTypes> _VerilogTypes;
+        IDictionary<string, VerilogTokenTypes> _VerilogVariables;
 
         internal VerilogTokenTagger(ITextBuffer buffer)
         {
             _buffer = buffer;
+
+            _VerilogVariables = new Dictionary<string, VerilogTokenTypes>
+            {
+                ["led"] = VerilogTokenTypes.Verilog_Variable,
+            };
+
+            // see also VerilogClassifier that has Dictionary<VerilogTokenTypes, IClassificationType>
             _VerilogTypes = new Dictionary<string, VerilogTokenTypes>
             {
                 ["always"] = VerilogTokenTypes.Verilog_always,
@@ -178,7 +186,9 @@ namespace VerilogLanguage
                 ["bracket_type3"] = VerilogTokenTypes.Verilog_Bracket3,
                 ["bracket_type4"] = VerilogTokenTypes.Verilog_Bracket4,
                 ["bracket_type5"] = VerilogTokenTypes.Verilog_Bracket5,
-                ["bracket_content"] = VerilogTokenTypes.Verilog_BracketContent
+                ["bracket_content"] = VerilogTokenTypes.Verilog_BracketContent,
+
+                ["variable_type"] = VerilogTokenTypes.Verilog_Variable
             };
 
 
@@ -403,66 +413,12 @@ namespace VerilogLanguage
                     if (IsNewDelimitedSegment)
                     {
 
-                        switch (value)
-                        {
-                            //case "]":
-                            //    thisSquareBracketDepth = (thisSquareBracketDepth > 0) ? (--thisSquareBracketDepth) : 0; // decrement, but never less than zero
-                            //    hasOpenSquareBracket = (thisSquareBracketDepth > 0);
-                            //    break;
-
-                            //case ")":
-                            //    thisRoundBracketDepth = (thisRoundBracketDepth > 0) ? (--thisRoundBracketDepth) : 0;
-                            //    hasOpenRoundBracket = (thisRoundBracketDepth > 0);
-                            //    break;
-
-                            //case "}":
-                            //    thisSquigglyBracketDepth = (thisSquigglyBracketDepth > 0) ? (--thisSquigglyBracketDepth) : 0;
-                            //    hasOpenSquigglyBracket = (thisSquigglyBracketDepth > 0);
-                            //    break;
-
-                            //case "[":
-                            //    thisSquareBracketDepth ++;
-                            //    hasOpenSquareBracket = (thisSquareBracketDepth > 0); // increment
-                            //    break;
-
-                            //case "(":
-                            //    thisRoundBracketDepth++;
-                            //    hasOpenRoundBracket = (thisRoundBracketDepth > 0);
-                            //    break;
-
-                            //case "{":
-                            //    thisSquigglyBracketDepth++;
-                            //    hasOpenSquigglyBracket = (thisSquigglyBracketDepth > 0);
-                            //    break;
-
-                            //case "\"":
-                            //    hasOpenDoubleQuote = !hasOpenDoubleQuote;
-                            //    break;
-
-                            //default:
-                            //    break;
-                        }
-                        //if (thisChar == priorChar)
-                        //{
-                        //    thisItem += thisChar; // a string of multiple delimmiters!
-                        //                          // TODO detect context change for multiple, concurrent delimiters
-                        //}
                     }
                     else
                     {
                         thisItem +=  thisChar;
                     }
-
-                    //if (thisCharIsDelimiter || priorCharIsDelimiter)
-                    //{
-
-                    //    if (thisChar == priorChar)
-                    //    {
-                    //        // nothing, 
-                    //    }
-                    //}
                 }
-
             }
 
             public void SetPriorValues()
@@ -475,33 +431,8 @@ namespace VerilogLanguage
                 {
                     priorDelimiter = thisChar;
                 }
-
-
-
-
-                // check for opening colorized delimiters last, since they will be in their own string segment and colored differently
-                //switch (thisChar)
-                //{
-                //    case "[":
-                //        hasOpenSquareBracket = true;
-                //        thisSquareBracketDepth++;
-                //        break;
-
-                //    case "(":
-                //        hasOpenRoundBracket = true;
-                //        thisRoundBracketDepth++;
-                //        break;
-
-                //    case "{":
-                //        hasOpenSquigglyBracket = true;
-                //        thisSquigglyBracketDepth++;
-                //        break;
-
-                //    default:
-                //        break;
-                //}
-
             }
+            
             public void SetOpenBracketStatus()
             {
                 switch (thisItem)
@@ -765,61 +696,71 @@ namespace VerilogLanguage
                         {
                             if (_VerilogTypes.ContainsKey(Item.ItemText))
                             {
+                                
+
                                 if (tokenSpan.IntersectsWith(curSpan))
                                     yield return new TagSpan<VerilogTokenTag>(tokenSpan,
                                                                           new VerilogTokenTag(_VerilogTypes[Item.ItemText]));
                             }
                             else
                             {
-                                // no tag colorization for the explicit token, but perhaps based on context:
-                                int thisDelimiterIndex = 0;
-                                int thisDelimiterTotalDepth = VerilogToken.SquareBracketDepth +
-                                                              VerilogToken.RoundBracketDepth +
-                                                              VerilogToken.SquigglyBracketDepth;
-                                switch (VerilogToken.Context)
+                                if (_VerilogVariables.ContainsKey(Item.ItemText))
                                 {
-                                    case VerilogTokenContextType.SquareBracketOpen:
-                                    case VerilogTokenContextType.SquareBracketClose:
-                                        thisDelimiterIndex = (thisDelimiterTotalDepth % 5);
-                                        if (tokenSpan.IntersectsWith(curSpan))
-                                            yield return new TagSpan<VerilogTokenTag>(tokenSpan,
-                                                                                  // see _VerilogTypes["bracket_type1"] .. _VerilogTypes["bracket_type5"]
-                                                                                  new VerilogTokenTag(_VerilogTypes["bracket_type" + (thisDelimiterIndex).ToString()]));
-                                        break;
+                                    yield return new TagSpan<VerilogTokenTag>(tokenSpan,
+                                                                          new VerilogTokenTag(_VerilogVariables[Item.ItemText]));
+                                }
+                                else
+                                {
+                                    // no tag colorization for the explicit token, but perhaps based on context:
+                                    int thisDelimiterIndex = 0;
+                                    int thisDelimiterTotalDepth = VerilogToken.SquareBracketDepth +
+                                                                  VerilogToken.RoundBracketDepth +
+                                                                  VerilogToken.SquigglyBracketDepth;
+                                    switch (VerilogToken.Context)
+                                    {
+                                        case VerilogTokenContextType.SquareBracketOpen:
+                                        case VerilogTokenContextType.SquareBracketClose:
+                                            thisDelimiterIndex = (thisDelimiterTotalDepth % 5);
+                                            if (tokenSpan.IntersectsWith(curSpan))
+                                                yield return new TagSpan<VerilogTokenTag>(tokenSpan,
+                                                                                      // see _VerilogTypes["bracket_type1"] .. _VerilogTypes["bracket_type5"]
+                                                                                      new VerilogTokenTag(_VerilogTypes["bracket_type" + (thisDelimiterIndex).ToString()]));
+                                            break;
 
-                                    case VerilogTokenContextType.RoundBracketClose:
-                                    case VerilogTokenContextType.RoundBracketOpen:
-                                        thisDelimiterIndex = (thisDelimiterTotalDepth % 5);
-                                        if (tokenSpan.IntersectsWith(curSpan))
-                                            yield return new TagSpan<VerilogTokenTag>(tokenSpan,
-                                                                                  // see _VerilogTypes["bracket_type1"] .. _VerilogTypes["bracket_type5"]
-                                                                                  new VerilogTokenTag(_VerilogTypes["bracket_type" + (thisDelimiterIndex).ToString()]));
-                                        break;
+                                        case VerilogTokenContextType.RoundBracketClose:
+                                        case VerilogTokenContextType.RoundBracketOpen:
+                                            thisDelimiterIndex = (thisDelimiterTotalDepth % 5);
+                                            if (tokenSpan.IntersectsWith(curSpan))
+                                                yield return new TagSpan<VerilogTokenTag>(tokenSpan,
+                                                                                      // see _VerilogTypes["bracket_type1"] .. _VerilogTypes["bracket_type5"]
+                                                                                      new VerilogTokenTag(_VerilogTypes["bracket_type" + (thisDelimiterIndex).ToString()]));
+                                            break;
 
-                                    case VerilogTokenContextType.SquigglyBracketOpen:
-                                    case VerilogTokenContextType.SquigglyBracketClose:
-                                        thisDelimiterIndex = (thisDelimiterTotalDepth % 5);
-                                        if (tokenSpan.IntersectsWith(curSpan))
-                                            yield return new TagSpan<VerilogTokenTag>(tokenSpan,
-                                                                                  // see _VerilogTypes["bracket_type1"] .. _VerilogTypes["bracket_type5"]
-                                                                                  new VerilogTokenTag(_VerilogTypes["bracket_type" + (thisDelimiterIndex).ToString()] ));
-                                        break;
+                                        case VerilogTokenContextType.SquigglyBracketOpen:
+                                        case VerilogTokenContextType.SquigglyBracketClose:
+                                            thisDelimiterIndex = (thisDelimiterTotalDepth % 5);
+                                            if (tokenSpan.IntersectsWith(curSpan))
+                                                yield return new TagSpan<VerilogTokenTag>(tokenSpan,
+                                                                                      // see _VerilogTypes["bracket_type1"] .. _VerilogTypes["bracket_type5"]
+                                                                                      new VerilogTokenTag(_VerilogTypes["bracket_type" + (thisDelimiterIndex).ToString()]));
+                                            break;
 
-                                    case VerilogTokenContextType.SquareBracketContents:
-                                        if (tokenSpan.IntersectsWith(curSpan))
-                                            yield return new TagSpan<VerilogTokenTag>(tokenSpan,
-                                                                                  new VerilogTokenTag(VerilogTokenTypes.Verilog_BracketContent));
-                                        break;
+                                        case VerilogTokenContextType.SquareBracketContents:
+                                            if (tokenSpan.IntersectsWith(curSpan))
+                                                yield return new TagSpan<VerilogTokenTag>(tokenSpan,
+                                                                                      new VerilogTokenTag(VerilogTokenTypes.Verilog_BracketContent));
+                                            break;
 
-                                    case VerilogTokenContextType.AlwaysAt:
-                                        if (tokenSpan.IntersectsWith(curSpan))
-                                            yield return new TagSpan<VerilogTokenTag>(tokenSpan,
-                                                                                  new VerilogTokenTag(VerilogTokenTypes.Verilog_always));
-                                        break;
+                                        case VerilogTokenContextType.AlwaysAt:
+                                            if (tokenSpan.IntersectsWith(curSpan))
+                                                yield return new TagSpan<VerilogTokenTag>(tokenSpan,
+                                                                                      new VerilogTokenTag(VerilogTokenTypes.Verilog_always));
+                                            break;
 
-                                    default:
-                                        // no highlighting
-                                        break;
+                                        default:
+                                            // no highlighting
+                                            break;
+                                    }
                                 }
                             }
                         }

@@ -3132,6 +3132,36 @@ namespace VerilogLanguage
 
 
     #endregion
+
+    #region variables
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "variable")]
+    [Name("variable")]
+    //this should be visible to the end user
+    [UserVisible(true)]
+    //set the priority to be after the default classifiers
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_Variable : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "directive" classification type
+        /// </summary>
+        public Verilog_Variable()
+        {
+            DisplayName = "Verilog - Variable"; //human readable version of the name
+            if (ColorThemeAttribute.IsDarkTheme())
+            {
+                ForegroundColor = Colors.Orange; // default color for dark background
+            }
+            else
+            {
+                ForegroundColor = Colors.LimeGreen; // default color for light background
+            }
+        }
+    }
+    #endregion
+
 }
 
 

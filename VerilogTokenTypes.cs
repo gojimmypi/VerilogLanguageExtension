@@ -127,7 +127,9 @@ namespace VerilogLanguage
         Verilog_Bracket3,
         Verilog_Bracket4,
         Verilog_Bracket5,
-        Verilog_BracketContent
+        Verilog_BracketContent,
+        
+        Verilog_Variable
 
     }
 }

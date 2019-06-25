@@ -188,9 +188,9 @@ namespace VerilogLanguage.BraceMatching
             int offset = startPoint - line.Start - 1; //move the offset to the character before this one
 
             //if the offset is negative, move to the previous line
-            if (offset < 0)
+            if ((offset < 0) && (lineNumber > 0))
             {
-                line = line.Snapshot.GetLineFromLineNumber(--lineNumber);
+                line =  line.Snapshot.GetLineFromLineNumber(--lineNumber);
                 offset = line.Length - 1;
             }
 

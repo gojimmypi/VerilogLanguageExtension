@@ -644,15 +644,121 @@ namespace VerilogLanguage
             return tokens.ToArray();
         }
 
+        public bool IsVerilogNamerKeyword(string theKeyword)
+        {
+            return ((theKeyword == "wire") ||
+                    (theKeyword == "input") ||
+                    (theKeyword == "inout") ||
+                    (theKeyword == "output") ||
+                    (theKeyword == "module")
+                   );
+        }
+
         public IEnumerable<ITagSpan<VerilogTokenTag>> GetTags(NormalizedSnapshotSpanCollection spans)
         {
 
             // since we can start mid-text, we don't know if the current span is in the middle of a comment
             Boolean IsContinuedBlockComment = IsOpenBlockComment(spans);
-
             VerilogToken[] tokens = null; 
             VerilogToken priorToken = new VerilogToken();
             Boolean HasPriorBrackets = GetPriorBracketCounts(spans, ref priorToken);
+
+            string thisVariableHoverText = "";
+            string thisHoverName = "";
+            bool IsNextNonblankName = false; // true when the next, non-blank item is the name
+            bool IsLastName = false;
+            bool IsNaming = false; // when we find a naming keyaord (module, input, etc)... we will build hover text, including comments
+            string lastKeyword = "";
+
+            void BuildHoverItems(string s)
+            {
+                string thisTrimmedItem = (s == null) ? "" : s.Trim();
+
+                //  when naming, all text, including blanks are appended to hover text
+                if (IsNaming) {
+                    thisVariableHoverText += s;
+                }
+
+                // blanks are ignored here for everything else, so return
+                if (thisTrimmedItem == "")  
+                {
+                    return;
+                }
+
+                if (IsNaming)
+                {
+                    if (IsNextNonblankName)
+                    {
+                        // the name is the next, non-blank keyword found (e.g. my
+                        IsNextNonblankName = false;
+                        thisHoverName = thisTrimmedItem;
+                    }
+
+
+
+                    // when we are naming a veriable and end counter a semicolon, we're done. add it and reset.
+                    if (thisTrimmedItem == ";")
+                    {
+                        IsNaming = false; // all naming ends upon semi-colon.
+
+                        if (IsLastName)
+                        {
+                            // the name is the last, non-blank value before the semicolon. (e.g. "J2_AD_PORT" from "input [7:0] J2_AS_PORT;")
+                            IsLastName = false;
+                            thisHoverName = lastKeyword;
+                        }
+
+
+                        if (!_VerilogVariables.Keys.Contains(thisHoverName) && thisHoverName != "")
+                        {
+                            _VerilogVariables.Add(thisHoverName, VerilogTokenTypes.Verilog_Variable);
+                            if (!VerilogGlobals.VerilogVariableHoverText.ContainsKey(thisHoverName))
+                            {
+                                VerilogGlobals.VerilogVariableHoverText.Add(thisHoverName, thisVariableHoverText);
+                            }
+                            else
+                            {
+                                VerilogGlobals.VerilogVariableHoverText[thisHoverName] = thisVariableHoverText;
+                            }
+                        }
+                        // thisHoverName is the variable keyword and VerilogVariableHoverText is the definition text
+                        thisVariableHoverText = "";
+                        thisHoverName = "";
+                        IsNextNonblankName = false;
+
+                    } // end if (thisTrimmedItem == ";")
+
+                } // end if (IsNaming)
+
+                // we're not renaming at the moment, but perhaps if this token is a variable namer (module, input, etc)
+                else
+                {
+                    IsNaming = IsVerilogNamerKeyword(thisTrimmedItem);
+                    if (IsNaming)
+                    {
+                        switch (thisTrimmedItem)
+                        {
+                            case "module":
+                                IsNextNonblankName = true;
+                                thisVariableHoverText = thisTrimmedItem;
+                                break;
+
+                            case "input":
+                            case "output":
+                            case "inout":
+                                IsLastName = true;
+                                thisVariableHoverText = thisTrimmedItem;
+                                break;
+
+                            default:
+                                break;
+                        }
+                    }
+                } // end else naming
+
+                lastKeyword = thisTrimmedItem;
+
+            }  // end void BuildHoverItems
 
             foreach (SnapshotSpan curSpan in spans)
             {
@@ -680,12 +786,10 @@ namespace VerilogLanguage
                     IsContinuedBlockComment = commentHelper.HasBlockStartComment;
                     IsContinuedLineComment = commentHelper.HasOpenLineComment; // we'll use this when processing the VerilogToken item in the commentHelper, above
 
-                    string variableHoverText = "";
-
                     foreach (CommentHelper.CommentItem Item in commentHelper.CommentItems)
                     {
                         var tokenSpan = new SnapshotSpan(curSpan.Snapshot, new Span(curLoc, Item.ItemText.Length));
-                            
+
                         // is this item a comment? If so, color as appropriate. comments take highest priority: no other condition will change color of a comment
                         if (Item.IsComment)
                         {
@@ -698,16 +802,9 @@ namespace VerilogLanguage
                         else
                         {
                             // first check to see if any new variables are being defined;
-    
-                            if ((Item.ItemText) == "output")
-                            {
-                                variableHoverText = Item.ItemText;
-                            }
-                            // example adding a variable
-                            if (!_VerilogVariables.ContainsKey("leds"))
-                            {
-                                _VerilogVariables.Add("leds", VerilogTokenTypes.Verilog_always);
-                            }
+
+                            BuildHoverItems(Item.ItemText);
+
 
                             // check for standard keyword syntax higlighting
                             if (_VerilogTypes.ContainsKey(Item.ItemText))
@@ -719,6 +816,7 @@ namespace VerilogLanguage
 
                             else
                             {
+                                // check to see if this is a variable
                                 if (_VerilogVariables.ContainsKey(Item.ItemText))
                                 {
                                     yield return new TagSpan<VerilogTokenTag>(tokenSpan,

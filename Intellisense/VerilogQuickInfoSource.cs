@@ -22,14 +22,6 @@ using Microsoft.VisualStudio.Utilities;
 
 namespace VerilogLanguage
 {
-    public static class VerilogGlobals
-    {
-        public static Dictionary<string, string> VerilogVariableHoverText = new Dictionary<string, string>
-        {
-            ["led"] = "An LED."
-        };
-    }
-
     /// <summary>
     /// Factory for quick info sources
     /// </summary>

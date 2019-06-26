@@ -176,6 +176,7 @@
     <Compile Include="EditorClassifier\EditorClassifier1ClassificationDefinition.cs" />
     <Compile Include="EditorClassifier\EditorClassifier1Format.cs" />
     <Compile Include="EditorClassifier\EditorClassifier1Provider.cs" />
+    <Compile Include="Globals\VerilogGlobals.cs" />
     <Compile Include="Highlighting\HighlightWordFormatDefinition.cs" />
     <Compile Include="Highlighting\HighlightWordTag.cs" />
     <Compile Include="Highlighting\HighlightWordTagger.cs" />

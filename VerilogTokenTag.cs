@@ -63,16 +63,15 @@ namespace VerilogLanguage
 
         ITextBuffer _buffer;
         IDictionary<string, VerilogTokenTypes> _VerilogTypes;
-        IDictionary<string, VerilogTokenTypes> _VerilogVariables;
 
         internal VerilogTokenTagger(ITextBuffer buffer)
         {
             _buffer = buffer;
 
-            _VerilogVariables = new Dictionary<string, VerilogTokenTypes>
-            {
-                ["led"] = VerilogTokenTypes.Verilog_Variable,
-            };
+            //VerilogGlobals._VerilogVariables = new Dictionary<string, VerilogTokenTypes>
+            //{
+            //    ["led"] = VerilogTokenTypes.Verilog_Variable,
+            //};
 
             // see also VerilogClassifier that has Dictionary<VerilogTokenTypes, IClassificationType>
             _VerilogTypes = new Dictionary<string, VerilogTokenTypes>
@@ -644,16 +643,6 @@ namespace VerilogLanguage
             return tokens.ToArray();
         }
 
-        public bool IsVerilogNamerKeyword(string theKeyword)
-        {
-            return ((theKeyword == "wire") ||
-                    (theKeyword == "input") ||
-                    (theKeyword == "inout") ||
-                    (theKeyword == "output") ||
-                    (theKeyword == "module")
-                   );
-        }
-
         public IEnumerable<ITagSpan<VerilogTokenTag>> GetTags(NormalizedSnapshotSpanCollection spans)
         {
 
@@ -663,108 +652,13 @@ namespace VerilogLanguage
             VerilogToken priorToken = new VerilogToken();
             Boolean HasPriorBrackets = GetPriorBracketCounts(spans, ref priorToken);
 
-            string thisVariableHoverText = "";
-            string thisHoverName = "";
-            bool IsNextNonblankName = false; // true when the next, non-blank item is the name
-            bool IsLastName = false;
-            bool IsNaming = false; // when we find a naming keyaord (module, input, etc)... we will build hover text, including comments
-            string lastKeyword = "";
 
-            void BuildHoverItems(string s)
-            {
-                string thisTrimmedItem = (s == null) ? "" : s.Trim();
-
-                //  when naming, all text, including blanks are appended to hover text
-                if (IsNaming) {
-                    thisVariableHoverText += s;
-                }
-
-                // blanks are ignored here for everything else, so return
-                if (thisTrimmedItem == "")  
-                {
-                    return;
-                }
-
-                if (IsNaming)
-                {
-                    if (IsNextNonblankName)
-                    {
-                        // the name is the next, non-blank keyword found (e.g. my
-                        IsNextNonblankName = false;
-                        thisHoverName = thisTrimmedItem;
-                    }
-
-
-
-                    // when we are naming a veriable and end counter a semicolon, we're done. add it and reset.
-                    if (thisTrimmedItem == ";")
-                    {
-                        IsNaming = false; // all naming ends upon semi-colon.
-
-                        if (IsLastName)
-                        {
-                            // the name is the last, non-blank value before the semicolon. (e.g. "J2_AD_PORT" from "input [7:0] J2_AS_PORT;")
-                            IsLastName = false;
-                            thisHoverName = lastKeyword;
-                        }
-
-
-                        if (!_VerilogVariables.Keys.Contains(thisHoverName) && thisHoverName != "")
-                        {
-                            _VerilogVariables.Add(thisHoverName, VerilogTokenTypes.Verilog_Variable);
-                            if (!VerilogGlobals.VerilogVariableHoverText.ContainsKey(thisHoverName))
-                            {
-                                VerilogGlobals.VerilogVariableHoverText.Add(thisHoverName, thisVariableHoverText);
-                            }
-                            else
-                            {
-                                VerilogGlobals.VerilogVariableHoverText[thisHoverName] = thisVariableHoverText;
-                            }
-                        }
-                        // thisHoverName is the variable keyword and VerilogVariableHoverText is the definition text
-                        thisVariableHoverText = "";
-                        thisHoverName = "";
-                        IsNextNonblankName = false;
-
-                    } // end if (thisTrimmedItem == ";")
-
-                } // end if (IsNaming)
-
-                // we're not renaming at the moment, but perhaps if this token is a variable namer (module, input, etc)
-                else
-                {
-                    IsNaming = IsVerilogNamerKeyword(thisTrimmedItem);
-                    if (IsNaming)
-                    {
-                        switch (thisTrimmedItem)
-                        {
-                            case "module":
-                                IsNextNonblankName = true;
-                                thisVariableHoverText = thisTrimmedItem;
-                                break;
-
-                            case "input":
-                            case "output":
-                            case "inout":
-                                IsLastName = true;
-                                thisVariableHoverText = thisTrimmedItem;
-                                break;
-
-                            default:
-                                break;
-                        }
-                    }
-                } // end else naming
-
-                lastKeyword = thisTrimmedItem;
-
-            }  // end void BuildHoverItems
 
             foreach (SnapshotSpan curSpan in spans)
             {
                 if (tokens != null && tokens.Length >= 1 )
                 {
-                    priorToken = tokens[tokens.Length - 1];
+                    priorToken = tokens[tokens.Length - 1]; // get the token from the prior line
                 }
                 ITextSnapshotLine containingLine = curSpan.Start.GetContainingLine();
                 int curLoc = containingLine.Start.Position;
@@ -803,7 +697,7 @@ namespace VerilogLanguage
                         {
                             // first check to see if any new variables are being defined;
 
-                            BuildHoverItems(Item.ItemText);
+                            VerilogGlobals.BuildHoverItems(Item.ItemText);
 
 
                             // check for standard keyword syntax higlighting
@@ -817,10 +711,10 @@ namespace VerilogLanguage
                             else
                             {
                                 // check to see if this is a variable
-                                if (_VerilogVariables.ContainsKey(Item.ItemText))
+                                if (VerilogGlobals.VerilogVariables.ContainsKey(Item.ItemText))
                                 {
                                     yield return new TagSpan<VerilogTokenTag>(tokenSpan,
-                                                                          new VerilogTokenTag(_VerilogVariables[Item.ItemText]));
+                                                                          new VerilogTokenTag(VerilogGlobals.VerilogVariables[Item.ItemText]));
                                 }
 
                                 else

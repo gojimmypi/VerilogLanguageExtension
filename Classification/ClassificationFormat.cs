@@ -3152,11 +3152,11 @@ namespace VerilogLanguage
             DisplayName = "Verilog - Variable"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.Orange; // default color for dark background
+                ForegroundColor = Colors.SkyBlue; // default color for dark background
             }
             else
             {
-                ForegroundColor = Colors.LimeGreen; // default color for light background
+                ForegroundColor = Colors.DarkBlue; // default color for light background
             }
         }
     }

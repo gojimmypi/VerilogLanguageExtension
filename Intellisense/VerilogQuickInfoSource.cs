@@ -22,6 +22,14 @@ using Microsoft.VisualStudio.Utilities;
 
 namespace VerilogLanguage
 {
+    public static class VerilogGlobals
+    {
+        public static Dictionary<string, string> VerilogVariableHoverText = new Dictionary<string, string>
+        {
+            ["led"] = "An LED."
+        };
+    }
+
     /// <summary>
     /// Factory for quick info sources
     /// </summary>
@@ -49,18 +57,18 @@ namespace VerilogLanguage
         private ITextBuffer _buffer;
         private bool _disposed = false;
         IDictionary<VerilogTokenTypes, string> _VerilogKeywordHoverText;
-        IDictionary<string, string> _VerilogVariableHoverText;
+        //IDictionary<string, string> _VerilogVariableHoverText;
 
 
         public VerilogQuickInfoSource(ITextBuffer buffer, ITagAggregator<VerilogTokenTag> aggregator)
         {
             _aggregator = aggregator;
             _buffer = buffer;
-            _VerilogVariableHoverText = new Dictionary<string, string>
-            {
-                ["led"] = "An LED.",
-                // description text thanks: https://www.xilinx.com/support/documentation/sw_manuals/xilinx11/ite_r_verilog_reserved_words.htm
-            };
+            //_VerilogVariableHoverText = new Dictionary<string, string>
+            //{
+            //    ["led"] = "An LED.",
+            //    // description text thanks: https://www.xilinx.com/support/documentation/sw_manuals/xilinx11/ite_r_verilog_reserved_words.htm
+            //};
 
                 _VerilogKeywordHoverText = new Dictionary<VerilogTokenTypes, string>
             {
@@ -180,11 +188,13 @@ namespace VerilogLanguage
                 else
                 { // 
                     var thisTag = curTag.ToString(); //TODO is this hwere to add verilog variables?
-                    if (_VerilogVariableHoverText.Keys.Contains("led"))
+                    var tagSpan = curTag.Span.GetSpans(_buffer).First();
+                    string thisHoverKey = tagSpan.GetText();
+
+                    if (VerilogGlobals.VerilogVariableHoverText.Keys.Contains(thisHoverKey))
                     {
-                        var tagSpan = curTag.Span.GetSpans(_buffer).First();
                         applicableToSpan = _buffer.CurrentSnapshot.CreateTrackingSpan(tagSpan, SpanTrackingMode.EdgeExclusive);
-                        quickInfoContent.Add(_VerilogVariableHoverText["led"]);
+                        quickInfoContent.Add(VerilogGlobals.VerilogVariableHoverText[thisHoverKey]);
                     }
                 }
 

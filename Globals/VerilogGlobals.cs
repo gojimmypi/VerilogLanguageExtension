@@ -32,7 +32,8 @@ namespace VerilogLanguage
 
         private static bool IsVerilogNamerKeyword(string theKeyword)
         {
-            return ((theKeyword == "wire") ||
+            return ((theKeyword == "reg") || 
+                    (theKeyword == "wire") ||
                     (theKeyword == "input") ||
                     (theKeyword == "inout") ||
                     (theKeyword == "output") ||
@@ -68,9 +69,10 @@ namespace VerilogLanguage
 
 
 
-                // when we are naming a veriable and end counter a semicolon, we're done. add it and reset.
-                if (thisTrimmedItem == ";")
+                // when we are naming a veriable and end counter a semicolon or comma, we're done. add it and reset.
+                if ((thisTrimmedItem == ";") || (thisTrimmedItem == ",") || (thisTrimmedItem == ")"))
                 {
+                    thisTrimmedItem = ""; // once detected, we won't use it here
                     IsNaming = false; // all naming ends upon semi-colon.
 
                     if (IsLastName)
@@ -118,6 +120,8 @@ namespace VerilogLanguage
                         case "input":
                         case "output":
                         case "inout":
+                        case "wire":
+                        case "reg":
                             IsLastName = true;
                             thisVariableHoverText = thisTrimmedItem;
                             break;

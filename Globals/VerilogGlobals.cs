@@ -22,6 +22,7 @@ namespace VerilogLanguage
             // e.g. ["led"] = VerilogTokenTypes.Verilog_Variable,
         };
 
+        public static Boolean IsContinuedBlockComment = false;
         public static string thisVariableHoverText = "";
         public static string thisHoverName = "";
         public static bool IsNextNonblankName = false; // true when the next, non-blank item is the name

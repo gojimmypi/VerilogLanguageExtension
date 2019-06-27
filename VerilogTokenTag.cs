@@ -648,7 +648,7 @@ namespace VerilogLanguage
         {
 
             // since we can start mid-text, we don't know if the current span is in the middle of a comment
-            Boolean IsContinuedBlockComment = IsOpenBlockComment(spans);
+            VerilogGlobals.IsContinuedBlockComment = IsOpenBlockComment(spans); // TODO - does spans always contain the full document? (appears perhaps not)
             VerilogToken[] tokens = null; 
             VerilogToken priorToken = new VerilogToken();
             Boolean HasPriorBrackets = GetPriorBracketCounts(spans, ref priorToken);
@@ -677,8 +677,10 @@ namespace VerilogLanguage
                     //     /*assign*/
                     //     assign/*comment*/
                     thisTokenString = VerilogToken.Part;
-                    CommentHelper commentHelper = new CommentHelper(thisTokenString, IsContinuedLineComment, IsContinuedBlockComment);
-                    IsContinuedBlockComment = commentHelper.HasBlockStartComment;
+                    CommentHelper commentHelper = new CommentHelper(thisTokenString, 
+                                                                    IsContinuedLineComment, 
+                                                                    VerilogGlobals.IsContinuedBlockComment);
+                    VerilogGlobals.IsContinuedBlockComment = commentHelper.HasBlockStartComment;
                     IsContinuedLineComment = commentHelper.HasOpenLineComment; // we'll use this when processing the VerilogToken item in the commentHelper, above
 
                     foreach (CommentHelper.CommentItem Item in commentHelper.CommentItems)

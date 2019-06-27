@@ -203,6 +203,7 @@ namespace VerilogLanguage
                    (theString == "(") ||
                    (theString == ")") ||
                    (theString == ";") ||
+                   (theString == ",") ||
                    (theString == "@") ||
                    (theString == "\"") ||
                    (theString == "\t");
@@ -279,7 +280,7 @@ namespace VerilogLanguage
                                 break;
 
                             case "]":
-                                verilogToken.ParseState.thisSquareBracketDepth--;
+                                verilogToken.ParseState.thisSquareBracketDepth = (verilogToken.ParseState.thisSquareBracketDepth > 0) ? (--verilogToken.ParseState.thisSquareBracketDepth) : 0;
                                 break;
 
                             case "(":
@@ -287,7 +288,7 @@ namespace VerilogLanguage
                                 break;
 
                             case ")":
-                                verilogToken.ParseState.thisRoundBracketDepth--;
+                                verilogToken.ParseState.thisRoundBracketDepth = (verilogToken.ParseState.thisRoundBracketDepth > 0) ? (--verilogToken.ParseState.thisRoundBracketDepth) : 0;
                                 break;
 
                             case "{":
@@ -295,7 +296,7 @@ namespace VerilogLanguage
                                 break;
 
                             case "}":
-                                verilogToken.ParseState.thisSquigglyBracketDepth--;
+                                verilogToken.ParseState.thisSquigglyBracketDepth = (verilogToken.ParseState.thisSquigglyBracketDepth > 0) ? (--verilogToken.ParseState.thisSquigglyBracketDepth) : 0;
                                 break;
 
                             default:

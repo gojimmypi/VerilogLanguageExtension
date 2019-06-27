@@ -195,6 +195,7 @@
     <Compile Include="VerilogTokenTypes.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="anothertest.v" />
     <None Include="CODE_OF_CONDUCT.md" />
     <Content Include="images\Verilog-Tools-Options-Colors.png" />
     <Content Include="images\VisualStudio-Automatic-Extension-Install-RestorePoint.png" />

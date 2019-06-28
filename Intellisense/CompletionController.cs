@@ -205,7 +205,7 @@ namespace VerilogLanguage
         {
             // this next line was suggested by the IDE, as relating to the next hresult = Next.Exec() call
             Microsoft.VisualStudio.Shell.ThreadHelper.ThrowIfNotOnUIThread();
-
+            VerilogGlobals.PerfMon.CommandFilter_QueryStatus_Count++;
             if (pguidCmdGroup == VSConstants.VSStd2K)
             {
                 switch ((VSConstants.VSStd2KCmdID)prgCmds[0].cmdID)

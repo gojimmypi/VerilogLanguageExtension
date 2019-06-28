@@ -13,6 +13,7 @@ namespace VerilogLanguage
         {
             public static int VerilogTokenTag_Count = 0;
             public static int VerilogTokenTagger_Count = 0;
+            public static int CommandFilter_QueryStatus_Count = 0;
 
             private static void init()
             {

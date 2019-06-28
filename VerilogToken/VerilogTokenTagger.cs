@@ -185,28 +185,49 @@ namespace VerilogLanguage
         //{
         //    public int EndLine { get; set; }
         //}
+        private bool ForceRefresh = false;
         void BufferChanged(object sender, TextContentChangedEventArgs e)
         {
             // If this isn't the most up-to-date version of the buffer, then ignore it for now (we'll eventually get another change event).
-            if (e.After != _buffer.CurrentSnapshot)
+           if (e.After != _buffer.CurrentSnapshot)
                 return;
+
+ 
+             ForceRefresh = true;
             this.ReParse();
         }
 
         void ReParse()
         {
+            // TODO: remove crap
+            object obj = null; 
+            IContentType thisContent;
+            thisContent =    _buffer.CurrentSnapshot.TextBuffer.ContentType;
+            _buffer.CurrentSnapshot.TextBuffer.ChangeContentType(thisContent, obj);
+
+
+            // This is probably the only thing we want to do here:
             VerilogGlobals.Reparse(_buffer);
 
-            //ITextSnapshot newSnapshot = _buffer.CurrentSnapshot;
+            ITextSnapshot newSnapshot = _buffer.CurrentSnapshot;
             //List<Region> newRegions = new List<Region>();
 
             ////keep the current (deepest) partial region, which will have
             //// references to any parent partial regions.
             //PartialRegion currentRegion = null;
 
-            //foreach (var line in newSnapshot.Lines)
-            //{
-            //}
+
+            foreach (var line in newSnapshot.Lines)
+            {
+                int a = 1;
+            }
+            if (ForceRefresh)
+            {
+                // this actually adds a copy, and does not replace (also caused infinite loop, as it triggers BufferChanged)
+                //_buffer.Replace(new Span()// _buffer.CurrentSnapshot..CurrentSnapshot.
+                //                , _buffer.CurrentSnapshot.GetText()); // = newSnapshot;
+            }
+            ForceRefresh = false;
         }
 
 
@@ -665,6 +686,9 @@ namespace VerilogLanguage
             AddToken();
             return tokens.ToArray();
         }
+
+
+
 
         public IEnumerable<ITagSpan<VerilogTokenTag>> GetTags(NormalizedSnapshotSpanCollection spans)
         {

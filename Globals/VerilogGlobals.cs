@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VerilogLanguage
 {
-    public static class VerilogGlobals
+    public static partial class VerilogGlobals
     {
         /// <summary>
         ///   VerilogVariableHoverText - dictionary collection of keywords and hover text (variable names and definitions)
@@ -21,6 +21,7 @@ namespace VerilogLanguage
         {
             // e.g. ["led"] = VerilogTokenTypes.Verilog_Variable,
         };
+
 
         public static Boolean IsContinuedBlockComment = false;
         public static string thisVariableHoverText = "";

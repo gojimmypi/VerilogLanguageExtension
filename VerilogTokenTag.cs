@@ -190,10 +190,48 @@ namespace VerilogLanguage
                 ["variable_type"] = VerilogTokenTypes.Verilog_Variable
             };
 
-
+            this._buffer.Changed += BufferChanged;
         }
 
-        static public bool IsDelimeter(string theString)
+        //class PartialRegion
+        //{
+        //    public int StartLine { get; set; }
+        //    public int StartOffset { get; set; }
+        //    public int Level { get; set; }
+        //    public PartialRegion PartialParent { get; set; }
+        //}
+
+        //class Region : PartialRegion
+        //{
+        //    public int EndLine { get; set; }
+        //}
+        void BufferChanged(object sender, TextContentChangedEventArgs e)
+        {
+            // If this isn't the most up-to-date version of the buffer, then ignore it for now (we'll eventually get another change event).
+            if (e.After != _buffer.CurrentSnapshot)
+                return;
+            this.ReParse();
+        }
+
+        void ReParse()
+        {
+            VerilogGlobals.Reparse(_buffer);
+
+            //ITextSnapshot newSnapshot = _buffer.CurrentSnapshot;
+            //List<Region> newRegions = new List<Region>();
+
+            ////keep the current (deepest) partial region, which will have
+            //// references to any parent partial regions.
+            //PartialRegion currentRegion = null;
+
+            //foreach (var line in newSnapshot.Lines)
+            //{
+            //}
+        }
+
+
+
+                static public bool IsDelimeter(string theString)
         {
             return (theString == " ") ||
                    (theString == "[") ||
@@ -251,9 +289,9 @@ namespace VerilogLanguage
         private bool GetPriorBracketCounts(NormalizedSnapshotSpanCollection sc, ref VerilogToken verilogToken)
         {
             bool res = false;
-            verilogToken.ParseState.thisSquareBracketDepth = 0;
-            verilogToken.ParseState.thisRoundBracketDepth = 0;
-            verilogToken.ParseState.thisSquigglyBracketDepth = 0;
+            //verilogToken.ParseState.thisSquareBracketDepth = 0;
+            //verilogToken.ParseState.thisRoundBracketDepth = 0;
+            //verilogToken.ParseState.thisSquigglyBracketDepth = 0;
             string thisChar;
             string thisString;
             if (sc != null && sc[0].Snapshot != null && sc[0].Start.Position > 0)
@@ -273,37 +311,37 @@ namespace VerilogLanguage
                     {
                         thisChar = thisString.Substring(i, 1);
 
-                        switch (thisChar)
-                        {
-                            case "[":
-                                verilogToken.ParseState.thisSquareBracketDepth++;
-                                break;
+                        //switch (thisChar)
+                        //{
+                        //    case "[":
+                        //        verilogToken.ParseState.thisSquareBracketDepth++;
+                        //        break;
 
-                            case "]":
-                                verilogToken.ParseState.thisSquareBracketDepth = (verilogToken.ParseState.thisSquareBracketDepth > 0) ? (--verilogToken.ParseState.thisSquareBracketDepth) : 0;
-                                break;
+                        //    case "]":
+                        //        verilogToken.ParseState.thisSquareBracketDepth = (verilogToken.ParseState.thisSquareBracketDepth > 0) ? (--verilogToken.ParseState.thisSquareBracketDepth) : 0;
+                        //        break;
 
-                            case "(":
-                                verilogToken.ParseState.thisRoundBracketDepth++;
-                                break;
+                        //    case "(":
+                        //        verilogToken.ParseState.thisRoundBracketDepth++;
+                        //        break;
 
-                            case ")":
-                                verilogToken.ParseState.thisRoundBracketDepth = (verilogToken.ParseState.thisRoundBracketDepth > 0) ? (--verilogToken.ParseState.thisRoundBracketDepth) : 0;
-                                break;
+                        //    case ")":
+                        //        verilogToken.ParseState.thisRoundBracketDepth = (verilogToken.ParseState.thisRoundBracketDepth > 0) ? (--verilogToken.ParseState.thisRoundBracketDepth) : 0;
+                        //        break;
 
-                            case "{":
-                                verilogToken.ParseState.thisSquigglyBracketDepth++;
-                                break;
+                        //    case "{":
+                        //        verilogToken.ParseState.thisSquigglyBracketDepth++;
+                        //        break;
 
-                            case "}":
-                                verilogToken.ParseState.thisSquigglyBracketDepth = (verilogToken.ParseState.thisSquigglyBracketDepth > 0) ? (--verilogToken.ParseState.thisSquigglyBracketDepth) : 0;
-                                break;
+                        //    case "}":
+                        //        verilogToken.ParseState.thisSquigglyBracketDepth = (verilogToken.ParseState.thisSquigglyBracketDepth > 0) ? (--verilogToken.ParseState.thisSquigglyBracketDepth) : 0;
+                        //        break;
 
-                            default:
-                                //
-                                break;
+                        //    default:
+                        //        //
+                        //        break;
 
-                        }
+                        //}
 
                     }
                 } // for each thisLine
@@ -378,9 +416,9 @@ namespace VerilogLanguage
         {
             public string thisItem;
             public int thisIndex;
-            public int thisSquareBracketDepth;
-            public int thisRoundBracketDepth;
-            public int thisSquigglyBracketDepth;
+            //public int thisSquareBracketDepth;
+            //public int thisRoundBracketDepth;
+            //public int thisSquigglyBracketDepth;
 
             public string priorChar;
             public string priorDelimiter;
@@ -423,6 +461,7 @@ namespace VerilogLanguage
 
             public void SetPriorValues()
             {
+                // return;
                 priorCharIsDelimiter = thisCharIsDelimiter;
                 priorCharIsIsEndingDelimiter = thisCharIsEndingDelimiter;
 
@@ -435,58 +474,59 @@ namespace VerilogLanguage
             
             public void SetOpenBracketStatus()
             {
-                switch (thisItem)
-                {
-                    case "[":
-                        thisSquareBracketDepth++;
-                        hasOpenSquareBracket = (thisSquareBracketDepth > 0); // increment
-                        break;
+                // return;
+                //switch (thisItem)
+                //{
+                //    case "[":
+                //        thisSquareBracketDepth++;
+                //        hasOpenSquareBracket = (thisSquareBracketDepth > 0); // increment
+                //        break;
 
-                    case "(":
-                        thisRoundBracketDepth++;
-                        hasOpenRoundBracket = (thisRoundBracketDepth > 0);
-                        break;
+                //    case "(":
+                //        thisRoundBracketDepth++;
+                //        hasOpenRoundBracket = (thisRoundBracketDepth > 0);
+                //        break;
 
-                    case "{":
-                        thisSquigglyBracketDepth++;
-                        hasOpenSquigglyBracket = (thisSquigglyBracketDepth > 0);
-                        break;
+                //    case "{":
+                //        thisSquigglyBracketDepth++;
+                //        hasOpenSquigglyBracket = (thisSquigglyBracketDepth > 0);
+                //        break;
 
-                    case "\"":
-                        hasOpenDoubleQuote = !hasOpenDoubleQuote;
-                        break;
+                //    case "\"":
+                //        hasOpenDoubleQuote = !hasOpenDoubleQuote;
+                //        break;
 
-                    default:
-                        break;
-                }
+                //    default:
+                //        break;
+                //}
             }
 
             public void SetCloseBracketStatus()
             {
-                switch (priorChar)
-                {
-                    case "]":
-                        thisSquareBracketDepth = (thisSquareBracketDepth > 0) ? (--thisSquareBracketDepth) : 0; // decrement, but never less than zero
-                        hasOpenSquareBracket = (thisSquareBracketDepth > 0);
-                        break;
+                //switch (priorChar)
+                //{
+                //    case "]":
+                //        thisSquareBracketDepth = (thisSquareBracketDepth > 0) ? (--thisSquareBracketDepth) : 0; // decrement, but never less than zero
+                //        hasOpenSquareBracket = (thisSquareBracketDepth > 0);
+                //        break;
 
-                    case ")":
-                        thisRoundBracketDepth = (thisRoundBracketDepth > 0) ? (--thisRoundBracketDepth) : 0;
-                        hasOpenRoundBracket = (thisRoundBracketDepth > 0);
-                        break;
+                //    case ")":
+                //        thisRoundBracketDepth = (thisRoundBracketDepth > 0) ? (--thisRoundBracketDepth) : 0;
+                //        hasOpenRoundBracket = (thisRoundBracketDepth > 0);
+                //        break;
 
-                    case "}":
-                        thisSquigglyBracketDepth = (thisSquigglyBracketDepth > 0) ? (--thisSquigglyBracketDepth) : 0;
-                        hasOpenSquigglyBracket = (thisSquigglyBracketDepth > 0);
-                        break;
+                //    case "}":
+                //        thisSquigglyBracketDepth = (thisSquigglyBracketDepth > 0) ? (--thisSquigglyBracketDepth) : 0;
+                //        hasOpenSquigglyBracket = (thisSquigglyBracketDepth > 0);
+                //        break;
 
-                    case "\"":
-                        hasOpenDoubleQuote = !hasOpenDoubleQuote;
-                        break;
+                //    case "\"":
+                //        hasOpenDoubleQuote = !hasOpenDoubleQuote;
+                //        break;
 
-                    default:
-                        break;
-                }
+                //    default:
+                //        break;
+                //}
             }
 
             // initialize this VerilogParseState at creation time
@@ -495,9 +535,9 @@ namespace VerilogLanguage
                 _thisChar = "";
                 thisIndex = 0;
                 thisItem = "";
-                thisSquareBracketDepth = 0;
-                thisRoundBracketDepth = 0;
-                thisSquigglyBracketDepth = 0;
+                //thisSquareBracketDepth = 0;
+                //thisRoundBracketDepth = 0;
+                //thisSquigglyBracketDepth = 0;
                 IsNewDelimitedSegment = false;
                 priorChar = "";
                 priorDelimiter = "";
@@ -521,9 +561,9 @@ namespace VerilogLanguage
             public VerilogParseState ParseState;
             public string Part;
             public VerilogTokenContextType Context;
-            public int SquareBracketDepth;
-            public int RoundBracketDepth;
-            public int SquigglyBracketDepth;
+            //public int SquareBracketDepth;
+            //public int RoundBracketDepth;
+            //public int SquigglyBracketDepth;
 
             public void SetContext()
             {
@@ -569,9 +609,9 @@ namespace VerilogLanguage
             public VerilogToken(string p = "", VerilogTokenContextType c = VerilogTokenContextType.Undetermined)
             {
                 ParseState = new VerilogParseState(0);
-                SquareBracketDepth = 0;
-                RoundBracketDepth = 0;
-                SquigglyBracketDepth = 0; // TODO, pass prior token in parameters and set this fromthose prior values
+                //SquareBracketDepth = 0;
+                //RoundBracketDepth = 0;
+                //SquigglyBracketDepth = 0; // TODO, pass prior token in parameters and set this fromthose prior values
 
                 Part = p ?? ""; // ensure Part is never null (empty string if p is null)
 
@@ -605,9 +645,9 @@ namespace VerilogLanguage
                 {
                     thisToken.Part = thisToken.ParseState.thisItem;
                     thisToken.ParseState.SetOpenBracketStatus();
-                    thisToken.SquareBracketDepth = thisToken.ParseState.thisSquareBracketDepth;
-                    thisToken.RoundBracketDepth = thisToken.ParseState.thisRoundBracketDepth;
-                    thisToken.SquigglyBracketDepth = thisToken.ParseState.thisSquigglyBracketDepth;
+                    //thisToken.SquareBracketDepth = thisToken.ParseState.thisSquareBracketDepth;
+                    //thisToken.RoundBracketDepth = thisToken.ParseState.thisRoundBracketDepth;
+                    //thisToken.SquigglyBracketDepth = thisToken.ParseState.thisSquigglyBracketDepth;
                     thisContinuedParseState = thisToken.ParseState;
                     tokens.Add(thisToken);
                     thisToken = new VerilogToken(thisToken.ParseState.thisChar);
@@ -646,12 +686,12 @@ namespace VerilogLanguage
 
         public IEnumerable<ITagSpan<VerilogTokenTag>> GetTags(NormalizedSnapshotSpanCollection spans)
         {
-
+            // bool EditInProgress = spans.snapshot.TextBuffer.EditInProgress;
             // since we can start mid-text, we don't know if the current span is in the middle of a comment
             VerilogGlobals.IsContinuedBlockComment = IsOpenBlockComment(spans); // TODO - does spans always contain the full document? (appears perhaps not)
             VerilogToken[] tokens = null; 
             VerilogToken priorToken = new VerilogToken();
-            Boolean HasPriorBrackets = GetPriorBracketCounts(spans, ref priorToken);
+            //Boolean HasPriorBrackets = false; // GetPriorBracketCounts(spans, ref priorToken);
 
 
 
@@ -724,13 +764,16 @@ namespace VerilogLanguage
                                 {
                                     // no tag colorization for the explicit token, but perhaps based on context:
                                     int thisDelimiterIndex = 0;
-                                    int thisDelimiterTotalDepth = VerilogToken.SquareBracketDepth +
-                                                                  VerilogToken.RoundBracketDepth +
-                                                                  VerilogToken.SquigglyBracketDepth;
+                                    int thisDelimiterTotalDepth;
+                                    //int thisDelimiterTotalDepth = VerilogToken.SquareBracketDepth +
+                                    //                              VerilogToken.RoundBracketDepth +
+                                    //                              VerilogToken.SquigglyBracketDepth;
+                                    // int testValue = VerilogGlobals.BracketDepth(containingLine.LineNumber, curLoc - containingLine.Start.Position);
                                     switch (VerilogToken.Context)
                                     {
                                         case VerilogTokenContextType.SquareBracketOpen:
                                         case VerilogTokenContextType.SquareBracketClose:
+                                            thisDelimiterTotalDepth = VerilogGlobals.BracketDepth(containingLine.LineNumber, curLoc - containingLine.Start.Position);
                                             thisDelimiterIndex = (thisDelimiterTotalDepth % 5);
                                             if (tokenSpan.IntersectsWith(curSpan))
                                                 yield return new TagSpan<VerilogTokenTag>(tokenSpan,
@@ -740,6 +783,7 @@ namespace VerilogLanguage
 
                                         case VerilogTokenContextType.RoundBracketClose:
                                         case VerilogTokenContextType.RoundBracketOpen:
+                                            thisDelimiterTotalDepth = VerilogGlobals.BracketDepth(containingLine.LineNumber, curLoc - containingLine.Start.Position);
                                             thisDelimiterIndex = (thisDelimiterTotalDepth % 5);
                                             if (tokenSpan.IntersectsWith(curSpan))
                                                 yield return new TagSpan<VerilogTokenTag>(tokenSpan,
@@ -749,6 +793,7 @@ namespace VerilogLanguage
 
                                         case VerilogTokenContextType.SquigglyBracketOpen:
                                         case VerilogTokenContextType.SquigglyBracketClose:
+                                            thisDelimiterTotalDepth = VerilogGlobals.BracketDepth(containingLine.LineNumber, curLoc - containingLine.Start.Position);
                                             thisDelimiterIndex = (thisDelimiterTotalDepth % 5);
                                             if (tokenSpan.IntersectsWith(curSpan))
                                                 yield return new TagSpan<VerilogTokenTag>(tokenSpan,

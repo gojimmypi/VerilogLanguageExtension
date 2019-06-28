@@ -305,5 +305,23 @@ namespace VerilogLanguage
             }
             return IsComment;
         }
+
+        public static int BracketDepth(int AtLine, int AtPosition)
+        {
+            int res = 0;
+            for (int i = 0; i < BufferAttributes.Count -1; i++)
+            {
+                if (BufferAttributes[i].LineNumber == AtLine)
+                {
+                    if (BufferAttributes[i].LineStart == AtPosition) {
+                        res = BufferAttributes[i].RoundBracketDepth +
+                              BufferAttributes[i].SquareBracketDepth +
+                              BufferAttributes[i].SquigglyBracketDepth;
+                        break;
+                    }
+                }
+            }
+            return res;
+        }
     }
 }

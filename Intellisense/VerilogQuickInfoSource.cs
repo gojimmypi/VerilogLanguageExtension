@@ -56,13 +56,17 @@ namespace VerilogLanguage
         {
             _aggregator = aggregator;
             _buffer = buffer;
+
+            // TODO - do we really want to call reparse here?
+            VerilogGlobals.Reparse(buffer); // parse the buffer at file load time
+
             //_VerilogVariableHoverText = new Dictionary<string, string>
             //{
             //    ["led"] = "An LED.",
             //    // description text thanks: https://www.xilinx.com/support/documentation/sw_manuals/xilinx11/ite_r_verilog_reserved_words.htm
             //};
 
-                _VerilogKeywordHoverText = new Dictionary<VerilogTokenTypes, string>
+            _VerilogKeywordHoverText = new Dictionary<VerilogTokenTypes, string>
             {
                 // description text thanks: https://www.xilinx.com/support/documentation/sw_manuals/xilinx11/ite_r_verilog_reserved_words.htm
                 [VerilogTokenTypes.Verilog_always] = "An always represents a block of code in a design.",

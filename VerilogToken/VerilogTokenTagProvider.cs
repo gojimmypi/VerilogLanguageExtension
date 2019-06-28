@@ -46,7 +46,9 @@ namespace VerilogLanguage
 
         public ITagger<T> CreateTagger<T>(ITextBuffer buffer) where T : ITag
         {
+            // old code:
             // return new VerilogTokenTagger(buffer) as ITagger<T>;
+
             Func<ITagger<T>> sc = delegate () { return new VerilogTokenTagger(buffer) as ITagger<T>; };
             return buffer.Properties.GetOrCreateSingletonProperty<ITagger<T>>(sc);
 

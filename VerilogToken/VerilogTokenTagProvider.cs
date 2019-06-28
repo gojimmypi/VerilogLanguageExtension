@@ -40,7 +40,7 @@ namespace VerilogLanguage
     // for a buffer of the "verilog" content type, or else returns an OutliningTagger if the buffer already has one.
     [Export(typeof(ITaggerProvider))]
     [TagType(typeof(VerilogTokenTag))]
-    [ContentType("verilog")]
+    [ContentType("verilog")] // see _buffer.ContentType (ITextBuffer.ContentType Property)
     internal sealed class VerilogTokenTagProvider : ITaggerProvider
     {
 
@@ -48,6 +48,8 @@ namespace VerilogLanguage
         {
             // old code:
             // return new VerilogTokenTagger(buffer) as ITagger<T>;
+
+            // TODO which is better? above or below?
 
             Func<ITagger<T>> sc = delegate () { return new VerilogTokenTagger(buffer) as ITagger<T>; };
             return buffer.Properties.GetOrCreateSingletonProperty<ITagger<T>>(sc);

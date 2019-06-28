@@ -44,6 +44,8 @@ namespace VerilogLanguage
 
         internal VerilogTokenTagger(ITextBuffer buffer)
         {
+            VerilogGlobals.PerfMon.VerilogTokenTagger_Count++;
+
             _buffer = buffer;
 
             //VerilogGlobals._VerilogVariables = new Dictionary<string, VerilogTokenTypes>
@@ -265,68 +267,68 @@ namespace VerilogLanguage
             return isLocalBlockComment;
         }
 
-        private bool GetPriorBracketCounts(NormalizedSnapshotSpanCollection sc, ref VerilogToken verilogToken)
-        {
-            bool res = false;
-            //verilogToken.ParseState.thisSquareBracketDepth = 0;
-            //verilogToken.ParseState.thisRoundBracketDepth = 0;
-            //verilogToken.ParseState.thisSquigglyBracketDepth = 0;
-            string thisChar;
-            string thisString;
-            if (sc != null && sc[0].Snapshot != null && sc[0].Start.Position > 0)
-            {
-                int ToPosition = sc[0].Start.Position - 1; // we are only interested in text priot to our current location
-                // SnapshotSpan PriorText = sc[0].Snapshot(0, ToPosition);
-                foreach (ITextSnapshotLine thisLine in sc[0].Snapshot.Lines)
-                {
-                    int pos = thisLine.Start.Position;
-                    thisString = thisLine.GetText();
-                    if (pos > ToPosition)
-                    {
-                        break; // nothing to do if the starting position is beyond our starting point, as we are only interested in prior open block
-                    }
+        //private bool GetPriorBracketCounts(NormalizedSnapshotSpanCollection sc, ref VerilogToken verilogToken)
+        //{
+        //    bool res = false;
+        //    //verilogToken.ParseState.thisSquareBracketDepth = 0;
+        //    //verilogToken.ParseState.thisRoundBracketDepth = 0;
+        //    //verilogToken.ParseState.thisSquigglyBracketDepth = 0;
+        //    string thisChar;
+        //    string thisString;
+        //    if (sc != null && sc[0].Snapshot != null && sc[0].Start.Position > 0)
+        //    {
+        //        int ToPosition = sc[0].Start.Position - 1; // we are only interested in text priot to our current location
+        //        // SnapshotSpan PriorText = sc[0].Snapshot(0, ToPosition);
+        //        foreach (ITextSnapshotLine thisLine in sc[0].Snapshot.Lines)
+        //        {
+        //            int pos = thisLine.Start.Position;
+        //            thisString = thisLine.GetText();
+        //            if (pos > ToPosition)
+        //            {
+        //                break; // nothing to do if the starting position is beyond our starting point, as we are only interested in prior open block
+        //            }
 
-                    for (int i = 0; i < thisString.Length; i++)
-                    {
-                        thisChar = thisString.Substring(i, 1);
+        //            for (int i = 0; i < thisString.Length; i++)
+        //            {
+        //                thisChar = thisString.Substring(i, 1);
 
-                        //switch (thisChar)
-                        //{
-                        //    case "[":
-                        //        verilogToken.ParseState.thisSquareBracketDepth++;
-                        //        break;
+        //                //switch (thisChar)
+        //                //{
+        //                //    case "[":
+        //                //        verilogToken.ParseState.thisSquareBracketDepth++;
+        //                //        break;
 
-                        //    case "]":
-                        //        verilogToken.ParseState.thisSquareBracketDepth = (verilogToken.ParseState.thisSquareBracketDepth > 0) ? (--verilogToken.ParseState.thisSquareBracketDepth) : 0;
-                        //        break;
+        //                //    case "]":
+        //                //        verilogToken.ParseState.thisSquareBracketDepth = (verilogToken.ParseState.thisSquareBracketDepth > 0) ? (--verilogToken.ParseState.thisSquareBracketDepth) : 0;
+        //                //        break;
 
-                        //    case "(":
-                        //        verilogToken.ParseState.thisRoundBracketDepth++;
-                        //        break;
+        //                //    case "(":
+        //                //        verilogToken.ParseState.thisRoundBracketDepth++;
+        //                //        break;
 
-                        //    case ")":
-                        //        verilogToken.ParseState.thisRoundBracketDepth = (verilogToken.ParseState.thisRoundBracketDepth > 0) ? (--verilogToken.ParseState.thisRoundBracketDepth) : 0;
-                        //        break;
+        //                //    case ")":
+        //                //        verilogToken.ParseState.thisRoundBracketDepth = (verilogToken.ParseState.thisRoundBracketDepth > 0) ? (--verilogToken.ParseState.thisRoundBracketDepth) : 0;
+        //                //        break;
 
-                        //    case "{":
-                        //        verilogToken.ParseState.thisSquigglyBracketDepth++;
-                        //        break;
+        //                //    case "{":
+        //                //        verilogToken.ParseState.thisSquigglyBracketDepth++;
+        //                //        break;
 
-                        //    case "}":
-                        //        verilogToken.ParseState.thisSquigglyBracketDepth = (verilogToken.ParseState.thisSquigglyBracketDepth > 0) ? (--verilogToken.ParseState.thisSquigglyBracketDepth) : 0;
-                        //        break;
+        //                //    case "}":
+        //                //        verilogToken.ParseState.thisSquigglyBracketDepth = (verilogToken.ParseState.thisSquigglyBracketDepth > 0) ? (--verilogToken.ParseState.thisSquigglyBracketDepth) : 0;
+        //                //        break;
 
-                        //    default:
-                        //        //
-                        //        break;
+        //                //    default:
+        //                //        //
+        //                //        break;
 
-                        //}
+        //                //}
 
-                    }
-                } // for each thisLine
-            } // if sc is not blank
-            return res;
-        }
+        //            }
+        //        } // for each thisLine
+        //    } // if sc is not blank
+        //    return res;
+        //}
 
 
         public enum VerilogTokenContextType

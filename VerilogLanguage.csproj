@@ -194,6 +194,7 @@
     <Compile Include="Intellisense\QuickInfoControllerProvider.cs" />
     <Compile Include="VerilogTokenTag.cs" />
     <Compile Include="VerilogTokenTypes.cs" />
+    <Compile Include="VerilogToken\VerilogTokenTagProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="anothertest.v" />

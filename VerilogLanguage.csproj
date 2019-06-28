@@ -177,6 +177,7 @@
     <Compile Include="EditorClassifier\EditorClassifier1Format.cs" />
     <Compile Include="EditorClassifier\EditorClassifier1Provider.cs" />
     <Compile Include="Globals\BufferAttributes.cs" />
+    <Compile Include="Globals\PerfMon.cs" />
     <Compile Include="Globals\VerilogGlobals.cs" />
     <Compile Include="Highlighting\HighlightWordFormatDefinition.cs" />
     <Compile Include="Highlighting\HighlightWordTag.cs" />
@@ -192,8 +193,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Intellisense\QuickInfoController.cs" />
     <Compile Include="Intellisense\QuickInfoControllerProvider.cs" />
-    <Compile Include="VerilogTokenTag.cs" />
-    <Compile Include="VerilogTokenTypes.cs" />
+    <Compile Include="VerilogToken\VerilogTokenTag.cs" />
+    <Compile Include="VerilogToken\VerilogTokenTypes.cs" />
+    <Compile Include="VerilogToken\VerilogTokenTagger.cs" />
     <Compile Include="VerilogToken\VerilogTokenTagProvider.cs" />
   </ItemGroup>
   <ItemGroup>

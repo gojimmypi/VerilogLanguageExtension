@@ -100,28 +100,34 @@ namespace VerilogLanguage.BraceMatching
             }
 
             SnapshotPoint lastChar = currentChar == 0 ? currentChar : currentChar - 1; //if currentChar is 0 (beginning of buffer), don't move it back
-            char lastText = lastChar.GetChar();
-            SnapshotSpan pairSpan = new SnapshotSpan();
-
-            if (m_braceList.ContainsKey(currentText))   //the key is the open brace
+            if (lastChar == '\0')
             {
-                char closeChar;
-                m_braceList.TryGetValue(currentText, out closeChar);
-                if (BraceMatchingTagger.FindMatchingCloseChar(currentChar, currentText, closeChar, View.TextViewLines.Count, out pairSpan) == true)
-                {
-                    yield return new TagSpan<TextMarkerTag>(new SnapshotSpan(currentChar, 1), new TextMarkerTag("blue"));
-                    yield return new TagSpan<TextMarkerTag>(pairSpan, new TextMarkerTag("blue"));
-                }
+                // nothing to do here
             }
-            else if (m_braceList.ContainsValue(lastText))    //the value is the close brace, which is the *previous* character 
-            {
-                var open = from n in m_braceList
-                           where n.Value.Equals(lastText)
-                           select n.Key;
-                if (BraceMatchingTagger.FindMatchingOpenChar(lastChar, (char)open.ElementAt<char>(0), lastText, View.TextViewLines.Count, out pairSpan) == true)
+            else {
+                char lastText = lastChar.GetChar();
+                SnapshotSpan pairSpan = new SnapshotSpan();
+
+                if (m_braceList.ContainsKey(currentText))   //the key is the open brace
                 {
-                    yield return new TagSpan<TextMarkerTag>(new SnapshotSpan(lastChar, 1), new TextMarkerTag("blue"));
-                    yield return new TagSpan<TextMarkerTag>(pairSpan, new TextMarkerTag("blue"));
+                    char closeChar;
+                    m_braceList.TryGetValue(currentText, out closeChar);
+                    if (BraceMatchingTagger.FindMatchingCloseChar(currentChar, currentText, closeChar, View.TextViewLines.Count, out pairSpan) == true)
+                    {
+                        yield return new TagSpan<TextMarkerTag>(new SnapshotSpan(currentChar, 1), new TextMarkerTag("blue"));
+                        yield return new TagSpan<TextMarkerTag>(pairSpan, new TextMarkerTag("blue"));
+                    }
+                }
+                else if (m_braceList.ContainsValue(lastText))    //the value is the close brace, which is the *previous* character 
+                {
+                    var open = from n in m_braceList
+                               where n.Value.Equals(lastText)
+                               select n.Key;
+                    if (BraceMatchingTagger.FindMatchingOpenChar(lastChar, (char)open.ElementAt<char>(0), lastText, View.TextViewLines.Count, out pairSpan) == true)
+                    {
+                        yield return new TagSpan<TextMarkerTag>(new SnapshotSpan(lastChar, 1), new TextMarkerTag("blue"));
+                        yield return new TagSpan<TextMarkerTag>(pairSpan, new TextMarkerTag("blue"));
+                    }
                 }
             }
         }

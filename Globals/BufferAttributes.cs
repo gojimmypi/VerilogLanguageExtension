@@ -14,8 +14,18 @@ namespace VerilogLanguage
     {
         public class BufferAttribute : ICloneable
         {
+            public bool IsEmpty;
             private int _Start;
             private int _End;
+            private int _LineNumber;
+
+            private int _LineStart;
+            private int _LineEnd;
+            private bool _IsComment;
+            private int _SquareBracketDepth;
+            private int _RoundBracketDepth;
+            private int _SquigglyBracketDepth;
+
             public int Start
             {
                 get
@@ -25,8 +35,10 @@ namespace VerilogLanguage
                 set
                 {
                     _Start = value;
+                    IsEmpty = false;
                 }
             }
+
             public int End
             {
                 get
@@ -36,30 +48,116 @@ namespace VerilogLanguage
                 set
                 {
                     _End = value;
+                    IsEmpty = false;
                 }
             }
-            public int LineNumber;
-            public int LineStart;
-            public int LineEnd;
-            public bool IsComment;
-            public int SquareBracketDepth;
-            public int RoundBracketDepth;
-            public int SquigglyBracketDepth;
-            public bool IsEmpty;
+
+            public int LineNumber
+            {
+                get
+                {
+                    return _LineNumber;
+                }
+                set
+                {
+                    _LineNumber = value;
+                    IsEmpty = false;
+                }
+            }
+
+            public int LineStart
+            {
+                get
+                {
+                    return _LineStart;
+                }
+                set
+                {
+                    _LineStart = value;
+                    IsEmpty = false;
+                }
+            }
+
+            public int LineEnd
+            {
+                get
+                {
+                    return _LineEnd;
+                }
+                set
+                {
+                    _LineEnd = value;
+                    IsEmpty = false;
+                }
+            }
+
+            public bool IsComment
+            {
+                get
+                {
+                    return _IsComment;
+                }
+                set
+                {
+                    _IsComment = value;
+                    IsEmpty = false;
+                }
+            }
+
+            public int SquareBracketDepth
+            {
+                get
+                {
+                    return _SquareBracketDepth;
+                }
+                set
+                {
+                    _SquareBracketDepth = value;
+                    IsEmpty = false;
+                }
+            }
+
+            public int RoundBracketDepth
+            {
+                get
+                {
+                    return _RoundBracketDepth;
+                }
+                set
+                {
+                    _RoundBracketDepth = value;
+                    IsEmpty = false;
+                }
+            }
+
+            public int SquigglyBracketDepth
+            {
+                get
+                {
+                    return _SquigglyBracketDepth;
+                }
+                set
+                {
+                    _SquigglyBracketDepth = value;
+                    IsEmpty = false;
+                }
+            }
+
+
             public BufferAttribute()
             {
-                _End = 0;
-                _Start = 0;
-                LineNumber = 0;
-                LineStart = 0;
-                LineEnd = 0;
-                IsComment = false;
-                SquareBracketDepth = 0;
-                RoundBracketDepth = 0;
-                SquigglyBracketDepth = 0;
-                End = 0;
-                Start = 0;
                 IsEmpty = true;
+
+                _Start = 0;
+                _End = 0;
+
+                _LineNumber = 0;
+                _LineStart = 0;
+                _LineEnd = 0;
+                _IsComment = false;
+                _SquareBracketDepth = 0;
+                _RoundBracketDepth = 0;
+                _SquigglyBracketDepth = 0;
             }
 
             public object Clone()
@@ -69,7 +167,7 @@ namespace VerilogLanguage
         };
 
         public static List<BufferAttribute> BufferAttributes = new List<BufferAttribute>();
- 
+
         public static void Reparse(ITextBuffer buffer)
         {
             ITextSnapshot newSnapshot = buffer.CurrentSnapshot;
@@ -110,7 +208,7 @@ namespace VerilogLanguage
                 thisLine = line.GetText();
                 thisLineNumber = line.LineNumber;
 
-                for (int i = 0; i < thisLine.Length; i++ )
+                for (int i = 0; i < thisLine.Length; i++)
                 {
                     AttributesChanged = true;
 
@@ -205,7 +303,7 @@ namespace VerilogLanguage
                             // encountered "/*"
                             if (lastChar == "/")
                             {
-                                if (IsActiveLineComment || IsActiveBlockComment) 
+                                if (IsActiveLineComment || IsActiveBlockComment)
                                 {
                                     AttributesChanged = false; // if there's an active line comment - nothing changes!
                                 }
@@ -269,7 +367,7 @@ namespace VerilogLanguage
                         // bufferAttribute = new BufferAttribute();
                         // bufferAttribute = (VerilogGlobals.BufferAttribute)BufferAttributes[BufferAttributes.Count - 1].Clone();
                     }
-            
+
 
                     // bufferAttribute.Start++;
 
@@ -277,21 +375,32 @@ namespace VerilogLanguage
                 } // end of for loop looking at each char in line
 
                 lastChar = "";  // the lastChar is irrelevant when spanning multiple lines, as we are only using it for comment detection
-                if (IsActiveLineComment) {
+                if (!bufferAttribute.IsEmpty)
+                {
                     AppendBufferAttribute();
                 }
-                if (BufferAttributes[BufferAttributes.Count - 1].LineEnd == 0)
+
+                if (BufferAttributes.Count > 0)
                 {
-                    BufferAttributes[BufferAttributes.Count - 1].LineEnd = thisLine.Length -1;
+                    if (BufferAttributes[BufferAttributes.Count - 1].LineEnd == 0)
+                    {
+                        // BufferAttributes[BufferAttributes.Count - 1].LineEnd = thisLine.Length - 1;
+                    }
+
+                    IsActiveLineComment = false;
+
+                    // BufferAttributes[BufferAttributes.Count - 1].End = bufferAttribute.Start;
                 }
-
-                IsActiveLineComment = false;
-
-                BufferAttributes[BufferAttributes.Count - 1].End = bufferAttribute.Start;
                 //bufferAttribute.IsComment = IsActiveLineComment || IsActiveBlockComment;
             }
         }
 
+        /// <summary>
+        ///     TextIsComment - is the text on line [AtLine] starting at position [AtPosition] a comment?
+        /// </summary>
+        /// <param name="AtLine"></param>
+        /// <param name="AtPosition"></param>
+        /// <returns></returns>
         public static bool TextIsComment(int AtLine, int AtPosition)
         {
             bool IsComment = false;
@@ -306,14 +415,21 @@ namespace VerilogLanguage
             return IsComment;
         }
 
+        /// <summary>
+        ///   BracketDepth - parse though the BufferAttributes and find the total bracket depth on line [AtLine], column [AtPosition]. zero based
+        /// </summary>
+        /// <param name="AtLine"></param>
+        /// <param name="AtPosition"></param>
+        /// <returns></returns>
         public static int BracketDepth(int AtLine, int AtPosition)
         {
             int res = 0;
-            for (int i = 0; i < BufferAttributes.Count -1; i++)
+            for (int i = 0; i < BufferAttributes.Count - 1; i++)
             {
                 if (BufferAttributes[i].LineNumber == AtLine)
                 {
-                    if (BufferAttributes[i].LineStart == AtPosition) {
+                    if (BufferAttributes[i].LineStart == AtPosition)
+                    {
                         res = BufferAttributes[i].RoundBracketDepth +
                               BufferAttributes[i].SquareBracketDepth +
                               BufferAttributes[i].SquigglyBracketDepth;

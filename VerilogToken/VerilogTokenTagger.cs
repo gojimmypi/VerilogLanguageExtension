@@ -39,13 +39,15 @@ namespace VerilogLanguage
     internal sealed class VerilogTokenTagger : ITagger<VerilogTokenTag>
     {
 
+        ITextView View { get; set; }
+
         ITextBuffer _buffer;
         IDictionary<string, VerilogTokenTypes> _VerilogTypes;
 
-        internal VerilogTokenTagger(ITextBuffer buffer)
+        internal VerilogTokenTagger(ITextView view, ITextBuffer buffer)
         {
             VerilogGlobals.PerfMon.VerilogTokenTagger_Count++;
-
+            this.View.LayoutChanged += ViewLayoutChanged;
             _buffer = buffer;
 
             //VerilogGlobals._VerilogVariables = new Dictionary<string, VerilogTokenTypes>
@@ -205,6 +207,8 @@ namespace VerilogLanguage
             thisContent =    _buffer.CurrentSnapshot.TextBuffer.ContentType;
             _buffer.CurrentSnapshot.TextBuffer.ChangeContentType(thisContent, obj);
 
+            TagsChanged?.Invoke(this, new SnapshotSpanEventArgs(new SnapshotSpan(_buffer.CurrentSnapshot, 0,
+                    _buffer.CurrentSnapshot.Length)));
 
             // This is probably the only thing we want to do here:
             VerilogGlobals.Reparse(_buffer);
@@ -255,11 +259,11 @@ namespace VerilogLanguage
                    (theString == ")");
         }
 
-        public event EventHandler<SnapshotSpanEventArgs> TagsChanged
-        {
-            add { }
-            remove { }
-        }
+        //public event EventHandler<SnapshotSpanEventArgs> TagsChanged
+        //{
+        //    add { }
+        //    remove { }
+        //}
 
 
 
@@ -831,7 +835,17 @@ namespace VerilogLanguage
                     }
                 }
             }
+        }
 
+        public event EventHandler<SnapshotSpanEventArgs> TagsChanged;
+
+        void ViewLayoutChanged(object sender, TextViewLayoutChangedEventArgs e)
+        {
+            if (e.NewSnapshot != e.OldSnapshot) //make sure that there has really been a change
+            {
+                TagsChanged?.Invoke(this, new SnapshotSpanEventArgs(new SnapshotSpan(_buffer.CurrentSnapshot, 0,
+                        _buffer.CurrentSnapshot.Length)));
+            }
         }
     }
 

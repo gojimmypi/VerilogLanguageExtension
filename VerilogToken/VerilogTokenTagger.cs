@@ -35,6 +35,7 @@ namespace VerilogLanguage
     using Microsoft.VisualStudio.Text.Tagging;
     using Microsoft.VisualStudio.Utilities;
     using CommentHelper;
+//    using VerilogLanguage.Events;
 
     internal sealed class VerilogTokenTagger : ITagger<VerilogTokenTag>
     {
@@ -44,9 +45,20 @@ namespace VerilogLanguage
         ITextBuffer _buffer;
         IDictionary<string, VerilogTokenTypes> _VerilogTypes;
 
+        //private ITagAggregator<VerilogTokenTag> _tagAggregator;
+        // private readonly IEventAggregator _eventAggregator;
+
+
+
+        //internal VerilogTokenTagger(ITextView view, ITextBuffer buffer, IEventAggregator eventAggregator)
         internal VerilogTokenTagger(ITextView view, ITextBuffer buffer)
         {
+
             VerilogGlobals.PerfMon.VerilogTokenTagger_Count++;
+            //_tagAggregator = eventAggregator;
+            //    _tagAggregator.TagsChanged += OnTagsChanged;
+
+            View = view; 
             this.View.LayoutChanged += ViewLayoutChanged;
             _buffer = buffer;
 
@@ -223,7 +235,7 @@ namespace VerilogLanguage
 
             foreach (var line in newSnapshot.Lines)
             {
-                int a = 1;
+                 
             }
             if (ForceRefresh)
             {
@@ -703,6 +715,8 @@ namespace VerilogLanguage
             VerilogToken priorToken = new VerilogToken();
             //Boolean HasPriorBrackets = false; // GetPriorBracketCounts(spans, ref priorToken);
 
+            // see Outlineing\outlineing tagger line 54
+            // SnapshotSpan entire = new SnapshotSpan(spans[0].Start, spans[spans.Count - 1].End).TranslateTo(currentSnapshot, SpanTrackingMode.EdgeExclusive);
 
 
             foreach (SnapshotSpan curSpan in spans)
@@ -838,6 +852,20 @@ namespace VerilogLanguage
         }
 
         public event EventHandler<SnapshotSpanEventArgs> TagsChanged;
+
+
+        //private void OnTagsChanged(object sender, TagsChangedEventArgs e)
+        //{
+        //    //var snapshotSpan = e.Span.GetSnapshotSpan();
+        //    SnapshotSpan entire = new SnapshotSpan(spans[0].Start, spans[spans.Count - 1].End).TranslateTo(currentSnapshot, SpanTrackingMode.EdgeExclusive);
+        //    InvokeTagsChanged(sender, entire);
+
+        //}
+
+        //private void InvokeTagsChanged(object sender, SnapshotSpanEventArgs args)
+        //{
+        //    TagsChanged?.Invoke(sender, args);
+        //}
 
         void ViewLayoutChanged(object sender, TextViewLayoutChangedEventArgs e)
         {

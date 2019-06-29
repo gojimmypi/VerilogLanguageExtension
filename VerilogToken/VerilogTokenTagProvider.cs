@@ -24,30 +24,60 @@
 //
 //***************************************************************************
 
+using System;
+using System.ComponentModel.Composition;
+using Microsoft.VisualStudio.Text;
+using Microsoft.VisualStudio.Text.Editor;
+using Microsoft.VisualStudio.Text.Tagging;
+using Microsoft.VisualStudio.Utilities;
+// using VerilogLanguage.Events;
+
 namespace VerilogLanguage
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.Composition;
-    using Microsoft.VisualStudio.Text;
-    using Microsoft.VisualStudio.Text.Classification;
-    using Microsoft.VisualStudio.Text.Editor;
-    using Microsoft.VisualStudio.Text.Tagging;
-    using Microsoft.VisualStudio.Utilities;
-    using CommentHelper;
-
+    
     // You must export a tagger provider for your tagger. The tagger provider creates an VerilogTokenTag 
     // for a buffer of the "verilog" content type, or else returns an OutliningTagger if the buffer already has one.
     [Export(typeof(IViewTaggerProvider))]
-    [TagType(typeof(TextMarkerTag))]
+    [TagType(typeof(VerilogTokenTag))]
     [ContentType("verilog")] // see _buffer.ContentType (ITextBuffer.ContentType Property)
     internal sealed class VerilogTokenTagProvider : IViewTaggerProvider
     {
+//#pragma warning disable 649 // "field never assigned to" -- field is set by MEF.
+//        [Import]
+//        internal IViewTagAggregatorFactoryService ViewTagAggregatorFactoryService;
+//        // private IEventAggregator _eventAggregator;
+
+//#pragma warning restore 649
+
+//        [ImportingConstructor]
+//        //public VerilogTokenTagProvider(IEventAggregator eventAggregator)
+//        //{
+//        //    _eventAggregator = eventAggregator;
+//        //}
+//        public VerilogTokenTagProvider()
+//        {
+//        }
+
 
         public ITagger<T> CreateTagger<T>(ITextView textView, ITextBuffer buffer) where T : ITag
         {
+            if (textView == null)
+                throw new ArgumentNullException("textView");
+
+            if (buffer == null)
+                throw new ArgumentNullException("buffer");
+
+            if (buffer != textView.TextBuffer)
+                return null;
+
+            //ITagAggregator<VerilogTokenTag> tagAggregator =
+            //       ViewTagAggregatorFactoryService.CreateTagAggregator<VerilogTokenTag>(textView);
+
             // old code:
-            return new VerilogTokenTagger(textView, buffer) as ITagger<T>;
+           //  return new VerilogTokenTagger(textView, buffer) as ITagger<T>;
+
+            return textView.Properties.GetOrCreateSingletonProperty(() =>
+                new VerilogTokenTagger(textView, buffer) as ITagger<T>);
 
             // TODO which is better? above or below?
 

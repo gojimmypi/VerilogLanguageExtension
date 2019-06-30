@@ -182,7 +182,7 @@ namespace VerilogLanguage
             bool AttributesChanged = false;
             bool IsActiveLineComment = false;
             bool IsActiveBlockComment = false;
-            int thisLineStart = 0;
+            //int thisLineStart = 0;
             int thisLineNumber = 0;
 
             BufferAttributes = new List<BufferAttribute>(); // re-initialize the global BufferAttributes
@@ -303,6 +303,8 @@ namespace VerilogLanguage
                             // encountered "/*"
                             if (lastChar == "/")
                             {
+                                //bool changing = TheBuffer.CheckEditAccess();
+
                                 if (IsActiveLineComment || IsActiveBlockComment)
                                 {
                                     AttributesChanged = false; // if there's an active line comment - nothing changes!
@@ -404,7 +406,7 @@ namespace VerilogLanguage
         public static bool TextIsComment(int AtLine, int AtPosition)
         {
             bool IsComment = false;
-            BufferAttribute LastBufferAttribute;
+            //BufferAttribute LastBufferAttribute;
             foreach (var thisBufferAttribute in BufferAttributes)
             {
                 if (thisBufferAttribute.LineNumber == AtLine)

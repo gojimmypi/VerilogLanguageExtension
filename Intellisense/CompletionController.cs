@@ -131,15 +131,15 @@ namespace VerilogLanguage
 
             if (VerilogGlobals.NeedsCursorReposition)
             {
-                SnapshotPoint bp = VerilogGlobals.TheView.Caret.Position.BufferPosition;
-                int ThisLineIndex = VerilogGlobals.TheBuffer.CurrentSnapshot.GetLineNumberFromPosition(bp);
+                //SnapshotPoint bp = VerilogGlobals.TheView.Caret.Position.BufferPosition;
+                //int ThisLineIndex = VerilogGlobals.TheBuffer.CurrentSnapshot.GetLineNumberFromPosition(bp);
 
-                ITextViewLine thisLine = VerilogGlobals.TheView.TextViewLines.GetTextViewLineContainingBufferPosition(bp);
+                //ITextViewLine thisLine = VerilogGlobals.TheView.TextViewLines.GetTextViewLineContainingBufferPosition(bp);
 
                 // SnapshotPoint sp = new SnapshotPoint(VerilogGlobals.TheBuffer.CurrentSnapshot,5);
                 if (VerilogGlobals.TheNewPosition >= 0)
                 {
-                    bp = new SnapshotPoint(VerilogGlobals.TheBuffer.CurrentSnapshot, VerilogGlobals.TheNewPosition);
+                    SnapshotPoint bp  = new SnapshotPoint(VerilogGlobals.TheBuffer.CurrentSnapshot, VerilogGlobals.TheNewPosition);
                     VerilogGlobals.TheView.Caret.MoveTo(bp);
                 }
                 VerilogGlobals.NeedsCursorReposition = false;

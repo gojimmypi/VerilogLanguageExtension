@@ -24,7 +24,7 @@
 //
 //***************************************************************************
 
-namespace VerilogLanguage
+namespace VerilogLanguage.VerilogToken
 {
     using System;
     using System.Collections.Generic;

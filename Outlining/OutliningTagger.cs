@@ -77,7 +77,7 @@ namespace VerilogLanguage.Outlining
             // If this isn't the most up-to-date version of the buffer, then ignore it for now (we'll eventually get another change event).
             if (e.After != buffer.CurrentSnapshot)
                 return;
-            this.ReParse();
+            //this.ReParse();
         }
 
         // Step #9: Add a method that parses the buffer. The example given here is for illustration only. 

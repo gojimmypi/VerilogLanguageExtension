@@ -23,6 +23,7 @@ using Microsoft.VisualStudio.Utilities;
 using Microsoft.VisualStudio;
 using System.Windows;
 using System.Runtime.InteropServices;
+using Microsoft.VisualStudio.Text.Formatting;
 
 namespace VerilogLanguage
 {
@@ -104,6 +105,7 @@ namespace VerilogLanguage
 
             if (!handled)
             {
+
                 hresult = Next.Exec(pguidCmdGroup, nCmdID, nCmdexecopt, pvaIn, pvaOut);
             }
 
@@ -127,6 +129,24 @@ namespace VerilogLanguage
                 }
             }
 
+            if (VerilogGlobals.NeedsCursorReposition)
+            {
+                SnapshotPoint bp = VerilogGlobals.TheView.Caret.Position.BufferPosition;
+                int ThisLineIndex = VerilogGlobals.TheBuffer.CurrentSnapshot.GetLineNumberFromPosition(bp);
+
+                ITextViewLine thisLine = VerilogGlobals.TheView.TextViewLines.GetTextViewLineContainingBufferPosition(bp);
+
+                // SnapshotPoint sp = new SnapshotPoint(VerilogGlobals.TheBuffer.CurrentSnapshot,5);
+                if (VerilogGlobals.TheNewPosition >= 0)
+                {
+                    bp = new SnapshotPoint(VerilogGlobals.TheBuffer.CurrentSnapshot, VerilogGlobals.TheNewPosition);
+                    VerilogGlobals.TheView.Caret.MoveTo(bp);
+                }
+                VerilogGlobals.NeedsCursorReposition = false;
+
+                //thisLine = VerilogGlobals.TheView.TextViewLines[5];
+                //VerilogGlobals.TheView.Caret.MoveTo(thisLine);
+            }
             return hresult;
         }
 

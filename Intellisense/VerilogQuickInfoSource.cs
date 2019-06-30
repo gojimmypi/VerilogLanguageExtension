@@ -19,7 +19,7 @@ using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Tagging;
 using System.ComponentModel.Composition;
 using Microsoft.VisualStudio.Utilities;
-
+using VerilogLanguage.VerilogToken;
 namespace VerilogLanguage
 {
     /// <summary>
@@ -36,7 +36,7 @@ namespace VerilogLanguage
 
         public IQuickInfoSource TryCreateQuickInfoSource(ITextBuffer textBuffer)
         {
-            return new VerilogQuickInfoSource(textBuffer, aggService.CreateTagAggregator<VerilogTokenTag>(textBuffer));
+            return new VerilogQuickInfoSource(textBuffer, aggService.CreateTagAggregator<VerilogToken.VerilogTokenTag>(textBuffer));
         }
     }
 
@@ -45,14 +45,14 @@ namespace VerilogLanguage
     /// </summary>
     class VerilogQuickInfoSource : IQuickInfoSource
     {
-        private ITagAggregator<VerilogTokenTag> _aggregator;
+        private ITagAggregator<VerilogToken.VerilogTokenTag> _aggregator;
         private ITextBuffer _buffer;
         private bool _disposed = false;
-        IDictionary<VerilogTokenTypes, string> _VerilogKeywordHoverText;
+        IDictionary<VerilogToken.VerilogTokenTypes, string> _VerilogKeywordHoverText;
         //IDictionary<string, string> _VerilogVariableHoverText;
 
 
-        public VerilogQuickInfoSource(ITextBuffer buffer, ITagAggregator<VerilogTokenTag> aggregator)
+        public VerilogQuickInfoSource(ITextBuffer buffer, ITagAggregator<VerilogToken.VerilogTokenTag> aggregator)
         {
             _aggregator = aggregator;
             _buffer = buffer;
@@ -66,7 +66,7 @@ namespace VerilogLanguage
             //    // description text thanks: https://www.xilinx.com/support/documentation/sw_manuals/xilinx11/ite_r_verilog_reserved_words.htm
             //};
 
-            _VerilogKeywordHoverText = new Dictionary<VerilogTokenTypes, string>
+            _VerilogKeywordHoverText = new Dictionary<VerilogToken.VerilogTokenTypes, string>
             {
                 // description text thanks: https://www.xilinx.com/support/documentation/sw_manuals/xilinx11/ite_r_verilog_reserved_words.htm
                 [VerilogTokenTypes.Verilog_always] = "An always represents a block of code in a design.",
@@ -173,7 +173,7 @@ namespace VerilogLanguage
 
 
 
-            foreach (IMappingTagSpan<VerilogTokenTag> curTag in _aggregator.GetTags(new SnapshotSpan(triggerPoint, triggerPoint)))
+            foreach (IMappingTagSpan<VerilogToken.VerilogTokenTag> curTag in _aggregator.GetTags(new SnapshotSpan(triggerPoint, triggerPoint)))
             {
                 // here we add hover text at runtime 
                 if (_VerilogKeywordHoverText.Keys.Contains(curTag.Tag.type)) {

@@ -208,7 +208,7 @@ namespace VerilogLanguage.VerilogToken
                 {
                     VerilogGlobals.Reparse(e.After.TextBuffer);
                     VerilogGlobals.ForceRefresh();
-
+                    VerilogGlobals.TheNewPosition += theNewText.Length;
                     VerilogGlobals.NeedsFullRefresh = false;
                     VerilogGlobals.NeedsCursorReposition = true;
                 }

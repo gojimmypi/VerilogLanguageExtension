@@ -34,9 +34,13 @@ namespace VerilogLanguage
             var point = TheView.Caret.Position.BufferPosition;
             TheNewPosition = point.Position;
             string CurrentBufferText = TheBuffer.CurrentSnapshot.GetText();
-            int pos = TheView.Caret.Position.BufferPosition.Position - 1;
+            int pos = TheView.Caret.Position.BufferPosition.Position;
             if (pos < 0) pos = 0;
-             
+            if (pos > TheBuffer.CurrentSnapshot.GetText().Length)
+            {
+                pos = 0;
+                TheNewPosition = 0;
+            }
             string part1 = CurrentBufferText.Substring(0, pos);
             string part2 = CurrentBufferText.Substring(pos);
      

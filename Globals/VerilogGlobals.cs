@@ -3,11 +3,83 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VerilogLanguage.VerilogToken;
+using Microsoft.VisualStudio.Text;
+using Microsoft.VisualStudio.Text.Editor;
+using Microsoft.VisualStudio.Text.Formatting;
+using Microsoft.VisualStudio.Utilities;
 
 namespace VerilogLanguage
 {
     public static partial class VerilogGlobals
     {
+        public static bool NeedsFullRefresh = false;
+        //public static bool FullRefreshActive = false;
+        public static bool HasForceRefresh = false;
+        public static bool NeedsCursorReposition = false;
+        public static ITextBuffer TheBuffer;
+        public static ITextView TheView;
+        public static int TheNewPosition = -1;
+        public static void ForceRefresh()
+        {
+            NeedsFullRefresh = false;
+            NeedsCursorReposition = true;
+            //return;
+            //SnapshotPoint bp = TheView.Caret.Position.BufferPosition;
+            // TheView.Caret.MoveTo(bp);
+            //int ThisLineIndex = TheBuffer.CurrentSnapshot.GetLineNumberFromPosition(bp);
+            //ITextViewLine thisLine = TheView.TextViewLines.GetTextViewLineContainingBufferPosition(bp);
+            //TheView.Caret.MoveTo(thisLine);
+
+            var point = TheView.Caret.Position.BufferPosition;
+            TheNewPosition = point.Position;
+            string CurrentBufferText = TheBuffer.CurrentSnapshot.GetText();
+            int pos = TheView.Caret.Position.BufferPosition.Position - 1;
+            if (pos < 0) pos = 0;
+             
+            string part1 = CurrentBufferText.Substring(0, pos);
+            string part2 = CurrentBufferText.Substring(pos);
+     
+
+            //using (ITextEdit e = TheBuffer.CreateEdit())
+            //{
+            //    e.Replace(0, TheBuffer.CurrentSnapshot.Length, CurrentBufferText);
+            //    e.Apply();
+            //}
+            // ITextSnapshotLine theLine = TheBuffer.CurrentSnapshot.TextBuffer. ;
+            // https://stackoverflow.com/questions/42712164/replacing-text-in-document-while-preserving-the-caret
+            // TheView.Caret.MoveTo(TheView.Caret.Position.BufferPosition);
+
+
+            using (ITextEdit e = TheBuffer.CreateEdit())
+            {
+                e.Replace(pos, part2.Length, part2);
+                e.Apply();
+            }
+
+            if  (part1.Length > 0)
+            {
+                using (ITextEdit e = TheBuffer.CreateEdit())
+                {
+                    e.Replace(0, part1.Length, part1);
+                    e.Apply();
+                }
+            }
+            
+            
+            //e.Replace(0, TheBuffer.CurrentSnapshot.Length - 1, "");
+            //e.Apply();
+
+            //e = TheBuffer.CreateEdit(); // this s
+            //e.Replace(0, TheBuffer.CurrentSnapshot.GetText().Length, CurrentBufferText);
+            //e.Apply();
+
+
+            NeedsFullRefresh = false;
+            HasForceRefresh = true;
+        }
+
+
         /// <summary>
         ///   VerilogVariableHoverText - dictionary collection of keywords and hover text (variable names and definitions)
         /// </summary>

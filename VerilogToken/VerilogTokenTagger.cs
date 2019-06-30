@@ -24,7 +24,7 @@
 //
 //***************************************************************************
 
-namespace VerilogLanguage
+namespace VerilogLanguage.VerilogToken
 {
     using System;
     using System.Collections.Generic;
@@ -35,31 +35,18 @@ namespace VerilogLanguage
     using Microsoft.VisualStudio.Text.Tagging;
     using Microsoft.VisualStudio.Utilities;
     using CommentHelper;
-//    using VerilogLanguage.Events;
 
     internal sealed class VerilogTokenTagger : ITagger<VerilogTokenTag>
     {
 
-        ITextView View { get; set; }
-
         ITextBuffer _buffer;
         IDictionary<string, VerilogTokenTypes> _VerilogTypes;
 
-        //private ITagAggregator<VerilogTokenTag> _tagAggregator;
-        // private readonly IEventAggregator _eventAggregator;
-
-
-
-        //internal VerilogTokenTagger(ITextView view, ITextBuffer buffer, IEventAggregator eventAggregator)
-        internal VerilogTokenTagger(ITextView view, ITextBuffer buffer)
+        internal VerilogTokenTagger(ITextBuffer buffer)
         {
-
             VerilogGlobals.PerfMon.VerilogTokenTagger_Count++;
-            //_tagAggregator = eventAggregator;
-            //    _tagAggregator.TagsChanged += OnTagsChanged;
 
-            View = view; 
-            this.View.LayoutChanged += ViewLayoutChanged;
+            VerilogGlobals.TheBuffer = buffer;
             _buffer = buffer;
 
             //VerilogGlobals._VerilogVariables = new Dictionary<string, VerilogTokenTypes>
@@ -199,54 +186,90 @@ namespace VerilogLanguage
         //{
         //    public int EndLine { get; set; }
         //}
-        private bool ForceRefresh = false;
+        //bool ThisReparseActive = false;
+
         void BufferChanged(object sender, TextContentChangedEventArgs e)
         {
             // If this isn't the most up-to-date version of the buffer, then ignore it for now (we'll eventually get another change event).
-           if (e.After != _buffer.CurrentSnapshot)
+            if (e.After != _buffer.CurrentSnapshot)
                 return;
+            
+            if (VerilogGlobals.HasForceRefresh)
+            {
+                VerilogGlobals.HasForceRefresh = false;
+                return;
+            }
 
- 
-             ForceRefresh = true;
-            this.ReParse();
+            string theNewText = e.Changes[0].NewText;
+            string theOldText = e.Changes[0].OldText;
+            if (theNewText != theOldText)
+            {
+                if (IsRefreshChar(theNewText) || IsRefreshChar(theOldText))
+                {
+                    VerilogGlobals.Reparse(e.After.TextBuffer);
+                    VerilogGlobals.ForceRefresh();
+
+                    VerilogGlobals.NeedsFullRefresh = false;
+                    VerilogGlobals.NeedsCursorReposition = true;
+                }
+            }
         }
 
         void ReParse()
         {
-            // TODO: remove crap
-            object obj = null; 
-            IContentType thisContent;
-            thisContent =    _buffer.CurrentSnapshot.TextBuffer.ContentType;
-            _buffer.CurrentSnapshot.TextBuffer.ChangeContentType(thisContent, obj);
-
-            TagsChanged?.Invoke(this, new SnapshotSpanEventArgs(new SnapshotSpan(_buffer.CurrentSnapshot, 0,
-                    _buffer.CurrentSnapshot.Length)));
-
             // This is probably the only thing we want to do here:
-            VerilogGlobals.Reparse(_buffer);
+            // VerilogGlobals.Reparse(_buffer);
 
-            ITextSnapshot newSnapshot = _buffer.CurrentSnapshot;
-            //List<Region> newRegions = new List<Region>();
+            // TODO: remove crap
+            //object obj = null;
+            //IContentType thisContent;
+            //thisContent = _buffer.CurrentSnapshot.TextBuffer.ContentType;
+            //_buffer.CurrentSnapshot.TextBuffer.ChangeContentType(thisContent, obj);
+
+
+
+
+            //            TagsChanged?.Invoke(this, 
+            //                                new SnapshotSpanEventArgs(new SnapshotSpan(_buffer.CurrentSnapshot, 0, _buffer.CurrentSnapshot.Length)));
+
+            //           var tempEvent = TagsChanged;
+            //           if (tempEvent != null)
+            //               tempEvent(this, new SnapshotSpanEventArgs(new SnapshotSpan(_buffer.CurrentSnapshot, 0,
+            //                   _buffer.CurrentSnapshot.Length)));
+
+            //           ITextSnapshot newSnapshot = _buffer.CurrentSnapshot;
+            //           //List<Region> newRegions = new List<Region>();
 
             ////keep the current (deepest) partial region, which will have
             //// references to any parent partial regions.
             //PartialRegion currentRegion = null;
 
 
-            foreach (var line in newSnapshot.Lines)
-            {
-                 
-            }
-            if (ForceRefresh)
-            {
-                // this actually adds a copy, and does not replace (also caused infinite loop, as it triggers BufferChanged)
-                //_buffer.Replace(new Span()// _buffer.CurrentSnapshot..CurrentSnapshot.
-                //                , _buffer.CurrentSnapshot.GetText()); // = newSnapshot;
-            }
-            ForceRefresh = false;
+            //            foreach (var line in newSnapshot.Lines)
+            //            {
+            //                //int a = 1;
+            //            }
+            //            if (ForceRefresh)
+            //            {
+            // this actually adds a copy, and does not replace (also caused infinite loop, as it triggers BufferChanged)
+            //_buffer.Replace(new Span()// _buffer.CurrentSnapshot..CurrentSnapshot.
+            //                , _buffer.CurrentSnapshot.GetText()); // = newSnapshot;
+            //            }
+            //            ForceRefresh = false;
         }
 
 
+        static public bool IsRefreshChar(string theString)
+        {
+            return (theString.Contains("/")) ||
+                   (theString.Contains("*")) ||
+                   (theString.Contains("[")) ||
+                   (theString.Contains("]")) ||
+                   (theString.Contains("}")) ||
+                   (theString.Contains("{")) ||
+                   (theString.Contains("(")) ||
+                   (theString.Contains(")"));  
+        }
 
         static public bool IsDelimeter(string theString)
         {
@@ -704,7 +727,12 @@ namespace VerilogLanguage
         }
 
 
-
+        public event EventHandler<SnapshotSpanEventArgs> TagsChanged;
+        //public event EventHandler<SnapshotSpanEventArgs> TagsChanged
+        //{
+        //    add { }
+        //    remove { }
+        //}
 
         public IEnumerable<ITagSpan<VerilogTokenTag>> GetTags(NormalizedSnapshotSpanCollection spans)
         {
@@ -715,9 +743,7 @@ namespace VerilogLanguage
             VerilogToken priorToken = new VerilogToken();
             //Boolean HasPriorBrackets = false; // GetPriorBracketCounts(spans, ref priorToken);
 
-            // see Outlineing\outlineing tagger line 54
-            // SnapshotSpan entire = new SnapshotSpan(spans[0].Start, spans[spans.Count - 1].End).TranslateTo(currentSnapshot, SpanTrackingMode.EdgeExclusive);
-
+            
 
             foreach (SnapshotSpan curSpan in spans)
             {
@@ -851,7 +877,7 @@ namespace VerilogLanguage
             }
         }
 
-        public event EventHandler<SnapshotSpanEventArgs> TagsChanged;
+        // public event EventHandler<SnapshotSpanEventArgs> TagsChanged;
 
 
         //private void OnTagsChanged(object sender, TagsChangedEventArgs e)

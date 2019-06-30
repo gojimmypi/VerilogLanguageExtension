@@ -25,7 +25,7 @@
 //***************************************************************************
 
 
-namespace VerilogLanguage
+namespace VerilogLanguage.VerilogToken
 {
     public enum VerilogTokenTypes
     {

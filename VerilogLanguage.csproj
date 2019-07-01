@@ -183,8 +183,8 @@
     <Compile Include="Highlighting\HighlightWordTag.cs" />
     <Compile Include="Highlighting\HighlightWordTagger.cs" />
     <Compile Include="Highlighting\HighlightWordTaggerProvider.cs" />
-    <Compile Include="Intellisense\CompletionController.cs" />
-    <Compile Include="Intellisense\CompletionSource.cs" />
+    <Compile Include="Completion\CompletionController.cs" />
+    <Compile Include="Completion\CompletionSource.cs" />
     <Compile Include="Intellisense\VerilogQuickInfoSource.cs" />
     <Compile Include="Outlining\OutliningTagger.cs" />
     <Compile Include="Outlining\OutliningTaggerProvider.cs" />

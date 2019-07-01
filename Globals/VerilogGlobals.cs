@@ -17,7 +17,7 @@ namespace VerilogLanguage
         public static bool HasForceRefresh = false;
         public static bool NeedsCursorReposition = false;
         public static int TheNewPosition = -1; // this is a char index into the entire document for saved cursor position
-        public static double PriorFirstVisibleLineTop = -1; // [TheView.TextViewLines.FirstVisibleLine.Top] prior to edits
+        public static double PriorVerticalDistance = -1; // [TheView.TextViewLines.FirstVisibleLine.Top] prior to edits
 
         public static ITextBuffer TheBuffer;
         public static ITextView TheView; // assigned in QuickInfoControllerProvider see https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.editor.itextview?redirectedfrom=MSDN&view=visualstudiosdk-2017
@@ -36,8 +36,7 @@ namespace VerilogLanguage
             var point = TheView.Caret.Position.BufferPosition;
             TheNewPosition = point.Position;
 
-            // TODO renmae the next var to PriorVerticalDistance
-            PriorFirstVisibleLineTop = TheView.GetTextViewLineContainingBufferPosition(point).TextTop - VerilogGlobals.TheView.ViewportTop;
+            PriorVerticalDistance = TheView.GetTextViewLineContainingBufferPosition(point).TextTop - VerilogGlobals.TheView.ViewportTop;
             // TheView.TextViewLines.FirstVisibleLine.Top;
 
             if (!TheView.TextViewLines.FirstVisibleLine.ContainsBufferPosition(point))

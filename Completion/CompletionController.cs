@@ -191,7 +191,7 @@ namespace VerilogLanguage
                     // VerilogGlobals.TheView.GetTextViewLineContainingBufferPosition(bp).TextHeight * 6
 
                     VerilogGlobals.TheView.DisplayTextLineContainingBufferPosition(bp,
-                           VerilogGlobals.PriorFirstVisibleLineTop, // delta ViewportTop
+                           VerilogGlobals.PriorVerticalDistance, // delta ViewportTop
                            ViewRelativePosition.Top);
 
                     VerilogGlobals.TheView.Caret.MoveTo(bp);

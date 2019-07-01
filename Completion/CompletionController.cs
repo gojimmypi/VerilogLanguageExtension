@@ -177,10 +177,12 @@ namespace VerilogLanguage
                 //
                 // ITextViewLine thisLine = VerilogGlobals.TheView.TextViewLines.GetTextViewLineContainingBufferPosition(bp);
                 //
-                if (VerilogGlobals.TheNewPosition > VerilogGlobals.TheBuffer.CurrentSnapshot.GetText().Length)
+                int CurrentLength = VerilogGlobals.TheBuffer.CurrentSnapshot.GetText().Length;
+                if (VerilogGlobals.TheNewPosition > CurrentLength)
                 {
-                    VerilogGlobals.TheNewPosition = VerilogGlobals.TheBuffer.CurrentSnapshot.GetText().Length;
+                    VerilogGlobals.TheNewPosition = CurrentLength;
                 }
+
                 if (VerilogGlobals.TheNewPosition >= 0)
                 {
                     // Note that if we try to do this when actually making the changes, an error is encountered:

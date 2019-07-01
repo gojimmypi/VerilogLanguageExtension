@@ -206,7 +206,7 @@ namespace VerilogLanguage.VerilogToken
             {
                 if (IsRefreshChar(theNewText) || IsRefreshChar(theOldText))
                 {
-                    VerilogGlobals.Reparse(e.After.TextBuffer);
+                    VerilogGlobals.Reparse(_buffer); // note that above, we are checking that the e.After is the same as the _buffer
                     VerilogGlobals.ForceRefresh();
                     VerilogGlobals.TheNewPosition += theNewText.Length;
                     VerilogGlobals.NeedsFullRefresh = false;

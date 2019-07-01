@@ -43,7 +43,7 @@ namespace VerilogLanguage
             }
             string part1 = CurrentBufferText.Substring(0, pos);
             string part2 = CurrentBufferText.Substring(pos);
-     
+
 
             //using (ITextEdit e = TheBuffer.CreateEdit())
             //{
@@ -55,13 +55,14 @@ namespace VerilogLanguage
             // TheView.Caret.MoveTo(TheView.Caret.Position.BufferPosition);
 
 
+            // the two part replace, unfortunately still moves bufferpoint position
             using (ITextEdit e = TheBuffer.CreateEdit())
             {
                 e.Replace(pos, part2.Length, part2);
                 e.Apply();
             }
 
-            if  (part1.Length > 0)
+            if (part1.Length > 0)
             {
                 using (ITextEdit e = TheBuffer.CreateEdit())
                 {
@@ -69,17 +70,17 @@ namespace VerilogLanguage
                     e.Apply();
                 }
             }
-            
-            
+
+
             //e.Replace(0, TheBuffer.CurrentSnapshot.Length - 1, "");
             //e.Apply();
 
-            //e = TheBuffer.CreateEdit(); // this s
-            //e.Replace(0, TheBuffer.CurrentSnapshot.GetText().Length, CurrentBufferText);
-            //e.Apply();
-
-
-            NeedsFullRefresh = false;
+            //using (ITextEdit e = TheBuffer.CreateEdit())
+            //{
+            //    e.Replace(0, TheBuffer.CurrentSnapshot.GetText().Length, CurrentBufferText);
+            //    e.Apply();
+            //};  
+                NeedsFullRefresh = false;
             HasForceRefresh = true;
         }
 

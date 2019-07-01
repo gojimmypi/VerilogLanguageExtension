@@ -194,13 +194,6 @@ namespace VerilogLanguage.VerilogToken
             if (e.After != _buffer.CurrentSnapshot)
                 return;
             
-            // if we're not here because of a known, unprocessed, forced refresh - then we are done
-            if (VerilogGlobals.HasForceRefresh) // TODO - should this be !NeedsFullRefresh ?
-            {
-                VerilogGlobals.HasForceRefresh = false;
-                return;
-            }
-
             string theNewText = e.Changes[0].NewText;
             string theOldText = e.Changes[0].OldText;
 
@@ -214,56 +207,12 @@ namespace VerilogLanguage.VerilogToken
                     VerilogGlobals.Reparse(_buffer); // note that above, we are checking that the e.After is the same as the _buffer
                     VerilogGlobals.ForceRefresh();
                     VerilogGlobals.TheNewPosition += theNewText.Length;
-                    VerilogGlobals.NeedsFullRefresh = false;
                     VerilogGlobals.NeedsCursorReposition = true;
                 }
             }
         }
 
-        void ReParse()
-        {
-            // This is probably the only thing we want to do here:
-            // VerilogGlobals.Reparse(_buffer);
-
-            // TODO: remove crap
-            //object obj = null;
-            //IContentType thisContent;
-            //thisContent = _buffer.CurrentSnapshot.TextBuffer.ContentType;
-            //_buffer.CurrentSnapshot.TextBuffer.ChangeContentType(thisContent, obj);
-
-
-
-
-            //            TagsChanged?.Invoke(this, 
-            //                                new SnapshotSpanEventArgs(new SnapshotSpan(_buffer.CurrentSnapshot, 0, _buffer.CurrentSnapshot.Length)));
-
-            //           var tempEvent = TagsChanged;
-            //           if (tempEvent != null)
-            //               tempEvent(this, new SnapshotSpanEventArgs(new SnapshotSpan(_buffer.CurrentSnapshot, 0,
-            //                   _buffer.CurrentSnapshot.Length)));
-
-            //           ITextSnapshot newSnapshot = _buffer.CurrentSnapshot;
-            //           //List<Region> newRegions = new List<Region>();
-
-            ////keep the current (deepest) partial region, which will have
-            //// references to any parent partial regions.
-            //PartialRegion currentRegion = null;
-
-
-            //            foreach (var line in newSnapshot.Lines)
-            //            {
-            //                //int a = 1;
-            //            }
-            //            if (ForceRefresh)
-            //            {
-            // this actually adds a copy, and does not replace (also caused infinite loop, as it triggers BufferChanged)
-            //_buffer.Replace(new Span()// _buffer.CurrentSnapshot..CurrentSnapshot.
-            //                , _buffer.CurrentSnapshot.GetText()); // = newSnapshot;
-            //            }
-            //            ForceRefresh = false;
-        }
-
-
+        // some characters, when encountered will need to have a full refresh, as they can have far-reaching consequences.
         static public bool IsRefreshChar(string theString)
         {
             return (theString.Contains("/")) ||

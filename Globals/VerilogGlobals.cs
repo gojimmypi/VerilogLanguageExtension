@@ -13,7 +13,6 @@ namespace VerilogLanguage
 {
     public static partial class VerilogGlobals  
     {
-        public static bool NeedsFullRefresh = false;
         public static bool HasForceRefresh = false;
         public static bool NeedsCursorReposition = false;
         public static int TheNewPosition = -1; // this is a char index into the entire document for saved cursor position
@@ -23,7 +22,6 @@ namespace VerilogLanguage
         public static ITextView TheView; // assigned in QuickInfoControllerProvider see https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.editor.itextview?redirectedfrom=MSDN&view=visualstudiosdk-2017
         public static void ForceRefresh()
         {
-            NeedsFullRefresh = false;
             NeedsCursorReposition = true;
             //return;
             //SnapshotPoint bp = TheView.Caret.Position.BufferPosition;
@@ -36,17 +34,12 @@ namespace VerilogLanguage
             var point = TheView.Caret.Position.BufferPosition;
             TheNewPosition = point.Position;
 
+            // Get the Prior Vertical Distance of the TextViewLine at the caret position (we'll want to put it back later in the controller!)
+            //
+            // See https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.formatting.itextviewline?view=visualstudiosdk-2017
+            //
+
             PriorVerticalDistance = TheView.GetTextViewLineContainingBufferPosition(point).TextTop - VerilogGlobals.TheView.ViewportTop;
-            // TheView.TextViewLines.FirstVisibleLine.Top;
-
-            if (!TheView.TextViewLines.FirstVisibleLine.ContainsBufferPosition(point))
-            {
-                TheNewPosition = TheNewPosition; // TODO: why does does this occur?
-            }
-
-
-            //TheView.TextViewLines.FirstVisibleLine.
-            //TheView.DisplayTextLineContainingBufferPosition( = point;
 
             string CurrentBufferText = TheBuffer.CurrentSnapshot.GetText();
             int pos = TheView.Caret.Position.BufferPosition.Position;
@@ -86,16 +79,12 @@ namespace VerilogLanguage
                 }
             }
 
-
-            //e.Replace(0, TheBuffer.CurrentSnapshot.Length - 1, "");
-            //e.Apply();
-
             //using (ITextEdit e = TheBuffer.CreateEdit())
             //{
             //    e.Replace(0, TheBuffer.CurrentSnapshot.GetText().Length, CurrentBufferText);
             //    e.Apply();
             //};  
-                NeedsFullRefresh = false;
+
             HasForceRefresh = true;
         }
 

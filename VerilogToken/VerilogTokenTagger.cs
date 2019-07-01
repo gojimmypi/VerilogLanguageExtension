@@ -194,7 +194,8 @@ namespace VerilogLanguage.VerilogToken
             if (e.After != _buffer.CurrentSnapshot)
                 return;
             
-            if (VerilogGlobals.HasForceRefresh)
+            // if we're not here because of a known, unprocessed, forced refresh - then we are done
+            if (VerilogGlobals.HasForceRefresh) // TODO - should this be !NeedsFullRefresh ?
             {
                 VerilogGlobals.HasForceRefresh = false;
                 return;
@@ -202,6 +203,10 @@ namespace VerilogLanguage.VerilogToken
 
             string theNewText = e.Changes[0].NewText;
             string theOldText = e.Changes[0].OldText;
+
+            // we are only interested when the old and new text are different. 
+            // yes, the event seems to be triggered even with no apparent changes
+            // 
             if (theNewText != theOldText)
             {
                 if (IsRefreshChar(theNewText) || IsRefreshChar(theOldText))

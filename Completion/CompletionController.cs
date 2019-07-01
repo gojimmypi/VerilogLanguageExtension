@@ -129,15 +129,24 @@ namespace VerilogLanguage
                 }
             }
 
+            // As all other attempts to force a re-scan of the entire document for reclassification have failed,
+            // when special characters wioth wide-ranging highlighting influence (e.g. "/*" are encountered - 
+            // the entire document is replaced. Even attempts to first replace the text before the cursor, and then 
+            // after the cursor... results in the cursor being repositioned at the end of the document. :/
+            //
+            // when this undesired cursor positioning occurs, we'll need to put it back just before completion.
+            //
+            // See changes detected in event handler VerilogTokenTagger.BufferChanged
+            // 
             if (VerilogGlobals.NeedsCursorReposition)
             {
                 //SnapshotPoint bp = VerilogGlobals.TheView.Caret.Position.BufferPosition;
                 //int ThisLineIndex = VerilogGlobals.TheBuffer.CurrentSnapshot.GetLineNumberFromPosition(bp);
-
+                //
                 //ITextViewLine thisLine = VerilogGlobals.TheView.TextViewLines.GetTextViewLineContainingBufferPosition(bp);
-
+                //
                 // SnapshotPoint sp = new SnapshotPoint(VerilogGlobals.TheBuffer.CurrentSnapshot,5);
-
+                //
                 // See https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.formatting.itextviewline?view=visualstudiosdk-2017
                 // Remarks
                 //
@@ -162,23 +171,30 @@ namespace VerilogLanguage
                 // simply change the view's ViewportTop property (causing the lines to move on the screen even 
                 // though their y-coordinates have not changed).
                 // 
-                // Distances in the text rendering coordinate system correspond to logical pixels.If the text 
+                // Distances in the text rendering coordinate system correspond to logical pixels. If the text 
                 // rendering surface is displayed without any scaling transform, then 1 unit in the text rendering
                 // coordinate system corresponds to one pixel on the display.
-
+                //
+                // ITextViewLine thisLine = VerilogGlobals.TheView.TextViewLines.GetTextViewLineContainingBufferPosition(bp);
+                //
                 if (VerilogGlobals.TheNewPosition > VerilogGlobals.TheBuffer.CurrentSnapshot.GetText().Length)
                 {
                     VerilogGlobals.TheNewPosition = VerilogGlobals.TheBuffer.CurrentSnapshot.GetText().Length;
                 }
                 if (VerilogGlobals.TheNewPosition >= 0)
                 {
+                    // Note that if we try to do this when actually making the changes, an error is encountered:
+                    // System.ArgumentException: 'The supplied SnapshotPoint is on an incorrect snapshot.'
+                    //
                     SnapshotPoint bp  = new SnapshotPoint(VerilogGlobals.TheBuffer.CurrentSnapshot, VerilogGlobals.TheNewPosition);
-                    ITextViewLine thisLine = VerilogGlobals.TheView.TextViewLines.GetTextViewLineContainingBufferPosition(bp);
-                    VerilogGlobals.TheView.Caret.MoveTo(bp);
+
+                    // VerilogGlobals.TheView.GetTextViewLineContainingBufferPosition(bp).TextHeight * 6
+
                     VerilogGlobals.TheView.DisplayTextLineContainingBufferPosition(bp,
-                           VerilogGlobals.TheView.TextViewLines.FirstVisibleLine.Top - VerilogGlobals.TheView.ViewportTop,
+                           VerilogGlobals.PriorFirstVisibleLineTop, // delta ViewportTop
                            ViewRelativePosition.Top);
 
+                    VerilogGlobals.TheView.Caret.MoveTo(bp);
                 }
                 VerilogGlobals.NeedsCursorReposition = false;
 

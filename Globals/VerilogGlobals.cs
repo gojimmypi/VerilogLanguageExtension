@@ -11,15 +11,16 @@ using Microsoft.VisualStudio.Utilities;
 
 namespace VerilogLanguage
 {
-    public static partial class VerilogGlobals
+    public static partial class VerilogGlobals  
     {
         public static bool NeedsFullRefresh = false;
-        //public static bool FullRefreshActive = false;
         public static bool HasForceRefresh = false;
         public static bool NeedsCursorReposition = false;
+        public static int TheNewPosition = -1; // this is a char index into the entire document for saved cursor position
+        public static double PriorFirstVisibleLineTop = -1; // [TheView.TextViewLines.FirstVisibleLine.Top] prior to edits
+
         public static ITextBuffer TheBuffer;
-        public static ITextView TheView; // see https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.editor.itextview?redirectedfrom=MSDN&view=visualstudiosdk-2017
-        public static int TheNewPosition = -1;
+        public static ITextView TheView; // assigned in QuickInfoControllerProvider see https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.editor.itextview?redirectedfrom=MSDN&view=visualstudiosdk-2017
         public static void ForceRefresh()
         {
             NeedsFullRefresh = false;
@@ -31,15 +32,30 @@ namespace VerilogLanguage
             //ITextViewLine thisLine = TheView.TextViewLines.GetTextViewLineContainingBufferPosition(bp);
             //TheView.Caret.MoveTo(thisLine);
 
+            // save some values to be used in the completion controller 
             var point = TheView.Caret.Position.BufferPosition;
             TheNewPosition = point.Position;
+
+            // TODO renmae the next var to PriorVerticalDistance
+            PriorFirstVisibleLineTop = TheView.GetTextViewLineContainingBufferPosition(point).TextTop - VerilogGlobals.TheView.ViewportTop;
+            // TheView.TextViewLines.FirstVisibleLine.Top;
+
+            if (!TheView.TextViewLines.FirstVisibleLine.ContainsBufferPosition(point))
+            {
+                TheNewPosition = TheNewPosition; // TODO: why does does this occur?
+            }
+
+
+            //TheView.TextViewLines.FirstVisibleLine.
+            //TheView.DisplayTextLineContainingBufferPosition( = point;
+
             string CurrentBufferText = TheBuffer.CurrentSnapshot.GetText();
             int pos = TheView.Caret.Position.BufferPosition.Position;
             if (pos < 0) pos = 0;
             if (pos > TheBuffer.CurrentSnapshot.GetText().Length)
             {
-                pos = 0;
-                TheNewPosition = 0;
+                pos = TheBuffer.CurrentSnapshot.GetText().Length;
+                // TheNewPosition = 0;
             }
             string part1 = CurrentBufferText.Substring(0, pos);
             string part2 = CurrentBufferText.Substring(pos);
@@ -215,5 +231,9 @@ namespace VerilogLanguage
 
         }  // end void BuildHoverItems
 
-    }
-}
+        public static void Dispose()
+        {
+             // TODO cleanup
+        }
+    } // class
+} // namespace

@@ -137,10 +137,48 @@ namespace VerilogLanguage
                 //ITextViewLine thisLine = VerilogGlobals.TheView.TextViewLines.GetTextViewLineContainingBufferPosition(bp);
 
                 // SnapshotPoint sp = new SnapshotPoint(VerilogGlobals.TheBuffer.CurrentSnapshot,5);
+
+                // See https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.formatting.itextviewline?view=visualstudiosdk-2017
+                // Remarks
+                //
+                // Most properties and parameters that are doubles correspond to coordinates or distances in the 
+                // text rendering coordinate system.In this coordinate system, x = 0.0 corresponds to the left 
+                // edge of the drawing surface onto which text is rendered(x = view.ViewportLeft corresponds to 
+                // the left edge of the viewport), and y = view.ViewportTop corresponds to the top edge of the 
+                // viewport. The x-coordinate increases from left to right, and the y - coordinate increases 
+                // from top to bottom.
+                // 
+                // The horizontal and vertical axes of the view behave differently. When the text in the view 
+                // is formatted, only the visible lines are formatted. As a result, a viewport cannot be scrolled
+                // horizontally and vertically in the same way.
+                // 
+                // A viewport is scrolled horizontally by changing the left coordinate of the viewport so that it
+                // moves with respect to the drawing surface.
+                // 
+                // A view can be scrolled vertically only by performing a new layout.
+                // 
+                // Doing a layout in the view may cause the ViewportTop property of the view to change. For 
+                // example, scrolling down one line will not translate any of the visible lines.Instead it will 
+                // simply change the view's ViewportTop property (causing the lines to move on the screen even 
+                // though their y-coordinates have not changed).
+                // 
+                // Distances in the text rendering coordinate system correspond to logical pixels.If the text 
+                // rendering surface is displayed without any scaling transform, then 1 unit in the text rendering
+                // coordinate system corresponds to one pixel on the display.
+
+                if (VerilogGlobals.TheNewPosition > VerilogGlobals.TheBuffer.CurrentSnapshot.GetText().Length)
+                {
+                    VerilogGlobals.TheNewPosition = VerilogGlobals.TheBuffer.CurrentSnapshot.GetText().Length;
+                }
                 if (VerilogGlobals.TheNewPosition >= 0)
                 {
                     SnapshotPoint bp  = new SnapshotPoint(VerilogGlobals.TheBuffer.CurrentSnapshot, VerilogGlobals.TheNewPosition);
+                    ITextViewLine thisLine = VerilogGlobals.TheView.TextViewLines.GetTextViewLineContainingBufferPosition(bp);
                     VerilogGlobals.TheView.Caret.MoveTo(bp);
+                    VerilogGlobals.TheView.DisplayTextLineContainingBufferPosition(bp,
+                           VerilogGlobals.TheView.TextViewLines.FirstVisibleLine.Top - VerilogGlobals.TheView.ViewportTop,
+                           ViewRelativePosition.Top);
+
                 }
                 VerilogGlobals.NeedsCursorReposition = false;
 

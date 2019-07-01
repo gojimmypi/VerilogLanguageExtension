@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.Text.Tagging;
 
 // adapted from https://github.com/madskristensen/ExtensibilityTools
-// See also https://docs.microsoft.com/en-us/visualstudio/extensibility/walkthrough-displaying-matching-braces?view=vs-2015
+// See also https://docs.microsoft.com/en-us/visualstudio/extensibility/walkthrough-displaying-matching-braces?view=vs-2019
 
 namespace VerilogLanguage.BraceMatching
 {

@@ -38,8 +38,15 @@ namespace VerilogLanguage
             //
             // See https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.formatting.itextviewline?view=visualstudiosdk-2017
             //
-
+            // Here we get the current VerticalDistance prior to refresh.
+            //
+            // see https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.editor.itextview.displaytextlinecontainingbufferposition?view=visualstudiosdk-2017
+            //
             PriorVerticalDistance = TheView.GetTextViewLineContainingBufferPosition(point).TextTop - VerilogGlobals.TheView.ViewportTop;
+            //
+            // See CompletionController where we call DisplayTextLineContainingBufferPosition to set the value
+            //
+
 
             string CurrentBufferText = TheBuffer.CurrentSnapshot.GetText();
             int pos = TheView.Caret.Position.BufferPosition.Position;
@@ -47,7 +54,6 @@ namespace VerilogLanguage
             if (pos > TheBuffer.CurrentSnapshot.GetText().Length)
             {
                 pos = TheBuffer.CurrentSnapshot.GetText().Length;
-                // TheNewPosition = 0;
             }
             string part1 = CurrentBufferText.Substring(0, pos);
             string part2 = CurrentBufferText.Substring(pos);
@@ -63,6 +69,12 @@ namespace VerilogLanguage
             // TheView.Caret.MoveTo(TheView.Caret.Position.BufferPosition);
 
 
+            // Force the rescan of the document by replacing all the text.
+            //
+            // (indeed this is not the most graceful solution, but no other solution was found to force the rescan. open to suggestions...)
+            //
+            // see: https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.itextbuffer.createedit?view=visualstudiosdk-2017
+            //
             // the two part replace, unfortunately still moves bufferpoint position
             using (ITextEdit e = TheBuffer.CreateEdit())
             {
@@ -221,7 +233,11 @@ namespace VerilogLanguage
 
         public static void Dispose()
         {
-             // TODO cleanup
+            // see https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose
+            //
+            // there are no  unmanaged resources that need to be released at this time
+            //
+            // TODO cleanup
         }
     } // class
 } // namespace

@@ -177,6 +177,9 @@ namespace VerilogLanguage
                 //
                 // ITextViewLine thisLine = VerilogGlobals.TheView.TextViewLines.GetTextViewLineContainingBufferPosition(bp);
                 //
+
+                // first get the total current length in chars (not including CR/LF) to 
+                // ensure [TheNewPosition] is not gearter than this.
                 int CurrentLength = VerilogGlobals.TheBuffer.CurrentSnapshot.GetText().Length;
                 if (VerilogGlobals.TheNewPosition > CurrentLength)
                 {
@@ -190,7 +193,18 @@ namespace VerilogLanguage
                     //
                     SnapshotPoint bp  = new SnapshotPoint(VerilogGlobals.TheBuffer.CurrentSnapshot, VerilogGlobals.TheNewPosition);
 
-                    // VerilogGlobals.TheView.GetTextViewLineContainingBufferPosition(bp).TextHeight * 6
+                    //
+                    // see https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.editor.itextview.displaytextlinecontainingbufferposition?view=visualstudiosdk-2017
+                    //
+                    // verticalDistance Double
+                    //
+                    // The distance(in pixels) between the ITextViewLine and the edge of the view. If 
+                    // relativeTo is equal to ViewRelativePosition.Top, then the distance is from the top 
+                    // of the view to the top of the ITextViewLine. Otherwise, it is the distance from the 
+                    // bottom of the ITextViewLine to the bottom on the view.Negative values are 
+                    // allowed, which may cause the line to be displayed outside the viewport.
+                    // This method can become quite expensive if verticalDistance is large. You should avoid 
+                    // making verticalDistance greater than the height of the view.
 
                     VerilogGlobals.TheView.DisplayTextLineContainingBufferPosition(bp,
                            VerilogGlobals.PriorVerticalDistance, // delta ViewportTop

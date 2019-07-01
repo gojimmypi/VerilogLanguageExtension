@@ -201,6 +201,9 @@ From [VSIX Manifest Designer](https://docs.microsoft.com/en-us/visualstudio/exte
 
 * [GitHub Microsoft/VSSDK-Extensibility-Samples](https://github.com/Microsoft/VSSDK-Extensibility-Samples) [ook!](https://github.com/Microsoft/VSSDK-Extensibility-Samples/tree/master/Ook_Language_Integration)
 
+* [ITagger<T> Interface](https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.tagging.itagger-1?view=visualstudiosdk-2017)
+
+* [ITextViewLine Interface](https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.formatting.itextviewline?view=visualstudiosdk-2017) - important for positioning
 
 ## Other Resources
 

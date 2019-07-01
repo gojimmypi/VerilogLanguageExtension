@@ -18,7 +18,7 @@ namespace VerilogLanguage
         public static bool HasForceRefresh = false;
         public static bool NeedsCursorReposition = false;
         public static ITextBuffer TheBuffer;
-        public static ITextView TheView;
+        public static ITextView TheView; // see https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.editor.itextview?redirectedfrom=MSDN&view=visualstudiosdk-2017
         public static int TheNewPosition = -1;
         public static void ForceRefresh()
         {

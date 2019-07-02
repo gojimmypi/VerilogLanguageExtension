@@ -13,14 +13,13 @@ namespace VerilogLanguage
 {
     public static partial class VerilogGlobals  
     {
-        public static bool HasForceRefresh = false;
         public static bool NeedsCursorReposition = false;
         public static int TheNewPosition = -1; // this is a char index into the entire document for saved cursor position
-        public static double PriorVerticalDistance = -1; // [TheView.TextViewLines.FirstVisibleLine.Top] prior to edits
+        public static double PriorVerticalDistance = -1; // [TheView.TextViewLines.FirstVisibleLine.Top] prior to edits, in pixels
 
         public static ITextBuffer TheBuffer;
         public static ITextView TheView; // assigned in QuickInfoControllerProvider see https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.editor.itextview?redirectedfrom=MSDN&view=visualstudiosdk-2017
-        public static void ForceRefresh()
+        public static void ForceRefresh(int NewTextLengthAdjusment)
         {
             NeedsCursorReposition = true;
             //return;
@@ -32,7 +31,7 @@ namespace VerilogLanguage
 
             // save some values to be used in the completion controller 
             var point = TheView.Caret.Position.BufferPosition;
-            TheNewPosition = point.Position;
+            TheNewPosition = (int)(point.Position) + NewTextLengthAdjusment; // theNewText.Length;
 
             // Get the Prior Vertical Distance of the TextViewLine at the caret position (we'll want to put it back later in the controller!)
             //
@@ -44,10 +43,10 @@ namespace VerilogLanguage
             //
             PriorVerticalDistance = TheView.GetTextViewLineContainingBufferPosition(point).TextTop - VerilogGlobals.TheView.ViewportTop;
             //
-            // See CompletionController where we call DisplayTextLineContainingBufferPosition to set the value
+            // See CompletionController where we call DisplayTextLineContainingBufferPosition to set the value to PriorVerticalDistance
             //
 
-
+            // This is the ugly part, where we force the buffer to think it was all changed
             string CurrentBufferText = TheBuffer.CurrentSnapshot.GetText();
             int pos = TheView.Caret.Position.BufferPosition.Position;
             if (pos < 0) pos = 0;
@@ -57,17 +56,6 @@ namespace VerilogLanguage
             }
             string part1 = CurrentBufferText.Substring(0, pos);
             string part2 = CurrentBufferText.Substring(pos);
-
-
-            //using (ITextEdit e = TheBuffer.CreateEdit())
-            //{
-            //    e.Replace(0, TheBuffer.CurrentSnapshot.Length, CurrentBufferText);
-            //    e.Apply();
-            //}
-            // ITextSnapshotLine theLine = TheBuffer.CurrentSnapshot.TextBuffer. ;
-            // https://stackoverflow.com/questions/42712164/replacing-text-in-document-while-preserving-the-caret
-            // TheView.Caret.MoveTo(TheView.Caret.Position.BufferPosition);
-
 
             // Force the rescan of the document by replacing all the text.
             //
@@ -91,13 +79,14 @@ namespace VerilogLanguage
                 }
             }
 
+            // replace all of the text in one step.
             //using (ITextEdit e = TheBuffer.CreateEdit())
             //{
             //    e.Replace(0, TheBuffer.CurrentSnapshot.GetText().Length, CurrentBufferText);
             //    e.Apply();
             //};  
 
-            HasForceRefresh = true;
+            VerilogGlobals.NeedsCursorReposition = true;
         }
 
 
@@ -109,7 +98,9 @@ namespace VerilogLanguage
             // e.g. ["led"] = "An LED."
         };
 
-
+        /// <summary>
+        ///   VerilogVariables - a list of variables found in the text that will be have  hover text (see VerilogVariableHoverText)
+        /// </summary>
         public static IDictionary<string, VerilogTokenTypes> VerilogVariables = new Dictionary<string, VerilogTokenTypes>
         {
             // e.g. ["led"] = VerilogTokenTypes.Verilog_Variable,

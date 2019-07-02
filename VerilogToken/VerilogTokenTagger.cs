@@ -205,9 +205,23 @@ namespace VerilogLanguage.VerilogToken
                 if (IsRefreshChar(theNewText) || IsRefreshChar(theOldText))
                 {
                     VerilogGlobals.Reparse(_buffer); // note that above, we are checking that the e.After is the same as the _buffer
-                    VerilogGlobals.ForceRefresh();
-                    VerilogGlobals.TheNewPosition += theNewText.Length;
-                    VerilogGlobals.NeedsCursorReposition = true;
+
+                    // wouldn't it be great if we could invoke an evn to recan the entire document?
+                    // note that if this ever works, attention would be needed to the cursor repositioning in CompletionController.
+                    // although the event fires, the fulle document is *not* updated with new tage (e.g. when a new, open "/*" is introduced)
+                    // 
+                    // var tempEvent = TagsChanged;
+                    // if (tempEvent != null)
+                    //    tempEvent(this, 
+                    //              new SnapshotSpanEventArgs(
+                    //                  new SnapshotSpan(_buffer.CurrentSnapshot,
+                    //                  0,
+                    //                  _buffer.CurrentSnapshot.Length)));
+
+                    // Instead, we revert to the brute-force method of forcing a refresh
+                    // note we pass the lenght of the newly inserted (typed or pasted) text to adjust cursor posotion in CompletionController
+                    // Note the most graceful, but ivoking event did not cooperate and did not recan entire document as needed
+                    VerilogGlobals.ForceRefresh(theNewText.Length);
                 }
             }
         }

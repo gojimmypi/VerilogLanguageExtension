@@ -210,6 +210,8 @@ namespace VerilogLanguage
                            VerilogGlobals.PriorVerticalDistance, // delta ViewportTop
                            ViewRelativePosition.Top);
 
+                    // mensure the cursor stays in the same place.
+                    // see https://stackoverflow.com/questions/42712164/replacing-text-in-document-while-preserving-the-caret
                     VerilogGlobals.TheView.Caret.MoveTo(bp);
                 }
                 VerilogGlobals.NeedsCursorReposition = false;

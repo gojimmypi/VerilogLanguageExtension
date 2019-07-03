@@ -188,6 +188,9 @@ namespace VerilogLanguage
             BufferAttributes = new List<BufferAttribute>(); // re-initialize the global BufferAttributes
             BufferAttribute bufferAttribute = new BufferAttribute();
 
+            //
+            // Reparse AppendBufferAttribute
+            // 
             void AppendBufferAttribute()
             {
                 bufferAttribute.LineNumber = thisLineNumber;
@@ -200,13 +203,14 @@ namespace VerilogLanguage
                 bufferAttribute.SquareBracketDepth = BufferAttributes[BufferAttributes.Count - 1].SquareBracketDepth;
                 bufferAttribute.SquigglyBracketDepth = BufferAttributes[BufferAttributes.Count - 1].SquigglyBracketDepth;
                 bufferAttribute.IsComment = IsActiveBlockComment;
+                bufferAttribute.IsEmpty = true; // although we may have carried over some values, at this point it is still "empty"
             }
-
+            
             // reminder bufferAttribute is pointing to the contents of the last item in BufferAttributes
             foreach (var line in newSnapshot.Lines)
             {
                 thisLine = line.GetText();
-                thisLineNumber = line.LineNumber;
+                thisLineNumber = line.LineNumber; // zero-based line numbers
 
                 for (int i = 0; i < thisLine.Length; i++)
                 {
@@ -315,6 +319,7 @@ namespace VerilogLanguage
                                     // bufferAttribute.LineEnd TBD
                                     IsActiveBlockComment = true;
                                     bufferAttribute.IsComment = true;
+                                    AppendBufferAttribute();
                                 }
                             }
                             else
@@ -342,13 +347,14 @@ namespace VerilogLanguage
                             else
                             {
                                 // detect line comments "//"
-                                if (lastChar == "/" && !IsActiveLineComment) // encountered first "//" on a line
+                                if (lastChar == "/" && !IsActiveLineComment) // encountered first "//" on a line, can only be ended by new line
                                 {
                                     IsActiveLineComment = true;
                                     bufferAttribute.IsComment = true;
                                     bufferAttribute.LineStart = i - 1; // comment actually starts on prior char
-                                    bufferAttribute.Start = i - 1; // we actually start the comment on the prior char
+                                    bufferAttribute.LineEnd = -1; // a value of -1 means the entire line, regardless of actual length.
                                     AttributesChanged = (i > 1); // the attribute of the line will not change if the first char starts a comment
+                                    AppendBufferAttribute();
                                 }
                                 else
                                 {
@@ -386,9 +392,11 @@ namespace VerilogLanguage
                 {
                     if (BufferAttributes[BufferAttributes.Count - 1].LineEnd == 0)
                     {
+                        // if we didn't previously find an end (e.g. line comment), then the ending position is the length
                         // BufferAttributes[BufferAttributes.Count - 1].LineEnd = thisLine.Length - 1;
                     }
 
+                    // when we reach the end of the line, we reach the end of the line comment!
                     IsActiveLineComment = false;
 
                     // BufferAttributes[BufferAttributes.Count - 1].End = bufferAttribute.Start;
@@ -405,13 +413,17 @@ namespace VerilogLanguage
         /// <returns></returns>
         public static bool TextIsComment(int AtLine, int AtPosition)
         {
-            bool IsComment = false;
+           bool IsComment = false;
             //BufferAttribute LastBufferAttribute;
             foreach (var thisBufferAttribute in BufferAttributes)
             {
-                if (thisBufferAttribute.LineNumber == AtLine)
+                if ((thisBufferAttribute.LineNumber == AtLine)
+                      && (thisBufferAttribute.LineStart <= AtPosition)
+                      && ((AtPosition <= thisBufferAttribute.LineEnd) || (thisBufferAttribute.LineEnd == -1))
+                   )
                 {
-
+                    IsComment = thisBufferAttribute.IsComment;
+                    break; // no need to continue searching on foreach once we have an answer
                 }
             }
             return IsComment;

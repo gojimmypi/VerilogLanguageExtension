@@ -184,6 +184,12 @@ namespace VerilogLanguage.VerilogToken
             string theNewText = e.Changes[0].NewText;
             string theOldText = e.Changes[0].OldText;
 
+            if (e.Changes.Count > 1)
+            {
+                return;
+            }
+
+
             // we are only interested when the old and new text are different. 
             // yes, the event seems to be triggered even with no apparent changes
             // 
@@ -191,24 +197,48 @@ namespace VerilogLanguage.VerilogToken
             {
                 if (IsRefreshChar(theNewText) || IsRefreshChar(theOldText))
                 {
+                    VerilogGlobals.TheNewPosition = VerilogGlobals.TheView.Caret.Position.BufferPosition.Position;
+
+                    if (VerilogGlobals.TheNewPosition <= VerilogGlobals.TheBuffer.CurrentSnapshot.Length)
+                    {
+
+                    SnapshotPoint bp = new SnapshotPoint(VerilogGlobals.TheBuffer.CurrentSnapshot, VerilogGlobals.TheNewPosition);
+                    var point = VerilogGlobals.TheView.Caret.Position.BufferPosition;
+                    VerilogGlobals.PriorVerticalDistance = VerilogGlobals.TheView.GetTextViewLineContainingBufferPosition(point).TextTop - VerilogGlobals.TheView.ViewportTop;
+
                     VerilogGlobals.Reparse(_buffer); // note that above, we are checking that the e.After is the same as the _buffer
 
-                    // wouldn't it be great if we could invoke an evn to recan the entire document?
-                    // note that if this ever works, attention would be needed to the cursor repositioning in CompletionController.
-                    // although the event fires, the fulle document is *not* updated with new tage (e.g. when a new, open "/*" is introduced)
-                    // 
-                    // var tempEvent = TagsChanged;
-                    // if (tempEvent != null)
-                    //    tempEvent(this, 
-                    //              new SnapshotSpanEventArgs(
-                    //                  new SnapshotSpan(_buffer.CurrentSnapshot,
-                    //                  0,
-                    //                  _buffer.CurrentSnapshot.Length)));
+                        // wouldn't it be great if we could invoke an evn to recan the entire document?
+                        // note that if this ever works, attention would be needed to the cursor repositioning in CompletionController.
+                        // although the event fires, the fulle document is *not* updated with new tage (e.g. when a new, open "/*" is introduced)
+                        // 
+                        // var tempEvent = TagsChanged;
+                        // if (tempEvent != null)
+                        //    tempEvent(this, 
+                        //              new SnapshotSpanEventArgs(
+                        //                  new SnapshotSpan(_buffer.CurrentSnapshot,
+                        //                  0,
+                        //                  _buffer.CurrentSnapshot.Length)));
 
-                    // Instead, we revert to the brute-force method of forcing a refresh
-                    // note we pass the lenght of the newly inserted (typed or pasted) text to adjust cursor posotion in CompletionController
-                    // Note the most graceful, but ivoking event did not cooperate and did not recan entire document as needed
-                    VerilogGlobals.ForceRefresh(theNewText.Length);
+                        // Instead, we revert to the brute-force method of forcing a refresh
+                        // note we pass the lenght of the newly inserted (typed or pasted) text to adjust cursor posotion in CompletionController
+                        // Note the most graceful, but ivoking event did not cooperate and did not recan entire document as needed
+                        //VerilogGlobals.ForceRefresh(theNewText.Length);
+
+                        if (!VerilogGlobals.ForceRefreshInProgress)
+                        {
+                            VerilogGlobals.ForceRefresh(theNewText.Length); // without appending the new length, the cursor does not move when typing! TODO: but what about paste!
+                        }
+
+                        // mensure the cursor stays in the same place.
+                        // see https://stackoverflow.com/questions/42712164/replacing-text-in-document-while-preserving-the-caret
+                        // VerilogGlobals.TheNewPosition += theNewText.Length;
+                    }
+                    else
+                    {
+                        string m = "out of range?";
+                    }
+
                 }
             }
         }
@@ -254,6 +284,7 @@ namespace VerilogLanguage.VerilogToken
         // TODO - do spans always start on new lines? If not, we'll need an IsOpenLineComment
         private bool IsOpenBlockComment(NormalizedSnapshotSpanCollection sc) // are we starting with prior text that is already an opening comment block?
         {
+            VerilogGlobals.PerfMon.VerilogTokenTagger_IsOpenBlockComment_Count++; 
             bool isLocalBlockComment = false; // we'll assume there's no open block comment unless otherwise found
             bool isLocalLineComment = false;
             if (sc != null && sc[0].Snapshot != null && sc[0].Start.Position > 0)
@@ -570,6 +601,7 @@ namespace VerilogLanguage.VerilogToken
                 }
                 ITextSnapshotLine containingLine = curSpan.Start.GetContainingLine();
                 int curLoc = containingLine.Start.Position;
+                int LinePosition = 0;
                 string thisTokenString = "";
 
                 tokens = VerilogKeywordSplit(containingLine.GetText(), priorToken);
@@ -592,8 +624,10 @@ namespace VerilogLanguage.VerilogToken
 
                     foreach (CommentHelper.CommentItem Item in commentHelper.CommentItems)
                     {
-                        var tokenSpan = new SnapshotSpan(curSpan.Snapshot, new Span(curLoc, Item.ItemText.Length));
+                        bool TestComment = VerilogGlobals.TextIsComment(containingLine.LineNumber, LinePosition);
+                        LinePosition += Item.ItemText.Length;
 
+                        var tokenSpan = new SnapshotSpan(curSpan.Snapshot, new Span(curLoc, Item.ItemText.Length));
                         // is this item a comment? If so, color as appropriate. comments take highest priority: no other condition will change color of a comment
                         if (Item.IsComment)
                         {

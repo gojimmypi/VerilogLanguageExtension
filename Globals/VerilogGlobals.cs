@@ -16,11 +16,14 @@ namespace VerilogLanguage
         public static bool NeedsCursorReposition = false;
         public static int TheNewPosition = -1; // this is a char index into the entire document for saved cursor position
         public static double PriorVerticalDistance = -1; // [TheView.TextViewLines.FirstVisibleLine.Top] prior to edits, in pixels
+        public static double PriorCaretTop = -1;
+        public static bool ForceRefreshInProgress = false;
 
         public static ITextBuffer TheBuffer;
         public static ITextView TheView; // assigned in QuickInfoControllerProvider see https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.editor.itextview?redirectedfrom=MSDN&view=visualstudiosdk-2017
         public static void ForceRefresh(int NewTextLengthAdjusment)
         {
+            ForceRefreshInProgress = true;
             NeedsCursorReposition = true;
             //return;
             //SnapshotPoint bp = TheView.Caret.Position.BufferPosition;
@@ -41,7 +44,13 @@ namespace VerilogLanguage
             //
             // see https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.editor.itextview.displaytextlinecontainingbufferposition?view=visualstudiosdk-2017
             //
-            PriorVerticalDistance = TheView.GetTextViewLineContainingBufferPosition(point).TextTop - VerilogGlobals.TheView.ViewportTop;
+
+
+            // TODO
+
+            // PriorVerticalDistance = TheView.GetTextViewLineContainingBufferPosition(point).TextTop - VerilogGlobals.TheView.ViewportTop;
+            PriorCaretTop = TheView.Caret.Top;
+
             //
             // See CompletionController where we call DisplayTextLineContainingBufferPosition to set the value to PriorVerticalDistance
             //

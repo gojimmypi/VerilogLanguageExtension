@@ -215,6 +215,7 @@ namespace VerilogLanguage
                     VerilogGlobals.TheView.Caret.MoveTo(bp);
                 }
                 VerilogGlobals.NeedsCursorReposition = false;
+                VerilogGlobals.ForceRefreshInProgress = false;
 
                 //thisLine = VerilogGlobals.TheView.TextViewLines[5];
                 //VerilogGlobals.TheView.Caret.MoveTo(thisLine);

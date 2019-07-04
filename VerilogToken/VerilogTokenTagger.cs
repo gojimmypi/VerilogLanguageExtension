@@ -197,7 +197,8 @@ namespace VerilogLanguage.VerilogToken
             {
                 if (IsRefreshChar(theNewText) || IsRefreshChar(theOldText))
                 {
-                    VerilogGlobals.TheNewPosition = VerilogGlobals.TheView.Caret.Position.BufferPosition.Position;
+                    int TheOldPosition = e.Changes[0].OldPosition;
+                    VerilogGlobals.TheNewPosition = TheOldPosition; // was VerilogGlobals.TheView.Caret.Position.BufferPosition.Position;
 
                     if (VerilogGlobals.TheNewPosition <= VerilogGlobals.TheBuffer.CurrentSnapshot.Length)
                     {
@@ -225,14 +226,19 @@ namespace VerilogLanguage.VerilogToken
 
                         if (!VerilogGlobals.ForceRefreshInProgress)
                         {
-                            int TheOldPosition = e.Changes[0].OldPosition;
-                            VerilogGlobals.TheNewPosition = TheOldPosition;
 
                             SnapshotPoint bp = new SnapshotPoint(VerilogGlobals.TheBuffer.CurrentSnapshot, TheOldPosition);
                             var point = VerilogGlobals.TheView.Caret.Position.BufferPosition;
                             VerilogGlobals.PriorVerticalDistance = VerilogGlobals.TheView.GetTextViewLineContainingBufferPosition(point).TextTop - VerilogGlobals.TheView.ViewportTop;
 
                             VerilogGlobals.ForceRefresh(theNewText.Length); // without appending the new length, the cursor does not move when typing! TODO: but what about paste!
+                        }
+                        else
+                        {
+                            _ = e.Changes[0].OldPosition;
+                            var point = VerilogGlobals.TheView.Caret.Position.BufferPosition;
+                            _ = VerilogGlobals.TheView.GetTextViewLineContainingBufferPosition(point).TextTop - VerilogGlobals.TheView.ViewportTop;
+                            SnapshotPoint bp = new SnapshotPoint(VerilogGlobals.TheBuffer.CurrentSnapshot, TheOldPosition);
                         }
 
                         // mensure the cursor stays in the same place.
@@ -241,7 +247,7 @@ namespace VerilogLanguage.VerilogToken
                     }
                     else
                     {
-                        string m = "out of range?";
+                        _ = "out of range?";
                     }
 
                 }

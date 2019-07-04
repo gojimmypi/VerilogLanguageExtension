@@ -13,90 +13,9 @@ namespace VerilogLanguage
 {
     public static partial class VerilogGlobals  
     {
-        public static bool NeedsCursorReposition = false;
-        public static int TheNewPosition = -1; // this is a char index into the entire document for saved cursor position
-        public static double PriorVerticalDistance = -1; // [TheView.TextViewLines.FirstVisibleLine.Top] prior to edits, in pixels
-        public static double PriorCaretTop = -1;
-        public static bool ForceRefreshInProgress = false;
 
         public static ITextBuffer TheBuffer;
         public static ITextView TheView; // assigned in QuickInfoControllerProvider see https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.editor.itextview?redirectedfrom=MSDN&view=visualstudiosdk-2017
-        public static void ForceRefresh(int NewTextLengthAdjusment)
-        {
-            ForceRefreshInProgress = true;
-            NeedsCursorReposition = true;
-            //return;
-            //SnapshotPoint bp = TheView.Caret.Position.BufferPosition;
-            // TheView.Caret.MoveTo(bp);
-            //int ThisLineIndex = TheBuffer.CurrentSnapshot.GetLineNumberFromPosition(bp);
-            //ITextViewLine thisLine = TheView.TextViewLines.GetTextViewLineContainingBufferPosition(bp);
-            //TheView.Caret.MoveTo(thisLine);
-
-            // save some values to be used in the completion controller 
-            var point = TheView.Caret.Position.BufferPosition;
-            TheNewPosition = (int)(point.Position) + NewTextLengthAdjusment; // theNewText.Length;
-
-            // Get the Prior Vertical Distance of the TextViewLine at the caret position (we'll want to put it back later in the controller!)
-            //
-            // See https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.formatting.itextviewline?view=visualstudiosdk-2017
-            //
-            // Here we get the current VerticalDistance prior to refresh.
-            //
-            // see https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.editor.itextview.displaytextlinecontainingbufferposition?view=visualstudiosdk-2017
-            //
-
-
-            // TODO
-
-            // PriorVerticalDistance = TheView.GetTextViewLineContainingBufferPosition(point).TextTop - VerilogGlobals.TheView.ViewportTop;
-            PriorCaretTop = TheView.Caret.Top;
-
-            //
-            // See CompletionController where we call DisplayTextLineContainingBufferPosition to set the value to PriorVerticalDistance
-            //
-
-            // This is the ugly part, where we force the buffer to think it was all changed
-            string CurrentBufferText = TheBuffer.CurrentSnapshot.GetText();
-            int pos = TheView.Caret.Position.BufferPosition.Position;
-            if (pos < 0) pos = 0;
-            if (pos > TheBuffer.CurrentSnapshot.GetText().Length)
-            {
-                pos = TheBuffer.CurrentSnapshot.GetText().Length;
-            }
-            string part1 = CurrentBufferText.Substring(0, pos);
-            string part2 = CurrentBufferText.Substring(pos);
-
-            // Force the rescan of the document by replacing all the text.
-            //
-            // (indeed this is not the most graceful solution, but no other solution was found to force the rescan. open to suggestions...)
-            //
-            // see: https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.itextbuffer.createedit?view=visualstudiosdk-2017
-            //
-            // the two part replace, unfortunately still moves bufferpoint position
-            using (ITextEdit e = TheBuffer.CreateEdit())
-            {
-                e.Replace(pos, part2.Length, part2);
-                e.Apply();
-            }
-
-            if (part1.Length > 0)
-            {
-                using (ITextEdit e = TheBuffer.CreateEdit())
-                {
-                    e.Replace(0, part1.Length, part1);
-                    e.Apply();
-                }
-            }
-
-            // replace all of the text in one step.
-            //using (ITextEdit e = TheBuffer.CreateEdit())
-            //{
-            //    e.Replace(0, TheBuffer.CurrentSnapshot.GetText().Length, CurrentBufferText);
-            //    e.Apply();
-            //};  
-
-            VerilogGlobals.NeedsCursorReposition = true;
-        }
 
 
         /// <summary>

@@ -36,16 +36,24 @@ namespace VerilogLanguage.VerilogToken
     using Microsoft.VisualStudio.Utilities;
     using CommentHelper;
 
+
+ 
+    //  using Microsoft.VisualStudio.Text.Operations;
+ 
+
     internal sealed class VerilogTokenTagger : ITagger<VerilogTokenTag>
     {
-
+        // ITextView View { get; set; }
         ITextBuffer _buffer;
         IDictionary<string, VerilogTokenTypes> _VerilogTypes;
 
         internal VerilogTokenTagger(ITextBuffer buffer)
+            //internal VerilogTokenTagger(ITextBuffer buffer, ITextSearchService textSearchService, 
+            //ITextStructureNavigator textStructureNavigator)
         {
+           
             VerilogGlobals.PerfMon.VerilogTokenTagger_Count++;
-
+            // this.View = view;
             VerilogGlobals.TheBuffer = buffer;
             _buffer = buffer;
 
@@ -197,58 +205,18 @@ namespace VerilogLanguage.VerilogToken
             {
                 if (IsRefreshChar(theNewText) || IsRefreshChar(theOldText))
                 {
-                    int TheOldPosition = e.Changes[0].OldPosition;
-                    VerilogGlobals.TheNewPosition = TheOldPosition; // was VerilogGlobals.TheView.Caret.Position.BufferPosition.Position;
-
-                    if (VerilogGlobals.TheNewPosition <= VerilogGlobals.TheBuffer.CurrentSnapshot.Length)
-                    {
-
-                        // VerilogGlobals.TheBuffer.CurrentSnapshot.GetLineFromPosition(TheOldPosition);
 
                     VerilogGlobals.Reparse(_buffer); // note that above, we are checking that the e.After is the same as the _buffer
 
-                        // wouldn't it be great if we could invoke an evn to recan the entire document?
-                        // note that if this ever works, attention would be needed to the cursor repositioning in CompletionController.
-                        // although the event fires, the fulle document is *not* updated with new tage (e.g. when a new, open "/*" is introduced)
-                        // 
-                        // var tempEvent = TagsChanged;
-                        // if (tempEvent != null)
-                        //    tempEvent(this, 
-                        //              new SnapshotSpanEventArgs(
-                        //                  new SnapshotSpan(_buffer.CurrentSnapshot,
-                        //                  0,
-                        //                  _buffer.CurrentSnapshot.Length)));
 
-                        // Instead, we revert to the brute-force method of forcing a refresh
-                        // note we pass the lenght of the newly inserted (typed or pasted) text to adjust cursor posotion in CompletionController
-                        // Note the most graceful, but ivoking event did not cooperate and did not recan entire document as needed
-                        //VerilogGlobals.ForceRefresh(theNewText.Length);
-
-                        if (!VerilogGlobals.ForceRefreshInProgress)
-                        {
-
-                            SnapshotPoint bp = new SnapshotPoint(VerilogGlobals.TheBuffer.CurrentSnapshot, TheOldPosition);
-                            var point = VerilogGlobals.TheView.Caret.Position.BufferPosition;
-                            VerilogGlobals.PriorVerticalDistance = VerilogGlobals.TheView.GetTextViewLineContainingBufferPosition(point).TextTop - VerilogGlobals.TheView.ViewportTop;
-
-                            VerilogGlobals.ForceRefresh(theNewText.Length); // without appending the new length, the cursor does not move when typing! TODO: but what about paste!
-                        }
-                        else
-                        {
-                            _ = e.Changes[0].OldPosition;
-                            var point = VerilogGlobals.TheView.Caret.Position.BufferPosition;
-                            _ = VerilogGlobals.TheView.GetTextViewLineContainingBufferPosition(point).TextTop - VerilogGlobals.TheView.ViewportTop;
-                            SnapshotPoint bp = new SnapshotPoint(VerilogGlobals.TheBuffer.CurrentSnapshot, TheOldPosition);
-                        }
+                        //TagsChanged?.Invoke(this, new SnapshotSpanEventArgs(
+                        //                    new SnapshotSpan(_buffer.CurrentSnapshot,
+                        //                          new Span(0, _buffer.CurrentSnapshot.Length - 1))));
 
                         // mensure the cursor stays in the same place.
                         // see https://stackoverflow.com/questions/42712164/replacing-text-in-document-while-preserving-the-caret
                         // VerilogGlobals.TheNewPosition += theNewText.Length;
-                    }
-                    else
-                    {
-                        _ = "out of range?";
-                    }
+
 
                 }
             }
@@ -586,13 +554,6 @@ namespace VerilogLanguage.VerilogToken
         }
 
 
-        public event EventHandler<SnapshotSpanEventArgs> TagsChanged;
-        //public event EventHandler<SnapshotSpanEventArgs> TagsChanged
-        //{
-        //    add { }
-        //    remove { }
-        //}
-
         public IEnumerable<ITagSpan<VerilogTokenTag>> GetTags(NormalizedSnapshotSpanCollection spans)
         {
             // bool EditInProgress = spans.snapshot.TextBuffer.EditInProgress;
@@ -750,13 +711,21 @@ namespace VerilogLanguage.VerilogToken
 
         //}
 
+
+        public event EventHandler<SnapshotSpanEventArgs> TagsChanged;
+        //public event EventHandler<SnapshotSpanEventArgs> TagsChanged
+        //{
+        //    add { }
+        //    remove { }
+        //}
+
         //private void InvokeTagsChanged(object sender, SnapshotSpanEventArgs args)
         //{
         //    TagsChanged?.Invoke(sender, args);
         //}
 
         void ViewLayoutChanged(object sender, TextViewLayoutChangedEventArgs e)
-        {
+        {            
             if (e.NewSnapshot != e.OldSnapshot) //make sure that there has really been a change
             {
                 TagsChanged?.Invoke(this, new SnapshotSpanEventArgs(new SnapshotSpan(_buffer.CurrentSnapshot, 0,

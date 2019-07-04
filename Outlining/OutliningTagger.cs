@@ -77,6 +77,13 @@ namespace VerilogLanguage.Outlining
             // If this isn't the most up-to-date version of the buffer, then ignore it for now (we'll eventually get another change event).
             if (e.After != buffer.CurrentSnapshot)
                 return;
+
+            // TODO - check to see if we actually *need* a full refresh
+
+            // This is the event that forces a full refresh of token tags
+            TagsChanged?.Invoke(this, new SnapshotSpanEventArgs(
+                                new SnapshotSpan(buffer.CurrentSnapshot,
+                                      new Span(0, buffer.CurrentSnapshot.Length - 1))));
             //this.ReParse();
         }
 

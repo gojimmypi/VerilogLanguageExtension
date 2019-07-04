@@ -35,6 +35,7 @@ namespace VerilogLanguage.VerilogToken
     using Microsoft.VisualStudio.Text.Tagging;
     using Microsoft.VisualStudio.Utilities;
     using CommentHelper;
+    //using Microsoft.VisualStudio.Text.Operations;
 
     // You must export a tagger provider for your tagger. The tagger provider creates an VerilogTokenTag 
     // for a buffer of the "verilog" content type, or else returns an OutliningTagger if the buffer already has one.
@@ -43,10 +44,22 @@ namespace VerilogLanguage.VerilogToken
     [ContentType("verilog")] // see _buffer.ContentType (ITextBuffer.ContentType Property)
     internal sealed class VerilogTokenTagProvider : ITaggerProvider
     {
+        //[Import]
+        //internal ITextBuffer thebuffer;
+        //[Import]
+        //internal ITextSearchService TextSearchService { get; set; }
+
+        //[Import]
+        //internal ITextStructureNavigatorSelectorService TextStructureNavigatorSelector { get; set; }
+
         public ITagger<T> CreateTagger<T>(ITextBuffer buffer) where T : ITag
         {
+            //        ITextStructureNavigator textStructureNavigator =
+            //TextStructureNavigatorSelector.GetTextStructureNavigator(buffer);
             // old code:
             return new VerilogTokenTagger(buffer) as ITagger<T>;
+
+            // return new VerilogTokenTagger(VerilogGlobals.TheView, buffer, TextSearchService, textStructureNavigator) as ITagger<T>;
             // return new VerilogTokenTagger(buffer) as ITagger<T>;
 
             // TODO which is better? above or below?
@@ -55,6 +68,7 @@ namespace VerilogLanguage.VerilogToken
             //return buffer.Properties.GetOrCreateSingletonProperty<ITagger<T>>(sc);
 
         }
+
         public event EventHandler<SnapshotSpanEventArgs> TagsChanged
         {
             add { }

@@ -59,7 +59,7 @@ namespace VerilogLanguage.VerilogToken
 
         [Import]
         internal IBufferTagAggregatorFactoryService aggregatorFactory = null;
-
+        // ITextView View { get; set; }
         public ITagger<T> CreateTagger<T>(ITextBuffer buffer) where T : ITag
         {
 

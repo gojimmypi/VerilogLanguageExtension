@@ -1,0 +1,424 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph DataVirtualized="True" Layout="Sugiyama" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="(@1 @2 Type=VerilogClassifier Member=(Name=.ctor OverloadingParameters=[(@4 Namespace=Microsoft.VisualStudio.Text Type=ITextBuffer),(@6 Namespace=Microsoft.VisualStudio.Text.Tagging Type=(Name=ITagAggregator GenericParameterCount=1 GenericArguments=[(@1 @2 Type=VerilogTokenTag)])),(@6 Namespace=Microsoft.VisualStudio.Text.Classification Type=IClassificationTypeRegistryService)]))" Category="CodeSchema_Method" Bounds="175.796666666667,201.4875,119.7,25.96" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsInternal="True" CommonLabel="VerilogClassifier" Icon="CodeSchema_Method" Label="VerilogClassifier" SourceLocation="(Assembly=file:///C:/workspace/VerilogLanguageExtension/Classification/VerilogClassifier.cs StartLineNumber=79 StartCharacterOffset=0 EndLineNumber=79 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="(@1 @2 Type=VerilogClassifier Member=(Name=add_TagsChanged OverloadingParameters=[(@3 Namespace=System Type=(Name=EventHandler GenericParameterCount=1 GenericArguments=[(@4 Namespace=Microsoft.VisualStudio.Text Type=SnapshotSpanEventArgs)]))]))" Category="CodeSchema_Method" Bounds="13.6700000000002,57.6474999999998,131.953333333333,25.96" CodeSchemaProperty_IsPublic="True" CommonLabel="add_TagsChanged" Icon="CodeSchema_Method" Label="add_TagsChanged" SourceLocation="(Assembly=file:///C:/workspace/VerilogLanguageExtension/Classification/VerilogClassifier.cs StartLineNumber=189 StartCharacterOffset=0 EndLineNumber=189 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="(@1 @2 Type=VerilogTokenTagger Member=(Name=BufferChanged OverloadingParameters=[(@3 Namespace=System Type=Object),(@4 Namespace=Microsoft.VisualStudio.Text Type=TextContentChangedEventArgs)]))" Category="CodeSchema_Method" Bounds="874.066666666667,129.5675,115.16,25.96" CodeSchemaProperty_IsPrivate="True" CommonLabel="BufferChanged" Icon="CodeSchema_Method" Label="BufferChanged" SourceLocation="(Assembly=file:///C:/workspace/VerilogLanguageExtension/VerilogToken/VerilogTokenTagger.cs StartLineNumber=220 StartCharacterOffset=0 EndLineNumber=220 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="(@1 @5 Type=EditorClassifier1 Member=(Name=.ctor OverloadingParameters=[(@6 Namespace=Microsoft.VisualStudio.Text.Classification Type=IClassificationTypeRegistryService)]))" Category="CodeSchema_Method" Bounds="24.43,201.4875,120.433333333333,25.96" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsInternal="True" CommonLabel="EditorClassifier1" Icon="CodeSchema_Method" Label="EditorClassifier1" SourceLocation="(Assembly=file:///C:/workspace/VerilogLanguageExtension/EditorClassifier/EditorClassifier1.cs StartLineNumber=21 StartCharacterOffset=0 EndLineNumber=21 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="(@1 @7 Type=OutliningTagger Member=(Name=.ctor @8))" Category="CodeSchema_Method" Bounds="558.196666666667,201.4875,120.9,25.96" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CommonLabel="OutliningTagger" Icon="CodeSchema_Method" Label="OutliningTagger" SourceLocation="(Assembly=file:///C:/workspace/VerilogLanguageExtension/Outlining/OutliningTagger.cs StartLineNumber=24 StartCharacterOffset=0 EndLineNumber=24 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="(@1 @7 Type=OutliningTagger Member=(Name=BufferChanged OverloadingParameters=[(@3 Namespace=System Type=Object),(@4 Namespace=Microsoft.VisualStudio.Text Type=TextContentChangedEventArgs)]))" Category="CodeSchema_Method" Bounds="728.066666666667,129.5675,115.16,25.96" CodeSchemaProperty_IsPrivate="True" CommonLabel="BufferChanged" Icon="CodeSchema_Method" Label="BufferChanged" SourceLocation="(Assembly=file:///C:/workspace/VerilogLanguageExtension/Outlining/OutliningTagger.cs StartLineNumber=79 StartCharacterOffset=0 EndLineNumber=79 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@10" Category="CodeSchema_Method" Bounds="336.266666666667,129.5675,172.76,25.96" CodeSchemaProperty_IsPublic="True" CommonLabel="TryCreateQuickInfoSource" Icon="CodeSchema_Method" Label="TryCreateQuickInfoSource" SourceLocation="(Assembly=file:///C:/workspace/VerilogLanguageExtension/Intellisense/VerilogQuickInfoSource.cs StartLineNumber=38 StartCharacterOffset=0 EndLineNumber=38 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@12" Category="CodeSchema_Method" Bounds="339.733333333333,57.6474999999999,165.826666666667,25.96" CodeSchemaProperty_IsPrivate="True" CommonLabel="OnTextViewMouseHover" Icon="CodeSchema_Method" Label="OnTextViewMouseHover" SourceLocation="(Assembly=file:///C:/workspace/VerilogLanguageExtension/Intellisense/QuickInfoController.cs StartLineNumber=88 StartCharacterOffset=0 EndLineNumber=88 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@13" Category="CodeSchema_Method" Bounds="535.666666666667,57.6474999999998,105.96,25.96" CodeSchemaProperty_IsPublic="True" CommonLabel="CreateTagger" Icon="CodeSchema_Method" Label="CreateTagger" SourceLocation="(Assembly=file:///C:/workspace/VerilogLanguageExtension/Outlining/OutliningTaggerProvider.cs StartLineNumber=30 StartCharacterOffset=0 EndLineNumber=30 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@14" Category="CodeSchema_Method" Bounds="199.666666666667,129.5675,105.96,25.96" CodeSchemaProperty_IsPublic="True" CommonLabel="CreateTagger" Icon="CodeSchema_Method" Label="CreateTagger" SourceLocation="(Assembly=file:///C:/workspace/VerilogLanguageExtension/Classification/VerilogClassifier.cs StartLineNumber=64 StartCharacterOffset=0 EndLineNumber=64 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@15" Category="CodeSchema_Method" Bounds="325.666666666667,201.4875,105.96,25.96" CodeSchemaProperty_IsPublic="True" CommonLabel="CreateTagger" Icon="CodeSchema_Method" Label="CreateTagger" SourceLocation="(Assembly=file:///C:/workspace/VerilogLanguageExtension/VerilogToken/VerilogTokenTagProvider.cs StartLineNumber=71 StartCharacterOffset=0 EndLineNumber=71 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@16" Category="CodeSchema_Method" Bounds="539.725,129.5675,157.843333333333,25.96" CodeSchemaProperty_IsAnonymous="True" Label="AnonymousMethod__0" SourceLocation="(Assembly=file:///C:/workspace/VerilogLanguageExtension/Outlining/OutliningTaggerProvider.cs StartLineNumber=29 StartCharacterOffset=0 EndLineNumber=29 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@17" Category="CodeSchema_Method" Bounds="0,129.5675,169.293333333333,25.96" CodeSchemaProperty_IsAnonymous="True" Label="AnonymousMethod__1_0" SourceLocation="(Assembly=file:///C:/workspace/VerilogLanguageExtension/EditorClassifier/EditorClassifier1Provider.cs StartLineNumber=35 StartCharacterOffset=0 EndLineNumber=35 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@19" Category="CodeSchema_CallStackUnresolvedMethod" Bounds="755.948333333334,57.6474999999998,59.3966666666666,25.96" Label="Exec" SourceLocation="(Assembly=file:///C:/workspace/VerilogLanguageExtension/Completion/CompletionController.cs StartLineNumber=107 StartCharacterOffset=0 EndLineNumber=107 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@9" Category="CodeSchema_Method" Bounds="176.033333333334,57.6474999999999,101.226666666667,25.96" CodeSchemaProperty_IsPublic="True" CommonLabel="GetClassifier" Icon="CodeSchema_Method" Label="GetClassifier" SourceLocation="(Assembly=file:///C:/workspace/VerilogLanguageExtension/EditorClassifier/EditorClassifier1Provider.cs StartLineNumber=35 StartCharacterOffset=0 EndLineNumber=35 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="ExternalCodeRootNode" Category="ExternalCallStackEntry" Bounds="294.153333333334,-1.4210854715202E-14,92.9866666666667,25.96" Label="External Code">
+      <Category Ref="CallStackEntry" />
+    </Node>
+  </Nodes>
+  <Links>
+    <Link Source="@10" Target="@15" Category="CallStackIndirectCall" Bounds="401.494140625,155.527496337891,21.1525268554688,40.2605895996094" Label="External Code" LabelBounds="349.66,170.5275,72.9866666666667,15.96" />
+    <Link Source="@12" Target="@10" Category="CallStackIndirectCall" Bounds="422.646667480469,83.6074981689453,0,36.9599990844727" Label="External Code" LabelBounds="349.66,98.6074999999999,72.9866666666667,15.96" />
+    <Link Source="@13" Target="@16" Category="CallStackIndirectCall" Bounds="594.06103515625,83.6074981689453,15.7064819335938,37.653678894043" Label="External Code" LabelBounds="530.66,98.6074999999999,72.9866666666667,15.96" />
+    <Link Source="@14" Target="(@1 @2 Type=VerilogClassifier Member=(Name=.ctor OverloadingParameters=[(@4 Namespace=Microsoft.VisualStudio.Text Type=ITextBuffer),(@6 Namespace=Microsoft.VisualStudio.Text.Tagging Type=(Name=ITagAggregator GenericParameterCount=1 GenericArguments=[(@1 @2 Type=VerilogTokenTag)])),(@6 Namespace=Microsoft.VisualStudio.Text.Classification Type=IClassificationTypeRegistryService)]))" Category="CallStackDirectCall" Bounds="216.276794433594,155.527496337891,20.1268310546875,38.795166015625" />
+    <Link Source="@14" Target="@15" Category="CallStackIndirectCall" Bounds="273.943115234375,155.527496337891,72.5894470214844,41.7038421630859" Label="External Code" LabelBounds="238.66,170.5275,72.9866666666667,15.96" />
+    <Link Source="@16" Target="(@1 @7 Type=OutliningTagger Member=(Name=.ctor @8))" Category="CallStackDirectCall" Bounds="618.646667480469,155.527496337891,0,36.9600067138672" />
+    <Link Source="@17" Target="(@1 @5 Type=EditorClassifier1 Member=(Name=.ctor OverloadingParameters=[(@6 Namespace=Microsoft.VisualStudio.Text.Classification Type=IClassificationTypeRegistryService)]))" Category="CallStackDirectCall" Bounds="84.6466674804688,155.527496337891,0,36.9600067138672" />
+    <Link Source="@19" Target="(@1 @2 Type=VerilogTokenTagger Member=(Name=BufferChanged OverloadingParameters=[(@3 Namespace=System Type=Object),(@4 Namespace=Microsoft.VisualStudio.Text Type=TextContentChangedEventArgs)]))" Category="CallStackIndirectCall" Bounds="811.996520996094,83.6074981689453,85.2267456054688,41.9829254150391" Label="External Code" LabelBounds="858.646666666667,98.6074999999999,72.9866666666667,15.96" />
+    <Link Source="@19" Target="(@1 @7 Type=OutliningTagger Member=(Name=BufferChanged OverloadingParameters=[(@3 Namespace=System Type=Object),(@4 Namespace=Microsoft.VisualStudio.Text Type=TextContentChangedEventArgs)]))" Category="CallStackIndirectCall" Bounds="785.646667480469,83.6074981689453,0,36.9599990844727" Label="External Code" LabelBounds="712.66,98.6074999999999,72.9866666666665,15.96" />
+    <Link Source="@9" Target="@17" Category="CallStackIndirectCall" Bounds="118.303512573242,83.6074981689453,82.7152404785156,41.8935165405273" Label="External Code" LabelBounds="155.646666666667,98.6074999999999,72.9866666666667,15.96" />
+    <Link Source="ExternalCodeRootNode" Target="(@1 @2 Type=VerilogClassifier Member=(Name=add_TagsChanged OverloadingParameters=[(@3 Namespace=System Type=(Name=EventHandler GenericParameterCount=1 GenericArguments=[(@4 Namespace=Microsoft.VisualStudio.Text Type=SnapshotSpanEventArgs)]))]))" Category="CallStackIndirectCall" Bounds="147.202026367188,23.2460403442383,146.964965820313,32.4603958129883" />
+    <Link Source="ExternalCodeRootNode" Target="@12" Category="CallStackIndirectCall" Bounds="359.109924316406,25.9599990844727,37.7108764648438,26.5114364624023" />
+    <Link Source="ExternalCodeRootNode" Target="@13" Category="CallStackIndirectCall" Bounds="387.030822753906,23.7619781494141,140.756042480469,32.7186889648438" />
+    <Link Source="ExternalCodeRootNode" Target="@14" Category="CallStackIndirectCall" Bounds="264.234466552734,25.9599990844727,62.0018615722656,95.7411193847656" />
+    <Link Source="ExternalCodeRootNode" Target="@19" Category="CallStackIndirectCall" Bounds="387.140014648438,19.0029754638672,359.882873535156,46.6210098266602" />
+    <Link Source="ExternalCodeRootNode" Target="@9" Category="CallStackIndirectCall" Bounds="256.979217529297,25.9599990844727,54.8467712402344,27.2261199951172" />
+  </Links>
+  <Categories>
+    <Category Id="CallStackDirectCall" Label="Call Stack direct call" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Call Stack direct call" OutgoingActionLabel="Call Stack direct call" />
+    <Category Id="CallStackEntry" Label="Call Stack Entry" CanBeDataDriven="True" IsProviderRoot="False" NavigationActionLabel="Call Stack Entry" />
+    <Category Id="CallStackIndirectCall" Label="Call Stack indirect call" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Call Stack indirect call" OutgoingActionLabel="Call Stack indirect call" />
+    <Category Id="CodeSchema_CallStackUnresolvedMethod" Label="Unresolved Method" CanBeDataDriven="True" DefaultAction="Microsoft.AllOutBoundLinks" IsProviderRoot="False" NavigationActionLabel="Unresolved Method" />
+    <Category Id="CodeSchema_Member" Label="Member" CanBeDataDriven="True" DefaultAction="Microsoft.Contains" Icon="CodeSchema_Field" NavigationActionLabel="Members" />
+    <Category Id="CodeSchema_Method" Label="Method" BasedOn="CodeSchema_Member" CanBeDataDriven="True" DefaultAction="Link:Forward:CodeSchema_Calls" Icon="CodeSchema_Method" NavigationActionLabel="Methods" />
+    <Category Id="CodeSchema_SourceLocation" Label="Source Location" Icon="File" />
+    <Category Id="ExternalCallStackEntry" Label="External Call Stack Entry" CanBeDataDriven="True" IsProviderRoot="False" NavigationActionLabel="External Call Stack Entry" />
+  </Categories>
+  <Properties>
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="CanBeDataDriven" Label="CanBeDataDriven" Description="CanBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CanLinkedNodesBeDataDriven" Label="CanLinkedNodesBeDataDriven" Description="CanLinkedNodesBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsAnonymous" Label="Is Anonymous" Description="Flag indicating if this delegate, type, or method is anonymous" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsConstructor" Label="Is Constructor" Description="Flag to indicate the method is a constructor" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsInternal" Label="Is Internal" Description="Flag to indicate the method is 'Internal'" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsPrivate" Label="Is Private" Description="Flag to indicate the scope is Private" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsPublic" Label="Is Public" Description="Flag to indicate the scope is Public" DataType="System.Boolean" />
+    <Property Id="CommonLabel" DataType="System.String" />
+    <Property Id="DataVirtualized" Label="Data Virtualized" Description="If true, the graph can contain nodes and links that represent data for virtualized nodes/links (i.e. not actually created in the graph)." DataType="System.Boolean" />
+    <Property Id="DefaultAction" Label="DefaultAction" Description="DefaultAction" DataType="System.String" />
+    <Property Id="Expression" DataType="System.String" />
+    <Property Id="GroupLabel" DataType="System.String" />
+    <Property Id="Icon" Label="Icon" DataType="System.String" />
+    <Property Id="IncomingActionLabel" Label="IncomingActionLabel" Description="IncomingActionLabel" DataType="System.String" />
+    <Property Id="IsEnabled" DataType="System.Boolean" />
+    <Property Id="IsProviderRoot" Label="IsProviderRoot" Description="IsProviderRoot" DataType="System.Boolean" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="LabelBounds" DataType="System.Windows.Rect" />
+    <Property Id="Layout" DataType="System.String" />
+    <Property Id="NavigationActionLabel" Label="NavigationActionLabel" Description="NavigationActionLabel" DataType="System.String" />
+    <Property Id="OutgoingActionLabel" Label="OutgoingActionLabel" Description="OutgoingActionLabel" DataType="System.String" />
+    <Property Id="SourceLocation" Label="Start Line Number" DataType="Microsoft.VisualStudio.GraphModel.CodeSchema.SourceLocation" />
+    <Property Id="TargetType" DataType="System.Type" />
+    <Property Id="Value" DataType="System.String" />
+    <Property Id="ValueLabel" DataType="System.String" />
+    <Property Id="Visibility" Label="Visibility" Description="Defines whether a node in the graph is visible or not" DataType="System.Windows.Visibility" />
+  </Properties>
+  <QualifiedNames>
+    <Name Id="Assembly" Label="Assembly" ValueType="Uri" />
+    <Name Id="GenericArguments" Label="Generic Arguments" ValueType="Microsoft.VisualStudio.GraphModel.GraphNodeIdCollection" />
+    <Name Id="GenericParameterCount" Label="Generic Parameter Count" ValueType="System.String" />
+    <Name Id="IsUnresolved" Label="Is Unresolved" ValueType="System.String" />
+    <Name Id="Member" Label="Member" ValueType="System.Object" />
+    <Name Id="Name" Label="Name" ValueType="System.String" />
+    <Name Id="Namespace" Label="Namespace" ValueType="System.String" />
+    <Name Id="OverloadingParameters" Label="Parameter" ValueType="Microsoft.VisualStudio.GraphModel.GraphNodeIdCollection" Formatter="NameValueNoEscape" />
+    <Name Id="Type" Label="Type" ValueType="System.Object" />
+  </QualifiedNames>
+  <IdentifierAliases>
+    <Alias n="1" Uri="Assembly=$(f091221e-fd10-41a7-aac4-c9359178bdb1.OutputPathUri)" />
+    <Alias n="2" Id="Namespace=VerilogLanguage.VerilogToken" />
+    <Alias n="3" Uri="Assembly=$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll" />
+    <Alias n="4" Uri="Assembly=$(VsSolutionUri)/packages/Microsoft.VisualStudio.Text.Data.14.3.25407/lib/net45/Microsoft.VisualStudio.Text.Data.dll" />
+    <Alias n="5" Id="Namespace=VerilogLanguage" />
+    <Alias n="6" Uri="Assembly=$(VsSolutionUri)/packages/Microsoft.VisualStudio.Text.Logic.14.3.25407/lib/net45/Microsoft.VisualStudio.Text.Logic.dll" />
+    <Alias n="7" Id="Namespace=VerilogLanguage.Outlining" />
+    <Alias n="8" Id="OverloadingParameters=[(@4 Namespace=Microsoft.VisualStudio.Text Type=ITextBuffer)]" />
+    <Alias n="9" Id="(@1 @5 Type=EditorClassifier1Provider Member=(Name=GetClassifier @8))" />
+    <Alias n="10" Id="(@1 @5 Type=VerilogQuickInfoSourceProvider Member=(Name=TryCreateQuickInfoSource @8))" />
+    <Alias n="11" Uri="Assembly=$(VsSolutionUri)/packages/Microsoft.VisualStudio.Text.UI.14.3.25407/lib/net45/Microsoft.VisualStudio.Text.UI.dll" />
+    <Alias n="12" Id="(@1 Namespace=VSLTK.Intellisense Type=TemplateQuickInfoController Member=(Name=OnTextViewMouseHover OverloadingParameters=[(@3 Namespace=System Type=Object),(@11 Namespace=Microsoft.VisualStudio.Text.Editor Type=MouseHoverEventArgs)]))" />
+    <Alias n="13" Id="(@1 @7 Type=OutliningTaggerProvider Member=(Name=CreateTagger GenericParameterCount=1 @8))" />
+    <Alias n="14" Id="(@1 @2 Type=VerilogClassifierProvider Member=(Name=CreateTagger GenericParameterCount=1 @8))" />
+    <Alias n="15" Id="(@1 @2 Type=VerilogTokenTagProvider Member=(Name=CreateTagger GenericParameterCount=1 @8))" />
+    <Alias n="16" Id="(@1 @7 Type=OutliningTaggerProvider Member=AnonymousMethod__0)" />
+    <Alias n="17" Id="(@1 @5 Type=EditorClassifier1Provider Member=AnonymousMethod__1_0)" />
+    <Alias n="18" Uri="Assembly=VerilogLanguage.dll" />
+    <Alias n="19" Id="(Name=VerilogLanguage.CommandFilter.Exec @18 Type=int OverloadingParameters=[(Type=System.Guid Name=pguidCmdGroup),(Type=uint Name=nCmdID),(Type=uint Name=nCmdexecopt),(Type=System.IntPtr Name=pvaIn),(Type=System.IntPtr Name=pvaOut)] IsUnresolved=True)" />
+  </IdentifierAliases>
+  <Styles>
+    <Style TargetType="Link" GroupLabel="Current Call Stack Link" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="HasCategory('CurrentCallStackCall')" />
+      <Setter Property="Stroke" Value="#FFD93701" />
+      <Setter Property="Weight" Value="1" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Call Stack Indirect Link" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="HasCategory('CallStackIndirectCall')" />
+      <Setter Property="Stroke" Value="#FFB8B8B8" />
+      <Setter Property="StrokeDashArray" Value="4 1" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Call Stack Direct Link" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="HasCategory('CallStackDirectCall')" />
+      <Setter Property="Stroke" Value="#FFB8B8B8" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Current Call Stack (no source)" ValueLabel="True">
+      <Condition Expression="HasCategory('CurrentCallStackEntry') And !HasCategory('CodeSchema_SourceLocation')" />
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="Foreground" Value="#FFA5A5A5" />
+      <Setter Property="Stroke" Value="#FF0072C6" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="External And Current" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="HasCategory('ExternalCallStackEntry') And HasCategory('CurrentCallStackEntry')" />
+      <Setter Property="Background" Value="#FFFFF8F0" />
+      <Setter Property="Stroke" Value="#FFCE5100" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Current Call Stack (source)" ValueLabel="True">
+      <Condition Expression="HasCategory('CurrentCallStackEntry') And !HasCategory('QueryResult')" />
+      <Setter Property="Background" Value="#FFFFE3C6" />
+      <Setter Property="Stroke" Value="#FFD93701" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="External Call Stack" ValueLabel="True">
+      <Condition Expression="HasCategory('ExternalCallStackEntry')" />
+      <Setter Property="Background" Value="#FFF7F7F7" />
+      <Setter Property="StrokeDashArray" Value="1 3" />
+      <Setter Property="Foreground" Value="#FF717171" />
+      <Setter Property="Stroke" Value="#FFA5A5A5" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Results" ValueLabel="True">
+      <Condition Expression="HasCategory('QueryResult')" />
+      <Setter Property="Background" Value="#FFBCFFBE" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Test Project" ValueLabel="Test Project">
+      <Condition Expression="HasCategory('CodeMap_TestProject')" />
+      <Setter Property="Icon" Value="CodeMap_TestProject" />
+      <Setter Property="Background" Value="#FF307A69" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Web Project" ValueLabel="Web Project">
+      <Condition Expression="HasCategory('CodeMap_WebProject')" />
+      <Setter Property="Icon" Value="CodeMap_WebProject" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Windows Store Project" ValueLabel="Windows Store Project">
+      <Condition Expression="HasCategory('CodeMap_WindowsStoreProject')" />
+      <Setter Property="Icon" Value="CodeMap_WindowsStoreProject" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Phone Project" ValueLabel="Phone Project">
+      <Condition Expression="HasCategory('CodeMap_PhoneProject')" />
+      <Setter Property="Icon" Value="CodeMap_PhoneProject" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Portable Library" ValueLabel="Portable Library">
+      <Condition Expression="HasCategory('CodeMap_PortableLibraryProject')" />
+      <Setter Property="Icon" Value="CodeMap_PortableLibraryProject" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="WPF Project" ValueLabel="WPF Project">
+      <Condition Expression="HasCategory('CodeMap_WpfProject')" />
+      <Setter Property="Icon" Value="CodeMap_WpfProject" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="VSIX Project" ValueLabel="VSIX Project">
+      <Condition Expression="HasCategory('CodeMap_VsixProject')" />
+      <Setter Property="Icon" Value="CodeMap_VsixProject" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Modeling Project" ValueLabel="Modeling Project">
+      <Condition Expression="HasCategory('CodeMap_ModelingProject')" />
+      <Setter Property="Icon" Value="CodeMap_ModelingProject" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Assembly" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Assembly')" />
+      <Setter Property="Background" Value="#FF094167" />
+      <Setter Property="Stroke" Value="#FF094167" />
+      <Setter Property="Icon" Value="CodeSchema_Assembly" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Namespace" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Namespace')" />
+      <Setter Property="Background" Value="#FF0E619A" />
+      <Setter Property="Stroke" Value="#FF0E619A" />
+      <Setter Property="Icon" Value="CodeSchema_Namespace" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Interface" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Interface')" />
+      <Setter Property="Background" Value="#FF1382CE" />
+      <Setter Property="Stroke" Value="#FF1382CE" />
+      <Setter Property="Icon" Value="CodeSchema_Interface" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Struct" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Struct')" />
+      <Setter Property="Background" Value="#FF1382CE" />
+      <Setter Property="Stroke" Value="#FF1382CE" />
+      <Setter Property="Icon" Value="CodeSchema_Struct" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Enumeration" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Enum')" />
+      <Setter Property="Background" Value="#FF1382CE" />
+      <Setter Property="Stroke" Value="#FF1382CE" />
+      <Setter Property="Icon" Value="CodeSchema_Enum" />
+      <Setter Property="LayoutSettings" Value="List" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Delegate" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Delegate')" />
+      <Setter Property="Background" Value="#FF1382CE" />
+      <Setter Property="Stroke" Value="#FF1382CE" />
+      <Setter Property="Icon" Value="CodeSchema_Delegate" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Class" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Type')" />
+      <Setter Property="Background" Value="#FF0E70C0" />
+      <Setter Property="Stroke" Value="#FF0E70C0" />
+      <Setter Property="Icon" Value="CodeSchema_Class" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Property')" />
+      <Setter Property="Background" Value="#FFE0E0E0" />
+      <Setter Property="Stroke" Value="#FFE0E0E0" />
+      <Setter Property="Icon" Value="CodeSchema_Property" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Method" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Method') Or HasCategory('CodeSchema_CallStackUnresolvedMethod')" />
+      <Setter Property="Background" Value="#FFE0E0E0" />
+      <Setter Property="Stroke" Value="#FFE0E0E0" />
+      <Setter Property="Icon" Value="CodeSchema_Method" />
+      <Setter Property="LayoutSettings" Value="List" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Event" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Event')" />
+      <Setter Property="Background" Value="#FFE0E0E0" />
+      <Setter Property="Stroke" Value="#FFE0E0E0" />
+      <Setter Property="Icon" Value="CodeSchema_Event" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Field" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Field')" />
+      <Setter Property="Background" Value="#FFE0E0E0" />
+      <Setter Property="Stroke" Value="#FFE0E0E0" />
+      <Setter Property="Icon" Value="CodeSchema_Field" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Out Parameter" ValueLabel="Has category">
+      <Condition Expression="CodeSchemaProperty_IsOut = 'True'" />
+      <Setter Property="Icon" Value="CodeSchema_OutParameter" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Parameter" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Parameter')" />
+      <Setter Property="Icon" Value="CodeSchema_Parameter" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Local Variable" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_LocalExpression')" />
+      <Setter Property="Icon" Value="CodeSchema_LocalExpression" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Externals" ValueLabel="Has category">
+      <Condition Expression="HasCategory('Externals')" />
+      <Setter Property="Background" Value="#FF424242" />
+      <Setter Property="Stroke" Value="#FF424242" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Inherits From" ValueLabel="True">
+      <Condition Expression="HasCategory('InheritsFrom')" />
+      <Setter Property="Stroke" Value="#FF00A600" />
+      <Setter Property="StrokeDashArray" Value="2 0" />
+      <Setter Property="DrawArrow" Value="true" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Implements" ValueLabel="True">
+      <Condition Expression="HasCategory('Implements')" />
+      <Setter Property="Stroke" Value="#8000A600" />
+      <Setter Property="StrokeDashArray" Value="2 2" />
+      <Setter Property="DrawArrow" Value="true" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Calls" ValueLabel="True">
+      <Condition Expression="HasCategory('CodeSchema_Calls')" />
+      <Setter Property="Stroke" Value="#FFFF00FF" />
+      <Setter Property="StrokeDashArray" Value="2 0" />
+      <Setter Property="DrawArrow" Value="true" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Function Pointer" ValueLabel="True">
+      <Condition Expression="HasCategory('CodeSchema_FunctionPointer')" />
+      <Setter Property="Stroke" Value="#FFFF00FF" />
+      <Setter Property="StrokeDashArray" Value="2 2" />
+      <Setter Property="DrawArrow" Value="true" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Field Read" ValueLabel="True">
+      <Condition Expression="HasCategory('CodeSchema_FieldRead')" />
+      <Setter Property="Stroke" Value="#FF00AEEF" />
+      <Setter Property="StrokeDashArray" Value="2 2" />
+      <Setter Property="DrawArrow" Value="true" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Field Write" ValueLabel="True">
+      <Condition Expression="HasCategory('CodeSchema_FieldWrite')" />
+      <Setter Property="Stroke" Value="#FF00AEEF" />
+      <Setter Property="DrawArrow" Value="true" />
+      <Setter Property="IsHidden" Value="false" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Inherits From" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="HasCategory('InheritsFrom') And Target.HasCategory('CodeSchema_Class')" />
+      <Setter Property="TargetDecorator" Value="OpenArrow" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Implements" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="HasCategory('Implements') And Target.HasCategory('CodeSchema_Interface')" />
+      <Setter Property="TargetDecorator" Value="OpenArrow" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Comment Link" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="Source.HasCategory('Comment')" />
+      <Setter Property="Stroke" Value="#FFE5C365" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Cursor Location Changed" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="IsCursorLocation" />
+      <Setter Property="IndicatorWest" Value="WestIndicator" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Disabled Breakpoint Location Changed" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="DisabledBreakpointCount" />
+      <Setter Property="IndicatorWest" Value="WestIndicator" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Enabled Breakpoint Location Changed" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="EnabledBreakpointCount" />
+      <Setter Property="IndicatorWest" Value="WestIndicator" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Instruction Pointer Location Changed" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="IsInstructionPointerLocation" />
+      <Setter Property="IndicatorWest" Value="WestIndicator" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Current Callstack Changed" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="IsCurrentCallstackFrame" />
+      <Setter Property="IndicatorWest" Value="WestIndicator" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Return" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="HasCategory('CodeSchema_ReturnTypeLink')" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="References" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="HasCategory('References')" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Uses Attribute" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="HasCategory('CodeSchema_AttributeUse')" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Solution Folder" ValueLabel="True" Visibility="Hidden">
+      <Condition Expression="HasCategory('CodeMap_SolutionFolder')" />
+      <Setter Property="Background" Value="#FFDEBA83" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Project Reference" ValueLabel="Project Reference">
+      <Condition Expression="HasCategory('CodeMap_ProjectReference')" />
+      <Setter Property="Stroke" Value="#9A9A9A" />
+      <Setter Property="StrokeDashArray" Value="2 2" />
+      <Setter Property="DrawArrow" Value="true" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="External Reference" ValueLabel="External Reference">
+      <Condition Expression="HasCategory('CodeMap_ExternalReference')" />
+      <Setter Property="Stroke" Value="#9A9A9A" />
+      <Setter Property="StrokeDashArray" Value="2 2" />
+      <Setter Property="DrawArrow" Value="true" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Comment" ValueLabel="Has comment">
+      <Condition Expression="HasCategory('Comment')" />
+      <Setter Property="Background" Value="#FFFFFACD" />
+      <Setter Property="Stroke" Value="#FFE5C365" />
+      <Setter Property="StrokeThickness" Value="1" />
+      <Setter Property="NodeRadius" Value="2" />
+      <Setter Property="MaxWidth" Value="250" />
+    </Style>
+  </Styles>
+  <Paths>
+    <Path Id="f091221e-fd10-41a7-aac4-c9359178bdb1.OutputPathUri" Value="file:///C:/workspace/VerilogLanguageExtension/bin/Debug/VerilogLanguage.dll" />
+    <Path Id="FxReferenceAssembliesUri" Value="file:///C:/Program Files (x86)/Reference Assemblies/Microsoft/Framework" />
+    <Path Id="VsSolutionUri" Value="file:///C:/workspace/VerilogLanguageExtension" />
+  </Paths>
+</DirectedGraph>

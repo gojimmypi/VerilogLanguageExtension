@@ -202,9 +202,7 @@ namespace VerilogLanguage.VerilogToken
                     if (VerilogGlobals.TheNewPosition <= VerilogGlobals.TheBuffer.CurrentSnapshot.Length)
                     {
 
-                    SnapshotPoint bp = new SnapshotPoint(VerilogGlobals.TheBuffer.CurrentSnapshot, VerilogGlobals.TheNewPosition);
-                    var point = VerilogGlobals.TheView.Caret.Position.BufferPosition;
-                    VerilogGlobals.PriorVerticalDistance = VerilogGlobals.TheView.GetTextViewLineContainingBufferPosition(point).TextTop - VerilogGlobals.TheView.ViewportTop;
+                        // VerilogGlobals.TheBuffer.CurrentSnapshot.GetLineFromPosition(TheOldPosition);
 
                     VerilogGlobals.Reparse(_buffer); // note that above, we are checking that the e.After is the same as the _buffer
 
@@ -227,6 +225,13 @@ namespace VerilogLanguage.VerilogToken
 
                         if (!VerilogGlobals.ForceRefreshInProgress)
                         {
+                            int TheOldPosition = e.Changes[0].OldPosition;
+                            VerilogGlobals.TheNewPosition = TheOldPosition;
+
+                            SnapshotPoint bp = new SnapshotPoint(VerilogGlobals.TheBuffer.CurrentSnapshot, TheOldPosition);
+                            var point = VerilogGlobals.TheView.Caret.Position.BufferPosition;
+                            VerilogGlobals.PriorVerticalDistance = VerilogGlobals.TheView.GetTextViewLineContainingBufferPosition(point).TextTop - VerilogGlobals.TheView.ViewportTop;
+
                             VerilogGlobals.ForceRefresh(theNewText.Length); // without appending the new length, the cursor does not move when typing! TODO: but what about paste!
                         }
 

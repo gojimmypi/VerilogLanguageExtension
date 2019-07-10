@@ -36,11 +36,6 @@ namespace VerilogLanguage.VerilogToken
     using Microsoft.VisualStudio.Utilities;
     using CommentHelper;
 
-
- 
-    //  using Microsoft.VisualStudio.Text.Operations;
- 
-
     internal sealed class VerilogTokenTagger : ITagger<VerilogTokenTag>
     {
         // ITextView View { get; set; }
@@ -48,12 +43,9 @@ namespace VerilogLanguage.VerilogToken
         IDictionary<string, VerilogTokenTypes> _VerilogTypes;
 
         internal VerilogTokenTagger(ITextBuffer buffer)
-            //internal VerilogTokenTagger(ITextBuffer buffer, ITextSearchService textSearchService, 
-            //ITextStructureNavigator textStructureNavigator)
         {
            
             VerilogGlobals.PerfMon.VerilogTokenTagger_Count++;
-            // this.View = view;
             VerilogGlobals.TheBuffer = buffer;
             _buffer = buffer;
 
@@ -205,19 +197,7 @@ namespace VerilogLanguage.VerilogToken
             {
                 if (IsRefreshChar(theNewText) || IsRefreshChar(theOldText))
                 {
-
                     VerilogGlobals.Reparse(_buffer); // note that above, we are checking that the e.After is the same as the _buffer
-
-
-                        //TagsChanged?.Invoke(this, new SnapshotSpanEventArgs(
-                        //                    new SnapshotSpan(_buffer.CurrentSnapshot,
-                        //                          new Span(0, _buffer.CurrentSnapshot.Length - 1))));
-
-                        // mensure the cursor stays in the same place.
-                        // see https://stackoverflow.com/questions/42712164/replacing-text-in-document-while-preserving-the-caret
-                        // VerilogGlobals.TheNewPosition += theNewText.Length;
-
-
                 }
             }
         }
@@ -352,10 +332,6 @@ namespace VerilogLanguage.VerilogToken
         {
             public string thisItem;
             public int thisIndex;
-            //public int thisSquareBracketDepth;
-            //public int thisRoundBracketDepth;
-            //public int thisSquigglyBracketDepth;
-
             public string priorChar;
             public string priorDelimiter;
             public bool thisCharIsDelimiter;
@@ -483,10 +459,6 @@ namespace VerilogLanguage.VerilogToken
             public VerilogToken(string p = "", VerilogTokenContextType c = VerilogTokenContextType.Undetermined)
             {
                 ParseState = new VerilogParseState(0);
-                //SquareBracketDepth = 0;
-                //RoundBracketDepth = 0;
-                //SquigglyBracketDepth = 0; // TODO, pass prior token in parameters and set this fromthose prior values
-
                 Part = p ?? ""; // ensure Part is never null (empty string if p is null)
 
                 if (c == VerilogTokenContextType.Undetermined && Part.Length > 0)
@@ -553,7 +525,11 @@ namespace VerilogLanguage.VerilogToken
             return tokens.ToArray();
         }
 
-
+        /// <summary>
+        ///   IEnumerable VerilogTokenTag GetTags
+        /// </summary>
+        /// <param name="spans"></param>
+        /// <returns></returns>
         public IEnumerable<ITagSpan<VerilogTokenTag>> GetTags(NormalizedSnapshotSpanCollection spans)
         {
             // bool EditInProgress = spans.snapshot.TextBuffer.EditInProgress;
@@ -561,9 +537,6 @@ namespace VerilogLanguage.VerilogToken
             VerilogGlobals.IsContinuedBlockComment = IsOpenBlockComment(spans); // TODO - does spans always contain the full document? (appears perhaps not)
             VerilogToken[] tokens = null;
             VerilogToken priorToken = new VerilogToken();
-            //Boolean HasPriorBrackets = false; // GetPriorBracketCounts(spans, ref priorToken);
-
-            
 
             foreach (SnapshotSpan curSpan in spans)
             {
@@ -700,29 +673,7 @@ namespace VerilogLanguage.VerilogToken
             }
         }
 
-        // public event EventHandler<SnapshotSpanEventArgs> TagsChanged;
-
-
-        //private void OnTagsChanged(object sender, TagsChangedEventArgs e)
-        //{
-        //    //var snapshotSpan = e.Span.GetSnapshotSpan();
-        //    SnapshotSpan entire = new SnapshotSpan(spans[0].Start, spans[spans.Count - 1].End).TranslateTo(currentSnapshot, SpanTrackingMode.EdgeExclusive);
-        //    InvokeTagsChanged(sender, entire);
-
-        //}
-
-
         public event EventHandler<SnapshotSpanEventArgs> TagsChanged;
-        //public event EventHandler<SnapshotSpanEventArgs> TagsChanged
-        //{
-        //    add { }
-        //    remove { }
-        //}
-
-        //private void InvokeTagsChanged(object sender, SnapshotSpanEventArgs args)
-        //{
-        //    TagsChanged?.Invoke(sender, args);
-        //}
 
         void ViewLayoutChanged(object sender, TextViewLayoutChangedEventArgs e)
         {            

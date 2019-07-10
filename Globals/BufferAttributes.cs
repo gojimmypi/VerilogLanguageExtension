@@ -171,18 +171,12 @@ namespace VerilogLanguage
         public static void Reparse(ITextBuffer buffer)
         {
             ITextSnapshot newSnapshot = buffer.CurrentSnapshot;
-            //List<Region> newRegions = new List<Region>();
-
-            ////keep the current (deepest) partial region, which will have
-            //// references to any parent partial regions.
-            //PartialRegion currentRegion = null;
             string thisChar = "";
             string lastChar = "";
             string thisLine = "";
-            bool AttributesChanged = false;
             bool IsActiveLineComment = false;
             bool IsActiveBlockComment = false;
-            //int thisLineStart = 0;
+
             int thisLineNumber = 0;
 
             BufferAttributes = new List<BufferAttribute>(); // re-initialize the global BufferAttributes
@@ -195,9 +189,8 @@ namespace VerilogLanguage
             {
                 bufferAttribute.LineNumber = thisLineNumber;
                 BufferAttributes.Add(bufferAttribute);
-                // bufferAttribute = new BufferAttribute();
-                // bufferAttribute = (VerilogGlobals.BufferAttribute)BufferAttributes[BufferAttributes.Count - 1].Clone();
                 bufferAttribute = new BufferAttribute();
+
                 // set rollover params
                 bufferAttribute.RoundBracketDepth = BufferAttributes[BufferAttributes.Count - 1].RoundBracketDepth;
                 bufferAttribute.SquareBracketDepth = BufferAttributes[BufferAttributes.Count - 1].SquareBracketDepth;
@@ -214,15 +207,13 @@ namespace VerilogLanguage
 
                 for (int i = 0; i < thisLine.Length; i++)
                 {
-                    AttributesChanged = true;
-
                     thisChar = thisLine.Substring(i, 1);
                     switch (thisChar)
                     {
                         case "[":
                             if (IsActiveLineComment || IsActiveBlockComment)
                             {
-                                AttributesChanged = false; // if there's an active line comment - nothing changes!
+                                // AttributesChanged = false; // if there's an active line comment - nothing changes!
                             }
                             else
                             {
@@ -236,7 +227,7 @@ namespace VerilogLanguage
                         case "]":
                             if (IsActiveLineComment || IsActiveBlockComment)
                             {
-                                AttributesChanged = false; // if there's an active line comment - nothing changes!
+                                // AttributesChanged = false; // if there's an active line comment - nothing changes!
                             }
                             else
                             {
@@ -250,7 +241,7 @@ namespace VerilogLanguage
                         case "(":
                             if (IsActiveLineComment || IsActiveBlockComment)
                             {
-                                AttributesChanged = false; // if there's an active line comment - nothing changes!
+                                // AttributesChanged = false; // if there's an active line comment - nothing changes!
                             }
                             else
                             {
@@ -264,7 +255,7 @@ namespace VerilogLanguage
                         case ")":
                             if (IsActiveLineComment || IsActiveBlockComment)
                             {
-                                AttributesChanged = false; // if there's an active line comment - nothing changes!
+                                // AttributesChanged = false; // if there's an active line comment - nothing changes!
                             }
                             else
                             {
@@ -278,7 +269,7 @@ namespace VerilogLanguage
                         case "{":
                             if (IsActiveLineComment || IsActiveBlockComment)
                             {
-                                AttributesChanged = false; // if there's an active line comment - nothing changes!
+                                // AttributesChanged = false; // if there's an active line comment - nothing changes!
                             }
                             else
                             {
@@ -292,7 +283,7 @@ namespace VerilogLanguage
                         case "}":
                             if (IsActiveLineComment || IsActiveBlockComment)
                             {
-                                AttributesChanged = false; // if there's an active line comment - nothing changes!
+                                // AttributesChanged = false; // if there's an active line comment - nothing changes!
                             }
                             else
                             {
@@ -307,11 +298,9 @@ namespace VerilogLanguage
                             // encountered "/*"
                             if (lastChar == "/")
                             {
-                                //bool changing = TheBuffer.CheckEditAccess();
-
                                 if (IsActiveLineComment || IsActiveBlockComment)
                                 {
-                                    AttributesChanged = false; // if there's an active line comment - nothing changes!
+                                    // AttributesChanged = false; // if there's an active line comment - nothing changes!
                                 }
                                 else
                                 {
@@ -324,7 +313,7 @@ namespace VerilogLanguage
                             }
                             else
                             {
-                                AttributesChanged = false;
+                                // AttributesChanged = false;
                             }
                             break;
 
@@ -341,7 +330,7 @@ namespace VerilogLanguage
                                 }
                                 else
                                 {
-                                    AttributesChanged = false;
+                                    // AttributesChanged = false;
                                 }
                             }
                             else
@@ -353,32 +342,20 @@ namespace VerilogLanguage
                                     bufferAttribute.IsComment = true;
                                     bufferAttribute.LineStart = i - 1; // comment actually starts on prior char
                                     bufferAttribute.LineEnd = -1; // a value of -1 means the entire line, regardless of actual length.
-                                    AttributesChanged = (i > 1); // the attribute of the line will not change if the first char starts a comment
+                                    // AttributesChanged = (i > 1); // the attribute of the line will not change if the first char starts a comment
                                     AppendBufferAttribute();
                                 }
                                 else
                                 {
-                                    AttributesChanged = false;
+                                    // AttributesChanged = false;
                                 }
                             }
                             break;
 
                         default:
-                            AttributesChanged = false;
+                            // AttributesChanged = false;
                             break;
                     }
-                    if (AttributesChanged)
-                    {
-                        // the last item currently in the list has end ending line position set to this line starting position
-                        // BufferAttributes[BufferAttributes.Count - 1].LineEnd = bufferAttribute.LineStart;
-                        // BufferAttributes.Add(bufferAttribute);
-                        // bufferAttribute = new BufferAttribute();
-                        // bufferAttribute = (VerilogGlobals.BufferAttribute)BufferAttributes[BufferAttributes.Count - 1].Clone();
-                    }
-
-
-                    // bufferAttribute.Start++;
-
                     lastChar = thisChar;
                 } // end of for loop looking at each char in line
 
@@ -390,18 +367,9 @@ namespace VerilogLanguage
 
                 if (BufferAttributes.Count > 0)
                 {
-                    if (BufferAttributes[BufferAttributes.Count - 1].LineEnd == 0)
-                    {
-                        // if we didn't previously find an end (e.g. line comment), then the ending position is the length
-                        // BufferAttributes[BufferAttributes.Count - 1].LineEnd = thisLine.Length - 1;
-                    }
-
                     // when we reach the end of the line, we reach the end of the line comment!
                     IsActiveLineComment = false;
-
-                    // BufferAttributes[BufferAttributes.Count - 1].End = bufferAttribute.Start;
                 }
-                //bufferAttribute.IsComment = IsActiveLineComment || IsActiveBlockComment;
             }
         }
 

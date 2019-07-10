@@ -44,29 +44,14 @@ namespace VerilogLanguage.VerilogToken
     [ContentType("verilog")] // see _buffer.ContentType (ITextBuffer.ContentType Property)
     internal sealed class VerilogTokenTagProvider : ITaggerProvider
     {
-        //[Import]
-        //internal ITextBuffer thebuffer;
-        //[Import]
-        //internal ITextSearchService TextSearchService { get; set; }
-
-        //[Import]
-        //internal ITextStructureNavigatorSelectorService TextStructureNavigatorSelector { get; set; }
-
         public ITagger<T> CreateTagger<T>(ITextBuffer buffer) where T : ITag
         {
-            //        ITextStructureNavigator textStructureNavigator =
-            //TextStructureNavigatorSelector.GetTextStructureNavigator(buffer);
-            // old code:
             return new VerilogTokenTagger(buffer) as ITagger<T>;
-
-            // return new VerilogTokenTagger(VerilogGlobals.TheView, buffer, TextSearchService, textStructureNavigator) as ITagger<T>;
-            // return new VerilogTokenTagger(buffer) as ITagger<T>;
 
             // TODO which is better? above or below?
 
             //Func<ITagger<T>> sc = delegate () { return new VerilogTokenTagger(buffer) as ITagger<T>; };
             //return buffer.Properties.GetOrCreateSingletonProperty<ITagger<T>>(sc);
-
         }
 
         public event EventHandler<SnapshotSpanEventArgs> TagsChanged

@@ -49,8 +49,6 @@ namespace VerilogLanguage
         private ITextBuffer _buffer;
         private bool _disposed = false;
         IDictionary<VerilogToken.VerilogTokenTypes, string> _VerilogKeywordHoverText;
-        //IDictionary<string, string> _VerilogVariableHoverText;
-
 
         public VerilogQuickInfoSource(ITextBuffer buffer, ITagAggregator<VerilogToken.VerilogTokenTag> aggregator)
         {
@@ -58,7 +56,7 @@ namespace VerilogLanguage
             _buffer = buffer;
 
             // TODO - do we really want to call reparse here?
-            VerilogGlobals.Reparse(buffer); // parse the buffer at file load time
+            // VerilogGlobals.Reparse(buffer); // parse the buffer at file load time
 
             //_VerilogVariableHoverText = new Dictionary<string, string>
             //{
@@ -172,7 +170,6 @@ namespace VerilogLanguage
                 return;
 
 
-
             foreach (IMappingTagSpan<VerilogToken.VerilogTokenTag> curTag in _aggregator.GetTags(new SnapshotSpan(triggerPoint, triggerPoint)))
             {
                 // here we add hover text at runtime 
@@ -183,7 +180,7 @@ namespace VerilogLanguage
                 }
                 else
                 { // 
-                    var thisTag = curTag.ToString(); //TODO is this hwere to add verilog variables?
+                    var thisTag = curTag.ToString(); //TODO is this where to add verilog variables?
                     var tagSpan = curTag.Span.GetSpans(_buffer).First();
                     string thisHoverKey = tagSpan.GetText();
 

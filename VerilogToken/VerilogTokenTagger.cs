@@ -163,7 +163,8 @@ namespace VerilogLanguage.VerilogToken
                 ["bracket_type5"] = VerilogTokenTypes.Verilog_Bracket5,
                 ["bracket_content"] = VerilogTokenTypes.Verilog_BracketContent,
 
-                ["variable_type"] = VerilogTokenTypes.Verilog_Variable
+                ["variable_type"] = VerilogTokenTypes.Verilog_Variable,
+                ["value_type"] = VerilogTokenTypes.Verilog_Value,
             };
 
             this._buffer.Changed += BufferChanged;

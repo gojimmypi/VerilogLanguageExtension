@@ -181,6 +181,7 @@ namespace VerilogLanguage.VerilogToken
                 [VerilogTokenTypes.Verilog_Bracket5] = typeService.GetClassificationType("Bracket5"),
                 [VerilogTokenTypes.Verilog_BracketContent] = typeService.GetClassificationType("BracketContent"),
                 [VerilogTokenTypes.Verilog_Variable] = typeService.GetClassificationType("Variable"),
+                [VerilogTokenTypes.Verilog_Value] = typeService.GetClassificationType("Value"),
             };
 
         }

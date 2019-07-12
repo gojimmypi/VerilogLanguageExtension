@@ -124,7 +124,8 @@ namespace VerilogLanguage.VerilogToken
         Verilog_Bracket5,
         Verilog_BracketContent,
         
-        Verilog_Variable
+        Verilog_Variable,
+        Verilog_Value
 
     }
 }

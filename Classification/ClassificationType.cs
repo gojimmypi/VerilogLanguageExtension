@@ -785,5 +785,13 @@ namespace VerilogLanguage
         internal static ClassificationTypeDefinition Verilog_Variable = null;
         #endregion
 
+        #region value
+        /// <summary>
+        /// Defines the "Verilog_Comment" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Value")]
+        internal static ClassificationTypeDefinition Verilog_Value = null;
+        #endregion
     }
 }

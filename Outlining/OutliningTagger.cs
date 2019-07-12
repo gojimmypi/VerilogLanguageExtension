@@ -81,9 +81,14 @@ namespace VerilogLanguage.Outlining
             // TODO - check to see if we actually *need* a full refresh
 
             // This is the event that forces a full refresh of token tags
-            TagsChanged?.Invoke(this, new SnapshotSpanEventArgs(
+
+            if (buffer.CurrentSnapshot.Length > 1) {
+                TagsChanged?.Invoke(this, new SnapshotSpanEventArgs(
                                 new SnapshotSpan(buffer.CurrentSnapshot,
                                       new Span(0, buffer.CurrentSnapshot.Length - 1))));
+            }
+
+
             //this.ReParse();
         }
 

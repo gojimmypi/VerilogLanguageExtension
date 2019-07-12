@@ -89,7 +89,7 @@ module ulx3s_passthru_wifi(
 	output wire user_programn
 );
 
-parameter [({[31:0]})])])}])[]]][[[[ C_dummy_constant=0;
+
 
 // main clock input from 25MHz clock source must be lowercase
 // UART0 (FTDI USB slave serial)
@@ -141,7 +141,7 @@ parameter [({[31:0]})])])}])[]]][[[[ C_dummy_constant=0;
   assign S_prog_in[1] = ftdi_ndtr;
   assign S_prog_in[0] = ftdi_nrts;
   assign S_prog_out = S_prog_in == 2'b10 ? 2'b01 : S_prog_in == 2'b01 ? 2'b10 : 2'b11;
-
+  [] [] [] () {} 
   assign wifi_en = S_prog_out[1];
   assign wifi_gpio0 = S_prog_out[0] & btn[0];
 

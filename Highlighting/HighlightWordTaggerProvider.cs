@@ -33,7 +33,7 @@ namespace VerilogLanguage.Highlighting
             if (textView.TextBuffer != buffer)
                 return null;
 
-            // TODO - do we really want rto reparse here??
+            // TODO - do we really want to reparse here??
             VerilogGlobals.Reparse(buffer); // parse the buffer at file load time
 
             ITextStructureNavigator textStructureNavigator =

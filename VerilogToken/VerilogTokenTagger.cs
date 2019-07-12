@@ -219,6 +219,7 @@ namespace VerilogLanguage.VerilogToken
         static public bool IsDelimeter(string theString)
         {
             return (theString == " ") ||
+                   (theString == "~") ||
                    (theString == "[") ||
                    (theString == "]") ||
                    (theString == "}") ||
@@ -359,7 +360,8 @@ namespace VerilogLanguage.VerilogToken
                     thisCharIsDelimiter = IsDelimeter(value);
                     thisCharIsEndingDelimiter = IsEndingDelimeter(value);
                     priorCharIsDelimiter = IsDelimeter(priorChar);
-                    IsNewDelimitedSegment = thisCharIsDelimiter || priorCharIsDelimiter;
+                    // note  contiguous spaces are a single segment
+                    IsNewDelimitedSegment = ( thisCharIsDelimiter || priorCharIsDelimiter) && !((_thisChar == " ") && (priorChar == " "));
 
                     if (IsNewDelimitedSegment)
                     {
@@ -535,10 +537,14 @@ namespace VerilogLanguage.VerilogToken
         {
             // bool EditInProgress = spans.snapshot.TextBuffer.EditInProgress;
             // since we can start mid-text, we don't know if the current span is in the middle of a comment
+
+            // init
+            VerilogGlobals.InitHoverBuilder();
             VerilogGlobals.IsContinuedBlockComment = IsOpenBlockComment(spans); // TODO - does spans always contain the full document? (appears perhaps not)
             VerilogToken[] tokens = null;
             VerilogToken priorToken = new VerilogToken();
 
+            // look at each span for tokens, comments, etc
             foreach (SnapshotSpan curSpan in spans)
             {
                 if (tokens != null && tokens.Length >= 1)

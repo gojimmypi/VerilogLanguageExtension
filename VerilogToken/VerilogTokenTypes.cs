@@ -30,7 +30,7 @@ namespace VerilogLanguage.VerilogToken
     public enum VerilogTokenTypes
     {
         Verilog_always,
-        Verilog_assign,
+        Verilog_assign, // assign of reg data types is not supported. But assign on wire data type is supported.
         Verilog_automatic,
         Verilog_begin,
         Verilog_case,
@@ -38,7 +38,7 @@ namespace VerilogLanguage.VerilogToken
         Verilog_casez,
         Verilog_cell,
         Verilog_config,
-        Verilog_deassign,
+        Verilog_deassign, // Not Supported in Synthesis 
         Verilog_default,
         Verilog_defparam,
         Verilog_design,
@@ -59,7 +59,7 @@ namespace VerilogLanguage.VerilogToken
         Verilog_for,
         Verilog_force,
         Verilog_forever,
-        Verilog_fork,
+        Verilog_fork, // Not Supported in Synthesis; Use nonblocking assignments to get same effect.
         Verilog_function,
         Verilog_generate,
         Verilog_genvar,
@@ -67,11 +67,11 @@ namespace VerilogLanguage.VerilogToken
         Verilog_ifnone,
         Verilog_incdir,
         Verilog_include,
-        Verilog_initial,
+        Verilog_initial, // Used only in test benches.
         Verilog_inout,
         Verilog_input,
         Verilog_instance,
-        Verilog_join,
+        Verilog_join,  // Not Supported in Synthesis; Use nonblocking assignments to get same effect.
         Verilog_liblist,
         Verilog_library,
         Verilog_localparam,
@@ -82,7 +82,7 @@ namespace VerilogLanguage.VerilogToken
         Verilog_output,
         Verilog_parameter,
         Verilog_posedge,
-        Verilog_primitive,
+        Verilog_primitive, // Only gate level primitives are supported.
         Verilog_pulsestyle_ondetect,
         Verilog_pulsestyle_onevent,
         Verilog_reg,
@@ -94,7 +94,7 @@ namespace VerilogLanguage.VerilogToken
         Verilog_specify,
         Verilog_specparam,
         Verilog_strength,
-        Verilog_table,
+        Verilog_table, // UDP and tables are not supported.
         Verilog_task,
         Verilog_tri,
         Verilog_tri0,

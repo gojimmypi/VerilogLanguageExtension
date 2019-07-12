@@ -152,8 +152,8 @@ namespace VerilogLanguage
                 _End = 0;
 
                 _LineNumber = 0;
-                _LineStart = 0;
-                _LineEnd = 0;
+                _LineStart = -1;
+                _LineEnd = -1;
                 _IsComment = false;
                 _SquareBracketDepth = 0;
                 _RoundBracketDepth = 0;
@@ -353,7 +353,12 @@ namespace VerilogLanguage
                             break;
 
                         default:
-                            // AttributesChanged = false;
+                            // we'll keep track of ending string segment that may need to be added below; note if something interesting is found, we'll overwrite these bufferAttribute values, above
+                            if (bufferAttribute.LineStart < 0)
+                            {
+                                bufferAttribute.LineStart = i; // the first time we end up here, is the start of the string that does not match one of the above special cases
+                            }
+                            bufferAttribute.LineEnd = i; // keep track of the end.
                             break;
                     }
                     lastChar = thisChar;
@@ -370,8 +375,9 @@ namespace VerilogLanguage
                     // when we reach the end of the line, we reach the end of the line comment!
                     IsActiveLineComment = false;
                 }
-            }
-        }
+            } // foreach line
+            // TODO - do we need a final, end-of-file bufferAttribute (probably not)
+        } // Reparse
 
         /// <summary>
         ///     TextIsComment - is the text on line [AtLine] starting at position [AtPosition] a comment?
@@ -406,19 +412,47 @@ namespace VerilogLanguage
         public static int BracketDepth(int AtLine, int AtPosition)
         {
             int res = 0;
-            for (int i = 0; i < BufferAttributes.Count - 1; i++)
+            bool found = false;
+
+            if (BufferAttributes.Count > 0)
             {
-                if (BufferAttributes[i].LineNumber == AtLine)
+                if (BufferAttributes[BufferAttributes.Count - 1].LineNumber >= AtLine)
                 {
-                    if (BufferAttributes[i].LineStart == AtPosition)
+                    for (int i = 0; i < BufferAttributes.Count - 1; i++)
                     {
-                        res = BufferAttributes[i].RoundBracketDepth +
-                              BufferAttributes[i].SquareBracketDepth +
-                              BufferAttributes[i].SquigglyBracketDepth;
-                        break;
-                    }
+                        if (BufferAttributes[i].LineNumber == AtLine)
+                        {
+                            if (BufferAttributes[i].LineStart == AtPosition)
+                            {
+                                res = BufferAttributes[i].RoundBracketDepth +
+                                      BufferAttributes[i].SquareBracketDepth +
+                                      BufferAttributes[i].SquigglyBracketDepth;
+                                found = true;
+                                break;
+                            }
+                        }
+                    } // for
+                } // if target AtLine is less than or equal to the last line number in BufferAttributes
+                else
+                {
+                    // the line number is not even in the BufferAttributes, so don't bother even looking
                 }
+
+                // if we didn't find a depth at the explicit line, the depth is at the last known line; 
+                // without this, the ending bracket depth is unknown
+                if (!found)
+                {
+                    int LastID = BufferAttributes.Count - 1;
+                    res = BufferAttributes[LastID].RoundBracketDepth +
+                          BufferAttributes[LastID].SquareBracketDepth +
+                          BufferAttributes[LastID].SquigglyBracketDepth;
+                } // if !found
+            } // BufferAttributes.Count > 0
+            else
+            {
+                // no BufferAttributes, so nothing to do!
             }
+
             return res;
         }
     }

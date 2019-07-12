@@ -42,7 +42,7 @@ namespace VerilogLanguage
         public static bool IsLastName = false;
         public static bool IsNaming = false; // when we find a naming keyaord (module, input, etc)... we will build hover text, including comments
         public static string lastKeyword = "";
-
+        public static bool FoundHoverName = false;
 
         private static bool IsVerilogNamerKeyword(string theKeyword)
         {
@@ -51,10 +51,21 @@ namespace VerilogLanguage
                     (theKeyword == "input") ||
                     (theKeyword == "inout") ||
                     (theKeyword == "output") ||
+                    (theKeyword == "parameter") ||
                     (theKeyword == "module")
                    );
         }
 
+        private static bool IsVerilogValue(string theKeyword)
+        {
+            return theKeyword.Contains("'b") || theKeyword.Contains("'h");
+        }
+
+        public static Boolean IsNumeric(String input)
+        {
+            double temp;
+            return double.TryParse(input, out temp); ;
+        }
 
         public static void BuildHoverItems(string s)
         {
@@ -72,6 +83,18 @@ namespace VerilogLanguage
                 return;
             }
 
+            if (IsNumeric(s) || IsVerilogValue(s) )
+            {
+                if (!VerilogVariables.Keys.Contains(s))
+                {
+                    VerilogVariables.Add(s, VerilogTokenTypes.Verilog_Value);
+                    if (!IsNaming)
+                    {
+                        return;
+                    }
+                }
+            }
+
             if (IsNaming)
             {
                 if (IsNextNonblankName)
@@ -84,35 +107,39 @@ namespace VerilogLanguage
 
 
                 // when we are naming a veriable and end counter a semicolon or comma, we're done. add it and reset.
-                if ((thisTrimmedItem == ";") || (thisTrimmedItem == ",") || (thisTrimmedItem == ")"))
+                if ((thisTrimmedItem == ";") || (thisTrimmedItem == ",") || (thisTrimmedItem == ")") || (thisTrimmedItem == "="))
                 {
-                    thisTrimmedItem = ""; // once detected, we won't use it here
-                    IsNaming = false; // all naming ends upon semi-colon.
+                    IsNaming = (thisTrimmedItem == "="); // set to false when we are done. all naming ends upon semi-colon.
+                                                         // an equals-sign needs the next value included. (e.g. reg val = 1'b0; )
 
-                    if (IsLastName)
+                     if (IsLastName && !FoundHoverName)
                     {
                         // the name is the last, non-blank value before the semicolon. (e.g. "J2_AD_PORT" from "input [7:0] J2_AS_PORT;")
-                        IsLastName = false;
+                        IsLastName = (thisTrimmedItem != ","); // commas allow for multiple variables
                         thisHoverName = lastKeyword;
+                        FoundHoverName = true;
                     }
-
-
-                    if (!VerilogVariables.Keys.Contains(thisHoverName) && thisHoverName != "")
+                    
+                    if (!IsNaming)
                     {
-                        VerilogVariables.Add(thisHoverName, VerilogTokenTypes.Verilog_Variable);
-                        if (!VerilogGlobals.VerilogVariableHoverText.ContainsKey(thisHoverName))
+                        if (!VerilogVariables.Keys.Contains(thisHoverName) && thisHoverName != "")
                         {
-                            VerilogGlobals.VerilogVariableHoverText.Add(thisHoverName, thisVariableHoverText);
+                            VerilogVariables.Add(thisHoverName, VerilogTokenTypes.Verilog_Variable);
+                            if (!VerilogGlobals.VerilogVariableHoverText.ContainsKey(thisHoverName))
+                            {
+                                VerilogGlobals.VerilogVariableHoverText.Add(thisHoverName, thisVariableHoverText);
+                            }
+                            else
+                            {
+                                VerilogGlobals.VerilogVariableHoverText[thisHoverName] = thisVariableHoverText;
+                            }
                         }
-                        else
-                        {
-                            VerilogGlobals.VerilogVariableHoverText[thisHoverName] = thisVariableHoverText;
-                        }
+                        // thisHoverName is the variable keyword and VerilogVariableHoverText is the definition text
+                        thisVariableHoverText = "";
+                        thisHoverName = "";
+                        IsNextNonblankName = false;
+                        thisTrimmedItem = ""; // once detected, we won't use it here
                     }
-                    // thisHoverName is the variable keyword and VerilogVariableHoverText is the definition text
-                    thisVariableHoverText = "";
-                    thisHoverName = "";
-                    IsNextNonblankName = false;
 
                 } // end if (thisTrimmedItem == ";")
 
@@ -136,7 +163,9 @@ namespace VerilogLanguage
                         case "inout":
                         case "wire":
                         case "reg":
+                        case "parameter":
                             IsLastName = true;
+                            FoundHoverName = false;
                             thisVariableHoverText = thisTrimmedItem;
                             break;
 

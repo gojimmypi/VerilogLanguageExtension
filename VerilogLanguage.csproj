@@ -178,7 +178,11 @@
     <Compile Include="EditorClassifier\EditorClassifier1Provider.cs" />
     <Compile Include="Globals\BufferAttributes.cs" />
     <Compile Include="Globals\PerfMon.cs" />
+    <Compile Include="Globals\VerilogContext.cs" />
     <Compile Include="Globals\VerilogGlobals.cs" />
+    <Compile Include="Globals\VerilogHelperFunctions.cs" />
+    <Compile Include="Globals\VerilogParseState.cs" />
+    <Compile Include="Globals\VerilogToken.cs" />
     <Compile Include="Highlighting\HighlightWordFormatDefinition.cs" />
     <Compile Include="Highlighting\HighlightWordTag.cs" />
     <Compile Include="Highlighting\HighlightWordTagger.cs" />

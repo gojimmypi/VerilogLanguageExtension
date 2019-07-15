@@ -26,19 +26,19 @@ namespace VerilogLanguage
                 }
                 else
                 {
-                    if (ParseState.hasOpenSquareBracket && !IsDelimeter(ParseState.thisChar))
+                    if (ParseState.hasOpenSquareBracket && !IsDelimiter(ParseState.thisChar))
                     {
                         Context = VerilogTokenContextType.SquareBracketContents;
                     }
                     else
                     {
-                        if (ParseState.hasOpenRoundBracket && !IsDelimeter(ParseState.thisChar))
+                        if (ParseState.hasOpenRoundBracket && !IsDelimiter(ParseState.thisChar))
                         {
                             Context = VerilogTokenContextType.RoundBracketContents;
                         }
                         else
                         {
-                            if (ParseState.hasOpenRoundBracket && !IsDelimeter(ParseState.thisChar))
+                            if (ParseState.hasOpenRoundBracket && !IsDelimiter(ParseState.thisChar))
                             {
                                 Context = VerilogTokenContextType.SquigglyBracketContents;
                             }

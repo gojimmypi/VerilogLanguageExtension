@@ -12,6 +12,8 @@ namespace VerilogLanguage
 {
     public static partial class VerilogGlobals
     {
+        public static List<BufferAttribute> BufferAttributes = new List<BufferAttribute>();
+
         public class BufferAttribute : ICloneable
         {
             public bool IsEmpty;
@@ -26,6 +28,7 @@ namespace VerilogLanguage
             private int _RoundBracketDepth;
             private int _SquigglyBracketDepth;
 
+            #region "Property Implementation"
             public int Start
             {
                 get
@@ -142,6 +145,7 @@ namespace VerilogLanguage
                     IsEmpty = false;
                 }
             }
+            #endregion
 
 
             public BufferAttribute()
@@ -165,8 +169,6 @@ namespace VerilogLanguage
                 return this.MemberwiseClone();
             }
         };
-
-        public static List<BufferAttribute> BufferAttributes = new List<BufferAttribute>();
 
         public static void Reparse(ITextBuffer buffer)
         {

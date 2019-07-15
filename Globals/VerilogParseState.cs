@@ -38,9 +38,9 @@ namespace VerilogLanguage
                 set
                 {
                     _thisChar = value;
-                    thisCharIsDelimiter = IsDelimeter(value);
+                    thisCharIsDelimiter = IsDelimiter(value);
                     thisCharIsEndingDelimiter = IsEndingDelimeter(value);
-                    priorCharIsDelimiter = IsDelimeter(priorChar);
+                    priorCharIsDelimiter = IsDelimiter(priorChar);
                     // note  contiguous spaces are a single segment
                     IsNewDelimitedSegment = (thisCharIsDelimiter || priorCharIsDelimiter) && !((_thisChar == " ") && (priorChar == " "));
 

@@ -72,7 +72,5 @@ namespace VerilogLanguage
             }
         }
 
-
-
-    }
+    } // partial class VerilogGlobals
 }

@@ -60,62 +60,6 @@ namespace VerilogLanguage
             thisVariableDeclarationText = "";
         }
 
-        private static bool IsVerilogNamerKeyword(string theKeyword)
-        {
-            return ((theKeyword == "reg") || 
-                    (theKeyword == "wire") ||
-                    (theKeyword == "input") ||
-                    (theKeyword == "inout") ||
-                    (theKeyword == "output") ||
-                    (theKeyword == "parameter") ||
-                    (theKeyword == "module")
-                   );
-        }
-
-        private static bool IsVerilogBracket(string theKeyword)
-        {
-            switch (theKeyword)
-            {
-                case "[":
-                case "(":
-                case "{":
-                case "}":
-                case ")":
-                case "]":
-                    return true;
-                default:
-                    return false;
-            }
-
-        }
-
-        private static bool IsVerilogValue(string theKeyword)
-        {
-            bool NumericParts = false; // we'll only have numeric parts, if there are parts to look at! (e.g. "1:1")
-            string[] KeywordParts = theKeyword.Split(':');
-            if (KeywordParts.Count() > 1)
-            {
-                foreach (string part in KeywordParts)
-                {
-                    // recusrively call self here, if perhas we have a value like [1'b1:2'b2]
-                    if (!IsNumeric(part) && !IsVerilogValue(part) )
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        NumericParts = true;
-                    }
-                }
-            }
-            return theKeyword.Contains("'b") || theKeyword.Contains("'h") || NumericParts;
-        }
-
-        public static Boolean IsNumeric(String input)
-        {
-            double temp;
-            return double.TryParse(input, out temp); ;
-        }
 
         /// <summary>
         ///  BuildHoverItems - builds the Verilog variable hover text. Called in IEnumerable VerilogTokenTagger

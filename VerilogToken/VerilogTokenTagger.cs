@@ -243,8 +243,8 @@ namespace VerilogLanguage.VerilogToken
             // bool EditInProgress = spans.snapshot.TextBuffer.EditInProgress;
             // since we can start mid-text, we don't know if the current span is in the middle of a comment
 
-            // init
-            VerilogGlobals.InitHoverBuilder();
+            // init TODO - we don't really want to call this for every enumeration!
+            // VerilogGlobals.InitHoverBuilder();
             VerilogGlobals.IsContinuedBlockComment = IsOpenBlockComment(spans); // TODO - does spans always contain the full document? (appears perhaps not)
             VerilogGlobals.VerilogToken[] tokens = null;
             VerilogGlobals.VerilogToken priorToken = new VerilogGlobals.VerilogToken();
@@ -298,7 +298,7 @@ namespace VerilogLanguage.VerilogToken
                         {
                             // first check to see if any new variables are being defined;
 
-                            VerilogGlobals.BuildHoverItems(Item.ItemText);
+                            // VerilogGlobals.BuildHoverItems(Item.ItemText);
 
 
                             // check for standard keyword syntax higlighting

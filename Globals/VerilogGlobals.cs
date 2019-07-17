@@ -48,6 +48,8 @@ namespace VerilogLanguage
 
         public static void InitHoverBuilder()
         {
+            VerilogVariableHoverText = new Dictionary<string, string> { };
+            VerilogVariables = new Dictionary<string, VerilogTokenTypes> { };
             IsContinuedBlockComment = false;
             thisVariableHoverText = "";
             thisHoverName = "";
@@ -70,34 +72,24 @@ namespace VerilogLanguage
         {
             void AddHoverItem()
             {
-                if (!VerilogVariables.Keys.Contains(thisHoverName) && thisHoverName != "")
+                if (!VerilogVariables.Keys.Contains(thisHoverName) && thisHoverName != "" && thisHoverName != ",")
                 {
                     VerilogVariables.Add(thisHoverName, VerilogTokenTypes.Verilog_Variable);
+
+                    string thisHoverText = thisVariableHoverText + " " + thisHoverName;
                     if (!VerilogGlobals.VerilogVariableHoverText.ContainsKey(thisHoverName))
                     {
-                        VerilogGlobals.VerilogVariableHoverText.Add(thisHoverName, thisVariableHoverText);
+                        VerilogGlobals.VerilogVariableHoverText.Add(thisHoverName, thisHoverText);
                     }
                     else
                     {
-                        VerilogGlobals.VerilogVariableHoverText[thisHoverName] = thisVariableHoverText;
+                        // overwrite an existing variable declaration
+                        VerilogGlobals.VerilogVariableHoverText[thisHoverName] = thisHoverText;
                     }
                 }
             }
 
             string thisTrimmedItem = (s == null) ? "" : s.Trim();
-
-            //  when naming, all text, including blanks are appended to hover text
-            if (IsNaming && (thisTrimmedItem != ","))
-            {
-                if (FoundDeclaration)
-                {
-                    thisVariableHoverText = thisVariableDeclarationText + " " + s;
-                }
-                else
-                {
-                    thisVariableHoverText += s;
-                }
-            }
 
             // blanks are ignored here for everything else, so return
             if (thisTrimmedItem == "")
@@ -120,16 +112,23 @@ namespace VerilogLanguage
 
             if (IsNaming)
             {
+                //  when naming, all text, including blanks are appended to hover text
+
                 // we're here bacause a prior keyword was something like: input, wire, etc...
                 // the first non-declaration text indicates we found the base variable declaration
                 // string: everything minus the actual name of the variable(s)
                 if (!IsVerilogNamerKeyword(thisTrimmedItem)) {
                     if (FoundDeclaration)
                     {
+                        // we're naming a declaration, this is not a keyword, and we have a declaration
+                        // string such as "input wire [1:1], thus thisTrimmedItem must be a variable name.
+                        thisHoverName = thisTrimmedItem;
                         AddHoverItem();
                     }
                     else
                     {
+                        // the first non-keyword, non-numeric, non-array, non-equal sign is the end of the declaration and first
+                        // non black segment should be the variable
                         if (!IsVerilogBracket(thisTrimmedItem) && !IsNumeric(thisTrimmedItem) && !IsVerilogValue(thisTrimmedItem))
                         {
                             // we are still bulding the declaration part
@@ -138,6 +137,18 @@ namespace VerilogLanguage
                             thisHoverName = thisTrimmedItem;
                         }
                     }
+                    if (IsNaming && !FoundDeclaration)
+                    {
+                        if (FoundDeclaration)
+                        {
+                            thisVariableHoverText = thisVariableDeclarationText + " " + s;
+                        }
+                        else
+                        {
+                            thisVariableHoverText += s;
+                        }
+                    }
+
 
                 }
 

@@ -170,6 +170,65 @@ namespace VerilogLanguage
             }
         };
 
+        // private static Boolean IsContinuedLineComment = false; // comments with "//" are only effective for the current line, but /* can span multiple lines
+        private static VerilogGlobals.VerilogToken[] tokens = null;
+        private static VerilogGlobals.VerilogToken priorToken = new VerilogGlobals.VerilogToken();
+
+
+        /// <summary>
+        ///   LineParse
+        /// </summary>
+        /// <param name="theLine"></param>
+        private static void LineParse(string theLine, int theLineNumber)
+        {
+            // first, parse the words and tokens
+            string thisTokenString = "";
+            int LinePosition = 0;
+
+            tokens = VerilogGlobals.VerilogKeywordSplit(theLine, priorToken);
+            Boolean IsContinuedLineComment = false; // new lines never have a continued line comment; comments with "//" are only effective for the current line, but /* can span multiple lines
+            foreach (VerilogGlobals.VerilogToken VerilogToken in tokens) // this group of tokens in in a single line
+            {
+                // by the time we get here, we might have a tag with adjacent comments:
+                //     assign//
+                //     //assign
+                //     assign//comment
+                //     /*assign*/
+                //     assign/*comment*/
+                thisTokenString = VerilogToken.Part;
+                CommentHelper.CommentHelper commentHelper = new CommentHelper.CommentHelper(thisTokenString,
+                                                                IsContinuedLineComment,
+                                                                VerilogGlobals.IsContinuedBlockComment);
+                VerilogGlobals.IsContinuedBlockComment = commentHelper.HasBlockStartComment;
+                IsContinuedLineComment = commentHelper.HasOpenLineComment; // we'll use this when processing the VerilogToken item in the commentHelper, above
+                foreach (CommentHelper.CommentHelper.CommentItem Item in commentHelper.CommentItems)
+                {
+                    bool TestComment = VerilogGlobals.TextIsComment(theLineNumber, LinePosition);
+                    LinePosition += Item.ItemText.Length;
+
+                    // is this item a comment? If so, color as appropriate. comments take highest priority: no other condition will change color of a comment
+                    if (Item.IsComment)
+                    {
+                        // nothing
+                    }
+
+                    // otherwise when not a comment, check to see if it is a keyword
+                    else
+                    {
+                        // first check to see if any new variables are being defined;
+
+                        VerilogGlobals.BuildHoverItems(Item.ItemText);
+
+                    }
+                }
+            }
+        }
+
+
+        /// <summary>
+        ///   Reparse
+        /// </summary>
+        /// <param name="buffer"></param>
         public static void Reparse(ITextBuffer buffer)
         {
             ITextSnapshot newSnapshot = buffer.CurrentSnapshot;
@@ -183,7 +242,6 @@ namespace VerilogLanguage
 
             BufferAttributes = new List<BufferAttribute>(); // re-initialize the global BufferAttributes
             BufferAttribute bufferAttribute = new BufferAttribute();
-
             //
             // Reparse AppendBufferAttribute
             // 
@@ -200,13 +258,19 @@ namespace VerilogLanguage
                 bufferAttribute.IsComment = IsActiveBlockComment;
                 bufferAttribute.IsEmpty = true; // although we may have carried over some values, at this point it is still "empty"
             }
-            
+
+            VerilogGlobals.InitHoverBuilder();
+
             // reminder bufferAttribute is pointing to the contents of the last item in BufferAttributes
             foreach (var line in newSnapshot.Lines)
             {
                 thisLine = line.GetText();
                 thisLineNumber = line.LineNumber; // zero-based line numbers
 
+                // parse the entire line for tokens
+                LineParse(thisLine, thisLineNumber);
+
+                // some things, like braket depth, require us to look at each character...
                 for (int i = 0; i < thisLine.Length; i++)
                 {
                     thisChar = thisLine.Substring(i, 1);

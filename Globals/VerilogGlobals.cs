@@ -139,7 +139,9 @@ namespace VerilogLanguage
                 // string: everything minus the actual name of the variable(s)
                 if (IsVerilogNamerKeyword(thisTrimmedItem))
                 {
-                    // nothing at this time when thisTrimmedItem is a Verilog Keyword
+                    // while naming, some verilog keywords can be accumulated in hover text.
+                    // for example: input wire...
+                    thisVariableHoverText += thisTrimmedItem;
                 }
                 else
                 {
@@ -206,6 +208,7 @@ namespace VerilogLanguage
                 // when we are naming a veriable and end counter a semicolon or comma, we're done. add it and reset.
                 if ( (thisTrimmedItem == ";") || (thisTrimmedItem == ",") || (thisTrimmedItem == ")") || (thisTrimmedItem == "="))
                 {
+
                     IsNaming = (thisTrimmedItem == "="); // set to false when we are done. all naming ends upon semi-colon.
                                                          // an equals-sign needs the next value included. (e.g. reg val = 1'b0; )
 
@@ -276,6 +279,7 @@ namespace VerilogLanguage
                         IsNaming = true;
                         IsLastName = true;
                         FoundHoverName = false;
+                        FoundDeclaration = false;
                         blnIsVariableExpected = true;
                         thisVariableHoverText = thisTrimmedItem;
                         break;

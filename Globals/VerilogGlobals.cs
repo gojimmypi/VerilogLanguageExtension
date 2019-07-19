@@ -183,8 +183,7 @@ namespace VerilogLanguage
                             {
                                 if (IsModuleDeclarationActive)
                                 {
-                                    blnIsVariableExpected = false;
-                                    thisVariableHoverText = "";
+                                    blnIsVariableExpected = true;
                                 }
                                 else
                                 {
@@ -194,7 +193,14 @@ namespace VerilogLanguage
                             else if (thisTrimmedItem == ";")
                             {
                                 // no more variables in a comma-delimited list with this declaration
-                                blnIsVariableExpected = false;
+                                if (IsModuleDeclarationActive)
+                                {
+                                    blnIsVariableExpected = true;
+                                }
+                                else
+                                {
+                                    blnIsVariableExpected = false; // semi-colon ends variable declaration
+                                }
                             }
                             else if (thisTrimmedItem == ")")
                             {

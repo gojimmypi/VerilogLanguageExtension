@@ -181,7 +181,15 @@ namespace VerilogLanguage
                         {
                             if (thisTrimmedItem == ",")
                             {
-                                blnIsVariableExpected = true; // next variable expected (may be on next line?)
+                                if (IsModuleDeclarationActive)
+                                {
+                                    blnIsVariableExpected = false;
+                                    thisVariableHoverText = "";
+                                }
+                                else
+                                {
+                                    blnIsVariableExpected = true; // next variable expected (may be on next line?)
+                                }
                             }
                             else if (thisTrimmedItem == ";")
                             {

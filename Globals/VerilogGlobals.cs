@@ -45,13 +45,18 @@ namespace VerilogLanguage
         public static bool FoundHoverName = false;
         public static bool FoundDeclaration = false;
         public static string thisVariableDeclarationText = "";
+        private static bool blnIsVariableExpected = false;
 
+        /// <summary>
+        ///   InitHoverBuilder - prep for another refresh of hover item lookup
+        /// </summary>
         public static void InitHoverBuilder()
         {
+            // re-initialize variables to above values
             VerilogVariableHoverText = new Dictionary<string, string> { };
             VerilogVariables = new Dictionary<string, VerilogTokenTypes> { };
             IsContinuedBlockComment = false;
-            thisVariableHoverText = "";
+            thisVariableHoverText = ""; // the string we will build the declaration in
             thisHoverName = "";
             IsNextNonblankName = false; // true when the next, non-blank item is the name
             IsLastName = false;
@@ -60,6 +65,7 @@ namespace VerilogLanguage
             FoundHoverName = false;
             FoundDeclaration = false;
             thisVariableDeclarationText = "";
+            blnIsVariableExpected = false;
         }
 
 
@@ -72,8 +78,13 @@ namespace VerilogLanguage
         {
             void AddHoverItem()
             {
-                if (!VerilogVariables.Keys.Contains(thisHoverName) && thisHoverName != "" && thisHoverName != ",")
+                if (!VerilogVariables.Keys.Contains(thisHoverName) 
+                     && !IsDelimiter(thisHoverName) // never add a delimiter TODO - why would we even try? unresolved declaration naming?
+                     && thisHoverName != "" // never add a blank
+                   )
                 {
+                    blnIsVariableExpected = false; // if we were expecting to find one, here it is!
+
                     VerilogVariables.Add(thisHoverName, VerilogTokenTypes.Verilog_Variable);
 
                     string thisHoverText = thisVariableHoverText + " " + thisHoverName;
@@ -94,6 +105,11 @@ namespace VerilogLanguage
             // blanks are ignored here for everything else, so return
             if (thisTrimmedItem == "")
             {
+                if (IsNaming && !FoundDeclaration)
+                {
+                    // we remove up extra spaces in declaration for cleaner hover text
+                    thisVariableHoverText += " ";
+                }
                 return;
             }
 
@@ -110,6 +126,10 @@ namespace VerilogLanguage
                 }
             }
 
+            // have we reached the end of an existing declaration: 
+            //   input wire[1:1] k1, h1
+            //
+
             if (IsNaming)
             {
                 //  when naming, all text, including blanks are appended to hover text
@@ -117,35 +137,57 @@ namespace VerilogLanguage
                 // we're here bacause a prior keyword was something like: input, wire, etc...
                 // the first non-declaration text indicates we found the base variable declaration
                 // string: everything minus the actual name of the variable(s)
-                if (!IsVerilogNamerKeyword(thisTrimmedItem)) {
+                if (IsVerilogNamerKeyword(thisTrimmedItem))
+                {
+                    // nothing at this time when thisTrimmedItem is a Verilog Keyword
+                }
+                else
+                {
                     if (FoundDeclaration)
                     {
                         // we're naming a declaration, this is not a keyword, and we have a declaration
                         // string such as "input wire [1:1], thus thisTrimmedItem must be a variable name.
-                        thisHoverName = thisTrimmedItem;
-                        AddHoverItem();
+                        if (thisTrimmedItem == ",")
+                        {
+                            blnIsVariableExpected = true; // next variable expected (may be on next line?)
+                        }
+                        else
+                        {
+                            thisHoverName = thisTrimmedItem;
+                            AddHoverItem();
+                        }
                     }
                     else
                     {
                         // the first non-keyword, non-numeric, non-array, non-equal sign is the end of the declaration and first
                         // non black segment should be the variable
-                        if (!IsVerilogBracket(thisTrimmedItem) && !IsNumeric(thisTrimmedItem) && !IsVerilogValue(thisTrimmedItem))
+                        if (IsVerilogBracket(thisTrimmedItem) || IsNumeric(thisTrimmedItem) || IsVerilogValue(thisTrimmedItem))
                         {
-                            // we are still bulding the declaration part
+                            // nothing at this time; we are still bulding the declaration part
+                        }
+                        else
+                        {
+                            // we've found the declaration part, such as:
+                            //  input wire [1:1]
+                            // the following, comma delimited text items later found will be variables
+                            // 
                             thisVariableDeclarationText = thisVariableHoverText;
                             FoundDeclaration = true;
                             thisHoverName = thisTrimmedItem;
                         }
                     }
+
+                    // what is this nonsense? See above. IsNaming is already true here:
                     if (IsNaming && !FoundDeclaration)
                     {
                         if (FoundDeclaration)
                         {
-                            thisVariableHoverText = thisVariableDeclarationText + " " + s;
+                            // newly set FoundDeclaration, so we need to assemble the hover text with declaration and this variable
+                            thisVariableHoverText = thisVariableDeclarationText + " " + thisHoverName;
                         }
                         else
                         {
-                            thisVariableHoverText += s;
+                            thisVariableHoverText += thisTrimmedItem;
                         }
                     }
 
@@ -234,6 +276,7 @@ namespace VerilogLanguage
                         IsNaming = true;
                         IsLastName = true;
                         FoundHoverName = false;
+                        blnIsVariableExpected = true;
                         thisVariableHoverText = thisTrimmedItem;
                         break;
 

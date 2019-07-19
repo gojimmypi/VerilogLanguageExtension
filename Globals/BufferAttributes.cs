@@ -270,7 +270,9 @@ namespace VerilogLanguage
                 // parse the entire line for tokens
                 LineParse(thisLine, thisLineNumber);
 
-                // some things, like braket depth, require us to look at each character...
+                // some things, like bracket depth, require us to look at each character...
+                // we'll build a helper table to be able to lookup bracket depth at 
+                // arbitrary points
                 for (int i = 0; i < thisLine.Length; i++)
                 {
                     thisChar = thisLine.Substring(i, 1);

@@ -29,14 +29,14 @@
 // no timescale needed
 
 module ulx3s_passthru_wifi(
-	input  wire clk_25mhz, // -- main clock input from 25MHz clock source must be lowercase
+	input  wire clk_25mhz,  // -- main clock input from 25MHz clock source must be lowercase
 
 	// UART0 (FTDI USB slave serial)
 	output wire ftdi_rxd,
-	input  wire ftdi_txd,
+	input  wire ftdi_txd,     
 
 	// FTDI additional signaling
-	inout  wire ftdi_ndtr,
+	inout  wire ftdi_ndtr, 
 	// inout  wire ftdi_ndsr, // ERROR: IO 'ftdi_ndsr' is unconstrained in LPF
 	inout  wire ftdi_nrts,
 	inout  wire ftdi_txden,

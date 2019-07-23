@@ -49,6 +49,9 @@ namespace VerilogLanguage
         private static bool IsModuleDeclarationActive = false;
         private static string thisModuleName = "";
         private static string thisModuleDeclarationText = ""; 
+        private static bool IsExpectingModuleName = false;
+        private static string thisModuleParameterText = "";
+        public static BuildHoverStates BuildHoverState = BuildHoverStates.UndefinedState;
 
         /// <summary>
         ///   InitHoverBuilder - prep for another refresh of hover item lookup
@@ -61,277 +64,454 @@ namespace VerilogLanguage
             IsContinuedBlockComment = false;
             thisVariableHoverText = ""; // the string we will build the declaration in
             thisHoverName = "";
+
             IsNextNonblankName = false; // true when the next, non-blank item is the name
             IsLastName = false;
             IsNaming = false; // when we find a naming keyaord (module, input, etc)... we will build hover text, including comments
             lastKeyword = "";
-            FoundHoverName = false;
-            FoundDeclaration = false;
-            thisVariableDeclarationText = "";
-            blnIsVariableExpected = false;
 
-            IsModuleDeclarationActive = false;
-            thisModuleDeclarationText = "";
+            thisVariableDeclarationText = ""; // this is only variable declaration, even if inside a module declaration
+
+            thisModuleDeclarationText = ""; // this is the full module declaration
+            thisModuleParameterText = "";
             thisModuleName = "";
+            IsExpectingModuleName = false;
+
+            BuildHoverState = BuildHoverStates.UndefinedState;
         }
 
+        private static void AddHoverItem(string ItemName, string HoverText)
+        {
+            if (!VerilogVariables.Keys.Contains(ItemName) // we only have something to do if this variable does not exist in the lookup
+                 && !IsDelimiter(ItemName) // never add a delimiter TODO - why would we even try? unresolved declaration naming?
+                 && ItemName != "" // never add a blank
+               ) // if
+            {
+                blnIsVariableExpected = false; // if we were expecting to find one, here it is!
+
+                VerilogVariables.Add(ItemName, VerilogTokenTypes.Verilog_Variable);
+                string thisHoverText = HoverText;
+
+
+                switch (BuildHoverState)
+                {
+                    // in the case of module parameters, we'll add the keyword "module" and module name to the hover text:
+                    // e.g. "module myModule( thisHoverText )"
+                    case BuildHoverStates.ModuleParameterNaming:
+                    case BuildHoverStates.ModuleParameterMimicNaming:
+                        thisHoverText = "module " + thisModuleName + "(" + thisHoverText + ")";
+                        // there may be more parameters, so we're not adding it how
+                        break;
+
+                    default:
+                        break;
+                }
+
+                if (!VerilogGlobals.VerilogVariableHoverText.ContainsKey(ItemName))
+                {
+                    // add a new variable hover text attribute
+                    VerilogGlobals.VerilogVariableHoverText.Add(ItemName, thisHoverText);
+                }
+                else
+                {
+                    // overwrite an existing variable declaration - duplicate definition?
+                    VerilogGlobals.VerilogVariableHoverText[ItemName] = "duplicate? " + thisHoverText;
+                }
+            } // if
+        }
+
+
+        private static void Process_UndefinedState_For(string ItemText)
+        {
+            switch (ItemText)
+            {
+                case "":
+                    // ignoring trimmed spaces / blanks
+                    break;
+
+                case "module":
+                    BuildHoverState = BuildHoverStates.ModuleStart;
+                    thisModuleDeclarationText = ItemText;
+                    break;
+
+                case "input":
+                case "output":
+                case "inout":
+                case "wire":
+                case "reg":
+                case "parameter":
+                    // the same keywords could be used for module parameters, or variables:
+                    switch (BuildHoverState) {
+                        case BuildHoverStates.ModuleStart:
+                            BuildHoverState = BuildHoverStates.ModuleParameterNaming;
+                            break;
+
+                        default:
+                            BuildHoverState = BuildHoverStates.VariableNaming;
+                            thisVariableDeclarationText = ItemText;
+                            break;
+                    }
+                    break;
+
+                default:
+                    BuildHoverState = BuildHoverStates.UndefinedState;
+                    break;
+            }
+        }
+
+        private static void Process_ModuleStart_For(string ItemText)
+        {
+            // we've found the "module" keyword, the next word should be the module name
+            // TODO - flag syntax error for non-variable names found
+            switch (ItemText)
+            {
+                case "":
+                    // trimming blanks to a single space
+                    thisModuleDeclarationText += " ";
+                    break;
+
+                default:
+                    thisModuleName = ItemText;
+                    thisModuleDeclarationText += ItemText;
+                    BuildHoverState = BuildHoverStates.ModuleNamed;
+                    break;
+            }
+        }
+
+        private static void Process_ModuleNamed_For(string ItemText)
+        {
+            switch (ItemText)
+            {
+                case "":
+                    // trimming blanks to a single space
+                    thisModuleDeclarationText += " ";
+                    break;
+
+                case "(":
+                    thisModuleDeclarationText += ItemText;
+                    BuildHoverState = BuildHoverStates.ModuleOpenParen;
+                    break;
+
+                default:
+                    thisModuleDeclarationText += ItemText;
+                    // BuildHoverState = BuildHoverStates.ModuleNamed; no state change
+                    break;
+            }
+        }
+
+        private static void Process_ModuleOpenParen_For(string ItemText)
+        {
+            switch (ItemText)
+            {
+                case "":
+                    // ignoring trimmed spaces / blanks
+                    thisModuleDeclarationText += " ";
+                    break;
+
+                case ")":
+                    BuildHoverState = BuildHoverStates.ModuleCloseParen;
+                    break;
+
+                case "input":
+                case "output":
+                case "inout":
+                case "wire":
+                case "reg":
+                case "parameter":
+                    // the same keywords could be used for module parameters, or variables:
+                    BuildHoverState = BuildHoverStates.ModuleParameterNaming;
+                    thisModuleParameterText = ItemText;
+                    break;
+
+                default:
+                    BuildHoverState = BuildHoverStates.UndefinedState;
+                    break;
+            }
+
+        }
+
+        private static void Process_ModuleParameterNaming_For(string ItemText)
+        {
+            // once we are naming a module parameter, we only end with a closing parenthesis, or a comman
+            switch (ItemText)
+            {
+                case "":
+                    thisModuleDeclarationText += " ";
+
+                    // only append whitespace when not found at beginning
+                    if (thisModuleParameterText != "")
+                    {
+                        thisModuleParameterText += " ";
+                    }
+                    break;
+
+                case ")":
+                    thisModuleDeclarationText += ItemText;
+                    AddHoverItem(thisModuleName, thisModuleDeclarationText);
+
+                    // also add an indivisual parameter as needed
+                    AddHoverItem(thisHoverName, thisModuleParameterText);
+                    thisModuleParameterText = ""; // upon the colose parenthesis, no more module parameters
+                    BuildHoverState = BuildHoverStates.UndefinedState; // and no more module definition
+                    break;
+
+                case ",":
+                    thisModuleDeclarationText += ItemText; // only the module declaration will include the comment
+                    thisModuleDeclarationText += System.Environment.NewLine;
+
+                    // add the module parameter
+                    AddHoverItem(thisHoverName, thisModuleParameterText);
+                    thisModuleParameterText = thisModuleParameterText.Replace(thisHoverName, "");
+
+                    // the next parameter after the comma will use the same definition
+                    BuildHoverState = BuildHoverStates.ModuleParameterMimicNaming;
+                    break;
+
+                case ";":
+                    thisModuleDeclarationText += ItemText; // only the module declaration will include the comment
+                    thisModuleDeclarationText += System.Environment.NewLine;
+
+                    // add the module parameter
+                    AddHoverItem(thisHoverName, thisModuleParameterText);
+                    thisModuleParameterText = ""; // we can't use the same parameter def after a semicolon
+                    BuildHoverState = BuildHoverStates.ModuleParameterNaming; // certainly not mimic naming after a semi-colon!
+                    break;
+
+                default:
+                    thisModuleParameterText += ItemText;
+                    thisModuleDeclarationText += ItemText;
+
+                    if (IsVerilogNamerKeyword(ItemText) || IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || IsDelimiter(ItemText))
+                    {
+                        // nothing at this time; we are still bulding the declaration part
+                        // thisModuleParameterText += ItemText;
+                    }
+                    else
+                    {
+                        thisHoverName = ItemText;
+                    }
+                    break;
+            }
+        }
+
+        private static void Process_ModuleParameterMimicNaming_For(string ItemText)
+        {
+            // once we are naming a module parameter, we only end with a closing parenthesis, or a comman
+            switch (ItemText)
+            {
+                case "":
+                    thisModuleDeclarationText += " ";
+                    // thisModuleParameterText += " ";
+                    break;
+
+                case ")":
+                    thisModuleDeclarationText += ItemText;
+                    AddHoverItem(thisModuleName, thisModuleDeclarationText);
+
+                    // also add an indivisual parameter as needed
+                    AddHoverItem(thisHoverName, thisModuleParameterText);
+                    thisModuleParameterText = ""; // upon the colose parenthesis, no more module parameters
+                    BuildHoverState = BuildHoverStates.UndefinedState; // and no more module definition
+                    break;
+
+                case ",":
+                    thisModuleDeclarationText += ItemText; // only the module declaration will include the comment
+                    thisModuleDeclarationText += System.Environment.NewLine;
+
+                    // add the module parameter
+                    AddHoverItem(thisHoverName, thisModuleParameterText);
+                    thisModuleParameterText = thisModuleParameterText.Replace(thisHoverName, "");
+                    break;
+
+                case ";":
+                    thisModuleDeclarationText += ItemText; // only the module declaration will include the comment
+                    thisModuleDeclarationText += System.Environment.NewLine;
+
+                    // add the module parameter
+                    AddHoverItem(thisHoverName, thisModuleParameterText);
+                    thisModuleParameterText = "";
+                    BuildHoverState = BuildHoverStates.ModuleParameterNaming; // certainly not mimic naming after a semi-colon!
+                    break;
+
+                default:
+                    // thisModuleParameterText += ItemText;
+                    thisModuleDeclarationText += ItemText;
+
+                    if (IsVerilogNamerKeyword(ItemText) ||  IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || IsDelimiter(ItemText))
+                    {
+                        // no longer mimic naming
+                        BuildHoverState = BuildHoverStates.ModuleParameterNaming;
+                        thisModuleParameterText = ItemText; // start over for the module parameter
+                    }
+                    else
+                    {
+                        thisHoverName = ItemText;
+                        thisModuleParameterText += ItemText;
+                    }
+                    break;
+            }
+        }
+        
+
+        private static void Process_ModuleCloseParen_For(string ItemText)
+        {
+            if (1 == 1)
+            {
+                BuildHoverState = BuildHoverStates.UndefinedState;
+            }
+            else
+            {
+                //syntax error
+            }
+        }
+
+        private static void Process_VariableNaming_For(string ItemText)
+        {
+            // once we are naming a module parameter, we only end with a closing parenthesis, or a comman
+            switch (ItemText)
+            {
+                case "":
+                    thisVariableDeclarationText += " ";
+                    break;
+
+                case ";":
+                    AddHoverItem(thisHoverName, thisVariableDeclarationText);
+                    thisVariableDeclarationText = "";
+                    BuildHoverState = BuildHoverStates.UndefinedState;
+                    break;
+
+                case ",":
+                    BuildHoverState = BuildHoverStates.VariableMimicNaming;
+                    break;
+
+                default:
+                    if (IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || IsDelimiter(ItemText))
+                    {
+                        // nothing at this time; we are still bulding the declaration part
+                        thisVariableDeclarationText += ItemText;
+                    }
+                    else
+                    {
+                        thisHoverName = ItemText;
+                        thisVariableDeclarationText += ItemText;
+                    }
+                    break;
+            }
+        }
+
+
+        private static void Process_VariableMimicNaming_For(string ItemText)
+        {
+            // once we are naming a module parameter, we only end with a closing parenthesis, or a comman
+            switch (ItemText)
+            {
+                case "":
+                    thisVariableDeclarationText += " ";
+                    break;
+
+                case ";":
+                    AddHoverItem(thisHoverName, thisVariableDeclarationText);
+                    thisVariableDeclarationText = "";
+                    BuildHoverState = BuildHoverStates.UndefinedState;
+                    break;
+
+                default:
+                    if (IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || IsDelimiter(ItemText))
+                    {
+                        // nothing at this time; we are still bulding the declaration part
+                        thisVariableDeclarationText += ItemText;
+                    }
+                    else
+                    {
+                        thisHoverName = ItemText;
+                        thisVariableDeclarationText += ItemText;
+                    }
+                    break;
+            }
+        }
+        private static void Process_XXX_For(string ItemText)
+        {
+            if (1 == 1)
+            {
+                BuildHoverState = BuildHoverStates.UndefinedState;
+            }
+            else
+            {
+                //syntax error
+            }
+        }
+
+ 
+
+        public enum BuildHoverStates
+        {
+            UndefinedState,        // typically the beginnging, or text we are not processing
+            ModuleStart,           // we found the ,pdule keyword, so we are naming a module
+            ModuleNamed,           // we found Module + ModuleName, specting parenthesis
+            ModuleOpenParen,       // we found the module open paranthesis
+            ModuleParameterNaming, // while naming a module, we found a parameter
+            ModuleParameterMimicNaming, // while naming a module, we found a parameter after a comma with the same definition
+            ModuleCloseParen,      // we found the module open paranthesis
+            VariableNaming,        // we found a keyword to initiate or continue variable decaration
+            VariableMimicNaming,
+        };
+
+
+        public static void BuildHoverItems(string s)
+        {
+            string thisTrimmedItem = (s == null) ? "" : s.Trim();
+
+            switch (BuildHoverState)
+            {
+                case BuildHoverStates.UndefinedState:
+                    Process_UndefinedState_For(thisTrimmedItem);
+                    break;
+
+                case BuildHoverStates.ModuleStart:
+                    Process_ModuleStart_For(thisTrimmedItem);
+                    break;
+
+                case BuildHoverStates.ModuleNamed:
+                    Process_ModuleNamed_For(thisTrimmedItem);
+                    break;
+
+                case BuildHoverStates.ModuleOpenParen:
+                    Process_ModuleOpenParen_For(thisTrimmedItem);
+                    break;
+
+                case BuildHoverStates.ModuleParameterNaming:
+                    Process_ModuleParameterNaming_For(thisTrimmedItem);
+                    break;
+
+                case BuildHoverStates.ModuleParameterMimicNaming:
+                    Process_ModuleParameterMimicNaming_For(thisTrimmedItem);
+                    break;
+
+                case BuildHoverStates.ModuleCloseParen:
+                    Process_ModuleCloseParen_For(thisTrimmedItem);
+                    break;
+
+                case BuildHoverStates.VariableNaming:
+                    Process_VariableNaming_For(thisTrimmedItem);
+                    break;
+
+                case BuildHoverStates.VariableMimicNaming:
+                    Process_VariableMimicNaming_For(thisTrimmedItem);
+                    break;
+
+                default:
+                    break;
+            }
+
+
+
+        }
 
         /// <summary>
         ///  BuildHoverItems - builds the Verilog variable hover text. Called in IEnumerable VerilogTokenTagger
         ///                    as each token text string is encountered.
         /// </summary>
         /// <param name="s"></param>
-        public static void BuildHoverItems(string s)
-        {
-            void AddHoverItem(string ItemName, string HoverText)
-            {
-                if (!VerilogVariables.Keys.Contains(ItemName) // we only have something to do if this variable does not exist in the lookup
-                     && !IsDelimiter(ItemName) // never add a delimiter TODO - why would we even try? unresolved declaration naming?
-                     && ItemName != "" // never add a blank
-                   ) // if
-                {
-                    blnIsVariableExpected = false; // if we were expecting to find one, here it is!
-
-                    VerilogVariables.Add(ItemName, VerilogTokenTypes.Verilog_Variable);
-
-                    string thisHoverText = HoverText;
-                    if (IsModuleDeclarationActive)
-                    {
-                        thisHoverText = "module " + thisModuleName + "(" + thisHoverText + ")";
-                        thisModuleDeclarationText += HoverText + System.Environment.NewLine;
-                    }
-
-                    if (!VerilogGlobals.VerilogVariableHoverText.ContainsKey(ItemName))
-                    {
-                        // add a new variable hover text attribute
-                        VerilogGlobals.VerilogVariableHoverText.Add(ItemName, thisHoverText);
-                    }
-                    else
-                    {
-                        // overwrite an existing variable declaration
-                        VerilogGlobals.VerilogVariableHoverText[ItemName] = thisHoverText;
-                    }  
-                } // if
-            }
-
-            string thisTrimmedItem = (s == null) ? "" : s.Trim();
-
-            // blanks are ignored here for everything else, so return
-            if (thisTrimmedItem == "")
-            {
-                if (IsNaming && !FoundDeclaration)
-                {
-                    // we remove up extra spaces in declaration for cleaner hover text
-                    thisVariableHoverText += " ";
-                }
-                return;
-            }
-
-            // numeric literal values get special attention
-            if (IsNumeric(s) || IsVerilogValue(s) )
-            {
-                if (!VerilogVariables.Keys.Contains(s))
-                {
-                    VerilogVariables.Add(s, VerilogTokenTypes.Verilog_Value);
-                    if (!IsNaming)
-                    {
-                        return;
-                    }
-                }
-            }
-
-            // have we reached the end of an existing declaration: 
-            //   input wire[1:1] k1, h1
-            //
-
-            if (IsNaming || IsModuleDeclarationActive) 
-            {
-                //  when naming, all text, including blanks are appended to hover text
-
-                // we're here bacause a prior keyword was something like: input, wire, etc...
-                // the first non-declaration text indicates we found the base variable declaration
-                // string: everything minus the actual name of the variable(s)
-                if (IsVerilogNamerKeyword(thisTrimmedItem))
-                {
-                    // while naming, some verilog keywords can be accumulated in hover text.
-                    // for example: input wire...
-                    thisVariableHoverText += thisTrimmedItem;
-                }
-                else
-                {
-                    if (FoundDeclaration) 
-                    {
-                        // we're naming a declaration, this is not a keyword, and we have a declaration string
-                        // such as "input wire [1:1], thus thisTrimmedItem must be a variable name.
-                        if (IsModuleDeclarationActive && (thisModuleDeclarationText == "") && (thisTrimmedItem == "("))
-                        {
-                            // move the variable declaration into the module declaration
-                            // we may have intra-module declarations to follow
-                            thisModuleName = thisHoverName;
-
-                            thisModuleDeclarationText = thisVariableDeclarationText + " " + thisHoverName + " (" + System.Environment.NewLine;
-
-                            // clear the variable strings since we were naming a module
-                            thisHoverName = "";
-                            thisVariableDeclarationText = "";
-                            thisVariableHoverText = "";
-                            FoundDeclaration = false;
-                        }
-                        else
-                        {
-                            if (thisTrimmedItem == ",")
-                            {
-                                if (IsModuleDeclarationActive)
-                                {
-                                    blnIsVariableExpected = true;
-                                }
-                                else
-                                {
-                                    blnIsVariableExpected = true; // next variable expected (may be on next line?)
-                                }
-                            }
-                            else if (thisTrimmedItem == ";")
-                            {
-                                // no more variables in a comma-delimited list with this declaration
-                                if (IsModuleDeclarationActive)
-                                {
-                                    blnIsVariableExpected = true;
-                                }
-                                else
-                                {
-                                    blnIsVariableExpected = false; // semi-colon ends variable declaration
-                                }
-                            }
-                            else if (thisTrimmedItem == ")")
-                            {
-                                // this is likely the end of a module definition (or a syntax error)
-                                thisModuleDeclarationText += thisTrimmedItem;
-                            }
-                            else
-                            {
-                                thisHoverName = thisTrimmedItem;
-                                AddHoverItem(thisHoverName, thisVariableHoverText + " " + thisHoverName);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        // the first non-keyword, non-numeric, non-array, non-equal sign is the end of the declaration and first
-                        // non black segment should be the variable
-                        if (IsVerilogBracket(thisTrimmedItem) || IsNumeric(thisTrimmedItem) || IsVerilogValue(thisTrimmedItem))
-                        {
-                            // nothing at this time; we are still bulding the declaration part
-                        }
-                        else
-                        {
-                            // we've found the declaration part, such as:
-                            //  input wire [1:1]
-                            // the following, comma delimited text items later found will be variables
-                            // 
-                            thisVariableDeclarationText = thisVariableHoverText;
-                            FoundDeclaration = true;
-                            thisHoverName = thisTrimmedItem;
-                        }
-                        if (!FoundDeclaration)
-                        {
-                            thisVariableHoverText += thisTrimmedItem;
-                        }
-
-                    }
-                }
-
-                if (IsNextNonblankName)
-                {
-                    // the name is the next, non-blank keyword found (e.g. my
-                    IsNextNonblankName = false; // we only do this once
-                    thisHoverName = thisTrimmedItem;
-                }
- 
-
-
-                // when we are naming a veriable and end counter a semicolon or comma, we're done. add it and reset.
-                if ( (thisTrimmedItem == ";") || (thisTrimmedItem == ",") || (thisTrimmedItem == ")") || (thisTrimmedItem == "="))
-                {
-                    if (IsModuleDeclarationActive && (thisTrimmedItem == ")"))
-                    {
-                        IsModuleDeclarationActive = false;
-                        AddHoverItem(thisModuleName, thisModuleDeclarationText);
-                    }
-                    else {
-                        // variable declaration
-                        IsNaming = (thisTrimmedItem == "="); // set to false when we are done. all naming ends upon semi-colon.
-                                                             // an equals-sign needs the next value included. (e.g. reg val = 1'b0; )
-
-                        if (IsLastName && !FoundHoverName)
-                        {
-                            // the name is the last, non-blank value before the semicolon. (e.g. "J2_AD_PORT" from "input [7:0] J2_AS_PORT;")
-                            IsLastName = (thisTrimmedItem != ","); // commas allow for multiple variables
-                            thisHoverName = lastKeyword;
-                            FoundHoverName = true;
-                        }
-
-                        if (!IsNaming || (lastKeyword == ","))
-                        {
-                            AddHoverItem(thisHoverName, thisVariableHoverText + " " + thisHoverName);
-
-                            if (thisTrimmedItem == ",")
-                            {
-                                IsNaming = true;
-                                FoundHoverName = false;
-                            }
-                            else
-                            {
-                                thisVariableHoverText = "";
-                            }
-                            thisHoverName = "";
-                            IsNextNonblankName = false;
-                            thisTrimmedItem = ""; // once detected, we won't use it here
-                        }
-                        else
-                        {
-                            AddHoverItem(thisHoverName, thisVariableHoverText + " " + thisHoverName);
-                        }
-                    } // else not IsModuleDeclarationActive
-
-                } // end if (thisTrimmedItem == ";")
-
-            } // end if (IsNaming)
-
-            // we're not renaming at the moment, but perhaps if this token is a variable namer (module, input, etc)
-            else
-            {
-                switch (thisTrimmedItem)
-                {
-                    case "module":
-                        IsNaming = true;
-                        IsNextNonblankName = true;
-                        thisVariableHoverText = thisTrimmedItem;
-                        IsModuleDeclarationActive = true;
-                        break;
-
-                    case "input":
-                    case "output":
-                    case "inout":
-                    case "wire":
-                    case "reg":
-                    case "parameter":
-                        IsNaming = true;
-                        IsLastName = true;
-                        FoundHoverName = false;
-                        FoundDeclaration = false;
-                        blnIsVariableExpected = true;
-                        thisVariableHoverText = thisTrimmedItem;
-                        break;
-
-                    default:
-                        IsNaming = false;
-                        break;
-                }
-            } // end else naming
-
-            lastKeyword = thisTrimmedItem;
-
-        }  // end void BuildHoverItems
 
         public static void Dispose()
         {

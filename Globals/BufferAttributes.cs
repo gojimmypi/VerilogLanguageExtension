@@ -224,7 +224,6 @@ namespace VerilogLanguage
             }
         }
 
-
         /// <summary>
         ///   Reparse
         /// </summary>
@@ -259,20 +258,8 @@ namespace VerilogLanguage
                 bufferAttribute.IsEmpty = true; // although we may have carried over some values, at this point it is still "empty"
             }
 
-            VerilogGlobals.InitHoverBuilder();
-
-            // reminder bufferAttribute is pointing to the contents of the last item in BufferAttributes
-            foreach (var line in newSnapshot.Lines)
+            void CharParse()
             {
-                thisLine = line.GetText();
-                thisLineNumber = line.LineNumber; // zero-based line numbers
-
-                // parse the entire line for tokens
-                LineParse(thisLine, thisLineNumber);
-
-                // some things, like bracket depth, require us to look at each character...
-                // we'll build a helper table to be able to lookup bracket depth at 
-                // arbitrary points
                 for (int i = 0; i < thisLine.Length; i++)
                 {
                     thisChar = thisLine.Substring(i, 1);
@@ -373,7 +360,7 @@ namespace VerilogLanguage
                                 else
                                 {
                                     bufferAttribute.LineStart = i - 1; // started on prior char
-                                    // bufferAttribute.LineEnd TBD
+                                                                       // bufferAttribute.LineEnd TBD
                                     IsActiveBlockComment = true;
                                     bufferAttribute.IsComment = true;
                                     AppendBufferAttribute();
@@ -410,7 +397,7 @@ namespace VerilogLanguage
                                     bufferAttribute.IsComment = true;
                                     bufferAttribute.LineStart = i - 1; // comment actually starts on prior char
                                     bufferAttribute.LineEnd = -1; // a value of -1 means the entire line, regardless of actual length.
-                                    // AttributesChanged = (i > 1); // the attribute of the line will not change if the first char starts a comment
+                                                                  // AttributesChanged = (i > 1); // the attribute of the line will not change if the first char starts a comment
                                     AppendBufferAttribute();
                                 }
                                 else
@@ -431,6 +418,25 @@ namespace VerilogLanguage
                     }
                     lastChar = thisChar;
                 } // end of for loop looking at each char in line
+
+            }
+
+
+            VerilogGlobals.InitHoverBuilder();
+
+            // reminder bufferAttribute is pointing to the contents of the last item in BufferAttributes
+            foreach (var line in newSnapshot.Lines)
+            {
+                thisLine = line.GetText();
+                thisLineNumber = line.LineNumber; // zero-based line numbers
+
+                // parse the entire line for tokens
+                LineParse(thisLine, thisLineNumber);
+
+                // some things, like bracket depth, require us to look at each character...
+                // we'll build a helper table to be able to lookup bracket depth at 
+                // arbitrary points
+                CharParse();
 
                 lastChar = "";  // the lastChar is irrelevant when spanning multiple lines, as we are only using it for comment detection
                 if (!bufferAttribute.IsEmpty)

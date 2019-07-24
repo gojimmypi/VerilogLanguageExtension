@@ -36,22 +36,14 @@ namespace VerilogLanguage
 
         public static bool NeedReparse { get; set; }
         public static Boolean IsContinuedBlockComment = false;
-        public static string thisVariableHoverText = "";
-        public static string thisHoverName = "";
-        public static bool IsNextNonblankName = false; // true when the next, non-blank item is the name
-        public static bool IsLastName = false;
-        public static bool IsNaming = false; // when we find a naming keyaord (module, input, etc)... we will build hover text, including comments
-        public static string lastKeyword = "";
-        public static bool FoundHoverName = false;
-        public static bool FoundDeclaration = false;
-        public static string thisVariableDeclarationText = "";
-        private static bool blnIsVariableExpected = false;
-        private static bool IsModuleDeclarationActive = false;
-        private static string thisModuleName = "";
-        private static string thisModuleDeclarationText = ""; 
-        private static bool IsExpectingModuleName = false;
-        private static string thisModuleParameterText = "";
         public static BuildHoverStates BuildHoverState = BuildHoverStates.UndefinedState;
+
+        private static string thisHoverName = "";
+        private static string thisVariableDeclarationText = "";
+        private static string thisModuleName = "";
+        private static string thisModuleDeclarationText = "";
+        private static string thisModuleParameterText = "";
+
 
         /// <summary>
         ///   InitHoverBuilder - prep for another refresh of hover item lookup
@@ -62,20 +54,13 @@ namespace VerilogLanguage
             VerilogVariableHoverText = new Dictionary<string, string> { };
             VerilogVariables = new Dictionary<string, VerilogTokenTypes> { };
             IsContinuedBlockComment = false;
-            thisVariableHoverText = ""; // the string we will build the declaration in
             thisHoverName = "";
-
-            IsNextNonblankName = false; // true when the next, non-blank item is the name
-            IsLastName = false;
-            IsNaming = false; // when we find a naming keyaord (module, input, etc)... we will build hover text, including comments
-            lastKeyword = "";
 
             thisVariableDeclarationText = ""; // this is only variable declaration, even if inside a module declaration
 
             thisModuleDeclarationText = ""; // this is the full module declaration
             thisModuleParameterText = "";
             thisModuleName = "";
-            IsExpectingModuleName = false;
 
             BuildHoverState = BuildHoverStates.UndefinedState;
         }
@@ -87,7 +72,6 @@ namespace VerilogLanguage
                  && ItemName != "" // never add a blank
                ) // if
             {
-                blnIsVariableExpected = false; // if we were expecting to find one, here it is!
 
                 VerilogVariables.Add(ItemName, VerilogTokenTypes.Verilog_Variable);
                 string thisHoverText = HoverText;

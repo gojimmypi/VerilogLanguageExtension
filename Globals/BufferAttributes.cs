@@ -450,7 +450,10 @@ namespace VerilogLanguage
                     IsActiveLineComment = false;
                 }
             } // foreach line
+            
             // TODO - do we need a final, end-of-file bufferAttribute (probably not)
+
+            // in case we got here from someplace that set NeedReparse to true - reset to indicate completion:
             VerilogGlobals.NeedReparse = false;
         } // Reparse
 

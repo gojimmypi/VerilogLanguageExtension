@@ -36,7 +36,22 @@ namespace VerilogLanguage
 
         public static bool NeedReparse { get; set; }
         public static Boolean IsContinuedBlockComment = false;
-        public static BuildHoverStates BuildHoverState = BuildHoverStates.UndefinedState;
+        private static BuildHoverStates _BuildHoverState = BuildHoverStates.UndefinedState;
+        public static BuildHoverStates BuildHoverState {
+            get
+            {
+                return _BuildHoverState;
+            }
+            set
+            {
+                _BuildHoverState = value;
+                if (value == BuildHoverStates.UndefinedState)
+                {
+                    thisHoverName = ""; // we can never have a name, during an unknown state!
+                }
+            }
+        }
+        // BuildHoverStates.UndefinedState;
 
         private static string thisHoverName = "";
         private static string lastHoverItem = "";
@@ -399,7 +414,16 @@ namespace VerilogLanguage
             switch (ItemText)
             {
                 case "":
-                    thisVariableDeclarationText += " ";
+                    if ((lastHoverItem == "") || (lastHoverItem == "\t"))
+                    {
+                        // we'll ignore sequentual tabs, or alternating table-space
+                        // only one space will be used
+                    }
+                    else
+                    {
+                        thisVariableDeclarationText += " ";
+                    }
+
                     break;
 
                 case ";":
@@ -413,7 +437,8 @@ namespace VerilogLanguage
                     break;
 
                 default:
-                    if (IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || IsDelimiter(ItemText))
+                    // TODO implement IsVerilogAssignment
+                    if ((thisHoverName != "") || (ItemText == "=") || IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || IsDelimiter(ItemText))
                     {
                         // nothing at this time; we are still bulding the declaration part
                         thisVariableDeclarationText += ItemText;
@@ -434,7 +459,15 @@ namespace VerilogLanguage
             switch (ItemText)
             {
                 case "":
-                    thisVariableDeclarationText += " ";
+                    if ((lastHoverItem == "") || (lastHoverItem == "\t"))
+                    {
+                        // we'll ignore sequentual tabs, or alternating table-space
+                        // only one space will be used
+                    }
+                    else
+                    {
+                        thisVariableDeclarationText += " ";
+                    }
                     break;
 
                 case ";":

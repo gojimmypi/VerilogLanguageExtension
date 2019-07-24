@@ -39,6 +39,7 @@ namespace VerilogLanguage
         public static BuildHoverStates BuildHoverState = BuildHoverStates.UndefinedState;
 
         private static string thisHoverName = "";
+        private static string lastHoverItem = "";
         private static string thisVariableDeclarationText = "";
         private static string thisModuleName = "";
         private static string thisModuleDeclarationText = "";
@@ -83,7 +84,7 @@ namespace VerilogLanguage
                     // e.g. "module myModule( thisHoverText )"
                     case BuildHoverStates.ModuleParameterNaming:
                     case BuildHoverStates.ModuleParameterMimicNaming:
-                        thisHoverText = "module " + thisModuleName + "(" + thisHoverText + ")";
+                        thisHoverText = "module " + thisModuleName + "( .. " + thisHoverText + " .. )";
                         // there may be more parameters, so we're not adding it how
                         break;
 
@@ -220,23 +221,45 @@ namespace VerilogLanguage
             switch (ItemText)
             {
                 case "":
-                    thisModuleDeclarationText += " ";
-
                     // only append whitespace when not found at beginning
                     if (thisModuleParameterText != "")
                     {
+                        if ((lastHoverItem == "") || (lastHoverItem == "\t"))
+                        {
+                            // we'll ignore sequentual tabs, or alternating table-space
+                            // only one space will be used
+                        }
+                        else
+                        {
+                            thisModuleDeclarationText += " ";
+                            thisModuleParameterText += " ";
+                        }
+                    }
+                    break;
+
+                case "\t":
+                    if ((lastHoverItem == "") || (lastHoverItem == "\t")) {
+                        // we'll ignore sequentual tabs, or alternating table-space
+                        // only one space will be used
+                    }
+                    else
+                    {
+                        thisModuleDeclarationText += " ";
                         thisModuleParameterText += " ";
                     }
                     break;
 
                 case ")":
-                    thisModuleDeclarationText += ItemText;
-                    AddHoverItem(thisModuleName, thisModuleDeclarationText);
 
                     // also add an indivisual parameter as needed
+                    // note all module parameters have test appended: "module [modulename]" + {}  + ")"
                     AddHoverItem(thisHoverName, thisModuleParameterText);
                     thisModuleParameterText = ""; // upon the colose parenthesis, no more module parameters
                     BuildHoverState = BuildHoverStates.UndefinedState; // and no more module definition
+
+                    // we add the module definition afterwards to avoid any additional, manually added closing ")" that is included for *every( module parameter, but not actually in the text
+                    thisModuleDeclarationText += ItemText;
+                    AddHoverItem(thisModuleName, thisModuleDeclarationText);
                     break;
 
                 case ",":
@@ -284,8 +307,29 @@ namespace VerilogLanguage
             switch (ItemText)
             {
                 case "":
-                    thisModuleDeclarationText += " ";
+                    if ((lastHoverItem == "") || (lastHoverItem == "\t"))
+                    {
+                        // we'll ignore sequentual tabs, or alternating table-space
+                        // only one space will be used
+                    }
+                    else
+                    {
+                        thisModuleDeclarationText += " ";
+                    }
+
                     // thisModuleParameterText += " ";
+                    break;
+
+                case "\t":
+                    if ((lastHoverItem == "") || (lastHoverItem == "\t"))
+                    {
+                        // we'll ignore sequentual tabs, or alternating table-space
+                        // only one space will be used
+                    }
+                    else
+                    {
+                        thisModuleParameterText += " ";
+                    }
                     break;
 
                 case ")":
@@ -486,7 +530,7 @@ namespace VerilogLanguage
                 default:
                     break;
             }
-
+            lastHoverItem = thisTrimmedItem;
 
 
         }

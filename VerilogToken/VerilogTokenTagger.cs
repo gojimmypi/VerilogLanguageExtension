@@ -171,8 +171,8 @@ namespace VerilogLanguage.VerilogToken
         }
 
         /// <summary>
-        ///   BufferChanged - handle Buffer Changed event. If buffer has character with possible far-reaching consequences
-        ///                   then force a rescan of the enture buffer
+        ///   BufferChanged - handle Buffer Changed event. If buffer has a character with possible far-reaching consequences
+        ///                   then force a rescan of the enture buffer. See also HighlightWordTaggerProvider 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -196,6 +196,8 @@ namespace VerilogLanguage.VerilogToken
             // 
             if (theNewText != theOldText)
             {
+                // even if the buffer is different, only certain characters require a full reparse
+                // typically brackets (since we keep track of depth) and comment chars:
                 if (VerilogGlobals.IsRefreshChar(theNewText) || VerilogGlobals.IsRefreshChar(theOldText))
                 {
                     VerilogGlobals.Reparse(_buffer); // note that above, we are checking that the e.After is the same as the _buffer

@@ -34,7 +34,7 @@ namespace VerilogLanguage
             // e.g. ["led"] = VerilogTokenTypes.Verilog_Variable,
         };
 
-
+        public static bool NeedReparse { get; set; }
         public static Boolean IsContinuedBlockComment = false;
         public static string thisVariableHoverText = "";
         public static string thisHoverName = "";

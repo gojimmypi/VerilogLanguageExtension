@@ -451,6 +451,7 @@ namespace VerilogLanguage
                 }
             } // foreach line
             // TODO - do we need a final, end-of-file bufferAttribute (probably not)
+            VerilogGlobals.NeedReparse = false;
         } // Reparse
 
         /// <summary>

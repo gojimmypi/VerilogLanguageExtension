@@ -29,6 +29,13 @@ namespace VerilogLanguage
 {
     #region Command Filter
 
+    // see https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.editor.ivstextviewcreationlistener?view=visualstudiosdk-2019
+    // A listener to the event raised when a text view adapter (IVsTextView) is created and initialized.
+    //
+    // You can use this listener when you want to handle specific keystrokes in your extension. You 
+    // do this by getting a reference to the text view adapter (IVsTextView) when the text view is created, 
+    // then using this reference to add a command filter to a view (by using AddCommandFilter).
+
     [Export(typeof(IVsTextViewCreationListener))]
     [ContentType("verilog")]
     [TextViewRole(PredefinedTextViewRoles.Interactive)]
@@ -78,6 +85,14 @@ namespace VerilogLanguage
         {
             bool handled = false;
             int hresult = VSConstants.S_OK;
+
+            // hack alert! this sets the global flag that the buffer needs to be reparsed.
+            // we typically get here when multiple files are opened, and the tab for a different
+            // file is clicked on. The global bufferAttributes does not know which file is
+            // being viewed. TODO - come up with something proper and more graceful.
+            //
+            // we'll preparse the buffer upon OnTextViewMouseHover in the QuickInfoController
+            VerilogGlobals.NeedReparse = true;
 
             // 1. Pre-process
             if (pguidCmdGroup == VSConstants.VSStd2K)
@@ -206,7 +221,7 @@ namespace VerilogLanguage
         {
             // this next line was suggested by the IDE, as relating to the next hresult = Next.Exec() call
             Microsoft.VisualStudio.Shell.ThreadHelper.ThrowIfNotOnUIThread();
-            VerilogGlobals.PerfMon.CommandFilter_QueryStatus_Count++;
+            VerilogGlobals.PerfMon.CommandFilter_QueryStatus_Count++; // let's keep track of how many times we are here (a lot!)
             if (pguidCmdGroup == VSConstants.VSStd2K)
             {
                 switch ((VSConstants.VSStd2KCmdID)prgCmds[0].cmdID)

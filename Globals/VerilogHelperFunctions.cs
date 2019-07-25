@@ -29,6 +29,7 @@ namespace VerilogLanguage
         static public bool IsDelimiter(string theString)
         {
             return (theString == " ") ||
+                   (theString == ":") ||
                    (theString == "~") ||
                    (theString == "[") ||
                    (theString == "]") ||
@@ -94,6 +95,8 @@ namespace VerilogLanguage
 
         /// <summary>
         ///   IsVerilogValue - true if theKeyword is something like "1'b1",  "4'hFF",  "1:1", etc.
+        ///                    note the latest version pre-splits the colon values, even though this
+        ///                    function still supports the embedded colon
         /// </summary>
         /// <param name="theKeyword"></param>
         /// <returns></returns>
@@ -105,8 +108,8 @@ namespace VerilogLanguage
             {
                 foreach (string part in KeywordParts)
                 {
-                    // recusrively call self here, if perhas we have a value like [1'b1:2'b2]
-                    if (!IsNumeric(part) && !IsVerilogValue(part))
+                    // recursively call self here, if perhas we have a value like [1'b1:2'b2], or a prevopiusly defined parameter
+                    if (!IsNumeric(part) && !IsVerilogValue(part) && !Is_BracketContent_For(part))
                     {
                         return false;
                     }

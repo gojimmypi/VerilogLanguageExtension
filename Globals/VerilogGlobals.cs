@@ -36,7 +36,19 @@ namespace VerilogLanguage
 
         public static bool NeedReparse { get; set; }
         public static Boolean IsContinuedBlockComment = false;
+
         private static BuildHoverStates _BuildHoverState = BuildHoverStates.UndefinedState;
+
+        /// <summary>
+        ///    IsDefinedVerilogVariable
+        /// </summary>
+        /// <param name="VariableName"></param>
+        /// <returns></returns>
+        public static bool IsDefinedVerilogVariable(string VariableName)
+        {
+            return VerilogVariables.ContainsKey(VariableName);
+        }
+
         public static BuildHoverStates BuildHoverState {
             get
             {
@@ -59,6 +71,7 @@ namespace VerilogLanguage
         private static string thisModuleName = "";
         private static string thisModuleDeclarationText = "";
         private static string thisModuleParameterText = "";
+        private static bool IsInsideSquareBracket = false;
 
 
         /// <summary>
@@ -103,6 +116,7 @@ namespace VerilogLanguage
                         // there may be more parameters, so we're not adding it how
                         break;
 
+                    // otherwise no special processing needed for the hover text, we'll use it as-is
                     default:
                         break;
                 }
@@ -120,7 +134,33 @@ namespace VerilogLanguage
             } // if
         }
 
+        #region "BuildHoverItems - State Handler"
 
+        private static void SetBracketContentStatus_For(string ItemText)
+        {
+            switch (ItemText)
+            {
+                case "[":
+                    IsInsideSquareBracket = true;
+                    break;
+                case "]":
+                    IsInsideSquareBracket = false;
+                    break;
+                default:
+                    // nothing
+                    break;
+            }
+        }
+
+        private static bool Is_BracketContent_For(string ItemText)
+        {
+            return IsInsideSquareBracket && IsDefinedVerilogVariable(ItemText);
+        }
+
+        /// <summary>
+        ///   Process_UndefinedState_For
+        /// </summary>
+        /// <param name="ItemText"></param>
         private static void Process_UndefinedState_For(string ItemText)
         {
             switch (ItemText)
@@ -130,6 +170,7 @@ namespace VerilogLanguage
                     break;
 
                 case "module":
+                    // we're naming a module
                     BuildHoverState = BuildHoverStates.ModuleStart;
                     thisModuleDeclarationText = ItemText;
                     break;
@@ -151,6 +192,15 @@ namespace VerilogLanguage
                             thisVariableDeclarationText = ItemText;
                             break;
                     }
+                    switch(ItemText)
+                    {
+                        case "input":
+                            // thisVariableType = "input";
+                            break;
+
+                        default:
+                            break;
+                    }
                     break;
 
                 default:
@@ -159,6 +209,10 @@ namespace VerilogLanguage
             }
         }
 
+        /// <summary>
+        ///    Process_ModuleStart_For
+        /// </summary>
+        /// <param name="ItemText"></param>
         private static void Process_ModuleStart_For(string ItemText)
         {
             // we've found the "module" keyword, the next word should be the module name
@@ -178,6 +232,10 @@ namespace VerilogLanguage
             }
         }
 
+        /// <summary>
+        ///    Process_ModuleNamed_For
+        /// </summary>
+        /// <param name="ItemText"></param>
         private static void Process_ModuleNamed_For(string ItemText)
         {
             switch (ItemText)
@@ -230,6 +288,10 @@ namespace VerilogLanguage
 
         }
 
+        /// <summary>
+        ///    Process_ModuleParameterNaming_For
+        /// </summary>
+        /// <param name="ItemText"></param>
         private static void Process_ModuleParameterNaming_For(string ItemText)
         {
             // once we are naming a module parameter, we only end with a closing parenthesis, or a comman
@@ -305,6 +367,7 @@ namespace VerilogLanguage
 
                     if (IsVerilogNamerKeyword(ItemText) || IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || IsDelimiter(ItemText))
                     {
+                        SetBracketContentStatus_For(ItemText);
                         // nothing at this time; we are still bulding the declaration part
                         // thisModuleParameterText += ItemText;
                     }
@@ -316,6 +379,10 @@ namespace VerilogLanguage
             }
         }
 
+        /// <summary>
+        ///   Process_ModuleParameterMimicNaming_For
+        /// </summary>
+        /// <param name="ItemText"></param>
         private static void Process_ModuleParameterMimicNaming_For(string ItemText)
         {
             // once we are naming a module parameter, we only end with a closing parenthesis, or a comman
@@ -382,6 +449,8 @@ namespace VerilogLanguage
 
                     if (IsVerilogNamerKeyword(ItemText) ||  IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || IsDelimiter(ItemText))
                     {
+                        SetBracketContentStatus_For(ItemText);
+
                         // no longer mimic naming
                         BuildHoverState = BuildHoverStates.ModuleParameterNaming;
                         thisModuleParameterText = ItemText; // start over for the module parameter
@@ -394,8 +463,11 @@ namespace VerilogLanguage
                     break;
             }
         }
-        
 
+        /// <summary>
+        ///    Process_ModuleCloseParen_For
+        /// </summary>
+        /// <param name="ItemText"></param>
         private static void Process_ModuleCloseParen_For(string ItemText)
         {
             if (1 == 1)
@@ -408,6 +480,10 @@ namespace VerilogLanguage
             }
         }
 
+        /// <summary>
+        ///    Process_VariableNaming_For
+        /// </summary>
+        /// <param name="ItemText"></param>
         private static void Process_VariableNaming_For(string ItemText)
         {
             // once we are naming a module parameter, we only end with a closing parenthesis, or a comman
@@ -428,7 +504,7 @@ namespace VerilogLanguage
 
                 case ";":
                     AddHoverItem(thisHoverName, thisVariableDeclarationText);
-                    thisVariableDeclarationText = "";
+                    thisVariableDeclarationText = ""; // reminder we do this manually, as AddHoverItem does not know *what* it is adding
                     BuildHoverState = BuildHoverStates.UndefinedState;
                     break;
 
@@ -438,8 +514,9 @@ namespace VerilogLanguage
 
                 default:
                     // TODO implement IsVerilogAssignment
-                    if ((thisHoverName != "") || (ItemText == "=") || IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || IsDelimiter(ItemText))
+                    if ((thisHoverName != "") || (ItemText == "=") || IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || Is_BracketContent_For(ItemText) || IsDelimiter(ItemText))
                     {
+                        SetBracketContentStatus_For(ItemText);
                         // nothing at this time; we are still bulding the declaration part
                         thisVariableDeclarationText += ItemText;
                     }
@@ -452,7 +529,10 @@ namespace VerilogLanguage
             }
         }
 
-
+        /// <summary>
+        ///    Process_VariableMimicNaming_For
+        /// </summary>
+        /// <param name="ItemText"></param>
         private static void Process_VariableMimicNaming_For(string ItemText)
         {
             // once we are naming a module parameter, we only end with a closing parenthesis, or a comman
@@ -479,6 +559,7 @@ namespace VerilogLanguage
                 default:
                     if (IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || IsDelimiter(ItemText))
                     {
+                        SetBracketContentStatus_For(ItemText);
                         // nothing at this time; we are still bulding the declaration part
                         thisVariableDeclarationText += ItemText;
                     }
@@ -490,6 +571,11 @@ namespace VerilogLanguage
                     break;
             }
         }
+
+        /// <summary>
+        ///    Process_XXX_For - template
+        /// </summary>
+        /// <param name="ItemText"></param>
         private static void Process_XXX_For(string ItemText)
         {
             if (1 == 1)
@@ -501,8 +587,9 @@ namespace VerilogLanguage
                 //syntax error
             }
         }
+        #endregion
 
- 
+
 
         public enum BuildHoverStates
         {

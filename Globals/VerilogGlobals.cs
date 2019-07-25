@@ -509,6 +509,9 @@ namespace VerilogLanguage
                     break;
 
                 case ",":
+                    AddHoverItem(thisHoverName, thisVariableDeclarationText);
+                    thisVariableDeclarationText = thisVariableDeclarationText.Replace(thisHoverName, "");
+
                     BuildHoverState = BuildHoverStates.VariableMimicNaming;
                     break;
 
@@ -548,6 +551,11 @@ namespace VerilogLanguage
                     {
                         thisVariableDeclarationText += " ";
                     }
+                    break;
+
+                case ",":
+                    AddHoverItem(thisHoverName, thisVariableDeclarationText);
+                    thisVariableDeclarationText = thisVariableDeclarationText.Replace(thisHoverName, "");
                     break;
 
                 case ";":

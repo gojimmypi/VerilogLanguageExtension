@@ -30,16 +30,24 @@ These file extensions should activate this extension:
 * `.verilog`
 * `.vh`
 
-See the line in the [VerilogClassifer](./Classification/VerilogClassifer.cs) to add more file types:
+See the line in the [VerilogClassifer](./Classification/VerilogClassifier.cs) to add more file types:
 
 `[FileExtension(".v;.verilog;.vh")] // semi-colon delimited file extensions`
 
 
-## Installation - Visual Studio Market Place
+## Installation 
+
+The easiest way to install the release version is to use the Visual Studio `Extensions - Manages Extensions`. 
+Type the search word `FPGA` or `VerilogLanguage` to find the extension in the Online downloads.
+
+### Installation - Visual Studio Market Place
+
+The VSIX file can also be downloaded manually from the Visual Studio Marketplace web site:
 
 https://marketplace.visualstudio.com/items?itemName=gojimmypi.gojimmypi-verilog-language-extension
 
-## Installation - Manual install with source code 
+
+### Installation - Manual install with source code 
 
 Find the location of your `VSIXInstaller.exe`, typpically in `.\Common7\IDE\` of Developer Command Prompt. Shown is an example of VS2017 Enterprise:
 
@@ -53,12 +61,14 @@ msbuild VerilogLanguage.csproj
 ```
 
 
-## Installation - Prior Releases
+### Installation - Prior Releases
 
 See [releases](./releases/README.md) directory for prior versions.
 
 
 ## Removal
+
+Use either Extensions - Manage Extensions, or this command-line:
 
 ```
 "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VSIXInstaller.exe" /uninstall:CF0DCF14-5B8F-4B42-8386-9D37BB99F98E

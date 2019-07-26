@@ -2,7 +2,36 @@
 
 This Visual Studio Extension adds syntax & keyword higlighting to Visual Studio versions 2015, 2017, and 2019. There is no notion of a "Verilog Project" or any other capabilities such as compiling or uploading to a device at this time.
 
+![KeywordHoverTextExample.png](./images/KeywordHoverTextExample.png)
+
 On a Windows 10 machine to create FPGA binaries, consider using the [yoysys](https://github.com/YosysHQ/yosys)/[nextpnr](https://github.com/YosysHQ/nextpnr) toolchain. I have a [gist for the ULX3S](https://gist.github.com/gojimmypi/f96cd86b2b8595b4cf3be4baf493c5a7) as well as [one for the TinyFPGA](https://gist.github.com/gojimmypi/243fc3a6eead72ae3db8fd32f2567c96) in [WSL](https://gojimmypi.blogspot.com/2019/02/ulx3s-ujprog-on-windows-wsl-or-minggw.html) that may be useful in installing these along with all the respective dependencies.
+
+## Features
+
+Each keyword can be individually colorized. See `File - Options - Environment - Fonts and Colors`
+
+Line and block comments are colorization.
+
+Verilog keywords have hover text documentation.
+
+Variables have hover text to indicate declaration, or lack thereof. Module declaration is also noted as appropriate.
+
+As of version 0.2x there are different default colors depending on dark or light theme. See `bool IsDarkTheme()` in `ClassificationFormat.cs`
+
+Multi-colored brackets, depending on nested depth. See Fonts and Colors - Display Items `Verilog - Bracket Depth [n]`
+
+## File Extensions Supported:
+
+These file extensions should activate this extension:
+
+	* `.v`
+	* `.verilog`
+	* `.vh`
+
+See the line in the VerilogClassifer to add more file types:
+
+`[FileExtension(".v;.verilog;.vh")] // semi-colon delimited file extensions`
+
 
 ## Installation - Visual Studio Market Place
 
@@ -31,7 +60,6 @@ See [releases](./releases/README.md) directory for prior versions.
 "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VSIXInstaller.exe" /uninstall:CF0DCF14-5B8F-4B42-8386-9D37BB99F98E
 ```
 
-
 ## Testing
 
 Open the project and press `F5` to launch an experimental version of Visual Studio.
@@ -57,7 +85,7 @@ When clicking on a single word, Visual Studio highlights all the matching words.
 
 See also the [EditorFormatDefinition Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.classification.editorformatdefinition?view=visualstudiosdk-2019)
 
-### Verilog Toke Types
+### Verilog Token Types
 
 Add a `public enum VerilogTokenTypes` value (there can be more items listed here than actually implemented) in [VerilogTokenTypes.cs](VerilogTokenTypes.cs#L19): 
 ```
@@ -124,6 +152,12 @@ Optional: add `AugmentQuickInfoSession` section in `VerilogQuickInfoSource.cs`:
                 }
 ```
 
+### Verilog Variables
+
+Similar to keywords, declared variables of type `input`, `output`, `inout`, `wire`, `reg`, and `parameter` are colorized when the definitions are found.
+Otherwise they will appear in plain text white. See `BuildHoverItems(string s)` for the state machine logic that parses the data looking
+for variables. Note that the text sent is assumed to be already split and de-commented.  See `LineParse(string theLine, int theLineNumber)`.
+
 ## Color Reference
 
 From [Microsoft System.Windows.Media.Colors Class](https://docs.microsoft.com/en-us/dotnet/api/system.windows.media.colors?view=netframework-4.8)
@@ -132,6 +166,9 @@ From [Microsoft System.Windows.Media.Colors Class](https://docs.microsoft.com/en
 
 
 ## Troubleshooting
+
+Although the executable extension should work for version of Visual Studio as far back as 2015, 
+this solution was developed in Visual Studio 2019. Some features may be missing in prior versions.
 
 If this error is encountered in Visual Studio 2019 when attempting to F5/Debug:
 
@@ -163,9 +200,19 @@ From [VSIX Manifest Designer](https://docs.microsoft.com/en-us/visualstudio/exte
 
 * ) – maximum version exclusive.
 
+## Limitations / TODO
+
+* Include files are not searched
+
+* No ability to program devices
+
+* No linting / syntax validation
+
+* No ability to import / export color settings
+
 ## Other Verilog Syntax Highlighters
 
-* [V3S](https://marketplace.visualstudio.com/items?itemName=fmax.V3S-VHDLandVerilogforVisualStudio2015)  V3S - VHDL, Verilog, SystemVerilog for VS2015; Free Trial, $40 and up to purchase.
+* [V3S](https://marketplace.visualstudio.com/items?itemName=fmax.V3S-VHDLandVerilogforVisualStudio2015)  V3S - VHDL, Verilog, SystemVerilog for VS2015; Free time-limited trial, $40 and up to purchase.
 
 * [SystemVerilog - Language Support](https://marketplace.visualstudio.com/items?itemName=eirikpre.systemverilog) VS Code Language support for Verilog / SystemVerilog (not Visual Studio)
 

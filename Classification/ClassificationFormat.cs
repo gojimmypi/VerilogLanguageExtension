@@ -2931,7 +2931,7 @@ namespace VerilogLanguage
     internal sealed class Verilog_Bracket : ClassificationFormatDefinition
     {
         /// <summary>
-        /// Defines the visual format for the "directive" classification type
+        /// Defines the visual format for the general "Bracket" classification type
         /// </summary>
         public Verilog_Bracket()
         {
@@ -2956,11 +2956,11 @@ namespace VerilogLanguage
     internal sealed class Verilog_Bracket0 : ClassificationFormatDefinition
     {
         /// <summary>
-        /// Defines the visual format for the "directive" classification type
+        /// Defines the visual format for the not-defined "Bracket0" classification type
         /// </summary>
         public Verilog_Bracket0()
         {
-            DisplayName = "Verilog - Bracket Depth 1"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
+            DisplayName = "Verilog - Bracket Depth 0"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
             if (ColorThemeAttribute.IsDarkTheme())
             {
                 ForegroundColor = Colors.SkyBlue;
@@ -2982,11 +2982,11 @@ namespace VerilogLanguage
     internal sealed class Verilog_Bracket1 : ClassificationFormatDefinition
     {
         /// <summary>
-        /// Defines the visual format for the "directive" classification type
+        /// Defines the visual format for the first level "Bracket1" classification type
         /// </summary>
         public Verilog_Bracket1()
         {
-            DisplayName = "Verilog - Bracket Depth 2"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
+            DisplayName = "Verilog - Bracket Depth 1"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
             if (ColorThemeAttribute.IsDarkTheme())
             {
                 ForegroundColor = Colors.Red;
@@ -3008,11 +3008,11 @@ namespace VerilogLanguage
     internal sealed class Verilog_Bracket2 : ClassificationFormatDefinition
     {
         /// <summary>
-        /// Defines the visual format for the "directive" classification type
+        /// Defines the visual format for the second depth level "Bracket2" classification type
         /// </summary>
         public Verilog_Bracket2()
         {
-            DisplayName = "Verilog - Bracket Depth 3"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
+            DisplayName = "Verilog - Bracket Depth 2"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
             if (ColorThemeAttribute.IsDarkTheme())
             {
                 ForegroundColor = Colors.Yellow;
@@ -3034,11 +3034,11 @@ namespace VerilogLanguage
     internal sealed class Verilog_Bracket3 : ClassificationFormatDefinition
     {
         /// <summary>
-        /// Defines the visual format for the "directive" classification type
+        /// Defines the visual format for the third bracket level "Bracket3" classification type
         /// </summary>
         public Verilog_Bracket3()
         {
-            DisplayName = "Verilog - Bracket Depth 4"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
+            DisplayName = "Verilog - Bracket Depth 3"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
             if (ColorThemeAttribute.IsDarkTheme())
             {
                 ForegroundColor = Colors.Blue;
@@ -3060,11 +3060,11 @@ namespace VerilogLanguage
     internal sealed class Verilog_Bracket4 : ClassificationFormatDefinition
     {
         /// <summary>
-        /// Defines the visual format for the "directive" classification type
+        /// Defines the visual format for the forth bracket level "Bracket4" classification type
         /// </summary>
         public Verilog_Bracket4()
         {
-            DisplayName = "Verilog - Bracket Depth 5"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
+            DisplayName = "Verilog - Bracket Depth 4"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
             if (ColorThemeAttribute.IsDarkTheme())
             {
                 ForegroundColor = Colors.Orange;
@@ -3086,11 +3086,11 @@ namespace VerilogLanguage
     internal sealed class Verilog_Bracket5 : ClassificationFormatDefinition
     {
         /// <summary>
-        /// Defines the visual format for the "directive" classification type
+        /// Defines the visual format for the fifth level bracket "Bracket5" classification type
         /// </summary>
         public Verilog_Bracket5()
         {
-            DisplayName = "Verilog - Bracket Depth 6"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
+            DisplayName = "Verilog - Bracket Depth 5"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
             if (ColorThemeAttribute.IsDarkTheme())
             {
                 ForegroundColor = Colors.PaleTurquoise;
@@ -3145,7 +3145,7 @@ namespace VerilogLanguage
     internal sealed class Verilog_Variable : ClassificationFormatDefinition
     {
         /// <summary>
-        /// Defines the visual format for the "directive" classification type
+        /// Defines the visual format for the "variable" classification type
         /// </summary>
         public Verilog_Variable()
         {
@@ -3160,6 +3160,192 @@ namespace VerilogLanguage
             }
         }
     }
+
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "variable - input")]
+    [Name("variable_input")]
+    //this should be visible to the end user
+    [UserVisible(true)]
+    //set the priority to be after the default classifiers
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_Variable_input : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "variable - input" classification type
+        /// </summary>
+        public Verilog_Variable_input()
+        {
+            DisplayName = "Verilog - Variable - input"; //human readable version of the name
+            if (ColorThemeAttribute.IsDarkTheme())
+            {
+                ForegroundColor = Colors.SkyBlue; // default color for dark background
+            }
+            else
+            {
+                ForegroundColor = Colors.DarkBlue; // default color for light background
+            }
+        }
+    }
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "variable - output")]
+    [Name("variable_output")]
+    //this should be visible to the end user
+    [UserVisible(true)]
+    //set the priority to be after the default classifiers
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_Variable_output : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "variable - output" classification type
+        /// </summary>
+        public Verilog_Variable_output()
+        {
+            DisplayName = "Verilog - Variable - ouput"; //human readable version of the name
+            if (ColorThemeAttribute.IsDarkTheme())
+            {
+                ForegroundColor = Colors.SkyBlue; // default color for dark background
+            }
+            else
+            {
+                ForegroundColor = Colors.DarkBlue; // default color for light background
+            }
+        }
+    }
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "variable - inout")]
+    [Name("variable_inout")]
+    //this should be visible to the end user
+    [UserVisible(true)]
+    //set the priority to be after the default classifiers
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_Variable_inout : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "variable - inout" classification type
+        /// </summary>
+        public Verilog_Variable_inout()
+        {
+            DisplayName = "Verilog - Variable - inout"; //human readable version of the name
+            if (ColorThemeAttribute.IsDarkTheme())
+            {
+                ForegroundColor = Colors.Red; // default color for dark background
+            }
+            else
+            {
+                ForegroundColor = Colors.DarkBlue; // default color for light background
+            }
+        }
+    }
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "variable - wire")]
+    [Name("variable_wire")]
+    //this should be visible to the end user
+    [UserVisible(true)]
+    //set the priority to be after the default classifiers
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_Variable_wire : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "variable - wire" classification type
+        /// </summary>
+        public Verilog_Variable_wire()
+        {
+            DisplayName = "Verilog - Variable - wire"; //human readable version of the name
+            if (ColorThemeAttribute.IsDarkTheme())
+            {
+                ForegroundColor = Colors.LightSteelBlue; // default color for dark background
+            }
+            else
+            {
+                ForegroundColor = Colors.DarkBlue; // default color for light background
+            }
+        }
+    }
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "variable - reg")]
+    [Name("variable_reg")]
+    //this should be visible to the end user
+    [UserVisible(true)]
+    //set the priority to be after the default classifiers
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_Variable_reg: ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "variable - reg" classification type
+        /// </summary>
+        public Verilog_Variable_reg()
+        {
+            DisplayName = "Verilog - Variable - reg"; //human readable version of the name
+            if (ColorThemeAttribute.IsDarkTheme())
+            {
+                ForegroundColor = Colors.Plum; // default color for dark background
+            }
+            else
+            {
+                ForegroundColor = Colors.DarkBlue; // default color for light background
+            }
+        }
+    }
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "variable - parameter")]
+    [Name("variable_parameter")]
+    //this should be visible to the end user
+    [UserVisible(true)]
+    //set the priority to be after the default classifiers
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_Variable_parameter : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "variable - parameter" classification type
+        /// </summary>
+        public Verilog_Variable_parameter()
+        {
+            DisplayName = "Verilog - Variable - parameter"; //human readable version of the name
+            if (ColorThemeAttribute.IsDarkTheme())
+            {
+                ForegroundColor = Colors.SkyBlue; // default color for dark background
+            }
+            else
+            {
+                ForegroundColor = Colors.DarkBlue; // default color for light background
+            }
+        }
+    }
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "variable - duplicate")]
+    [Name("variable_duplicate")]
+    //this should be visible to the end user
+    [UserVisible(true)]
+    //set the priority to be after the default classifiers
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_Variable_duplicate : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "variable - duplicate" classification type
+        /// </summary>
+        public Verilog_Variable_duplicate()
+        {
+            DisplayName = "Verilog - Variable - duplicate"; //human readable version of the name
+            if (ColorThemeAttribute.IsDarkTheme())
+            {
+                ForegroundColor = Colors.Red; // default color for dark background
+            }
+            else
+            {
+                ForegroundColor = Colors.Red; // default color for light background
+            }
+        }
+    }
+
+
+
     #endregion
 
     #region values

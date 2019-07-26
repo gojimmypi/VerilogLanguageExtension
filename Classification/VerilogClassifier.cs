@@ -48,7 +48,7 @@ namespace VerilogLanguage.VerilogToken
         internal static ContentTypeDefinition VerilogContentType = null;
 
         [Export]
-        [FileExtension(".v;.verilog;.vh")] // simi-colon delimited file extensions
+        [FileExtension(".v;.verilog;.vh")] // semi-colon delimited file extensions
         [ContentType("verilog")]
         [BaseDefinition("code")]
         [BaseDefinition("projection")]
@@ -181,6 +181,15 @@ namespace VerilogLanguage.VerilogToken
                 [VerilogTokenTypes.Verilog_Bracket5] = typeService.GetClassificationType("Bracket5"),
                 [VerilogTokenTypes.Verilog_BracketContent] = typeService.GetClassificationType("BracketContent"),
                 [VerilogTokenTypes.Verilog_Variable] = typeService.GetClassificationType("Variable"),
+
+                [VerilogTokenTypes.Verilog_Variable_input] = typeService.GetClassificationType("Variable_input"),
+                [VerilogTokenTypes.Verilog_Variable_output] = typeService.GetClassificationType("Variable_output"),
+                [VerilogTokenTypes.Verilog_Variable_inout] = typeService.GetClassificationType("Variable_inout"),
+                [VerilogTokenTypes.Verilog_Variable_reg] = typeService.GetClassificationType("Variable_reg"),
+                [VerilogTokenTypes.Verilog_Variable_wire] = typeService.GetClassificationType("Variable_wire"),
+                [VerilogTokenTypes.Verilog_Variable_parameter] = typeService.GetClassificationType("Variable_parameter"),
+                [VerilogTokenTypes.Verilog_Variable_duplicate] = typeService.GetClassificationType("Variable_duplicate"),
+
                 [VerilogTokenTypes.Verilog_Value] = typeService.GetClassificationType("Value"),
             };
 

@@ -778,11 +778,62 @@ namespace VerilogLanguage
 
         #region variable
         /// <summary>
-        /// Defines the "Verilog_Comment" classification type.
+        /// Defines the "Verilog_Variable" classification type.
         /// </summary>
         [Export(typeof(ClassificationTypeDefinition))]
         [Name("Variable")]
         internal static ClassificationTypeDefinition Verilog_Variable = null;
+
+        /// <summary>
+        /// Defines the "Verilog_Variable_input" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Variable_input")]
+        internal static ClassificationTypeDefinition Verilog_Variable_input = null;
+
+        /// <summary>
+        /// Defines the "Verilog_Variable_output" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Variable_output")]
+        internal static ClassificationTypeDefinition Verilog_Variable_output = null;
+
+        /// <summary>
+        /// Defines the "Verilog_Variable_inout" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Variable_inout")]
+        internal static ClassificationTypeDefinition Verilog_Variable_inout = null;
+
+        /// <summary>
+        /// Defines the "Verilog_Variable_wire" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Variable_wire")]
+        internal static ClassificationTypeDefinition Verilog_Variable_wire = null;
+
+        /// <summary>
+        /// Defines the "Verilog_Variable_reg" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Variable_reg")]
+        internal static ClassificationTypeDefinition Verilog_Variable_reg = null;
+
+        /// <summary>
+        /// Defines the "Verilog_Variable_parameter" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Variable_parameter")]
+        internal static ClassificationTypeDefinition Verilog_Variable_parameter = null;
+
+        /// <summary>
+        /// Defines the "Verilog_Variable_duplicate" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Variable_duplicate")]
+        internal static ClassificationTypeDefinition Verilog_Variable_duplicate = null;
+
+
         #endregion
 
         #region value

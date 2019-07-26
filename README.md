@@ -6,29 +6,31 @@ This Visual Studio Extension adds syntax & keyword higlighting to Visual Studio 
 
 On a Windows 10 machine to create FPGA binaries, consider using the [yoysys](https://github.com/YosysHQ/yosys)/[nextpnr](https://github.com/YosysHQ/nextpnr) toolchain. I have a [gist for the ULX3S](https://gist.github.com/gojimmypi/f96cd86b2b8595b4cf3be4baf493c5a7) as well as [one for the TinyFPGA](https://gist.github.com/gojimmypi/243fc3a6eead72ae3db8fd32f2567c96) in [WSL](https://gojimmypi.blogspot.com/2019/02/ulx3s-ujprog-on-windows-wsl-or-minggw.html) that may be useful in installing these along with all the respective dependencies.
 
+
 ## Features
 
-Each keyword can be individually colorized. See `File - Options - Environment - Fonts and Colors`
+* Each keyword can be individually colorized. See `File - Options - Environment - Fonts and Colors`
 
-Line and block comments are colorization.
+* Line and block comments are colorization.
 
-Verilog keywords have hover text documentation.
+* Verilog keywords have hover text documentation.
 
-Variables have hover text to indicate declaration, or lack thereof. Module declaration is also noted as appropriate.
+* Variables have hover text to indicate declaration, or lack thereof. Module declaration is also noted as appropriate.
 
-As of version 0.2x there are different default colors depending on dark or light theme. See `bool IsDarkTheme()` in `ClassificationFormat.cs`
+* As of version 0.2x there are different default colors depending on dark or light theme. See `bool IsDarkTheme()` in `ClassificationFormat.cs`
 
-Multi-colored brackets, depending on nested depth. See Fonts and Colors - Display Items `Verilog - Bracket Depth [n]`
+* Multi-colored brackets, depending on nested depth. See Fonts and Colors - Display Items `Verilog - Bracket Depth [n]`
+
 
 ## File Extensions Supported:
 
 These file extensions should activate this extension:
 
-	* `.v`
-	* `.verilog`
-	* `.vh`
+* `.v`
+* `.verilog`
+* `.vh`
 
-See the line in the VerilogClassifer to add more file types:
+See the line in the [VerilogClassifer](./Classification/VerilogClassifer.cs) to add more file types:
 
 `[FileExtension(".v;.verilog;.vh")] // semi-colon delimited file extensions`
 
@@ -50,15 +52,18 @@ msbuild VerilogLanguage.csproj
 "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VSIXInstaller.exe"  C:\workspace\VerilogLanguageExtension\bin\Release\VerilogLanguage.vsix
 ```
 
+
 ## Installation - Prior Releases
 
 See [releases](./releases/README.md) directory for prior versions.
+
 
 ## Removal
 
 ```
 "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VSIXInstaller.exe" /uninstall:CF0DCF14-5B8F-4B42-8386-9D37BB99F98E
 ```
+
 
 ## Testing
 
@@ -75,15 +80,18 @@ Set your own preferred colors in Tools - Options - Fonts and Colors:
 
 To make modifications, the [Visual Studio Extension Development Workload Toolset](https://visualstudio.microsoft.com/vs/support/selecting-workloads-visual-studio-2017/) needs to be installed.
 
+
 ### Version Change
 
 Edit the version in two places: [source.extension.vsixmanifest](./source.extension.vsixmanifest) and [Properties - AssemblyInfo.cs](./Properties/AssemblyInfo.cs).
+
 
 ### Single word highlight
 
 When clicking on a single word, Visual Studio highlights all the matching words. This higlight happens in [HighlightWordFormatDefinition](./Highlighting/HighlightWordFormatDefinition.cs).
 
 See also the [EditorFormatDefinition Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.classification.editorformatdefinition?view=visualstudiosdk-2019)
+
 
 ### Verilog Token Types
 
@@ -152,11 +160,13 @@ Optional: add `AugmentQuickInfoSession` section in `VerilogQuickInfoSource.cs`:
                 }
 ```
 
+
 ### Verilog Variables
 
 Similar to keywords, declared variables of type `input`, `output`, `inout`, `wire`, `reg`, and `parameter` are colorized when the definitions are found.
 Otherwise they will appear in plain text white. See `BuildHoverItems(string s)` for the state machine logic that parses the data looking
 for variables. Note that the text sent is assumed to be already split and de-commented.  See `LineParse(string theLine, int theLineNumber)`.
+
 
 ## Color Reference
 

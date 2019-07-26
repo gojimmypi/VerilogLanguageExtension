@@ -203,7 +203,7 @@ If the extension is installed, but syntax is not highlighted, ensure the file en
 ![Verilog-Extension-Disabled.png](./images/Verilog-Extension-Disabled.png)
 
 
-# Notes
+## Notes
 
 From [VSIX Manifest Designer](https://docs.microsoft.com/en-us/visualstudio/extensibility/vsix-manifest-designer?view=vs-2019):
 

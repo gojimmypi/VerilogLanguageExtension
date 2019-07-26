@@ -40,14 +40,16 @@ See the line in the [VerilogClassifer](./Classification/VerilogClassifier.cs) to
 The easiest way to install the release version is to use the Visual Studio `Extensions - Manages Extensions`. 
 Type the search word `FPGA` or `VerilogLanguage` to find the extension in the Online downloads.
 
-### Installation - Visual Studio Market Place
+Alternatively:
+
+### * Installation - Visual Studio Market Place
 
 The VSIX file can also be downloaded manually from the Visual Studio Marketplace web site:
 
 https://marketplace.visualstudio.com/items?itemName=gojimmypi.gojimmypi-verilog-language-extension
 
 
-### Installation - Manual install with source code 
+### * Installation - Manual install with source code 
 
 Find the location of your `VSIXInstaller.exe`, typpically in `.\Common7\IDE\` of Developer Command Prompt. Shown is an example of VS2017 Enterprise:
 
@@ -61,7 +63,7 @@ msbuild VerilogLanguage.csproj
 ```
 
 
-### Installation - Prior Releases
+### * Installation - Prior Releases
 
 See [releases](./releases/README.md) directory for prior versions.
 

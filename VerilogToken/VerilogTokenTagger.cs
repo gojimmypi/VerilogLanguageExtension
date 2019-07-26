@@ -40,7 +40,6 @@ namespace VerilogLanguage.VerilogToken
     {
         // ITextView View { get; set; }
         ITextBuffer _buffer;
-        IDictionary<string, VerilogTokenTypes> _VerilogTypes;
 
         internal VerilogTokenTagger(ITextBuffer buffer)
         {
@@ -48,124 +47,6 @@ namespace VerilogLanguage.VerilogToken
             VerilogGlobals.PerfMon.VerilogTokenTagger_Count++;
             VerilogGlobals.TheBuffer = buffer;
             _buffer = buffer;
-
-            // see also VerilogClassifier that has Dictionary<VerilogTokenTypes, IClassificationType>
-            _VerilogTypes = new Dictionary<string, VerilogTokenTypes>
-            {
-                ["always"] = VerilogTokenTypes.Verilog_always,
-                ["assign"] = VerilogTokenTypes.Verilog_assign,
-                ["automatic"] = VerilogTokenTypes.Verilog_automatic,
-                ["begin"] = VerilogTokenTypes.Verilog_begin,
-                ["case"] = VerilogTokenTypes.Verilog_case,
-                ["casex"] = VerilogTokenTypes.Verilog_casex,
-                ["casez"] = VerilogTokenTypes.Verilog_casez,
-                ["cell"] = VerilogTokenTypes.Verilog_cell,
-                ["config"] = VerilogTokenTypes.Verilog_config,
-                ["deassign"] = VerilogTokenTypes.Verilog_deassign,
-                ["default"] = VerilogTokenTypes.Verilog_default,
-                ["defparam"] = VerilogTokenTypes.Verilog_defparam,
-                ["design"] = VerilogTokenTypes.Verilog_design,
-                ["disable"] = VerilogTokenTypes.Verilog_disable,
-                ["edge"] = VerilogTokenTypes.Verilog_edge,
-                ["else"] = VerilogTokenTypes.Verilog_else,
-                ["end"] = VerilogTokenTypes.Verilog_end,
-                ["endcase"] = VerilogTokenTypes.Verilog_endcase,
-                ["endconfig"] = VerilogTokenTypes.Verilog_endconfig,
-                ["endfunction"] = VerilogTokenTypes.Verilog_endfunction,
-                ["endgenerate"] = VerilogTokenTypes.Verilog_endgenerate,
-                ["endmodule"] = VerilogTokenTypes.Verilog_endmodule,
-                ["endprimitive"] = VerilogTokenTypes.Verilog_endprimitive,
-                ["endspecify"] = VerilogTokenTypes.Verilog_endspecify,
-                ["endtable"] = VerilogTokenTypes.Verilog_endtable,
-                ["endtask"] = VerilogTokenTypes.Verilog_endtask,
-                ["event"] = VerilogTokenTypes.Verilog_event,
-                ["for"] = VerilogTokenTypes.Verilog_for,
-                ["force"] = VerilogTokenTypes.Verilog_force,
-                ["forever"] = VerilogTokenTypes.Verilog_forever,
-                ["fork"] = VerilogTokenTypes.Verilog_fork,
-                ["function"] = VerilogTokenTypes.Verilog_function,
-                ["generate"] = VerilogTokenTypes.Verilog_generate,
-                ["genvar"] = VerilogTokenTypes.Verilog_genvar,
-                ["if"] = VerilogTokenTypes.Verilog_if,
-                ["ifnone"] = VerilogTokenTypes.Verilog_ifnone,
-                ["incdir"] = VerilogTokenTypes.Verilog_incdir,
-                ["include"] = VerilogTokenTypes.Verilog_include,
-                ["initial"] = VerilogTokenTypes.Verilog_initial,
-                ["inout"] = VerilogTokenTypes.Verilog_inout,
-                ["input"] = VerilogTokenTypes.Verilog_input,
-                ["instance"] = VerilogTokenTypes.Verilog_instance,
-                ["join"] = VerilogTokenTypes.Verilog_join,
-                ["liblist"] = VerilogTokenTypes.Verilog_liblist,
-                ["library"] = VerilogTokenTypes.Verilog_library,
-                ["localparam"] = VerilogTokenTypes.Verilog_localparam,
-                ["macromodule"] = VerilogTokenTypes.Verilog_macromodule,
-                ["module"] = VerilogTokenTypes.Verilog_module,
-                ["negedge"] = VerilogTokenTypes.Verilog_negedge,
-                ["noshowcancelled"] = VerilogTokenTypes.Verilog_noshowcancelled,
-                ["output"] = VerilogTokenTypes.Verilog_output,
-                ["parameter"] = VerilogTokenTypes.Verilog_parameter,
-                ["posedge"] = VerilogTokenTypes.Verilog_posedge,
-                ["primitive"] = VerilogTokenTypes.Verilog_primitive,
-                ["pulsestyle_ondetect"] = VerilogTokenTypes.Verilog_pulsestyle_ondetect,
-                ["pulsestyle_onevent"] = VerilogTokenTypes.Verilog_pulsestyle_onevent,
-                ["reg"] = VerilogTokenTypes.Verilog_reg,
-                ["release"] = VerilogTokenTypes.Verilog_release,
-                ["repeat"] = VerilogTokenTypes.Verilog_repeat,
-                ["scalared"] = VerilogTokenTypes.Verilog_scalared,
-                ["showcancelled"] = VerilogTokenTypes.Verilog_showcancelled,
-                ["signed"] = VerilogTokenTypes.Verilog_signed,
-                ["specify"] = VerilogTokenTypes.Verilog_specify,
-                ["specparam"] = VerilogTokenTypes.Verilog_specparam,
-                ["strength"] = VerilogTokenTypes.Verilog_strength,
-                ["table"] = VerilogTokenTypes.Verilog_table,
-                ["task"] = VerilogTokenTypes.Verilog_task,
-                ["tri"] = VerilogTokenTypes.Verilog_tri,
-                ["tri0"] = VerilogTokenTypes.Verilog_tri0,
-                ["tri1"] = VerilogTokenTypes.Verilog_tri1,
-                ["triand"] = VerilogTokenTypes.Verilog_triand,
-                ["wand"] = VerilogTokenTypes.Verilog_wand,
-                ["trior"] = VerilogTokenTypes.Verilog_trior,
-                ["wor"] = VerilogTokenTypes.Verilog_wor,
-                ["trireg"] = VerilogTokenTypes.Verilog_trireg,
-                ["unsigned"] = VerilogTokenTypes.Verilog_unsigned,
-                ["use"] = VerilogTokenTypes.Verilog_use,
-                ["vectored"] = VerilogTokenTypes.Verilog_vectored,
-                ["wait"] = VerilogTokenTypes.Verilog_wait,
-                ["while"] = VerilogTokenTypes.Verilog_while,
-                ["wire"] = VerilogTokenTypes.Verilog_wire,
-
-                // all of the Verilog directives are the same color
-                ["`celldefine"] = VerilogTokenTypes.Verilog_Directive,
-                ["`endcelldefine"] = VerilogTokenTypes.Verilog_Directive,
-                ["`default_nettype"] = VerilogTokenTypes.Verilog_Directive,
-                ["`define"] = VerilogTokenTypes.Verilog_Directive,
-                ["`undef"] = VerilogTokenTypes.Verilog_Directive,
-                ["`ifdef"] = VerilogTokenTypes.Verilog_Directive,
-                ["`ifndef"] = VerilogTokenTypes.Verilog_Directive,
-                ["`elsif"] = VerilogTokenTypes.Verilog_Directive,
-                ["`else"] = VerilogTokenTypes.Verilog_Directive,
-                ["`endif"] = VerilogTokenTypes.Verilog_Directive,
-                ["`include"] = VerilogTokenTypes.Verilog_Directive,
-                ["`resetall"] = VerilogTokenTypes.Verilog_Directive,
-                ["`line"] = VerilogTokenTypes.Verilog_Directive,
-                ["`timescale"] = VerilogTokenTypes.Verilog_Directive,
-                ["`unconnected_drive"] = VerilogTokenTypes.Verilog_Directive,
-                ["`nounconnected_driv"] = VerilogTokenTypes.Verilog_Directive,
-
-                ["comment_type"] = VerilogTokenTypes.Verilog_Comment,
-
-                ["bracket_type"] = VerilogTokenTypes.Verilog_Bracket,
-                ["bracket_type0"] = VerilogTokenTypes.Verilog_Bracket0,
-                ["bracket_type1"] = VerilogTokenTypes.Verilog_Bracket1,
-                ["bracket_type2"] = VerilogTokenTypes.Verilog_Bracket2,
-                ["bracket_type3"] = VerilogTokenTypes.Verilog_Bracket3,
-                ["bracket_type4"] = VerilogTokenTypes.Verilog_Bracket4,
-                ["bracket_type5"] = VerilogTokenTypes.Verilog_Bracket5,
-                ["bracket_content"] = VerilogTokenTypes.Verilog_BracketContent,
-
-                ["variable_type"] = VerilogTokenTypes.Verilog_Variable,
-                ["value_type"] = VerilogTokenTypes.Verilog_Value,
-            };
 
             this._buffer.Changed += BufferChanged;
         }
@@ -304,11 +185,11 @@ namespace VerilogLanguage.VerilogToken
 
 
                             // check for standard keyword syntax higlighting
-                            if (_VerilogTypes.ContainsKey(Item.ItemText))
+                            if (VerilogGlobals.VerilogTypes.ContainsKey(Item.ItemText))
                             {
                                 if (tokenSpan.IntersectsWith(curSpan))
                                     yield return new TagSpan<VerilogTokenTag>(tokenSpan,
-                                                                          new VerilogTokenTag(_VerilogTypes[Item.ItemText]));
+                                                                          new VerilogTokenTag(VerilogGlobals.VerilogTypes[Item.ItemText]));
                             }
 
                             else
@@ -338,7 +219,7 @@ namespace VerilogLanguage.VerilogToken
                                             if (tokenSpan.IntersectsWith(curSpan))
                                                 yield return new TagSpan<VerilogTokenTag>(tokenSpan,
                                                                                       // see _VerilogTypes["bracket_type1"] .. _VerilogTypes["bracket_type5"]
-                                                                                      new VerilogTokenTag(_VerilogTypes["bracket_type" + (thisDelimiterIndex).ToString()]));
+                                                                                      new VerilogTokenTag(VerilogGlobals.VerilogTypes["bracket_type" + (thisDelimiterIndex).ToString()]));
                                             break;
 
                                         case VerilogGlobals.VerilogTokenContextType.RoundBracketClose:
@@ -348,7 +229,7 @@ namespace VerilogLanguage.VerilogToken
                                             if (tokenSpan.IntersectsWith(curSpan))
                                                 yield return new TagSpan<VerilogTokenTag>(tokenSpan,
                                                                                       // see _VerilogTypes["bracket_type1"] .. _VerilogTypes["bracket_type5"]
-                                                                                      new VerilogTokenTag(_VerilogTypes["bracket_type" + (thisDelimiterIndex).ToString()]));
+                                                                                      new VerilogTokenTag(VerilogGlobals.VerilogTypes["bracket_type" + (thisDelimiterIndex).ToString()]));
                                             break;
 
                                         case VerilogGlobals.VerilogTokenContextType.SquigglyBracketOpen:
@@ -358,7 +239,7 @@ namespace VerilogLanguage.VerilogToken
                                             if (tokenSpan.IntersectsWith(curSpan))
                                                 yield return new TagSpan<VerilogTokenTag>(tokenSpan,
                                                                                       // see _VerilogTypes["bracket_type1"] .. _VerilogTypes["bracket_type5"]
-                                                                                      new VerilogTokenTag(_VerilogTypes["bracket_type" + (thisDelimiterIndex).ToString()]));
+                                                                                      new VerilogTokenTag(VerilogGlobals.VerilogTypes["bracket_type" + (thisDelimiterIndex).ToString()]));
                                             break;
 
                                         case VerilogGlobals.VerilogTokenContextType.SquareBracketContents:

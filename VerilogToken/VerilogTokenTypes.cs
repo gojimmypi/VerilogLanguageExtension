@@ -125,6 +125,14 @@ namespace VerilogLanguage.VerilogToken
         Verilog_BracketContent,
         
         Verilog_Variable,
+        Verilog_Variable_input,
+        Verilog_Variable_output,
+        Verilog_Variable_inout,
+        Verilog_Variable_wire,
+        Verilog_Variable_reg,
+        Verilog_Variable_parameter,
+        Verilog_Variable_duplicate, // special highlight value if a duplicate declaration is detected
+
         Verilog_Value
 
     }

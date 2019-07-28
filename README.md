@@ -202,6 +202,61 @@ If the extension is installed, but syntax is not highlighted, ensure the file en
 
 ![Verilog-Extension-Disabled.png](./images/Verilog-Extension-Disabled.png)
 
+If you see an error regarding "This extension is not installable on any currently installed products" like this:
+
+![](./images/InstallFailed.png)
+
+And the install log looks like this:
+
+```
+7/28/2019 8:52:20 AM - Microsoft VSIX Installer
+7/28/2019 8:52:20 AM - -------------------------------------------
+7/28/2019 8:52:20 AM - Initializing Install...
+7/28/2019 8:52:20 AM - Extension Details...
+7/28/2019 8:52:20 AM - 	Identifier      : CF0DCF14-5B8F-4B42-8386-9D37BB99F98E
+7/28/2019 8:52:20 AM - 	Name            : VerilogLanguage
+7/28/2019 8:52:20 AM - 	Author          : gojimmypi
+7/28/2019 8:52:20 AM - 	Version         : 0.1.4
+7/28/2019 8:52:20 AM - 	Description     : Verilog Keyword highlighting for Visual Studio. Sample classifier extension to the Visual Studio Editor. Implements the Verilog Language Extension.
+7/28/2019 8:52:20 AM - 	Locale          : en-US
+7/28/2019 8:52:20 AM - 	MoreInfoURL     : https://github.com/gojimmypi/VerilogLanguageExtension
+7/28/2019 8:52:20 AM - 	InstalledByMSI  : False
+7/28/2019 8:52:20 AM - 	SupportedFrameworkVersionRange : [4.5]
+7/28/2019 8:52:20 AM - 
+7/28/2019 8:52:20 AM - 	Supported Products : 
+7/28/2019 8:52:20 AM - 		Microsoft.VisualStudio.Community
+7/28/2019 8:52:20 AM - 			Version : [14.0,17.0)
+7/28/2019 8:52:20 AM - 
+7/28/2019 8:52:20 AM - 	References      : 
+7/28/2019 8:52:20 AM - 
+7/28/2019 8:52:20 AM - Searching for applicable products...
+7/28/2019 8:52:20 AM - Found installed product - Global Location
+7/28/2019 8:52:20 AM - Found installed product - AtmelStudio
+7/28/2019 8:52:20 AM - Found installed product - ssms
+7/28/2019 8:52:20 AM - VSIXInstaller.NoApplicableSKUsException: This extension is not installable on any currently installed products.
+   at VSIXInstaller.App.InitializeInstall(Boolean isRepairSupported)
+   at VSIXInstaller.App.InitializeInstall()
+   at System.Threading.Tasks.Task.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()
+
+```
+
+Notice how it appears *no* versions of Visual Studio are installed. Check the process that is running:
+
+![vsix_install_process.png](./images/vsix_install_process.png)
+
+Right click and select `Properties` or `Open File Location`. If it openes to something _older_ than
+`Microsoft Visual Studio 15.0` (VS 2017) or `Microsoft Visual Studio 16.0' (VS 2019). This VSIX extension
+must be opened with the Visual Studio 2017 or 2019 installer.
+
+This behaviour was observed after a Windows update, where Windows chose to open VSIX files with the installer in:
+
+`C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE`
+
+If this is the case, try right-clicking on the VSIX installer file and select `Open With...` and then `Choose another app`.
+Find the specfic installer directory desired, or this default also seems to work:
+
+![VSIX_installer_open_with.png](./images/VSIX_installer_open_with.png)
 
 ## Notes
 

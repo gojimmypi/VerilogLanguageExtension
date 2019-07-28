@@ -176,12 +176,19 @@
     <Compile Include="EditorClassifier\EditorClassifier1ClassificationDefinition.cs" />
     <Compile Include="EditorClassifier\EditorClassifier1Format.cs" />
     <Compile Include="EditorClassifier\EditorClassifier1Provider.cs" />
+    <Compile Include="Globals\BufferAttributes.cs" />
+    <Compile Include="Globals\PerfMon.cs" />
+    <Compile Include="Globals\VerilogContext.cs" />
+    <Compile Include="Globals\VerilogGlobals.cs" />
+    <Compile Include="Globals\VerilogHelperFunctions.cs" />
+    <Compile Include="Globals\VerilogParseState.cs" />
+    <Compile Include="Globals\VerilogToken.cs" />
     <Compile Include="Highlighting\HighlightWordFormatDefinition.cs" />
     <Compile Include="Highlighting\HighlightWordTag.cs" />
     <Compile Include="Highlighting\HighlightWordTagger.cs" />
     <Compile Include="Highlighting\HighlightWordTaggerProvider.cs" />
-    <Compile Include="Intellisense\CompletionController.cs" />
-    <Compile Include="Intellisense\CompletionSource.cs" />
+    <Compile Include="Completion\CompletionController.cs" />
+    <Compile Include="Completion\CompletionSource.cs" />
     <Compile Include="Intellisense\VerilogQuickInfoSource.cs" />
     <Compile Include="Outlining\OutliningTagger.cs" />
     <Compile Include="Outlining\OutliningTaggerProvider.cs" />
@@ -190,20 +197,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Intellisense\QuickInfoController.cs" />
     <Compile Include="Intellisense\QuickInfoControllerProvider.cs" />
-    <Compile Include="VerilogTokenTag.cs" />
-    <Compile Include="VerilogTokenTypes.cs" />
+    <Compile Include="VerilogToken\VerilogTokenTag.cs" />
+    <Compile Include="VerilogToken\VerilogTokenTypes.cs" />
+    <Compile Include="VerilogToken\VerilogTokenTagger.cs" />
+    <Compile Include="VerilogToken\VerilogTokenTagProvider.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="anothertest.v" />
     <None Include="CODE_OF_CONDUCT.md" />
-    <Content Include="images\Verilog-Tools-Options-Colors.png" />
-    <Content Include="images\VisualStudio-Automatic-Extension-Install-RestorePoint.png" />
-    <Content Include="images\VisualStudio-Automatic-Extension-Install.png" />
-    <Content Include="images\VisualStudio-ExtensionsAndUpdates.png" />
-    <Content Include="images\VisualStudio-Installer-Workloads-VSIX.png" />
-    <Content Include="images\VisualStudio-Installer.png" />
-    <Content Include="images\VisualStudio-Missing-Extension-Development.png" />
-    <Content Include="images\VisualStudio2019-Automatic-Extension-References-Not-Found.png" />
-    <Content Include="images\VisualStudio2019-F5-Debug-Fail.png" />
     <Content Include="LICENSE.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -228,6 +229,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="images\" />
     <Folder Include="Tagger\" />
   </ItemGroup>
   <ItemGroup>

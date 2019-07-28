@@ -75,14 +75,22 @@ namespace CommentHelper
         public CommentHelper(string item, bool IsContinuedLineComment, bool IsContinuedBlockComment)
         {
             // item should be a single line of text, with no CR/LF
-            thisLine = item;
+            if (item == null)
+            {
+                // TODO - diagnostic logging, we should never have nulls!
+                thisLine = "";
+            }
+            else
+            {
+                thisLine = item;
+            }
             CommentItems = new List<CommentItem>();
             this.HasOpenLineComment = IsContinuedLineComment;// we may be string with a string (or tag) on a line after a "//", set to be re-used again
             if (IsContinuedLineComment)
             {
                 this.HasBlockEndComment = false;
                 this.HasBlockStartComment = false; // we can never have an open block comment when there's an open line comment (e.g. "// comment /* this is still ine comment, not block")
-                AppendCommentListItem(item);
+                AppendCommentListItem(thisLine);
                 return;
             }
 
@@ -220,7 +228,7 @@ namespace CommentHelper
             {
                 // if we didn't have incoming active comment, and didn't find an opening,
                 // then we don't have a comment to consider, so the entire item is not a comment
-                CommentItems.Add(new CommentItem(item, false));
+                CommentItems.Add(new CommentItem(thisLine, false));
             }
         } // CommentHelper class initializer
     } // CommentHelper class

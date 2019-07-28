@@ -704,5 +704,145 @@ namespace VerilogLanguage
         internal static ClassificationTypeDefinition Verilog_Comment = null;
         #endregion
 
+        #region Bracket
+        /// <summary>
+        /// Defines the "Verilog_BracketContent" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Bracket")]
+        internal static ClassificationTypeDefinition Verilog_Bracket = null;
+        #endregion
+
+        #region Bracket0
+        /// <summary>
+        /// Defines the "Verilog_BracketContent" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Bracket0")]
+        internal static ClassificationTypeDefinition Verilog_Bracket0 = null;
+        #endregion
+
+        #region Bracket1
+        /// <summary>
+        /// Defines the "Verilog_BracketContent" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Bracket1")]
+        internal static ClassificationTypeDefinition Verilog_Bracket1 = null;
+        #endregion
+
+        #region Bracket2
+        /// <summary>
+        /// Defines the "Verilog_BracketContent" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Bracket2")]
+        internal static ClassificationTypeDefinition Verilog_Bracket2 = null;
+        #endregion
+
+        #region Bracket3
+        /// <summary>
+        /// Defines the "Verilog_BracketContent" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Bracket3")]
+        internal static ClassificationTypeDefinition Verilog_Bracket3 = null;
+        #endregion
+
+        #region Bracket4
+        /// <summary>
+        /// Defines the "Verilog_BracketContent" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Bracket4")]
+        internal static ClassificationTypeDefinition Verilog_Bracket4 = null;
+        #endregion
+
+        #region Bracket5
+        /// <summary>
+        /// Defines the "Verilog_BracketContent" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Bracket5")]
+        internal static ClassificationTypeDefinition Verilog_Bracket5 = null;
+        #endregion
+
+        #region BracketContent
+        /// <summary>
+        /// Defines the "Verilog_BracketContent" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("BracketContent")]
+        internal static ClassificationTypeDefinition Verilog_BracketContent = null;
+        #endregion
+
+        #region variable
+        /// <summary>
+        /// Defines the "Verilog_Variable" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Variable")]
+        internal static ClassificationTypeDefinition Verilog_Variable = null;
+
+        /// <summary>
+        /// Defines the "Verilog_Variable_input" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Variable_input")]
+        internal static ClassificationTypeDefinition Verilog_Variable_input = null;
+
+        /// <summary>
+        /// Defines the "Verilog_Variable_output" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Variable_output")]
+        internal static ClassificationTypeDefinition Verilog_Variable_output = null;
+
+        /// <summary>
+        /// Defines the "Verilog_Variable_inout" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Variable_inout")]
+        internal static ClassificationTypeDefinition Verilog_Variable_inout = null;
+
+        /// <summary>
+        /// Defines the "Verilog_Variable_wire" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Variable_wire")]
+        internal static ClassificationTypeDefinition Verilog_Variable_wire = null;
+
+        /// <summary>
+        /// Defines the "Verilog_Variable_reg" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Variable_reg")]
+        internal static ClassificationTypeDefinition Verilog_Variable_reg = null;
+
+        /// <summary>
+        /// Defines the "Verilog_Variable_parameter" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Variable_parameter")]
+        internal static ClassificationTypeDefinition Verilog_Variable_parameter = null;
+
+        /// <summary>
+        /// Defines the "Verilog_Variable_duplicate" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Variable_duplicate")]
+        internal static ClassificationTypeDefinition Verilog_Variable_duplicate = null;
+
+
+        #endregion
+
+        #region value
+        /// <summary>
+        /// Defines the "Verilog_Comment" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Value")]
+        internal static ClassificationTypeDefinition Verilog_Value = null;
+        #endregion
     }
 }

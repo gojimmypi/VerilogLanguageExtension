@@ -62,6 +62,7 @@ namespace VerilogLanguage.Highlighting
             if (e.NewSnapshot != e.OldSnapshot)
             {
                 UpdateAtCaretPosition(View.Caret.Position);
+                VerilogGlobals.Reparse(SourceBuffer);
             }
         }
 

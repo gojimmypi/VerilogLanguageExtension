@@ -20,12 +20,14 @@ namespace VerilogLanguage.Highlighting
     [UserVisible(true)]
     internal class HighlightWordFormatDefinition : MarkerFormatDefinition
     {
+        // the single word higlight that occurs when typing. called once at Visual Studio launch time.
+        // this controls the color of all selected words in the document. 
+        // currently commented out to use the default Visual Studio colorization
         public HighlightWordFormatDefinition()
         {
-            this.BackgroundColor = Colors.DarkGray;
             // this.ForegroundColor = Colors.DarkBlue;
-            this.DisplayName = "Highlight Word";
-            this.ZOrder = 5;
+            // this.DisplayName = "Highlight Word";
+            // this.ZOrder = 5;
         }
     }
 

@@ -74,6 +74,19 @@ namespace VSLTK.Intellisense
         /// </summary>
         private void OnTextViewMouseHover(object sender, MouseHoverEventArgs e)
         {
+            if (VerilogLanguage.VerilogGlobals.NeedReparse)
+            {
+                if (_subjectBuffers.Count == 1)
+                {
+                    VerilogLanguage.VerilogGlobals.Reparse(_subjectBuffers[0]);
+                }
+                else
+                {
+                    // how do we end up with multiple buffers?
+                    // TODO - handle this?
+                }
+            }
+
             SnapshotPoint? point = GetMousePosition(new SnapshotPoint(_textView.TextSnapshot, e.Position));
 
             if (point != null)

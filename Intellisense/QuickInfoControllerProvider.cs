@@ -15,6 +15,7 @@ using Microsoft.VisualStudio.Language.Intellisense;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.Utilities;
+using VerilogLanguage;
 
 namespace VSLTK.Intellisense
 {
@@ -37,6 +38,7 @@ namespace VSLTK.Intellisense
         public IIntellisenseController TryCreateIntellisenseController(ITextView textView,
             IList<ITextBuffer> subjectBuffers)
         {
+            VerilogGlobals.TheView = textView;
             return new TemplateQuickInfoController(textView, subjectBuffers, this);
         }
 

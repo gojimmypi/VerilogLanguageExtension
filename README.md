@@ -190,7 +190,10 @@ From [Microsoft System.Windows.Media.Colors Class](https://docs.microsoft.com/en
 ## Troubleshooting
 
 Although the executable extension should work for version of Visual Studio as far back as 2015, 
-this solution was developed in Visual Studio 2019. Some features may be missing in prior versions.
+this solution was developed in Visual Studio 2019. Some features may be missing in prior versions, 
+so it is recommended that any code changes be made in Visual Studio 2019.
+
+### Unable to start program
 
 If this error is encountered in Visual Studio 2019 when attempting to F5/Debug:
 
@@ -198,9 +201,13 @@ If this error is encountered in Visual Studio 2019 when attempting to F5/Debug:
 
 Try opening the [project file](VerilogLanguage.csproj) rather than the [solution](./VerilogLanguageExtension.sln).
 
+### No visible syntax highlighting
+
 If the extension is installed, but syntax is not highlighted, ensure the file ends with ".v" and that the extension is _enabled_:
 
 ![Verilog-Extension-Disabled.png](./images/Verilog-Extension-Disabled.png)
+
+### Unable to install downloaded VSIX file
 
 If you see an error regarding "This extension is not installable on any currently installed products" like this:
 
@@ -246,17 +253,23 @@ Notice how it appears *no* versions of Visual Studio are installed. Check the pr
 ![vsix_install_process.png](./images/vsix_install_process.png)
 
 Right click and select `Properties` or `Open File Location`. If it openes to something _older_ than
-`Microsoft Visual Studio 15.0` (VS 2017) or `Microsoft Visual Studio 16.0' (VS 2019). This VSIX extension
+`Microsoft Visual Studio 15.0` (VS 2017) or `Microsoft Visual Studio 16.0` (VS 2019). This VSIX extension
 must be opened with the Visual Studio 2017 or 2019 installer.
 
 This behaviour was observed after a Windows update, where Windows chose to open VSIX files with the installer in:
 
 `C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE`
 
+As shown here:
+
+![Installer14.png](./images/Installer14.png)
+
 If this is the case, try right-clicking on the VSIX installer file and select `Open With...` and then `Choose another app`.
-Find the specfic installer directory desired, or this default also seems to work:
+Find the specfic installer directory desired, or this `VSLauncher.exe` default also seems to work:
 
 ![VSIX_installer_open_with.png](./images/VSIX_installer_open_with.png)
+
+
 
 ## Notes
 

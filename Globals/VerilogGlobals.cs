@@ -11,7 +11,7 @@ using Microsoft.VisualStudio.Utilities;
 
 namespace VerilogLanguage
 {
-    public static partial class VerilogGlobals  
+    public static partial class VerilogGlobals
     {
 
         public static ITextBuffer TheBuffer;
@@ -168,6 +168,7 @@ namespace VerilogLanguage
 
 
         public static bool NeedReparse { get; set; }
+        public static DateTime LastParseTime {get; set; }
         public static Boolean IsContinuedBlockComment = false;
 
         private static BuildHoverStates _BuildHoverState = BuildHoverStates.UndefinedState;

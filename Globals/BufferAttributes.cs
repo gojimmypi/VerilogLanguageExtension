@@ -455,6 +455,8 @@ namespace VerilogLanguage
 
             // in case we got here from someplace that set NeedReparse to true - reset to indicate completion:
             VerilogGlobals.NeedReparse = false;
+            VerilogGlobals.LastParseTime = DateTime.Now;
+
         } // Reparse
 
         /// <summary>

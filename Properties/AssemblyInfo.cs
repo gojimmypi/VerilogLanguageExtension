@@ -17,7 +17,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("VerilogLanguage")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Visual Studio Extension for FPGA Verilog Syntax Highlighting")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("gojimmypi")]
 [assembly: AssemblyProduct("VerilogLanguage")]
@@ -40,7 +40,7 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.1.5.0")]
-[assembly: AssemblyFileVersion("0.1.5.0")]
+[assembly: AssemblyVersion("0.2.0.0")]
+[assembly: AssemblyFileVersion("0.2.0.0")]
 [assembly: Guid("8E6636E9-EDBC-432F-BA96-85A8AE62D178")]
 

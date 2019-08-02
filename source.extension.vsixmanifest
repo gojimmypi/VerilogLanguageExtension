@@ -11,7 +11,7 @@
 //***************************************************************************-->
 <PackageManifest Version="2.0.0" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011">
     <Metadata>
-        <Identity Id="CF0DCF14-5B8F-4B42-8386-9D37BB99F98E" Version="0.1.5" Language="en-US" Publisher="gojimmypi" />
+        <Identity Id="CF0DCF14-5B8F-4B42-8386-9D37BB99F98E" Version="0.2.0" Language="en-US" Publisher="gojimmypi" />
         <DisplayName>VerilogLanguage</DisplayName>
         <Description xml:space="preserve">Verilog Extension for Visual Studio. (classifier extension). Implements the Verilog Language Extension allowing user-definable keyword colorization.</Description>
         <MoreInfo>https://github.com/gojimmypi/VerilogLanguageExtension</MoreInfo>

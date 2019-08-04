@@ -81,7 +81,8 @@ namespace VerilogLanguage.VerilogToken
                 // typically brackets (since we keep track of depth) and comment chars:
                 if (VerilogGlobals.IsRefreshChar(theNewText) || VerilogGlobals.IsRefreshChar(theOldText))
                 {
-                    VerilogGlobals.Reparse(_buffer); // note that above, we are checking that the e.After is the same as the _buffer
+                    string thisFile = VerilogLanguage.VerilogGlobals.GetDocumentPath(_buffer.CurrentSnapshot);
+                    VerilogGlobals.Reparse(_buffer, thisFile); // note that above, we are checking that the e.After is the same as the _buffer
                 }
             }
         }
@@ -123,12 +124,16 @@ namespace VerilogLanguage.VerilogToken
         /// <returns></returns>
         public IEnumerable<ITagSpan<VerilogTokenTag>> GetTags(NormalizedSnapshotSpanCollection spans)
         {
+            while (VerilogGlobals.IsReparsing)
+            {
+                System.Threading.Thread.Sleep(10);
+            }
             // bool EditInProgress = spans.snapshot.TextBuffer.EditInProgress;
             // since we can start mid-text, we don't know if the current span is in the middle of a comment
 
-            // init TODO - we don't really want to call this for every enumeration!
-            // VerilogGlobals.InitHoverBuilder();
-            VerilogGlobals.IsContinuedBlockComment = IsOpenBlockComment(spans); // TODO - does spans always contain the full document? (appears perhaps not)
+                // init TODO - we don't really want to call this for every enumeration!
+                // VerilogGlobals.InitHoverBuilder();
+                VerilogGlobals.IsContinuedBlockComment = IsOpenBlockComment(spans); // TODO - does spans always contain the full document? (appears perhaps not)
             VerilogGlobals.VerilogToken[] tokens = null;
             VerilogGlobals.VerilogToken priorToken = new VerilogGlobals.VerilogToken();
 

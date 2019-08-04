@@ -1,18 +1,20 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.Text;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using Microsoft.VisualStudio.Text;
-using Microsoft.VisualStudio.Text.Classification;
-using Microsoft.VisualStudio.Text.Editor;
-using Microsoft.VisualStudio.Text.Tagging;
-using Microsoft.VisualStudio.Utilities;
-using CommentHelper;
+using System.Threading;
 
 namespace VerilogLanguage
 {
     public static partial class VerilogGlobals
     {
-        public static List<BufferAttribute> BufferAttributes = new List<BufferAttribute>();
+        private static bool threadActive = false; // true to spawn a new thread when reparsing
+        private static ITextBuffer threadbuffer;  // we'll copy the intended buffer to process to this threadBuffer; it will be placed back upon completion
+        private static string threadFile = "";    // there may be multiple files open. we'll keep track of them here.
+
+        private static DateTime ProfileStart;     // we'll keep track of performance; this is the starting time marker
+
+        public static List<BufferAttribute> BufferAttributes = new List<BufferAttribute>(); // this is the buffer actually used
+        private static List<BufferAttribute> editingBufferAttributes = new List<BufferAttribute>(); // buffer being built in a separate thread
 
         public class BufferAttribute : ICloneable
         {
@@ -217,19 +219,90 @@ namespace VerilogLanguage
                     {
                         // first check to see if any new variables are being defined;
 
+                        double duration10 = (DateTime.Now - ProfileStart).TotalMilliseconds;
                         VerilogGlobals.BuildHoverItems(Item.ItemText);
-
+                        double duration11 = (DateTime.Now - ProfileStart).TotalMilliseconds;
                     }
                 }
             }
         }
 
+        public static int LastReparseVersion = 0;
+        public static bool IsReparsing = false;
+
+        public class ThreadReparse
+        {
+            public static void DoWork()
+            {
+                if (IsReparsing)
+                {
+                    Thread.Sleep(500);
+                }
+                else
+                {
+                    IsReparsing = true;
+                    VerilogGlobals.ReparseWork(threadbuffer, threadFile);
+                    Thread.Sleep(10);
+                }
+            }
+        }
         /// <summary>
         ///   Reparse
         /// </summary>
         /// <param name="buffer"></param>
-        public static void Reparse(ITextBuffer buffer)
+        public static void Reparse(ITextBuffer buffer, string forFile = "")
         {
+            if (NeedReparse || 1 == 1)
+            {
+                threadbuffer = buffer;
+                threadFile = forFile;
+                if (threadActive)
+                {
+                    // Do reparse work as a separate thread
+                    Thread thread1 = new Thread(ThreadReparse.DoWork);
+                    thread1.Start();
+                }
+                else
+                {
+                    // Do blocking reparse work
+                    ThreadReparse.DoWork();
+                }
+            }
+            // ThreadReparse.DoWork();
+        }
+        public static void ReparseWork(ITextBuffer buffer, string targetFile)
+        {
+            IsReparsing = true;
+            if (buffer == null)
+            {
+                IsReparsing = false;
+                return;
+            }
+            if (buffer.EditInProgress)
+            {
+                IsReparsing = false;
+                return;
+            }
+            int thisBufferVersion = 0;
+            try
+            {
+                thisBufferVersion = buffer.CurrentSnapshot.Version.VersionNumber;
+            }
+            catch
+            {
+                thisBufferVersion = 0;
+            }
+            if ((thisBufferVersion == 0) || (LastReparseVersion == thisBufferVersion))
+            {
+                IsReparsing = false;
+                return;
+            }
+            //if ((DateTime.Now - ProfileStart).TotalMilliseconds < 1000)
+            //{
+            //    ProfileStart = DateTime.Now;
+            //    return; // never reparse more than once a second
+            //}
+            ProfileStart = DateTime.Now;
             ITextSnapshot newSnapshot = buffer.CurrentSnapshot;
             string thisChar = "";
             string lastChar = "";
@@ -238,24 +311,27 @@ namespace VerilogLanguage
             bool IsActiveBlockComment = false;
 
             int thisLineNumber = 0;
-
-            BufferAttributes = new List<BufferAttribute>(); // re-initialize the global BufferAttributes
+            double duration2;
+            double duration3;
+            editingBufferAttributes = new List<BufferAttribute>(); // re-initialize the global editingBufferAttributes used for editing
             BufferAttribute bufferAttribute = new BufferAttribute();
             //
             // Reparse AppendBufferAttribute
             // 
             void AppendBufferAttribute()
             {
+                duration2 = (DateTime.Now - ProfileStart).TotalMilliseconds;
                 bufferAttribute.LineNumber = thisLineNumber;
-                BufferAttributes.Add(bufferAttribute);
+                editingBufferAttributes.Add(bufferAttribute);
                 bufferAttribute = new BufferAttribute();
 
                 // set rollover params
-                bufferAttribute.RoundBracketDepth = BufferAttributes[BufferAttributes.Count - 1].RoundBracketDepth;
-                bufferAttribute.SquareBracketDepth = BufferAttributes[BufferAttributes.Count - 1].SquareBracketDepth;
-                bufferAttribute.SquigglyBracketDepth = BufferAttributes[BufferAttributes.Count - 1].SquigglyBracketDepth;
+                bufferAttribute.RoundBracketDepth = editingBufferAttributes[editingBufferAttributes.Count - 1].RoundBracketDepth;
+                bufferAttribute.SquareBracketDepth = editingBufferAttributes[editingBufferAttributes.Count - 1].SquareBracketDepth;
+                bufferAttribute.SquigglyBracketDepth = editingBufferAttributes[editingBufferAttributes.Count - 1].SquigglyBracketDepth;
                 bufferAttribute.IsComment = IsActiveBlockComment;
                 bufferAttribute.IsEmpty = true; // although we may have carried over some values, at this point it is still "empty"
+                duration3 = (DateTime.Now - ProfileStart).TotalMilliseconds;
             }
 
             void CharParse()
@@ -424,39 +500,47 @@ namespace VerilogLanguage
 
             VerilogGlobals.InitHoverBuilder();
 
-            // reminder bufferAttribute is pointing to the contents of the last item in BufferAttributes
+            double duration4 = (DateTime.Now - ProfileStart).TotalMilliseconds;
+            // reminder bufferAttribute is pointing to the contents of the last item in editingBufferAttributes
             foreach (var line in newSnapshot.Lines)
             {
+                //Thread.Sleep(10);
                 thisLine = line.GetText();
                 thisLineNumber = line.LineNumber; // zero-based line numbers
 
                 // parse the entire line for tokens
+                double duration6 = (DateTime.Now - ProfileStart).TotalMilliseconds;
                 LineParse(thisLine, thisLineNumber);
+                double duration7 = (DateTime.Now - ProfileStart).TotalMilliseconds;
 
                 // some things, like bracket depth, require us to look at each character...
                 // we'll build a helper table to be able to lookup bracket depth at 
                 // arbitrary points
                 CharParse();
-
+                double duration8 = (DateTime.Now - ProfileStart).TotalMilliseconds;
                 lastChar = "";  // the lastChar is irrelevant when spanning multiple lines, as we are only using it for comment detection
                 if (!bufferAttribute.IsEmpty)
                 {
                     AppendBufferAttribute();
                 }
 
-                if (BufferAttributes.Count > 0)
+                if (editingBufferAttributes.Count > 0)
                 {
                     // when we reach the end of the line, we reach the end of the line comment!
                     IsActiveLineComment = false;
                 }
+                double duration9 = (DateTime.Now - ProfileStart).TotalMilliseconds;
             } // foreach line
-            
+            double duration5 = (DateTime.Now - ProfileStart).TotalMilliseconds;
             // TODO - do we need a final, end-of-file bufferAttribute (probably not)
 
             // in case we got here from someplace that set NeedReparse to true - reset to indicate completion:
             VerilogGlobals.NeedReparse = false;
             VerilogGlobals.LastParseTime = DateTime.Now;
-
+            VerilogGlobals.LastReparseVersion = thisBufferVersion;
+            double duration = (DateTime.Now - ProfileStart).TotalMilliseconds;
+            BufferAttributes = editingBufferAttributes;
+            IsReparsing = false;
         } // Reparse
 
         /// <summary>
@@ -467,7 +551,8 @@ namespace VerilogLanguage
         /// <returns></returns>
         public static bool TextIsComment(int AtLine, int AtPosition)
         {
-           bool IsComment = false;
+
+            bool IsComment = false;
             //BufferAttribute LastBufferAttribute;
             foreach (var thisBufferAttribute in BufferAttributes)
             {

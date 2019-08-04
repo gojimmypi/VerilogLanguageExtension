@@ -130,6 +130,7 @@ namespace VerilogLanguage
                 {
                     switch ((VSConstants.VSStd2KCmdID)nCmdID)
                     {
+                        // keypress handler
                         case VSConstants.VSStd2KCmdID.TYPECHAR:
                             char ch = GetTypeChar(pvaIn);
                             if (ch == ' ')

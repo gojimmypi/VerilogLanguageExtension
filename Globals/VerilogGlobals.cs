@@ -169,9 +169,21 @@ namespace VerilogLanguage
 
         public static bool NeedReparse { get; set; }
         public static DateTime LastParseTime {get; set; }
+        public static DateTime LastKeypressTime { get; set; }
         public static Boolean IsContinuedBlockComment = false;
 
         private static BuildHoverStates _BuildHoverState = BuildHoverStates.UndefinedState;
+
+        public static string GetDocumentPath(Microsoft.VisualStudio.Text.ITextSnapshot ts)
+        {
+            Microsoft.VisualStudio.Text.ITextDocument textDoc;
+            bool rc = ts.TextBuffer.Properties.TryGetProperty(
+                typeof(Microsoft.VisualStudio.Text.ITextDocument), out textDoc);
+            if (rc && textDoc != null)
+                return textDoc.FilePath;
+            return null;
+        }
+
 
         /// <summary>
         ///    IsDefinedVerilogVariable

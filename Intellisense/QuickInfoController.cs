@@ -69,16 +69,18 @@ namespace VSLTK.Intellisense
 
         #region Event Handlers
 
+
         /// <summary>
         /// Determine if the mouse is hovering over a token. If so, highlight the token and display QuickInfo
         /// </summary>
         private void OnTextViewMouseHover(object sender, MouseHoverEventArgs e)
         {
+            string thisFile = VerilogLanguage.VerilogGlobals.GetDocumentPath(_textView.TextSnapshot);
             if (VerilogLanguage.VerilogGlobals.NeedReparse)
             {
                 if (_subjectBuffers.Count == 1)
                 {
-                    VerilogLanguage.VerilogGlobals.Reparse(_subjectBuffers[0]);
+                    VerilogLanguage.VerilogGlobals.Reparse(_subjectBuffers[0], thisFile);
                 }
                 else
                 {

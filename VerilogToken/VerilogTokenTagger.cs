@@ -124,9 +124,10 @@ namespace VerilogLanguage.VerilogToken
         /// <returns></returns>
         public IEnumerable<ITagSpan<VerilogTokenTag>> GetTags(NormalizedSnapshotSpanCollection spans)
         {
-            while (VerilogGlobals.IsReparsing)
+            //while (VerilogGlobals.IsReparsing)
             {
-                System.Threading.Thread.Sleep(10);
+                // do we really want to do this? (probably not)
+                // System.Threading.Thread.Sleep(10);
             }
             // bool EditInProgress = spans.snapshot.TextBuffer.EditInProgress;
             // since we can start mid-text, we don't know if the current span is in the middle of a comment

@@ -13,6 +13,7 @@ namespace VerilogLanguage
 
         private static DateTime ProfileStart;     // we'll keep track of performance; this is the starting time marker
 
+        private static bool BufferFirstParseComplete = false;
         public static List<BufferAttribute> BufferAttributes = new List<BufferAttribute>(); // this is the buffer actually used
         private static List<BufferAttribute> editingBufferAttributes = new List<BufferAttribute>(); // buffer being built in a separate thread
 
@@ -236,12 +237,14 @@ namespace VerilogLanguage
             {
                 if (IsReparsing)
                 {
-                    Thread.Sleep(500);
+                    // TODO what is this for? does it help with threading? (probably not)
+                    Thread.Sleep(50);
                 }
                 else
                 {
                     IsReparsing = true;
                     VerilogGlobals.ReparseWork(threadbuffer, threadFile);
+                    // TODO once reparsing is done in a thread, we need to tell the viewport to redraww the screen
                     Thread.Sleep(10);
                 }
             }
@@ -252,10 +255,11 @@ namespace VerilogLanguage
         /// <param name="buffer"></param>
         public static void Reparse(ITextBuffer buffer, string forFile = "")
         {
-            if (NeedReparse || 1 == 1)
+            if (NeedReparse)
             {
                 threadbuffer = buffer;
                 threadFile = forFile;
+                threadActive = (buffer.CurrentSnapshot.Length > 2000);
                 if (threadActive)
                 {
                     // Do reparse work as a separate thread
@@ -264,7 +268,7 @@ namespace VerilogLanguage
                 }
                 else
                 {
-                    // Do blocking reparse work
+                    // Do blocking reparse work when the files are relatively small
                     ThreadReparse.DoWork();
                 }
             }
@@ -272,6 +276,7 @@ namespace VerilogLanguage
         }
         public static void ReparseWork(ITextBuffer buffer, string targetFile)
         {
+            System.Diagnostics.Debug.WriteLine("Starting ReparseWork...");
             IsReparsing = true;
             if (buffer == null)
             {
@@ -283,6 +288,7 @@ namespace VerilogLanguage
                 IsReparsing = false;
                 return;
             }
+            
             int thisBufferVersion = 0;
             try
             {
@@ -292,6 +298,8 @@ namespace VerilogLanguage
             {
                 thisBufferVersion = 0;
             }
+
+            // if we could not determine a version ( = 0), or if the last time we reparsed was for this same buffer, then exit
             if ((thisBufferVersion == 0) || (LastReparseVersion == thisBufferVersion))
             {
                 IsReparsing = false;
@@ -314,223 +322,233 @@ namespace VerilogLanguage
             double duration2;
             double duration3;
             editingBufferAttributes = new List<BufferAttribute>(); // re-initialize the global editingBufferAttributes used for editing
-            BufferAttribute bufferAttribute = new BufferAttribute();
-            //
-            // Reparse AppendBufferAttribute
-            // 
-            void AppendBufferAttribute()
+            lock(editingBufferAttributes)
             {
-                duration2 = (DateTime.Now - ProfileStart).TotalMilliseconds;
-                bufferAttribute.LineNumber = thisLineNumber;
-                editingBufferAttributes.Add(bufferAttribute);
-                bufferAttribute = new BufferAttribute();
-
-                // set rollover params
-                bufferAttribute.RoundBracketDepth = editingBufferAttributes[editingBufferAttributes.Count - 1].RoundBracketDepth;
-                bufferAttribute.SquareBracketDepth = editingBufferAttributes[editingBufferAttributes.Count - 1].SquareBracketDepth;
-                bufferAttribute.SquigglyBracketDepth = editingBufferAttributes[editingBufferAttributes.Count - 1].SquigglyBracketDepth;
-                bufferAttribute.IsComment = IsActiveBlockComment;
-                bufferAttribute.IsEmpty = true; // although we may have carried over some values, at this point it is still "empty"
-                duration3 = (DateTime.Now - ProfileStart).TotalMilliseconds;
-            }
-
-            void CharParse()
-            {
-                for (int i = 0; i < thisLine.Length; i++)
+                BufferAttribute bufferAttribute = new BufferAttribute();
+                //
+                // Reparse AppendBufferAttribute
+                // 
+                void AppendBufferAttribute()
                 {
-                    thisChar = thisLine.Substring(i, 1);
-                    switch (thisChar)
+                    duration2 = (DateTime.Now - ProfileStart).TotalMilliseconds;
+                    bufferAttribute.LineNumber = thisLineNumber;
+                    editingBufferAttributes.Add(bufferAttribute);
+                    bufferAttribute = new BufferAttribute();
+
+                    // set rollover params
+                    bufferAttribute.RoundBracketDepth = editingBufferAttributes[editingBufferAttributes.Count - 1].RoundBracketDepth;
+                    bufferAttribute.SquareBracketDepth = editingBufferAttributes[editingBufferAttributes.Count - 1].SquareBracketDepth;
+                    bufferAttribute.SquigglyBracketDepth = editingBufferAttributes[editingBufferAttributes.Count - 1].SquigglyBracketDepth;
+                    bufferAttribute.IsComment = IsActiveBlockComment;
+                    bufferAttribute.IsEmpty = true; // although we may have carried over some values, at this point it is still "empty"
+                    duration3 = (DateTime.Now - ProfileStart).TotalMilliseconds;
+                }
+
+                void CharParse()
+                {
+                    for (int i = 0; i < thisLine.Length; i++)
                     {
-                        case "[":
-                            if (IsActiveLineComment || IsActiveBlockComment)
-                            {
-                                // AttributesChanged = false; // if there's an active line comment - nothing changes!
-                            }
-                            else
-                            {
-                                bufferAttribute.SquareBracketDepth++;
-                                bufferAttribute.LineStart = i; // brackets are only 1 char long, starting
-                                bufferAttribute.LineEnd = i;   // and ending at the same positions
-                                AppendBufferAttribute();
-                            }
-                            break;
-
-                        case "]":
-                            if (IsActiveLineComment || IsActiveBlockComment)
-                            {
-                                // AttributesChanged = false; // if there's an active line comment - nothing changes!
-                            }
-                            else
-                            {
-                                bufferAttribute.LineStart = i; // brackets are only 1 char long, starting
-                                bufferAttribute.LineEnd = i;   // and ending at the same positions
-                                AppendBufferAttribute();
-                                bufferAttribute.SquareBracketDepth = (bufferAttribute.SquareBracketDepth > 0) ? (--bufferAttribute.SquareBracketDepth) : 0;
-                            }
-                            break;
-
-                        case "(":
-                            if (IsActiveLineComment || IsActiveBlockComment)
-                            {
-                                // AttributesChanged = false; // if there's an active line comment - nothing changes!
-                            }
-                            else
-                            {
-                                bufferAttribute.RoundBracketDepth++;
-                                bufferAttribute.LineStart = i; // brackets are only 1 char long, starting
-                                bufferAttribute.LineEnd = i;   // and ending at the same positions
-                                AppendBufferAttribute();
-                            }
-                            break;
-
-                        case ")":
-                            if (IsActiveLineComment || IsActiveBlockComment)
-                            {
-                                // AttributesChanged = false; // if there's an active line comment - nothing changes!
-                            }
-                            else
-                            {
-                                bufferAttribute.LineStart = i; // brackets are only 1 char long, starting
-                                bufferAttribute.LineEnd = i;   // and ending at the same positions
-                                AppendBufferAttribute();
-                                bufferAttribute.RoundBracketDepth = (bufferAttribute.RoundBracketDepth > 0) ? (--bufferAttribute.RoundBracketDepth) : 0;
-                            }
-                            break;
-
-                        case "{":
-                            if (IsActiveLineComment || IsActiveBlockComment)
-                            {
-                                // AttributesChanged = false; // if there's an active line comment - nothing changes!
-                            }
-                            else
-                            {
-                                bufferAttribute.SquigglyBracketDepth++;
-                                bufferAttribute.LineStart = i; // brackets are only 1 char long, starting
-                                bufferAttribute.LineEnd = i;   // and ending at the same positions
-                                AppendBufferAttribute();
-                            }
-                            break;
-
-                        case "}":
-                            if (IsActiveLineComment || IsActiveBlockComment)
-                            {
-                                // AttributesChanged = false; // if there's an active line comment - nothing changes!
-                            }
-                            else
-                            {
-                                bufferAttribute.LineStart = i; // brackets are only 1 char long, starting
-                                bufferAttribute.LineEnd = i;   // and ending at the same positions
-                                AppendBufferAttribute();
-                                bufferAttribute.SquigglyBracketDepth = (bufferAttribute.SquigglyBracketDepth > 0) ? (--bufferAttribute.SquigglyBracketDepth) : 0;
-                            }
-                            break;
-
-                        case "*":
-                            // encountered "/*"
-                            if (lastChar == "/")
-                            {
+                        thisChar = thisLine.Substring(i, 1);
+                        switch (thisChar)
+                        {
+                            case "[":
                                 if (IsActiveLineComment || IsActiveBlockComment)
                                 {
                                     // AttributesChanged = false; // if there's an active line comment - nothing changes!
                                 }
                                 else
                                 {
-                                    bufferAttribute.LineStart = i - 1; // started on prior char
-                                                                       // bufferAttribute.LineEnd TBD
-                                    IsActiveBlockComment = true;
-                                    bufferAttribute.IsComment = true;
+                                    bufferAttribute.SquareBracketDepth++;
+                                    bufferAttribute.LineStart = i; // brackets are only 1 char long, starting
+                                    bufferAttribute.LineEnd = i;   // and ending at the same positions
                                     AppendBufferAttribute();
                                 }
-                            }
-                            else
-                            {
-                                // AttributesChanged = false;
-                            }
-                            break;
+                                break;
 
-                        case "/":
-                            // check for block comment end "*/"
-                            if (lastChar == "*")
-                            {
-                                if (!IsActiveLineComment)
+                            case "]":
+                                if (IsActiveLineComment || IsActiveBlockComment)
                                 {
-                                    IsActiveBlockComment = false;
-                                    bufferAttribute.LineEnd = i; //
-                                    bufferAttribute.IsComment = false;
+                                    // AttributesChanged = false; // if there's an active line comment - nothing changes!
+                                }
+                                else
+                                {
+                                    bufferAttribute.LineStart = i; // brackets are only 1 char long, starting
+                                    bufferAttribute.LineEnd = i;   // and ending at the same positions
                                     AppendBufferAttribute();
+                                    bufferAttribute.SquareBracketDepth = (bufferAttribute.SquareBracketDepth > 0) ? (--bufferAttribute.SquareBracketDepth) : 0;
+                                }
+                                break;
+
+                            case "(":
+                                if (IsActiveLineComment || IsActiveBlockComment)
+                                {
+                                    // AttributesChanged = false; // if there's an active line comment - nothing changes!
+                                }
+                                else
+                                {
+                                    bufferAttribute.RoundBracketDepth++;
+                                    bufferAttribute.LineStart = i; // brackets are only 1 char long, starting
+                                    bufferAttribute.LineEnd = i;   // and ending at the same positions
+                                    AppendBufferAttribute();
+                                }
+                                break;
+
+                            case ")":
+                                if (IsActiveLineComment || IsActiveBlockComment)
+                                {
+                                    // AttributesChanged = false; // if there's an active line comment - nothing changes!
+                                }
+                                else
+                                {
+                                    bufferAttribute.LineStart = i; // brackets are only 1 char long, starting
+                                    bufferAttribute.LineEnd = i;   // and ending at the same positions
+                                    AppendBufferAttribute();
+                                    bufferAttribute.RoundBracketDepth = (bufferAttribute.RoundBracketDepth > 0) ? (--bufferAttribute.RoundBracketDepth) : 0;
+                                }
+                                break;
+
+                            case "{":
+                                if (IsActiveLineComment || IsActiveBlockComment)
+                                {
+                                    // AttributesChanged = false; // if there's an active line comment - nothing changes!
+                                }
+                                else
+                                {
+                                    bufferAttribute.SquigglyBracketDepth++;
+                                    bufferAttribute.LineStart = i; // brackets are only 1 char long, starting
+                                    bufferAttribute.LineEnd = i;   // and ending at the same positions
+                                    AppendBufferAttribute();
+                                }
+                                break;
+
+                            case "}":
+                                if (IsActiveLineComment || IsActiveBlockComment)
+                                {
+                                    // AttributesChanged = false; // if there's an active line comment - nothing changes!
+                                }
+                                else
+                                {
+                                    bufferAttribute.LineStart = i; // brackets are only 1 char long, starting
+                                    bufferAttribute.LineEnd = i;   // and ending at the same positions
+                                    AppendBufferAttribute();
+                                    bufferAttribute.SquigglyBracketDepth = (bufferAttribute.SquigglyBracketDepth > 0) ? (--bufferAttribute.SquigglyBracketDepth) : 0;
+                                }
+                                break;
+
+                            case "*":
+                                // encountered "/*"
+                                if (lastChar == "/")
+                                {
+                                    if (IsActiveLineComment || IsActiveBlockComment)
+                                    {
+                                        // AttributesChanged = false; // if there's an active line comment - nothing changes!
+                                    }
+                                    else
+                                    {
+                                        bufferAttribute.LineStart = i - 1; // started on prior char
+                                                                           // bufferAttribute.LineEnd TBD
+                                        IsActiveBlockComment = true;
+                                        bufferAttribute.IsComment = true;
+                                        AppendBufferAttribute();
+                                    }
                                 }
                                 else
                                 {
                                     // AttributesChanged = false;
                                 }
-                            }
-                            else
-                            {
-                                // detect line comments "//"
-                                if (lastChar == "/" && !IsActiveLineComment) // encountered first "//" on a line, can only be ended by new line
+                                break;
+
+                            case "/":
+                                // check for block comment end "*/"
+                                if (lastChar == "*")
                                 {
-                                    IsActiveLineComment = true;
-                                    bufferAttribute.IsComment = true;
-                                    bufferAttribute.LineStart = i - 1; // comment actually starts on prior char
-                                    bufferAttribute.LineEnd = -1; // a value of -1 means the entire line, regardless of actual length.
-                                                                  // AttributesChanged = (i > 1); // the attribute of the line will not change if the first char starts a comment
-                                    AppendBufferAttribute();
+                                    if (!IsActiveLineComment)
+                                    {
+                                        IsActiveBlockComment = false;
+                                        bufferAttribute.LineEnd = i; //
+                                        bufferAttribute.IsComment = false;
+                                        AppendBufferAttribute();
+                                    }
+                                    else
+                                    {
+                                        // AttributesChanged = false;
+                                    }
                                 }
                                 else
                                 {
-                                    // AttributesChanged = false;
+                                    // detect line comments "//"
+                                    if (lastChar == "/" && !IsActiveLineComment) // encountered first "//" on a line, can only be ended by new line
+                                    {
+                                        IsActiveLineComment = true;
+                                        bufferAttribute.IsComment = true;
+                                        bufferAttribute.LineStart = i - 1; // comment actually starts on prior char
+                                        bufferAttribute.LineEnd = -1; // a value of -1 means the entire line, regardless of actual length.
+                                                                      // AttributesChanged = (i > 1); // the attribute of the line will not change if the first char starts a comment
+                                        AppendBufferAttribute();
+                                    }
+                                    else
+                                    {
+                                        // AttributesChanged = false;
+                                    }
                                 }
-                            }
-                            break;
+                                break;
 
-                        default:
-                            // we'll keep track of ending string segment that may need to be added below; note if something interesting is found, we'll overwrite these bufferAttribute values, above
-                            if (bufferAttribute.LineStart < 0)
-                            {
-                                bufferAttribute.LineStart = i; // the first time we end up here, is the start of the string that does not match one of the above special cases
-                            }
-                            bufferAttribute.LineEnd = i; // keep track of the end.
-                            break;
+                            default:
+                                // we'll keep track of ending string segment that may need to be added below; note if something interesting is found, we'll overwrite these bufferAttribute values, above
+                                if (bufferAttribute.LineStart < 0)
+                                {
+                                    bufferAttribute.LineStart = i; // the first time we end up here, is the start of the string that does not match one of the above special cases
+                                }
+                                bufferAttribute.LineEnd = i; // keep track of the end.
+                                break;
+                        }
+                        lastChar = thisChar;
+                    } // end of for loop looking at each char in line
+
+                }
+
+
+                VerilogGlobals.InitHoverBuilder();
+
+                double duration4 = (DateTime.Now - ProfileStart).TotalMilliseconds;
+                // reminder bufferAttribute is pointing to the contents of the last item in editingBufferAttributes
+                foreach (var line in newSnapshot.Lines)
+                {
+                    //Thread.Sleep(10);
+                    thisLine = line.GetText();
+                    thisLineNumber = line.LineNumber; // zero-based line numbers
+
+                    // parse the entire line for tokens
+                    double duration6 = (DateTime.Now - ProfileStart).TotalMilliseconds;
+                    LineParse(thisLine, thisLineNumber);
+                    double duration7 = (DateTime.Now - ProfileStart).TotalMilliseconds;
+
+                    // some things, like bracket depth, require us to look at each character...
+                    // we'll build a helper table to be able to lookup bracket depth at 
+                    // arbitrary points
+                    CharParse();
+                    double duration8 = (DateTime.Now - ProfileStart).TotalMilliseconds;
+                    lastChar = "";  // the lastChar is irrelevant when spanning multiple lines, as we are only using it for comment detection
+                    if (!bufferAttribute.IsEmpty)
+                    {
+                        AppendBufferAttribute();
                     }
-                    lastChar = thisChar;
-                } // end of for loop looking at each char in line
 
-            }
+                    if (editingBufferAttributes.Count > 0)
+                    {
+                        // when we reach the end of the line, we reach the end of the line comment!
+                        IsActiveLineComment = false;
+                    }
+                    double duration9 = (DateTime.Now - ProfileStart).TotalMilliseconds;
+                    if (!BufferFirstParseComplete)
+                    {
+                        // TODO - this was supposed to help intial file load of large files, but does not seem to help.
+                        BufferAttributes = editingBufferAttributes;
+                    }
+                } // foreach line
 
+            } // lock editingBufferAttributes
 
-            VerilogGlobals.InitHoverBuilder();
-
-            double duration4 = (DateTime.Now - ProfileStart).TotalMilliseconds;
-            // reminder bufferAttribute is pointing to the contents of the last item in editingBufferAttributes
-            foreach (var line in newSnapshot.Lines)
-            {
-                //Thread.Sleep(10);
-                thisLine = line.GetText();
-                thisLineNumber = line.LineNumber; // zero-based line numbers
-
-                // parse the entire line for tokens
-                double duration6 = (DateTime.Now - ProfileStart).TotalMilliseconds;
-                LineParse(thisLine, thisLineNumber);
-                double duration7 = (DateTime.Now - ProfileStart).TotalMilliseconds;
-
-                // some things, like bracket depth, require us to look at each character...
-                // we'll build a helper table to be able to lookup bracket depth at 
-                // arbitrary points
-                CharParse();
-                double duration8 = (DateTime.Now - ProfileStart).TotalMilliseconds;
-                lastChar = "";  // the lastChar is irrelevant when spanning multiple lines, as we are only using it for comment detection
-                if (!bufferAttribute.IsEmpty)
-                {
-                    AppendBufferAttribute();
-                }
-
-                if (editingBufferAttributes.Count > 0)
-                {
-                    // when we reach the end of the line, we reach the end of the line comment!
-                    IsActiveLineComment = false;
-                }
-                double duration9 = (DateTime.Now - ProfileStart).TotalMilliseconds;
-            } // foreach line
             double duration5 = (DateTime.Now - ProfileStart).TotalMilliseconds;
             // TODO - do we need a final, end-of-file bufferAttribute (probably not)
 
@@ -540,6 +558,7 @@ namespace VerilogLanguage
             VerilogGlobals.LastReparseVersion = thisBufferVersion;
             double duration = (DateTime.Now - ProfileStart).TotalMilliseconds;
             BufferAttributes = editingBufferAttributes;
+            BufferFirstParseComplete = true;
             IsReparsing = false;
         } // Reparse
 
@@ -554,15 +573,18 @@ namespace VerilogLanguage
 
             bool IsComment = false;
             //BufferAttribute LastBufferAttribute;
-            foreach (var thisBufferAttribute in BufferAttributes)
+            lock(BufferAttributes)
             {
-                if ((thisBufferAttribute.LineNumber == AtLine)
-                      && (thisBufferAttribute.LineStart <= AtPosition)
-                      && ((AtPosition <= thisBufferAttribute.LineEnd) || (thisBufferAttribute.LineEnd == -1))
-                   )
+                foreach (var thisBufferAttribute in BufferAttributes)
                 {
-                    IsComment = thisBufferAttribute.IsComment;
-                    break; // no need to continue searching on foreach once we have an answer
+                    if ((thisBufferAttribute.LineNumber == AtLine)
+                          && (thisBufferAttribute.LineStart <= AtPosition)
+                          && ((AtPosition <= thisBufferAttribute.LineEnd) || (thisBufferAttribute.LineEnd == -1))
+                       )
+                    {
+                        IsComment = thisBufferAttribute.IsComment;
+                        break; // no need to continue searching on foreach once we have an answer
+                    }
                 }
             }
             return IsComment;

@@ -10,7 +10,7 @@ namespace VerilogLanguage
         private static bool threadActive = false; // true to spawn a new thread when reparsing
         private static ITextBuffer threadbuffer;  // we'll copy the intended buffer to process to this threadBuffer; it will be placed back upon completion
         private static string threadFile = "";    // there may be multiple files open. we'll keep track of them here.
-
+        private const int THREAD_TRIGGER_SIZE = 8192;
         private static DateTime ProfileStart;     // we'll keep track of performance; this is the starting time marker
 
         private static bool BufferFirstParseComplete = false;
@@ -259,7 +259,7 @@ namespace VerilogLanguage
             {
                 threadbuffer = buffer;
                 threadFile = forFile;
-                threadActive = (buffer.CurrentSnapshot.Length > 2000);
+                threadActive = (buffer.CurrentSnapshot.Length > THREAD_TRIGGER_SIZE);
                 if (threadActive)
                 {
                     // Do reparse work as a separate thread

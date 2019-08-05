@@ -63,7 +63,7 @@ namespace VerilogLanguage.Highlighting
             {
                 UpdateAtCaretPosition(View.Caret.Position);
                 string thisFile = VerilogLanguage.VerilogGlobals.GetDocumentPath(View.TextSnapshot);
-
+                VerilogGlobals.NeedReparse = true;
                 VerilogGlobals.Reparse(SourceBuffer, thisFile);
             }
         }

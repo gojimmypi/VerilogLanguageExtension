@@ -204,7 +204,6 @@
     <Compile Include="VerilogToken\VerilogTokenTagProvider.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="anothertest.v" />
     <None Include="CODE_OF_CONDUCT.md" />
     <Content Include="LICENSE.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -215,7 +214,6 @@
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
-    <None Include="test.v" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

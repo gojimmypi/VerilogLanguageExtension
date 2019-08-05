@@ -82,6 +82,7 @@ namespace VerilogLanguage.VerilogToken
                 if (VerilogGlobals.IsRefreshChar(theNewText) || VerilogGlobals.IsRefreshChar(theOldText))
                 {
                     string thisFile = VerilogLanguage.VerilogGlobals.GetDocumentPath(_buffer.CurrentSnapshot);
+                    VerilogGlobals.NeedReparse = true;
                     VerilogGlobals.Reparse(_buffer, thisFile); // note that above, we are checking that the e.After is the same as the _buffer
                 }
             }

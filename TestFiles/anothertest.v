@@ -145,6 +145,15 @@ module ulx3s_passthru_wifi(
   assign wifi_en = S_prog_out[1];
   assign wifi_gpio0 = S_prog_out[0] & btn[0];
 
+  wire er; 
+  wire er2; 
+  []
+  ////
+  
+
+  [
+
+  wire er3; 
   // holding BTN0 will hold gpio0 LOW, signal for ESP32 to take control
   //sd_d(0) <= '0' when wifi_gpio0 = '0' else 'Z'; -- gpio2 together with gpio0 to 0
   //sd_d(2) <= '0' when wifi_gpio0 = '0' else 'Z'; -- wifi gpio12

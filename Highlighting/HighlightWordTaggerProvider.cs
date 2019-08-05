@@ -33,8 +33,12 @@ namespace VerilogLanguage.Highlighting
             if (textView.TextBuffer != buffer)
                 return null;
 
+            string thisFile = VerilogLanguage.VerilogGlobals.GetDocumentPath(textView.TextSnapshot);
+
             // TODO - do we really want to reparse here??
-            VerilogGlobals.Reparse(buffer); // parse the buffer at file load time
+            // this appears to be the only place called when first opening a file. (?)
+            VerilogGlobals.NeedReparse = true;
+            VerilogGlobals.Reparse(buffer,thisFile); // parse the buffer at file load time
 
             ITextStructureNavigator textStructureNavigator =
                 TextStructureNavigatorSelector.GetTextStructureNavigator(buffer);

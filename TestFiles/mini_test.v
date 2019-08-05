@@ -15,5 +15,11 @@ module eq1
    // product terms
    assign p0 = ~k1 & ~i1;  
    assign p1 = i0 & i1; 
+   []
+   []
+   // this is a tes
+   wire er3;
+   wire k1;
+   // test
 
 endmodule

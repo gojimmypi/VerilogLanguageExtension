@@ -370,6 +370,27 @@ From [VSIX Manifest Designer](https://docs.microsoft.com/en-us/visualstudio/exte
 
 * [Asm-Dude](https://github.com/HJLebbink/asm-dude)
 
+## See also
+
+* https://michaelscodingspot.com/vsix-identify-mouse-hover-location-in-the-editor/
+
+* http://linq101.nilzorblog.com/linq101-lambda.php
+
+* https://github.com/microsoft/vs-editor-api
+
+* [Task Parallel Library (TPL)](https://docs.microsoft.com/en-us/dotnet/standard/parallel-programming/task-parallel-library-tpl)
+
+* [ public static SnapshotPoint? GetCaretPoint]( https://github.com/dotnet/roslyn/blob/3aae0158101ba007b856f2f5b3cf1110d2e52319/src/EditorFeatures/Core/Shared/Extensions/ITextViewExtensions.cs#L31)
+
+* [ITextViewLine Interface](https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.formatting.itextviewline?view=visualstudiosdk-2019)
+
+* [ITextView.DisplayTextLineContainingBufferPosition Method](https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.editor.itextview.displaytextlinecontainingbufferposition?f1url=https%3A%2F%2Fmsdn.microsoft.com%2Fquery%2Fdev15.query%3FappId%3DDev15IDEF1%26l%3DEN-US%26k%3Dk(Microsoft.VisualStudio.Text.Editor.ITextView.DisplayTextLineContainingBufferPosition);k(TargetFrameworkMoniker-.NETFramework,Version%3Dv4.5);k(DevLang-csharp)%26rd%3Dtrue&view=visualstudiosdk-2019)
+
+* [yield (C# Reference](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/yield?f1url=https%3A%2F%2Fmsdn.microsoft.com%2Fquery%2Fdev15.query%3FappId%3DDev15IDEF1%26l%3DEN-US%26k%3Dk(yield_CSharpKeyword)%3Bk(TargetFrameworkMoniker-.NETFramework%2CVersion%3Dv4.5)%3Bk(DevLang-csharp)%26rd%3Dtrue)
+
+* [TextContentChangedEventArgs Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.textcontentchangedeventargs?f1url=https%3A%2F%2Fmsdn.microsoft.com%2Fquery%2Fdev15.query%3FappId%3DDev15IDEF1%26l%3DEN-US%26k%3Dk(Microsoft.VisualStudio.Text.TextContentChangedEventArgs)%3Bk(TargetFrameworkMoniker-.NETFramework%2CVersion%3Dv4.5)%3Bk(DevLang-csharp)%26rd%3Dtrue&view=visualstudiosdk-2019#properties)
+
+* [ITextBuffer Interface](https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.itextbuffer?f1url=https%3A%2F%2Fmsdn.microsoft.com%2Fquery%2Fdev15.query%3FappId%3DDev15IDEF1%26l%3DEN-US%26k%3Dk(Microsoft.VisualStudio.Text.ITextBuffer)%3Bk(TargetFrameworkMoniker-.NETFramework%2CVersion%3Dv4.5)%3Bk(DevLang-csharp)%26rd%3Dtrue&view=visualstudiosdk-2019#methods)
 
 ## Change History:
 

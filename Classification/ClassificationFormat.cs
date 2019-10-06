@@ -3348,6 +3348,192 @@ namespace VerilogLanguage
 
     #endregion
 
+    #region Primitive
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "Verilog_Primitive_and")]
+    [Name("Verilog_Primitive_and")]
+    //this should be visible to the end user
+    [UserVisible(true)]
+    //set the priority to be after the default classifiers
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_Primitive_and : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "variable" classification type
+        /// </summary>
+        public Verilog_Primitive_and()
+        {
+            DisplayName = "Verilog - Primitive and"; //human readable version of the name
+            if (ColorThemeAttribute.IsDarkTheme())
+            {
+                ForegroundColor = Colors.LightGreen; // default color for dark background
+            }
+            else
+            {
+                ForegroundColor = Colors.Navy; // default color for light background
+            }
+        }
+    }
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "Verilog_Primitive_nand")]
+    [Name("Verilog_Primitive_nand")]
+    //this should be visible to the end user
+    [UserVisible(true)]
+    //set the priority to be after the default classifiers
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_Primitive_nand : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "variable" classification type
+        /// </summary>
+        public Verilog_Primitive_nand()
+        {
+            DisplayName = "Verilog - Primitive nand"; //human readable version of the name
+            if (ColorThemeAttribute.IsDarkTheme())
+            {
+                ForegroundColor = Colors.LightGreen; // default color for dark background
+            }
+            else
+            {
+                ForegroundColor = Colors.Navy; // default color for light background
+            }
+        }
+    }
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "Verilog_Primitive_or")]
+    [Name("Verilog_Primitive_or")]
+    //this should be visible to the end user
+    [UserVisible(true)]
+    //set the priority to be after the default classifiers
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_Primitive_or : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "variable" classification type
+        /// </summary>
+        public Verilog_Primitive_or()
+        {
+            DisplayName = "Verilog - Primitive or"; //human readable version of the name
+            if (ColorThemeAttribute.IsDarkTheme())
+            {
+                ForegroundColor = Colors.LightGreen; // default color for dark background
+            }
+            else
+            {
+                ForegroundColor = Colors.Navy; // default color for light background
+            }
+        }
+    }
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "Verilog_Primitive_nor")]
+    [Name("Verilog_Primitive_nor")]
+    //this should be visible to the end user
+    [UserVisible(true)]
+    //set the priority to be after the default classifiers
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_Primitive_nor : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "variable" classification type
+        /// </summary>
+        public Verilog_Primitive_nor()
+        {
+            DisplayName = "Verilog - Primitive nor"; //human readable version of the name
+            if (ColorThemeAttribute.IsDarkTheme())
+            {
+                ForegroundColor = Colors.LightGreen; // default color for dark background
+            }
+            else
+            {
+                ForegroundColor = Colors.Navy; // default color for light background
+            }
+        }
+    }
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "Verilog_Primitive_xor")]
+    [Name("Verilog_Primitive_xor")]
+    //this should be visible to the end user
+    [UserVisible(true)]
+    //set the priority to be after the default classifiers
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_Primitive_xor : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "variable" classification type
+        /// </summary>
+        public Verilog_Primitive_xor()
+        {
+            DisplayName = "Verilog - Primitive xor"; //human readable version of the name
+            if (ColorThemeAttribute.IsDarkTheme())
+            {
+                ForegroundColor = Colors.LightGreen; // default color for dark background
+            }
+            else
+            {
+                ForegroundColor = Colors.Navy; // default color for light background
+            }
+        }
+    }
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "Verilog_Primitive_xnor")]
+    [Name("Verilog_Primitive_xnor")]
+    //this should be visible to the end user
+    [UserVisible(true)]
+    //set the priority to be after the default classifiers
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_Primitive_xnor : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "variable" classification type
+        /// </summary>
+        public Verilog_Primitive_xnor()
+        {
+            DisplayName = "Verilog - Primitive xnor"; //human readable version of the name
+            if (ColorThemeAttribute.IsDarkTheme())
+            {
+                ForegroundColor = Colors.LightGreen; // default color for dark background
+            }
+            else
+            {
+                ForegroundColor = Colors.Navy; // default color for light background
+            }
+        }
+    }
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "Verilog_Primitive_not")]
+    [Name("Verilog_Primitive_not")]
+    //this should be visible to the end user
+    [UserVisible(true)]
+    //set the priority to be after the default classifiers
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_Primitive_not : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "variable" classification type
+        /// </summary>
+        public Verilog_Primitive_not()
+        {
+            DisplayName = "Verilog - Primitive not"; //human readable version of the name
+            if (ColorThemeAttribute.IsDarkTheme())
+            {
+                ForegroundColor = Colors.LightGreen; // default color for dark background
+            }
+            else
+            {
+                ForegroundColor = Colors.Navy; // default color for light background
+            }
+        }
+    }
+
+
+    #endregion
+
     #region values
 
     [Export(typeof(EditorFormatDefinition))]

@@ -163,6 +163,15 @@ namespace VerilogLanguage
             ["variable_parameter"] = VerilogTokenTypes.Verilog_Variable_parameter,
             ["variable_duplicate"] = VerilogTokenTypes.Verilog_Variable_duplicate,
 
+            // primitives
+            ["and"] = VerilogTokenTypes.Verilog_Primitive_and,
+            ["nand"] = VerilogTokenTypes.Verilog_Primitive_nand,
+            ["or"] = VerilogTokenTypes.Verilog_Primitive_or,
+            ["nor"] = VerilogTokenTypes.Verilog_Primitive_nor,
+            ["xor"] = VerilogTokenTypes.Verilog_Primitive_xor,
+            ["xnor"] = VerilogTokenTypes.Verilog_Primitive_xnor,
+            ["not"] = VerilogTokenTypes.Verilog_Primitive_not,
+
             ["value_type"] = VerilogTokenTypes.Verilog_Value,
         };
 

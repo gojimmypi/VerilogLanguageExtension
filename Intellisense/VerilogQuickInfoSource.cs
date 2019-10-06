@@ -149,6 +149,13 @@ namespace VerilogLanguage
                 [VerilogTokenTypes.Verilog_while] = "The while reserved word executes a statement until an expression becomes false. If the expression starts out false, the statement is not executed at all.",
                 [VerilogTokenTypes.Verilog_wire] = "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength.",
 
+                [VerilogTokenTypes.Verilog_Primitive_and] = "Gate primitive: N-input AND gate",
+                [VerilogTokenTypes.Verilog_Primitive_nand] = "Gate primitive: N-input NAND gate",
+                [VerilogTokenTypes.Verilog_Primitive_or] = "Gate primitive: N - input OR gate",
+                [VerilogTokenTypes.Verilog_Primitive_nor] = "Gate primitive: N-input NOR gate",
+                [VerilogTokenTypes.Verilog_Primitive_xor] = "Gate primitive: N-input XOR gate",
+                [VerilogTokenTypes.Verilog_Primitive_xnor] = "Gate primitive: N-input XNOR gate",
+                [VerilogTokenTypes.Verilog_Primitive_not] = "Gate primitive: NOT gate",
 
                 [VerilogTokenTypes.Verilog_Directive] = ""
             };

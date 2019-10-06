@@ -836,6 +836,58 @@ namespace VerilogLanguage
 
         #endregion
 
+        #region Primitive
+        /// <summary>
+        /// Defines the "Verilog_Primitive_and" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Verilog_Primitive_and")]
+        internal static ClassificationTypeDefinition Verilog_Primitive_and = null;
+
+        /// <summary>
+        /// Defines the "Verilog_Primitive_nand" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Verilog_Primitive_nand")]
+        internal static ClassificationTypeDefinition Verilog_Primitive_nand = null;
+
+        /// <summary>
+        /// Defines the "Verilog_Primitive_or" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Verilog_Primitive_or")]
+        internal static ClassificationTypeDefinition Verilog_Primitive_or = null;
+
+        /// <summary>
+        /// Defines the "Verilog_Primitive_nor" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Verilog_Primitive_nor")]
+        internal static ClassificationTypeDefinition Verilog_Primitive_nor = null;
+
+        /// <summary>
+        /// Defines the "Verilog_Primitive_xor" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Verilog_Primitive_xor")]
+        internal static ClassificationTypeDefinition Verilog_Primitive_xor = null;
+
+        /// <summary>
+        /// Defines the "Verilog_Primitive_xnor" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Verilog_Primitive_xnor")]
+        internal static ClassificationTypeDefinition Verilog_Primitive_xnor = null;
+
+        /// <summary>
+        /// Defines the "Verilog_Primitive_not" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Verilog_Primitive_not")]
+        internal static ClassificationTypeDefinition Verilog_Primitive_not = null;
+
+        #endregion
+
         #region value
         /// <summary>
         /// Defines the "Verilog_Comment" classification type.

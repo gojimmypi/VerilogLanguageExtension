@@ -92,6 +92,30 @@ Set your own preferred colors in Tools - Options - Fonts and Colors:
 
 To make modifications, the [Visual Studio Extension Development Workload Toolset](https://visualstudio.microsoft.com/vs/support/selecting-workloads-visual-studio-2017/) needs to be installed.
 
+It is usually best to completely remove the existing extension when doing development and increment the version number. 
+I have no hard evidence for this other than experience with odd, unexplained errors, often involving `VsTextBoxStyleKey` 
+and not in this extension code:
+
+```
+System.Windows.Markup.XamlParseException
+  HResult=0x80131501
+  Message=Provide value on 'System.Windows.Markup.StaticResourceHolder' threw an exception.
+  Source=PresentationFramework
+  StackTrace:
+   at System.Windows.Markup.WpfXamlLoader.Load(XamlReader xamlReader, IXamlObjectWriterFactory writerFactory, Boolean skipJournaledProperties, Object rootObject, XamlObjectWriterSettings settings, Uri baseUri)
+
+Inner Exception 1:
+Exception: Cannot find resource named 'VsTextBoxStyleKey'. Resource names are case sensitive.
+```
+
+This error appears at experimental instance launch time, well before even loading a Verilog `.v` file.
+
+Further, this problem appears to be specific to Visual Studio 2019 and only appears when debugging an extension a *second* time. :/
+Exiting Visual Studio and debugging the project fresh does not cause this error in the experimental instance. 
+This appeared to be problematic in both `debug` and `release` modes.
+The error occured on October 6 for Visual Studio 16.2.0 updated on July 28, 2019 (all recent Windows updates applied).
+The error was not previously observed when developing and debugging this solution. 
+
 
 ### Version Change
 
@@ -145,10 +169,10 @@ Add a ClassificationFormat.cs
     }
 ```
 
-add a VerilogTokenTagger in `VerilogTokenTag.cs`
+add a VerilogTokenTagger in `VerilogGlobals.cs`
 
 ```
-            _VerilogTypes["begin"] = VerilogTokenTypes.Verilog_begin;
+            ["begin"] = VerilogTokenTypes.Verilog_begin;
 ```
 
 Add `internal VerilogClassifier` entry in `VerilogClassifier.cs`

@@ -3359,7 +3359,7 @@ namespace VerilogLanguage
     internal sealed class Verilog_Primitive_and : ClassificationFormatDefinition
     {
         /// <summary>
-        /// Defines the visual format for the "variable" classification type
+        /// Defines the visual format for the "and" primitive keyword classification type
         /// </summary>
         public Verilog_Primitive_and()
         {
@@ -3385,7 +3385,7 @@ namespace VerilogLanguage
     internal sealed class Verilog_Primitive_nand : ClassificationFormatDefinition
     {
         /// <summary>
-        /// Defines the visual format for the "variable" classification type
+        /// Defines the visual format for the "nand" primitive keyword classification type
         /// </summary>
         public Verilog_Primitive_nand()
         {
@@ -3411,7 +3411,7 @@ namespace VerilogLanguage
     internal sealed class Verilog_Primitive_or : ClassificationFormatDefinition
     {
         /// <summary>
-        /// Defines the visual format for the "variable" classification type
+        /// Defines the visual format for the "or" primitive keyword classification type
         /// </summary>
         public Verilog_Primitive_or()
         {
@@ -3437,7 +3437,7 @@ namespace VerilogLanguage
     internal sealed class Verilog_Primitive_nor : ClassificationFormatDefinition
     {
         /// <summary>
-        /// Defines the visual format for the "variable" classification type
+        /// Defines the visual format for the "nor" primitive keyword classification type
         /// </summary>
         public Verilog_Primitive_nor()
         {
@@ -3463,7 +3463,7 @@ namespace VerilogLanguage
     internal sealed class Verilog_Primitive_xor : ClassificationFormatDefinition
     {
         /// <summary>
-        /// Defines the visual format for the "variable" classification type
+        /// Defines the visual format for the "xor" primitive keyword classification type
         /// </summary>
         public Verilog_Primitive_xor()
         {
@@ -3489,7 +3489,7 @@ namespace VerilogLanguage
     internal sealed class Verilog_Primitive_xnor : ClassificationFormatDefinition
     {
         /// <summary>
-        /// Defines the visual format for the "variable" classification type
+        /// Defines the visual format for the "xnor" primitive keyword classification type
         /// </summary>
         public Verilog_Primitive_xnor()
         {
@@ -3515,7 +3515,7 @@ namespace VerilogLanguage
     internal sealed class Verilog_Primitive_not : ClassificationFormatDefinition
     {
         /// <summary>
-        /// Defines the visual format for the "variable" classification type
+        /// Defines the visual format for the "not" primitive keyword classification type
         /// </summary>
         public Verilog_Primitive_not()
         {
@@ -3546,7 +3546,7 @@ namespace VerilogLanguage
     internal sealed class Verilog_Value : ClassificationFormatDefinition
     {
         /// <summary>
-        /// Defines the visual format for the "directive" classification type
+        /// Defines the visual format for the variable value classification type
         /// </summary>
         public Verilog_Value()
         {

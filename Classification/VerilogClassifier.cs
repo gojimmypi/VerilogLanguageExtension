@@ -190,6 +190,15 @@ namespace VerilogLanguage.VerilogToken
                 [VerilogTokenTypes.Verilog_Variable_parameter] = typeService.GetClassificationType("Variable_parameter"),
                 [VerilogTokenTypes.Verilog_Variable_duplicate] = typeService.GetClassificationType("Variable_duplicate"),
 
+                // primitives
+                [VerilogTokenTypes.Verilog_Primitive_and] = typeService.GetClassificationType("Verilog_Primitive_and"),
+                [VerilogTokenTypes.Verilog_Primitive_nand] = typeService.GetClassificationType("Verilog_Primitive_nand"),
+                [VerilogTokenTypes.Verilog_Primitive_or] = typeService.GetClassificationType("Verilog_Primitive_or"),
+                [VerilogTokenTypes.Verilog_Primitive_nor] = typeService.GetClassificationType("Verilog_Primitive_nor"),
+                [VerilogTokenTypes.Verilog_Primitive_xor] = typeService.GetClassificationType("Verilog_Primitive_xor"),
+                [VerilogTokenTypes.Verilog_Primitive_xnor] = typeService.GetClassificationType("Verilog_Primitive_xnor"),
+                [VerilogTokenTypes.Verilog_Primitive_not] = typeService.GetClassificationType("Verilog_Primitive_not"),
+
                 [VerilogTokenTypes.Verilog_Value] = typeService.GetClassificationType("Value"),
             };
 

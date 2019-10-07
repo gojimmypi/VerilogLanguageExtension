@@ -133,6 +133,14 @@ namespace VerilogLanguage.VerilogToken
         Verilog_Variable_parameter,
         Verilog_Variable_duplicate, // special highlight value if a duplicate declaration is detected
 
+        Verilog_Primitive_and,
+        Verilog_Primitive_nand,
+        Verilog_Primitive_or,
+        Verilog_Primitive_nor,
+        Verilog_Primitive_xor,
+        Verilog_Primitive_xnor,
+        Verilog_Primitive_not,
+
         Verilog_Value
 
     }

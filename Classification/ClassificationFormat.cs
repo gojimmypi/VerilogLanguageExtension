@@ -3546,11 +3546,11 @@ namespace VerilogLanguage
     internal sealed class Verilog_Value : ClassificationFormatDefinition
     {
         /// <summary>
-        /// Defines the visual format for the variable value classification type
+        /// Defines the visual format for the value classification type
         /// </summary>
         public Verilog_Value()
         {
-            DisplayName = "Verilog - Variable"; //human readable version of the name
+            DisplayName = "Verilog - Values"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme())
             {
                 ForegroundColor = Colors.Peru; // default color for dark background

@@ -47,12 +47,35 @@ namespace VerilogLanguage.VerilogToken
         [BaseDefinition("projection")]
         internal static ContentTypeDefinition VerilogContentType = null;
 
+        //[Export]
+        //[FileExtension(".v;.verilog;.vh")] // semi-colon delimited file extensions (only works with VS2017 and VS2019)
+        //[ContentType("verilog")]
+        //[BaseDefinition("code")]
+        //[BaseDefinition("projection")]
+        //internal static FileExtensionToContentTypeDefinition VerilogFileType = null;
+
+        // semi-colon delimited file extensions doe not seem to work for VS2015 (but find for VS2017 and 2019)
+        // so we'll pull them out into different declarations
         [Export]
-        [FileExtension(".v;.verilog;.vh")] // semi-colon delimited file extensions
+        [FileExtension(".v")] 
         [ContentType("verilog")]
         [BaseDefinition("code")]
         [BaseDefinition("projection")]
-        internal static FileExtensionToContentTypeDefinition VerilogFileType = null;
+        internal static FileExtensionToContentTypeDefinition VerilogFileTypeV = null; // the ".v" extension
+
+        [Export]
+        [FileExtension(".verilog")] // semi-colon delimited file extensions
+        [ContentType("verilog")]
+        [BaseDefinition("code")]
+        [BaseDefinition("projection")]
+        internal static FileExtensionToContentTypeDefinition VerilogFileTypeVerilog = null; // the ".verilog" extension
+
+        [Export]
+        [FileExtension(".vh")] // semi-colon delimited file extensions
+        [ContentType("verilog")]
+        [BaseDefinition("code")]
+        [BaseDefinition("projection")]
+        internal static FileExtensionToContentTypeDefinition VerilogFileTypeVH = null; // the " .vh extension
 
         [Import]
         internal IClassificationTypeRegistryService ClassificationTypeRegistry = null;

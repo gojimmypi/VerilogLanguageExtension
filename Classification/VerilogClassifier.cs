@@ -210,6 +210,7 @@ namespace VerilogLanguage.VerilogToken
                 [VerilogTokenTypes.Verilog_Variable_inout] = typeService.GetClassificationType("Variable_inout"),
                 [VerilogTokenTypes.Verilog_Variable_reg] = typeService.GetClassificationType("Variable_reg"),
                 [VerilogTokenTypes.Verilog_Variable_wire] = typeService.GetClassificationType("Variable_wire"),
+                [VerilogTokenTypes.Verilog_Variable_localparam] = typeService.GetClassificationType("Variable_localparam"),
                 [VerilogTokenTypes.Verilog_Variable_parameter] = typeService.GetClassificationType("Variable_parameter"),
                 [VerilogTokenTypes.Verilog_Variable_duplicate] = typeService.GetClassificationType("Variable_duplicate"),
 
@@ -242,9 +243,20 @@ namespace VerilogLanguage.VerilogToken
             {
                 var tagSpans = tagSpan.Span.GetSpans(spans[0].Snapshot);
                 // each of the text values found for tagSpan.Tag.type must be defined above in VerilogClassifier
-                yield return
-                    new TagSpan<ClassificationTag>(tagSpans[0],
-                                                   new ClassificationTag(_VerilogTypeClassifications[tagSpan.Tag.type]));
+                if (_VerilogTypeClassifications.ContainsKey(tagSpan.Tag.type)) {
+                    yield return
+                        new TagSpan<ClassificationTag>(tagSpans[0],
+                                                       new ClassificationTag(_VerilogTypeClassifications[tagSpan.Tag.type]));
+                }
+                else
+                {
+                    // TODO - how did we get here??
+                    string a = "Debug: Key not found!";
+                    yield return
+                        new TagSpan<ClassificationTag>(tagSpans[0],
+                                                       new ClassificationTag(_VerilogTypeClassifications[VerilogTokenTypes.Verilog_default]));
+                }
+
             }
         }
     }

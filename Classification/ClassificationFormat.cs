@@ -3293,6 +3293,32 @@ namespace VerilogLanguage
     }
 
     [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "variable - localparam")]
+    [Name("variable_localparam")]
+    //this should be visible to the end user
+    [UserVisible(true)]
+    //set the priority to be after the default classifiers
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_Variable_localparam : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "variable - localparam" classification type
+        /// </summary>
+        public Verilog_Variable_localparam()
+        {
+            DisplayName = "Verilog - Variable - localparam"; //human readable version of the name
+            if (ColorThemeAttribute.IsDarkTheme())
+            {
+                ForegroundColor = Colors.SkyBlue; // default color for dark background
+            }
+            else
+            {
+                ForegroundColor = Colors.DarkBlue; // default color for light background
+            }
+        }
+    }
+
+    [Export(typeof(EditorFormatDefinition))]
     [ClassificationType(ClassificationTypeNames = "variable - parameter")]
     [Name("variable_parameter")]
     //this should be visible to the end user

@@ -160,6 +160,7 @@ namespace VerilogLanguage
             ["variable_inout"] = VerilogTokenTypes.Verilog_Variable_inout,
             ["variable_wire"] = VerilogTokenTypes.Verilog_Variable_wire,
             ["variable_reg"] = VerilogTokenTypes.Verilog_Variable_reg,
+            ["variable_localparam"] = VerilogTokenTypes.Verilog_Variable_localparam,
             ["variable_parameter"] = VerilogTokenTypes.Verilog_Variable_parameter,
             ["variable_duplicate"] = VerilogTokenTypes.Verilog_Variable_duplicate,
 
@@ -354,6 +355,7 @@ namespace VerilogLanguage
                 case "inout":
                 case "wire":
                 case "reg":
+                case "localparam":
                 case "parameter":
                     // the same keywords could be used for module parameters, or variables:
                     switch (BuildHoverState) {

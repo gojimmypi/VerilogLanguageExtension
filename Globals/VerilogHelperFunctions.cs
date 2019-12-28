@@ -93,6 +93,12 @@ namespace VerilogLanguage
                    );
         }
 
+        private static bool IsVerilogVariableSigner(string theKeyword)
+        {
+            return ((theKeyword == "signed") ||
+                    (theKeyword == "unsigned")
+                   );
+        }
         /// <summary>
         ///   IsVerilogValue - true if theKeyword is something like "1'b1",  "4'hFF",  "1:1", etc.
         ///                    note the latest version pre-splits the colon values, even though this

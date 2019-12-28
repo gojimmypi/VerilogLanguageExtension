@@ -710,7 +710,7 @@ namespace VerilogLanguage
 
                 default:
                     // TODO implement IsVerilogAssignment
-                    if ((thisHoverName != "") || (ItemText == "=") || IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || Is_BracketContent_For(ItemText) || IsDelimiter(ItemText))
+                    if ((thisHoverName != "") || (ItemText == "=") || IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || Is_BracketContent_For(ItemText) || IsDelimiter(ItemText) || IsVerilogVariableSigner(ItemText))
                     {
                         SetBracketContentStatus_For(ItemText);
                         // nothing at this time; we are still bulding the declaration part

@@ -29,6 +29,9 @@ namespace VerilogLanguage
         static public bool IsDelimiter(string theString)
         {
             return (theString == " ") ||
+                   //(theString == "+") ||
+                   //(theString == "-") ||
+                   //(theString == "*") ||
                    (theString == ":") ||
                    (theString == "~") ||
                    (theString == "[") ||
@@ -89,6 +92,7 @@ namespace VerilogLanguage
                     (theKeyword == "inout") ||
                     (theKeyword == "output") ||
                     (theKeyword == "parameter") ||
+                    //(theKeyword == "localparam") ||
                     (theKeyword == "module")
                    );
         }
@@ -121,7 +125,7 @@ namespace VerilogLanguage
                 foreach (string part in KeywordParts)
                 {
                     // recursively call self here, if perhas we have a value like [1'b1:2'b2], or a prevopiusly defined parameter
-                    if (!IsNumeric(part) && !IsVerilogValue(part) && !Is_BracketContent_For(part))
+                    if (!IsNumeric(part) && !IsVerilogValue(part) && !Is_BracketContent_For(thisModuleName, part))
                     {
                         return false;
                     }

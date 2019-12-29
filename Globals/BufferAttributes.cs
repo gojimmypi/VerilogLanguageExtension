@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using VerilogLanguage.VerilogToken;
 
 namespace VerilogLanguage
 {
@@ -13,7 +14,16 @@ namespace VerilogLanguage
         private const int THREAD_TRIGGER_SIZE = 8192;
         private static DateTime ProfileStart;     // we'll keep track of performance; this is the starting time marker
 
+        // some helpers to keep track of text attributes in our buffer (comments, module names, etc)
         private static bool BufferFirstParseComplete = false;
+
+        public static Dictionary<byte, string> ModuleNames = new Dictionary<byte, string> { // we can have up to 255 modules in a buffer
+                                                                                            { 0, "global" } // key = 0 implies global naming
+                                                                                        };
+        public static Dictionary<string, byte> ModuleKeys = new Dictionary<string, byte> { // we can have up to 255 modules in a buffer
+                                                                                            {"global", 0 } // key = 0 implies global naming
+                                                                                        };
+
         public static List<BufferAttribute> BufferAttributes = new List<BufferAttribute>(); // this is the buffer actually used
         private static List<BufferAttribute> editingBufferAttributes = new List<BufferAttribute>(); // buffer being built in a separate thread
 
@@ -27,9 +37,10 @@ namespace VerilogLanguage
             private int _LineStart;
             private int _LineEnd;
             private bool _IsComment;
-            private int _SquareBracketDepth;
-            private int _RoundBracketDepth;
-            private int _SquigglyBracketDepth;
+            private int _SquareBracketDepth; // TODO limit to byte size
+            private int _RoundBracketDepth; // TODO limit to byte size
+            private int _SquigglyBracketDepth; // TODO limit to byte size
+            private byte _ModuleNameKey; // the ModuleNames byte key value
 
             #region "Property Implementation"
             public int Start
@@ -148,6 +159,19 @@ namespace VerilogLanguage
                     IsEmpty = false;
                 }
             }
+
+            public byte ModuleNameKey
+            {
+                get
+                {
+                    return _ModuleNameKey;
+                }
+                set
+                {
+                    _ModuleNameKey = value;
+                    IsEmpty = false;
+                }
+            }
             #endregion
 
 
@@ -165,6 +189,7 @@ namespace VerilogLanguage
                 _SquareBracketDepth = 0;
                 _RoundBracketDepth = 0;
                 _SquigglyBracketDepth = 0;
+                _ModuleNameKey = 0; // 0 = "global"
             }
 
             public object Clone()
@@ -332,6 +357,40 @@ namespace VerilogLanguage
                 {
                     duration2 = (DateTime.Now - ProfileStart).TotalMilliseconds;
                     bufferAttribute.LineNumber = thisLineNumber;
+
+                    // TODO move this to separate function
+                    if (thisModuleName != "")
+                    {
+                        if (!ModuleNames.ContainsValue(thisModuleName))
+                        {
+                            byte thisNewKey;
+                            if (ModuleNames.Count < 256)
+                            {
+                                thisNewKey = (byte)ModuleNames.Count;
+                            }
+                            else
+                            {
+                                // TODO this is actually an error! do something here (popup warning?)
+                                thisNewKey = 0; // we'll (incorrectly) assume global space if there are more than 255 modules 
+                            }
+                            ModuleNames.Add(thisNewKey, thisModuleName);
+                            ModuleKeys.Add(thisModuleName, thisNewKey); // build two dictionaries for runtime performance
+                            
+                            // create placeholder for variables
+                            if (!VerilogVariables.ContainsKey(thisModuleName))
+                            {
+                                VerilogVariables.Add(thisModuleName, new Dictionary<string, VerilogTokenTypes> { });
+                            }
+
+                            // ensure VerilogVariableHoverText has a dictionary for [thisModuleName]
+                            if (!VerilogVariableHoverText.ContainsKey(thisModuleName))
+                            {
+                                VerilogVariableHoverText.Add(thisModuleName, new Dictionary<string, string> { });
+                            }
+                        }
+                        bufferAttribute.ModuleNameKey = ModuleKeys[thisModuleName]; // ModuleNames.FirstOrDefault(x => x.Value == thisModuleName).Key; // thanks stackoverflow https://stackoverflow.com/questions/2444033/get-dictionary-key-by-value
+                    }
+
                     editingBufferAttributes.Add(bufferAttribute);
                     bufferAttribute = new BufferAttribute();
 
@@ -561,6 +620,30 @@ namespace VerilogLanguage
             BufferFirstParseComplete = true;
             IsReparsing = false;
         } // Reparse
+
+        /// <summary>
+        /// TextModuleName return the Verilog module name for the text located AtLine and AtPosition
+        /// </summary>
+        /// <param name="AtLine"></param>
+        /// <param name="AtPosition"></param>
+        /// <returns></returns>
+        public static string TextModuleName(int AtLine, int AtPosition)
+        {
+            string res = "global";
+            foreach (var thisBufferAttribute in BufferAttributes)
+            {
+                if ((thisBufferAttribute.LineNumber == AtLine)
+//                      && (thisBufferAttribute.LineStart <= AtPosition)
+//                     && ((AtPosition <= thisBufferAttribute.LineEnd) || (thisBufferAttribute.LineEnd == -1))
+                   )
+                {
+                    byte thisModuleNameKey = thisBufferAttribute.ModuleNameKey;
+                    ModuleNames.TryGetValue(thisModuleNameKey, out res);
+                    break; // no need to continue searching on foreach once we have an answer
+                }
+            }
+            return res;
+        }
 
         /// <summary>
         ///     TextIsComment - is the text on line [AtLine] starting at position [AtPosition] a comment?

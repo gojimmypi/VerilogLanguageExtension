@@ -29,5 +29,38 @@ namespace VerilogLanguage
 
             return value.Length <= length ? value : value.Substring(value.Length - length);
         }
+
+        public static string FirstRadixValue(this string value)
+        {
+            string res = "";
+ 
+            try
+            {
+                // check for a blank string, if found return an empty string immediately
+                // also check if there's no single quote; if not, there's certainly no Radix
+                if ((value == null) || (value == "") || value.Length < 3 || !value.Contains("'"))
+                {
+                    return res;
+                }
+
+                foreach (string item in VerilogGlobals.VerilogRadixChars)
+                {
+                    string searchRadix = "'" + item;
+                    if (value.Contains(searchRadix))
+                    {
+                        res = searchRadix;
+                        break;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                string a = ex.Message;
+                res = "";
+            }
+            return res;
+        }
     }
 }

@@ -8,6 +8,11 @@ namespace VerilogLanguage
 {
     public static partial class VerilogGlobals
     {
+        public static List<string> VerilogRadixChars = new List<string> {  "d", "D",  // for integer (optional)
+                                                                           "h", "H",  //for hexadecimal
+                                                                           "o", "O",  //for octal
+                                                                           "b", "B"   //for bit
+                                                                        };
         /// <summary>
         ///   VerilogParseState - while processing each segment, we'll keep track of attributes in a VerilogParseState 
         /// </summary>
@@ -41,8 +46,7 @@ namespace VerilogLanguage
                 set
                 {
                     _thisChar = value;
-
-                    if ((priorValue == "'") && ((value == "h") || (value == "b")))
+                    if ((priorValue == "'") && (VerilogRadixChars.Contains(value)))
                     {
                         // e.g. 32'h ffff_ffff
                         IsBuildingEmbeddedSpaceItem = true;

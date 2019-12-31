@@ -25,7 +25,11 @@ namespace VerilogLanguage
                    (theString.Contains(")"));
         }
 
-
+        /// <summary>
+        /// IsDelimiter - any keyword delimiter: spaces, operators, brackets, cr/lf
+        /// </summary>
+        /// <param name="theString"></param>
+        /// <returns></returns>
         static public bool IsDelimiter(string theString)
         {
             return (theString == " ") ||
@@ -47,7 +51,11 @@ namespace VerilogLanguage
                    (theString == "\t");
         }
 
-
+        /// <summary>
+        /// IsEndingDelimeter: is one of ], }, )
+        /// </summary>
+        /// <param name="theString"></param>
+        /// <returns></returns>
         static public bool IsEndingDelimeter(string theString)
         {
             return (theString == "]") ||
@@ -92,7 +100,7 @@ namespace VerilogLanguage
                     (theKeyword == "inout") ||
                     (theKeyword == "output") ||
                     (theKeyword == "parameter") ||
-                    //(theKeyword == "localparam") ||
+                    (theKeyword == "localparam") ||
                     (theKeyword == "module")
                    );
         }
@@ -118,6 +126,11 @@ namespace VerilogLanguage
         /// <returns></returns>
         private static bool IsVerilogValue(string theKeyword)
         {
+            // if the keyword is null or blank, it is certainly not a keyword, so return false immediately
+            if ((theKeyword == null) || (theKeyword == ""))
+            {
+                return false;
+            }
             bool NumericParts = false; // we'll only have numeric parts, if there are parts to look at! (e.g. "1:1")
             string[] KeywordParts = theKeyword.Split(':');
             if (KeywordParts.Count() > 1)
@@ -135,7 +148,7 @@ namespace VerilogLanguage
                     }
                 }
             }
-            return theKeyword.Contains("'b") || theKeyword.Contains("'h") || NumericParts;
+            return NumericParts || (theKeyword.FirstRadixValue() != "") ;
         }
 
         /// <summary>

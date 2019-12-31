@@ -16,6 +16,7 @@ namespace VerilogLanguage
             public string thisItem;
             public int thisIndex;
             public string priorChar;
+            public string priorValue;
             public string priorDelimiter;
             public bool thisCharIsDelimiter;
             public bool priorCharIsDelimiter;
@@ -31,6 +32,8 @@ namespace VerilogLanguage
 
             public bool IsNewDelimitedSegment;
 
+            public bool IsBuildingEmbeddedSpaceItem; // we are bulding a "special" segment in cases where there's an embedded space: 
+
             private string _thisChar;
             public string thisChar
             {
@@ -38,11 +41,34 @@ namespace VerilogLanguage
                 set
                 {
                     _thisChar = value;
+
+                    if ((priorValue == "'") && ((value == "h") || (value == "b")))
+                    {
+                        // e.g. 32'h ffff_ffff
+                        IsBuildingEmbeddedSpaceItem = true;
+                    }
+
+
                     thisCharIsDelimiter = IsDelimiter(value);
                     thisCharIsEndingDelimiter = IsEndingDelimeter(value);
                     priorCharIsDelimiter = IsDelimiter(priorChar);
-                    // note  contiguous spaces are a single segment
-                    IsNewDelimitedSegment = (thisCharIsDelimiter || priorCharIsDelimiter) && !((_thisChar == " ") && (priorChar == " "));
+
+                    if (IsBuildingEmbeddedSpaceItem)
+                    {
+                        // note that spaces ARE allowed when bulding an embedded item (e.g. "32'h ffff_ffff" is not two items!)
+                        IsNewDelimitedSegment = (thisCharIsDelimiter || priorCharIsDelimiter)
+                                            && !((_thisChar == " ")
+                                            && !(priorChar == " "));
+                    }
+                    else
+                    {
+                        // note  contiguous spaces are a single segment
+                        IsNewDelimitedSegment =  (thisCharIsDelimiter || priorCharIsDelimiter)
+                                            && !((_thisChar == " ")
+                                            && (priorChar == " "));
+
+                    }
+
 
                     if (IsNewDelimitedSegment)
                     {
@@ -50,8 +76,14 @@ namespace VerilogLanguage
                     }
                     else
                     {
-                        thisItem += thisChar;
+                        // note  contiguous spaces are a single segment
+                        if (IsBuildingEmbeddedSpaceItem)
+                        {
+                            IsBuildingEmbeddedSpaceItem = (value != "'");  // as soon as we see a non-blank value, we don't need to keep track: the next delimiter is the end of this segment
+                        }
+                        thisItem += value;
                     }
+                    priorValue = value;
                 }
             }
 
@@ -77,6 +109,7 @@ namespace VerilogLanguage
                 thisItem = "";
                 IsNewDelimitedSegment = false;
                 priorChar = "";
+                priorValue = "";
                 priorDelimiter = "";
                 thisCharIsDelimiter = false;
                 priorCharIsDelimiter = false;
@@ -86,6 +119,7 @@ namespace VerilogLanguage
                 hasOpenRoundBracket = false;
                 hasOpenSquigglyBracket = false;
                 hasOpenDoubleQuote = false;
+                IsBuildingEmbeddedSpaceItem = false;
             }
         }
 

@@ -110,14 +110,14 @@ namespace VerilogLanguage
 
                 if (thisToken.ParseState.IsNewDelimitedSegment)
                 {
-                    // anytime a delimiter is encountered, we start a new text segment 
-                    // note the delimiter itself is in a colorizable segment
+                            // anytime a delimiter is encountered, we start a new text segment 
+                            // note the delimiter itself is in a colorizable segment
 
-                    // there's a new delimiter, so add the current item and prep for the next one
+                            // there's a new delimiter, so add the current item and prep for the next one
                     AddToken();
 
                     // once the ParseState is configured (above, when assigning thisChar), set the context of the item
-                    thisToken.SetContext(); // TOFO do we really need this? context is alreasy set
+                    thisToken.SetContext(); // TODO do we really need this? context is already set
                     // at the end of each loop, set the prior values
                     thisToken.ParseState.SetPriorValues();
                 } // end of for loop look at each char

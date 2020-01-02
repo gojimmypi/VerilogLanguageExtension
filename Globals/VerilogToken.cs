@@ -86,7 +86,10 @@ namespace VerilogLanguage
             VerilogToken thisToken = new VerilogToken();
             VerilogParseState thisContinuedParseState = new VerilogParseState(0);
 
-            // AddToken - appends the current token part to the array and create a new thisToken to build
+            // AddToken - appends the current token part to the array and create a new thisToken to build.
+            // reminder that here we are only splitting text into token items. 
+            // See VerilogTokenTagger for actually setting the context (e.g. color) of  each token item.
+            // 
             void AddToken()
             {
                 string thisItem = thisToken.ParseState.thisItem;

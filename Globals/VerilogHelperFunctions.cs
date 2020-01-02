@@ -33,11 +33,17 @@ namespace VerilogLanguage
         static public bool IsDelimiter(string theString)
         {
             return (theString == " ") ||
-                   //(theString == "+") ||
-                   //(theString == "-") ||
-                   //(theString == "*") ||
+                   (theString == "+") ||
+                   (theString == "-") ||
+                   (theString == "%") ||
+                   (theString == "=") ||
                    (theString == ":") ||
                    (theString == "~") ||
+
+                   // the comment chars as delimiters are not currently working properly (workaround: use a space on either side)
+                   //(theString == "*") ||  // the "*" character 
+                   //(theString == "/") ||  // and "/" are tricky, as they are used in comments: // and  /* */
+
                    (theString == "[") ||
                    (theString == "]") ||
                    (theString == "}") ||
@@ -47,8 +53,8 @@ namespace VerilogLanguage
                    (theString == ";") ||
                    (theString == ",") ||
                    (theString == "@") ||
-                   (theString == "\"") ||
-                   (theString == "\t");
+                   (theString == "\"") || // the literal double quote character
+                   (theString == "\t");   // a tab
         }
 
         /// <summary>

@@ -29,9 +29,11 @@ namespace VerilogLanguage
             public bool thisCharIsEndingDelimiter;
             public bool priorCharIsIsEndingDelimiter;
 
-            public bool hasOpenSquareBracket;
-            public bool hasOpenRoundBracket;
+            public bool hasOpenSquareBracket;  // not implemented
+            public bool hasOpenRoundBracket;   // not implemented
             public bool hasOpenSquigglyBracket;
+
+            public byte OpenSquigglyBracketCount;
 
             public bool hasOpenDoubleQuote;
 
@@ -51,7 +53,15 @@ namespace VerilogLanguage
                         // e.g. 32'h ffff_ffff
                         IsBuildingEmbeddedSpaceItem = true;
                     }
-
+                    if (value == "{")
+                    {
+                        OpenSquigglyBracketCount++;
+                    }
+                    if (value == "}")
+                    {
+                        OpenSquigglyBracketCount--;
+                    }
+                    hasOpenSquigglyBracket = (OpenSquigglyBracketCount != 0);
 
                     thisCharIsDelimiter = IsDelimiter(value);
                     thisCharIsEndingDelimiter = IsEndingDelimeter(value);
@@ -59,14 +69,16 @@ namespace VerilogLanguage
 
                     if (IsBuildingEmbeddedSpaceItem)
                     {
-                        // note that spaces ARE allowed when bulding an embedded item (e.g. "32'h ffff_ffff" is not two items!)
+                        // note that spaces ARE allowed when bulding an embedded space item (e.g. the value "32'h ffff_ffff" is just one item!)
                         IsNewDelimitedSegment = (thisCharIsDelimiter || priorCharIsDelimiter)
                                             && !((_thisChar == " ")
-                                            && !(priorChar == " "));
+                                            && !(priorChar == " "))
+                                            && !hasOpenSquigglyBracket; // e.g. {4'b 0001, 32'b 0}
                     }
                     else
                     {
                         // note  contiguous spaces are a single segment
+                        // reminder that variable definitions may contain multiple segments
                         IsNewDelimitedSegment =  (thisCharIsDelimiter || priorCharIsDelimiter)
                                             && !((_thisChar == " ")
                                             && (priorChar == " "));
@@ -83,7 +95,14 @@ namespace VerilogLanguage
                         // note  contiguous spaces are a single segment
                         if (IsBuildingEmbeddedSpaceItem)
                         {
-                            IsBuildingEmbeddedSpaceItem = (value != "'");  // as soon as we see a non-blank value, we don't need to keep track: the next delimiter is the end of this segment
+                            if (hasOpenSquigglyBracket)
+                            {
+                                // we continue searching
+                            }
+                            else {
+                                // only for closed squiggly, can we end a constant
+                                IsBuildingEmbeddedSpaceItem = (value != "'");  // as soon as we see a non-blank value, we don't need to keep track: the next delimiter is the end of this segment
+                            }
                         }
                         thisItem += value;
                     }
@@ -124,6 +143,7 @@ namespace VerilogLanguage
                 hasOpenSquigglyBracket = false;
                 hasOpenDoubleQuote = false;
                 IsBuildingEmbeddedSpaceItem = false;
+                OpenSquigglyBracketCount = 0;
             }
         }
 

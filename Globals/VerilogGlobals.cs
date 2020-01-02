@@ -247,6 +247,7 @@ namespace VerilogLanguage
         private static string thisModuleDeclarationText = "";
         private static string thisModuleParameterText = "";
         private static bool IsInsideSquareBracket = false;
+        private static bool IsInsideSquigglyBracket = false;
         private static VerilogTokenTypes thisVariableType = VerilogTokenTypes.Verilog_Variable;
 
         /// <summary>
@@ -368,6 +369,13 @@ namespace VerilogLanguage
                 case "]":
                     IsInsideSquareBracket = false;
                     break;
+                case "{":
+                    IsInsideSquigglyBracket = true;
+                    break;
+                case "}":
+                    IsInsideSquigglyBracket = false;
+                    break; 
+
                 default:
                     // nothing
                     break;
@@ -761,15 +769,30 @@ namespace VerilogLanguage
                     {
                         string a = "breakpoint";
                         // no hovername = nothing to do
+
+                        BuildHoverState = BuildHoverStates.VariableMimicNaming; // Mimic naming is the same declaration but comma-delimited (e.g. input a,b // b has the input "mimic'd" )
                     }
                     else
                     {
-                        AddHoverItem(thisModuleName, thisHoverName, thisVariableDeclarationText);
-                        // since we en countered a comma, we will use the same declaration text for a new name, so replace this name with a blank
-                        thisVariableDeclarationText = thisVariableDeclarationText.Replace(thisHoverName, "");
-                    }
+                        if (IsInsideSquigglyBracket)
+                        {
+                            thisVariableDeclarationText += ItemText;
+                            // BuildHoverState remains variable building
+                        }
+                        else
+                        {
+                            AddHoverItem(thisModuleName, thisHoverName, thisVariableDeclarationText);
+                            // since we en countered a comma, we will use the same declaration text for a new name, so replace this name with a blank
+                            thisVariableDeclarationText = thisVariableDeclarationText.Replace(thisHoverName, "");
 
-                    BuildHoverState = BuildHoverStates.VariableMimicNaming; // Mimic naming is the same declaration but comma-delimited (e.g. input a,b // b has the input "mimic'd" )
+                            BuildHoverState = BuildHoverStates.VariableMimicNaming; // Mimic naming is the same declaration but comma-delimited (e.g. input a,b // b has the input "mimic'd" )
+                        }
+                    }
+                    break;
+
+                case "reg":
+                case "integer":
+                    thisVariableDeclarationText += ItemText;
                     break;
 
                 case "endmodule":
@@ -786,12 +809,15 @@ namespace VerilogLanguage
                     // TODO implement IsVerilogAssignment
                     if ((thisHoverName != "") || (ItemText == "=") || IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || Is_BracketContent_For(thisModuleName, ItemText) || IsDelimiter(ItemText) || IsVerilogVariableSigner(ItemText))
                     {
+                        // we continue building the declaration text
                         SetBracketContentStatus_For(ItemText);
-                        // nothing at this time; we are still bulding the declaration part
+
+                        // nothing at this time; we are still bulding the declaration part for the given thisHoverName (aka variable name)
                         thisVariableDeclarationText += ItemText;
                     }
                     else
                     {
+                        // we found a new hover name to assign declaration text
                         thisHoverName = ItemText;
                         thisVariableDeclarationText += ItemText;
                     }

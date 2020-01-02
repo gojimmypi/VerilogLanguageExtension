@@ -213,7 +213,7 @@ namespace VerilogLanguage.VerilogToken
                 [VerilogTokenTypes.Verilog_Variable_localparam] = typeService.GetClassificationType("Variable_localparam"),
                 [VerilogTokenTypes.Verilog_Variable_parameter] = typeService.GetClassificationType("Variable_parameter"),
                 [VerilogTokenTypes.Verilog_Variable_duplicate] = typeService.GetClassificationType("Variable_duplicate"),
-
+                [VerilogTokenTypes.Verilog_Variable_module] = typeService.GetClassificationType("Variable_module"),
                 // primitives
                 [VerilogTokenTypes.Verilog_Primitive_and] = typeService.GetClassificationType("Verilog_Primitive_and"),
                 [VerilogTokenTypes.Verilog_Primitive_nand] = typeService.GetClassificationType("Verilog_Primitive_nand"),

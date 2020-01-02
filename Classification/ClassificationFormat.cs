@@ -3371,6 +3371,31 @@ namespace VerilogLanguage
     }
 
 
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "variable - module")]
+    [Name("variable_module")]
+    //this should be visible to the end user
+    [UserVisible(true)]
+    //set the priority to be after the default classifiers
+    [Order(After = Priority.Default)]
+    internal sealed class Verilog_Variable_module : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "variable - duplicate" classification type
+        /// </summary>
+        public Verilog_Variable_module()
+        {
+            DisplayName = "Verilog - Variable - module"; //human readable version of the name
+            if (ColorThemeAttribute.IsDarkTheme())
+            {
+                ForegroundColor = Colors.Cyan; // default color for dark background
+            }
+            else
+            {
+                ForegroundColor = Colors.DarkCyan; // default color for light background
+            }
+        }
+    }
 
     #endregion
 

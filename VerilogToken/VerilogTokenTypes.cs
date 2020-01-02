@@ -133,7 +133,8 @@ namespace VerilogLanguage.VerilogToken
         Verilog_Variable_localparam,
         Verilog_Variable_parameter,
         Verilog_Variable_duplicate, // special highlight value if a duplicate declaration is detected
-
+        Verilog_Variable_module,    // instantiation of modules are handled essentially as typed variables
+ 
         Verilog_Primitive_and,
         Verilog_Primitive_nand,
         Verilog_Primitive_or,

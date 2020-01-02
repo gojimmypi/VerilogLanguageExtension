@@ -840,6 +840,13 @@ namespace VerilogLanguage
         [Name("Variable_duplicate")]
         internal static ClassificationTypeDefinition Verilog_Variable_duplicate = null;
 
+        /// <summary>
+        /// Defines the "Verilog_Variable_module" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Variable_module")]
+        internal static ClassificationTypeDefinition Verilog_Variable_module = null;
+
 
         #endregion
 

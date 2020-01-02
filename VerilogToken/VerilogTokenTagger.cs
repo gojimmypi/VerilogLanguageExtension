@@ -205,6 +205,7 @@ namespace VerilogLanguage.VerilogToken
                                 string thisScope = VerilogGlobals.TextModuleName(containingLine.LineNumber, curLoc - containingLine.Start.Position); // TODO 
                                 if (VerilogGlobals.VerilogVariables.ContainsKey(thisScope))
                                 {
+                                    // the current scope (typically a module name) is defined. So do we have a known variable?
                                     if (VerilogGlobals.VerilogVariables[thisScope].ContainsKey(Item.ItemText))
                                     {
                                         yield return new TagSpan<VerilogTokenTag>(tokenSpan,

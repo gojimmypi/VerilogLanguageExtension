@@ -410,6 +410,12 @@ namespace VerilogLanguage
                             BuildHoverState = BuildHoverStates.ModuleParameterNaming;
                             break;
 
+                        case BuildHoverStates.VariableMimicNaming: // comma-delimited types have the type copied (mimic) into hover text for each variable
+                            BuildHoverState = BuildHoverStates.VariableNaming;
+                            thisVariableDeclarationText = ItemText;
+                            thisHoverName = ""; // we are no longer using the same type declaration, so reset to blank
+                            break;
+
                         default:
                             BuildHoverState = BuildHoverStates.VariableNaming;
                             thisVariableDeclarationText = ItemText;
@@ -417,6 +423,12 @@ namespace VerilogLanguage
                     }
 
                     thisVariableType = VerilogGlobals.VerilogTypes["variable_" + ItemText];
+                    break;
+
+                case "endmodule":
+                    // we're naming a module
+                    BuildHoverState = BuildHoverStates.UndefinedState;
+                    // this is likely a syntax error
                     break;
 
                 default:
@@ -753,10 +765,21 @@ namespace VerilogLanguage
                     else
                     {
                         AddHoverItem(thisModuleName, thisHoverName, thisVariableDeclarationText);
+                        // since we en countered a comma, we will use the same declaration text for a new name, so replace this name with a blank
                         thisVariableDeclarationText = thisVariableDeclarationText.Replace(thisHoverName, "");
                     }
 
-                    BuildHoverState = BuildHoverStates.VariableMimicNaming;
+                    BuildHoverState = BuildHoverStates.VariableMimicNaming; // Mimic naming is the same declaration but comma-delimited (e.g. input a,b // b has the input "mimic'd" )
+                    break;
+
+                case "endmodule":
+                    // we're done naming a module
+                    AddHoverItem(thisModuleName, thisHoverName, thisModuleParameterText);
+                    BuildHoverState = BuildHoverStates.UndefinedState;
+                    thisHoverName = "";
+                    thisVariableDeclarationText = "";
+                    thisModuleName = "";
+                    thisModuleParameterText = "";
                     break;
 
                 default:
@@ -808,17 +831,38 @@ namespace VerilogLanguage
                     BuildHoverState = BuildHoverStates.UndefinedState;
                     break;
 
+                case "endmodule":
+                    BuildHoverState = BuildHoverStates.UndefinedState;
+                    // we're done naming a module
+                    //AddHoverItem(thisModuleName, thisHoverName, thisModuleParameterText);
+                    //BuildHoverState = BuildHoverStates.ModuleNamed;
+                    //thisHoverName = "";
+                    //thisVariableDeclarationText = "";
+                    //thisModuleName = "";
+                    //thisModuleParameterText = "";
+                    break;
+
                 default:
-                    if (IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || IsDelimiter(ItemText))
+                    // if we encounter a NamerKeyword during a sequence of comma-delimited vars, then this is a new type!
+                    // e.g.  input a,b,  // this is input a; input b;
+                    //       output c    // this is output c;
+                    if (IsVerilogNamerKeyword(ItemText))
                     {
-                        SetBracketContentStatus_For(ItemText);
-                        // nothing at this time; we are still bulding the declaration part
-                        thisVariableDeclarationText += ItemText;
+                        Process_UndefinedState_For(ItemText);
                     }
                     else
                     {
-                        thisHoverName = ItemText;
-                        thisVariableDeclarationText += ItemText;
+                        if (IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || IsDelimiter(ItemText))
+                        {
+                            SetBracketContentStatus_For(ItemText);
+                            // nothing at this time; we are still bulding the declaration part
+                            thisVariableDeclarationText += ItemText;
+                        }
+                        else
+                        {
+                            thisHoverName = ItemText;
+                            thisVariableDeclarationText += ItemText;
+                        }
                     }
                     break;
             }

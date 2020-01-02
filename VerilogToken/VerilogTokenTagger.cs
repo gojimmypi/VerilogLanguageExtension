@@ -198,7 +198,13 @@ namespace VerilogLanguage.VerilogToken
                                     yield return new TagSpan<VerilogTokenTag>(tokenSpan,
                                                                           new VerilogTokenTag(VerilogGlobals.VerilogTypes[Item.ItemText]));
                             }
-
+                            else if (VerilogGlobals.VerilogVariables.ContainsKey(Item.ItemText))
+                            {
+                                // we are instantiation a module; recall VerilogVariables is first a dictionary of scope (aka module), then a dictionary of variables in each module scope
+                                // TODO do we need: if (tokenSpan.IntersectsWith(curSpan))
+                                yield return new TagSpan<VerilogTokenTag>(tokenSpan,
+                                      new VerilogTokenTag(VerilogGlobals.VerilogTypes["variable_module"]));
+                            }
                             else
                             {
                                 // check to see if this is a variable
@@ -206,8 +212,9 @@ namespace VerilogLanguage.VerilogToken
                                 if (VerilogGlobals.VerilogVariables.ContainsKey(thisScope))
                                 {
                                     // the current scope (typically a module name) is defined. So do we have a known variable?
-                                    if (VerilogGlobals.VerilogVariables[thisScope].ContainsKey(Item.ItemText))
+                                    if (VerilogGlobals.VerilogVariables.ContainsKey(thisScope) && VerilogGlobals.VerilogVariables[thisScope].ContainsKey(Item.ItemText))
                                     {
+                                        // TODO do we need: if (tokenSpan.IntersectsWith(curSpan))
                                         yield return new TagSpan<VerilogTokenTag>(tokenSpan,
                                                                               new VerilogTokenTag(VerilogGlobals.VerilogVariables[thisScope][Item.ItemText]));
                                     }

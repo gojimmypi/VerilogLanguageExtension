@@ -172,6 +172,7 @@ namespace VerilogLanguage
             ["variable_localparam"] = VerilogTokenTypes.Verilog_Variable_localparam,
             ["variable_parameter"] = VerilogTokenTypes.Verilog_Variable_parameter,
             ["variable_duplicate"] = VerilogTokenTypes.Verilog_Variable_duplicate,
+            ["variable_module"] = VerilogTokenTypes.Verilog_Variable_module,
 
             // primitives
             ["and"] = VerilogTokenTypes.Verilog_Primitive_and,
@@ -323,7 +324,12 @@ namespace VerilogLanguage
                 else
                 {
                     // add new
-                    VerilogVariables[thisScope].Add(ItemName, thisVariableType);
+                    if (VerilogVariables.ContainsKey(ItemName)) {
+                        VerilogVariables[thisScope].Add(ItemName, VerilogTokenTypes.Verilog_Variable_module);
+                    }
+                    else {
+                        VerilogVariables[thisScope].Add(ItemName, thisVariableType);
+                    }
                 }
                 string thisHoverText = HoverText;
 
@@ -440,7 +446,18 @@ namespace VerilogLanguage
                     break;
 
                 default:
-                    BuildHoverState = BuildHoverStates.UndefinedState;
+                    if (VerilogVariables.ContainsKey(ItemText))
+                    {
+                        // a scope-level module name is defined, so treat it like a variable type
+                        BuildHoverState = BuildHoverStates.VariableNaming; // actually, we are module naming. TODO different color for modules?
+
+                        // a module instantiation will have the work "module" manually prepended
+                        thisVariableDeclarationText = "module " + ItemText;
+                    }
+                    else
+                    {
+                        BuildHoverState = BuildHoverStates.UndefinedState;
+                    }
                     break;
             }
         }

@@ -231,6 +231,7 @@ namespace VerilogLanguage
                 IsContinuedLineComment = commentHelper.HasOpenLineComment; // we'll use this when processing the VerilogToken item in the commentHelper, above
                 foreach (CommentHelper.CommentHelper.CommentItem Item in commentHelper.CommentItems)
                 {
+                    // TODO - are we actually doing anything with TestComment, or is this just for testing VerilogGlobals.TextIsComment() ??
                     bool TestComment = VerilogGlobals.TextIsComment(theLineNumber, LinePosition);
                     LinePosition += Item.ItemText.Length;
 

@@ -179,6 +179,7 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Globals\BufferAttributes.cs" />
     <Compile Include="Globals\OutputWindow.cs" />
+    <Compile Include="Globals\Parsing.cs" />
     <Compile Include="Globals\PerfMon.cs" />
     <Compile Include="Globals\VerilogContext.cs" />
     <Compile Include="Globals\VerilogGlobals.cs" />

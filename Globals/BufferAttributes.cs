@@ -264,19 +264,26 @@ namespace VerilogLanguage
             public static void DoWork(string targetFile)
             {
                 // ensure we have a ParseAttribute for this file
-                if (!ParseStatus.ContainsKey(targetFile))
-                {
-                    ParseStatus.Add(targetFile, new ParseAttribute());
+                //if (!ParseStatus.ContainsKey(targetFile))
+                //{
+                //    ParseStatus.Add(targetFile, new ParseAttribute());
+                //}
+                VerilogGlobals.ParseStatus_EnsureExists(targetFile);
+                bool IsReparsing = false;
+                lock(ParseStatus) {
+                    IsReparsing = ParseStatus[targetFile].IsReparsing;
                 }
-
-                if (ParseStatus[targetFile].IsReparsing)
+                if (IsReparsing)
                 {
                     // TODO what is this for? does it help with threading? (probably not)
                     Thread.Sleep(50);
                 }
                 else
                 {
-                    ParseStatus[targetFile].IsReparsing = true;
+                    lock (ParseStatus)
+                    {
+                        ParseStatus[targetFile].IsReparsing = true;
+                    }
                     VerilogGlobals.ReparseWork(threadbuffer, threadFile);
                     // TODO once reparsing is done in a thread, we need to tell the viewport to redraww the screen
                     Thread.Sleep(10);
@@ -289,7 +296,8 @@ namespace VerilogLanguage
         /// <param name="buffer"></param>
         public static void Reparse(ITextBuffer buffer, string forFile = "")
         {
-            if (NeedReparse)
+            //if (NeedReparse)
+            if (VerilogGlobals.ParseStatus_NeedReparse(forFile)) // ensure the dictionary item exists for the ParseStatus of this file and check if it is time to reparse
             {
                 threadbuffer = buffer;
                 threadFile = forFile;
@@ -313,47 +321,54 @@ namespace VerilogLanguage
         }
         public static void ReparseWork(ITextBuffer buffer, string targetFile)
         {
+            int thisBufferVersion = 0;
+
             System.Diagnostics.Debug.WriteLine("Starting ReparseWork...");
 
             // ensure our ParseStatus dictionary of ParseAttribute items has an item for our current file
-            if (!ParseStatus.ContainsKey(targetFile))
+            //if (!ParseStatus.ContainsKey(targetFile))
+            //{
+            //    ParseStatus.Add(targetFile,  new ParseAttribute());
+            //}
+            lock (VerilogGlobals.ParseStatus)
             {
-                ParseStatus.Add(targetFile,  new ParseAttribute());
+                VerilogGlobals.ParseStatus_EnsureExists(targetFile);
+                ParseStatus[targetFile].IsReparsing = true;
+                //IsReparsing = true;
+
+                if (buffer == null)
+                {
+                    ParseStatus[targetFile].IsReparsing = false;
+                    // IsReparsing = false;
+                    return;
+                }
+
+                if (buffer.EditInProgress)
+                {
+                    ParseStatus[targetFile].IsReparsing = false;
+                    // IsReparsing = false;
+                    return;
+                }
+
+                try
+                {
+                    thisBufferVersion = buffer.CurrentSnapshot.Version.VersionNumber;
+                }
+                catch
+                {
+                    thisBufferVersion = 0;
+                }
+
+                // if we could not determine a version ( = 0), or if the last time we reparsed was for this same buffer, then exit
+                if ((thisBufferVersion == 0) || (ParseStatus[targetFile].LastReparseVersion == thisBufferVersion))
+                {
+                    ParseStatus[targetFile].IsReparsing = false;
+                    // IsReparsing = false;
+                    return;
+                }
             }
 
-            ParseStatus[targetFile].IsReparsing = true;
-            //IsReparsing = true;
 
-            if (buffer == null)
-            {
-                ParseStatus[targetFile].IsReparsing = false;
-                // IsReparsing = false;
-                return;
-            }
-            if (buffer.EditInProgress)
-            {
-                ParseStatus[targetFile].IsReparsing = false;
-                // IsReparsing = false;
-                return;
-            }
-            
-            int thisBufferVersion = 0;
-            try
-            {
-                thisBufferVersion = buffer.CurrentSnapshot.Version.VersionNumber;
-            }
-            catch
-            {
-                thisBufferVersion = 0;
-            }
-
-            // if we could not determine a version ( = 0), or if the last time we reparsed was for this same buffer, then exit
-            if ((thisBufferVersion == 0) || (ParseStatus[targetFile].LastReparseVersion == thisBufferVersion))
-            {
-                ParseStatus[targetFile].IsReparsing = false;
-                // IsReparsing = false;
-                return;
-            }
             //if ((DateTime.Now - ProfileStart).TotalMilliseconds < 1000)
             //{
             //    ProfileStart = DateTime.Now;
@@ -635,14 +650,22 @@ namespace VerilogLanguage
             double duration5 = (DateTime.Now - ProfileStart).TotalMilliseconds;
             // TODO - do we need a final, end-of-file bufferAttribute (probably not)
 
-            // in case we got here from someplace that set NeedReparse to true - reset to indicate completion:
-            VerilogGlobals.NeedReparse = false;
-            VerilogGlobals.LastParseTime = DateTime.Now;
-            VerilogGlobals.ParseStatus[targetFile].LastReparseVersion = thisBufferVersion;
+            lock (VerilogGlobals.ParseStatus)
+            {
+                // in case we got here from someplace that set NeedReparse to true - reset to indicate completion:
+                VerilogGlobals.ParseStatus[targetFile].NeedReparse = true;
+                //VerilogGlobals.NeedReparse = false;
+                VerilogGlobals.ParseStatus[targetFile].LastParseTime = DateTime.Now;
+                //VerilogGlobals.LastParseTime = DateTime.Now;
+                VerilogGlobals.ParseStatus[targetFile].LastReparseVersion = thisBufferVersion;
+            }
             double duration = (DateTime.Now - ProfileStart).TotalMilliseconds;
             BufferAttributes = editingBufferAttributes;
             BufferFirstParseComplete = true;
-            ParseStatus[targetFile].IsReparsing = false;
+            lock (ParseStatus)
+            {
+                ParseStatus[targetFile].IsReparsing = false;
+            }
         } // Reparse
 
         /// <summary>

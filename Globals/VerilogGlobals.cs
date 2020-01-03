@@ -187,8 +187,8 @@ namespace VerilogLanguage
         };
 
 
-        public static bool NeedReparse { get; set; }
-        public static DateTime LastParseTime {get; set; }
+        // public static bool NeedReparse { get; set; }
+        // public static DateTime LastParseTime {get; set; }
         public static DateTime LastKeypressTime { get; set; }
         public static Boolean IsContinuedBlockComment = false;
 

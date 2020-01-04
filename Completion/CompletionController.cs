@@ -98,7 +98,7 @@ namespace VerilogLanguage
             //{
             //     VerilogGlobals.ParseStatus[thisFile].NeedReparse = true;
             //}
-            VerilogGlobals.ParseStatus_NeedReparse_SetValue(thisFile, true);
+            VerilogGlobals.ParseStatusController.NeedReparse_SetValue(thisFile, true);
 
             // VerilogGlobals.NeedReparse = true;
 

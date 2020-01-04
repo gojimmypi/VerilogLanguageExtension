@@ -40,14 +40,15 @@ namespace VerilogLanguage.Highlighting
             //
             // keywords: onload initialize startup 
             //
-            VerilogGlobals.ParseStatus_Init(thisFile);
+            VerilogGlobals.ParseStatusController.Init(thisFile);
 
             //lock (VerilogGlobals.ParseStatus[thisFile])
             //{
             //    // VerilogGlobals.NeedReparse = true;
             //    VerilogGlobals.ParseStatus[thisFile].NeedReparse = true;
             //}
-            VerilogGlobals.ParseStatus_NeedReparse_SetValue(thisFile, true);
+            // VerilogGlobals.ParseStatus_NeedReparse_SetValue(thisFile, true);
+            VerilogGlobals.ParseStatusController.NeedReparse_SetValue(thisFile, true);
 
             VerilogGlobals.Reparse(buffer,thisFile); // parse the buffer at file load time
 

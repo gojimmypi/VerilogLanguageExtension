@@ -83,8 +83,8 @@ namespace VerilogLanguage.VerilogToken
                 {
                     string thisFile = VerilogLanguage.VerilogGlobals.GetDocumentPath(_buffer.CurrentSnapshot);
 
-                    VerilogGlobals.ParseStatus_NeedReparse_SetValue(thisFile, true);
-
+                    // VerilogGlobals.ParseStatus_NeedReparse_SetValue(thisFile, true);
+                    VerilogGlobals.ParseStatusController.NeedReparse_SetValue(thisFile, true);
                     //VerilogGlobals.ParseStatus_EnsureExists(thisFile);
                     //VerilogGlobals.ParseStatus[thisFile].NeedReparse = true;
                     // VerilogGlobals.NeedReparse = true;

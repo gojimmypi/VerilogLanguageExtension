@@ -268,19 +268,19 @@ namespace VerilogLanguage
                 //{
                 //    ParseStatus.Add(targetFile, new ParseAttribute());
                 //}
-                VerilogGlobals.ParseStatus_EnsureExists(targetFile);
-                bool IsReparsing = false;
-                lock(ParseStatus) {
-                    IsReparsing = ParseStatus[targetFile].IsReparsing;
-                }
-                if (IsReparsing)
+                //ParseStatusController.EnsureExists(targetFile);
+                //bool IsReparsing = false;
+                //lock(_synchronizationParseStatus) {
+                //    IsReparsing = ParseStatus[targetFile].IsReparsing;
+                //}
+                if (ParseStatusController.IsReparsing(targetFile))
                 {
                     // TODO what is this for? does it help with threading? (probably not)
                     Thread.Sleep(50);
                 }
                 else
                 {
-                    lock (ParseStatus)
+                    lock (_synchronizationParseStatus)
                     {
                         ParseStatus[targetFile].IsReparsing = true;
                     }
@@ -297,7 +297,7 @@ namespace VerilogLanguage
         public static void Reparse(ITextBuffer buffer, string forFile = "")
         {
             //if (NeedReparse)
-            if (VerilogGlobals.ParseStatus_NeedReparse(forFile)) // ensure the dictionary item exists for the ParseStatus of this file and check if it is time to reparse
+            if (VerilogGlobals.ParseStatusController.NeedReparse(forFile)) // ensure the dictionary item exists for the ParseStatus of this file and check if it is time to reparse
             {
                 threadbuffer = buffer;
                 threadFile = forFile;
@@ -330,9 +330,9 @@ namespace VerilogLanguage
             //{
             //    ParseStatus.Add(targetFile,  new ParseAttribute());
             //}
-            lock (VerilogGlobals.ParseStatus)
+            lock (_synchronizationParseStatus)
             {
-                VerilogGlobals.ParseStatus_EnsureExists(targetFile);
+                VerilogGlobals.ParseStatusController.EnsureExists(targetFile);
                 ParseStatus[targetFile].IsReparsing = true;
                 //IsReparsing = true;
 
@@ -386,7 +386,9 @@ namespace VerilogLanguage
             double duration2;
             double duration3;
             editingBufferAttributes = new List<BufferAttribute>(); // re-initialize the global editingBufferAttributes used for editing
-            lock(editingBufferAttributes)
+            // TODO lock on private object, see _synchronizationParseStatus
+
+            lock (editingBufferAttributes)
             {
                 BufferAttribute bufferAttribute = new BufferAttribute();
                 //
@@ -650,7 +652,7 @@ namespace VerilogLanguage
             double duration5 = (DateTime.Now - ProfileStart).TotalMilliseconds;
             // TODO - do we need a final, end-of-file bufferAttribute (probably not)
 
-            lock (VerilogGlobals.ParseStatus)
+            lock (_synchronizationParseStatus)
             {
                 // in case we got here from someplace that set NeedReparse to true - reset to indicate completion:
                 VerilogGlobals.ParseStatus[targetFile].NeedReparse = true;
@@ -662,7 +664,7 @@ namespace VerilogLanguage
             double duration = (DateTime.Now - ProfileStart).TotalMilliseconds;
             BufferAttributes = editingBufferAttributes;
             BufferFirstParseComplete = true;
-            lock (ParseStatus)
+            lock (_synchronizationParseStatus)
             {
                 ParseStatus[targetFile].IsReparsing = false;
             }

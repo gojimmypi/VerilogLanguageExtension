@@ -40,8 +40,8 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.3.2.*")]
+[assembly: AssemblyVersion("0.3.3.*")]
 // commented the next line per  https://stackoverflow.com/questions/356543/can-i-automatically-increment-the-file-build-version-when-using-visual-studio
-//[assembly: AssemblyFileVersion("0.3.2.*")]
+//[assembly: AssemblyFileVersion("0.3.3.*")]
 [assembly: Guid("8E6636E9-EDBC-432F-BA96-85A8AE62D178")]
 

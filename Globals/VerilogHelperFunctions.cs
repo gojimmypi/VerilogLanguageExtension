@@ -25,12 +25,27 @@ namespace VerilogLanguage
                    (theString.Contains(")"));
         }
 
-
+        /// <summary>
+        /// IsDelimiter - any keyword delimiter: spaces, operators, brackets, cr/lf
+        /// </summary>
+        /// <param name="theString"></param>
+        /// <returns></returns>
         static public bool IsDelimiter(string theString)
         {
             return (theString == " ") ||
+                   (theString == "+") ||
+                   (theString == "-") ||
+                   (theString == "%") ||
+                   (theString == "=") ||
                    (theString == ":") ||
                    (theString == "~") ||
+                   (theString == "!") ||
+                   (theString == "&") ||
+
+                   // the comment chars as delimiters are not currently working properly (workaround: use a space on either side)
+                   //(theString == "*") ||  // the "*" character 
+                   //(theString == "/") ||  // and "/" are tricky, as they are used in comments: // and  /* */
+
                    (theString == "[") ||
                    (theString == "]") ||
                    (theString == "}") ||
@@ -40,11 +55,15 @@ namespace VerilogLanguage
                    (theString == ";") ||
                    (theString == ",") ||
                    (theString == "@") ||
-                   (theString == "\"") ||
-                   (theString == "\t");
+                   (theString == "\"") || // the literal double quote character
+                   (theString == "\t");   // a tab
         }
 
-
+        /// <summary>
+        /// IsEndingDelimeter: is one of ], }, )
+        /// </summary>
+        /// <param name="theString"></param>
+        /// <returns></returns>
         static public bool IsEndingDelimeter(string theString)
         {
             return (theString == "]") ||
@@ -89,7 +108,20 @@ namespace VerilogLanguage
                     (theKeyword == "inout") ||
                     (theKeyword == "output") ||
                     (theKeyword == "parameter") ||
+                    (theKeyword == "localparam") ||
                     (theKeyword == "module")
+                   );
+        }
+
+        /// <summary>
+        /// IsVerilogVariableSigner - is the keyword "signed" or "unsigned" as part of declaration?
+        /// </summary>
+        /// <param name="theKeyword"></param>
+        /// <returns></returns>
+        private static bool IsVerilogVariableSigner(string theKeyword)
+        {
+            return ((theKeyword == "signed") ||
+                    (theKeyword == "unsigned")
                    );
         }
 
@@ -102,6 +134,11 @@ namespace VerilogLanguage
         /// <returns></returns>
         private static bool IsVerilogValue(string theKeyword)
         {
+            // if the keyword is null or blank, it is certainly not a keyword, so return false immediately
+            if ((theKeyword == null) || (theKeyword == ""))
+            {
+                return false;
+            }
             bool NumericParts = false; // we'll only have numeric parts, if there are parts to look at! (e.g. "1:1")
             string[] KeywordParts = theKeyword.Split(':');
             if (KeywordParts.Count() > 1)
@@ -109,7 +146,7 @@ namespace VerilogLanguage
                 foreach (string part in KeywordParts)
                 {
                     // recursively call self here, if perhas we have a value like [1'b1:2'b2], or a prevopiusly defined parameter
-                    if (!IsNumeric(part) && !IsVerilogValue(part) && !Is_BracketContent_For(part))
+                    if (!IsNumeric(part) && !IsVerilogValue(part) && !Is_BracketContent_For(thisModuleName, part))
                     {
                         return false;
                     }
@@ -119,7 +156,7 @@ namespace VerilogLanguage
                     }
                 }
             }
-            return theKeyword.Contains("'b") || theKeyword.Contains("'h") || NumericParts;
+            return NumericParts || (theKeyword.FirstRadixValue() != "") ;
         }
 
         /// <summary>

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using VerilogLanguage.VerilogToken;
 
 namespace VerilogLanguage
 {
@@ -13,7 +14,16 @@ namespace VerilogLanguage
         private const int THREAD_TRIGGER_SIZE = 8192;
         private static DateTime ProfileStart;     // we'll keep track of performance; this is the starting time marker
 
+        // some helpers to keep track of text attributes in our buffer (comments, module names, etc)
         private static bool BufferFirstParseComplete = false;
+
+        public static Dictionary<byte, string> ModuleNames = new Dictionary<byte, string> { // we can have up to 255 modules in a buffer
+                                                                                            { 0, "global" } // key = 0 implies global naming
+                                                                                        };
+        public static Dictionary<string, byte> ModuleKeys = new Dictionary<string, byte> { // we can have up to 255 modules in a buffer
+                                                                                            {"global", 0 } // key = 0 implies global naming
+                                                                                        };
+
         public static List<BufferAttribute> BufferAttributes = new List<BufferAttribute>(); // this is the buffer actually used
         private static List<BufferAttribute> editingBufferAttributes = new List<BufferAttribute>(); // buffer being built in a separate thread
 
@@ -27,9 +37,10 @@ namespace VerilogLanguage
             private int _LineStart;
             private int _LineEnd;
             private bool _IsComment;
-            private int _SquareBracketDepth;
-            private int _RoundBracketDepth;
-            private int _SquigglyBracketDepth;
+            private int _SquareBracketDepth; // TODO limit to byte size
+            private int _RoundBracketDepth; // TODO limit to byte size
+            private int _SquigglyBracketDepth; // TODO limit to byte size
+            private byte _ModuleNameKey; // the ModuleNames byte key value
 
             #region "Property Implementation"
             public int Start
@@ -148,6 +159,19 @@ namespace VerilogLanguage
                     IsEmpty = false;
                 }
             }
+
+            public byte ModuleNameKey
+            {
+                get
+                {
+                    return _ModuleNameKey;
+                }
+                set
+                {
+                    _ModuleNameKey = value;
+                    IsEmpty = false;
+                }
+            }
             #endregion
 
 
@@ -165,6 +189,7 @@ namespace VerilogLanguage
                 _SquareBracketDepth = 0;
                 _RoundBracketDepth = 0;
                 _SquigglyBracketDepth = 0;
+                _ModuleNameKey = 0; // 0 = "global"
             }
 
             public object Clone()
@@ -206,6 +231,7 @@ namespace VerilogLanguage
                 IsContinuedLineComment = commentHelper.HasOpenLineComment; // we'll use this when processing the VerilogToken item in the commentHelper, above
                 foreach (CommentHelper.CommentHelper.CommentItem Item in commentHelper.CommentItems)
                 {
+                    // TODO - are we actually doing anything with TestComment, or is this just for testing VerilogGlobals.TextIsComment() ??
                     bool TestComment = VerilogGlobals.TextIsComment(theLineNumber, LinePosition);
                     LinePosition += Item.ItemText.Length;
 
@@ -228,21 +254,36 @@ namespace VerilogLanguage
             }
         }
 
-        public static int LastReparseVersion = 0;
-        public static bool IsReparsing = false;
+        //public static int LastReparseVersion = 0;
+        //public static bool IsReparsing = false;
+
+
 
         public class ThreadReparse
         {
-            public static void DoWork()
+            public static void DoWork(string targetFile)
             {
-                if (IsReparsing)
+                // ensure we have a ParseAttribute for this file
+                //if (!ParseStatus.ContainsKey(targetFile))
+                //{
+                //    ParseStatus.Add(targetFile, new ParseAttribute());
+                //}
+                //ParseStatusController.EnsureExists(targetFile);
+                //bool IsReparsing = false;
+                //lock(_synchronizationParseStatus) {
+                //    IsReparsing = ParseStatus[targetFile].IsReparsing;
+                //}
+                if (ParseStatusController.IsReparsing(targetFile))
                 {
                     // TODO what is this for? does it help with threading? (probably not)
                     Thread.Sleep(50);
                 }
                 else
                 {
-                    IsReparsing = true;
+                    lock (_synchronizationParseStatus)
+                    {
+                        ParseStatus[targetFile].IsReparsing = true;
+                    }
                     VerilogGlobals.ReparseWork(threadbuffer, threadFile);
                     // TODO once reparsing is done in a thread, we need to tell the viewport to redraww the screen
                     Thread.Sleep(10);
@@ -255,7 +296,8 @@ namespace VerilogLanguage
         /// <param name="buffer"></param>
         public static void Reparse(ITextBuffer buffer, string forFile = "")
         {
-            if (NeedReparse)
+            //if (NeedReparse)
+            if (VerilogGlobals.ParseStatusController.NeedReparse(forFile)) // ensure the dictionary item exists for the ParseStatus of this file and check if it is time to reparse
             {
                 threadbuffer = buffer;
                 threadFile = forFile;
@@ -263,48 +305,70 @@ namespace VerilogLanguage
                 if (threadActive)
                 {
                     // Do reparse work as a separate thread
-                    Thread thread1 = new Thread(ThreadReparse.DoWork);
+                    // Thread thread1 = new Thread(ThreadReparse.DoWork); // this only works if there are no paraketers to work()
+                    //
+                    // for lambda expressions on threads with parameters, see https://stackoverflow.com/questions/1195896/threadstart-with-parameters/1195915
+                    Thread thread1 = new Thread( () => ThreadReparse.DoWork(forFile));
                     thread1.Start();
                 }
                 else
                 {
                     // Do blocking reparse work when the files are relatively small
-                    ThreadReparse.DoWork();
+                    ThreadReparse.DoWork(forFile);
                 }
             }
             // ThreadReparse.DoWork();
         }
         public static void ReparseWork(ITextBuffer buffer, string targetFile)
         {
-            System.Diagnostics.Debug.WriteLine("Starting ReparseWork...");
-            IsReparsing = true;
-            if (buffer == null)
-            {
-                IsReparsing = false;
-                return;
-            }
-            if (buffer.EditInProgress)
-            {
-                IsReparsing = false;
-                return;
-            }
-            
             int thisBufferVersion = 0;
-            try
+
+            System.Diagnostics.Debug.WriteLine("Starting ReparseWork...");
+
+            // ensure our ParseStatus dictionary of ParseAttribute items has an item for our current file
+            //if (!ParseStatus.ContainsKey(targetFile))
+            //{
+            //    ParseStatus.Add(targetFile,  new ParseAttribute());
+            //}
+            lock (_synchronizationParseStatus)
             {
-                thisBufferVersion = buffer.CurrentSnapshot.Version.VersionNumber;
-            }
-            catch
-            {
-                thisBufferVersion = 0;
+                VerilogGlobals.ParseStatusController.EnsureExists(targetFile);
+                ParseStatus[targetFile].IsReparsing = true;
+                //IsReparsing = true;
+
+                if (buffer == null)
+                {
+                    ParseStatus[targetFile].IsReparsing = false;
+                    // IsReparsing = false;
+                    return;
+                }
+
+                if (buffer.EditInProgress)
+                {
+                    ParseStatus[targetFile].IsReparsing = false;
+                    // IsReparsing = false;
+                    return;
+                }
+
+                try
+                {
+                    thisBufferVersion = buffer.CurrentSnapshot.Version.VersionNumber;
+                }
+                catch
+                {
+                    thisBufferVersion = 0;
+                }
+
+                // if we could not determine a version ( = 0), or if the last time we reparsed was for this same buffer, then exit
+                if ((thisBufferVersion == 0) || (ParseStatus[targetFile].LastReparseVersion == thisBufferVersion))
+                {
+                    ParseStatus[targetFile].IsReparsing = false;
+                    // IsReparsing = false;
+                    return;
+                }
             }
 
-            // if we could not determine a version ( = 0), or if the last time we reparsed was for this same buffer, then exit
-            if ((thisBufferVersion == 0) || (LastReparseVersion == thisBufferVersion))
-            {
-                IsReparsing = false;
-                return;
-            }
+
             //if ((DateTime.Now - ProfileStart).TotalMilliseconds < 1000)
             //{
             //    ProfileStart = DateTime.Now;
@@ -322,7 +386,9 @@ namespace VerilogLanguage
             double duration2;
             double duration3;
             editingBufferAttributes = new List<BufferAttribute>(); // re-initialize the global editingBufferAttributes used for editing
-            lock(editingBufferAttributes)
+            // TODO lock on private object, see _synchronizationParseStatus
+
+            lock (editingBufferAttributes)
             {
                 BufferAttribute bufferAttribute = new BufferAttribute();
                 //
@@ -332,6 +398,40 @@ namespace VerilogLanguage
                 {
                     duration2 = (DateTime.Now - ProfileStart).TotalMilliseconds;
                     bufferAttribute.LineNumber = thisLineNumber;
+
+                    // TODO move this to separate function
+                    if (thisModuleName != "")
+                    {
+                        if (!ModuleNames.ContainsValue(thisModuleName))
+                        {
+                            byte thisNewKey;
+                            if (ModuleNames.Count < 256)
+                            {
+                                thisNewKey = (byte)ModuleNames.Count;
+                            }
+                            else
+                            {
+                                // TODO this is actually an error! do something here (popup warning?)
+                                thisNewKey = 0; // we'll (incorrectly) assume global space if there are more than 255 modules 
+                            }
+                            ModuleNames.Add(thisNewKey, thisModuleName);
+                            ModuleKeys.Add(thisModuleName, thisNewKey); // build two dictionaries for runtime performance
+                            
+                            // create placeholder for variables
+                            if (!VerilogVariables.ContainsKey(thisModuleName))
+                            {
+                                VerilogVariables.Add(thisModuleName, new Dictionary<string, VerilogTokenTypes> { });
+                            }
+
+                            // ensure VerilogVariableHoverText has a dictionary for [thisModuleName]
+                            if (!VerilogVariableHoverText.ContainsKey(thisModuleName))
+                            {
+                                VerilogVariableHoverText.Add(thisModuleName, new Dictionary<string, string> { });
+                            }
+                        }
+                        bufferAttribute.ModuleNameKey = ModuleKeys[thisModuleName]; // ModuleNames.FirstOrDefault(x => x.Value == thisModuleName).Key; // thanks stackoverflow https://stackoverflow.com/questions/2444033/get-dictionary-key-by-value
+                    }
+
                     editingBufferAttributes.Add(bufferAttribute);
                     bufferAttribute = new BufferAttribute();
 
@@ -552,15 +652,47 @@ namespace VerilogLanguage
             double duration5 = (DateTime.Now - ProfileStart).TotalMilliseconds;
             // TODO - do we need a final, end-of-file bufferAttribute (probably not)
 
-            // in case we got here from someplace that set NeedReparse to true - reset to indicate completion:
-            VerilogGlobals.NeedReparse = false;
-            VerilogGlobals.LastParseTime = DateTime.Now;
-            VerilogGlobals.LastReparseVersion = thisBufferVersion;
+            lock (_synchronizationParseStatus)
+            {
+                // in case we got here from someplace that set NeedReparse to true - reset to indicate completion:
+                VerilogGlobals.ParseStatus[targetFile].NeedReparse = true;
+                //VerilogGlobals.NeedReparse = false;
+                VerilogGlobals.ParseStatus[targetFile].LastParseTime = DateTime.Now;
+                //VerilogGlobals.LastParseTime = DateTime.Now;
+                VerilogGlobals.ParseStatus[targetFile].LastReparseVersion = thisBufferVersion;
+            }
             double duration = (DateTime.Now - ProfileStart).TotalMilliseconds;
             BufferAttributes = editingBufferAttributes;
             BufferFirstParseComplete = true;
-            IsReparsing = false;
+            lock (_synchronizationParseStatus)
+            {
+                ParseStatus[targetFile].IsReparsing = false;
+            }
         } // Reparse
+
+        /// <summary>
+        /// TextModuleName return the Verilog module name for the text located AtLine and AtPosition
+        /// </summary>
+        /// <param name="AtLine"></param>
+        /// <param name="AtPosition"></param>
+        /// <returns></returns>
+        public static string TextModuleName(int AtLine, int AtPosition)
+        {
+            string res = "global";
+            foreach (var thisBufferAttribute in BufferAttributes)
+            {
+                if ((thisBufferAttribute.LineNumber == AtLine)
+//                      && (thisBufferAttribute.LineStart <= AtPosition)
+//                     && ((AtPosition <= thisBufferAttribute.LineEnd) || (thisBufferAttribute.LineEnd == -1))
+                   )
+                {
+                    byte thisModuleNameKey = thisBufferAttribute.ModuleNameKey;
+                    ModuleNames.TryGetValue(thisModuleNameKey, out res);
+                    break; // no need to continue searching on foreach once we have an answer
+                }
+            }
+            return res;
+        }
 
         /// <summary>
         ///     TextIsComment - is the text on line [AtLine] starting at position [AtPosition] a comment?

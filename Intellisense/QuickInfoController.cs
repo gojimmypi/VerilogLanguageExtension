@@ -16,6 +16,7 @@ using Microsoft.VisualStudio.Language.Intellisense;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.Utilities;
+using VerilogLanguage;
 
 namespace VSLTK.Intellisense
 {
@@ -76,7 +77,10 @@ namespace VSLTK.Intellisense
         private void OnTextViewMouseHover(object sender, MouseHoverEventArgs e)
         {
             string thisFile = VerilogLanguage.VerilogGlobals.GetDocumentPath(_textView.TextSnapshot);
-            if (VerilogLanguage.VerilogGlobals.NeedReparse)
+            // VerilogLanguage.VerilogGlobals.ParseStatus_EnsureExists(thisFile);
+            //if (VerilogLanguage.VerilogGlobals.NeedReparse)
+            //if (VerilogLanguage.VerilogGlobals.ParseStatus[thisFile].NeedReparse)
+            if (VerilogGlobals.ParseStatusController.NeedReparse(thisFile)) // ensure the dictionary item exists for the ParseStatus of this file and check if it is time to reparse
             {
                 if (_subjectBuffers.Count == 1)
                 {

@@ -54,7 +54,7 @@ namespace VerilogLanguage.VerilogToken
         //[BaseDefinition("projection")]
         //internal static FileExtensionToContentTypeDefinition VerilogFileType = null;
 
-        // semi-colon delimited file extensions doe not seem to work for VS2015 (but find for VS2017 and 2019)
+        // semi-colon delimited file extensions does not seem to work for VS2015 (but fine for VS2017 and 2019)
         // so we'll pull them out into different declarations
         [Export]
         [FileExtension(".v")] 
@@ -210,9 +210,10 @@ namespace VerilogLanguage.VerilogToken
                 [VerilogTokenTypes.Verilog_Variable_inout] = typeService.GetClassificationType("Variable_inout"),
                 [VerilogTokenTypes.Verilog_Variable_reg] = typeService.GetClassificationType("Variable_reg"),
                 [VerilogTokenTypes.Verilog_Variable_wire] = typeService.GetClassificationType("Variable_wire"),
+                [VerilogTokenTypes.Verilog_Variable_localparam] = typeService.GetClassificationType("Variable_localparam"),
                 [VerilogTokenTypes.Verilog_Variable_parameter] = typeService.GetClassificationType("Variable_parameter"),
                 [VerilogTokenTypes.Verilog_Variable_duplicate] = typeService.GetClassificationType("Variable_duplicate"),
-
+                [VerilogTokenTypes.Verilog_Variable_module] = typeService.GetClassificationType("Variable_module"),
                 // primitives
                 [VerilogTokenTypes.Verilog_Primitive_and] = typeService.GetClassificationType("Verilog_Primitive_and"),
                 [VerilogTokenTypes.Verilog_Primitive_nand] = typeService.GetClassificationType("Verilog_Primitive_nand"),
@@ -242,9 +243,20 @@ namespace VerilogLanguage.VerilogToken
             {
                 var tagSpans = tagSpan.Span.GetSpans(spans[0].Snapshot);
                 // each of the text values found for tagSpan.Tag.type must be defined above in VerilogClassifier
-                yield return
-                    new TagSpan<ClassificationTag>(tagSpans[0],
-                                                   new ClassificationTag(_VerilogTypeClassifications[tagSpan.Tag.type]));
+                if (_VerilogTypeClassifications.ContainsKey(tagSpan.Tag.type)) {
+                    yield return
+                        new TagSpan<ClassificationTag>(tagSpans[0],
+                                                       new ClassificationTag(_VerilogTypeClassifications[tagSpan.Tag.type]));
+                }
+                else
+                {
+                    // TODO - how did we get here??
+                    string a = "Debug: Key not found!";
+                    yield return
+                        new TagSpan<ClassificationTag>(tagSpans[0],
+                                                       new ClassificationTag(_VerilogTypeClassifications[VerilogTokenTypes.Verilog_default]));
+                }
+
             }
         }
     }

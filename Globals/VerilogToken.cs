@@ -86,7 +86,10 @@ namespace VerilogLanguage
             VerilogToken thisToken = new VerilogToken();
             VerilogParseState thisContinuedParseState = new VerilogParseState(0);
 
-            // AddToken - appends the current token part to the array and create a new thisToken to build
+            // AddToken - appends the current token part to the array and create a new thisToken to build.
+            // reminder that here we are only splitting text into token items. 
+            // See VerilogTokenTagger for actually setting the context (e.g. color) of  each token item.
+            // 
             void AddToken()
             {
                 string thisItem = thisToken.ParseState.thisItem;
@@ -110,14 +113,14 @@ namespace VerilogLanguage
 
                 if (thisToken.ParseState.IsNewDelimitedSegment)
                 {
-                    // anytime a delimiter is encountered, we start a new text segment 
-                    // note the delimiter itself is in a colorizable segment
+                            // anytime a delimiter is encountered, we start a new text segment 
+                            // note the delimiter itself is in a colorizable segment
 
-                    // there's a new delimiter, so add the current item and prep for the next one
+                            // there's a new delimiter, so add the current item and prep for the next one
                     AddToken();
 
                     // once the ParseState is configured (above, when assigning thisChar), set the context of the item
-                    thisToken.SetContext(); // TOFO do we really need this? context is alreasy set
+                    thisToken.SetContext(); // TODO do we really need this? context is already set
                     // at the end of each loop, set the prior values
                     thisToken.ParseState.SetPriorValues();
                 } // end of for loop look at each char

@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.Text.Operations;
 using Microsoft.VisualStudio.Text.Tagging;
+using static VerilogLanguage.VerilogGlobals;
 
 // Code based on Walkthrough: Highlighting Text
 // See: https://docs.microsoft.com/en-us/visualstudio/extensibility/walkthrough-highlighting-text?view=vs-2015
@@ -63,7 +64,11 @@ namespace VerilogLanguage.Highlighting
             {
                 UpdateAtCaretPosition(View.Caret.Position);
                 string thisFile = VerilogLanguage.VerilogGlobals.GetDocumentPath(View.TextSnapshot);
-                VerilogGlobals.NeedReparse = true;
+                //VerilogGlobals.ParseStatus_EnsureExists(thisFile);
+                //VerilogGlobals.ParseStatus[thisFile].NeedReparse = true;
+                // VerilogGlobals.ParseStatus_NeedReparse_SetValue(thisFile, true);
+                ParseStatusController.NeedReparse_SetValue(thisFile, true);
+                //VerilogGlobals.NeedReparse = true;
                 VerilogGlobals.Reparse(SourceBuffer, thisFile);
             }
         }

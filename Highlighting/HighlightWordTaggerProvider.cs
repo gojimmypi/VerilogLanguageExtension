@@ -37,7 +37,19 @@ namespace VerilogLanguage.Highlighting
 
             // TODO - do we really want to reparse here??
             // this appears to be the only place called when first opening a file. (?)
-            VerilogGlobals.NeedReparse = true;
+            //
+            // keywords: onload initialize startup 
+            //
+            VerilogGlobals.ParseStatusController.Init(thisFile);
+
+            //lock (VerilogGlobals.ParseStatus[thisFile])
+            //{
+            //    // VerilogGlobals.NeedReparse = true;
+            //    VerilogGlobals.ParseStatus[thisFile].NeedReparse = true;
+            //}
+            // VerilogGlobals.ParseStatus_NeedReparse_SetValue(thisFile, true);
+            VerilogGlobals.ParseStatusController.NeedReparse_SetValue(thisFile, true);
+
             VerilogGlobals.Reparse(buffer,thisFile); // parse the buffer at file load time
 
             ITextStructureNavigator textStructureNavigator =

@@ -92,7 +92,15 @@ namespace VerilogLanguage
             // being viewed. TODO - come up with something proper and more graceful.
             //
             // we'll preparse the buffer upon OnTextViewMouseHover in the QuickInfoController
-            VerilogGlobals.NeedReparse = true;
+            string thisFile = VerilogLanguage.VerilogGlobals.GetDocumentPath(TextView.TextSnapshot);
+            //VerilogGlobals.ParseStatus_EnsureExists(thisFile);
+            //lock (VerilogGlobals.ParseStatus[thisFile])
+            //{
+            //     VerilogGlobals.ParseStatus[thisFile].NeedReparse = true;
+            //}
+            VerilogGlobals.ParseStatusController.NeedReparse_SetValue(thisFile, true);
+
+            // VerilogGlobals.NeedReparse = true;
 
             // 1. Pre-process
             if (pguidCmdGroup == VSConstants.VSStd2K)

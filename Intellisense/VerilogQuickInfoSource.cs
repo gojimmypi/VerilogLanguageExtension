@@ -191,10 +191,19 @@ namespace VerilogLanguage
                     var tagSpan = curTag.Span.GetSpans(_buffer).First();
                     string thisHoverKey = tagSpan.GetText();
 
-                    if (VerilogGlobals.VerilogVariableHoverText.Keys.Contains(thisHoverKey))
+                    // 510 = tagSpan.Snapshot.GetLineFromPosition(tagSpan.Start.Position).Extent.Start.Position
+                    // 523 = ((Microsoft.VisualStudio.Text.Utilities.MappingPointSnapshot)curTag.Span.Start)._anchor.Position                                                   // by the time we get here, we've lost the scope of which module we are in, so a helper function is needed
+
+                    int thisLine = tagSpan.Snapshot.GetLineFromPosition(tagSpan.Start.Position).LineNumber ;
+                    int thisPosition = tagSpan.Start.Position
+                                       - tagSpan.Snapshot.GetLineFromPosition(tagSpan.Start.Position).Extent.Start.Position;
+                                          // tagSpan.Snapshot.GetLineFromPosition(tagSpan.Start.Position).End.Position;
+                    string thisScopeName = VerilogGlobals.TextModuleName(thisLine,
+                                                                          thisPosition); // TODO get proper values!
+                    if (VerilogGlobals.VerilogVariableHoverText[thisScopeName].Keys.Contains(thisHoverKey))
                     {
                         applicableToSpan = _buffer.CurrentSnapshot.CreateTrackingSpan(tagSpan, SpanTrackingMode.EdgeExclusive);
-                        quickInfoContent.Add(VerilogGlobals.VerilogVariableHoverText[thisHoverKey]);
+                        quickInfoContent.Add(VerilogGlobals.VerilogVariableHoverText[thisScopeName][thisHoverKey]);
                     }
                 }
 

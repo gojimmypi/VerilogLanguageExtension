@@ -163,7 +163,7 @@ module picorv32 #(
 
 	localparam WITH_PCPI = ENABLE_PCPI || ENABLE_MUL || ENABLE_FAST_MUL || ENABLE_DIV;
 
-	localparam [35:0] TRACE_BRANCH = {4'b 0001, 32'b 0};
+	localparam [35:0] TRACE_BRANCH = {4'b 0001, 32'b 0}; 
 	localparam [35:0] TRACE_ADDR   = {4'b 0010, 32'b 0};
 	localparam [35:0] TRACE_IRQ    = {4'b 1000, 32'b 0};
 

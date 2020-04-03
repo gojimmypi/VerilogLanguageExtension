@@ -38,7 +38,7 @@ namespace VerilogLanguage
                         }
                         else
                         {
-                            if (ParseState.hasOpenRoundBracket && !IsDelimiter(ParseState.thisChar))
+                            if (ParseState.hasOpenSquigglyBracket && !IsDelimiter(ParseState.thisChar))
                             {
                                 Context = VerilogTokenContextType.SquigglyBracketContents;
                             }

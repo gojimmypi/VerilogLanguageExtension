@@ -88,7 +88,7 @@ namespace VerilogLanguage
 
                     if (IsNewDelimitedSegment)
                     {
-
+                        IsBuildingEmbeddedSpaceItem = false;
                     }
                     else
                     {

@@ -4,7 +4,4 @@ module picorv32 #(
  
 localparam rf = 4/ENABLE_IRQ /* */ 
 wire a = rf*4;
-
-// see also file: issue16.v
-
-
+ 

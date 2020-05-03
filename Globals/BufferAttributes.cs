@@ -308,7 +308,7 @@ namespace VerilogLanguage
 
         //private static void LongRunningTaskIsDone()
         //{
-            
+
         //}
 
         /// <summary>
@@ -332,7 +332,10 @@ namespace VerilogLanguage
                     //
                     // for lambda expressions on threads with parameters, see https://stackoverflow.com/questions/1195896/threadstart-with-parameters/1195915
                     //LongRunningTaskEvent += LongRunningTaskIsDone;
-                    Thread thread1 = new Thread( () => { ThreadReparse.DoWork(forFile); LongRunningTaskIsDone(); }){ IsBackground = true };;
+                    Thread thread1 = new Thread( () => {
+                        ThreadReparse.DoWork(forFile);
+                        // LongRunningTaskIsDone();  // this doesn't help much, as we don't have access to TagChanged from within this class
+                    }){ IsBackground = true };;
                     thread1.Start();
                 }
                 else

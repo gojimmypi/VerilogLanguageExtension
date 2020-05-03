@@ -257,6 +257,11 @@ namespace VerilogLanguage
         public static void InitHoverBuilder()
         {
             // re-initialize variables to above values
+            if (VerilogVariableHoverText != null)
+            {
+                System.Diagnostics.Debug.WriteLine("destroying VerilogVariableHoverText!");
+
+            }
             VerilogVariableHoverText = new Dictionary<string, Dictionary<string, string>>
             // e.g. ["led"] = "An LED."
             {
@@ -266,15 +271,20 @@ namespace VerilogLanguage
                 }
             };
 
-
-            VerilogVariables = new Dictionary<string, Dictionary<string, VerilogTokenTypes>> 
-            // e.g. ["module name"]["led"] = VerilogTokenTypes.Verilog_Variable,
+            // if (VerilogVariables == null || VerilogVariables.Count < 1 || VerilogVariables.ContainsKey("globals"))
+            // we need to always rebuild this, as how would we otherwise know if there are *duplicates* ?
+            // TODO - come up with something better to allow keeping what we already know, but also detect dupes
             {
+
+                VerilogVariables = new Dictionary<string, Dictionary<string, VerilogTokenTypes>> 
+                // e.g. ["module name"]["led"] = VerilogTokenTypes.Verilog_Variable,
                 {
-                    "global",
-                    new Dictionary<string, VerilogTokenTypes>{ }
-                }
-            };
+                    {
+                        "global",
+                        new Dictionary<string, VerilogTokenTypes>{ }
+                    }
+                };
+            }
             thisHoverName = "";
 
             thisVariableDeclarationText = ""; // this is only variable declaration, even if inside a module declaration

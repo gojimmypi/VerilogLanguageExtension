@@ -213,10 +213,12 @@ namespace VerilogLanguage
 
             if (!Broker.IsCompletionActive(TextView))
             {
+                System.Diagnostics.Debug.WriteLine("OCompletion Controller NOT Broker.IsCompletionActive");
                 _currentSession = Broker.CreateCompletionSession(TextView, snapshot.CreateTrackingPoint(caret, PointTrackingMode.Positive), true);
             }
             else
             {
+                System.Diagnostics.Debug.WriteLine("OCompletion Controller Broker.IsCompletionActive");
                 _currentSession = Broker.GetSessions(TextView)[0];
             }
             _currentSession.Dismissed += (sender, args) => _currentSession = null;

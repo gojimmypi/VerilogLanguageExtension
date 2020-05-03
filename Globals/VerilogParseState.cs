@@ -63,7 +63,22 @@ namespace VerilogLanguage
                     }
                     hasOpenSquigglyBracket = (OpenSquigglyBracketCount != 0);
 
-                    thisCharIsDelimiter = IsDelimiter(value);
+                    thisCharIsDelimiter = IsDelimiter(value)
+
+                                            ||
+
+                                          // special case for "*" when not a comment delimiter
+                                          (value == "*" && priorValue != "/") // if we did not find "/*", then this "*" is a delimiter
+                                            ||
+                                          (priorValue == "*" && value != "/") // if we did not find "*/", then this "*" is a delimiter
+
+                                            ||
+                                          
+                                          // special case for "/" when not a comment delimter
+                                          (value == "/" && priorValue != "*" && priorValue != "/" ) // if we did not find "*/", then this "/" is a delimiter
+                                            ||
+                                          (priorValue == "/" && value != "*" && value != "/"); // if we did not find "/*" then this "/" is a delimiter 
+
                     thisCharIsEndingDelimiter = IsEndingDelimeter(value);
                     priorCharIsDelimiter = IsDelimiter(priorChar);
 

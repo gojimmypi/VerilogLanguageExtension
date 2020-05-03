@@ -200,6 +200,17 @@ namespace VerilogLanguage
                                           // tagSpan.Snapshot.GetLineFromPosition(tagSpan.Start.Position).End.Position;
                     string thisScopeName = VerilogGlobals.TextModuleName(thisLine,
                                                                           thisPosition); // TODO get proper values!
+
+                    //ensure VerilogVariableHoverText has a dictionary for [thisScopeName]
+                    if (VerilogGlobals.VerilogVariableHoverText.ContainsKey(thisScopeName))
+                    {
+                        // all good
+                    }
+                    else
+                    {
+                        VerilogGlobals.VerilogVariableHoverText.Add(thisScopeName, new Dictionary<string, string> { });
+                    }
+
                     if (VerilogGlobals.VerilogVariableHoverText[thisScopeName].Keys.Contains(thisHoverKey))
                     {
                         applicableToSpan = _buffer.CurrentSnapshot.CreateTrackingSpan(tagSpan, SpanTrackingMode.EdgeExclusive);

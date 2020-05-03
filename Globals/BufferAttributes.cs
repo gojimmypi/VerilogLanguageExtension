@@ -765,13 +765,17 @@ namespace VerilogLanguage
             lock(BufferAttributes)
             {
                 int hint = 0;
-                if (BufferAttribute_at_LineNumber != null)
+                if ((BufferAttribute_at_LineNumber != null) && (BufferAttribute_at_LineNumber.Length > AtLine))
                 {
                     hint= VerilogGlobals.BufferAttribute_at_LineNumber[AtLine];
                 }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("TextIsComment hint not available in BufferAttribute_at_LineNumber");
+                }
                 // TODO use hint
                 // foreach (var thisBufferAttribute in BufferAttributes)
-                for (int i = hint; i < BufferAttributes.Count; i++)
+                for (int i = hint; i < BufferAttributes.Count - 1; i++)
                 {
                     BufferAttribute thisBufferAttribute = BufferAttributes[i];
                     if ((thisBufferAttribute.LineNumber == AtLine)

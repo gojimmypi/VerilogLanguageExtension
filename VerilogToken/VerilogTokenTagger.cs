@@ -100,7 +100,13 @@ namespace VerilogLanguage.VerilogToken
             // If this isn't the most up-to-date version of the buffer, then ignore it for now (we'll eventually get another change event).
             if (e.After != _buffer.CurrentSnapshot)
                 return;
-            
+
+            if (e.Changes.Count < 1)
+            {
+                // TODO - how did we get here if there are no changes? (found this after exception during debug. no apparent invoke. )
+                return;
+            }
+
             string theNewText = e.Changes[0].NewText;
             string theOldText = e.Changes[0].OldText;
 
@@ -236,7 +242,7 @@ namespace VerilogLanguage.VerilogToken
                             // is this item a comment? If so, color as appropriate. comments take highest priority: no other condition will change color of a comment
                             if (Item.IsComment)
                             {
-                                System.Diagnostics.Debug.WriteLine("IEnumerable VerilogTokenTag yield comment ");
+                                // System.Diagnostics.Debug.WriteLine("IEnumerable VerilogTokenTag yield comment for item " + Item.ItemText??"");
                                 yield return new TagSpan<VerilogTokenTag>(tokenSpan,
                                                                       new VerilogTokenTag(VerilogTokenTypes.Verilog_Comment));
                             }
@@ -271,12 +277,18 @@ namespace VerilogLanguage.VerilogToken
                                     if (VerilogGlobals.VerilogVariables.ContainsKey(thisScope))
                                     {
                                         // the current scope (typically a module name) is defined. So do we have a known variable?
-                                        if (VerilogGlobals.VerilogVariables.ContainsKey(thisScope) && VerilogGlobals.VerilogVariables[thisScope].ContainsKey(Item.ItemText))
+                                        if (VerilogGlobals.VerilogVariables[thisScope].ContainsKey(Item.ItemText))
                                         {
                                             // TODO do we need: if (tokenSpan.IntersectsWith(curSpan))
                                             System.Diagnostics.Debug.WriteLine("IEnumerable VerilogTokenTag yield variable " + Item.ItemText);
                                             yield return new TagSpan<VerilogTokenTag>(tokenSpan,
                                                                                   new VerilogTokenTag(VerilogGlobals.VerilogVariables[thisScope][Item.ItemText]));
+                                        }
+
+                                        else if (VerilogGlobals.VerilogVariables.ContainsKey(VerilogGlobals.SCOPE_CONST) && VerilogGlobals.VerilogVariables[VerilogGlobals.SCOPE_CONST].ContainsKey(Item.ItemText))
+                                        {
+                                            yield return new TagSpan<VerilogTokenTag>(tokenSpan,
+                                                                                  new VerilogTokenTag(VerilogGlobals.VerilogVariables[VerilogGlobals.SCOPE_CONST][Item.ItemText]));
                                         }
 
                                         else
@@ -335,9 +347,20 @@ namespace VerilogLanguage.VerilogToken
                                     }
                                     else
                                     {
-                                        // TODO - how do we get here when thisScope *is* defined? timing?
-                                        // A: we destroy the VerilogVariables when rescanning (otherwise everyuthing is a duplicate) TODO: keep track of where variables are defined. don't rebui;d
-                                        System.Diagnostics.Debug.WriteLine("Warning! VerilogGlobals.VerilogVariables.ContainsKey({0}) not defined!", thisScope);
+                                        if (VerilogGlobals.VerilogVariables.ContainsKey(VerilogGlobals.SCOPE_CONST) && VerilogGlobals.VerilogVariables[VerilogGlobals.SCOPE_CONST].ContainsKey(Item.ItemText))
+                                        {
+                                            //yield return new TagSpan<VerilogTokenTag>(tokenSpan,
+                                            //      new VerilogTokenTag(VerilogGlobals.VerilogTypes["Verilog_Value"]));
+                                            yield return new TagSpan<VerilogTokenTag>(tokenSpan,
+                                                                                      new VerilogTokenTag(VerilogGlobals.VerilogVariables[VerilogGlobals.SCOPE_CONST][Item.ItemText]));
+
+                                        }
+                                        else
+                                        {
+                                            // TODO - how do we get here when thisScope *is* defined? timing?
+                                            // A: we destroy the VerilogVariables when rescanning (otherwise everyuthing is a duplicate) TODO: keep track of where variables are defined. don't rebui;d
+                                            System.Diagnostics.Debug.WriteLine("Warning! VerilogGlobals.VerilogVariables.ContainsKey({0}) not defined!", thisScope);
+                                        }
                                     }
                                 }
                             }

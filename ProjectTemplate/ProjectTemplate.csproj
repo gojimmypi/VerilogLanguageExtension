@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0"  DefaultTargets="Build"  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release' ">
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ULX3S 12F Deploy' ">
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ULX3S 45F Deploy' ">
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ULX3S 85F Deploy' ">
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug' ">
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="build\vs-clean.bat" />
+    <Compile Include="build\vs-build.bat" />
+    <Compile Include="build\vs-prog.bat" />
+    <Compile Include="top.ys" />
+    <Compile Include="ulx3s_v20.lpf" />
+    <Compile Include="Makefile" />
+    <Compile Include="top.v" />
+  </ItemGroup>
+
+  <Target Name="Build"  >
+    <Message Text="Building Verilog Files" />
+    <MakeDir Directories="$(OutputPath)" Condition="!Exists('$(OutputPath)')" />
+    <Exec Command=".\build\vs-prog.bat"  Condition="'$(Configuration)'=='Debug' "/>
+    <Exec Command=".\build\vs-build.bat" Condition="'$(Configuration)'=='Release' " />
+    <Exec Command=".\build\vs-prog.bat"  Condition="'$(Configuration)'=='ULX3S 12F Deploy' " />
+    <Exec Command=".\build\vs-prog.bat"  Condition="'$(Configuration)'=='ULX3S 45F Deploy' " />
+    <Exec Command=".\build\vs-prog.bat"  Condition="'$(Configuration)'=='ULX3S 85F Deploy' " />
+  </Target>
+  
+  
+
+  <!-- 
+
+%windir%\Sysnative\wsl.exe make ulx3s.bit
+c:\windows\system32\wsl.exe yosys Verilog.ys 
+C:\workspace\ulx3s-examples\bin\ujprog.exe
+
+-->
+     
+  
+  <Target Name="Rebuild" DependsOnTargets="Clean;Build">
+
+  </Target>
+  
+  <Target Name="Clean">
+    <Message Text="Cleaning Verilog Files" />
+    <RemoveDir Directories="$(OutputPath)" />
+    <Exec Command=".\build\vs-clean.bat" />
+  </Target>
+
+  <!--
+  To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+ 
+ </Project>

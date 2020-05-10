@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0"
+            Type="Project"
+            xmlns="http://schemas.microsoft.com/developer/vstemplate/2005"
+            xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+  <TemplateData>
+    <Name>Verilog</Name>
+    <Description>Verilog Project</Description>
+    <Icon>Verilog.ico</Icon>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>Verilog</ProjectSubType>
+    <LanguageTag>Verilog</LanguageTag>
+    <PlatformTag>Windows</PlatformTag>
+    <SortOrder>100</SortOrder>
+    <TemplateID>b021d0f2-465e-4c93-b15d-44d21ac594c4</TemplateID>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>Verilog</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+  </TemplateData>
+  <TemplateContent>
+    <Project File="ProjectTemplate.csproj"
+             ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" OpenInEditor="false">build\vs-build.bat</ProjectItem>
+      <ProjectItem ReplaceParameters="true" OpenInEditor="false">build\vs-clean.bat</ProjectItem>
+      <ProjectItem ReplaceParameters="true" OpenInEditor="false">build\vs-prog.bat</ProjectItem>
+      <ProjectItem ReplaceParameters="true" OpenInEditor="false">top.ys</ProjectItem>
+      <ProjectItem ReplaceParameters="true" OpenInEditor="false">ulx3s_v20.lpf</ProjectItem>
+      <ProjectItem ReplaceParameters="true" OpenInEditor="false">Makefile</ProjectItem>
+      <ProjectItem ReplaceParameters="true" OpenInEditor="true">top.v</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>

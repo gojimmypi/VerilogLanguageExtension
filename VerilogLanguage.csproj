@@ -213,6 +213,7 @@
     </Content>
     <None Include="packages.config" />
     <None Include="README.md" />
+    <None Include="RELEASE_NOTES.md" />
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>

@@ -98,6 +98,7 @@ namespace VerilogLanguage
                     thisToken.Part = thisToken.ParseState.thisItem;
                     if (thisToken.Part != null)
                     {
+                        // thisToken.Part = thisToken.Part.Trim();
                         thisContinuedParseState = thisToken.ParseState;
                         tokens.Add(thisToken);
 

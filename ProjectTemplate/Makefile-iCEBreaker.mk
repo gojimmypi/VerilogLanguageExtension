@@ -1,16 +1,16 @@
   
-PROJ := 7seg_count
-PIN_DEF := ../icebreaker.pcf
+PROJ := top_icebreaker
+PIN_DEF := boards/icebreaker/icebreaker.pcf
 DEVICE := up5k
 
 
 all: $(PROJ).rpt $(PROJ).bin
 
 %.blif: %.v $(ADD_SRC) $(ADD_DEPS)
-	yosys -ql $*.log $(if $(USE_ARACHNEPNR),-DUSE_ARACHNEPNR) -p 'synth_ice40 -top top -blif $@' $< $(ADD_SRC)
+	yosys -ql $*.log $(if $(USE_ARACHNEPNR),-DUSE_ARACHNEPNR) -p 'synth_ice40 -top $(PROJ) -blif $@' $< $(ADD_SRC)
 
 %.json: %.v $(ADD_SRC) $(ADD_DEPS)
-	yosys -ql $*.log $(if $(USE_ARACHNEPNR),-DUSE_ARACHNEPNR) -p 'synth_ice40 -top top -json $@' $< $(ADD_SRC)
+	yosys -ql $*.log $(if $(USE_ARACHNEPNR),-DUSE_ARACHNEPNR) -p 'synth_ice40 -top $(PROJ) -json $@' $< $(ADD_SRC)
 
 ifeq ($(USE_ARACHNEPNR),)
 %.asc: $(PIN_DEF) %.json
@@ -43,7 +43,7 @@ endif
 	vvp -N $< +vcd=$@
 
 prog: $(PROJ).bin
-	iceprog $<
+	/mnt/c/workspace/ulx3s-toolchain/bin/iceprog.exe $<
 
 sudo-prog: $(PROJ).bin
 	@echo 'Executing prog as root!!!'

@@ -57,8 +57,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="boards\ulx3s\ulx3s_v20.lpf" />
     <None Include="build\vs-prog.bat" />
     <None Include="Makefile" />
+    <Content Include="boards\ulx3s\Makefile-ULX3S-12F.mk" />
+    <Content Include="boards\ulx3s\Makefile-ULX3S-85F.mk" />
+    <Content Include="boards\ulx3s\Makefile-ULX3S-45F.mk" />
+    <Content Include="_not_used_Makefile-ULX3S-12F.mk" />
+    <Content Include="Makefile-iCEBreaker.mk" />
+    <None Include="README.md" />
+    <None Include="top_icebreaker.v" />
     <None Include="top.ys" />
     <None Include="ulx3s.ys" />
     <None Include="top.v" />
@@ -73,6 +81,9 @@
     <VSTemplate Include="Verilog.vstemplate">
       <OutputSubPath>Verilog</OutputSubPath>
     </VSTemplate>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="boards\icebreaker\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />

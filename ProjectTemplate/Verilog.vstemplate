@@ -23,7 +23,12 @@
       <ProjectItem ReplaceParameters="true" OpenInEditor="false">build\vs-build.bat</ProjectItem>
       <ProjectItem ReplaceParameters="true" OpenInEditor="false">build\vs-clean.bat</ProjectItem>
       <ProjectItem ReplaceParameters="true" OpenInEditor="false">build\vs-prog.bat</ProjectItem>
-      <ProjectItem ReplaceParameters="true" OpenInEditor="false">top.ys</ProjectItem>
+		
+        <ProjectItem ReplaceParameters="true" OpenInEditor="false">boards\icebreaker\icebreaker.pcf</ProjectItem>
+		<ProjectItem ReplaceParameters="true" OpenInEditor="false">Makefile-iCEBreaker.mk</ProjectItem>
+		<ProjectItem ReplaceParameters="true" OpenInEditor="false">top_icebreaker.v</ProjectItem>
+
+		<ProjectItem ReplaceParameters="true" OpenInEditor="false">top.ys</ProjectItem>
       <ProjectItem ReplaceParameters="true" OpenInEditor="false">ulx3s_v20.lpf</ProjectItem>
       <ProjectItem ReplaceParameters="true" OpenInEditor="false">Makefile</ProjectItem>
       <ProjectItem ReplaceParameters="true" OpenInEditor="true">top.v</ProjectItem>

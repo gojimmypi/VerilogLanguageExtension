@@ -27,8 +27,12 @@
     <Compile Include="Makefile" />
 	  <Compile Include="top.v" />
 	  <Compile Include="boards\icebreaker\icebreaker.pcf" />
+	  <Compile Include="boards\ulx3s\Makefile-ULX3S-12F.mk" />
+	  <Compile Include="boards\ulx3s\Makefile-ULX3S-45F.mk" />
+	  <Compile Include="boards\ulx3s\Makefile-ULX3S-85F.mk" />
 	  <Compile Include="Makefile-iCEBreaker.mk" />
 	  <Compile Include="top_icebreaker.v" />
+	  <Compile Include="Program.cs" />
   </ItemGroup>
 
 	<Target Name="Build"  >
@@ -36,7 +40,7 @@
 		<MakeDir Directories="$(OutputPath)" Condition="!Exists('$(OutputPath)')" />
 		<Exec Command=".\build\vs-prog.bat"  Condition="'$(Configuration)'=='Debug' "/>
 		<Exec Command=".\build\vs-build.bat" Condition="'$(Configuration)'=='Release' " />
-		<Exec Command=".\build\vs-prog.bat iCEBreaker Makefile-iCEBreaker.mk"         Condition="'$(Configuration)'=='iCEBreaker Deploy' " />
+		<Exec Command="start /b .\build\vs-prog.bat iCEBreaker Makefile-iCEBreaker.mk"        ConsoleToMsBuild="true" Condition="'$(Configuration)'=='iCEBreaker Deploy' " />
 		<Exec Command=".\build\vs-prog.bat ULX3S boards\ulx3s\Makefile-ULX3S-12F.mk"  Condition="'$(Configuration)'=='ULX3S 12F Deploy' " />
 		<Exec Command=".\build\vs-prog.bat ULX3S boards\ulx3s\Makefile-ULX3S-45F.mk"  Condition="'$(Configuration)'=='ULX3S 45F Deploy' " />
 		<Exec Command=".\build\vs-prog.bat ULX3S boards\ulx3s\Makefile-ULX3S-85F.mk"  Condition="'$(Configuration)'=='ULX3S 85F Deploy' " />
@@ -60,7 +64,8 @@ C:\workspace\ulx3s-examples\bin\ujprog.exe
   <Target Name="Clean">
     <Message Text="Cleaning Verilog Files" />
     <RemoveDir Directories="$(OutputPath)" />
-    <Exec Command=".\build\vs-clean.bat" />
+    <Exec Command=".\build\vs-clean.bat iCEBreaker Makefile-iCEBreaker.mk" />
+    <Exec Command=".\build\vs-clean.bat ULX3S boards\ulx3s\Makefile-ULX3S-12F.mk" />
   </Target>
 
   <!--

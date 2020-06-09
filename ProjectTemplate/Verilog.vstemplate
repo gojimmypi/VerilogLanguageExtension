@@ -25,13 +25,17 @@
       <ProjectItem ReplaceParameters="true" OpenInEditor="false">build\vs-prog.bat</ProjectItem>
 		
         <ProjectItem ReplaceParameters="true" OpenInEditor="false">boards\icebreaker\icebreaker.pcf</ProjectItem>
+		<ProjectItem ReplaceParameters="true" OpenInEditor="false">boards\ulx3s\Makefile-ULX3S-12F.mk</ProjectItem>
+		<ProjectItem ReplaceParameters="true" OpenInEditor="false">boards\ulx3s\Makefile-ULX3S-45F.mk</ProjectItem>
+		<ProjectItem ReplaceParameters="true" OpenInEditor="false">boards\ulx3s\Makefile-ULX3S-85F.mk</ProjectItem>
 		<ProjectItem ReplaceParameters="true" OpenInEditor="false">Makefile-iCEBreaker.mk</ProjectItem>
 		<ProjectItem ReplaceParameters="true" OpenInEditor="false">top_icebreaker.v</ProjectItem>
 
 		<ProjectItem ReplaceParameters="true" OpenInEditor="false">top.ys</ProjectItem>
       <ProjectItem ReplaceParameters="true" OpenInEditor="false">ulx3s_v20.lpf</ProjectItem>
       <ProjectItem ReplaceParameters="true" OpenInEditor="false">Makefile</ProjectItem>
-      <ProjectItem ReplaceParameters="true" OpenInEditor="true">top.v</ProjectItem>
+		<ProjectItem ReplaceParameters="true" OpenInEditor="false">Program.cs</ProjectItem>
+		<ProjectItem ReplaceParameters="true" OpenInEditor="true">top.v</ProjectItem>
     </Project>
   </TemplateContent>
 </VSTemplate>

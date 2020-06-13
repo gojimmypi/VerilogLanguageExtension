@@ -11,7 +11,7 @@ Hopefully these free and honest suggestions, with no risk to me regarding compan
 
 ## Objective
 
-There's just a 30 minute slot for discussion. If well presented there could be future opportunities for continued dialog
+There's just a 30 minute slot for discussion. If well presented there could be future opportunities for continued dialog.
 
 I'd like to ensure the proper message is well conveyed. I've invited input from several people. (thank you all for the feedback)
 
@@ -29,8 +29,9 @@ but then also being responsive to subsequent email exchange and arranging this c
 
 Lattice Semiconductor is conspicuously missing from the tech community.
 
-"The story about their licensing and their reversal got _far_ more attention on both LinkedIn and Twitter 
-than any of their recent product announcements. That could be an indication that this is much larger than they think" --  Olof Kindgren
+Olof Kindgren:
+>The story about their licensing and their reversal got _far_ more attention on both LinkedIn and Twitter 
+>than any of their recent product announcements. That could be an indication that this is much larger than they think
 
 Lattice hardly ever "likes" or retweets any of the awesome projects using their hardware. Why?
 
@@ -46,13 +47,14 @@ Why not just give out the docs and let those engineers spend their time on impro
 ## Technical Cooperation
 
 Partial reconfiguration - for example: build a riscv processor and load it in, 
-Then change a peripheral and not re-place and route the whole design  (thanks @matthewvenn)
+Then change a peripheral and not re-place and route the whole design.
 
-Claire: "They essentially told us they won't be in our way but they also see no commercial relevance to what we are doing."
+Claire: 
+>They essentially told us they won't be in our way but they also see no commercial relevance to what we are doing.
 
 ## Direct Financial Support
 
-Clair Wolf @oe1cxw is setting up a non-profit. Patreons. Grants for specific projects. Contests and awards.
+Claire Wolf @oe1cxw is setting up a non-profit. Patreons. Grants for specific projects. Contests and awards.
 
 ## Lower Cost
 
@@ -129,7 +131,10 @@ _every year_. Now there's a new company formed after a successful Crowd Supply c
 more people all over the world. The more boards they sell, the more FPGA chips that Lattice sells. The more people that 
 like using lattice chips, the more people that will be more likely to use that same technology in their own project. 
 
-One of the comments I received when putting together these notes: _my fear is that they'll go all for "we see no commercial importance"_
+One of the comments I received when putting together these notes:
+
+> my fear is that they'll go all for "we see no commercial importance""
+
 There's "commercial importance" beyond the quarterly report and balance sheet.
 
 By embracing the open source community, Lattice benefits by having a worldwide enthusiastic team promoting their products. 

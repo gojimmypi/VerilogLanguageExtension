@@ -15,7 +15,7 @@ ULX3S, this toolchain is easily adapted to other FPGA devices with minimal chang
 A custom FPGA "build" is called from a DOS batch file in the [build](./build/) directory. There's a bit of logic there
 that checks for which directory WSL needs to be used. Target Deploys are found in the `<Target Name="Build"  >` section
 of the [ProjectTemplate.csproj](./ProjectTemplate.csproj) file. (yes, it is a bit wonky to have this be a C# app, if anyone
-knows how to chage that to something better, please submit a PR)
+knows how to change that to something better, please submit a PR)
 
 Once the batch file figures out which WSL directory to use, the Linux `make` is called using the local project [Makefile](./Makefile)
 

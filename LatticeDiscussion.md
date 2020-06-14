@@ -143,7 +143,7 @@ Hear first hand what your customers have to say. Engage in dialog. Find out what
 
 ### Web Site 
 
-A section (or better: an entire page) dedicated to Open Source projects
+Promote community created evaluation and development boards; Add a section (or better: an entire page) dedicated to Open Source projects
 https://www.latticesemi.com/solutionsearch?qiptype=982db688d64345bbb3af29e62fee1dc3&active=board
 
 Featuring projects such as:

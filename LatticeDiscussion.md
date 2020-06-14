@@ -97,16 +97,19 @@ I know some FPGA developers that are using VI/VIM. I'm a Visual Studio developer
 
 The easier Lattice makes it for developers to create solutions with their hardware, the more customers Lattice will have. Microsoft has known this for years.
 The single most important relationship is with the developers. Admittedly this may not be as obvious to a hardware chip manufacturer. But FPGAs are
-not your typical hardware. And for FPGAs - it is all about the software.
+not your typical hardware. And for FPGAs - it is all about the software: the more options, the better.
+
+
 
 ## Direct Financial Support
 
 Ideas such as:
 
-* Become a sponsoring member of RISC-V foundation
+* Continue being a sponsoring member of RISC-V foundation
+* Sponsor FOSSi Foundation Events
 * University Student Grant Program
 * Grants for specific projects
-* Contests and Awards
+* More Contests and Awards
 * Individual Patreon support (e.g. [@fpga_dave](https://www.patreon.com/fpga_dave))
 
 ## Lower Cost

@@ -1,6 +1,6 @@
 # Lattice Semiconductor Dialog
 
-Discussion on improving relationship with open source community. The technical landscape is changing.
+Discussion on improving relationship with open source community. Why is this important to Lattice? The technical landscape is changing.
 More people want open source solutions for long term support and improved security visibility. 
 
 Who is @gojimmypi? I'm here as a maker and a hobbyist. I'm not affiliated with Lattice, or any other chip maker.
@@ -11,9 +11,17 @@ There's incredibly exciting work going on in the world of FPGAs. I'd like to see
 
 Hopefully these free and honest suggestions, with no risk to me regarding company politics or history... can make a difference.
 
+## Summary
+
+Lattice should consider:
+
+* Officially embrace the open source communnity and create an "ecosystem" of FPGA products
+* Focus on Software Engineers and allow them to use any IDE
+* Expand Technical Cooperation and Communication
+
 ## Objective
 
-Have Lattice Semiconductor actively engage with the open source community; officially and directly support continued learning opportunities.
+Have Lattice Semiconductor actively engage with the open source community; officially and directly support continued learning opportunities with any IDE.
 
 There's just a 30 minute slot for discussion. If well presented there could be future opportunities for continued dialog.
 
@@ -40,7 +48,8 @@ Olof Kindgren:
 Lattice hardly ever "likes" or retweets any of the awesome projects using their hardware. Why?
 
 There's a great opportunity for Lattice to simply show appreciation for all the great projects that showcase their
-hardware. 
+hardware. (such as [here](https://twitter.com/crowd_supply/status/1242598931869175810?s=20), 
+[here](https://twitter.com/digikey/status/1207788724559499264?s=20), and [here](https://twitter.com/xesscorp/status/1255960246511697920?s=20))
 
 Lattice DM's should be open on Twitter. Perhaps someone wants to contact you with a typo on a web page, or a security vulerability. 
 Even if the person managing Twitter account does not have all the answers... then simply reply that the question has been passed 
@@ -91,9 +100,8 @@ Ideas such as:
 * Become a sponsoring member of RISC-V foundation
 * University Student Grant Program
 * Grants for specific projects
-* Contests and awards
-* Patreons
-* Claire Wolf @oe1cxw is setting up a non-profit
+* Contests and Awards
+* Individual Patreon support (e.g. [@fpga_dave](https://www.patreon.com/fpga_dave))
 
 ## Lower Cost
 
@@ -161,7 +169,8 @@ Have a good working relationship with:
 This is what it is all about, right? What is the _benefit_ to Lattice Semiconductor?
 
 Education and reach. Why not have Lattice chips be the _de facto standard_ in all university and other educational environments? 
-Why let some other company step into this role? Schools don't want expensive, proprietary tools. 
+Why let some other company take this role? Schools don't want expensive, proprietary tools. If lattice doesn't step into
+this role [someone else will](https://twitter.com/OlofKindgren/status/1268612294042247169?s=20).
 
 If there's a comfort zone for students with a particular technology, of course they will likely stick with that technology in
 their next project and with their next employer.
@@ -177,7 +186,7 @@ One of the comments I received when putting together these notes:
 
 There's "commercial importance" beyond the quarterly report and balance sheet.
 
-Evidence that the community *wants* Lattice to be successful. Piotr Esden:
+Evidence that the community *wants* Lattice to be successful; Piotr Esden:
 > [Documented bitstream and a timing database will allow us to focus on creating new applications and products using 
 @latticesemi parts. And we will keep recommending you to our peers](https://twitter.com/esden/status/1268646952708628481?s=20)
 
@@ -185,5 +194,7 @@ Olof Kindgren:
 >[the open source tooling was their way into education and research which would increase brand awareness and sales](https://twitter.com/OlofKindgren/status/1268612294042247169?s=20)
 
 By embracing the open source community, Lattice benefits by having a worldwide enthusiastic team promoting their products. 
-Dollars cannot buy that kind of marketing value.
+Dollars cannot buy that kind of marketing value. 
+
+It's all about the ecosystem.
 

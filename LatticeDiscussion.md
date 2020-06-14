@@ -4,12 +4,16 @@ Discussion on improving relationship with open source community. The technical l
 More people want open source solutions for long term support and improved security visibility. 
 
 Who is @gojimmypi? I'm here as a maker and a hobbyist. I'm not affiliated with Lattice, or any other chip maker.
+I have a Bachelor's in Electronic Engineering, but I work as a senior software engineer at the day job. 
 
 My passion is and always has been electronics. I'm here to try and improve the relationship between the open source community and Lattice Semiconductor.
+There's incredibly exciting work going on in the world of FPGA's. I'd like to see the technology become more commonplace and widely available.
 
-Hopefully these free and honest suggestions, with no risk to me regarding company politics or history... can make a difference. 
+Hopefully these free and honest suggestions, with no risk to me regarding company politics or history... can make a difference.
 
 ## Objective
+
+Have Lattice Semiconductor actively engage with the open source community; officially and directly support continued learning opportunities.
 
 There's just a 30 minute slot for discussion. If well presented there could be future opportunities for continued dialog.
 
@@ -31,18 +35,22 @@ Lattice Semiconductor is conspicuously missing from the tech community.
 
 Olof Kindgren:
 >The story about their licensing and their reversal got _far_ more attention on both LinkedIn and Twitter 
->than any of their recent product announcements. That could be an indication that this is much larger than they think
+>than any of their recent product announcements. That could be an indication that this is much larger than they think.
 
 Lattice hardly ever "likes" or retweets any of the awesome projects using their hardware. Why?
 
 There's a great opportunity for Lattice to simply show appreciation for all the great projects that showcase their
 hardware. 
 
+Lattice DM's should be open on Twitter. Perhaps someone wants to contact you with a typo on a web page, or a security vulerability. 
+Even if the person managing Twitter account does not have all the answers... then simply reply that the question has been passed 
+along.
+
 ## Documentation
 
 Why not provide bitstream documentation for low-end products like ICE40 and ECP5?
-It seems like a waste of talent to allow extraordinarily talented engineers reverse engineer things.
-Why not just give out the docs and let those engineers spend their time on improving the open source tools?
+Instead of only "allowing" extraordinarily talented engineers reverse engineer things.
+Why not just give out the docs (or be available to help) and let those engineers spend their time on improving the open source tools?
 
 ## Technical Cooperation
 
@@ -52,9 +60,37 @@ Then change a peripheral and not re-place and route the whole design.
 Claire: 
 >They essentially told us they won't be in our way but they also see no commercial relevance to what we are doing.
 
+## Development Environment
+
+Lattice should embrace software developers.
+
+As a software engineer, I can attest to the preference to stay within a given development environment. For me - for better or for worse, that's Visual Studio.
+I've used Visual Studio since it first arrived on my desk as a beta app on couple of floppy disks. I've used it in my daily professional life 
+for _decades_. It is hard to step away from something like that. I'm simply more productive using a tool I am familiar with. 
+For my embedded controller development, I was really quite excited to use the [Visual Micro](https://www.visualmicro.com/) extension. 
+When I first started learning about FPGA, I was so excited about the capabilities - but also frustrated that I could not use the IDE that I always use... 
+so I've spent quite a bit of time writing my own [Verilog Syntax Highlighter Extension](https://marketplace.visualstudio.com/items?itemName=gojimmypi.gojimmypi-verilog-language-extension), and recently
+completed [my first FPGA synthesis from within Visual Studio](https://twitter.com/gojimmypi/status/1259634132616744961?s=20). 
+From my perspective as a software engineer: _that's how FPGA development is supposed to work_.
+
+My point here? Well I had mixed feelings on yet another proprietary, closed source FPGA development tool. I'll be signing up to learn about Propel, and I'm 
+sure it is quite awesome. But there's an entire target audience ... a vastly larger _software_ developer audience that would like to use _other_ tools, too. 
+I know some FPGA developers that are using VI/VIM. I'm a Visual Studio developer. Others use VSCode, etc. Why not actively include all these people?
+
+The easier Lattice makes it for developers to create solutions with their hardware, the more customers Lattice will have. Microsoft has known this for years.
+The single most important relationship is with the developers. Admittedly this may not be as obvious to a hardware chip manufacturer. But FPGA's are
+not your typical hardware. And for FPGA's - it is all about the software.
+
 ## Direct Financial Support
 
-Claire Wolf @oe1cxw is setting up a non-profit. Patreons. Grants for specific projects. Contests and awards.
+Ideas such as:
+
+* Become a sponsoring member of RISC-V foundation
+* University Student Grant Program
+* Grants for specific projects
+* Contests and awards
+* Patreons
+* Claire Wolf @oe1cxw is setting up a non-profit
 
 ## Lower Cost
 
@@ -76,14 +112,14 @@ Marketing tweets are typically... well, not very interesting. They are ads. We a
 There are nearly 7,000 twitter followers but hardly more than a few likes per @latticesemi ~~ad~~ tweet. 
 
 Engagement tweets are much more interesting. Congratulating some student that won an award with a project using a Lattice product:
-Now that's cool. Tweet a picture of a lab, or staff. Post some code samples in a blog. 
+Now that's cool. Tweet a picture of a lab, or staff. Post some code samples in a blog. Focus on a maker.
 
 There was a [part 1 blog](https://twitter.com/latticesemi/status/1216914336796553216?s=20) back in January. It started out great... 
 but then. Nothing. No code samples. No getting started. Not even a "where to go next". 
 
-Perhaps a Lattice Engineer could show up on discord once in awhile? Or here's an exciting idea: how about hosting a 
-Lattice AMA (ask me anything)! Do something like that, for an hour or two - say, every quarter or so. Hear first hand what
-your customers have to say. Engage in dialog. Find out what they want.
+Perhaps a Lattice Engineer could show up on discord once in a while? They would we welcomed with open arms! 
+Or here's an exciting idea: how about hosting a Lattice AMA (ask me anything)! Do something like that, for an hour or two - say, every quarter or so. 
+Hear first hand what your customers have to say. Engage in dialog. Find out what they want.
 
 ### Web Site 
 
@@ -92,11 +128,11 @@ https://www.latticesemi.com/solutionsearch?qiptype=982db688d64345bbb3af29e62fee1
 
 Featuring projects such as:
 
-https://www.crowdsupply.com/radiona/ulx3s
-https://www.crowdsupply.com/1bitsquared/icebreaker-fpga
-https://groupgets.com/campaigns/710-orangecrab
-https://tinyfpga.com/
-https://www.crowdsupply.com/1bitsquared/glasgow
+* https://www.crowdsupply.com/radiona/ulx3s
+* https://www.crowdsupply.com/1bitsquared/icebreaker-fpga
+* https://groupgets.com/campaigns/710-orangecrab
+* https://tinyfpga.com/
+* https://www.crowdsupply.com/1bitsquared/glasgow
 
 ## FPGA Open Source Champions
 
@@ -110,6 +146,7 @@ Have a good working relationship with:
 * @mithro
 * @oe1cxw
 * @OlofKindgren
+* @Obijuan_cube
 * @RadionaOrg
 * @scanlime
 * @whitequark
@@ -133,9 +170,10 @@ like using lattice chips, the more people that will be more likely to use that s
 
 One of the comments I received when putting together these notes:
 
-> my fear is that they'll go all for "we see no commercial importance""
+> my fear is that they'll go all for "we see no commercial importance"
 
 There's "commercial importance" beyond the quarterly report and balance sheet.
 
 By embracing the open source community, Lattice benefits by having a worldwide enthusiastic team promoting their products. 
 Dollars cannot buy that kind of marketing value.
+

@@ -75,7 +75,7 @@ Claire Wolfe:
 
 Goran Mahovlic (Radiona):
 > Open source is readily available for change, so any noticed bug can be fixed instantly. Usually that is not the case with proprietary software especially in FPGA world ... 
-> @fpga_dave is often fixing reported bugs in hours ... Opensource tools does not have any secrets beneath the hood. Some users are then more confident with such tools. 
+> @fpga_dave is often fixing important issues in hours ... Opensource tools does not have any secrets beneath the hood. Some users are then more confident with such tools. 
 > Also opensource tool code is available for everyone to improve it
 
 ## Development Environment

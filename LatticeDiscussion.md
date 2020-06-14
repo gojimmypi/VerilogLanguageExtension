@@ -7,7 +7,7 @@ Who is @gojimmypi? I'm here as a maker and a hobbyist. I'm not affiliated with L
 I have a Bachelor's in Electronic Engineering, but I work as a senior software engineer at the day job. 
 
 My passion is and always has been electronics. I'm here to try and improve the relationship between the open source community and Lattice Semiconductor.
-There's incredibly exciting work going on in the world of FPGA's. I'd like to see the technology become more commonplace and widely available.
+There's incredibly exciting work going on in the world of FPGAs. I'd like to see the technology become more commonplace and widely available.
 
 Hopefully these free and honest suggestions, with no risk to me regarding company politics or history... can make a difference.
 
@@ -52,6 +52,9 @@ Why not provide bitstream documentation for low-end products like ICE40 and ECP5
 Instead of only "allowing" extraordinarily talented engineers reverse engineer things.
 Why not just give out the docs (or be available to help) and let those engineers spend their time on improving the open source tools?
 
+Piotr Esden:
+> [I do not understand why you don't see this as an opportunity for your parts and your brand. Don't squander it. Document the bitstream yourself and publish the timing database. Then we don't have to waste time extracting them from your tools](https://twitter.com/esden/status/1268646951693754369?s=20)
+
 ## Technical Cooperation
 
 Partial reconfiguration - for example: build a riscv processor and load it in, 
@@ -78,8 +81,8 @@ sure it is quite awesome. But there's an entire target audience ... a vastly lar
 I know some FPGA developers that are using VI/VIM. I'm a Visual Studio developer. Others use VSCode, etc. Why not actively include all these people?
 
 The easier Lattice makes it for developers to create solutions with their hardware, the more customers Lattice will have. Microsoft has known this for years.
-The single most important relationship is with the developers. Admittedly this may not be as obvious to a hardware chip manufacturer. But FPGA's are
-not your typical hardware. And for FPGA's - it is all about the software.
+The single most important relationship is with the developers. Admittedly this may not be as obvious to a hardware chip manufacturer. But FPGAs are
+not your typical hardware. And for FPGAs - it is all about the software.
 
 ## Direct Financial Support
 
@@ -173,6 +176,13 @@ One of the comments I received when putting together these notes:
 > my fear is that they'll go all for "we see no commercial importance"
 
 There's "commercial importance" beyond the quarterly report and balance sheet.
+
+Evidence that the community *wants* Lattice to be successful. Piotr Esden:
+> [Documented bitstream and a timing database will allow us to focus on creating new applications and products using 
+@latticesemi parts. And we will keep recommending you to our peers](https://twitter.com/esden/status/1268646952708628481?s=20)
+
+Olof Kindgren:
+>[the open source tooling was their way into education and research which would increase brand awareness and sales](https://twitter.com/OlofKindgren/status/1268612294042247169?s=20)
 
 By embracing the open source community, Lattice benefits by having a worldwide enthusiastic team promoting their products. 
 Dollars cannot buy that kind of marketing value.

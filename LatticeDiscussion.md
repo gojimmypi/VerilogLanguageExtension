@@ -67,10 +67,16 @@ Piotr Esden:
 ## Technical Cooperation
 
 Partial reconfiguration - for example: build a riscv processor and load it in, 
-Then change a peripheral and not re-place and route the whole design.
+Then change a peripheral and not re-place and route the whole design. (see [Dave's flow example](https://github.com/daveshah1/flow-examples/tree/master/ecp5-partial))
+Is this [even possible with the proprietary tool](https://twitter.com/whitequark/status/1167490446718693376?s=20)?
 
-Claire: 
+Claire Wolfe: 
 >They essentially told us they won't be in our way but they also see no commercial relevance to what we are doing.
+
+Goran Mahovlic (Radiona):
+> Open source is readily available for change, so any noticed bug can be fixed instantly. Usually that is not the case with proprietary software especially in FPGA world ... 
+> @fpga_dave is often fixing reported bugs in hours ... Opensource tools does not have any secrets beneath the hood. Some users are then more confident with such tools. 
+> Also opensource tool code is available for everyone to improve it
 
 ## Development Environment
 
@@ -142,8 +148,10 @@ Featuring projects such as:
 * https://www.crowdsupply.com/radiona/ulx3s
 * https://www.crowdsupply.com/1bitsquared/icebreaker-fpga
 * https://groupgets.com/campaigns/710-orangecrab
-* https://tinyfpga.com/
-* https://www.crowdsupply.com/1bitsquared/glasgow
+* https://tinyfpga.com/ 
+* https://www.crowdsupply.com/1bitsquared/glasgow [Talking to a SPI flash chip via a JTAG link though an ECP5.](https://twitter.com/GregDavill/status/1253956689914507265)
+* https://github.com/pergola-fpga/pergola [Hello world](https://twitter.com/kbeckmann/status/1203348699130335232?s=20)
+* https://github.com/greatscottgadgets/luna [on Twitter](https://twitter.com/ktemkin/status/1236221378417680385)
 
 ## FPGA Open Source Champions
 
@@ -175,10 +183,12 @@ this role [someone else will](https://twitter.com/OlofKindgren/status/1268612294
 If there's a comfort zone for students with a particular technology, of course they will likely stick with that technology in
 their next project and with their next employer.
 
-That's how the [ULX3S](https://radiona.org/ulx3s/) got started; The Lattice FPGA is used by over 330 University Students
-_every year_. Now there's a new company formed after a successful Crowd Supply campaign to get this board into the hands of
+That's how the [ULX3S](https://radiona.org/ulx3s/) got started; The Lattice FPGA is used by over 330 [University Students](http://skriptarnica.hr/vijest.aspx?newsID=1466)
+_every year_ in Croatia. Now there's a new company formed after a successful Crowd Supply campaign to get this board into the hands of
 more people all over the world. The more boards they sell, the more FPGA chips that Lattice sells. The more people that 
 like using lattice chips, the more people that will be more likely to use that same technology in their own project. 
+
+Here's another university example: [FPGA Master Class in SEEE using Open Source Hardware and Software](https://www.dit.ie/electricalelectronicengineering/news/) in Dublin. 
 
 One of the comments I received when putting together these notes:
 

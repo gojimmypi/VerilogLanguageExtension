@@ -109,7 +109,7 @@ Ideas such as:
 * Sponsor FOSSi Foundation Events
 * University Student Grant Program
 * Grants for specific projects
-* More Contests and Awards
+* More Contests and Awards such as the [RISC-V SoftCPU Contest](https://riscv.org/2018/10/risc-v-contest/)
 * Individual Patreon support (e.g. [@fpga_dave](https://www.patreon.com/fpga_dave))
 
 ## Lower Cost

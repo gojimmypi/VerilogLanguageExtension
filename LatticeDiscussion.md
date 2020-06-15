@@ -13,7 +13,7 @@ Hopefully these free and honest suggestions, with no risk to me regarding compan
 
 ## Summary
 
-Lattice should consider:
+Key Items for Lattice to consider:
 
 * Officially embrace the open source communnity and create an "ecosystem" of FPGA products
 * Focus on Software Engineers and allow them to use any IDE
@@ -21,7 +21,7 @@ Lattice should consider:
 
 ## Objective
 
-Have Lattice Semiconductor actively engage with the open source community; officially and directly support continued learning opportunities with any IDE.
+Encourage Lattice Semiconductor to actively engage with the open source community; officially and directly support continued learning opportunities with any IDE.
 
 There's just a 30 minute slot for discussion. If well presented there could be future opportunities for continued dialog.
 
@@ -187,9 +187,9 @@ If there's a comfort zone for students with a particular technology, of course t
 their next project and with their next employer.
 
 That's how the [ULX3S](https://radiona.org/ulx3s/) got started; The Lattice FPGA is used by over 330 [University Students](http://skriptarnica.hr/vijest.aspx?newsID=1466)
-_every year_ in Croatia. Now there's a new company formed after a successful Crowd Supply campaign to get this board into the hands of
+_every year_ just in Croatia. Now there's a new company formed after a successful Crowd Supply campaign to get this board into the hands of
 more people all over the world. The more boards they sell, the more FPGA chips that Lattice sells. The more people that 
-like using lattice chips, the more people that will be more likely to use that same technology in their own project. 
+like using Lattice chips, the more people that will be more likely to use that same technology in their own project. 
 
 Here's another university example: [FPGA Master Class in SEEE using Open Source Hardware and Software](https://www.dit.ie/electricalelectronicengineering/news/) in Dublin. 
 
@@ -197,7 +197,7 @@ One of the comments I received when putting together these notes:
 
 > my fear is that they'll go all for "we see no commercial importance"
 
-There's "commercial importance" beyond the quarterly report and balance sheet.
+There's "commercial importance" well beyond the quarterly report and balance sheet.
 
 Evidence that the community *wants* Lattice to be successful; Piotr Esden:
 > [Documented bitstream and a timing database will allow us to focus on creating new applications and products using 

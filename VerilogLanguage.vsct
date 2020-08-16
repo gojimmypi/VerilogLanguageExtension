@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable	>
+	<Commands>
+		<Menus>
+			<Menu guid="guidTestCommandPackageCmdSet" id="TopLevelMenu" priority="0x700" type="Menu">
+				<Parent guid="guidSHLMainMenu"
+						id="IDG_VS_MM_TOOLSADDINS" />
+				<Strings>
+					<ButtonText>TestMenu</ButtonText>
+					<CommandName>TestMenu</CommandName>
+				</Strings>
+			</Menu>
+		</Menus>
+	</Commands>
+</CommandTable>

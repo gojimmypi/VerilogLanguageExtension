@@ -318,7 +318,7 @@
 	</Target>
 
 	<PropertyGroup>
-		<RootNamespace>msbuildOutputLogger</RootNamespace>
+		<RootNamespace>Verilog</RootNamespace>
 		<ProjectGuid>{ABB344AE-1B12-45C6-B99C-4EC327E125FD}</ProjectGuid>
 		<PublishUrl>publish\</PublishUrl>
 		<Install>true</Install>
@@ -427,6 +427,7 @@
 			$(TargetsTriggeredByCompilation);
 			Build_ULX3S
 		</TargetsTriggeredByCompilation>
+		<Description>Verilog Project</Description>
 	</PropertyGroup>
 
 	<!--

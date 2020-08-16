@@ -8,6 +8,9 @@ namespace VerilogLanguage
 {
     public static class StringExtensions
     {
+
+        // although there are clever solutions using a variety of techjniques, thanks https://stackoverflow.com/questions/6617284/c-sharp-how-convert-large-hex-string-to-binary
+        // for the reminder that sometimes simplest is fastest
         public static readonly Dictionary<char, string> hexCharacterToBinary = new Dictionary<char, string> {
                                                                         { '0', "0000" },
                                                                         { '1', "0001" },

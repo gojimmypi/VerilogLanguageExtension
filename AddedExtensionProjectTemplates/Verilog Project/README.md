@@ -19,7 +19,8 @@ knows how to change that to something better, please submit a PR)
 
 Once the batch file figures out which WSL directory to use, the Linux `make` is called using the local project [Makefile](./Makefile)
 
-# Installing WSL
+
+## Installing WSL
 
 This template was developed on Ubuntu 18.04.4 LTS for WSL. See the [Microsoft Instructions](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 Check the version with ` lsb_release -a`. If you need to update:
@@ -30,13 +31,13 @@ sudo apt dist-upgrade -y
 sudo do-release-upgrade
 ```
 
-# Installing Verilator:
+## Installing Verilator:
 
 ```
 sudo apt-get install verilator
 ```
 
-# Installing yosys / nextpnr / ecppack
+## Installing yosys / nextpnr / ecppack
 
 There are several options available to install the toolchain:
 
@@ -62,7 +63,7 @@ git clone https://github.com/ulx3s/ulx3s-toolchain.git
 cd ulx3s-toolchain
 
 
-# ensure all scripts are executable
+## ensure all scripts are executable
 chmod +x install_set_permissions.sh
 
 ./install_set_permissions.sh
@@ -76,6 +77,18 @@ chmod +x install_set_permissions.sh
 
 Kost has prompiled binary [releases](https://github.com/alpin3/ulx3s/releases).
 
+## Updating the Project Template
+
+Although Visual Studio should (in theory) allow an included project to be an asset in the deployed VSIX install, this behaviour was not observed.
+
+For now, click on `Project - Export Template`. Ensure the `VerilogProjectTample` is the project being exported! (this is typically not the default).
+
+![export_template.png](./images/export_template.png)
+
+The only option is a read-only to save to `C:\Users\%USERNAME%\Documents\Visual Studio 2019\My Exported Templates\VerilogProjectTemplate.zip`. 
+Copy this file to the solution `ProjectTemplates` directory. See the [source.extension.vsixmanifest](../../source.extension.vsixmanifest) file.
+
+## Other Resources:
 
 * [Output errors, warnings and messages from batch file in Visual Studio build event](https://stackoverflow.com/questions/29799149/output-errors-warnings-and-messages-from-batch-file-in-visual-studio-build-even)
 * [Template Parameters](https://docs.microsoft.com/en-us/visualstudio/ide/template-parameters?view=vs-2019)

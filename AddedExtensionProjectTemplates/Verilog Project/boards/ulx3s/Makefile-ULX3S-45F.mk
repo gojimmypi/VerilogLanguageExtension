@@ -71,7 +71,7 @@ ulx3s.bit: ulx3s_out.config
 	ecppack ulx3s_out.config ulx3s.bit
 
 ulx3s_out.config: top.json
-	nextpnr-ecp5 --85k --json top.json --lpf ulx3s_v20.lpf --textcfg ulx3s_out.config
+	nextpnr-ecp5 --45k --json top.json --lpf ulx3s_v20.lpf --textcfg ulx3s_out.config
 
 top.json: top.ys top.v
 	yosys top.ys

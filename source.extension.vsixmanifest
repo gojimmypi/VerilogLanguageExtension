@@ -12,7 +12,7 @@
 <PackageManifest Version="2.0.0" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011">
     <Metadata>
         <!-- // next release will be 0.3.5.*  -->
-        <Identity Id="CF0DCF14-5B8F-4B42-8386-9D37BB99F98E" Version="0.3.4.33" Language="en-US" Publisher="gojimmypi" />
+        <Identity Id="CF0DCF14-5B8F-4B42-8386-9D37BB99F98E" Version="0.3.4.36" Language="en-US" Publisher="gojimmypi" />
         <DisplayName>VerilogLanguage</DisplayName>
         <Description xml:space="preserve">Verilog Extension for Visual Studio. (classifier extension). Implements the Verilog Language Extension allowing user-definable keyword colorization. Useful for FPGA development.</Description>
         <MoreInfo>https://github.com/gojimmypi/VerilogLanguageExtension</MoreInfo>
@@ -20,16 +20,19 @@
         <GettingStartedGuide>https://github.com/gojimmypi/VerilogLanguageExtension/blob/master/README.md#installation</GettingStartedGuide>
         <ReleaseNotes>https://github.com/gojimmypi/VerilogLanguageExtension/blob/master/releases/README.md</ReleaseNotes>
         <Tags>Verilog keyword syntax highlight extension FPGA HDL</Tags>
+        <Preview>true</Preview>
     </Metadata>
-    <Installation AllUsers="true">
+    <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[14.0,17.0)" />
+        <InstallationTarget Version="[14.0,17.0)" Id="Microsoft.VisualStudio.Pro" />
+        <InstallationTarget Version="[14.0,17.0)" Id="Microsoft.VisualStudio.Enterprise" />
     </Installation>
     <Dependencies>
         <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="4.5" />
     </Dependencies>
     <Assets>
-        <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%|" />
-        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="VerilogProjectTemplate" d:TargetPath="|VerilogProjectTemplate;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
+        <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%|" TargetVersion="[14.0,17.0)" />
+        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="File" Path="ProjectTemplates" d:TargetPath="ProjectTemplates\Verilog Project.zip" />
     </Assets>
     <Prerequisites>
         <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,17.0)" DisplayName="Visual Studio core editor" />

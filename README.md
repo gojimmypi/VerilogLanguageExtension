@@ -51,7 +51,9 @@ https://marketplace.visualstudio.com/items?itemName=gojimmypi.gojimmypi-verilog-
 
 ### Installation - Manual install with source code 
 
-Find the location of your `VSIXInstaller.exe`, typpically in `.\Common7\IDE\` of Developer Command Prompt. Shown is an example of VS2017 Enterprise:
+_Note_: previously it was recommended to use `VSIXInstaller.exe`, typically in `.\Common7\IDE\`; *DON'T DO THIS*, Instead use
+the "Mcirosoft Visual Stuodio Version Selector": `VSLauncher.exe`
+
 
 ```
 c:
@@ -59,8 +61,15 @@ cd \workspace
 git clone https://github.com/gojimmypi/VerilogLanguageExtension.git
 cd VerilogLanguageExtension
 msbuild VerilogLanguage.csproj
-"C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VSIXInstaller.exe"  C:\workspace\VerilogLanguageExtension\bin\Release\VerilogLanguage.vsix
+"%ProgramFiles% (x86)\Common Files\Microsoft Shared\MSEnv\VSLauncher.exe" C:\workspace\VerilogLanguageExtension\bin\Release\VerilogLanguage.vsix
 ```
+
+### Installation - Manual install of VSIX file
+
+As noted above, use the "Mcirosoft Visual Stuodio Version Selector" and NOT the "VSIX Installer" (counter-intutiive, I know)
+
+![vsix_explorer_install.png](./images/vsix_explorer_install.png)
+
 
 
 ### Installation - Prior Releases
@@ -394,6 +403,12 @@ From [VSIX Manifest Designer](https://docs.microsoft.com/en-us/visualstudio/exte
 
 * [Asm-Dude](https://github.com/HJLebbink/asm-dude)
 
+# Build Output
+
+* [stackoverflow: Echos from Post-Build events are only shown after build is complete](https://stackoverflow.com/questions/42854179/echos-from-post-build-events-are-only-shown-after-build-is-complete)
+* [.net Process.WaitForExit inconsistent behavior re: process tree?](https://www.gamedev.net/forums/topic/488409-processwaitforexit-inconsistent-behavior-re-process-tree/)
+* [Configuring Message Logging](https://docs.microsoft.com/en-us/dotnet/framework/wcf/diagnostics/configuring-message-logging)
+
 ## See also
 
 * https://michaelscodingspot.com/vsix-identify-mouse-hover-location-in-the-editor/
@@ -404,7 +419,7 @@ From [VSIX Manifest Designer](https://docs.microsoft.com/en-us/visualstudio/exte
 
 * [Task Parallel Library (TPL)](https://docs.microsoft.com/en-us/dotnet/standard/parallel-programming/task-parallel-library-tpl)
 
-* [ public static SnapshotPoint? GetCaretPoint]( https://github.com/dotnet/roslyn/blob/3aae0158101ba007b856f2f5b3cf1110d2e52319/src/EditorFeatures/Core/Shared/Extensions/ITextViewExtensions.cs#L31)
+* [public static SnapshotPoint? GetCaretPoint]( https://github.com/dotnet/roslyn/blob/3aae0158101ba007b856f2f5b3cf1110d2e52319/src/EditorFeatures/Core/Shared/Extensions/ITextViewExtensions.cs#L31)
 
 * [ITextViewLine Interface](https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.formatting.itextviewline?view=visualstudiosdk-2019)
 

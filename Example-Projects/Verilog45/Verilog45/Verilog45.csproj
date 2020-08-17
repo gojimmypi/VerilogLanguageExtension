@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release' ">
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'iCEBreaker Deploy' ">
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ULX3S 12F Deploy' ">
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ULX3S 45F Deploy' ">
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ULX3S 85F Deploy' ">
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug' ">
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>Verilog45</RootNamespace>
+    <ProjectGuid>{C32098DE-768D-4521-8C70-119A087D9407}</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup>
+    <InstallBuildDependenciesCmd>.\build\vs-prog.bat</InstallBuildDependenciesCmd>
+    <PipelineDependsOn>
+      InstallBuildDependencies;
+    </PipelineDependsOn>
+</PropertyGroup>
+
+  <!--Launch a Process in Parallel
+  https://stackoverflow.com/questions/2387456/msbuild-exec-task-without-blocking
+  -->
+  <UsingTask TaskName="ExecAsync" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+    <ParameterGroup>
+      <!--The file path is the full path to the executable file to run-->
+      <FilePath ParameterType="System.String" Required="true" />
+      <!--The arguments should contain all the command line arguments that need to be sent to the application-->
+      <Arguments ParameterType="System.String" Required="true" />
+    </ParameterGroup>
+    <Task>
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+  // https://stackoverflow.com/questions/2387456/msbuild-exec-task-without-blocking      
+
+     Log.LogMessage("0");
+     Console.WriteLine("Hello World");
+using (System.Diagnostics.Process compiler = new System.Diagnostics.Process())
+{
+    compiler.StartInfo.FileName = "C:\\Users\\gojimmypi\\source\\repos\\Verilog45\\Verilog45\\build\\vs-prog.bat";
+    compiler.StartInfo.Arguments = "iCEBreaker Makefile-iCEBreaker.mk 4";
+
+    compiler.StartInfo.FileName = "ping.exe";
+    compiler.StartInfo.Arguments = "192.168.1.1";
+
+string eOut = null;    
+compiler.ErrorDataReceived += new System.Diagnostics.DataReceivedEventHandler((sender, e) => 
+                                 { eOut += e.Data; });
+    compiler.StartInfo.UseShellExecute = false;
+    compiler.StartInfo.RedirectStandardOutput = true;
+    compiler.StartInfo.RedirectStandardError = true;
+    compiler.Start();
+    //System.Diagnostics.Process.Start(compiler.StartInfo);
+
+    // https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics.processstartinfo.redirectstandardoutput?view=netcore-3.1#System_Diagnostics_ProcessStartInfo_RedirectStandardOutput
+    System.IO.StreamReader reader = compiler.StandardOutput;
+compiler.BeginErrorReadLine();
+     Log.LogMessage("1");
+                    string line;
+                // Read and display lines from the file until the end of
+                // the file is reached.
+                while ((line = reader.ReadLine()) != null)
+                {
+                  Log.LogMessage("Starting {0}...", line);  
+                    Console.WriteLine(line);
+                }
+    // Console.WriteLine(compiler.StandardOutput.ReadToEnd());
+     Log.LogMessage("2");
+
+    compiler.WaitForExit();
+     Log.LogMessage("3");
+}
+
+  ]]>
+      </Code>
+    </Task>
+  </UsingTask>
+
+  <ItemGroup>
+    <Compile Include="build\vs-clean.bat" />
+    <Compile Include="build\vs-build.bat" />
+    <Compile Include="build\vs-prog.bat" />
+    <Compile Include="top.ys" />
+    <Compile Include="ulx3s_v20.lpf" />
+    <Compile Include="Makefile" />
+    <Compile Include="top.v" />
+    <Compile Include="boards\icebreaker\icebreaker.pcf" />
+    <Compile Include="boards\ulx3s\Makefile-ULX3S-12F.mk" />
+    <Compile Include="boards\ulx3s\Makefile-ULX3S-45F.mk" />
+    <Compile Include="boards\ulx3s\Makefile-ULX3S-85F.mk" />
+    <Compile Include="Makefile-iCEBreaker.mk" />
+    <Compile Include="top_icebreaker.v" />
+    <Compile Include="Program.cs" />
+  </ItemGroup>
+  <Target Name="Build">
+    <Message Text="Building Verilog Files" />
+    <MakeDir Directories="$(OutputPath)" Condition="!Exists('$(OutputPath)')" />
+    <Exec Command=".\build\vs-prog.bat" YieldDuringToolExecution="True" ConsoleToMSBuild="true" Condition="'$(Configuration)'=='Debug' ">
+      <Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
+    </Exec> 
+    <Exec Command="cmd /Q /D /C ping 192.168.1.1" Condition="'$(Configuration)'=='Release' ">
+      <Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
+    </Exec>
+    <ExecAsync FilePath='$(InstallBuildDependenciesCmd)' Arguments='iCEBreaker Makefile-iCEBreaker.mk 4'   Condition="'$(Configuration)'=='iCEBreaker Deploy' " />
+    <Exec Command=".\build\vs-prog.bat ULX3S boards\ulx3s\Makefile-ULX3S-12F.mk" Condition="'$(Configuration)'=='ULX3S 12F Deploy' " />
+    <Exec Command=".\build\vs-prog.bat ULX3S boards\ulx3s\Makefile-ULX3S-45F.mk" Condition="'$(Configuration)'=='ULX3S 45F Deploy' " />
+    <Exec Command=".\build\vs-prog.bat ULX3S boards\ulx3s\Makefile-ULX3S-85F.mk" Condition="'$(Configuration)'=='ULX3S 85F Deploy' " />
+  </Target>
+  <!-- 
+
+%windir%\Sysnative\wsl.exe make ulx3s.bit
+c:\windows\system32\wsl.exe yosys Verilog.ys 
+C:\workspace\ulx3s-examples\bin\ujprog.exe
+
+-->
+  <Target Name="Rebuild" DependsOnTargets="Clean;Build">
+  </Target>
+  <Target Name="Clean">
+    <Message Text="Cleaning Verilog Files" />
+    <RemoveDir Directories="$(OutputPath)" />
+    <Exec Command=".\build\vs-clean.bat iCEBreaker Makefile-iCEBreaker.mk" />
+    <Exec Command=".\build\vs-clean.bat ULX3S boards\ulx3s\Makefile-ULX3S-12F.mk" />
+  </Target>
+  <!--
+  To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

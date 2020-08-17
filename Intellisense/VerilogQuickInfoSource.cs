@@ -157,7 +157,7 @@ namespace VerilogLanguage
                 [VerilogTokenTypes.Verilog_Primitive_xnor] = "Gate primitive: N-input XNOR gate",
                 [VerilogTokenTypes.Verilog_Primitive_not] = "Gate primitive: NOT gate",
 
-                [VerilogTokenTypes.Verilog_Directive] = ""
+                [VerilogTokenTypes.Verilog_Directive] = "Verilog directive"
             };
         }
 
@@ -200,10 +200,28 @@ namespace VerilogLanguage
                                           // tagSpan.Snapshot.GetLineFromPosition(tagSpan.Start.Position).End.Position;
                     string thisScopeName = VerilogGlobals.TextModuleName(thisLine,
                                                                           thisPosition); // TODO get proper values!
+
+                    //ensure VerilogVariableHoverText has a dictionary for [thisScopeName]
+                    if (VerilogGlobals.VerilogVariableHoverText.ContainsKey(thisScopeName))
+                    {
+                        // all good
+                    }
+                    else
+                    {
+                        VerilogGlobals.VerilogVariableHoverText.Add(thisScopeName, new Dictionary<string, string> { });
+                    }
+
                     if (VerilogGlobals.VerilogVariableHoverText[thisScopeName].Keys.Contains(thisHoverKey))
                     {
+                        // in thisScopeName, thisHoverKey values are variables
                         applicableToSpan = _buffer.CurrentSnapshot.CreateTrackingSpan(tagSpan, SpanTrackingMode.EdgeExclusive);
                         quickInfoContent.Add(VerilogGlobals.VerilogVariableHoverText[thisScopeName][thisHoverKey]);
+                    }
+                    else if (VerilogGlobals.VerilogVariableHoverText.ContainsKey(VerilogGlobals.SCOPE_CONST) && VerilogGlobals.VerilogVariableHoverText[VerilogGlobals.SCOPE_CONST].Keys.Contains(thisHoverKey))
+                    {
+                        // in SCOPE_CONST, the values are constants
+                        applicableToSpan = _buffer.CurrentSnapshot.CreateTrackingSpan(tagSpan, SpanTrackingMode.EdgeExclusive);
+                        quickInfoContent.Add(VerilogGlobals.VerilogVariableHoverText[VerilogGlobals.SCOPE_CONST][thisHoverKey]);
                     }
                 }
 

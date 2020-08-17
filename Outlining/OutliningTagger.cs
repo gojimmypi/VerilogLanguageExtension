@@ -72,6 +72,7 @@ namespace VerilogLanguage.Outlining
         public event EventHandler<SnapshotSpanEventArgs> TagsChanged;
 
         // Step #8: Add a BufferChanged event handler that responds to Changed events by parsing the text buffer.
+        // a keypress is of course one way the buffer changes
         void BufferChanged(object sender, TextContentChangedEventArgs e)
         {
             // If this isn't the most up-to-date version of the buffer, then ignore it for now (we'll eventually get another change event).
@@ -83,6 +84,7 @@ namespace VerilogLanguage.Outlining
             // This is the event that forces a full refresh of token tags
 
             if (buffer.CurrentSnapshot.Length > 1) {
+                System.Diagnostics.Debug.WriteLine("Outlining Tagger invoking TagsChanged");
                 TagsChanged?.Invoke(this, new SnapshotSpanEventArgs(
                                 new SnapshotSpan(buffer.CurrentSnapshot,
                                       new Span(0, buffer.CurrentSnapshot.Length - 1))));

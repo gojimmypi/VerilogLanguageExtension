@@ -38,9 +38,10 @@ namespace VerilogLanguage
                 case null:
                     return VerilogTokenContextType.Undetermined; // short circuit exit 
 
-                case "":
+                case "":    // nothing to do for empty string
+                case "\t":  // nor tabs
                     return VerilogTokenContextType.Text; // short circuit exit to avoid string operation
-
+  
                 default:
                     switch (s.Substring(0, 1)) // given the first chart of the string, determine the context
                     {

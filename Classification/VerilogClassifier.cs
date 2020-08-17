@@ -252,6 +252,7 @@ namespace VerilogLanguage.VerilogToken
                 {
                     // TODO - how did we get here??
                     string a = "Debug: Key not found!";
+                    // System.Diagnostics.Debug.WriteLine("Verilog Classifier found unknown tag type in IEnumerable<ITagSpan<ClassificationTag>> GetTags");
                     yield return
                         new TagSpan<ClassificationTag>(tagSpans[0],
                                                        new ClassificationTag(_VerilogTypeClassifications[VerilogTokenTypes.Verilog_default]));

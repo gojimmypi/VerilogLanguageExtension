@@ -13,7 +13,8 @@ namespace VerilogLanguage
 {
     public static partial class VerilogGlobals
     {
-
+        public const string SCOPE_CONST = "__CONST__";
+        public const char RADIX_CHAR = '\'';
         public static ITextBuffer TheBuffer;
         public static ITextView TheView; // assigned in QuickInfoControllerProvider see https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.editor.itextview?redirectedfrom=MSDN&view=visualstudiosdk-2017
 
@@ -257,6 +258,11 @@ namespace VerilogLanguage
         public static void InitHoverBuilder()
         {
             // re-initialize variables to above values
+            if (VerilogVariableHoverText != null)
+            {
+                System.Diagnostics.Debug.WriteLine("destroying VerilogVariableHoverText!");
+
+            }
             VerilogVariableHoverText = new Dictionary<string, Dictionary<string, string>>
             // e.g. ["led"] = "An LED."
             {
@@ -266,15 +272,20 @@ namespace VerilogLanguage
                 }
             };
 
-
-            VerilogVariables = new Dictionary<string, Dictionary<string, VerilogTokenTypes>> 
-            // e.g. ["module name"]["led"] = VerilogTokenTypes.Verilog_Variable,
+            // if (VerilogVariables == null || VerilogVariables.Count < 1 || VerilogVariables.ContainsKey("globals"))
+            // we need to always rebuild this, as how would we otherwise know if there are *duplicates* ?
+            // TODO - come up with something better to allow keeping what we already know, but also detect dupes
             {
+
+                VerilogVariables = new Dictionary<string, Dictionary<string, VerilogTokenTypes>> 
+                // e.g. ["module name"]["led"] = VerilogTokenTypes.Verilog_Variable,
                 {
-                    "global",
-                    new Dictionary<string, VerilogTokenTypes>{ }
-                }
-            };
+                    {
+                        "global",
+                        new Dictionary<string, VerilogTokenTypes>{ }
+                    }
+                };
+            }
             thisHoverName = "";
 
             thisVariableDeclarationText = ""; // this is only variable declaration, even if inside a module declaration
@@ -284,6 +295,91 @@ namespace VerilogLanguage
             thisModuleName = "";
 
             BuildHoverState = BuildHoverStates.UndefinedState;
+        }
+
+        public static string ValueHoverText(string s)
+        {
+            // we start with values like "4", "8 'h  2a" 
+            string _HoverItem = (s ?? "").Replace(" ", "").Replace("_", "").ToUpper(); // initially remove all spaces from hover text (h)
+            string _HoverBase = ""; // the base is the first characters after the single quote "'"
+            string[] _HoverPart = _HoverItem.Split(RADIX_CHAR); // // split "8'h2a" into "8" and "h2a" - parts (p)
+            string _HoverValue = ""; // the actual value, 
+            string _HoverValueBinary = "";
+            int _HoverBitLength = 0;
+            string _HoverBitlength_Message = "";
+            string _BitLengthWarning = "";
+            if (_HoverPart.Length > 1)
+            {
+                _HoverValue = _HoverPart[1];
+                if (_HoverValue.Length > 2)
+                {
+
+                    if (int.TryParse(_HoverPart[0], out _HoverBitLength))
+                    {
+                        _HoverBitlength_Message = _HoverPart[0] + " bit";
+                    }
+                    _HoverBase = _HoverValue.Substring(0, 1);
+                    _HoverValue = _HoverValue.Substring(1); // don't include the base character
+                }
+
+                switch (_HoverBase)
+                {
+                    case "B":
+                        if (_HoverValue.AllCharsIn(VerilogBinaryChars))
+                        {
+                            _HoverBase = "Binary";
+                        }
+                        else
+                        {
+                            _HoverBase = "Invalid Binary";
+                        }
+                        break;
+                    case "D":
+                        if (_HoverValue.AllCharsIn(VerilogDecimalChars))
+                        {
+                            _HoverBase = "Decimal";
+                        }
+                        else
+                        {
+                            _HoverBase = "Invalid Decimal";
+                        }
+                        break;
+                    case "H":
+                        if (_HoverValue.AllCharsIn(VerilogHexChars))
+                        {
+                            _HoverBase = "Hex";
+                            _HoverValueBinary = _HoverValue.HexStringToBinary();
+                            if (_HoverValueBinary.Length > _HoverBitLength)
+                            {
+                                _BitLengthWarning = " Warning: Found " + _HoverValueBinary.Length.ToString() + " bits for " + _HoverBitLength.ToString() + " value!";
+                            }
+                        }
+                        else
+                        {
+                            _HoverBase = "Invalid Hex";
+                        }
+                        break;
+                    case "O":
+                        if (_HoverValue.AllCharsIn(VerilogOctalChars))
+                        {
+                            _HoverBase = "Octal";
+                        }
+                        else
+                        {
+                            _HoverBase = "Invalid Octal";
+                        }
+                        break;
+                    default:
+                        _HoverBase = "(Not valid)";
+                        break;
+                }
+                // result 
+            }
+            return  _HoverItem + 
+                    " = (" + _HoverBitlength_Message + " " + _HoverBase + ") " 
+                    + _HoverValue + "; " +_HoverValueBinary
+                    + _BitLengthWarning;
+
         }
 
         /// <summary>
@@ -319,48 +415,81 @@ namespace VerilogLanguage
                 {
                     // edit existing, TODO - new color for dupes?
                     // "var,)" will also get us here
-                    VerilogGlobals.VerilogVariables[thisScope][ItemName] = VerilogTokenTypes.Verilog_Variable_duplicate;
+                    if (thisScope == SCOPE_CONST)
+                    {
+                        // special handling for constant items, such as strings and numbers
+                        // we don't detect dupes, so nothign to do here.
+                    }
+                    else
+                    {
+                        // if we already have this item, and it is not a constant, it must be a duplicate declaration
+                        VerilogGlobals.VerilogVariables[thisScope][ItemName] = VerilogTokenTypes.Verilog_Variable_duplicate;
+                    }
                 }
                 else
                 {
                     // add new
-                    if (VerilogVariables.ContainsKey(ItemName)) {
-                        VerilogVariables[thisScope].Add(ItemName, VerilogTokenTypes.Verilog_Variable_module);
+                    if (thisScope == SCOPE_CONST)
+                    {
+                        // we are adding the constant value for the first time (and we don't care for dupplicates)
+                        VerilogVariables[thisScope].Add(ItemName, VerilogTokenTypes.Verilog_Value); // TODO define new const type; don't reuse config type
                     }
-                    else {
-                        VerilogVariables[thisScope].Add(ItemName, thisVariableType);
+                    else
+                    {
+                        if (VerilogVariables.ContainsKey(ItemName))
+                        {
+                            VerilogVariables[thisScope].Add(ItemName, VerilogTokenTypes.Verilog_Variable_module);
+                        }
+                        else
+                        {
+                            VerilogVariables[thisScope].Add(ItemName, thisVariableType);
+                        }
                     }
                 }
                 string thisHoverText = HoverText;
 
-
-                // next add the hover text
-                switch (BuildHoverState)
+                if (thisScope == SCOPE_CONST)
                 {
-                    // in the case of module parameters, we'll add the keyword "module" and module name to the hover text:
-                    // e.g. "module myModule( thisHoverText )"
-                    case BuildHoverStates.ModuleParameterNaming:
-                    case BuildHoverStates.ModuleParameterMimicNaming:
-                        thisHoverText = "module " + thisModuleName + "( .. " + thisHoverText + " .. )";
-                        // there may be more parameters, so we're not adding it how
-                        break;
+                    // TODO consider additional values (hex, binary, decimal equivalents)
+                    // for now the hover value is the constant value (not very exciting)
+                }
+                else
+                {
+                    // next add the hover text
+                    switch (BuildHoverState)
+                    {
+                        // in the case of module parameters, we'll add the keyword "module" and module name to the hover text:
+                        // e.g. "module myModule( thisHoverText )"
+                        case BuildHoverStates.ModuleParameterNaming:
+                        case BuildHoverStates.ModuleParameterMimicNaming:
+                            thisHoverText = "module " + thisModuleName + "( .. " + thisHoverText + " .. )";
+                            // there may be more parameters, so we're not adding it how
+                            break;
 
-                    // otherwise no special processing needed for the hover text, we'll use it as-is
-                    default:
-                        break;
+                        // otherwise no special processing needed for the hover text, we'll use it as-is
+                        default:
+                            break;
+                    }
                 }
 
-                if (!VerilogGlobals.VerilogVariableHoverText[thisScope].ContainsKey(ItemName))
+                if (VerilogGlobals.VerilogVariableHoverText[thisScope].ContainsKey(ItemName))
+                {
+                    if (thisScope == SCOPE_CONST)
+                    {
+                        // it already exists, no need to do anything for constants. (we might have many duplicates)
+                    }
+                    else
+                    {
+                        // overwrite an existing variable declaration - duplicate definition?
+                        VerilogGlobals.VerilogVariableHoverText[thisScope][ItemName] = "duplicate? " + thisHoverText;
+                    }
+                }
+                else
                 {
                     // add a new variable hover text attribute
                     VerilogGlobals.VerilogVariableHoverText[thisScope].Add(ItemName, thisHoverText);
                 }
-                else
-                {
-                    // overwrite an existing variable declaration - duplicate definition?
-                    VerilogGlobals.VerilogVariableHoverText[thisScope][ItemName] = "duplicate? " + thisHoverText;
-                }
-            } // else
+            } // else was not delimiter or blank item
         } // AddHoverItem
 
         #region "BuildHoverItems - State Handler"
@@ -456,6 +585,10 @@ namespace VerilogLanguage
                     }
                     else
                     {
+                        if (IsVerilogValue(ItemText))
+                        {
+                            AddHoverItem(SCOPE_CONST, ItemText, ValueHoverText(ItemText));
+                        }
                         BuildHoverState = BuildHoverStates.UndefinedState;
                     }
                     break;
@@ -571,7 +704,7 @@ namespace VerilogLanguage
 
                 case "\t":
                     if ((lastHoverItem == "") || (lastHoverItem == "\t")) {
-                        // we'll ignore sequentual tabs, or alternating table-space
+                        // we'll ignore sequentual tabs, or alternating tab-space
                         // only one space will be used
                     }
                     else
@@ -637,6 +770,10 @@ namespace VerilogLanguage
                         SetBracketContentStatus_For(ItemText);
                         // nothing at this time; we are still bulding the declaration part
                         // thisModuleParameterText += ItemText;
+                        if (IsVerilogValue(ItemText))
+                        {
+                            AddHoverItem(SCOPE_CONST, ItemText, ValueHoverText(ItemText));
+                        }
                     }
                     else
                     {
@@ -720,6 +857,10 @@ namespace VerilogLanguage
 
                         // no longer mimic naming
                         BuildHoverState = BuildHoverStates.ModuleParameterNaming;
+                        if (IsVerilogValue(ItemText))
+                        {
+                            AddHoverItem(SCOPE_CONST, ItemText, ValueHoverText(ItemText));
+                        }
                         thisModuleParameterText = ItemText; // start over for the module parameter
                     }
                     else
@@ -828,7 +969,10 @@ namespace VerilogLanguage
                     {
                         // we continue building the declaration text
                         SetBracketContentStatus_For(ItemText);
-
+                        if (IsVerilogValue(ItemText))
+                        {
+                            AddHoverItem(SCOPE_CONST, ItemText, ValueHoverText(ItemText)); // here we are naming a variable with a constant in the definition
+                        }
                         // nothing at this time; we are still bulding the declaration part for the given thisHoverName (aka variable name)
                         thisVariableDeclarationText += ItemText;
                     }
@@ -898,6 +1042,10 @@ namespace VerilogLanguage
                         if (IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || IsDelimiter(ItemText))
                         {
                             SetBracketContentStatus_For(ItemText);
+                            if (IsVerilogValue(ItemText))
+                            {
+                                AddHoverItem(SCOPE_CONST, ItemText, ValueHoverText(ItemText));
+                            }
                             // nothing at this time; we are still bulding the declaration part
                             thisVariableDeclarationText += ItemText;
                         }
@@ -982,7 +1130,7 @@ namespace VerilogLanguage
                     Process_VariableNaming_For(thisTrimmedItem);
                     break;
 
-                case BuildHoverStates.VariableMimicNaming:
+                case BuildHoverStates.VariableMimicNaming: // comma-delimited types have the type copied (mimic) into hover text for each variable
                     Process_VariableMimicNaming_For(thisTrimmedItem);
                     break;
 
@@ -992,7 +1140,7 @@ namespace VerilogLanguage
             lastHoverItem = thisTrimmedItem;
             if (thisTrimmedItem == "")
             {
-
+                // not doing anything for whitespace
             } 
             else
             {

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+  <TemplateData>
+    <Name>ProjectTemplate-LiteX</Name>
+    <Description>ProjectTemplate-LiteX</Description>
+    <Icon>ProjectTemplate-LiteX.ico</Icon>
+    <ProjectType>CSharp</ProjectType>
+    <LanguageTag>csharp</LanguageTag>
+    <RequiredFrameworkVersion>2.0</RequiredFrameworkVersion>
+    <SortOrder>1000</SortOrder>
+    <TemplateID>33b1ec0d-037a-4007-a14b-f399b2bb4720</TemplateID>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>ProjectTemplate-LiteX</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+  </TemplateData>
+	
+  <TemplateContent>
+    <Project File="ProjectTemplate.csproj" ReplaceParameters="true">
+		<ProjectItem ReplaceParameters="true" OpenInEditor="false">build\vs-build.bat</ProjectItem>
+		<ProjectItem ReplaceParameters="true" OpenInEditor="false">build\vs-clean.bat</ProjectItem>
+		<ProjectItem ReplaceParameters="true" OpenInEditor="false">build\vs-prog.bat</ProjectItem>
+	</Project>
+  </TemplateContent>
+</VSTemplate>

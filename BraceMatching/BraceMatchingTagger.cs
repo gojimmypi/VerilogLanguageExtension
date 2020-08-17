@@ -92,7 +92,15 @@ namespace VerilogLanguage.BraceMatching
             char currentText;
             try
             {
-                currentText = currentChar.GetChar();
+                // exceptions are expensive, so manually check for nulls
+                if (currentChar == null)
+                {
+                    currentText = '\0';
+                }
+                else
+                {
+                    currentText = currentChar.GetChar();
+                }
             }
             catch
             {

@@ -1,0 +1,2 @@
+read_verilog top.v
+synth_ecp5 -noccu2 -nomux -nodram -json ulx3s.json

@@ -25,6 +25,31 @@ namespace VerilogLanguage
                                                                                         };
 
         public static List<BufferAttribute> BufferAttributes = new List<BufferAttribute>(); // this is the buffer actually used
+        public static int[] BufferAttribute_at_LineNumber; // one element per line number. Value at [n]th position is the [i]th buffer element for line [n]
+        private static int[] editingBufferAttribute_at_LineNumber;
+        private static int GetBufferHint(int forLineNumber)
+        {
+            int thisHint = 0;
+            if ((BufferAttribute_at_LineNumber != null) && (BufferAttribute_at_LineNumber.Length > forLineNumber) && (forLineNumber >= 0))
+            {
+                try
+                {
+                    thisHint = VerilogGlobals.BufferAttribute_at_LineNumber[forLineNumber];
+                }
+                catch (Exception ex)
+                {
+                    // System.Diagnostics.Debug.WriteLine("ERROR: TextIsComment hint exception AtLine = {0}, Length={1}; message={2}", forLineNumber, BufferAttribute_at_LineNumber.Length, ex.Message);
+                    thisHint = 0;
+                    throw new Exception(ex.Message, ex.InnerException);
+                }
+            }
+            else
+            {
+                // System.Diagnostics.Debug.WriteLine("TextIsComment hint not available in BufferAttribute_at_LineNumber");
+            }
+            return thisHint;
+        }
+
         private static List<BufferAttribute> editingBufferAttributes = new List<BufferAttribute>(); // buffer being built in a separate thread
 
         public class BufferAttribute : ICloneable
@@ -219,7 +244,7 @@ namespace VerilogLanguage
             {
                 // by the time we get here, we might have a tag with adjacent comments:
                 //     assign//
-                //     //assign
+                //     //assign     
                 //     assign//comment
                 //     /*assign*/
                 //     assign/*comment*/
@@ -257,8 +282,8 @@ namespace VerilogLanguage
         //public static int LastReparseVersion = 0;
         //public static bool IsReparsing = false;
 
-
-
+        // public static DateTime LastRefresh { get; set; } = DateTime.Now;
+        
         public class ThreadReparse
         {
             public static void DoWork(string targetFile)
@@ -276,6 +301,8 @@ namespace VerilogLanguage
                 if (ParseStatusController.IsReparsing(targetFile))
                 {
                     // TODO what is this for? does it help with threading? (probably not)
+                    System.Diagnostics.Debug.WriteLine("DoWork called while IsReparsing...");
+
                     Thread.Sleep(50);
                 }
                 else
@@ -284,12 +311,30 @@ namespace VerilogLanguage
                     {
                         ParseStatus[targetFile].IsReparsing = true;
                     }
+                    //if ( 1==1 || (DateTime.Now - LastRefresh).TotalSeconds > 10)
+                    //{
+                    //    System.Diagnostics.Debug.WriteLine("BufferAttributes calling ReparseWork");
                     VerilogGlobals.ReparseWork(threadbuffer, threadFile);
+                    //    LastRefresh = DateTime.Now;
+                    //}
+
+                    
                     // TODO once reparsing is done in a thread, we need to tell the viewport to redraww the screen
+                    // does this redraw?
+                    // TheView.Selection.TextView.ViewScroller.ScrollViewportVerticallyByPixels(0);
+
                     Thread.Sleep(10);
                 }
             }
         }
+
+        //public static event EventHandler LongRunningTaskEvent;
+
+        //private static void LongRunningTaskIsDone()
+        //{
+
+        //}
+
         /// <summary>
         ///   Reparse
         /// </summary>
@@ -301,6 +346,8 @@ namespace VerilogLanguage
             {
                 threadbuffer = buffer;
                 threadFile = forFile;
+
+                // we'll only use threads if the CurrentSnapshot is larger than a specified size
                 threadActive = (buffer.CurrentSnapshot.Length > THREAD_TRIGGER_SIZE);
                 if (threadActive)
                 {
@@ -308,12 +355,19 @@ namespace VerilogLanguage
                     // Thread thread1 = new Thread(ThreadReparse.DoWork); // this only works if there are no paraketers to work()
                     //
                     // for lambda expressions on threads with parameters, see https://stackoverflow.com/questions/1195896/threadstart-with-parameters/1195915
-                    Thread thread1 = new Thread( () => ThreadReparse.DoWork(forFile));
+                    //LongRunningTaskEvent += LongRunningTaskIsDone;
+                    System.Diagnostics.Debug.WriteLine("Reparse (threaded)...");
+                    Thread thread1 = new Thread( () => {
+                        ThreadReparse.DoWork(forFile);
+                        // LongRunningTaskIsDone();  // this doesn't help much, as we don't have access to TagChanged from within this class
+                    }){ IsBackground = true };;
                     thread1.Start();
+                    System.Diagnostics.Debug.WriteLine("Reparse (thread started)...");
                 }
                 else
                 {
                     // Do blocking reparse work when the files are relatively small
+                    System.Diagnostics.Debug.WriteLine("Reparse (non-threaded)...");
                     ThreadReparse.DoWork(forFile);
                 }
             }
@@ -339,6 +393,7 @@ namespace VerilogLanguage
                 if (buffer == null)
                 {
                     ParseStatus[targetFile].IsReparsing = false;
+                    VerilogGlobals.ParseStatusController.NeedReparse_SetValue(targetFile, false);
                     // IsReparsing = false;
                     return;
                 }
@@ -346,6 +401,7 @@ namespace VerilogLanguage
                 if (buffer.EditInProgress)
                 {
                     ParseStatus[targetFile].IsReparsing = false;
+                    VerilogGlobals.ParseStatusController.NeedReparse_SetValue(targetFile, false);
                     // IsReparsing = false;
                     return;
                 }
@@ -359,10 +415,13 @@ namespace VerilogLanguage
                     thisBufferVersion = 0;
                 }
 
+                editingBufferAttribute_at_LineNumber = new int[buffer.CurrentSnapshot.LineCount]; // int does not allow null;  all the array elements are initialized to zero.
+
                 // if we could not determine a version ( = 0), or if the last time we reparsed was for this same buffer, then exit
                 if ((thisBufferVersion == 0) || (ParseStatus[targetFile].LastReparseVersion == thisBufferVersion))
                 {
                     ParseStatus[targetFile].IsReparsing = false;
+                    VerilogGlobals.ParseStatusController.NeedReparse_SetValue(targetFile, false);
                     // IsReparsing = false;
                     return;
                 }
@@ -433,6 +492,13 @@ namespace VerilogLanguage
                     }
 
                     editingBufferAttributes.Add(bufferAttribute);
+
+                    // we'll keep track of the first buffer position in an array of line numbers
+                    if (editingBufferAttribute_at_LineNumber[thisLineNumber] == 0)
+                    {
+                        editingBufferAttribute_at_LineNumber[thisLineNumber] = editingBufferAttributes.Count - 1;
+                    }
+
                     bufferAttribute = new BufferAttribute();
 
                     // set rollover params
@@ -555,6 +621,7 @@ namespace VerilogLanguage
                                 else
                                 {
                                     // AttributesChanged = false;
+                                    string a = "debug here";
                                 }
                                 break;
 
@@ -618,32 +685,44 @@ namespace VerilogLanguage
                     thisLine = line.GetText();
                     thisLineNumber = line.LineNumber; // zero-based line numbers
 
-                    // parse the entire line for tokens
-                    double duration6 = (DateTime.Now - ProfileStart).TotalMilliseconds;
-                    LineParse(thisLine, thisLineNumber);
-                    double duration7 = (DateTime.Now - ProfileStart).TotalMilliseconds;
-
-                    // some things, like bracket depth, require us to look at each character...
-                    // we'll build a helper table to be able to lookup bracket depth at 
-                    // arbitrary points
-                    CharParse();
-                    double duration8 = (DateTime.Now - ProfileStart).TotalMilliseconds;
-                    lastChar = "";  // the lastChar is irrelevant when spanning multiple lines, as we are only using it for comment detection
-                    if (!bufferAttribute.IsEmpty)
+                    if (thisLine =="")
                     {
-                        AppendBufferAttribute();
+                        // TODO Count or Count - 1 ?
+                        editingBufferAttribute_at_LineNumber[thisLineNumber] = editingBufferAttributes.Count;
                     }
+                    else
+                    {
+                        // parse the entire line for tokens
+                        double duration6 = (DateTime.Now - ProfileStart).TotalMilliseconds;
+                        LineParse(thisLine, thisLineNumber);
+                        double duration7 = (DateTime.Now - ProfileStart).TotalMilliseconds;
 
-                    if (editingBufferAttributes.Count > 0)
-                    {
-                        // when we reach the end of the line, we reach the end of the line comment!
-                        IsActiveLineComment = false;
-                    }
-                    double duration9 = (DateTime.Now - ProfileStart).TotalMilliseconds;
-                    if (!BufferFirstParseComplete)
-                    {
-                        // TODO - this was supposed to help intial file load of large files, but does not seem to help.
-                        BufferAttributes = editingBufferAttributes;
+                        // some things, like bracket depth, require us to look at each character...
+                        // we'll build a helper table to be able to lookup bracket depth at 
+                        // arbitrary points
+                        CharParse();
+                        double duration8 = (DateTime.Now - ProfileStart).TotalMilliseconds;
+                        lastChar = "";  // the lastChar is irrelevant when spanning multiple lines, as we are only using it for comment detection
+                        if (bufferAttribute.IsEmpty)
+                        {
+                            // if empty, there's not much interesting to do. we won't append empty ones.
+                        }
+                        else
+                        {
+                            AppendBufferAttribute();
+                        }
+
+                        if (editingBufferAttributes.Count > 0)
+                        {
+                            // when we reach the end of the line, we reach the end of the line comment!
+                            IsActiveLineComment = false;
+                        }
+                        double duration9 = (DateTime.Now - ProfileStart).TotalMilliseconds;
+                        if (BufferFirstParseComplete)
+                        {
+                            // TODO - this was supposed to help intial file load of large files, but does not seem to help.
+                            // BufferAttributes = editingBufferAttributes;
+                        }
                     }
                 } // foreach line
 
@@ -663,11 +742,17 @@ namespace VerilogLanguage
             }
             double duration = (DateTime.Now - ProfileStart).TotalMilliseconds;
             BufferAttributes = editingBufferAttributes;
+            BufferAttribute_at_LineNumber = editingBufferAttribute_at_LineNumber;
             BufferFirstParseComplete = true;
             lock (_synchronizationParseStatus)
             {
                 ParseStatus[targetFile].IsReparsing = false;
+                VerilogGlobals.ParseStatusController.NeedReparse_SetValue(targetFile, false);
             }
+            
+            //TagsChanged?.Invoke(this, new SnapshotSpanEventArgs(
+            //    new SnapshotSpan(buffer.CurrentSnapshot,
+            //          new Span(0, buffer.CurrentSnapshot.Length - 1))));
         } // Reparse
 
         /// <summary>
@@ -679,16 +764,24 @@ namespace VerilogLanguage
         public static string TextModuleName(int AtLine, int AtPosition)
         {
             string res = "global";
-            foreach (var thisBufferAttribute in BufferAttributes)
+
+            int hint = GetBufferHint(AtLine);
+
+            //foreach (var thisBufferAttribute in BufferAttributes)
+            for (int i = hint; i < BufferAttributes.Count - 1; i++)
             {
-                if ((thisBufferAttribute.LineNumber == AtLine)
-//                      && (thisBufferAttribute.LineStart <= AtPosition)
-//                     && ((AtPosition <= thisBufferAttribute.LineEnd) || (thisBufferAttribute.LineEnd == -1))
-                   )
+                BufferAttribute thisBufferAttribute = BufferAttributes[i];
+                if (thisBufferAttribute.LineNumber == AtLine) // we only need the line number (we don't use the hint, in case wit was zero!)
                 {
                     byte thisModuleNameKey = thisBufferAttribute.ModuleNameKey;
                     ModuleNames.TryGetValue(thisModuleNameKey, out res);
                     break; // no need to continue searching on foreach once we have an answer
+                }
+
+                // we're assuming thisBufferAttribute is inseeuqntial order; once LineNumber is greater than our target, give up. 
+                if (thisBufferAttribute.LineNumber > AtLine)
+                {
+                    break;
                 }
             }
             return res;
@@ -705,11 +798,32 @@ namespace VerilogLanguage
 
             bool IsComment = false;
             //BufferAttribute LastBufferAttribute;
-            lock(BufferAttributes)
+            lock(BufferAttributes) // reminder that this is rebuilt, (possibly in a thread) in editingBufferAttributes
             {
-                foreach (var thisBufferAttribute in BufferAttributes)
+                int hint = 0;
+                if ((BufferAttribute_at_LineNumber != null) && (BufferAttribute_at_LineNumber.Length > AtLine) && (AtLine >= 0))
                 {
-                    if ((thisBufferAttribute.LineNumber == AtLine)
+                    try
+                    {
+                        hint = VerilogGlobals.BufferAttribute_at_LineNumber[AtLine];
+                    }
+                    catch (Exception ex)
+                    {
+                        // System.Diagnostics.Debug.WriteLine("ERROR: TextIsComment hint exception AtLine = {0}, Length={1}; message={2}", AtLine, BufferAttribute_at_LineNumber.Length, ex.Message);
+                        hint = 0;
+                        throw new Exception(ex.Message, ex.InnerException);
+                    }
+                }
+                else
+                {
+                    // System.Diagnostics.Debug.WriteLine("TextIsComment hint not available in BufferAttribute_at_LineNumber");
+                }
+
+                // now using hint for starting point, instead of: foreach (var thisBufferAttribute in BufferAttributes)
+                for (int i = hint; i < BufferAttributes.Count - 1; i++)
+                {
+                    BufferAttribute thisBufferAttribute = BufferAttributes[i];
+                    if ((thisBufferAttribute.LineNumber == AtLine) // TODO: can we stop looking when thisBufferAttribute.LineNumber > AtLine?
                           && (thisBufferAttribute.LineStart <= AtPosition)
                           && ((AtPosition <= thisBufferAttribute.LineEnd) || (thisBufferAttribute.LineEnd == -1))
                        )
@@ -717,6 +831,12 @@ namespace VerilogLanguage
                         IsComment = thisBufferAttribute.IsComment;
                         break; // no need to continue searching on foreach once we have an answer
                     }
+                    // we assume the BufferAttributes are in sequential order
+                    if (thisBufferAttribute.LineNumber > AtLine)
+                    {
+                        break;
+                    }
+
                 }
             }
             return IsComment;
@@ -733,13 +853,26 @@ namespace VerilogLanguage
             int res = 0;
             bool found = false;
 
-            if (BufferAttributes.Count > 0)
-            {
-                if (BufferAttributes[BufferAttributes.Count - 1].LineNumber >= AtLine)
+            int starting_hint = 0;
+            if ((BufferAttribute_at_LineNumber != null) && (BufferAttribute_at_LineNumber.Length > AtLine)) {
+                starting_hint = BufferAttribute_at_LineNumber[AtLine];
+                if (starting_hint > BufferAttributes.Count - 1)
                 {
-                    for (int i = 0; i < BufferAttributes.Count - 1; i++)
+                    starting_hint = 0;
+                }
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("BracketDepth line" + AtLine.ToString() + " not in range of BufferAttribute_at_LineNumber hints.");
+            }
+
+            if (BufferAttributes != null && BufferAttributes.Count > 0) 
+            {
+                if (BufferAttributes[BufferAttributes.Count - 1] != null && BufferAttributes[BufferAttributes.Count - 1].LineNumber >= AtLine)
+                {
+                    for (int i = starting_hint; i < BufferAttributes.Count - 1; i++)
                     {
-                        if (BufferAttributes[i].LineNumber == AtLine)
+                        if (BufferAttributes[i] != null && BufferAttributes[i].LineNumber == AtLine)
                         {
                             if (BufferAttributes[i].LineStart == AtPosition)
                             {

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0"
+            Type="Project"
+            xmlns="http://schemas.microsoft.com/developer/vstemplate/2005"
+            xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+
+	<TemplateData>
+		<Name>Verilog Project</Name>
+		<Description>Project for syntesizing FPGA bitstreams</Description>
+		<Icon>Verilog.ico</Icon>
+		<ProjectType>CSharp</ProjectType>
+		<ProjectSubType>Verilog</ProjectSubType>
+		<LanguageTag>Verilog</LanguageTag>
+		<PlatformTag>Windows</PlatformTag>
+		<SortOrder>100</SortOrder>
+		<TemplateID>b021d0f2-465e-4c93-b15d-44d21ac594c4</TemplateID>
+		<CreateNewFolder>true</CreateNewFolder>
+		<DefaultName>Verilog</DefaultName>
+		<ProjectTypeTag>Other</ProjectTypeTag>
+
+	</TemplateData>
+	
+	<TemplateContent>
+		<Project File="Verilog Project.csproj" ReplaceParameters="true">
+			<Folder Name="boards"></Folder>
+			<Folder Name="boards\icebreaker"></Folder>
+			<Folder Name="boards\orangecrab"></Folder>
+			<Folder Name="boards\tinyfpga_bx"></Folder>
+			<Folder Name="boards\ulx3s"></Folder>
+
+			<ProjectItem ReplaceParameters="true" OpenInEditor="false">boards\icebreaker\icebreaker.pcf</ProjectItem>
+			<ProjectItem ReplaceParameters="true" OpenInEditor="false">boards\icebreaker\main.mk</ProjectItem>
+			<ProjectItem ReplaceParameters="true" OpenInEditor="false">boards\icebreaker\README.md</ProjectItem>
+
+			<ProjectItem ReplaceParameters="true" OpenInEditor="false">boards\orangecrab\blink.v</ProjectItem>
+			<ProjectItem ReplaceParameters="true" OpenInEditor="false">boards\orangecrab\Makefile</ProjectItem>
+			<ProjectItem ReplaceParameters="true" OpenInEditor="false">boards\orangecrab\orangecrab_r0.1.pcf</ProjectItem>
+			<ProjectItem ReplaceParameters="true" OpenInEditor="false">boards\orangecrab\orangecrab_r0.2.pcf</ProjectItem>
+
+			<ProjectItem ReplaceParameters="true" OpenInEditor="false">boards\tinyfpga_bx\Makefile</ProjectItem>
+			<ProjectItem ReplaceParameters="true" OpenInEditor="false">boards\tinyfpga_bx\pins.pcf</ProjectItem>
+			<ProjectItem ReplaceParameters="true" OpenInEditor="false">boards\tinyfpga_bx\TinyFPGA_B.v</ProjectItem>
+
+			<ProjectItem ReplaceParameters="true" OpenInEditor="false">boards\ulx3s\Makefile-ULX3S-12F.mk</ProjectItem>
+			<ProjectItem ReplaceParameters="true" OpenInEditor="false">boards\ulx3s\Makefile-ULX3S-25F.mk</ProjectItem>
+			<ProjectItem ReplaceParameters="true" OpenInEditor="false">boards\ulx3s\Makefile-ULX3S-45F.mk</ProjectItem>
+			<ProjectItem ReplaceParameters="true" OpenInEditor="false">boards\ulx3s\Makefile-ULX3S-85F.mk</ProjectItem>
+			<ProjectItem ReplaceParameters="true" OpenInEditor="false">boards\ulx3s\ulx3s_v20.lpf</ProjectItem>
+
+		</Project>
+	</TemplateContent>
+</VSTemplate>

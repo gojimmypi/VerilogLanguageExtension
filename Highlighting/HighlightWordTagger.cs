@@ -56,6 +56,45 @@ namespace VerilogLanguage.Highlighting
             this.View.LayoutChanged += ViewLayoutChanged;
         }
 
+        #region Non-working callback attempt
+        // See https://github.com/gojimmypi/VerilogLanguageExtension/issues/23#issuecomment-623129817
+        // https://stackoverflow.com/questions/19048492/notify-when-thread-is-complete-without-locking-calling-thread
+
+        //private void Start()
+        //{
+        //    System.Diagnostics.Debug.WriteLine("1. Call thread task");
+
+        //    StartMyLongRunningTask();
+
+        //    System.Diagnostics.Debug.WriteLine("2. Do something else");
+        //}
+
+        //private void StartMyLongRunningTask()
+        //{
+
+        //    System.Threading.ThreadStart starter = myLongRunningTask;
+
+        //    starter += () =>
+        //    {
+        //        myLongRunningTaskDone();
+        //    };
+
+        //    System.Threading.Thread _thread = new System.Threading.Thread(starter) { IsBackground = true };
+        //    _thread.Start();
+        //}
+
+        //private void myLongRunningTaskDone()
+        //{
+        //    System.Diagnostics.Debug.WriteLine("3. Task callback result");
+        //}
+
+        //private void myLongRunningTask()
+        //{
+        //    string thisFile = VerilogLanguage.VerilogGlobals.GetDocumentPath(SourceBuffer.CurrentSnapshot);
+        //    VerilogGlobals.Reparse(SourceBuffer, thisFile); // note that above, we are checking that the e.After is the same as the _buffer
+        //}
+        #endregion
+
         // Step 4: The event handlers both call the UpdateAtCaretPosition method.
         void ViewLayoutChanged(object sender, TextViewLayoutChangedEventArgs e)
         {
@@ -69,7 +108,12 @@ namespace VerilogLanguage.Highlighting
                 // VerilogGlobals.ParseStatus_NeedReparse_SetValue(thisFile, true);
                 ParseStatusController.NeedReparse_SetValue(thisFile, true);
                 //VerilogGlobals.NeedReparse = true;
+
+
                 VerilogGlobals.Reparse(SourceBuffer, thisFile);
+
+                // See #region Non-working callback attempt
+                //StartMyLongRunningTask();
             }
         }
 

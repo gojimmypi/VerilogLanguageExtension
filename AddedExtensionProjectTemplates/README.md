@@ -9,7 +9,7 @@ If these projects are added to the main solution, a large number of (probably un
 Instead, when editing these project templates, open the respective solution file. For example the [Verilog Project.sln](./Verilog Project/Verilog Project.sln) in 
 `AddedExtensionProjectTEmplate/Verilog Project/`
 
-See also the [Verilog Project/README.md](./Verilog Project/README.md) file.
+See also the Verilog Project/[README.md](./Verilog Project/README.md) file.
 
 ## Updating the Project Template in the VSIX Installer
 

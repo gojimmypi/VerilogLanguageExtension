@@ -19,3 +19,7 @@
 /TestFiles/.vs
 /Reference_Services/Reference.Services.Interfaces/obj/Release
 /Reference_Services/Reference.Services/obj/Release/Reference.Services.csprojAssemblyReference.cache
+/AddedExtensionProjectTemplates/LiteX/obj
+/AddedExtensionProjectTemplates/ProjectTemplate-LiteX/obj
+/AddedExtensionProjectTemplates/Verilog Project/.vs/Verilog Project
+/AddedExtensionProjectTemplates/Verilog Project/obj

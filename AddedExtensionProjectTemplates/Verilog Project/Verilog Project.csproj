@@ -88,11 +88,43 @@
  -->
 
 	<!--
+	iCEBreaker
+	-->
+	<PropertyGroup Condition=" '$(Platform)' == 'iCEBreaker' ">
+		<PlatformTarget>iCE40</PlatformTarget>
+		<BitstreamMakefile>boards/icebreaker/main.mk</BitstreamMakefile>
+		<BitstreamProgrammer>$(BitstreamProgrammer_iCEBreaker)</BitstreamProgrammer>
+		<BitstreamProgrammerType>iCEBreaker</BitstreamProgrammerType>
+		<BitstreamFilename>top_icebreaker.bin</BitstreamFilename>
+	</PropertyGroup>
+
+	<!--
+	Orange Crab
+	-->
+	<PropertyGroup Condition=" '$(Platform)' == 'Orange Crab' ">
+		<PlatformTarget>ECP5-25F</PlatformTarget>
+		<BitstreamMakefile>boards/orangecrab/Makefile</BitstreamMakefile>
+		<BitstreamProgrammer>$(BitstreamProgrammer_OrangeCrab)</BitstreamProgrammer>
+		<BitstreamProgrammerType>OrangeCrab</BitstreamProgrammerType>
+		<BitstreamFilename>blink.dfu</BitstreamFilename>
+	</PropertyGroup>
+
+	<!--
+	tinyFPGA
+	-->
+	<PropertyGroup Condition=" '$(Platform)' == 'tinyFPGA BX' ">
+		<PlatformTarget>ECP5-25F</PlatformTarget>
+		<BitstreamMakefile>boards/tinyfpga_bx/Makefile</BitstreamMakefile>
+		<BitstreamProgrammer>$(BitstreamProgrammer_tinyFPGA_BX)</BitstreamProgrammer>
+		<BitstreamProgrammerType>tinyFPGA</BitstreamProgrammerType>
+		<BitstreamFilename>TinyFPGA_B.bin</BitstreamFilename>
+	</PropertyGroup>
+
+	<!--
 	Radiona ULX3S
 	
 	Edit with caution! See makefile when changing BitstreamFilename
 	-->
-
 	<PropertyGroup Condition=" '$(Platform)' == 'ULX3S ECP5-12K' ">
 		<PlatformTarget>ECP5-12K</PlatformTarget>
 		<BitstreamMakefile>boards/ulx3s/Makefile-ULX3S-12F.mk</BitstreamMakefile>
@@ -125,38 +157,6 @@
 		<BitstreamFilename>ulx3s.bit</BitstreamFilename>
 	</PropertyGroup>
 
-	<!--
-	iCEBreaker
-	-->
-	<PropertyGroup Condition=" '$(Platform)' == 'iCEBreaker' ">
-		<PlatformTarget>iCE40</PlatformTarget>
-		<BitstreamMakefile>boards/icebreaker/main.mk</BitstreamMakefile>
-		<BitstreamProgrammer>$(BitstreamProgrammer_iCEBreaker)</BitstreamProgrammer>
-		<BitstreamProgrammerType>iCEBreaker</BitstreamProgrammerType>
-		<BitstreamFilename>top_icebreaker.bin</BitstreamFilename>
-	</PropertyGroup>
-
-	<!--
-	Orange Crab
-	-->
-	<PropertyGroup Condition=" '$(Platform)' == 'Orange Crab' ">
-		<PlatformTarget>ECP5-25F</PlatformTarget>
-		<BitstreamMakefile>boards/orangecrab/Makefile</BitstreamMakefile>
-		<BitstreamProgrammer>$(BitstreamProgrammer_OrangeCrab)</BitstreamProgrammer>
-		<BitstreamProgrammerType>OrangeCrab</BitstreamProgrammerType>
-		<BitstreamFilename>blink.dfu</BitstreamFilename>
-	</PropertyGroup>
-
-	<!--
-	tinyFPGA
-	-->
-	<PropertyGroup Condition=" '$(Platform)' == 'tinyFPGA BX' ">
-		<PlatformTarget>ECP5-25F</PlatformTarget>
-		<BitstreamMakefile>boards/tinyfpga_bx/Makefile</BitstreamMakefile>
-		<BitstreamProgrammer>$(BitstreamProgrammer_tinyFPGA_BX)</BitstreamProgrammer>
-		<BitstreamProgrammerType>tinyFPGA</BitstreamProgrammerType>
-		<BitstreamFilename>TinyFPGA_B.bin</BitstreamFilename>
-	</PropertyGroup>
 
 
 	<!-- each $(Configuration)|$(Platform) pair needs its own PropertyGroup to appease Project - Poperties - Build - Output Path -->
@@ -881,13 +881,21 @@
 		<Error Text="BitstreamMakefile cannot be blank" Condition=" '$(BitstreamMakefile)'==''      "></Error>
 
 		<Error Text="BitstreamMakefile not found" Condition=" !Exists('$(BitstreamMakefile)') "></Error>
-
+		<Error Text="BitstreamProgrammerType cannot be blank for Upload Configuration" Condition="'$(Configuration)' == 'Upload' And '$(BitstreamProgrammerType)' == '' "> </Error>
+		
 		<!-- ensure the respective programmer executables are defined and exist -->
-		<Error Text="BitstreamProgrammer_ULX3S cannot be blank" Condition=" ('$(BitstreamProgrammer_ULX3S)' == '')  And ('$(Platform)' == 'ULX3S ECP5-12K' Or '$(Platform)' == 'ULX3S ECP5-25K' Or '$(Platform)' == 'ULX3S ECP5-45K' Or '$(Platform)' == 'ULX3S ECP5-85K') "></Error>
-		<Error Text="BitstreamProgrammer_ULX3S '$(BitstreamProgrammer_ULX3S)' not found" Condition=" !Exists('$(BitstreamProgrammer_ULX3S)') And ('$(Platform)' == 'ULX3S ECP5-12K' Or '$(Platform)' == 'ULX3S ECP5-25K' Or '$(Platform)' == 'ULX3S ECP5-45K' Or '$(Platform)' == 'ULX3S ECP5-85K') "></Error>
+		<Error Text="BitstreamProgrammer_iCEBreaker cannot be blank for config $(Configuration)  " Condition=" ('$(BitstreamProgrammer_iCEBreaker)' == '')  And ('$(Configuration)|$(BitstreamProgrammerType)' == 'Upload|iCEBreaker' ) "></Error>
+		<Error Text="BitstreamProgrammer_iCEBreaker '$(BitstreamProgrammer_iCEBreaker)' not found" Condition=" !Exists('$(BitstreamProgrammer_iCEBreaker)') And ('$(Configuration)|$(BitstreamProgrammerType)' == 'Upload|iCEBreaker' ) "></Error>
 
-		<Error Text="BitstreamProgrammer_iCEBreaker  cannot be blank" Condition=" ('$(BitstreamProgrammer_iCEBreaker)' == '')  And ('$(Platform)' == 'iCEBreaker' ) "></Error>
-		<Error Text="BitstreamProgrammer_iCEBreaker '$(BitstreamProgrammer_iCEBreaker)' not found" Condition=" !Exists('$(BitstreamProgrammer_iCEBreaker)') And ('$(Platform)' == 'iCEBreaker' ) "></Error>
+		<Error Text="BitstreamProgrammer_OrangeCrab cannot be blank"                               Condition=" ('$(BitstreamProgrammer_OrangeCrab)' == '')  And ('$(Configuration)|$(BitstreamProgrammerType)' == 'Upload|OrangeCrab') "></Error>
+		<Error Text="BitstreamProgrammer_OrangeCrab '$(BitstreamProgrammer_OrangeCrab)' not found" Condition=" !Exists('$(BitstreamProgrammer_OrangeCrab)') And ('$(Configuration)|$(BitstreamProgrammerType)' == 'Upload|OrangeCrab') "></Error>
+
+		<Error Text="BitstreamProgrammer_tinyFPGA cannot be blank"                                 Condition=" ('$(BitstreamProgrammer_tinyFPGA)' == '')    And ('$(Configuration)|$(BitstreamProgrammerType)' == 'Upload|tinyFPGA') "></Error>
+		<Error Text="BitstreamProgrammer_tinyFPGA '$(BitstreamProgrammer_tinyFPGA)' not found"     Condition=" !Exists('$(BitstreamProgrammer_tinyFPGA)')   And ('$(Configuration)|$(BitstreamProgrammerType)' == 'Upload|tinyFPGA') "></Error>
+
+		<Error Text="BitstreamProgrammer_ULX3S cannot be blank"                                    Condition=" ('$(BitstreamProgrammer_ULX3S)' == '')       And ('$(Configuration)|$(BitstreamProgrammerType)' == 'Upload|ULX3S') "></Error>
+		<Error Text="BitstreamProgrammer_ULX3S '$(BitstreamProgrammer_ULX3S)' not found"           Condition=" !Exists('$(BitstreamProgrammer_ULX3S)')      And ('$(Configuration)|$(BitstreamProgrammerType)' == 'Upload|ULX3S') "></Error>
+
 
 
 		<Message Text="Running InitFPGA ... '$(Configuration)|$(Platform)' " />

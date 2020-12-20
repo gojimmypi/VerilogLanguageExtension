@@ -5,12 +5,12 @@ already installed, as well as several key components such as [verilator](https:/
 [yosys](http://www.clifford.at/yosys/), [nextpnr](https://github.com/YosysHQ/nextpnr) and the [ecppack](https://github.com/SymbiFlow/prjtrellis/blob/master/libtrellis/tools/ecppack.cpp)
 utility in [Project Trellis](https://github.com/SymbiFlow/prjtrellis). 
 
-To actually upload the syntesized bitstream onto the FPGA, the [ujprog](https://github.com/emard/ulx3s-examples/tree/master/bin) 
-or the newer [fujprog](https://github.com/kost/fujprog/issues) is needed.
+To actually upload the synthesized bitstream onto the FPGA, the 
+[fujprog](https://github.com/kost/fujprog/issues) is should be used.
 
 One option is to install everything for the complete [ULX3S Toolchain](https://github.com/ulx3s/ulx3s-toolchain).
 This is probably best if you want to keep up with the latest versions and have full control. Although tailored for the
-ULX3S, this toolchain is easily adapted to other FPGA devices with minimal changes.
+ULX3S with ESP32 development, this toolchain is easily adapted to other FPGA devices with minimal changes.
 
 A custom FPGA "build" is called from a DOS batch file in the [build](./build/) directory. There's a bit of logic there
 that checks for which directory WSL needs to be used. Target Deploys are found in the `<Target Name="Build"  >` section
@@ -81,12 +81,14 @@ Kost has prompiled binary [releases](https://github.com/alpin3/ulx3s/releases).
 
 Although Visual Studio should (in theory) allow an included project to be an asset in the deployed VSIX install, this behaviour was not observed.
 
-For now, click on `Project - Export Template`. Ensure the `VerilogProjectTample` is the project being exported! (this is typically not the default).
+For now, from the main menu in the [AddedExtensionProjectTemplate/Verilog Project/Verilog Project.sln Solution](./Verilog Project.sln) click on `Project - Export Template`. Ensure the `VerilogProjectTemplate` is the project being exported! (this is typically not the default).
 
 ![export_template.png](./images/export_template.png)
 
-The only option is a read-only to save to `C:\Users\%USERNAME%\Documents\Visual Studio 2019\My Exported Templates\VerilogProjectTemplate.zip`. 
+The only option is a read-only save to `C:\Users\%USERNAME%\Documents\Visual Studio 2019\My Exported Templates\VerilogProjectTemplate.zip`. 
 Copy this file to the solution `ProjectTemplates` directory. See the [source.extension.vsixmanifest](../../source.extension.vsixmanifest) file.
+
+For example, put the zip `C:\Users\gojimmypi\Documents\Visual Studio 2019\Templates\ProjectTemplates`
 
 ## Other Resources:
 

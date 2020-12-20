@@ -2,11 +2,12 @@
 
 Each of the subdirectories here contain files that are created during `File - New Project` in Visual Studio.
 
-These directories are NOT part of the Verilog Language Extension development solution and should be zipped up (via the Export Template...) and included in the .\ProjectTemplates directory for distribution with installation file.
+These directories are NOT part of the Verilog Language Extension development solution and should be zipped up (via the Export Template...) and included in the `.\ProjectTemplates\` directory for distribution with installation files.
 
 If these projects are added to the main solution, a large number of (probably undesired) build configurations for the FPGA board will be added to that solution.
 
-Instead, when editing these project templates, open the respective solution file (e.g. [AddedExtensionProjectTEmplate/Verilog Project/Verilog Project.sln](./Verilog Project/Verilog Project.sln)
+Instead, when editing these project templates, open the respective solution file. For example the [Verilog Project.sln](./Verilog Project/Verilog Project.sln) in 
+`AddedExtensionProjectTEmplate/Verilog Project/`
 
 See also the [Verilog Project/README.md](./Verilog Project/README.md) file.
 
@@ -20,7 +21,7 @@ Ensure the `VerilogProjectTemplate` is the project being exported! (this is typi
 
 Although Visual Studio should (in theory) allow an included project to be an asset in the deployed VSIX install, this behaviour at one time was not observed.
 
-To manually install a template, from the main menu in the [AddedExtensionProjectTemplate/Verilog Project/Verilog Project.sln Solution](./Verilog Project.sln) click on `Project - Export Template`. 
+To manually install a template, from the main menu in the [Verilog Project.sln](./Verilog Project.sln) solution file and click on `Project - Export Template`. 
 Ensure the `VerilogProjectTemplate` is the project being exported! (this is typically not the default).
 
 ![export_template.png](./images/export_template.png)

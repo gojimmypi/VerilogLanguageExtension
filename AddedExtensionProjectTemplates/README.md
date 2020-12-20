@@ -16,7 +16,7 @@ See also the [Verilog Project/README.md](./Verilog%20Project/README.md) file.
 In the `AddedExtensionProjectTemplate/Verilog Project/` directory, open the [Verilog Project.sln Solution](./Verilog%20Project/Verilog%20Project.sln) and click on `Project - Export Template`. 
 Ensure the `VerilogProjectTemplate` is the project being exported! (this is typically not the default).
 
-Save the zip file of the template export in the [ProjectTemplates](..\ProjectTemplates\) directory.
+Save the zip file of the template export in the [ProjectTemplates](../ProjectTemplates/) directory.
 
 
 ## Updating the Project Template Manually

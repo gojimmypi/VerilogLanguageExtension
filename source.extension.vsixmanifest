@@ -19,7 +19,7 @@
         <License>LICENSE.md</License>
         <GettingStartedGuide>https://github.com/gojimmypi/VerilogLanguageExtension/blob/master/README.md#installation</GettingStartedGuide>
         <ReleaseNotes>https://github.com/gojimmypi/VerilogLanguageExtension/blob/master/releases/README.md</ReleaseNotes>
-        <Tags>Verilog keyword syntax highlight extension FPGA HDL</Tags>
+        <Tags>Verilog keyword syntax highlight extension FPGA HDL ULX3S iCEBreaker OrangeCrab TinyFPGA</Tags>
         <Preview>true</Preview>
     </Metadata>
     <Installation>

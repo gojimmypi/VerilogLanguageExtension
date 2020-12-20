@@ -1,6 +1,6 @@
 # Added Extension Project Templates
 
-Each of the subdirectories here contain files that are created during `File - New Project` in Visual Studio.
+Each of the subdirectories here contain files that are created during `File - New Project` in Visual Studio. All of the files will be copied to the respectifve new project.
 
 These directories are NOT part of the Verilog Language Extension development solution and should be zipped up (via the Export Template...) and included in the `.\ProjectTemplates\` directory for distribution with installation files.
 
@@ -11,9 +11,12 @@ Instead, when editing these project templates, open the respective solution file
 
 See also the [Verilog Project/README.md](./Verilog%20Project/README.md) file.
 
-## Updating the Project Template in the VSIX Installer
+## Updating the Verilog Project Template included with VSIX Installer
 
 In the `AddedExtensionProjectTemplate/Verilog Project/` directory, open the [Verilog Project.sln Solution](./Verilog%20Project/Verilog%20Project.sln) and click on `Project - Export Template`. 
+
+![export_verilog_project.png](./images/export_Verilog_Project.png)
+
 Ensure the `VerilogProjectTemplate` is the project being exported! (this is typically not the default).
 
 Save the zip file of the template export in the [ProjectTemplates](../ProjectTemplates/) directory.

@@ -9,11 +9,11 @@ If these projects are added to the main solution, a large number of (probably un
 Instead, when editing these project templates, open the respective solution file. For example the [Verilog Project.sln](./Verilog%20Project/Verilog%20Project.sln) in 
 `AddedExtensionProjectTEmplate/Verilog Project/`
 
-See also the Verilog Project/[README.md](./Verilog Project/README.md) file.
+See also the [Verilog Project/README.md](./Verilog%20Project/README.md) file.
 
 ## Updating the Project Template in the VSIX Installer
 
-In the `AddedExtensionProjectTemplate/Verilog Project/` directory, open the [AddedExtensionProjectTemplate/Verilog Project/Verilog Project.sln Solution](./Verilog%20Project.sln) and click on `Project - Export Template`. 
+In the `AddedExtensionProjectTemplate/Verilog Project/` directory, open the [Verilog Project.sln Solution](./Verilog%20Project/Verilog%20Project.sln) and click on `Project - Export Template`. 
 Ensure the `VerilogProjectTemplate` is the project being exported! (this is typically not the default).
 
 
@@ -24,7 +24,7 @@ Although Visual Studio should (in theory) allow an included project to be an ass
 To manually install a template, from the main menu in the [Verilog Project.sln](./Verilog%20Project.sln) solution file and click on `Project - Export Template`. 
 Ensure the `VerilogProjectTemplate` is the project being exported! (this is typically not the default).
 
-![export_template.png](./images/export_template.png)
+![export_template.png](./Verilog%20Project/images/export_template.png)
 
 The only option is a read-only save to `C:\Users\%USERNAME%\Documents\Visual Studio 2019\My Exported Templates\VerilogProjectTemplate.zip`. 
 Copy this file to the solution `ProjectTemplates` directory. See the [source.extension.vsixmanifest](../../source.extension.vsixmanifest) file.

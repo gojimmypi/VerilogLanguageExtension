@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0"  DefaultTargets="Build"  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release' ">
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Verilog1.v" />
+  </ItemGroup>
+
+  <Target Name="Build">
+    <Message Text="Building Verilog Files" />
+    <MakeDir Directories="$(OutputPath)" Condition="!Exists('$(OutputPath)')" />
+    <Exec Command="echo BUILD!!!!" />
+  </Target>
+  
+  <Target Name="Rebuild" DependsOnTargets="Clean;Build">
+    <Message Task="Rebuilding Verilog Files" />    
+    <Exec Command="echo REBUILD!!!" />
+  </Target>
+  
+  <Target Name="Clean">
+    <Message Text="Cleaning Verilog Files" />
+    <RemoveDir Directories="$(OutputPath)" />
+  </Target>
+
+  <!--
+  To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+ 
+ </Project>

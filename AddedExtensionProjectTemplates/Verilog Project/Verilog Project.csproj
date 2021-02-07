@@ -1,25 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<!--
-  For tips on editing this file, see https://docs.microsoft.com/en-us/visualstudio/msbuild/target-build-order?view=vs-2019
+    For tips on editing this file, see https://docs.microsoft.com/en-us/visualstudio/msbuild/target-build-order?view=vs-2019
+   
+    see: https://docs.microsoft.com/en-us/visualstudio/msbuild/how-to-extend-the-visual-studio-build-process?view=vs-2019
+    "Be sure to use different names than the predefined targets listed in the table in the previous section 
+    (for example, we named the custom build target here CustomAfterBuild, not AfterBuild), since those predefined 
+    targets are overridden by the SDK import which also defines them. You don't see the import of the target file 
+    that overrides those targets, but it is implicitly added to the end of the project file when you use the Sdk 
+    attribute method of referencing an SDK."
+	-->
 
-  see: https://docs.microsoft.com/en-us/visualstudio/msbuild/how-to-extend-the-visual-studio-build-process?view=vs-2019
-  "Be sure to use different names than the predefined targets listed in the table in the previous section 
-  (for example, we named the custom build target here CustomAfterBuild, not AfterBuild), since those predefined 
-  targets are overridden by the SDK import which also defines them. You don't see the import of the target file 
-  that overrides those targets, but it is implicitly added to the end of the project file when you use the Sdk 
-  attribute method of referencing an SDK."
--->
+	<Import Project=".\ProjectPlatform\Project_ULX3S.csproj" />
+	<Import Project=".\ProjectPlatform\Config.csproj"  />
+	<ItemGroup>
+		<None Include="ProjectPlatform\Config.csproj" />
+		<None Include="ProjectPlatform\Project_ULX3S.csproj" />
+		<None Include="Properties\AssemblyInfo.cs" />
+	</ItemGroup>
 
-	<PropertyGroup Label="Programmer">
-		<!-- If the programmer is in your path, just enter the name, otherwise provide fully qualified name  
-		
-		binaries are available at: https://github.com/gojimmypi/ulx3s-toolchain/tree/master/bin
-		-->
-		<BitstreamProgrammer_ULX3S>C:\workspace\ulx3s-toolchain\bin\fujprog.exe</BitstreamProgrammer_ULX3S>
-		<BitstreamProgrammer_iCEBreaker>C:\workspace\ulx3s-toolchain\bin\iceprog.exe</BitstreamProgrammer_iCEBreaker>
-		<BitstreamProgrammer_OrangeCrab>C:\workspace\ulx3s-toolchain\bin\dfu-util.exe</BitstreamProgrammer_OrangeCrab>
-		<BitstreamProgrammer_tinyFPGA_BX>C:\workspace\ulx3s-toolchain\bin\tinyprog.exe</BitstreamProgrammer_tinyFPGA_BX>
-	</PropertyGroup>
 
 	<!-- 
 	To avoid relentless background tasks, we look for:  Condition=" '$(_AvoidTargetStep)' == '' "
@@ -31,16 +29,14 @@
 		</PropertyGroup>
 	</Target>
 
-  <Target Name="TemplateProjectOutputGroup"></Target>
+	<Target Name="TemplateProjectOutputGroup"></Target>
 
-  <ItemGroup>
-    <Compile Remove="ExportedTemplates\**" />
-    <EmbeddedResource Remove="ExportedTemplates\**" />
-    <None Remove="ExportedTemplates\**" />
-  </ItemGroup>
 	<ItemGroup>
-		<None Include="Properties\AssemblyInfo.cs" />
+		<Compile Remove="ExportedTemplates\**" />
+		<EmbeddedResource Remove="ExportedTemplates\**" />
+		<None Remove="ExportedTemplates\**" />
 	</ItemGroup>
+	
 
 	<ItemGroup>
 		<Compile Remove="Properties\AssemblyInfo.cs" />
@@ -359,9 +355,10 @@
 			InstallBuildDependencies;
 		</PipelineDependsOn>
 	</PropertyGroup>
+
 	<!--Launch a Process in Parallel
-  https://stackoverflow.com/questions/2387456/msbuild-exec-task-without-blocking
-  -->
+	https://stackoverflow.com/questions/2387456/msbuild-exec-task-without-blocking
+	-->
 
 	<Target Name="NoTarget" Condition=" '$(Configuration)|$(Platform)'=='' ">
 		<Error Text="No target specified"></Error>
@@ -392,7 +389,7 @@
 	</Target>
 
 	<!--
-  To modify your build process, add your task inside one of the targets below and uncomment it. 
+  ``To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
@@ -479,8 +476,16 @@
 		<Error Text="$(BitstreamFilename) file not found!" Condition="!Exists('$(BitstreamFilename)')"></Error>
 	</Target>
 
-	<!-- ensure the defined programmer is found, and sees a board-->
-	<Target Name="VerifyBitstreamProgrammer">
+	<Target Name="VerifyBitstreamProgrammer_2" Condition=" '1'=='1' ">
+		<Message Text="Using BitstreamFilename #2=$(BitstreamFilename)"></Message>
+	</Target>
+
+	<Target Name="VerifyBitstreamProgrammer" DependsOnTargets="Target_Project_ULX3S">
+		<CallTarget Targets="VerifyBitstreamProgrammer_ULX3S" Condition=" '$(BitstreamProgrammerType)'=='ULX3S' "></CallTarget>
+	</Target>
+	
+		<!-- ensure the defined programmer is found, and sees a board-->
+	<Target Name="VerifyBitstreamProgrammer_ULX3S">
 		<!-- we need a bitfile to actually send to the board-->
 		<Error Text="$(BitstreamFilename) file not found!" Condition="!Exists('$(BitstreamFilename)')"></Error>
 		<Message Text="Using BitstreamFilename=$(BitstreamFilename)"></Message>
@@ -540,12 +545,12 @@
 		<Message Text="TEST! $(SystemRoot)"></Message>
 
 		<!-- just in case there's a project with the name 'failed.', we'll abort here-->
-		<Error Text="BitstreamFilename $(BitstreamFilename) cannot contain the text 'Failed.'" Condition="$(BitstreamFilename.Contains('Failed.'))" ></Error>
+		<Error Text="BitstreamFilename $(BitstreamFilename) cannot contain the text 'Failed.'" Condition="$(BitstreamFilename.Contains('Failed.'))"></Error>
 		
 		<!-- here's where we actually call the bitfile uploader executable -->
 		<Exec Command="$(BitstreamProgrammer) $(BitstreamFilename) " YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high" Condition=" '$(_AvoidTargetStep)' == ''">
 			<!-- save the output to OutputOfExec so we can later examine contents; exitcode may still be zero during failure-->
-			<Output TaskParameter="ConsoleOutput"  PropertyName="OutputOfExec" /> 
+			<Output TaskParameter="ConsoleOutput" PropertyName="OutputOfExec" /> 
 		</Exec>
 
 		<Message Text="OutputOfExec=$(OutputOfExec)"></Message>
@@ -954,7 +959,11 @@
 		<Exec Command="$(FoundWSL) yosys --version" />
 		<Exec Command="$(FoundWSL) nextpnr-ecp5 --version" />
 		<Exec Command="$(FoundWSL) ecppack --version" />
+		
+		<!-- 
+		moved
 		<Exec Command="$(BitstreamProgrammer) -V" Condition=" '$(Configuration)|$(BitstreamProgrammerType)' =='Upload|ULX3S' " />
+		-->
 		<!-- ecppack does not yet have version feature see: https://github.com/YosysHQ/prjtrellis/pull/147 -->
 	</Target>
 

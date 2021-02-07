@@ -15,10 +15,10 @@
 		
 		binaries are available at: https://github.com/gojimmypi/ulx3s-toolchain/tree/master/bin
 		-->
-		<BitstreamProgrammer_ULX3S>C:\workspace-pr\fujprog\build\fujprog.exe</BitstreamProgrammer_ULX3S>
+		<BitstreamProgrammer_ULX3S>C:\workspace\ulx3s-toolchain\bin\fujprog.exe</BitstreamProgrammer_ULX3S>
 		<BitstreamProgrammer_iCEBreaker>C:\workspace\ulx3s-toolchain\bin\iceprog.exe</BitstreamProgrammer_iCEBreaker>
-		<BitstreamProgrammer_OrangeCrab>C:\workspace\dfu-util\bin-win64\dfu-util.exe</BitstreamProgrammer_OrangeCrab>
-		<BitstreamProgrammer_tinyFPGA_BX>C:\Users\gojimmypi\.icestudio\venv\Scripts\tinyprog.exe</BitstreamProgrammer_tinyFPGA_BX>
+		<BitstreamProgrammer_OrangeCrab>C:\workspace\ulx3s-toolchain\bin\dfu-util.exe</BitstreamProgrammer_OrangeCrab>
+		<BitstreamProgrammer_tinyFPGA_BX>C:\workspace\ulx3s-toolchain\bin\tinyprog.exe</BitstreamProgrammer_tinyFPGA_BX>
 	</PropertyGroup>
 
 	<!-- 
@@ -130,6 +130,10 @@
 		<BitstreamMakefile>boards/ulx3s/Makefile-ULX3S-12F.mk</BitstreamMakefile>
 		<BitstreamProgrammer>$(BitstreamProgrammer_ULX3S)</BitstreamProgrammer>
 		<BitstreamProgrammerType>ULX3S</BitstreamProgrammerType>
+
+		<!--search for this text in the output of programmer inspection, e.g. fujprog.exe -i -->
+		<BitstreamProgrammerText>ULX3S FPGA 12K</BitstreamProgrammerText>
+		
 		<BitstreamFilename>ulx3s.bit</BitstreamFilename>
 	</PropertyGroup>
 
@@ -138,6 +142,10 @@
 		<BitstreamMakefile>boards/ulx3s/Makefile-ULX3S-25F.mk</BitstreamMakefile>
 		<BitstreamProgrammer>$(BitstreamProgrammer_ULX3S)</BitstreamProgrammer>
 		<BitstreamProgrammerType>ULX3S</BitstreamProgrammerType>
+
+		<!--search for this text in the output of programmer inspection, e.g. fujprog.exe -i -->
+		<BitstreamProgrammerText>ULX3S FPGA 25K</BitstreamProgrammerText>
+		
 		<BitstreamFilename>ulx3s.bit</BitstreamFilename>
 	</PropertyGroup>
 
@@ -146,6 +154,10 @@
 		<BitstreamMakefile>boards/ulx3s/Makefile-ULX3S-45F.mk</BitstreamMakefile>
 		<BitstreamProgrammer>$(BitstreamProgrammer_ULX3S)</BitstreamProgrammer>
 		<BitstreamProgrammerType>ULX3S</BitstreamProgrammerType>
+		
+		<!--search for this text in the output of programmer inspection, e.g. fujprog.exe -i -->
+		<BitstreamProgrammerText>ULX3S FPGA 45K</BitstreamProgrammerText>
+
 		<BitstreamFilename>ulx3s.bit</BitstreamFilename>
 	</PropertyGroup>
 
@@ -154,6 +166,10 @@
 		<BitstreamMakefile>boards/ulx3s/Makefile-ULX3S-85F.mk</BitstreamMakefile>
 		<BitstreamProgrammer>$(BitstreamProgrammer_ULX3S)</BitstreamProgrammer>
 		<BitstreamProgrammerType>ULX3S</BitstreamProgrammerType>
+
+		<!--search for this text in the output of programmer inspection, e.g. fujprog.exe -i -->
+		<BitstreamProgrammerText>ULX3S FPGA 85K</BitstreamProgrammerText>
+		
 		<BitstreamFilename>ulx3s.bit</BitstreamFilename>
 	</PropertyGroup>
 
@@ -463,14 +479,84 @@
 		<Error Text="$(BitstreamFilename) file not found!" Condition="!Exists('$(BitstreamFilename)')"></Error>
 	</Target>
 
-	<!-- Upload ULX3S ECP5-12K -->
-	<Target Name="Upload_ULX3S_12K" DependsOnTargets="Build_ULX3S" AfterTargets="InitFPGA" BeforeTargets="SwitchToAnyCpu" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Upload|ULX3S ECP5-12K|' ">
-		<Message Text="Conditional Upload_ULX3S_12K running...$(Configuration)|$(Platform)" />
-		<CallTarget Targets="Build_ULX3S"></CallTarget>
+	<!-- ensure the defined programmer is found, and sees a board-->
+	<Target Name="VerifyBitstreamProgrammer">
+		<!-- we need a bitfile to actually send to the board-->
 		<Error Text="$(BitstreamFilename) file not found!" Condition="!Exists('$(BitstreamFilename)')"></Error>
-		<Exec Command="$(BitstreamProgrammer) -q25 $(BitstreamFilename) " YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high" Condition=" '$(_AvoidTargetStep)' == ''">
-			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
+		<Message Text="Using BitstreamFilename=$(BitstreamFilename)"></Message>
+
+		<!-- we need a programmer to send the bitfile to the board-->
+		<Error Text="$(BitstreamProgrammer) programmer not found!" Condition="!Exists('$(BitstreamProgrammer)')"></Error>
+		<Message Text="Using BitstreamProgrammer=$(BitstreamProgrammer)"></Message>
+		
+		<!-- identify the available board, otherwise show error message -->
+		<Exec Command="$(BitstreamProgrammer) -i" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high" Condition=" '$(_AvoidTargetStep)' == ''" IgnoreExitCode="true">
+			<Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
 		</Exec>
+		
+		<!-- apparently we cannot capture both the ErrorCode and OutputOfExec concurrently, so first run and check error code-->
+		<Error Text="Check to make sure the device is plugged in. $(BitstreamProgrammer) exited with ErrorCode $(ErrorCode)" Condition=" '$(ErrorCode)' != '0' "></Error>
+		
+		<!-- if there's no error, run the bitstram programmer again to identify the board -->
+		<Exec Command="$(BitstreamProgrammer) -i" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high" Condition=" ('$(_AvoidTargetStep)|$(ErrorCode)' == '|0')" IgnoreExitCode="true">
+			<Output TaskParameter="ConsoleOutput" PropertyName="OutputOfExec" />
+		</Exec>
+		<Message Text="Found device: $(OutputOfExec)" Condition=" '$(ErrorCode)' == '0' "></Message>
+
+		<Message Text="Result=$(OutputOfExec)"></Message>
+		<Message Text="MAGIC $(OutputOfExec.Contains(&quot;ULX3S FPGA 12K&quot;))"> </Message>
+
+		<PropertyGroup>
+			<!-- initialize -->
+			<FoundMatchingBoard>False</FoundMatchingBoard>
+		</PropertyGroup>
+		
+		<PropertyGroup Condition="$(OutputOfExec.Contains('ULX3S FPGA 12K'))">
+			<FoundMatchingBoard>True</FoundMatchingBoard>
+			<BoardNameFound>ULX3S FPGA 12K</BoardNameFound>
+		</PropertyGroup>
+
+		<PropertyGroup Condition="$(OutputOfExec.Contains('ULX3S FPGA 45K'))">
+			<FoundMatchingBoard>True</FoundMatchingBoard>
+			<BoardNameFound>ULX3S FPGA 45K</BoardNameFound>
+		</PropertyGroup>
+
+		<PropertyGroup Condition="$(OutputOfExec.Contains('ULX3S FPGA 85K'))">
+			<FoundMatchingBoard>True</FoundMatchingBoard>
+			<BoardNameFound>ULX3S FPGA 85K</BoardNameFound>
+		</PropertyGroup>
+
+		<Message Text="VerifyBitstreamProgrammer FoundMatchingBoard=$(FoundMatchingBoard)"></Message>
+		<Error Text="Found bistream programmer but failed to find a matching $(BitstreamProgrammerType) board name with $(BitstreamProgrammer)" Condition=" '$(FoundMatchingBoard)'!='True' "></Error>
+
+		<Error Text="Expected $(BitstreamProgrammerText) but found $(BoardNameFound)" Condition=" '$(FoundMatchingBoard)|$(BoardNameFound)'!='True|$(BitstreamProgrammerText)' "></Error>
+		<Message Text="VerifyBitstreamProgrammer complete."></Message>
+	</Target>
+	
+	<!-- Upload ULX3S ECP5-12K -->
+	<Target Name="Upload_ULX3S_12K" DependsOnTargets="Build_ULX3S;VerifyBitstreamProgrammer" AfterTargets="InitFPGA" BeforeTargets="SwitchToAnyCpu" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Upload|ULX3S ECP5-12K|' ">
+		<Message Text="Conditional Upload_ULX3S_12K running...$(Configuration)|$(Platform)" />
+		<!-- <CallTarget Targets="Build_ULX3S"></CallTarget> we are already DependsOnTargets so this is not needed-->
+		<Message Text="TEST! $(SystemRoot)"></Message>
+
+		<!-- just in case there's a project with the name 'failed.', we'll abort here-->
+		<Error Text="BitstreamFilename $(BitstreamFilename) cannot contain the text 'Failed.'" Condition="$(BitstreamFilename.Contains('Failed.'))" ></Error>
+		
+		<!-- here's where we actually call the bitfile uploader executable -->
+		<Exec Command="$(BitstreamProgrammer) $(BitstreamFilename) " YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high" Condition=" '$(_AvoidTargetStep)' == ''">
+			<!-- save the output to OutputOfExec so we can later examine contents; exitcode may still be zero during failure-->
+			<Output TaskParameter="ConsoleOutput"  PropertyName="OutputOfExec" /> 
+		</Exec>
+
+		<Message Text="OutputOfExec=$(OutputOfExec)"></Message>
+		
+		<!-- even if everything is in order, the upload still might fail (e.g. bitstream mismatch when changing config) -->
+		<PropertyGroup Condition="$(OutputOfExec.Contains('Failed.'))">
+			<UploadFailed>True</UploadFailed>
+		</PropertyGroup>
+		
+		<!-- if we find the output contains the word "failed" then we'll aboty with an error message -->
+		<Error Text="Upload Failed; $(OutputOfExec)" Condition=" '$(UploadFailed)'=='True' "></Error>
 	</Target>
 
 	<!-- Verify ULX3S ECP5-12K -->
@@ -499,11 +585,11 @@
 	</Target>
 
 	<!-- Upload ULX3S ECP5-25K -->
-	<Target Name="Upload_ULX3S_25K" DependsOnTargets="Build_ULX3S" AfterTargets="InitFPGA" BeforeTargets="SwitchToAnyCpu" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Upload|ULX3S ECP5-25K|' ">
+	<Target Name="Upload_ULX3S_25K" DependsOnTargets="Build_ULX3S;VerifyBitstreamProgrammer" AfterTargets="InitFPGA" BeforeTargets="SwitchToAnyCpu" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Upload|ULX3S ECP5-25K|' ">
 		<Message Text="Conditional Upload_ULX3S_25K running...$(Configuration)|$(Platform)" />
 		<CallTarget Targets="Build_ULX3S"></CallTarget>
 		<Error Text="$(BitstreamFilename) file not found!" Condition="!Exists('$(BitstreamFilename)')"></Error>
-		<Exec Command="$(BitstreamProgrammer) -q20 $(BitstreamFilename) " YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
+		<Exec Command="$(BitstreamProgrammer)   $(BitstreamFilename) " YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
 			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
 		</Exec>
 	</Target>
@@ -535,11 +621,13 @@
 	</Target>
 
 	<!-- Upload ULX3S ECP5-45K -->
-	<Target Name="Upload_ULX3S_45K" DependsOnTargets="Build_ULX3S" AfterTargets="InitFPGA" BeforeTargets="SwitchToAnyCpu" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Upload|ULX3S ECP5-45K|' ">
+	<Target Name="Upload_ULX3S_45K" DependsOnTargets="Build_ULX3S;VerifyBitstreamProgrammer" AfterTargets="InitFPGA" BeforeTargets="SwitchToAnyCpu" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Upload|ULX3S ECP5-45K|' ">
+		<Message Text="Upload_ULX3S_45K FoundMatchingBoard=$(FoundMatchingBoard)"></Message>
+
 		<Message Text="Conditional Upload_ULX3S_45K running...$(Configuration)|$(Platform)" />
 		<CallTarget Targets="Build_ULX3S"></CallTarget>
 		<Error Text="$(BitstreamFilename) file not found!" Condition="!Exists('$(BitstreamFilename)')"></Error>
-		<Exec Command="$(BitstreamProgrammer) -q10 $(BitstreamFilename) " YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
+		<Exec Command="$(BitstreamProgrammer)   $(BitstreamFilename) " YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
 			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
 		</Exec>
 	</Target>
@@ -574,7 +662,7 @@
 		<Message Text="Conditional Upload_ULX3S_85K running...$(Configuration)|$(Platform)" />
 		<CallTarget Targets="Build_ULX3S"></CallTarget>
 		<Error Text="$(BitstreamFilename) file not found!" Condition="!Exists('$(BitstreamFilename)')"></Error>
-		<Exec Command="$(BitstreamProgrammer) -q5 $(BitstreamFilename) " YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
+		<Exec Command="$(BitstreamProgrammer)   $(BitstreamFilename) " YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
 			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
 		</Exec>
 	</Target>
@@ -614,7 +702,7 @@
 	iCEBeeaker
 	******************************************************************************************************************************* -->
 	<!--
-	Build ULX3S
+	Build iCEBeeaker
 	
 	Note different chips are specified in the BitstreamMakefile property setting
 	-->
@@ -653,14 +741,15 @@
 		<Message Text="Upload_iCEBreaker $(Configuration)|$(Platform)" />
 		<CallTarget Targets="Build_iCEBreaker"></CallTarget>
 		<Error Text="$(BitstreamFilename) file not found!" Condition="!Exists('$(BitstreamFilename)')"></Error>
-		<Exec Command="$(BitstreamProgrammer) $(BitstreamFilename) " YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
+		<Exec Command="$(BitstreamProgrammer) $(BitstreamFilename) " YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high" Condition=" '$(_AvoidTargetStep)' == ''">
 			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
 		</Exec>
 	</Target>
 
+
 	<!-- Verify iCEBreaker-->
 	<Target Name="Verify_iCEBreaker" Outputs="top_icebreaker.bin" AfterTargets="CoreBuild" DependsOnTargets="Build_iCEBreaker" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Verify|iCEBreaker|' ">
-		<Message Text="Upload_iCEBreaker $(Configuration)|$(Platform)" />
+		<Message Text="Verify_iCEBreaker $(Configuration)|$(Platform)" />
 		<Error Text="Verify Not implemented"></Error>
 		<Exec Command="$(FoundWSL) (echo not implemented )" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
 			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
@@ -870,7 +959,7 @@
 	</Target>
 
 	<Target Name="ProgrammerParameters">
-		<Exec Command="$(BitstreamProgrammer) -q5 -V" />
+		<Exec Command="$(BitstreamProgrammer)  -V" />
 		<Exec Command="echo wow &gt; ProgrammerParameters.log" />
 	</Target>
 
@@ -887,14 +976,14 @@
 		<Error Text="BitstreamProgrammer_iCEBreaker cannot be blank for config $(Configuration)  " Condition=" ('$(BitstreamProgrammer_iCEBreaker)' == '')  And ('$(Configuration)|$(BitstreamProgrammerType)' == 'Upload|iCEBreaker' ) "></Error>
 		<Error Text="BitstreamProgrammer_iCEBreaker '$(BitstreamProgrammer_iCEBreaker)' not found" Condition=" !Exists('$(BitstreamProgrammer_iCEBreaker)') And ('$(Configuration)|$(BitstreamProgrammerType)' == 'Upload|iCEBreaker' ) "></Error>
 
-		<Error Text="BitstreamProgrammer_OrangeCrab cannot be blank"                               Condition=" ('$(BitstreamProgrammer_OrangeCrab)' == '')  And ('$(Configuration)|$(BitstreamProgrammerType)' == 'Upload|OrangeCrab') "></Error>
+		<Error Text="BitstreamProgrammer_OrangeCrab cannot be blank" Condition=" ('$(BitstreamProgrammer_OrangeCrab)' == '')  And ('$(Configuration)|$(BitstreamProgrammerType)' == 'Upload|OrangeCrab') "></Error>
 		<Error Text="BitstreamProgrammer_OrangeCrab '$(BitstreamProgrammer_OrangeCrab)' not found" Condition=" !Exists('$(BitstreamProgrammer_OrangeCrab)') And ('$(Configuration)|$(BitstreamProgrammerType)' == 'Upload|OrangeCrab') "></Error>
 
-		<Error Text="BitstreamProgrammer_tinyFPGA cannot be blank"                                 Condition=" ('$(BitstreamProgrammer_tinyFPGA)' == '')    And ('$(Configuration)|$(BitstreamProgrammerType)' == 'Upload|tinyFPGA') "></Error>
-		<Error Text="BitstreamProgrammer_tinyFPGA '$(BitstreamProgrammer_tinyFPGA)' not found"     Condition=" !Exists('$(BitstreamProgrammer_tinyFPGA)')   And ('$(Configuration)|$(BitstreamProgrammerType)' == 'Upload|tinyFPGA') "></Error>
+		<Error Text="BitstreamProgrammer_tinyFPGA cannot be blank" Condition=" ('$(BitstreamProgrammer_tinyFPGA)' == '')    And ('$(Configuration)|$(BitstreamProgrammerType)' == 'Upload|tinyFPGA') "></Error>
+		<Error Text="BitstreamProgrammer_tinyFPGA '$(BitstreamProgrammer_tinyFPGA)' not found" Condition=" !Exists('$(BitstreamProgrammer_tinyFPGA)')   And ('$(Configuration)|$(BitstreamProgrammerType)' == 'Upload|tinyFPGA') "></Error>
 
-		<Error Text="BitstreamProgrammer_ULX3S cannot be blank"                                    Condition=" ('$(BitstreamProgrammer_ULX3S)' == '')       And ('$(Configuration)|$(BitstreamProgrammerType)' == 'Upload|ULX3S') "></Error>
-		<Error Text="BitstreamProgrammer_ULX3S '$(BitstreamProgrammer_ULX3S)' not found"           Condition=" !Exists('$(BitstreamProgrammer_ULX3S)')      And ('$(Configuration)|$(BitstreamProgrammerType)' == 'Upload|ULX3S') "></Error>
+		<Error Text="BitstreamProgrammer_ULX3S cannot be blank" Condition=" ('$(BitstreamProgrammer_ULX3S)' == '')       And ('$(Configuration)|$(BitstreamProgrammerType)' == 'Upload|ULX3S') "></Error>
+		<Error Text="BitstreamProgrammer_ULX3S '$(BitstreamProgrammer_ULX3S)' not found" Condition=" !Exists('$(BitstreamProgrammer_ULX3S)')      And ('$(Configuration)|$(BitstreamProgrammerType)' == 'Upload|ULX3S') "></Error>
 
 
 

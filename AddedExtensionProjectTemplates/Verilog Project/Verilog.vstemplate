@@ -1,7 +1,7 @@
 ﻿<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
 	<TemplateData>
 		<Name>Verilog Project</Name>
-		<Description>Verilog Project Template</Description>
+		<Description>Verilog Project Template for iCEBreaker, iCEStick, Orange Crab, tinyFPGA, and ULX3S</Description>
 		<ProjectType>CSharp</ProjectType>
 		<ProjectSubType>
 		</ProjectSubType>
@@ -24,6 +24,9 @@
 				<Folder Name="icebreaker" TargetFolderName="icebreaker">
 					<ProjectItem ReplaceParameters="false" TargetFileName="icebreaker.pcf">icebreaker.pcf</ProjectItem>
 					<ProjectItem ReplaceParameters="true" TargetFileName="main.mk">main.mk</ProjectItem>
+					<ProjectItem ReplaceParameters="false" TargetFileName="README.md">README.md</ProjectItem>
+				</Folder>
+				<Folder Name="icestick" TargetFolderName="icestick">
 					<ProjectItem ReplaceParameters="false" TargetFileName="README.md">README.md</ProjectItem>
 				</Folder>
 				<Folder Name="orangecrab" TargetFolderName="orangecrab">

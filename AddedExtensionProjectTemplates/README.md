@@ -40,7 +40,37 @@ Ensure the `VerilogProjectTemplate` is the project being exported! (this is typi
 The only option is a read-only save to `C:\Users\%USERNAME%\Documents\Visual Studio 2019\My Exported Templates\VerilogProjectTemplate.zip`. 
 Copy this file to the solution `ProjectTemplates` directory. See the [source.extension.vsixmanifest](../../source.extension.vsixmanifest) file.
 
+```
+Template Name:       Verilog Project
+
+Tempate Description: Verilog Project for Synthesizing FPGA bitstreams from within Visual Studio
+
+Icon Image:          C:\workspace\VerilogLanguageExtension\images\icon.png
+
+Preview Image:       C:\workspace\VerilogLanguageExtension\images\KeywordHoverTextExample.png
+
+Output Location:     C:\Users\gojimmypi\Documents\Visual Studio 2019\My Exported Templates\Verilog Project.zip
+
+checked: Automatically Import...
+
+checked: Display in Explorer...
+```
+
+
 For example, put the zip `C:\Users\gojimmypi\Documents\Visual Studio 2019\Templates\ProjectTemplates`
+
+Copy the resultant zip file to:  `C:\workspace\VerilogLanguageExtension\ProjectTemplates`
+
+Set Application Assembly Version information as appropriate.
+
+Rebuild the main VerilogLanguage project. Ensure `Configuration Manager` is set to `Release`. See VSIX file in:
+
+`C:\workspace\VerilogLanguageExtension\bin\Release\VerilogLanguage.vsix`
+
+For an actual release to Marketplace, save file to `C:\workspace\VerilogLanguageExtension\releases` with an appropriate name: `VerilogLanguage_v0.3.5.0.vsix`
+
+Upload to the [Marketplace](https://marketplace.visualstudio.com/manage/publishers/gojimmypi?src=gojimmypi.gojimmypi-verilog-language-extension)
+
 
 If after deleting the templates from the above directories and the template feature _still works_ for Verilog projects, 
 searching:  `dir Verilog.vstemplate /s` on the C:\ drive resulted in two different versions beding apparently copied automatically by Visual Studio and/or extension installer in:

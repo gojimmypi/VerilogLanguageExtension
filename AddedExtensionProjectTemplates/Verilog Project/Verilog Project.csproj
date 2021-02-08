@@ -534,41 +534,48 @@
 		<Message Text="VerifyBitstreamProgrammer FoundMatchingBoard=$(FoundMatchingBoard)"></Message>
 		<Error Text="Found bistream programmer but failed to find a matching $(BitstreamProgrammerType) board name with $(BitstreamProgrammer)" Condition=" '$(FoundMatchingBoard)'!='True' "></Error>
 
-		<Error Text="Expected $(BitstreamProgrammerText) but found $(BoardNameFound)" Condition=" '$(FoundMatchingBoard)|$(BoardNameFound)'!='True|$(BitstreamProgrammerText)' "></Error>
+		<Error Text="Expected $(BitstreamProgrammerText) device but found $(BoardNameFound); Check Project Configuration." Condition=" '$(FoundMatchingBoard)|$(BoardNameFound)'!='True|$(BitstreamProgrammerText)' "></Error>
 		<Message Text="VerifyBitstreamProgrammer complete."></Message>
+	</Target>
+
+	<Target Name="Upload_ULX3S">
+		<Message Text="Upload_ULX3S..."></Message>
+		
+		<!-- just in case there's a project with the name 'failed.', we'll abort here-->
+		<Error Text="BitstreamFilename $(BitstreamFilename) cannot contain the text 'Failed.'" Condition="$(BitstreamFilename.Contains('Failed.'))"></Error>
+
+		<!-- here's where we actually call the bitfile uploader executable -->
+		<Exec Command="$(BitstreamProgrammer) $(BitstreamFilename) " YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high" Condition=" '$(_AvoidTargetStep)' == ''">
+			<!-- save the output to OutputOfExec so we can later examine contents; exitcode may still be zero during failure-->
+			<Output TaskParameter="ConsoleOutput" PropertyName="OutputOfExec" />
+		</Exec>
+
+		<Message Text="OutputOfExec=$(OutputOfExec)"></Message>
+
+		<!-- even if everything is in order, the upload still might fail (e.g. bitstream mismatch when changing config) -->
+		<PropertyGroup Condition="$(OutputOfExec.Contains('Failed.'))">
+			<UploadFailed>True</UploadFailed>
+		</PropertyGroup>
+
+		<!-- if we find the output contains the word "failed" then we'll aboty with an error message -->
+		<Error Text="Upload Failed; $(OutputOfExec)" Condition=" '$(UploadFailed)'=='True' "></Error>
 	</Target>
 	
 	<!-- Upload ULX3S ECP5-12K -->
 	<Target Name="Upload_ULX3S_12K" DependsOnTargets="Build_ULX3S;VerifyBitstreamProgrammer" AfterTargets="InitFPGA" BeforeTargets="SwitchToAnyCpu" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Upload|ULX3S ECP5-12K|' ">
 		<Message Text="Conditional Upload_ULX3S_12K running...$(Configuration)|$(Platform)" />
 		<!-- <CallTarget Targets="Build_ULX3S"></CallTarget> we are already DependsOnTargets so this is not needed-->
-		<Message Text="TEST! $(SystemRoot)"></Message>
 
-		<!-- just in case there's a project with the name 'failed.', we'll abort here-->
-		<Error Text="BitstreamFilename $(BitstreamFilename) cannot contain the text 'Failed.'" Condition="$(BitstreamFilename.Contains('Failed.'))"></Error>
-		
-		<!-- here's where we actually call the bitfile uploader executable -->
-		<Exec Command="$(BitstreamProgrammer) $(BitstreamFilename) " YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high" Condition=" '$(_AvoidTargetStep)' == ''">
-			<!-- save the output to OutputOfExec so we can later examine contents; exitcode may still be zero during failure-->
-			<Output TaskParameter="ConsoleOutput" PropertyName="OutputOfExec" /> 
-		</Exec>
-
-		<Message Text="OutputOfExec=$(OutputOfExec)"></Message>
-		
-		<!-- even if everything is in order, the upload still might fail (e.g. bitstream mismatch when changing config) -->
-		<PropertyGroup Condition="$(OutputOfExec.Contains('Failed.'))">
-			<UploadFailed>True</UploadFailed>
-		</PropertyGroup>
-		
-		<!-- if we find the output contains the word "failed" then we'll aboty with an error message -->
-		<Error Text="Upload Failed; $(OutputOfExec)" Condition=" '$(UploadFailed)'=='True' "></Error>
+		<CallTarget Targets="Upload_ULX3S"></CallTarget>
 	</Target>
 
 	<!-- Verify ULX3S ECP5-12K -->
 	<Target Name="Verify_ULX3S_12K" DependsOnTargets="Build_ULX3S" AfterTargets="InitFPGA" BeforeTargets="SwitchToAnyCpu" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Verify|ULX3S ECP5-12K|' ">
 		<Message Text="Conditional Upload_ULX3S_12K running...$(Configuration)|$(Platform)" />
 		<CallTarget Targets="Release_ULX3S_12K"></CallTarget>
+		
 		<Error Text="Verify Not implemented"></Error>
+
 		<Exec Command="$(FoundWSL) (echo not implemented )" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
 			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
 		</Exec>
@@ -592,11 +599,13 @@
 	<!-- Upload ULX3S ECP5-25K -->
 	<Target Name="Upload_ULX3S_25K" DependsOnTargets="Build_ULX3S;VerifyBitstreamProgrammer" AfterTargets="InitFPGA" BeforeTargets="SwitchToAnyCpu" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Upload|ULX3S ECP5-25K|' ">
 		<Message Text="Conditional Upload_ULX3S_25K running...$(Configuration)|$(Platform)" />
-		<CallTarget Targets="Build_ULX3S"></CallTarget>
 		<Error Text="$(BitstreamFilename) file not found!" Condition="!Exists('$(BitstreamFilename)')"></Error>
+<!-- 
 		<Exec Command="$(BitstreamProgrammer)   $(BitstreamFilename) " YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
 			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
 		</Exec>
+-->
+		<CallTarget Targets="Upload_ULX3S"></CallTarget>
 	</Target>
 
 	<!-- Verify ULX3S ECP5-25K -->
@@ -630,11 +639,15 @@
 		<Message Text="Upload_ULX3S_45K FoundMatchingBoard=$(FoundMatchingBoard)"></Message>
 
 		<Message Text="Conditional Upload_ULX3S_45K running...$(Configuration)|$(Platform)" />
+<!-- 
 		<CallTarget Targets="Build_ULX3S"></CallTarget>
 		<Error Text="$(BitstreamFilename) file not found!" Condition="!Exists('$(BitstreamFilename)')"></Error>
 		<Exec Command="$(BitstreamProgrammer)   $(BitstreamFilename) " YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
 			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
 		</Exec>
+-->
+		<CallTarget Targets="Upload_ULX3S"></CallTarget>
+
 	</Target>
 
 	<!-- Verify ULX3S ECP5-45K -->
@@ -665,11 +678,14 @@
 	<!-- Upload ULX3S ECP5-85K -->
 	<Target Name="Upload_ULX3S_85K" DependsOnTargets="Build_ULX3S" AfterTargets="InitFPGA" BeforeTargets="SwitchToAnyCpu" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Upload|ULX3S ECP5-85K|' ">
 		<Message Text="Conditional Upload_ULX3S_85K running...$(Configuration)|$(Platform)" />
+<!-- 
 		<CallTarget Targets="Build_ULX3S"></CallTarget>
 		<Error Text="$(BitstreamFilename) file not found!" Condition="!Exists('$(BitstreamFilename)')"></Error>
 		<Exec Command="$(BitstreamProgrammer)   $(BitstreamFilename) " YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
 			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
 		</Exec>
+-->
+		<CallTarget Targets="Upload_ULX3S"></CallTarget>
 	</Target>
 
 	<!-- Verify ULX3S ECP5-85K -->

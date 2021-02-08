@@ -1,14 +1,25 @@
 ﻿<Project>
-	
+
+	<PropertyGroup Label="ProgrammerPath">
+		<BitstreamProgrammerPath>C:\workspace\ulx3s-toolchain\bin</BitstreamProgrammerPath>
+	</PropertyGroup>
+
+
 	<PropertyGroup Label="Programmer">
 		<!-- If the programmer is in your path, just enter the name, otherwise provide fully qualified name  
 		
 		binaries are available at: https://github.com/gojimmypi/ulx3s-toolchain/tree/master/bin
 		-->
-		<BitstreamProgrammer_ULX3S>C:\workspace\ulx3s-toolchain\bin\fujprogs.exe</BitstreamProgrammer_ULX3S>
-		<BitstreamProgrammer_iCEBreaker>C:\workspace\ulx3s-toolchain\bin\iceprog.exe</BitstreamProgrammer_iCEBreaker>
-		<BitstreamProgrammer_OrangeCrab>C:\workspace\ulx3s-toolchain\bin\dfu-util.exe</BitstreamProgrammer_OrangeCrab>
-		<BitstreamProgrammer_tinyFPGA_BX>C:\workspace\ulx3s-toolchain\bin\tinyprog.exe</BitstreamProgrammer_tinyFPGA_BX>
+		<BitstreamProgrammer_ULX3S>$(BitstreamProgrammerPath)\fujprog.exe</BitstreamProgrammer_ULX3S>
+		<BitstreamProgrammer_iCEBreaker>$(BitstreamProgrammerPath)\iceprog.exe</BitstreamProgrammer_iCEBreaker>
+		<BitstreamProgrammer_OrangeCrab>$(BitstreamProgrammerPath)\dfu-util.exe</BitstreamProgrammer_OrangeCrab>
+		<BitstreamProgrammer_tinyFPGA_BX>$(BitstreamProgrammerPath)\tinyprog.exe</BitstreamProgrammer_tinyFPGA_BX>
+	</PropertyGroup>
+
+	
+	<!-- Bitstream Programmers in the path; NOT in a fixed locationse  -->
+	<PropertyGroup Condition="!Exists('$(BitstreamProgrammer_ULX3S)')">
+		<BitstreamProgrammer_ULX3S>fujprog.exe</BitstreamProgrammer_ULX3S>
 	</PropertyGroup>
 
 	<Target Name="Target_Config">

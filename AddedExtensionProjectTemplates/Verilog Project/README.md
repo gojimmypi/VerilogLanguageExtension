@@ -80,3 +80,4 @@ Kost has prompiled binary [releases](https://github.com/alpin3/ulx3s/releases).
 For information on updating these project files, see the [README](../README.md).
 
 Readme version 1.1
+

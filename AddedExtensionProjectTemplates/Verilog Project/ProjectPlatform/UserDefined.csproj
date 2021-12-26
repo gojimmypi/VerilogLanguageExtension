@@ -1,0 +1,48 @@
+﻿<Project>
+	<Target Name="Target_UserDefined">
+		<Message Text="Project_UserDefined import successful." />
+	</Target>
+	<!-- Other iceprog -->
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Other iceprog'">
+		<OutputPath>bin\</OutputPath>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Other iceprog'">
+		<OutputPath>bin\</OutputPath>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Upload|Other iceprog'">
+		<OutputPath>bin\</OutputPath>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Verify|Other iceprog'">
+		<OutputPath>bin\</OutputPath>
+	</PropertyGroup>
+
+
+	<PropertyGroup Condition=" '$(Platform)' == 'Other iceprog' ">
+		<PlatformTarget>Other iceprog</PlatformTarget>
+		<BitstreamMakefile>boards/Other iceprog/Makefile</BitstreamMakefile>
+		<BitstreamProgrammer>$(BitstreamProgrammer_iceprog)</BitstreamProgrammer>
+		<BitstreamProgrammerType>iceprog</BitstreamProgrammerType>
+		<BitstreamFilename>blink.dfu</BitstreamFilename>
+	</PropertyGroup>
+
+
+	<!--  Build Other iceprog -->
+	<Target Name="Build_Other_iceprog" DependsOnTargets="InitFPGA" AfterTargets="InitFPGA" BeforeTargets="SwitchToAnyCpu;Upload_Orange_Crab" Condition=" '$(Platform)' == 'Other iceprog' ">
+		<!-- see PropertyGroup Label="ULX3S" -->
+		<Message Text="Conditional Build_Other_iceprog running...$(Configuration)|$(Platform)" />
+		<Message Text="Using Makefile=$(BitstreamMakefile)" />
+		<Message Text="Skipping Other iceprog background build..." Condition=" '$(_AvoidTargetStep)' != ''"></Message>
+		<Exec Command="$(FoundWSL)  (cd boards/othericeprog/; make -f Makefile)" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high" Condition=" '$(_AvoidTargetStep)' == ''">
+			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
+		</Exec>
+		<Exec></Exec>
+		<PropertyGroup>
+			<SynthesisComplete>true</SynthesisComplete>
+		</PropertyGroup>
+	</Target>
+
+</Project>

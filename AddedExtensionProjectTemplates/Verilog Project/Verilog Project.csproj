@@ -11,10 +11,15 @@
 	-->
 
 	<Import Project=".\ProjectPlatform\Project_ULX3S.csproj" />
-	<Import Project=".\ProjectPlatform\Config.csproj"  />
+	<Import Project=".\ProjectPlatform\Project_iCEBreaker.csproj" />
+	<Import Project=".\ProjectPlatform\Config.csproj" />
+	
+	<!-- project include files -->
 	<ItemGroup>
 		<None Include="ProjectPlatform\Config.csproj" />
+		<None Include="ProjectPlatform\Project_iCEBreaker.csproj" />
 		<None Include="ProjectPlatform\Project_ULX3S.csproj" />
+		<None Include="ProjectPlatform\UserDefined.csproj" />
 		<None Include="Properties\AssemblyInfo.cs" />
 	</ItemGroup>
 
@@ -68,7 +73,7 @@
 	<PropertyGroup>
 		<TargetFramework>net45</TargetFramework>
 		<RootNamespace>VerilogLanguage</RootNamespace>
-		<Platforms>ULX3S ECP5-12K;ULX3S ECP5-45K;ULX3S ECP5-85K;iCEBreaker;Orange Crab;tinyFPGA BX</Platforms>
+		<Platforms>ULX3S ECP5-12K;ULX3S ECP5-45K;ULX3S ECP5-85K;iCEBreaker;Orange Crab;tinyFPGA BX;Other iceprog</Platforms>
 		<Configurations>Debug;Release;Upload;Verify</Configurations>
 	</PropertyGroup>
 
@@ -144,7 +149,6 @@
 		
 		<BitstreamFilename>ulx3s.bit</BitstreamFilename>
 	</PropertyGroup>
-
 	<PropertyGroup Condition=" '$(Platform)' == 'ULX3S ECP5-45K' ">
 		<PlatformTarget>ECP5-45K</PlatformTarget>
 		<BitstreamMakefile>boards/ulx3s/Makefile-ULX3S-45F.mk</BitstreamMakefile>
@@ -511,6 +515,9 @@
 		<Message Text="Result=$(OutputOfExec)"></Message>
 		<Message Text="MAGIC $(OutputOfExec.Contains(&quot;ULX3S FPGA 12K&quot;))"> </Message>
 
+		<Message text="wow" Condition=" '1'=='1'"></Message>
+		<Message text="wow"></Message>
+
 		<PropertyGroup>
 			<!-- initialize -->
 			<FoundMatchingBoard>False</FoundMatchingBoard>
@@ -684,6 +691,7 @@
 		<Exec Command="$(BitstreamProgrammer)   $(BitstreamFilename) " YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
 			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
 		</Exec>
+		
 -->
 		<CallTarget Targets="Upload_ULX3S"></CallTarget>
 	</Target>
@@ -718,72 +726,7 @@
 
 
 
-	<!-- 
-	*******************************************************************************************************************************
-	iCEBeeaker
-	******************************************************************************************************************************* -->
-	<!--
-	Build iCEBeeaker
-	
-	Note different chips are specified in the BitstreamMakefile property setting
-	-->
-	<Target Name="Build_iCEBreaker" DependsOnTargets="InitFPGA" AfterTargets="InitFPGA" BeforeTargets="SwitchToAnyCpu;Upload_iCEBreaker" Condition=" '$(Platform)' == 'iCEBreaker' ">
-		<!-- check -->
-		<!-- see PropertyGroup Label="ULX3S" -->
-		<Message Text="Conditional Build_iCEBeeaker running...$(Configuration)|$(Platform)" />
-		<Message Text="Using Makefile=$(BitstreamMakefile)" />
-		<Message Text="Skipping background build..." Condition=" '$(_AvoidTargetStep)' != ''"></Message>
-		<Exec Command="$(FoundWSL) (make $(BitstreamFilename) -f $(BitstreamMakefile) )" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high" Condition=" '$(_AvoidTargetStep)' == ''">
-			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
-		</Exec>
-		<PropertyGroup>
-			<SynthesisComplete>true</SynthesisComplete>
-		</PropertyGroup>
-	</Target>
 
-	<!-- Debug iCEBreaker-->
-	<Target Name="Debug_iCEBreaker" Inputs="top_icebreaker.v" Outputs="top_icebreaker.bin" BeforeTargets="CoreCompile" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Debug|iCEBreaker|' ">
-		<Message Text="Build_iCEBreaker $(Configuration)|$(Platform)" />
-		<Exec Command="$(FoundWSL) (make -f boards/icebreaker/main.mk)" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
-			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
-		</Exec>
-	</Target>
-
-	<!-- Release iCEBreaker-->
-	<Target Name="Release_iCEBreaker" Inputs="top_icebreaker.v" Outputs="top_icebreaker.bin" BeforeTargets="CoreCompile" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Release|iCEBreaker|' ">
-		<Message Text="Build_iCEBreaker $(Configuration)|$(Platform)" />
-		<Exec Command="$(FoundWSL) (make -f boards/icebreaker/main.mk)" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
-			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
-		</Exec>
-	</Target>
-
-	<!-- Upload iCEBreaker-->
-	<Target Name="Upload_iCEBreaker" Outputs="top_icebreaker.bin" AfterTargets="CoreBuild" DependsOnTargets="Build_iCEBreaker" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Upload|iCEBreaker|' ">
-		<Message Text="Upload_iCEBreaker $(Configuration)|$(Platform)" />
-		<CallTarget Targets="Build_iCEBreaker"></CallTarget>
-		<Error Text="$(BitstreamFilename) file not found!" Condition="!Exists('$(BitstreamFilename)')"></Error>
-		<Exec Command="$(BitstreamProgrammer) $(BitstreamFilename) " YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high" Condition=" '$(_AvoidTargetStep)' == ''">
-			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
-		</Exec>
-	</Target>
-
-
-	<!-- Verify iCEBreaker-->
-	<Target Name="Verify_iCEBreaker" Outputs="top_icebreaker.bin" AfterTargets="CoreBuild" DependsOnTargets="Build_iCEBreaker" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Verify|iCEBreaker|' ">
-		<Message Text="Verify_iCEBreaker $(Configuration)|$(Platform)" />
-		<Error Text="Verify Not implemented"></Error>
-		<Exec Command="$(FoundWSL) (echo not implemented )" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
-			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
-		</Exec>
-	</Target>
-
-
-	<!-- Clean iCEBreaker-->
-	<Target Name="Clean_iCEBreaker" AfterTargets="Clean" Condition=" '$(Platform)'=='iCEBreaker' ">
-		<Exec Command="$(FoundWSL) (make clean -f boards/icebreaker/main.mk )" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
-			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
-		</Exec>
-	</Target>
 
 	<!-- 
 	*******************************************************************************************************************************
@@ -991,8 +934,8 @@
 	<Target Name="InitFPGA" DependsOnTargets="VerifyWSL;VerifyToolchain" BeforeTargets="CoreCompile">
 		<Exec Command="echo _AvoidTargetStep='$(_AvoidTargetStep)' &gt; relentless.log"></Exec>
 		<Error Text="WSL not found. (is it installed?)" Condition=" '$(FoundWSL)' == '' "></Error>
-		<Error Text="BitstreamFilename cannot be blank" Condition=" '$(BitstreamFilename)'==''      "></Error>
-		<Error Text="BitstreamMakefile cannot be blank" Condition=" '$(BitstreamMakefile)'==''      "></Error>
+		<Error Text="BitstreamFilename cannot be blank for Upload or Verify Configuration." Condition=" '$(BitstreamFilename)'=='' And ( '$(Configuration)'=='Upload' or '$(Configuration)'=='Verify' )  "></Error>
+		<Error Text="BitstreamMakefile cannot be blank for $(Platform)" Condition=" '$(BitstreamMakefile)'=='' "></Error>
 
 		<Error Text="BitstreamMakefile not found" Condition=" !Exists('$(BitstreamMakefile)') "></Error>
 		<Error Text="BitstreamProgrammerType cannot be blank for Upload Configuration" Condition="'$(Configuration)' == 'Upload' And '$(BitstreamProgrammerType)' == '' "> </Error>
@@ -1018,5 +961,11 @@
 
 		<!-- Any generic, all-board, all build initialization will go here-->
 	</Target>
-
+	
+<PropertyGroup>
+	<!---->
+</PropertyGroup>
+<Target Name="other target" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Verify|tinyFPGA BX|' ">
+	
+</Target>
 </Project>

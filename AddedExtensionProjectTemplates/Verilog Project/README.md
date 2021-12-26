@@ -5,19 +5,19 @@ already installed, as well as several key components such as [verilator](https:/
 [yosys](http://www.clifford.at/yosys/), [nextpnr](https://github.com/YosysHQ/nextpnr) and the [ecppack](https://github.com/SymbiFlow/prjtrellis/blob/master/libtrellis/tools/ecppack.cpp)
 utility in [Project Trellis](https://github.com/SymbiFlow/prjtrellis). 
 
-To actually upload the synthesized bitstream onto the FPGA, the 
-[fujprog](https://github.com/kost/fujprog/issues) is should be used.
+To actually upload the synthesized bitstream onto the FPGA a Windows executable is needed, the 
+[fujprog](https://github.com/kost/fujprog/issues) is should be used for the ULX3S.
 
 One option is to install everything for the complete [ULX3S Toolchain](https://github.com/ulx3s/ulx3s-toolchain).
 This is probably best if you want to keep up with the latest versions and have full control. Although tailored for the
 ULX3S with ESP32 development, this toolchain is easily adapted to other FPGA devices with minimal changes.
 
-A custom FPGA "build" is called from a DOS batch file in the [build](./build/) directory. There's a bit of logic there
+Builds ("synthesis" in FPGA lingo) are accomplished by selecting a configuration and platform, then right-clicking and selecting `build` in the project.
+
+For reference: A custom FPGA "build" was previously called from a DOS batch file in the [build](./build/) directory. There's a bit of logic there
 that checks for which directory WSL needs to be used. Target Deploys are found in the `<Target Name="Build"  >` section
 of the [ProjectTemplate.csproj](./ProjectTemplate.csproj) file. (yes, it is a bit wonky to have this be a C# app, if anyone
-knows how to change that to something better, please submit a PR)
-
-Once the batch file figures out which WSL directory to use, the Linux `make` is called using the local project [Makefile](./Makefile)
+knows how to change that to something better, please submit a PR) Once the batch file figures out which WSL directory to use, the Linux `make` is called using the local project [Makefile](./Makefile)
 
 
 ## Installing WSL
@@ -81,3 +81,4 @@ For information on updating these project files, see the [README](../README.md).
 
 Readme version 1.1
 
+ 

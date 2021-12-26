@@ -1,0 +1,106 @@
+﻿<Project>
+	<!-- All of the iCEBreaker Platform Specific Build  -->
+
+	<Target Name="Target_Project_iCEBreaker">
+		<Message Text="Project_iCEBreaker import successful." />
+	</Target>
+
+	<!--
+	iCEBreaker
+	-->
+	<PropertyGroup Condition=" '$(Platform)' == 'iCEBreaker' ">
+		<PlatformTarget>iCE40</PlatformTarget>
+		<BitstreamMakefile>boards/icebreaker/main.mk</BitstreamMakefile>
+		<BitstreamProgrammer>$(BitstreamProgrammer_iCEBreaker)</BitstreamProgrammer>
+		<BitstreamProgrammerType>iCEBreaker</BitstreamProgrammerType>
+		<BitstreamFilename>top_icebreaker.bin</BitstreamFilename>
+	</PropertyGroup>
+
+
+	<!-- 
+	*******************************************************************************************************************************
+	iCEBeeaker
+	******************************************************************************************************************************* -->
+	<!--
+	Build iCEBeeaker
+	
+	Note different chips are specified in the BitstreamMakefile property setting
+	-->
+	<Target Name="Build_iCEBreaker" DependsOnTargets="InitFPGA" AfterTargets="InitFPGA" BeforeTargets="SwitchToAnyCpu;Upload_iCEBreaker" Condition=" '$(Platform)' == 'iCEBreaker' ">
+		<!-- check -->
+		<!-- see PropertyGroup Label="ULX3S" -->
+		<Message Text="Conditional Build_iCEBeeaker running...$(Configuration)|$(Platform)" />
+		<Message Text="Using Makefile=$(BitstreamMakefile)" />
+		<Message Text="Skipping background build..." Condition=" '$(_AvoidTargetStep)' != ''"></Message>
+		<Exec Command="$(FoundWSL) (make $(BitstreamFilename) -f $(BitstreamMakefile) )" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high" Condition=" '$(_AvoidTargetStep)' == ''">
+			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
+		</Exec>
+
+		<PropertyGroup>
+			<SynthesisComplete>true</SynthesisComplete>
+		</PropertyGroup>
+	</Target>
+
+	<!-- Debug iCEBreaker-->
+	<Target Name="Debug_iCEBreaker" Inputs="top_icebreaker.v" Outputs="top_icebreaker.bin" BeforeTargets="CoreCompile" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Debug|iCEBreaker|' ">
+		<Message Text="Build_iCEBreaker $(Configuration)|$(Platform)" />
+		<Exec Command="$(FoundWSL) (make -f boards/icebreaker/main.mk)" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
+			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
+		</Exec>
+	</Target>
+
+	<!-- Release iCEBreaker-->
+	<Target Name="Release_iCEBreaker" Inputs="top_icebreaker.v" Outputs="top_icebreaker.bin" BeforeTargets="CoreCompile" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Release|iCEBreaker|' ">
+		<Message Text="Build_iCEBreaker $(Configuration)|$(Platform)" />
+		<Exec Command="$(FoundWSL) (make -f boards/icebreaker/main.mk)" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
+			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
+		</Exec>
+	</Target>
+
+	<!-- Upload iCEBreaker-->
+	<Target Name="Upload_iCEBreaker" Outputs="top_icebreaker.bin" AfterTargets="CoreBuild" DependsOnTargets="Build_iCEBreaker" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Upload|iCEBreaker|' ">
+		<Message Text="Upload_iCEBreaker $(Configuration)|$(Platform)" />
+		<CallTarget Targets="Build_iCEBreaker"></CallTarget>
+		<Error Text="$(BitstreamFilename) file not found!" Condition="!Exists('$(BitstreamFilename)')"></Error>
+
+
+		<Message Text="Starting upload. Please wait. Working Directory = $(MSBuildProjectDirectory)"> </Message>
+		<!-- here's where we actually call the bitfile uploader executable -->
+		<Exec Command="$(BitstreamProgrammer) $(BitstreamFilename) " YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high" Condition=" '$(_AvoidTargetStep)' == ''">
+			<!-- save the output to OutputOfExec so we can later examine contents; exitcode may still be zero during failure-->
+			<Output TaskParameter="ConsoleOutput" PropertyName="OutputOfExec"  />
+		</Exec>
+		<Message Text="End upload...!"> </Message>
+
+		<!-- even if everything is in order, the upload still might fail (e.g. bitstream mismatch when changing config) -->
+		<PropertyGroup Condition="$(OutputOfExec.Contains('Failed.'))">
+			<UploadFailed>True</UploadFailed>
+		</PropertyGroup>
+
+		<Message Text="Success!" Condition="$(OutputOfExec.Contains('VERIFY OK'))"> </Message>
+		<!-- if we find the output contains the word "failed" then we'll aboty with an error message -->
+		<Error Text="Upload Failed; $(OutputOfExec)" Condition=" '$(UploadFailed)'=='True' "></Error>
+
+
+	</Target>
+
+
+	<!-- Verify iCEBreaker-->
+	<Target Name="Verify_iCEBreaker" Outputs="top_icebreaker.bin" AfterTargets="CoreBuild" DependsOnTargets="Build_iCEBreaker" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Verify|iCEBreaker|' ">
+		<Message Text="Verify_iCEBreaker $(Configuration)|$(Platform)" />
+		<Error Text="Verify Not implemented"></Error>
+		<Exec Command="$(FoundWSL) (echo not implemented )" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
+			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
+		</Exec>
+	</Target>
+
+
+	<!-- Clean iCEBreaker-->
+	<Target Name="Clean_iCEBreaker" AfterTargets="Clean" Condition=" '$(Platform)'=='iCEBreaker' ">
+		<Exec Command="$(FoundWSL) (make clean -f boards/icebreaker/main.mk )" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
+			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
+		</Exec>
+	</Target>
+
+
+</Project>

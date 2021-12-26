@@ -66,7 +66,7 @@
 	<PropertyGroup>
 		<TargetFramework>net45</TargetFramework>
 		<RootNamespace>VerilogLanguage</RootNamespace>
-		<Platforms>ULX3S ECP5-12K;ULX3S ECP5-45K;ULX3S ECP5-85K;iCEBreaker;Orange Crab;tinyFPGA BX</Platforms>
+		<Platforms>ULX3S ECP5-12K;ULX3S ECP5-45K;ULX3S ECP5-85K;iCEBreaker;Orange Crab;tinyFPGA BX;Other iceprog</Platforms>
 		<Configurations>Debug;Release;Upload;Verify</Configurations>
 	</PropertyGroup>
 

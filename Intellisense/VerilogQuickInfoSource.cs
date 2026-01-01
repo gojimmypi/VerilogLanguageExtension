@@ -1,5 +1,5 @@
 ﻿//***************************************************************************
-// 
+//
 //    Copyright (c) Microsoft Corporation. All rights reserved.
 //    This code is licensed under the Visual Studio SDK license terms.
 //    THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
@@ -11,60 +11,46 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
-using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.Language.Intellisense;
-using System.Collections.ObjectModel;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Tagging;
-using System.ComponentModel.Composition;
 using Microsoft.VisualStudio.Utilities;
 using VerilogLanguage.VerilogToken;
+
 namespace VerilogLanguage
 {
-    /// <summary>
-    /// Factory for quick info sources
-    /// </summary>
-    [Export(typeof(IQuickInfoSourceProvider))]
+    [Export(typeof(IAsyncQuickInfoSourceProvider))]
     [ContentType("verilog")]
     [Name("VerilogQuickInfo")]
-    class VerilogQuickInfoSourceProvider : IQuickInfoSourceProvider
+    internal sealed class VerilogQuickInfoSourceProvider : IAsyncQuickInfoSourceProvider
     {
-
         [Import]
-        IBufferTagAggregatorFactoryService aggService = null;
+        private IBufferTagAggregatorFactoryService aggService = null;
 
-        public IQuickInfoSource TryCreateQuickInfoSource(ITextBuffer textBuffer)
-        {
-            return new VerilogQuickInfoSource(textBuffer, aggService.CreateTagAggregator<VerilogToken.VerilogTokenTag>(textBuffer));
+        public IAsyncQuickInfoSource TryCreateQuickInfoSource(ITextBuffer textBuffer) {
+            return new VerilogQuickInfoSource(
+                textBuffer,
+                aggService.CreateTagAggregator<VerilogTokenTag>(textBuffer));
         }
     }
 
-    /// <summary>
-    /// Provides QuickInfo information to be displayed in a text buffer
-    /// </summary>
-    class VerilogQuickInfoSource : IQuickInfoSource
+    internal sealed class VerilogQuickInfoSource : IAsyncQuickInfoSource
     {
-        private ITagAggregator<VerilogToken.VerilogTokenTag> _aggregator;
-        private ITextBuffer _buffer;
-        private bool _disposed = false;
-        IDictionary<VerilogToken.VerilogTokenTypes, string> _VerilogKeywordHoverText;
+        private readonly ITagAggregator<VerilogTokenTag> _aggregator;
+        private readonly ITextBuffer _buffer;
+        private bool _disposed;
 
-        public VerilogQuickInfoSource(ITextBuffer buffer, ITagAggregator<VerilogToken.VerilogTokenTag> aggregator)
-        {
-            _aggregator = aggregator;
+        private readonly IDictionary<VerilogTokenTypes, string> _verilogKeywordHoverText;
+
+        public VerilogQuickInfoSource(ITextBuffer buffer, ITagAggregator<VerilogTokenTag> aggregator) {
             _buffer = buffer;
+            _aggregator = aggregator;
 
-            // TODO - do we really want to call reparse here?
-            // VerilogGlobals.Reparse(buffer); // parse the buffer at file load time
-
-            //_VerilogVariableHoverText = new Dictionary<string, string>
-            //{
-            //    ["led"] = "An LED.",
-            //    // description text thanks: https://www.xilinx.com/support/documentation/sw_manuals/xilinx11/ite_r_verilog_reserved_words.htm
-            //};
-
-            _VerilogKeywordHoverText = new Dictionary<VerilogToken.VerilogTokenTypes, string>
+            _verilogKeywordHoverText = new Dictionary<VerilogTokenTypes, string>
             {
                 // description text thanks: https://www.xilinx.com/support/documentation/sw_manuals/xilinx11/ite_r_verilog_reserved_words.htm
                 [VerilogTokenTypes.Verilog_always] = "An always represents a block of code in a design.",
@@ -161,89 +147,48 @@ namespace VerilogLanguage
             };
         }
 
-        /// <summary>
-        /// Determine which pieces of Quickinfo content should be displayed
-        /// </summary>
-        public void AugmentQuickInfoSession(IQuickInfoSession session, IList<object> quickInfoContent, out ITrackingSpan applicableToSpan)
-        {
-            applicableToSpan = null;
-
-            if (_disposed)
-                throw new ObjectDisposedException("TestQuickInfoSource");
-
-            var triggerPoint = (SnapshotPoint) session.GetTriggerPoint(_buffer.CurrentSnapshot);
-
-            if (triggerPoint == null)
-                return;
-
-
-            foreach (IMappingTagSpan<VerilogToken.VerilogTokenTag> curTag in _aggregator.GetTags(new SnapshotSpan(triggerPoint, triggerPoint)))
-            {
-                // here we add hover text at runtime 
-                if (_VerilogKeywordHoverText.Keys.Contains(curTag.Tag.type)) {
-                    var tagSpan = curTag.Span.GetSpans(_buffer).First();
-                    applicableToSpan = _buffer.CurrentSnapshot.CreateTrackingSpan(tagSpan, SpanTrackingMode.EdgeExclusive);
-                    quickInfoContent.Add(_VerilogKeywordHoverText[curTag.Tag.type]);
-                }
-                else
-                { // 
-                    var thisTag = curTag.ToString(); //TODO is this where to add verilog variables?
-                    var tagSpan = curTag.Span.GetSpans(_buffer).First();
-                    string thisHoverKey = tagSpan.GetText();
-
-                    // 510 = tagSpan.Snapshot.GetLineFromPosition(tagSpan.Start.Position).Extent.Start.Position
-                    // 523 = ((Microsoft.VisualStudio.Text.Utilities.MappingPointSnapshot)curTag.Span.Start)._anchor.Position                                                   // by the time we get here, we've lost the scope of which module we are in, so a helper function is needed
-
-                    int thisLine = tagSpan.Snapshot.GetLineFromPosition(tagSpan.Start.Position).LineNumber ;
-                    int thisPosition = tagSpan.Start.Position
-                                       - tagSpan.Snapshot.GetLineFromPosition(tagSpan.Start.Position).Extent.Start.Position;
-                                          // tagSpan.Snapshot.GetLineFromPosition(tagSpan.Start.Position).End.Position;
-                    string thisScopeName = VerilogGlobals.TextModuleName(thisLine,
-                                                                          thisPosition); // TODO get proper values!
-
-                    //ensure VerilogVariableHoverText has a dictionary for [thisScopeName]
-                    if (VerilogGlobals.VerilogVariableHoverText.ContainsKey(thisScopeName))
-                    {
-                        // all good
-                    }
-                    else
-                    {
-                        VerilogGlobals.VerilogVariableHoverText.Add(thisScopeName, new Dictionary<string, string> { });
-                    }
-
-                    if (VerilogGlobals.VerilogVariableHoverText[thisScopeName].Keys.Contains(thisHoverKey))
-                    {
-                        // in thisScopeName, thisHoverKey values are variables
-                        applicableToSpan = _buffer.CurrentSnapshot.CreateTrackingSpan(tagSpan, SpanTrackingMode.EdgeExclusive);
-                        quickInfoContent.Add(VerilogGlobals.VerilogVariableHoverText[thisScopeName][thisHoverKey]);
-                    }
-                    else if (VerilogGlobals.VerilogVariableHoverText.ContainsKey(VerilogGlobals.SCOPE_CONST) && VerilogGlobals.VerilogVariableHoverText[VerilogGlobals.SCOPE_CONST].Keys.Contains(thisHoverKey))
-                    {
-                        // in SCOPE_CONST, the values are constants
-                        applicableToSpan = _buffer.CurrentSnapshot.CreateTrackingSpan(tagSpan, SpanTrackingMode.EdgeExclusive);
-                        quickInfoContent.Add(VerilogGlobals.VerilogVariableHoverText[VerilogGlobals.SCOPE_CONST][thisHoverKey]);
-                    }
-                }
-
-                //if (curTag.Tag.type == VerilogTokenTypes.Verilog_always)
-                //{
-                //    var tagSpan = curTag.Span.GetSpans(_buffer).First();
-                //    applicableToSpan = _buffer.CurrentSnapshot.CreateTrackingSpan(tagSpan, SpanTrackingMode.EdgeExclusive);
-                //    quickInfoContent.Add(_VerilogKeywordHoverText[VerilogTokenTypes.Verilog_always]);
-                //}
-                //else if (curTag.Tag.type == VerilogTokenTypes.Verilog_begin)
-                //{
-                //    var tagSpan = curTag.Span.GetSpans(_buffer).First();
-                //    applicableToSpan = _buffer.CurrentSnapshot.CreateTrackingSpan(tagSpan, SpanTrackingMode.EdgeExclusive);
-                //    quickInfoContent.Add("Question Begin?");
-                //}
+        public Task<QuickInfoItem> GetQuickInfoItemAsync(
+            IAsyncQuickInfoSession session,
+            CancellationToken cancellationToken) {
+            if (_disposed) {
+                throw new ObjectDisposedException(nameof(VerilogQuickInfoSource));
             }
+
+            SnapshotPoint? triggerPoint = session.GetTriggerPoint(_buffer.CurrentSnapshot);
+            if (!triggerPoint.HasValue) {
+                return Task.FromResult<QuickInfoItem>(null);
+            }
+
+            SnapshotPoint trigger = triggerPoint.Value;
+            SnapshotSpan probeSpan = new SnapshotSpan(trigger, 0);
+
+            foreach (IMappingTagSpan<VerilogTokenTag> curTag in _aggregator.GetTags(probeSpan)) {
+                cancellationToken.ThrowIfCancellationRequested();
+
+                SnapshotSpan tagSpan = curTag.Span.GetSpans(_buffer).FirstOrDefault();
+                if (tagSpan.Snapshot == null) {
+                    continue;
+                }
+
+                ITrackingSpan applicableToSpan = _buffer.CurrentSnapshot.CreateTrackingSpan(
+                    tagSpan,
+                    SpanTrackingMode.EdgeExclusive);
+
+                if (_verilogKeywordHoverText.TryGetValue(curTag.Tag.type, out string hover)) {
+                    return Task.FromResult(new QuickInfoItem(applicableToSpan, hover));
+                }
+
+                // Your variable/constant hover logic can go here.
+                // If you compute a hover string, return new QuickInfoItem(applicableToSpan, computedHover).
+            }
+
+            return Task.FromResult<QuickInfoItem>(null);
         }
-        
-        public void Dispose()
-        {
+
+        public void Dispose() {
             _disposed = true;
         }
     }
 }
+
 

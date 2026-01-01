@@ -1,5 +1,5 @@
 ﻿//***************************************************************************
-// 
+//
 //    Copyright (c) Microsoft Corporation. All rights reserved.
 //    This code is licensed under the Visual Studio SDK license terms.
 //    THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
@@ -29,15 +29,18 @@ namespace VSLTK.Intellisense
         #region Asset Imports
 
         [Import]
-        internal IQuickInfoBroker QuickInfoBroker { get; set; }
+        internal IAsyncQuickInfoBroker QuickInfoBroker { get; set; }
 
         #endregion
 
         #region IIntellisenseControllerFactory Members
 
-        public IIntellisenseController TryCreateIntellisenseController(ITextView textView,
+        public IIntellisenseController TryCreateIntellisenseController(
+            ITextView textView,
             IList<ITextBuffer> subjectBuffers)
         {
+            // IAsyncQuickInfoSource no longer needs (or should use) a globally stored ITextView.
+            // BUT our hover does still use this:
             VerilogGlobals.TheView = textView;
             return new TemplateQuickInfoController(textView, subjectBuffers, this);
         }

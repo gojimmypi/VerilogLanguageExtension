@@ -80,8 +80,8 @@ namespace VerilogLanguage.VerilogToken
         // ITextView View { get; set; }
         public ITagger<T> CreateTagger<T>(ITextBuffer buffer) where T : ITag
         {
-            System.Diagnostics.Debugger.Break();
-            System.Diagnostics.Debug.WriteLine("VerilogClassifierProvider.CreateTagger: ContentType=" + buffer.ContentType.TypeName);
+            // System.Diagnostics.Debugger.Break();
+            // System.Diagnostics.Debug.WriteLine("VerilogClassifierProvider.CreateTagger: ContentType=" + buffer.ContentType.TypeName);
 
             ITagAggregator<VerilogTokenTag> VerilogTagAggregator =
                                             aggregatorFactory.CreateTagAggregator<VerilogTokenTag>(buffer);

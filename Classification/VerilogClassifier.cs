@@ -57,6 +57,11 @@ namespace VerilogLanguage.VerilogToken
         // semi-colon delimited file extensions does not seem to work for VS2015 (but fine for VS2017 and 2019)
         // so we'll pull them out into different declarations
         [Export(typeof(FileExtensionToContentTypeDefinition))]
+        [FileExtension(".sv")]
+        [ContentType("verilog")]
+        internal static FileExtensionToContentTypeDefinition VerilogFileTypeSV = null; // the ".sv" extension
+
+        [Export(typeof(FileExtensionToContentTypeDefinition))]
         [FileExtension(".v")]
         [ContentType("verilog")]
         internal static FileExtensionToContentTypeDefinition VerilogFileTypeV = null; // the ".v" extension

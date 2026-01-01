@@ -184,8 +184,39 @@ namespace VerilogLanguage
                     return Task.FromResult(new QuickInfoItem(applicableToSpan, hover));
                 }
 
-                // Your variable/constant hover logic can go here.
-                // If you compute a hover string, return new QuickInfoItem(applicableToSpan, computedHover).
+                // Variable and constant hover logic (ported from old AugmentQuickInfoSession)
+                string thisHoverKey = tagSpan.GetText();
+                if (!string.IsNullOrWhiteSpace(thisHoverKey)) {
+                    ITextSnapshotLine lineInfo = tagSpan.Snapshot.GetLineFromPosition(tagSpan.Start.Position);
+
+                    int thisLine = lineInfo.LineNumber;
+                    int thisPosition = tagSpan.Start.Position - lineInfo.Extent.Start.Position;
+
+                    string thisScopeName = VerilogGlobals.TextModuleName(thisLine, thisPosition);
+
+                    if (string.IsNullOrWhiteSpace(thisScopeName)) {
+                        thisScopeName = VerilogGlobals.SCOPE_CONST;
+                    }
+
+                    Dictionary<string, Dictionary<string, string>> hoverDb = VerilogGlobals.VerilogVariableHoverText;
+
+                    if (!hoverDb.ContainsKey(thisScopeName)) {
+                        hoverDb.Add(thisScopeName, new Dictionary<string, string>());
+                    }
+
+                    if (hoverDb[thisScopeName].TryGetValue(thisHoverKey, out string variableHover)) {
+                        return Task.FromResult(new QuickInfoItem(applicableToSpan, variableHover));
+                    }
+
+                    if (hoverDb.TryGetValue(VerilogGlobals.SCOPE_CONST, out Dictionary<string, string> constMap)) {
+                        if (constMap != null) {
+                            if (constMap.TryGetValue(thisHoverKey, out string constHover)) {
+                                return Task.FromResult(new QuickInfoItem(applicableToSpan, constHover));
+                            }
+                        }
+                    }
+                }
+
             }
 
             return Task.FromResult<QuickInfoItem>(null);

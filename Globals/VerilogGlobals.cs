@@ -36,9 +36,9 @@ namespace VerilogLanguage
         /// </summary>
         public static IDictionary<string, Dictionary<string, VerilogTokenTypes>> VerilogVariables = new Dictionary<string, Dictionary<string, VerilogTokenTypes>>
         {
-            { 
+            {
                "global", // the name of the module, or "global" default
-               new Dictionary<string, VerilogTokenTypes>{ } 
+               new Dictionary<string, VerilogTokenTypes>{ }
             }
 
             // e.g. ["module name"]["led"] = VerilogTokenTypes.Verilog_Variable,
@@ -277,7 +277,7 @@ namespace VerilogLanguage
             // TODO - come up with something better to allow keeping what we already know, but also detect dupes
             {
 
-                VerilogVariables = new Dictionary<string, Dictionary<string, VerilogTokenTypes>> 
+                VerilogVariables = new Dictionary<string, Dictionary<string, VerilogTokenTypes>>
                 // e.g. ["module name"]["led"] = VerilogTokenTypes.Verilog_Variable,
                 {
                     {
@@ -299,11 +299,11 @@ namespace VerilogLanguage
 
         public static string ValueHoverText(string s)
         {
-            // we start with values like "4", "8 'h  2a" 
+            // we start with values like "4", "8 'h  2a"
             string _HoverItem = (s ?? "").Replace(" ", "").Replace("_", "").ToUpper(); // initially remove all spaces from hover text (h)
             string _HoverBase = ""; // the base is the first characters after the single quote "'"
             string[] _HoverPart = _HoverItem.Split(RADIX_CHAR); // // split "8'h2a" into "8" and "h2a" - parts (p)
-            string _HoverValue = ""; // the actual value, 
+            string _HoverValue = ""; // the actual value,
             string _HoverValueBinary = "";
             int _HoverBitLength = 0;
             string _HoverBitlength_Message = "";
@@ -373,10 +373,10 @@ namespace VerilogLanguage
                         _HoverBase = "(Not valid)";
                         break;
                 }
-                // result 
+                // result
             }
-            return  _HoverItem + 
-                    " = (" + _HoverBitlength_Message + " " + _HoverBase + ") " 
+            return  _HoverItem +
+                    " = (" + _HoverBitlength_Message + " " + _HoverBase + ") "
                     + _HoverValue + "; " +_HoverValueBinary
                     + _BitLengthWarning;
 
@@ -509,7 +509,7 @@ namespace VerilogLanguage
                     break;
                 case "}":
                     IsInsideSquigglyBracket = false;
-                    break; 
+                    break;
 
                 default:
                     // nothing
@@ -896,7 +896,7 @@ namespace VerilogLanguage
         {
             if (thisHoverName == "")
             {
-                string a = "breakpoint";
+                // string a = "breakpoint";
                 // TODO - how did we wend up here? (seen during multi-thread)
                 //return;
             }
@@ -925,7 +925,7 @@ namespace VerilogLanguage
                 case ",":
                     if (thisHoverName == "")
                     {
-                        string a = "breakpoint";
+                        // string a = "breakpoint";
                         // no hovername = nothing to do
 
                         BuildHoverState = BuildHoverStates.VariableMimicNaming; // Mimic naming is the same declaration but comma-delimited (e.g. input a,b // b has the input "mimic'd" )
@@ -1141,7 +1141,7 @@ namespace VerilogLanguage
             if (thisTrimmedItem == "")
             {
                 // not doing anything for whitespace
-            } 
+            }
             else
             {
                 lastNonblankHoverItem = thisTrimmedItem;

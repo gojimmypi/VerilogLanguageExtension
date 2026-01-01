@@ -244,7 +244,7 @@ namespace VerilogLanguage
             {
                 // by the time we get here, we might have a tag with adjacent comments:
                 //     assign//
-                //     //assign     
+                //     //assign
                 //     assign//comment
                 //     /*assign*/
                 //     assign/*comment*/
@@ -283,7 +283,7 @@ namespace VerilogLanguage
         //public static bool IsReparsing = false;
 
         // public static DateTime LastRefresh { get; set; } = DateTime.Now;
-        
+
         public class ThreadReparse
         {
             public static void DoWork(string targetFile)
@@ -318,7 +318,7 @@ namespace VerilogLanguage
                     //    LastRefresh = DateTime.Now;
                     //}
 
-                    
+
                     // TODO once reparsing is done in a thread, we need to tell the viewport to redraww the screen
                     // does this redraw?
                     // TheView.Selection.TextView.ViewScroller.ScrollViewportVerticallyByPixels(0);
@@ -452,7 +452,7 @@ namespace VerilogLanguage
                 BufferAttribute bufferAttribute = new BufferAttribute();
                 //
                 // Reparse AppendBufferAttribute
-                // 
+                //
                 void AppendBufferAttribute()
                 {
                     duration2 = (DateTime.Now - ProfileStart).TotalMilliseconds;
@@ -471,11 +471,11 @@ namespace VerilogLanguage
                             else
                             {
                                 // TODO this is actually an error! do something here (popup warning?)
-                                thisNewKey = 0; // we'll (incorrectly) assume global space if there are more than 255 modules 
+                                thisNewKey = 0; // we'll (incorrectly) assume global space if there are more than 255 modules
                             }
                             ModuleNames.Add(thisNewKey, thisModuleName);
                             ModuleKeys.Add(thisModuleName, thisNewKey); // build two dictionaries for runtime performance
-                            
+
                             // create placeholder for variables
                             if (!VerilogVariables.ContainsKey(thisModuleName))
                             {
@@ -621,7 +621,7 @@ namespace VerilogLanguage
                                 else
                                 {
                                     // AttributesChanged = false;
-                                    string a = "debug here";
+                                    // string a = "debug here";
                                 }
                                 break;
 
@@ -698,7 +698,7 @@ namespace VerilogLanguage
                         double duration7 = (DateTime.Now - ProfileStart).TotalMilliseconds;
 
                         // some things, like bracket depth, require us to look at each character...
-                        // we'll build a helper table to be able to lookup bracket depth at 
+                        // we'll build a helper table to be able to lookup bracket depth at
                         // arbitrary points
                         CharParse();
                         double duration8 = (DateTime.Now - ProfileStart).TotalMilliseconds;
@@ -749,7 +749,7 @@ namespace VerilogLanguage
                 ParseStatus[targetFile].IsReparsing = false;
                 VerilogGlobals.ParseStatusController.NeedReparse_SetValue(targetFile, false);
             }
-            
+
             //TagsChanged?.Invoke(this, new SnapshotSpanEventArgs(
             //    new SnapshotSpan(buffer.CurrentSnapshot,
             //          new Span(0, buffer.CurrentSnapshot.Length - 1))));
@@ -778,7 +778,7 @@ namespace VerilogLanguage
                     break; // no need to continue searching on foreach once we have an answer
                 }
 
-                // we're assuming thisBufferAttribute is inseeuqntial order; once LineNumber is greater than our target, give up. 
+                // we're assuming thisBufferAttribute is inseeuqntial order; once LineNumber is greater than our target, give up.
                 if (thisBufferAttribute.LineNumber > AtLine)
                 {
                     break;
@@ -866,7 +866,7 @@ namespace VerilogLanguage
                 System.Diagnostics.Debug.WriteLine("BracketDepth line" + AtLine.ToString() + " not in range of BufferAttribute_at_LineNumber hints.");
             }
 
-            if (BufferAttributes != null && BufferAttributes.Count > 0) 
+            if (BufferAttributes != null && BufferAttributes.Count > 0)
             {
                 if (BufferAttributes[BufferAttributes.Count - 1] != null && BufferAttributes[BufferAttributes.Count - 1].LineNumber >= AtLine)
                 {
@@ -890,7 +890,7 @@ namespace VerilogLanguage
                     // the line number is not even in the BufferAttributes, so don't bother even looking
                 }
 
-                // if we didn't find a depth at the explicit line, the depth is at the last known line; 
+                // if we didn't find a depth at the explicit line, the depth is at the last known line;
                 // without this, the ending bracket depth is unknown
                 if (!found)
                 {

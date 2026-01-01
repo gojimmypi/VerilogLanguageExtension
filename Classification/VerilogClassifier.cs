@@ -1,5 +1,5 @@
 ﻿//***************************************************************************
-// 
+//
 //  MIT License
 //
 //  Copyright(c) 2019 gojimmypi
@@ -38,13 +38,13 @@ namespace VerilogLanguage.VerilogToken
     [Export(typeof(ITaggerProvider))]
     [ContentType("verilog")]
     [TagType(typeof(ClassificationTag))]
+    [TextViewRole(PredefinedTextViewRoles.Document)]
     internal sealed class VerilogClassifierProvider : ITaggerProvider
     {
 
-        [Export]
+        [Export(typeof(ContentTypeDefinition))]
         [Name("verilog")]
         [BaseDefinition("code")]
-        [BaseDefinition("projection")]
         internal static ContentTypeDefinition VerilogContentType = null;
 
         //[Export]
@@ -56,25 +56,24 @@ namespace VerilogLanguage.VerilogToken
 
         // semi-colon delimited file extensions does not seem to work for VS2015 (but fine for VS2017 and 2019)
         // so we'll pull them out into different declarations
-        [Export]
-        [FileExtension(".v")] 
+        [Export(typeof(FileExtensionToContentTypeDefinition))]
+        [FileExtension(".sv")]
         [ContentType("verilog")]
-        [BaseDefinition("code")]
-        [BaseDefinition("projection")]
+        internal static FileExtensionToContentTypeDefinition VerilogFileTypeSV = null; // the ".sv" extension
+
+        [Export(typeof(FileExtensionToContentTypeDefinition))]
+        [FileExtension(".v")]
+        [ContentType("verilog")]
         internal static FileExtensionToContentTypeDefinition VerilogFileTypeV = null; // the ".v" extension
 
-        [Export]
-        [FileExtension(".verilog")] // semi-colon delimited file extensions
+        [Export(typeof(FileExtensionToContentTypeDefinition))]
+        [FileExtension(".verilog")]
         [ContentType("verilog")]
-        [BaseDefinition("code")]
-        [BaseDefinition("projection")]
         internal static FileExtensionToContentTypeDefinition VerilogFileTypeVerilog = null; // the ".verilog" extension
 
-        [Export]
-        [FileExtension(".vh")] // semi-colon delimited file extensions
+        [Export(typeof(FileExtensionToContentTypeDefinition))]
+        [FileExtension(".vh")]
         [ContentType("verilog")]
-        [BaseDefinition("code")]
-        [BaseDefinition("projection")]
         internal static FileExtensionToContentTypeDefinition VerilogFileTypeVH = null; // the " .vh extension
 
         [Import]
@@ -82,9 +81,12 @@ namespace VerilogLanguage.VerilogToken
 
         [Import]
         internal IBufferTagAggregatorFactoryService aggregatorFactory = null;
+
         // ITextView View { get; set; }
         public ITagger<T> CreateTagger<T>(ITextBuffer buffer) where T : ITag
         {
+            // System.Diagnostics.Debugger.Break();
+            // System.Diagnostics.Debug.WriteLine("VerilogClassifierProvider.CreateTagger: ContentType=" + buffer.ContentType.TypeName);
 
             ITagAggregator<VerilogTokenTag> VerilogTagAggregator =
                                             aggregatorFactory.CreateTagAggregator<VerilogTokenTag>(buffer);
@@ -193,7 +195,7 @@ namespace VerilogLanguage.VerilogToken
                 [VerilogTokenTypes.Verilog_while] = typeService.GetClassificationType("while"),
                 [VerilogTokenTypes.Verilog_wire] = typeService.GetClassificationType("wire"),
 
-                [VerilogTokenTypes.Verilog_Directive] = typeService.GetClassificationType("directive"), // type must be one of VerilogTokenTagger 
+                [VerilogTokenTypes.Verilog_Directive] = typeService.GetClassificationType("directive"), // type must be one of VerilogTokenTagger
                 [VerilogTokenTypes.Verilog_Comment] = typeService.GetClassificationType("Comment"), // GetClassificationType string must be defined in ClassificationType.cs
                 [VerilogTokenTypes.Verilog_Bracket] = typeService.GetClassificationType("Bracket"),
                 [VerilogTokenTypes.Verilog_Bracket0] = typeService.GetClassificationType("Bracket0"),
@@ -251,7 +253,7 @@ namespace VerilogLanguage.VerilogToken
                 else
                 {
                     // TODO - how did we get here??
-                    string a = "Debug: Key not found!";
+                    // string a = "Debug: Key not found!";
                     // System.Diagnostics.Debug.WriteLine("Verilog Classifier found unknown tag type in IEnumerable<ITagSpan<ClassificationTag>> GetTags");
                     yield return
                         new TagSpan<ClassificationTag>(tagSpans[0],

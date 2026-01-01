@@ -1,6 +1,8 @@
 ﻿# Verilog Language Extension
 
-This Visual Studio Extension adds syntax & keyword higlighting to Visual Studio versions 2015, 2017, and 2019. There is no notion of a "Verilog Project" or any other capabilities such as compiling or uploading to a device at this time.
+This Visual Studio Extension adds syntax & keyword higlighting to Visual Studio versions 2022, and 2026. 
+
+There is no notion of a "Verilog Project" or any other capabilities such as compiling or uploading to a device at this time.
 
 ![KeywordHoverTextExample.png](./images/KeywordHoverTextExample.png)
 
@@ -26,6 +28,7 @@ On a Windows 10 machine to create FPGA binaries, consider using the [yoysys](htt
 
 These file extensions should activate this extension:
 
+* `.sv`
 * `.v`
 * `.verilog`
 * `.vh`

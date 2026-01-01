@@ -1,19 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<!--
     For tips on editing this file, see https://docs.microsoft.com/en-us/visualstudio/msbuild/target-build-order?view=vs-2019
-   
+
     see: https://docs.microsoft.com/en-us/visualstudio/msbuild/how-to-extend-the-visual-studio-build-process?view=vs-2019
-    "Be sure to use different names than the predefined targets listed in the table in the previous section 
-    (for example, we named the custom build target here CustomAfterBuild, not AfterBuild), since those predefined 
-    targets are overridden by the SDK import which also defines them. You don't see the import of the target file 
-    that overrides those targets, but it is implicitly added to the end of the project file when you use the Sdk 
+    "Be sure to use different names than the predefined targets listed in the table in the previous section
+    (for example, we named the custom build target here CustomAfterBuild, not AfterBuild), since those predefined
+    targets are overridden by the SDK import which also defines them. You don't see the import of the target file
+    that overrides those targets, but it is implicitly added to the end of the project file when you use the Sdk
     attribute method of referencing an SDK."
 	-->
 
 	<Import Project=".\ProjectPlatform\Project_ULX3S.csproj" />
 	<Import Project=".\ProjectPlatform\Project_iCEBreaker.csproj" />
 	<Import Project=".\ProjectPlatform\Config.csproj" />
-	
+
 	<!-- project include files -->
 	<ItemGroup>
 		<None Include="ProjectPlatform\Config.csproj" />
@@ -24,7 +24,7 @@
 	</ItemGroup>
 
 
-	<!-- 
+	<!--
 	To avoid relentless background tasks, we look for:  Condition=" '$(_AvoidTargetStep)' == '' "
 	-->
 	<Target Name="AddAdditionalReferences" BeforeTargets="ResolveAssemblyReferences">
@@ -41,7 +41,7 @@
 		<EmbeddedResource Remove="ExportedTemplates\**" />
 		<None Remove="ExportedTemplates\**" />
 	</ItemGroup>
-	
+
 
 	<ItemGroup>
 		<Compile Remove="Properties\AssemblyInfo.cs" />
@@ -56,10 +56,10 @@
 		<Folder Include="boards\orangecrab\" />
 	</ItemGroup>
 
-	<!-- 
+	<!--
   <ItemGroup>
     <Folder Include="Properties\" />
-  </ItemGroup>  
+  </ItemGroup>
   -->
 
 
@@ -77,7 +77,7 @@
 		<Configurations>Debug;Release;Upload;Verify</Configurations>
 	</PropertyGroup>
 
-	<!-- 
+	<!--
   <Import Project="Custom.Before.Microsoft.Common.Targets"></Import>
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -87,6 +87,17 @@
 <Platforms>ECP5-12K;iCE40</Platforms>
 </PropertyGroup>
  -->
+	<!--
+	FuseSoC
+	-->
+	<PropertyGroup Condition=" '$(Platform)' == 'FuseSoC' ">
+		<PlatformTarget>FuseSoC</PlatformTarget>
+		<BitstreamMakefile>boards/FuseSoC/main.mk</BitstreamMakefile>
+		<BitstreamProgrammer>$(BitstreamProgrammer_iCEBreaker)</BitstreamProgrammer>
+		<BitstreamProgrammerType>iCEBreaker</BitstreamProgrammerType>
+		<BitstreamFilename>top_icebreaker.bin</BitstreamFilename>
+	</PropertyGroup>
+
 
 	<!--
 	iCEBreaker
@@ -123,7 +134,7 @@
 
 	<!--
 	Radiona ULX3S
-	
+
 	Edit with caution! See makefile when changing BitstreamFilename
 	-->
 	<PropertyGroup Condition=" '$(Platform)' == 'ULX3S ECP5-12K' ">
@@ -134,7 +145,7 @@
 
 		<!--search for this text in the output of programmer inspection, e.g. fujprog.exe -i -->
 		<BitstreamProgrammerText>ULX3S FPGA 12K</BitstreamProgrammerText>
-		
+
 		<BitstreamFilename>ulx3s.bit</BitstreamFilename>
 	</PropertyGroup>
 
@@ -146,7 +157,7 @@
 
 		<!--search for this text in the output of programmer inspection, e.g. fujprog.exe -i -->
 		<BitstreamProgrammerText>ULX3S FPGA 25K</BitstreamProgrammerText>
-		
+
 		<BitstreamFilename>ulx3s.bit</BitstreamFilename>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Platform)' == 'ULX3S ECP5-45K' ">
@@ -154,7 +165,7 @@
 		<BitstreamMakefile>boards/ulx3s/Makefile-ULX3S-45F.mk</BitstreamMakefile>
 		<BitstreamProgrammer>$(BitstreamProgrammer_ULX3S)</BitstreamProgrammer>
 		<BitstreamProgrammerType>ULX3S</BitstreamProgrammerType>
-		
+
 		<!--search for this text in the output of programmer inspection, e.g. fujprog.exe -i -->
 		<BitstreamProgrammerText>ULX3S FPGA 45K</BitstreamProgrammerText>
 
@@ -169,13 +180,31 @@
 
 		<!--search for this text in the output of programmer inspection, e.g. fujprog.exe -i -->
 		<BitstreamProgrammerText>ULX3S FPGA 85K</BitstreamProgrammerText>
-		
+
 		<BitstreamFilename>ulx3s.bit</BitstreamFilename>
 	</PropertyGroup>
 
 
 
 	<!-- each $(Configuration)|$(Platform) pair needs its own PropertyGroup to appease Project - Poperties - Build - Output Path -->
+
+	<!--FuseSoC -->
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|FuseSoC'">
+		<OutputPath>bin\</OutputPath>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|FuseSoC'">
+		<OutputPath>bin\</OutputPath>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Upload|FuseSoC'">
+		<OutputPath>bin\</OutputPath>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Verify|FuseSoC'">
+		<OutputPath>bin\</OutputPath>
+	</PropertyGroup>
+
 
 	<!--iCEBreaker -->
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|iCEBreaker'">
@@ -286,7 +315,7 @@
 
 
 
-	<!-- 
+	<!--
 <PropertyGroup>
    <PlatformTarget>iCE40;ULX3S</PlatformTarget>
    <PlatformTarget>ECP5-12K</PlatformTarget>
@@ -296,8 +325,8 @@
    <Platform>ECP5-12K</Platform>
 </PropertyGroup>
  -->
-	<!-- when manually editing this list, delete all items from solution 
-  
+	<!-- when manually editing this list, delete all items from solution
+
   GlobalSection(SolutionConfigurationPlatforms) = preSolution
     and
   GlobalSection(ProjectConfigurationPlatforms) = postSolution
@@ -372,10 +401,10 @@
 	<Target Name="Upload">
 		<Message Text="Doing UPLOAD for $(Platform)" />
 	</Target>
-	<!-- 
+	<!--
 
 :: %windir%\Sysnative\wsl.exe make ulx3s.bit
-:: c:\windows\system32\wsl.exe yosys Verilog.ys 
+:: c:\windows\system32\wsl.exe yosys Verilog.ys
 :: C:\workspace\ulx3s-examples\bin\ujprog.exe
 
 -->
@@ -393,7 +422,7 @@
 	</Target>
 
 	<!--
-  ``To modify your build process, add your task inside one of the targets below and uncomment it. 
+  ``To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
@@ -408,9 +437,9 @@
 
 
 	<PropertyGroup>
-		<!-- 
-      POST BUILD often does not run, runs only batch file code, can be overriden; use AfterTargets="Build" instead!      
-      see https://stackoverflow.com/questions/42389018/msbuild-post-build-events-not-running-in-windows-10 
+		<!--
+      POST BUILD often does not run, runs only batch file code, can be overriden; use AfterTargets="Build" instead!
+      see https://stackoverflow.com/questions/42389018/msbuild-post-build-events-not-running-in-windows-10
     -->
 		<PostBuildEvent>
 			echo PostBuildEvent!
@@ -424,6 +453,16 @@
 		<ApplicationIcon />
 		<OutputType>Exe</OutputType>
 		<StartupObject />
+	</PropertyGroup>
+
+
+	<PropertyGroup Label="FuseSoC">
+		<!-- without this, result is: Task "CallTarget" skipped, due to false condition; ('$(TargetsTriggeredByCompilation)' != '') was evaluated as ('' != ''). -->
+		<TargetsTriggeredByCompilation Condition=" '$(Platform)'=='FuseSoC' ">
+			$(TargetsTriggeredByCompilation);
+			Build_FuseSoC
+		</TargetsTriggeredByCompilation>
+		<Description>Verilog Project</Description>
 	</PropertyGroup>
 
 	<PropertyGroup Label="ULX3S">
@@ -449,7 +488,7 @@
 
 	<!--
 	Build ULX3S
-	
+
 	Note different chips are specified in the BitstreamMakefile property setting
 	-->
 	<Target Name="Build_ULX3S" DependsOnTargets="InitFPGA" AfterTargets="InitFPGA" BeforeTargets="SwitchToAnyCpu;Upload_ULX3S_85K" Condition=" '$(Platform)' == 'ULX3S ECP5-12K' Or '$(Platform)' == 'ULX3S ECP5-25K' Or '$(Platform)' == 'ULX3S ECP5-45K' Or '$(Platform)' == 'ULX3S ECP5-85K' ">
@@ -484,10 +523,15 @@
 		<Message Text="Using BitstreamFilename #2=$(BitstreamFilename)"></Message>
 	</Target>
 
+
+	<Target Name="VerifyBitstreamProgrammer" DependsOnTargets="Target_Project_FuseSoC">
+		<CallTarget Targets="VerifyBitstreamProgrammer_FuseSoC" Condition=" '$(BitstreamProgrammerType)'=='FuseSoC' "></CallTarget>
+	</Target>
+
 	<Target Name="VerifyBitstreamProgrammer" DependsOnTargets="Target_Project_ULX3S">
 		<CallTarget Targets="VerifyBitstreamProgrammer_ULX3S" Condition=" '$(BitstreamProgrammerType)'=='ULX3S' "></CallTarget>
 	</Target>
-	
+
 		<!-- ensure the defined programmer is found, and sees a board-->
 	<Target Name="VerifyBitstreamProgrammer_ULX3S">
 		<!-- we need a bitfile to actually send to the board-->
@@ -497,15 +541,15 @@
 		<!-- we need a programmer to send the bitfile to the board-->
 		<Error Text="$(BitstreamProgrammer) programmer not found!" Condition="!Exists('$(BitstreamProgrammer)')"></Error>
 		<Message Text="Using BitstreamProgrammer=$(BitstreamProgrammer)"></Message>
-		
+
 		<!-- identify the available board, otherwise show error message -->
 		<Exec Command="$(BitstreamProgrammer) -i" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high" Condition=" '$(_AvoidTargetStep)' == ''" IgnoreExitCode="true">
 			<Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
 		</Exec>
-		
+
 		<!-- apparently we cannot capture both the ErrorCode and OutputOfExec concurrently, so first run and check error code-->
 		<Error Text="Check to make sure the device is plugged in. $(BitstreamProgrammer) exited with ErrorCode $(ErrorCode)" Condition=" '$(ErrorCode)' != '0' "></Error>
-		
+
 		<!-- if there's no error, run the bitstram programmer again to identify the board -->
 		<Exec Command="$(BitstreamProgrammer) -i" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high" Condition=" ('$(_AvoidTargetStep)|$(ErrorCode)' == '|0')" IgnoreExitCode="true">
 			<Output TaskParameter="ConsoleOutput" PropertyName="OutputOfExec" />
@@ -522,7 +566,7 @@
 			<!-- initialize -->
 			<FoundMatchingBoard>False</FoundMatchingBoard>
 		</PropertyGroup>
-		
+
 		<PropertyGroup Condition="$(OutputOfExec.Contains('ULX3S FPGA 12K'))">
 			<FoundMatchingBoard>True</FoundMatchingBoard>
 			<BoardNameFound>ULX3S FPGA 12K</BoardNameFound>
@@ -547,7 +591,7 @@
 
 	<Target Name="Upload_ULX3S">
 		<Message Text="Upload_ULX3S..."></Message>
-		
+
 		<!-- just in case there's a project with the name 'failed.', we'll abort here-->
 		<Error Text="BitstreamFilename $(BitstreamFilename) cannot contain the text 'Failed.'" Condition="$(BitstreamFilename.Contains('Failed.'))"></Error>
 
@@ -567,7 +611,7 @@
 		<!-- if we find the output contains the word "failed" then we'll aboty with an error message -->
 		<Error Text="Upload Failed; $(OutputOfExec)" Condition=" '$(UploadFailed)'=='True' "></Error>
 	</Target>
-	
+
 	<!-- Upload ULX3S ECP5-12K -->
 	<Target Name="Upload_ULX3S_12K" DependsOnTargets="Build_ULX3S;VerifyBitstreamProgrammer" AfterTargets="InitFPGA" BeforeTargets="SwitchToAnyCpu" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Upload|ULX3S ECP5-12K|' ">
 		<Message Text="Conditional Upload_ULX3S_12K running...$(Configuration)|$(Platform)" />
@@ -580,7 +624,7 @@
 	<Target Name="Verify_ULX3S_12K" DependsOnTargets="Build_ULX3S" AfterTargets="InitFPGA" BeforeTargets="SwitchToAnyCpu" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Verify|ULX3S ECP5-12K|' ">
 		<Message Text="Conditional Upload_ULX3S_12K running...$(Configuration)|$(Platform)" />
 		<CallTarget Targets="Release_ULX3S_12K"></CallTarget>
-		
+
 		<Error Text="Verify Not implemented"></Error>
 
 		<Exec Command="$(FoundWSL) (echo not implemented )" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
@@ -607,7 +651,7 @@
 	<Target Name="Upload_ULX3S_25K" DependsOnTargets="Build_ULX3S;VerifyBitstreamProgrammer" AfterTargets="InitFPGA" BeforeTargets="SwitchToAnyCpu" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Upload|ULX3S ECP5-25K|' ">
 		<Message Text="Conditional Upload_ULX3S_25K running...$(Configuration)|$(Platform)" />
 		<Error Text="$(BitstreamFilename) file not found!" Condition="!Exists('$(BitstreamFilename)')"></Error>
-<!-- 
+<!--
 		<Exec Command="$(BitstreamProgrammer)   $(BitstreamFilename) " YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
 			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
 		</Exec>
@@ -646,7 +690,7 @@
 		<Message Text="Upload_ULX3S_45K FoundMatchingBoard=$(FoundMatchingBoard)"></Message>
 
 		<Message Text="Conditional Upload_ULX3S_45K running...$(Configuration)|$(Platform)" />
-<!-- 
+<!--
 		<CallTarget Targets="Build_ULX3S"></CallTarget>
 		<Error Text="$(BitstreamFilename) file not found!" Condition="!Exists('$(BitstreamFilename)')"></Error>
 		<Exec Command="$(BitstreamProgrammer)   $(BitstreamFilename) " YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
@@ -685,13 +729,13 @@
 	<!-- Upload ULX3S ECP5-85K -->
 	<Target Name="Upload_ULX3S_85K" DependsOnTargets="Build_ULX3S" AfterTargets="InitFPGA" BeforeTargets="SwitchToAnyCpu" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Upload|ULX3S ECP5-85K|' ">
 		<Message Text="Conditional Upload_ULX3S_85K running...$(Configuration)|$(Platform)" />
-<!-- 
+<!--
 		<CallTarget Targets="Build_ULX3S"></CallTarget>
 		<Error Text="$(BitstreamFilename) file not found!" Condition="!Exists('$(BitstreamFilename)')"></Error>
 		<Exec Command="$(BitstreamProgrammer)   $(BitstreamFilename) " YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
 			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
 		</Exec>
-		
+
 -->
 		<CallTarget Targets="Upload_ULX3S"></CallTarget>
 	</Target>
@@ -706,7 +750,7 @@
 		</Exec>
 	</Target>
 
-	<!-- 
+	<!--
 	**********************************************************************************************************************************
 	Clean
 	**********************************************************************************************************************************
@@ -728,10 +772,10 @@
 
 
 
-	<!-- 
+	<!--
 	*******************************************************************************************************************************
 	Orange Crab
-	******************************************************************************************************************************* 
+	*******************************************************************************************************************************
 	-->
 
 	<!--  Build Orange Crab-->
@@ -787,10 +831,10 @@
 	</Target>
 
 
-	<!-- 
+	<!--
 	*******************************************************************************************************************************
 	Tiny FPGA BX
-	******************************************************************************************************************************* 
+	*******************************************************************************************************************************
 	-->
 
 	<!--  Build Tiny FPGA BX-->
@@ -898,10 +942,10 @@
 
 	<!-- make sure we have WSL installed! -->
 	<Target Name="VerifyWSL">
-		<!-- 
-		Depending on the calling environment, WSL may by in system32 or Sysnative 
+		<!--
+		Depending on the calling environment, WSL may by in system32 or Sysnative
 		Typically in 32bit Visual Studio on a 64bit OS, the value will be in Sysnative
-		
+
 		Upon success, FoundWSL=C:\WINDOWS\Sysnative\wsl.exe
 		-->
 		<PropertyGroup Condition="Exists('$(windir)\system32\wsl.exe')">
@@ -918,8 +962,8 @@
 		<Exec Command="$(FoundWSL) yosys --version" />
 		<Exec Command="$(FoundWSL) nextpnr-ecp5 --version" />
 		<Exec Command="$(FoundWSL) ecppack --version" />
-		
-		<!-- 
+
+		<!--
 		moved
 		<Exec Command="$(BitstreamProgrammer) -V" Condition=" '$(Configuration)|$(BitstreamProgrammerType)' =='Upload|ULX3S' " />
 		-->
@@ -939,7 +983,7 @@
 
 		<Error Text="BitstreamMakefile not found" Condition=" !Exists('$(BitstreamMakefile)') "></Error>
 		<Error Text="BitstreamProgrammerType cannot be blank for Upload Configuration" Condition="'$(Configuration)' == 'Upload' And '$(BitstreamProgrammerType)' == '' "> </Error>
-		
+
 		<!-- ensure the respective programmer executables are defined and exist -->
 		<Error Text="BitstreamProgrammer_iCEBreaker cannot be blank for config $(Configuration)  " Condition=" ('$(BitstreamProgrammer_iCEBreaker)' == '')  And ('$(Configuration)|$(BitstreamProgrammerType)' == 'Upload|iCEBreaker' ) "></Error>
 		<Error Text="BitstreamProgrammer_iCEBreaker '$(BitstreamProgrammer_iCEBreaker)' not found" Condition=" !Exists('$(BitstreamProgrammer_iCEBreaker)') And ('$(Configuration)|$(BitstreamProgrammerType)' == 'Upload|iCEBreaker' ) "></Error>
@@ -961,11 +1005,11 @@
 
 		<!-- Any generic, all-board, all build initialization will go here-->
 	</Target>
-	
+
 <PropertyGroup>
 	<!---->
 </PropertyGroup>
 <Target Name="other target" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Verify|tinyFPGA BX|' ">
-	
+
 </Target>
 </Project>

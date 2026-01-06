@@ -41,8 +41,8 @@ namespace VerilogLanguage.Highlighting
         //A lock object.
         object updateLock = new object();
 
-        public HighlightWordTagger(ITextView view, 
-                                   ITextBuffer sourceBuffer, 
+        public HighlightWordTagger(ITextView view,
+                                   ITextBuffer sourceBuffer,
                                    ITextSearchService textSearchService,
                                    ITextStructureNavigator textStructureNavigator)
         {
@@ -98,11 +98,15 @@ namespace VerilogLanguage.Highlighting
         // Step 4: The event handlers both call the UpdateAtCaretPosition method.
         void ViewLayoutChanged(object sender, TextViewLayoutChangedEventArgs e)
         {
-            // If a new snapshot wasn't generated, then skip this layout   
+            // If a new snapshot wasn't generated, then skip this layout
             if (e.NewSnapshot != e.OldSnapshot)
             {
                 UpdateAtCaretPosition(View.Caret.Position);
                 string thisFile = VerilogLanguage.VerilogGlobals.GetDocumentPath(View.TextSnapshot);
+                if (string.IsNullOrEmpty(thisFile))
+                {
+                    return;
+                }
                 //VerilogGlobals.ParseStatus_EnsureExists(thisFile);
                 //VerilogGlobals.ParseStatus[thisFile].NeedReparse = true;
                 // VerilogGlobals.ParseStatus_NeedReparse_SetValue(thisFile, true);
@@ -125,8 +129,8 @@ namespace VerilogLanguage.Highlighting
         // Step 5: You must also add a TagsChanged event that will be called by the update method.
         public event EventHandler<SnapshotSpanEventArgs> TagsChanged;
 
-        // Step 6: The UpdateAtCaretPosition() method finds every word in the text buffer that is identical 
-        // to the word where the cursor is positioned and constructs a list of SnapshotSpan objects that 
+        // Step 6: The UpdateAtCaretPosition() method finds every word in the text buffer that is identical
+        // to the word where the cursor is positioned and constructs a list of SnapshotSpan objects that
         // correspond to the occurrences of the word. It then calls SynchronousUpdate, which raises the TagsChanged event.
         void UpdateAtCaretPosition(CaretPosition caretPosition)
         {
@@ -135,7 +139,7 @@ namespace VerilogLanguage.Highlighting
             if (!point.HasValue)
                 return;
 
-            // If the new caret position is still within the current word (and on the same snapshot), we don't need to check it   
+            // If the new caret position is still within the current word (and on the same snapshot), we don't need to check it
             if (CurrentWord.HasValue
                 && CurrentWord.Value.Snapshot == View.TextSnapshot
                 && point.Value >= CurrentWord.Value.Start
@@ -152,13 +156,13 @@ namespace VerilogLanguage.Highlighting
         {
             SnapshotPoint currentRequest = RequestedPoint;
             List<SnapshotSpan> wordSpans = new List<SnapshotSpan>();
-            //Find all words in the buffer like the one the caret is on  
+            //Find all words in the buffer like the one the caret is on
             TextExtent word = TextStructureNavigator.GetExtentOfWord(currentRequest);
             bool foundWord = true;
-            //If we've selected something not worth highlighting, we might have missed a "word" by a little bit  
+            //If we've selected something not worth highlighting, we might have missed a "word" by a little bit
             if (!WordExtentIsValid(currentRequest, word))
             {
-                //Before we retry, make sure it is worthwhile   
+                //Before we retry, make sure it is worthwhile
                 if (word.Span.Start != currentRequest
                      || currentRequest == currentRequest.GetContainingLine().Start
                      || char.IsWhiteSpace((currentRequest - 1).GetChar()))
@@ -167,11 +171,11 @@ namespace VerilogLanguage.Highlighting
                 }
                 else
                 {
-                    // Try again, one character previous.    
-                    //If the caret is at the end of a word, pick up the word.  
+                    // Try again, one character previous.
+                    //If the caret is at the end of a word, pick up the word.
                     word = TextStructureNavigator.GetExtentOfWord(currentRequest - 1);
 
-                    //If the word still isn't valid, we're done   
+                    //If the word still isn't valid, we're done
                     if (!WordExtentIsValid(currentRequest, word))
                         foundWord = false;
                 }
@@ -179,23 +183,23 @@ namespace VerilogLanguage.Highlighting
 
             if (!foundWord)
             {
-                //If we couldn't find a word, clear out the existing markers  
+                //If we couldn't find a word, clear out the existing markers
                 SynchronousUpdate(currentRequest, new NormalizedSnapshotSpanCollection(), null);
                 return;
             }
 
             SnapshotSpan currentWord = word.Span;
-            //If this is the current word, and the caret moved within a word, we're done.   
+            //If this is the current word, and the caret moved within a word, we're done.
             if (CurrentWord.HasValue && currentWord == CurrentWord)
                 return;
 
-            //Find the new spans  
+            //Find the new spans
             FindData findData = new FindData(currentWord.GetText(), currentWord.Snapshot);
             findData.FindOptions = FindOptions.WholeWord | FindOptions.MatchCase;
 
             wordSpans.AddRange(TextSearchService.FindAll(findData));
 
-            //If another change hasn't happened, do a real update   
+            //If another change hasn't happened, do a real update
             if (currentRequest == RequestedPoint)
                 SynchronousUpdate(currentRequest, new NormalizedSnapshotSpanCollection(wordSpans), currentWord);
         }
@@ -205,7 +209,7 @@ namespace VerilogLanguage.Highlighting
                 && currentRequest.Snapshot.GetText(word.Span).Any(c => char.IsLetter(c));
         }
 
-        // Step 7: The SynchronousUpdate performs a synchronous update on the WordSpans and 
+        // Step 7: The SynchronousUpdate performs a synchronous update on the WordSpans and
         // CurrentWord properties, and raises the TagsChanged event.
         void SynchronousUpdate(SnapshotPoint currentRequest, NormalizedSnapshotSpanCollection newSpans, SnapshotSpan? newCurrentWord)
         {
@@ -223,10 +227,10 @@ namespace VerilogLanguage.Highlighting
             }
         }
 
-        // Step 8: You must implement the GetTags method. This method takes a collection of SnapshotSpan objects 
+        // Step 8: You must implement the GetTags method. This method takes a collection of SnapshotSpan objects
         // and returns an enumeration of tag spans.
-        // 
-        // In C#, implement this method as a yield iterator, which enables lazy evaluation (that is, evaluation 
+        //
+        // In C#, implement this method as a yield iterator, which enables lazy evaluation (that is, evaluation
         // of the set only when individual items are accessed) of the tags. In Visual Basic, add the tags to a list and return the list.
         //
         // Here the method returns a TagSpan<T> object that has a "blue" TextMarkerTag, which provides a blue background.
@@ -235,15 +239,15 @@ namespace VerilogLanguage.Highlighting
             if (CurrentWord == null)
                 yield break;
 
-            // Hold on to a "snapshot" of the word spans and current word, so that we maintain the same  
-            // collection throughout  
+            // Hold on to a "snapshot" of the word spans and current word, so that we maintain the same
+            // collection throughout
             SnapshotSpan currentWord = CurrentWord.Value;
             NormalizedSnapshotSpanCollection wordSpans = WordSpans;
 
             if (spans.Count == 0 || wordSpans.Count == 0)
                 yield break;
 
-            // If the requested snapshot isn't the same as the one our words are on, translate our spans to the expected snapshot   
+            // If the requested snapshot isn't the same as the one our words are on, translate our spans to the expected snapshot
             if (spans[0].Snapshot != wordSpans[0].Snapshot)
             {
                 wordSpans = new NormalizedSnapshotSpanCollection(
@@ -252,13 +256,13 @@ namespace VerilogLanguage.Highlighting
                 currentWord = currentWord.TranslateTo(spans[0].Snapshot, SpanTrackingMode.EdgeExclusive);
             }
 
-            // First, yield back the word the cursor is under (if it overlaps)   
-            // Note that we'll yield back the same word again in the wordspans collection;   
-            // the duplication here is expected.   
+            // First, yield back the word the cursor is under (if it overlaps)
+            // Note that we'll yield back the same word again in the wordspans collection;
+            // the duplication here is expected.
             if (spans.OverlapsWith(new NormalizedSnapshotSpanCollection(currentWord)))
                 yield return new TagSpan<HighlightWordTag>(currentWord, new HighlightWordTag());
 
-            // Second, yield all the other words in the file   
+            // Second, yield all the other words in the file
             foreach (SnapshotSpan span in NormalizedSnapshotSpanCollection.Overlap(spans, wordSpans))
             {
                 yield return new TagSpan<HighlightWordTag>(span, new HighlightWordTag());

@@ -384,6 +384,10 @@ namespace VerilogLanguage
             //{
             //    ParseStatus.Add(targetFile,  new ParseAttribute());
             //}
+            if (string.IsNullOrEmpty(targetFile))
+            {
+                return;
+            }
             lock (_synchronizationParseStatus)
             {
                 VerilogGlobals.ParseStatusController.EnsureExists(targetFile);

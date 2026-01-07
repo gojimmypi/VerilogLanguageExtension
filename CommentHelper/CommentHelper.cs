@@ -61,7 +61,7 @@ namespace CommentHelper
             }
         }
 
-        private void AppendCommentListItem(string AdditionalCommentBlock = string.Empty)
+        private void AppendCommentListItem(string AdditionalCommentBlock = "")
         {
             thisCommentBlock += AdditionalCommentBlock;
             if (thisCommentBlock != string.Empty)

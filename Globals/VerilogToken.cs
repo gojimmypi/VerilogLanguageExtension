@@ -59,7 +59,7 @@ namespace VerilogLanguage
             /// </summary>
             /// <param name="p"></param>
             /// <param name="c"></param>
-            public VerilogToken(string p = string.Empty, VerilogTokenContextType c = VerilogTokenContextType.Undetermined)
+            public VerilogToken(string p = "", VerilogTokenContextType c = VerilogTokenContextType.Undetermined)
             {
                 ParseState = new VerilogParseState(0);
                 Part = p ?? ""; // ensure Part is never null (empty string if p is null)
@@ -95,8 +95,8 @@ namespace VerilogLanguage
                 //string thisItem = thisToken.ParseState.thisItem;
                 //if (thisItem != string.Empty) // && thisItem != string.Empty)
                 //{
-                    thisToken.Part = thisToken.ParseState.thisItem;
-                    if (thisToken.Part != null)
+                thisToken.Part = thisToken.ParseState.thisItem;
+                if (thisToken.Part != null)
                     {
                         // thisToken.Part = thisToken.Part.Trim();
                         thisContinuedParseState = thisToken.ParseState;

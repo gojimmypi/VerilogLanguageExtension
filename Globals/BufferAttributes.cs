@@ -339,7 +339,7 @@ namespace VerilogLanguage
         ///   Reparse
         /// </summary>
         /// <param name="buffer"></param>
-        public static void Reparse(ITextBuffer buffer, string forFile = string.Empty)
+        public static void Reparse(ITextBuffer buffer, string forFile = "")
         {
             //if (NeedReparse)
             if (VerilogGlobals.ParseStatusController.NeedReparse(forFile)) // ensure the dictionary item exists for the ParseStatus of this file and check if it is time to reparse

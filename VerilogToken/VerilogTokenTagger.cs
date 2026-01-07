@@ -1,5 +1,5 @@
 ﻿//***************************************************************************
-// 
+//
 //  MIT License
 //
 //  Copyright(c) 2019 gojimmypi
@@ -44,7 +44,7 @@ namespace VerilogLanguage.VerilogToken
 
         internal VerilogTokenTagger(ITextBuffer buffer)
         {
-           
+
             VerilogGlobals.PerfMon.VerilogTokenTagger_Count++;
             VerilogGlobals.TheBuffer = buffer;
             _buffer = buffer;
@@ -91,7 +91,7 @@ namespace VerilogLanguage.VerilogToken
 
         /// <summary>
         ///   BufferChanged - handle Buffer Changed event. If buffer has a character with possible far-reaching consequences
-        ///                   then force a rescan of the enture buffer. See also HighlightWordTaggerProvider 
+        ///                   then force a rescan of the enture buffer. See also HighlightWordTaggerProvider
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -117,9 +117,9 @@ namespace VerilogLanguage.VerilogToken
             }
 
 
-            // we are only interested when the old and new text are different. 
+            // we are only interested when the old and new text are different.
             // yes, the event seems to be triggered even with no apparent changes
-            // 
+            //
             if (theNewText != theOldText)
             {
                 // even if the buffer is different, only certain characters require a full reparse
@@ -127,6 +127,10 @@ namespace VerilogLanguage.VerilogToken
                 if (VerilogGlobals.IsRefreshChar(theNewText) || VerilogGlobals.IsRefreshChar(theOldText))
                 {
                     string thisFile = VerilogLanguage.VerilogGlobals.GetDocumentPath(_buffer.CurrentSnapshot);
+                    if (string.IsNullOrEmpty(thisFile))
+                    {
+                        return;
+                    }
 
                     // VerilogGlobals.ParseStatus_NeedReparse_SetValue(thisFile, true);
                     VerilogGlobals.ParseStatusController.NeedReparse_SetValue(thisFile, true);
@@ -151,7 +155,7 @@ namespace VerilogLanguage.VerilogToken
 
             // return false;
 
-            VerilogGlobals.PerfMon.VerilogTokenTagger_IsOpenBlockComment_Count++; 
+            VerilogGlobals.PerfMon.VerilogTokenTagger_IsOpenBlockComment_Count++;
             bool isLocalBlockComment = false; // we'll assume there's no open block comment unless otherwise found
             bool isLocalLineComment = false;
             if (sc != null && sc[0].Snapshot != null && sc[0].Start.Position > 0)
@@ -273,7 +277,7 @@ namespace VerilogLanguage.VerilogToken
                                 else
                                 {
                                     // check to see if this is a variable
-                                    string thisScope = VerilogGlobals.TextModuleName(containingLine.LineNumber, curLoc - containingLine.Start.Position); // TODO 
+                                    string thisScope = VerilogGlobals.TextModuleName(containingLine.LineNumber, curLoc - containingLine.Start.Position); // TODO
                                     if (VerilogGlobals.VerilogVariables.ContainsKey(thisScope))
                                     {
                                         // the current scope (typically a module name) is defined. So do we have a known variable?
@@ -377,7 +381,7 @@ namespace VerilogLanguage.VerilogToken
         public event EventHandler<SnapshotSpanEventArgs> TagsChanged;
 
         void ViewLayoutChanged(object sender, TextViewLayoutChangedEventArgs e)
-        {            
+        {
             if (e.NewSnapshot != e.OldSnapshot) //make sure that there has really been a change
             {
                 TagsChanged?.Invoke(this, new SnapshotSpanEventArgs(new SnapshotSpan(_buffer.CurrentSnapshot, 0,

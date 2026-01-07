@@ -23,12 +23,12 @@ namespace VerilogLanguage
 
         // see https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements#the-lock-statement
         //
-        // While a mutual-exclusion lock is held, code executing in the same execution thread can also obtain and 
-        // release the lock. However, code executing in other threads is blocked from obtaining the lock until the 
+        // While a mutual-exclusion lock is held, code executing in the same execution thread can also obtain and
+        // release the lock. However, code executing in other threads is blocked from obtaining the lock until the
         // lock is released.
         //
-        // Locking System.Type objects in order to synchronize access to static data is not recommended.Other code 
-        // might lock on the same type, which can result in deadlock.A better approach is to synchronize access to 
+        // Locking System.Type objects in order to synchronize access to static data is not recommended.Other code
+        // might lock on the same type, which can result in deadlock.A better approach is to synchronize access to
         // static data by locking a private static object.
         /// <summary>
         /// _synchronizationParseStatus - synchronize access to static ParseStatus data by locking a private static object
@@ -63,12 +63,13 @@ namespace VerilogLanguage
             /// EnsureExists_ParseStatus - we want to make sure our respective ParseStatus item exists, but NOT refresh it.
             /// </summary>
             /// <param name="targetFile"></param>
-            public static void EnsureExists(string targetFile)
-            {
-                lock (_synchronizationParseStatus)
-                {
-                    if (!ParseStatus.ContainsKey(targetFile))
-                    {
+            public static void EnsureExists(string targetFile) {
+                if (string.IsNullOrEmpty(targetFile)) {
+                    return;
+                }
+
+                lock (_synchronizationParseStatus) {
+                    if (!ParseStatus.TryGetValue(targetFile, out _)) {
                         Init(targetFile);
                     }
                 }
@@ -81,6 +82,11 @@ namespace VerilogLanguage
             /// <returns></returns>
             public static bool NeedReparse(string forFile)
             {
+                if (string.IsNullOrEmpty(forFile))
+                {
+                    return false;
+                }
+
                 lock (_synchronizationParseStatus)
                 {
                     EnsureExists(forFile);
@@ -90,6 +96,11 @@ namespace VerilogLanguage
 
             public static bool IsReparsing(string forFile)
             {
+                if (string.IsNullOrEmpty(forFile))
+                {
+                    return false;
+                }
+
                 lock (_synchronizationParseStatus)
                 {
                     EnsureExists(forFile);
@@ -100,6 +111,10 @@ namespace VerilogLanguage
 
             public static void NeedReparse_SetValue(string forFile, bool toValue)
             {
+                if (string.IsNullOrEmpty(forFile))
+                {
+                    return;
+                }
                 lock (_synchronizationParseStatus)
                 {
                     EnsureExists(forFile);

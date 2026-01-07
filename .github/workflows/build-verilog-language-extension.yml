@@ -1,0 +1,52 @@
+name: Build Verilog Language Extension
+
+on:
+  push:
+    branches: [ main, development ]
+  pull_request:
+    branches: [ main, development ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: false
+          fetch-depth: 0
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: dotnet list
+        shell: cmd
+        run: |
+          dotnet list .\VerilogLanguage.csproj package --include-transitive
+
+      - name: Build solution
+        shell: cmd
+        run: |
+          echo Build...
+          msbuild VerilogLanguageExtension.sln ^
+            /restore ^
+            /t:Rebuild ^
+            /p:Configuration=Release ^
+            /p:Platform="Any CPU" ^
+            /p:VisualStudioVersion=17.0
+
+      - name: Upload VSIX
+        if: false
+        uses: actions/upload-artifact@v4
+        with:
+          name: VerilogLanguage.vsix
+          path: |
+            **\bin\Release\*.vsix
+

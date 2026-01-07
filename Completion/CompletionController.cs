@@ -1,5 +1,5 @@
 ﻿//***************************************************************************
-// 
+//
 //    Copyright (c) Microsoft Corporation. All rights reserved.
 //    This code is licensed under the Visual Studio SDK license terms.
 //    THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
@@ -32,8 +32,8 @@ namespace VerilogLanguage
     // see https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.editor.ivstextviewcreationlistener?view=visualstudiosdk-2019
     // A listener to the event raised when a text view adapter (IVsTextView) is created and initialized.
     //
-    // You can use this listener when you want to handle specific keystrokes in your extension. You 
-    // do this by getting a reference to the text view adapter (IVsTextView) when the text view is created, 
+    // You can use this listener when you want to handle specific keystrokes in your extension. You
+    // do this by getting a reference to the text view adapter (IVsTextView) when the text view is created,
     // then using this reference to add a command filter to a view (by using AddCommandFilter).
 
     [Export(typeof(IVsTextViewCreationListener))]
@@ -86,72 +86,113 @@ namespace VerilogLanguage
             bool handled = false;
             int hresult = VSConstants.S_OK;
 
-            // hack alert! this sets the global flag that the buffer needs to be reparsed.
-            // we typically get here when multiple files are opened, and the tab for a different
-            // file is clicked on. The global bufferAttributes does not know which file is
-            // being viewed. TODO - come up with something proper and more graceful.
-            //
-            // we'll preparse the buffer upon OnTextViewMouseHover in the QuickInfoController
+            /*
+             *  hack alert! this sets the global flag that the buffer needs to be reparsed.
+             * we typically get here when multiple files are opened, and the tab for a different
+             * file is clicked on. The global bufferAttributes does not know which file is
+             * being viewed. TODO - come up with something proper and more graceful.
+             *
+             * we'll preparse the buffer upon OnTextViewMouseHover in the QuickInfoController
+             *
+             *   Important notes:
+             *
+             *   - IOleCommandTarget.Exec can be called in contexts that are not the editor (Git changes pane, tool windows, etc.).
+             *     In those cases, there may be no document path, and we must NOT fail the command.
+             *
+             *   - Some operations below require the UI thread (TextView/TextSnapshot and IntelliSense session ops).
+             *     We only assert UI thread right before those operations, and we never assert it before forwarding to Next.Exec.
+            */
+
+            // For non-editor command groups, do not touch TextView; just pass through.
+            // This avoids breaking commands coming from tool windows (e.g., Copy in GitHub/Git changes pane).
+            if (pguidCmdGroup != VSConstants.VSStd2K)
+            {
+                if (Next != null)
+                {
+                    /* NOTICE: although the IDE will indicate:
+                     *
+                     *  warning VSTHRD010: Accessing "IOleCommandTarget" should only be done on the main thread.
+                     *  Call Microsoft.VisualStudio.Shell.ThreadHelper.ThrowIfNotOnUIThread() first
+                     *
+                     *  here, we DO want to call this Exec, otherwise copy from left GitHub diff pane does nothing. */
+                    #pragma warning disable VSTHRD010
+                    return Next.Exec(pguidCmdGroup, nCmdID, nCmdexecopt, pvaIn, pvaOut);
+                    #pragma warning restore VSTHRD010
+                }
+
+                return VSConstants.S_OK;
+            }
+
+            // From here on we treat it as editor-related commands.
+            Microsoft.VisualStudio.Shell.ThreadHelper.ThrowIfNotOnUIThread();
+
             string thisFile = VerilogLanguage.VerilogGlobals.GetDocumentPath(TextView.TextSnapshot);
-            //VerilogGlobals.ParseStatus_EnsureExists(thisFile);
-            //lock (VerilogGlobals.ParseStatus[thisFile])
-            //{
-            //     VerilogGlobals.ParseStatus[thisFile].NeedReparse = true;
-            //}
-            VerilogGlobals.ParseStatusController.NeedReparse_SetValue(thisFile, true);
+            if (!string.IsNullOrEmpty(thisFile))
+            {
+                VerilogGlobals.ParseStatusController.NeedReparse_SetValue(thisFile, true);
+            }
 
-            // VerilogGlobals.NeedReparse = true;
+            // 1. Pre-process editor commands
+            switch ((VSConstants.VSStd2KCmdID)nCmdID)
+            {
+                case VSConstants.VSStd2KCmdID.AUTOCOMPLETE:
+                case VSConstants.VSStd2KCmdID.COMPLETEWORD:
+                    handled = StartSession();
+                    break;
 
-            // 1. Pre-process
-            if (pguidCmdGroup == VSConstants.VSStd2K)
+                case VSConstants.VSStd2KCmdID.RETURN:
+                    handled = Complete(false);
+                    break;
+
+                case VSConstants.VSStd2KCmdID.TAB:
+                    handled = Complete(true);
+                    break;
+
+                case VSConstants.VSStd2KCmdID.CANCEL:
+                    handled = Cancel();
+                    break;
+            }
+
+            // Pass through if we did not handle it
+            if (!handled)
+            {
+                if (Next != null)
+                {
+                    hresult = Next.Exec(pguidCmdGroup, nCmdID, nCmdexecopt, pvaIn, pvaOut);
+                }
+                else
+                {
+                    hresult = VSConstants.S_OK;
+                }
+            }
+
+            // Post-process only on success
+            if (ErrorHandler.Succeeded(hresult))
             {
                 switch ((VSConstants.VSStd2KCmdID)nCmdID)
                 {
-                    case VSConstants.VSStd2KCmdID.AUTOCOMPLETE:
-                    case VSConstants.VSStd2KCmdID.COMPLETEWORD:
-                        handled = StartSession();
-                        break;
-                    case VSConstants.VSStd2KCmdID.RETURN:
-                        handled = Complete(false);
-                        break;
-                    case VSConstants.VSStd2KCmdID.TAB:
-                        handled = Complete(true);
-                        break;
-                    case VSConstants.VSStd2KCmdID.CANCEL:
-                        handled = Cancel();
-                        break;
-                }
-            }
-
-            // this next line was suggested by the IDE, as relating to the next hresult = Next.Exec() call
-            Microsoft.VisualStudio.Shell.ThreadHelper.ThrowIfNotOnUIThread();
-
-            if (!handled)
-            {
-
-                hresult = Next.Exec(pguidCmdGroup, nCmdID, nCmdexecopt, pvaIn, pvaOut);
-            }
-
-            if (ErrorHandler.Succeeded(hresult))
-            {
-                if (pguidCmdGroup == VSConstants.VSStd2K)
-                {
-                    switch ((VSConstants.VSStd2KCmdID)nCmdID)
-                    {
-                        // keypress handler
-                        case VSConstants.VSStd2KCmdID.TYPECHAR:
+                    // Keypress handler
+                    case VSConstants.VSStd2KCmdID.TYPECHAR:
+                        {
                             char ch = GetTypeChar(pvaIn);
                             if (ch == ' ')
+                            {
                                 StartSession();
+                            }
                             else if (_currentSession != null)
+                            {
                                 Filter();
+                            }
+
                             break;
-                        case VSConstants.VSStd2KCmdID.BACKSPACE:
-                            Filter();
-                            break;
-                    }
+                        }
+
+                    case VSConstants.VSStd2KCmdID.BACKSPACE:
+                        Filter();
+                        break;
                 }
             }
+
             return hresult;
         }
 

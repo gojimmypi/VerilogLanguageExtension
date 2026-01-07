@@ -4,6 +4,10 @@ Because you never know, you might need that someday.
 
 Downloads available for prior versions of vsix exentions:
 
+[Version 0.3.5.4](./VerilogLanguage_v0.3.5.4.vsix) fixed copy error during from two-pane git diff. resync development branch, cleanup.
+
+[Version 0.3.5.3](./VerilogLanguage_v0.3.5.3.vsix) initial published version for VS 2022 and VS 2026; prior versions no longer supported.
+
 [Version 0.3.3](./VerilogLanguage_v0.3.3.vsix) - various fixes to highlighting. See [tweets](https://twitter.com/gojimmypi/status/1213116109467136000?s=20).
 
 Version 0.3.2 - development versions only

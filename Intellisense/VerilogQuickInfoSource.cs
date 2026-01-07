@@ -144,8 +144,7 @@ namespace VerilogLanguage
 
         public VerilogAsyncQuickInfoSource(
             ITextBuffer buffer,
-            ITagAggregator<VerilogTokenTag> aggregator)
-        {
+            ITagAggregator<VerilogTokenTag> aggregator) {
             _buffer = buffer;
             _aggregator = aggregator;
 
@@ -154,8 +153,7 @@ namespace VerilogLanguage
 
         public Task<QuickInfoItem> GetQuickInfoItemAsync(
             IAsyncQuickInfoSession session,
-            CancellationToken cancellationToken)
-        {
+            CancellationToken cancellationToken) {
             if (_disposed) {
                 throw new ObjectDisposedException(nameof(VerilogAsyncQuickInfoSource));
             }

@@ -28,3 +28,10 @@
 /Example-Projects/Verilog45
 /AddedExtensionProjectTemplates/Verilog Project/bin
 /AddAnyFile
+
+# All backup files
+/**/*.bak
+
+# misc
+/packages.old
+/releases/0.2

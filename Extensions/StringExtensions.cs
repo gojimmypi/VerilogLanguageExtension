@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VerilogLanguage 
+namespace VerilogLanguage
 {
     public static class StringExtensions
     {
@@ -60,14 +60,14 @@ namespace VerilogLanguage
 
         public static string FirstRadixValue(this string value)
         {
-            string res = "";
- 
+            string res = string.Empty;
+
             try
             {
                 // check for a blank string, if found return an empty string immediately
                 // also check if there's no single quote; if not, there's certainly no Radix
                 // the shortes string would be 3 characters: 3'2
-                if ((value == null) || (value == "") || value.Length < 3 || !value.Contains("'"))
+                if ((value == null) || (value == string.Empty) || value.Length < 3 || !value.Contains("'"))
                 {
                     return res;
                 }
@@ -88,7 +88,7 @@ namespace VerilogLanguage
             {
 
                 string a = ex.Message;
-                res = "";
+                res = string.Empty;
             }
             return res;
         }

@@ -10,7 +10,7 @@ namespace VerilogLanguage
     {
         private static bool threadActive = false; // true to spawn a new thread when reparsing
         private static ITextBuffer threadbuffer;  // we'll copy the intended buffer to process to this threadBuffer; it will be placed back upon completion
-        private static string threadFile = "";    // there may be multiple files open. we'll keep track of them here.
+        private static string threadFile = string.Empty;    // there may be multiple files open. we'll keep track of them here.
         private const int THREAD_TRIGGER_SIZE = 8192;
         private static DateTime ProfileStart;     // we'll keep track of performance; this is the starting time marker
 
@@ -235,7 +235,7 @@ namespace VerilogLanguage
         private static void LineParse(string theLine, int theLineNumber)
         {
             // first, parse the words and tokens
-            string thisTokenString = "";
+            string thisTokenString = string.Empty;
             int LinePosition = 0;
 
             tokens = VerilogGlobals.VerilogKeywordSplit(theLine, priorToken);
@@ -339,7 +339,7 @@ namespace VerilogLanguage
         ///   Reparse
         /// </summary>
         /// <param name="buffer"></param>
-        public static void Reparse(ITextBuffer buffer, string forFile = "")
+        public static void Reparse(ITextBuffer buffer, string forFile = string.Empty)
         {
             //if (NeedReparse)
             if (VerilogGlobals.ParseStatusController.NeedReparse(forFile)) // ensure the dictionary item exists for the ParseStatus of this file and check if it is time to reparse
@@ -439,9 +439,9 @@ namespace VerilogLanguage
             //}
             ProfileStart = DateTime.Now;
             ITextSnapshot newSnapshot = buffer.CurrentSnapshot;
-            string thisChar = "";
-            string lastChar = "";
-            string thisLine = "";
+            string thisChar = string.Empty;
+            string lastChar = string.Empty;
+            string thisLine = string.Empty;
             bool IsActiveLineComment = false;
             bool IsActiveBlockComment = false;
 
@@ -463,7 +463,7 @@ namespace VerilogLanguage
                     bufferAttribute.LineNumber = thisLineNumber;
 
                     // TODO move this to separate function
-                    if (thisModuleName != "")
+                    if (thisModuleName != string.Empty)
                     {
                         if (!ModuleNames.ContainsValue(thisModuleName))
                         {
@@ -706,7 +706,7 @@ namespace VerilogLanguage
                         // arbitrary points
                         CharParse();
                         double duration8 = (DateTime.Now - ProfileStart).TotalMilliseconds;
-                        lastChar = "";  // the lastChar is irrelevant when spanning multiple lines, as we are only using it for comment detection
+                        lastChar = string.Empty;  // the lastChar is irrelevant when spanning multiple lines, as we are only using it for comment detection
                         if (bufferAttribute.IsEmpty)
                         {
                             // if empty, there's not much interesting to do. we won't append empty ones.

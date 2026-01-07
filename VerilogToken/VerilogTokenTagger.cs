@@ -215,7 +215,7 @@ namespace VerilogLanguage.VerilogToken
                 ITextSnapshotLine containingLine = curSpan.Start.GetContainingLine();
                 int curLoc = containingLine.Start.Position;
                 int LinePosition = 0;
-                string thisTokenString = "";
+                string thisTokenString = string.Empty;
 
                 tokens = VerilogGlobals.VerilogKeywordSplit(containingLine.GetText(), priorToken);
 

@@ -59,7 +59,7 @@ namespace VerilogLanguage
             /// </summary>
             /// <param name="p"></param>
             /// <param name="c"></param>
-            public VerilogToken(string p = "", VerilogTokenContextType c = VerilogTokenContextType.Undetermined)
+            public VerilogToken(string p = string.Empty, VerilogTokenContextType c = VerilogTokenContextType.Undetermined)
             {
                 ParseState = new VerilogParseState(0);
                 Part = p ?? ""; // ensure Part is never null (empty string if p is null)
@@ -87,13 +87,13 @@ namespace VerilogLanguage
             VerilogParseState thisContinuedParseState = new VerilogParseState(0);
 
             // AddToken - appends the current token part to the array and create a new thisToken to build.
-            // reminder that here we are only splitting text into token items. 
+            // reminder that here we are only splitting text into token items.
             // See VerilogTokenTagger for actually setting the context (e.g. color) of  each token item.
-            // 
+            //
             void AddToken()
             {
                 //string thisItem = thisToken.ParseState.thisItem;
-                //if (thisItem != "") // && thisItem != "")
+                //if (thisItem != string.Empty) // && thisItem != string.Empty)
                 //{
                     thisToken.Part = thisToken.ParseState.thisItem;
                     if (thisToken.Part != null)
@@ -118,7 +118,7 @@ namespace VerilogLanguage
 
                 if (thisToken.ParseState.IsNewDelimitedSegment)
                 {
-                    // anytime a delimiter is encountered, we start a new text segment 
+                    // anytime a delimiter is encountered, we start a new text segment
                     // note the delimiter itself is in a colorizable segment
 
                     // there's a new delimiter, so add the current item and prep for the next one

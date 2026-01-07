@@ -9,7 +9,7 @@ namespace VerilogLanguage
     public static partial class VerilogGlobals
     {
         /// <summary>
-        ///  IsRefreshChar - some characters, when encountered will need to have a full refresh, as they can have far-reaching consequences. 
+        ///  IsRefreshChar - some characters, when encountered will need to have a full refresh, as they can have far-reaching consequences.
         /// </summary>
         /// <param name="theString"></param>
         /// <returns></returns>
@@ -43,7 +43,7 @@ namespace VerilogLanguage
                    (theString == "&") ||
 
                    // the comment chars as delimiters are not currently working properly (workaround: use a space on either side)
-                   //(theString == "*") ||  // the "*" character 
+                   //(theString == "*") ||  // the "*" character
                    //(theString == "/") ||  // and "/" are tricky, as they are used in comments: // and  /* */
 
                    (theString == "[") ||
@@ -135,7 +135,7 @@ namespace VerilogLanguage
         private static bool IsVerilogValue(string theKeyword)
         {
             // if the keyword is null or blank, it is certainly not a keyword, so return false immediately
-            if ((theKeyword == null) || (theKeyword == ""))
+            if ((theKeyword == null) || (theKeyword == string.Empty))
             {
                 return false;
             }
@@ -156,7 +156,7 @@ namespace VerilogLanguage
                     }
                 }
             }
-            return NumericParts || (theKeyword.FirstRadixValue() != "") ;
+            return NumericParts || (theKeyword.FirstRadixValue() != string.Empty) ;
         }
 
         /// <summary>

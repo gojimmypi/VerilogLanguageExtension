@@ -13,9 +13,9 @@ namespace VerilogLanguage
                                                                            "o", "O",  //for octal
                                                                            "b", "B"   //for bit
                                                                         };
-        public static List<string> VerilogBinaryChars = new List<string> { "0", "1",   
-                                                                           "z", "Z",   
-                                                                           "x", "X" 
+        public static List<string> VerilogBinaryChars = new List<string> { "0", "1",
+                                                                           "z", "Z",
+                                                                           "x", "X"
                                                                           };
         public static List<string> VerilogDecimalChars = new List<string> { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
                                                                             "z", "Z",
@@ -32,7 +32,7 @@ namespace VerilogLanguage
 
 
         /// <summary>
-        ///   VerilogParseState - while processing each segment, we'll keep track of attributes in a VerilogParseState 
+        ///   VerilogParseState - while processing each segment, we'll keep track of attributes in a VerilogParseState
         /// </summary>
         public struct VerilogParseState
         {
@@ -57,7 +57,7 @@ namespace VerilogLanguage
 
             public bool IsNewDelimitedSegment;
 
-            public bool IsBuildingEmbeddedSpaceItem; // we are bulding a "special" segment in cases where there's an embedded space: 
+            public bool IsBuildingEmbeddedSpaceItem; // we are bulding a "special" segment in cases where there's an embedded space:
 
             // 8                   'h        2A
             // IsBuildingNumber  HasRadix HasConstValue
@@ -76,7 +76,7 @@ namespace VerilogLanguage
                     char c = Convert.ToChar(value);
                     bool IsDelimiterValue = IsDelimiter(value);
                     bool IsVerilogBracketValue = IsVerilogBracket(value);
-                    bool IsNewItemStart = priorCharIsDelimiter || ((thisItem ?? "").Trim() == "");
+                    bool IsNewItemStart = priorCharIsDelimiter || ((thisItem ?? "").Trim() == string.Empty);
 
                     // check to see if we've found a constant value after the radix
                     if (IsBuildingEmbeddedSpaceItem && HasRadix && !IsDelimiterValue && !HasConstValue)
@@ -102,13 +102,13 @@ namespace VerilogLanguage
                         HasConstValue = false;
                         IsBuildingEmbeddedSpaceItem = false;
 
-                        // if we first find a number, we could be bulding a simmple constant like 123 
+                        // if we first find a number, we could be bulding a simmple constant like 123
                         // or possibly something more interesting like the "8" in "8 'h 2A"
                         if (char.IsNumber(c))
                         {
                             IsBuildingNumber = true; // this is  only true when the first digit is numeric (note in the second part, could be hex, z, or x
                             HasConstValue = true; // this could be either the "8" or the "2A"
-                            IsBuildingEmbeddedSpaceItem = true; // // this could be either the "8" in "8 'h f_f" 
+                            IsBuildingEmbeddedSpaceItem = true; // // this could be either the "8" in "8 'h f_f"
                         }
                     }
 
@@ -139,11 +139,11 @@ namespace VerilogLanguage
                                           (priorValue == "*" && value != "/") // if we did not find "*/", then this "*" is a delimiter
 
                                             ||
-                                          
+
                                           // special case for "/" when not a comment delimter
                                           (value == "/" && priorValue != "*" && priorValue != "/" ) // if we did not find "*/", then this "/" is a delimiter
                                             ||
-                                          (priorValue == "/" && value != "*" && value != "/"); // if we did not find "/*" then this "/" is a delimiter 
+                                          (priorValue == "/" && value != "*" && value != "/"); // if we did not find "/*" then this "/" is a delimiter
 
                     thisCharIsEndingDelimiter = IsEndingDelimeter(value); // any of the closing brackets
                     priorCharIsDelimiter = IsDelimiter(priorChar);
@@ -153,8 +153,8 @@ namespace VerilogLanguage
                     if (IsBuildingEmbeddedSpaceItem)
                     {
                         // note that spaces ARE allowed when bulding an embedded space item (e.g. the value "32'h ffff_ffff" is just one item!)
-                        IsNewDelimitedSegment = IsVerilogBracketValue 
-                                                      || 
+                        IsNewDelimitedSegment = IsVerilogBracketValue
+                                                      ||
                                           (     (thisCharIsDelimiter || priorCharIsDelimiter)
                                             && !(     (_thisChar == " ")
                                                   && !(priorChar == " ")
@@ -169,7 +169,7 @@ namespace VerilogLanguage
 
 
                         IsNewDelimitedSegment = IsVerilogBracketValue
-                                                      || 
+                                                      ||
                                                 (
                                                 (thisCharIsDelimiter || priorCharIsDelimiter)
                                                   && !(    (_thisChar == " ")
@@ -219,7 +219,7 @@ namespace VerilogLanguage
                     }
 
                     if (IsNewDelimitedSegment)
-                    { 
+                    {
 
                     }
                     else
@@ -250,13 +250,13 @@ namespace VerilogLanguage
             // initialize this VerilogParseState at creation time
             public VerilogParseState(int i)
             {
-                _thisChar = "";
+                _thisChar = string.Empty;
                 thisIndex = 0;
-                thisItem = "";
+                thisItem = string.Empty;
                 IsNewDelimitedSegment = false;
-                priorChar = "";
-                priorValue = "";
-                priorDelimiter = "";
+                priorChar = string.Empty;
+                priorValue = string.Empty;
+                priorDelimiter = string.Empty;
                 thisCharIsDelimiter = false;
                 priorCharIsDelimiter = false;
                 thisCharIsEndingDelimiter = false;

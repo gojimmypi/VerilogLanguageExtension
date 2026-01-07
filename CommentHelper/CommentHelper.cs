@@ -9,12 +9,12 @@ namespace CommentHelper
     // we don't fully analyze the string, just check to see if there's a line or block comment
     class CommentHelper
     {
-        readonly string thisLine = "";
+        readonly string thisLine = string.Empty;
         private int posLineComment = -1; // position of first line comment
         private int posBlockStartComment = -1;
         private int posBlockEndComment = -1;
-        private string thisCommentBlock = "";
-        private string thisNonCommentBlock = "";
+        private string thisCommentBlock = string.Empty;
+        private string thisNonCommentBlock = string.Empty;
 
         public bool IsMinimumSize
         {
@@ -50,7 +50,7 @@ namespace CommentHelper
 
         private void AppendBlockChar(string thisChar)
         {
-            // depending on the logic above, append the current character 
+            // depending on the logic above, append the current character
             if (HasBlockStartComment || HasOpenLineComment)
             {
                 thisCommentBlock += thisChar;
@@ -61,13 +61,13 @@ namespace CommentHelper
             }
         }
 
-        private void AppendCommentListItem(string AdditionalCommentBlock = "")
+        private void AppendCommentListItem(string AdditionalCommentBlock = string.Empty)
         {
             thisCommentBlock += AdditionalCommentBlock;
-            if (thisCommentBlock != "")
+            if (thisCommentBlock != string.Empty)
             {
                 CommentItems.Add(new CommentItem(thisCommentBlock, true));
-                thisCommentBlock = "";
+                thisCommentBlock = string.Empty;
             }
         }
 
@@ -78,7 +78,7 @@ namespace CommentHelper
             if (item == null)
             {
                 // TODO - diagnostic logging, we should never have nulls!
-                thisLine = "";
+                thisLine = string.Empty;
             }
             else
             {
@@ -120,16 +120,16 @@ namespace CommentHelper
                     HasOpenLineComment = false;
                 }
 
-                thisCommentBlock = "";
-                thisNonCommentBlock = "";
-                string thisChar = "";
-                string nextChar = "";
-                string thisTag = "";
+                thisCommentBlock = string.Empty;
+                thisNonCommentBlock = string.Empty;
+                string thisChar = string.Empty;
+                string nextChar = string.Empty;
+                string thisTag = string.Empty;
 
                 for (int i = 0; i <= this.thisLine.Length - 1; i++)
                 {
-                    thisTag = "";
-                    nextChar = "";
+                    thisTag = string.Empty;
+                    nextChar = string.Empty;
                     thisChar = thisLine.Substring(i, 1);
                     if (i < this.thisLine.Length - 1)
                     {
@@ -147,10 +147,10 @@ namespace CommentHelper
                         else
                         {
                             HasOpenLineComment = true;
-                            if (thisNonCommentBlock != "")
+                            if (thisNonCommentBlock != string.Empty)
                             {
                                 CommentItems.Add(new CommentItem(thisNonCommentBlock, false));
-                                thisNonCommentBlock = "";
+                                thisNonCommentBlock = string.Empty;
                             }
                         }
                         AppendBlockChar(thisChar); // append this char to the comment or non-comment block as appropriate
@@ -159,10 +159,10 @@ namespace CommentHelper
                     // else check for an opening comment block "/*"
                     else if (thisTag == "/*")
                     {
-                        if (thisNonCommentBlock != "")
+                        if (thisNonCommentBlock != string.Empty)
                         {
                             CommentItems.Add(new CommentItem(thisNonCommentBlock, false));
-                            thisNonCommentBlock = "";
+                            thisNonCommentBlock = string.Empty;
                         }
                         if (!HasOpenLineComment)
                         {
@@ -187,13 +187,13 @@ namespace CommentHelper
                             if (HasBlockStartComment)
                             {
                                 CommentItems.Add(new CommentItem(thisCommentBlock, true));
-                                thisCommentBlock = "";
+                                thisCommentBlock = string.Empty;
                             }
                             else
                             {
                                 // closing block comment found without opening, so it is not a comment
                                 CommentItems.Add(new CommentItem(thisNonCommentBlock, false));
-                                thisNonCommentBlock = "";
+                                thisNonCommentBlock = string.Empty;
                             }
                             HasBlockStartComment = false;
                             HasBlockEndComment = false; // once we find an end, we cannot have another
@@ -211,17 +211,17 @@ namespace CommentHelper
                 } // end of for loop checking each char
 
                 // add any outstanding comment text to our list
-                if (thisCommentBlock != "")
+                if (thisCommentBlock != string.Empty)
                 {
                     CommentItems.Add(new CommentItem(thisCommentBlock, true));
-                    thisCommentBlock = "";
+                    thisCommentBlock = string.Empty;
                 }
 
                 // add any outstanding regaular, non-comment text to our list
-                if (thisNonCommentBlock != "")
+                if (thisNonCommentBlock != string.Empty)
                 {
                     CommentItems.Add(new CommentItem(thisNonCommentBlock, false));
-                    thisNonCommentBlock = "";
+                    thisNonCommentBlock = string.Empty;
                 }
             }
             else

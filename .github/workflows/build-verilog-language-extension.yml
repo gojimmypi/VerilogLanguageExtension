@@ -18,9 +18,16 @@ jobs:
             - name: Setup MSBuild
               uses: microsoft/setup-msbuild@v2
 
+            - name: Setup VS Developer Command Prompt
+              uses: microsoft/setup-vsdevcmd@v2
+              with:
+                  vs-version: "17.0"
+
             - name: Build solution
               run: >
                   msbuild VerilogLanguageExtension.sln
+                  /restore
                   /t:Rebuild
                   /p:Configuration=Release
                   /p:Platform="Any CPU"
+                  /p:VisualStudioVersion=17.0

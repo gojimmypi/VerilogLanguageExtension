@@ -4,6 +4,9 @@
     <MinimumVisualStudioVersion>17.0</MinimumVisualStudioVersion>
     <!-- IMPORTANT: tell VSSDK which manifest file to use (fixes VSSDK1039) -->
     <VsixManifest>source.extension.vsixmanifest</VsixManifest>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == '' And Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v18.0\VSSDK\Microsoft.VsSDK.targets')">18.0</VisualStudioVersion>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == '' And Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v17.0\VSSDK\Microsoft.VsSDK.targets')">17.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == '' And '$(VisualStudioVersion)' != ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -49,9 +52,10 @@
   <!-- PackageReference MUST be before imports/targets -->
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.SDK" Version="17.14.40265" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.14.2120" PrivateAssets="all" />
     <PackageReference Include="Microsoft.VisualStudio.SDK.Analyzers" Version="17.7.79" PrivateAssets="all" />
     <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.14.15" PrivateAssets="all" />
+    <!-- Removing this like technically works, but extends build time from 5 seconds to 50 seconds! TODO : why? -->
+    <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.14.2120" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
@@ -126,7 +130,13 @@
     <Folder Include="Tagger\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
+  <!-- Ensure we are not doing DLL-only builds -->
+  <Target Name="FailIfVsSdkMissing" BeforeTargets="Build">
+    <Error Condition="'$(VSToolsPath)' == '' Or !Exists('$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets')"
+          Text="Missing Microsoft.VsSDK.targets. Build from a VS developer prompt or set VisualStudioVersion/VSToolsPath." />
+  </Target>
+
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="Exists('$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets')" />
-  <!-- Use VSSDK targets from the NuGet package (repeatable builds) -->
-  <Import Project="packages\Microsoft.VSSDK.BuildTools.17.14.2120\build\Microsoft.VSSDK.BuildTools.targets" Condition="Exists('packages\Microsoft.VSSDK.BuildTools.17.14.2120\build\Microsoft.VSSDK.BuildTools.targets')" />
+
 </Project>

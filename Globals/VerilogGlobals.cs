@@ -301,7 +301,7 @@ namespace VerilogLanguage
         {
             // we start with values like "4", "8 'h  2a"
             string _HoverItem = (s ?? "").Replace(" ", "").Replace("_", "").ToUpper(); // initially remove all spaces from hover text (h)
-            string _HoverBase = ""; // the base is the first characters after the single quote "'"
+            string _HoverBase = string.Empty; // the base is the first characters after the single quote "'"
             string[] _HoverPart = _HoverItem.Split(RADIX_CHAR); // // split "8'h2a" into "8" and "h2a" - parts (p)
             string _HoverValue = ""; // the actual value,
             string _HoverValueBinary = "";
@@ -322,7 +322,7 @@ namespace VerilogLanguage
                     _HoverValue = _HoverValue.Substring(1); // don't include the base character
                 }
 
-                switch (_HoverBase)
+                switch (_HoverBase.ToUpper())
                 {
                     case "B":
                         if (_HoverValue.AllCharsIn(VerilogBinaryChars))

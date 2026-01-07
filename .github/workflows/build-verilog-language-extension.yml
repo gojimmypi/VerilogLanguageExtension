@@ -18,6 +18,11 @@ jobs:
             - name: Setup MSBuild
               uses: microsoft/setup-msbuild@v2
 
+            - name:  dotnet list
+              shell: cmd
+              run: |
+                dotnet list .\VerilogLanguage.csproj package --include-transitive
+
             - name: Build solution
               shell: cmd
               run: |

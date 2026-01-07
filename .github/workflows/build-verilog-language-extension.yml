@@ -1,0 +1,26 @@
+name: Build Verilog Language Extension
+
+on:
+    push:
+        branches: [ main, development ]
+    pull_request:
+        branches: [ main, development ]
+    workflow_dispatch:
+
+jobs:
+    build:
+        runs-on: windows-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup MSBuild
+              uses: microsoft/setup-msbuild@v2
+
+            - name: Build solution
+              run: >
+                  msbuild VerilogLanguageExtension.sln
+                  /t:Rebuild
+                  /p:Configuration=Release
+                  /p:Platform="Any CPU"

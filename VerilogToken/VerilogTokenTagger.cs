@@ -206,12 +206,11 @@ namespace VerilogLanguage.VerilogToken
             VerilogGlobals.VerilogToken priorToken = new VerilogGlobals.VerilogToken();
 
             // look at each span for tokens, comments, etc
-            foreach (SnapshotSpan curSpan in spans)
-            {
-                    if (tokens != null && tokens.Length >= 1)
-                {
+            foreach (SnapshotSpan curSpan in spans) {
+                if (tokens != null && tokens.Length >= 1) {
                     priorToken = tokens[tokens.Length - 1]; // get the token from the prior line
                 }
+
                 ITextSnapshotLine containingLine = curSpan.Start.GetContainingLine();
                 int curLoc = containingLine.Start.Position;
                 int LinePosition = 0;

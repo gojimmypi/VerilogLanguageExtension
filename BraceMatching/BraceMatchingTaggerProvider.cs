@@ -14,14 +14,15 @@ namespace VerilogLanguage.BraceMatching
     class BraceMatchingTaggerProvider : IViewTaggerProvider
     {
         // Step 2: Implement the CreateTagger method to instantiate a BraceMatchingTagger.
-        public ITagger<T> CreateTagger<T>(ITextView textView, ITextBuffer buffer) where T : ITag
-        {
-            if (textView == null)
+        public ITagger<T> CreateTagger<T>(ITextView textView, ITextBuffer buffer) where T : ITag {
+            if (textView == null) {
                 return null;
+            }
 
-            //provide highlighting only on the top-level buffer
-            if (textView.TextBuffer != buffer)
+            // provide highlighting only on the top-level buffer
+            if (textView.TextBuffer != buffer) {
                 return null;
+            }
 
             return new BraceMatchingTagger(textView, buffer) as ITagger<T>;
         }

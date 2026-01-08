@@ -94,8 +94,7 @@ namespace VerilogLanguage
                     }
 
                     // check to see if we've found a constant value after the radix
-                    if (IsBuildingEmbeddedSpaceItem && HasRadix && !IsDelimiterValue && !HasConstValue)
-                    {
+                    if (IsBuildingEmbeddedSpaceItem && HasRadix && !IsDelimiterValue && !HasConstValue) {
                         // after we find a radix value, we don't know if there's actually a constant value until we find one
                         // TODO: check for valid value?
                         HasConstValue = true;
@@ -103,8 +102,8 @@ namespace VerilogLanguage
 
                     // if we find a delimiter (not including space or radix tick) during the building of an embedded space item, we've reached the end
                     if (IsDelimiterValue
-                        && (IsBuildingEmbeddedSpaceItem && value != ' ') /* we know there may be an embedded space */
-                        && value != '\'') {
+                            && (IsBuildingEmbeddedSpaceItem && value != ' ') /* we know there may be an embedded space */
+                            && value != '\'') {
                         IsBuildingNumber = false;
                         HasConstValue = false;
                         IsBuildingEmbeddedSpaceItem = false;
@@ -117,14 +116,14 @@ namespace VerilogLanguage
                         IsBuildingNumber = false;
                         HasConstValue = false;
                         IsBuildingEmbeddedSpaceItem = false;
-
+                        NumberStringValue = string.Empty;
                         // if we first find a number, we could be bulding a simmple constant like 123
                         // or possibly something more interesting like the "8" in "8 'h 2A"
                         if (char.IsNumber(c))
                         {
-                            IsBuildingNumber = true; // this is  only true when the first digit is numeric (note in the second part, could be hex, z, or x
-                            HasConstValue = true; // this could be either the "8" or the "2A"
-                            IsBuildingEmbeddedSpaceItem = true; // // this could be either the "8" in "8 'h f_f"
+                            IsBuildingNumber = true;            // this is only true when the first digit is numeric (note in the second part, could be hex, z, or x
+                            HasConstValue = true;               // this could be either the "8" or the "2A"
+                            IsBuildingEmbeddedSpaceItem = true; // this could be either the "8" in "8 'h f_f"
                         }
                     }
 
@@ -137,7 +136,7 @@ namespace VerilogLanguage
                             // IsBuildingEmbeddedSpaceItem = true; // we already assumed IsBuildingEmbeddedSpaceItem = true, above, but we might need to turn it off
                             HasRadix = true;
                             HasConstValue = false; // instead of the "3" being the constant, now we are looking for a value after the radix
-                            NumberStringValue = "";
+                            NumberStringValue = string.Empty;
                         }
                         else {
                             /* Save the as-found number string, could be in a variety of base radix values */
@@ -172,8 +171,7 @@ namespace VerilogLanguage
 
                   //priorCharIsDelimiter = IsDelimiter(priorChar); // any common delimiter, including space; TODO - we can save this value at end: priorCharIsDelimiter =  thisCharIsDelimiter
 
-                    if (IsBuildingEmbeddedSpaceItem)
-                    {
+                    if (IsBuildingEmbeddedSpaceItem) {
                         // note that spaces ARE allowed when bulding an embedded space item (e.g. the value "32'h ffff_ffff" is just one item!)
                         IsNewDelimitedSegment = IsVerilogBracketValue
                                                       ||
@@ -184,8 +182,7 @@ namespace VerilogLanguage
                                             && !hasOpenSquigglyBracket // e.g. {4'b 0001, 32'b 0}
                                            );
                     }
-                    else
-                    {
+                    else {
                         // note  contiguous spaces are a single segment
                         // reminder that variable definitions may contain multiple segments with space delimiters
 
@@ -292,11 +289,11 @@ namespace VerilogLanguage
                 HasRadix = false;
                 HasConstValue = false;
                 OpenSquigglyBracketCount = 0;
-                NumberStringValue = null; /* non-null only for numeric constants */
+                NumberStringValue = string.Empty; /* non-null only for numeric constants */
             }
         }
 
 
 
-    }
-}
+    } /* Partial Class VerilogGlobals */
+} /* Namespace VerilogLanguage */

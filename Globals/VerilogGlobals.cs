@@ -132,6 +132,10 @@ namespace VerilogLanguage
             ["while"] = VerilogTokenTypes.Verilog_while,
             ["wire"] = VerilogTokenTypes.Verilog_wire,
 
+            // Some System Verilog Specific keywords
+            ["bit"] = VerilogTokenTypes.Verilog_bit,
+
+
             // all of the Verilog directives are the same color
             ["`celldefine"] = VerilogTokenTypes.Verilog_Directive,
             ["`endcelldefine"] = VerilogTokenTypes.Verilog_Directive,

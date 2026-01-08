@@ -195,6 +195,8 @@ namespace VerilogLanguage.VerilogToken
                 [VerilogTokenTypes.Verilog_while] = typeService.GetClassificationType("while"),
                 [VerilogTokenTypes.Verilog_wire] = typeService.GetClassificationType("wire"),
 
+                [VerilogTokenTypes.Verilog_bit] = typeService.GetClassificationType("bit"),
+
                 [VerilogTokenTypes.Verilog_Directive] = typeService.GetClassificationType("directive"), // type must be one of VerilogTokenTagger
                 [VerilogTokenTypes.Verilog_Comment] = typeService.GetClassificationType("Comment"), // GetClassificationType string must be defined in ClassificationType.cs
                 [VerilogTokenTypes.Verilog_Bracket] = typeService.GetClassificationType("Bracket"),

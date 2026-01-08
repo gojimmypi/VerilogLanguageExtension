@@ -124,6 +124,7 @@ namespace VerilogLanguage
         {
             return ((theKeyword == "reg") ||
                     (theKeyword == "wire") ||
+                    (theKeyword == "bit") || /* System Verilog only, see IsSystemVerilogNamerKeyword  */
                     (theKeyword == "input") ||
                     (theKeyword == "inout") ||
                     (theKeyword == "output") ||
@@ -133,6 +134,11 @@ namespace VerilogLanguage
                    );
         }
 
+        private static bool IsSystemVerilogNamerKeyword(string theKeyword) {
+            return (
+                    (theKeyword == "bit")
+                   );
+        }
         /// <summary>
         /// IsVerilogVariableSigner - is the keyword "signed" or "unsigned" as part of declaration?
         /// </summary>

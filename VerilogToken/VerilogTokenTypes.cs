@@ -1,5 +1,5 @@
 ﻿//***************************************************************************
-// 
+//
 //  MIT License
 //
 //  Copyright(c) 2019 gojimmypi
@@ -38,7 +38,7 @@ namespace VerilogLanguage.VerilogToken
         Verilog_casez,
         Verilog_cell,
         Verilog_config,
-        Verilog_deassign, // Not Supported in Synthesis 
+        Verilog_deassign, // Not Supported in Synthesis
         Verilog_default,
         Verilog_defparam,
         Verilog_design,
@@ -123,7 +123,7 @@ namespace VerilogLanguage.VerilogToken
         Verilog_Bracket4,
         Verilog_Bracket5,
         Verilog_BracketContent,
-        
+
         Verilog_Variable,
         Verilog_Variable_input,
         Verilog_Variable_output,
@@ -134,7 +134,7 @@ namespace VerilogLanguage.VerilogToken
         Verilog_Variable_parameter,
         Verilog_Variable_duplicate, // special highlight value if a duplicate declaration is detected
         Verilog_Variable_module,    // instantiation of modules are handled essentially as typed variables
- 
+
         Verilog_Primitive_and,
         Verilog_Primitive_nand,
         Verilog_Primitive_or,
@@ -143,7 +143,9 @@ namespace VerilogLanguage.VerilogToken
         Verilog_Primitive_xnor,
         Verilog_Primitive_not,
 
-        Verilog_Value
+        Verilog_Value,
 
+        /* System Verilog */
+        Verilog_bit
     }
 }

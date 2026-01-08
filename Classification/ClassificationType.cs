@@ -1,5 +1,5 @@
 ﻿//***************************************************************************
-// 
+//
 //  MIT License
 //
 //  Copyright(c) 2019 gojimmypi
@@ -682,6 +682,17 @@ namespace VerilogLanguage
         [Name("wire")]
         internal static ClassificationTypeDefinition Verilog_wire = null;
 
+
+        #endregion
+
+        #region System Verilog Type Definition
+
+        /// <summary>
+        /// Defines the "Verilog_bit" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("bit")]
+        internal static ClassificationTypeDefinition Verilog_bit = null;
 
         #endregion
 

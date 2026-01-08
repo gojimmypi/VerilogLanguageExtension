@@ -275,8 +275,8 @@ namespace VerilogLanguage
                         VerilogGlobals.BuildHoverItems(Item.ItemText);
                         double duration11 = (DateTime.Now - ProfileStart).TotalMilliseconds;
                     }
-                }
-            }
+                } /* foreach  CommentItem Item in CommentItems */
+            } /* foreach VerilogToken in tokens */
         }
 
         //public static int LastReparseVersion = 0;

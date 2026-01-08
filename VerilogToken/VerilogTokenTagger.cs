@@ -124,7 +124,7 @@ namespace VerilogLanguage.VerilogToken
             {
                 // even if the buffer is different, only certain characters require a full reparse
                 // typically brackets (since we keep track of depth) and comment chars:
-                if (VerilogGlobals.IsRefreshChar(theNewText) || VerilogGlobals.IsRefreshChar(theOldText))
+                if (VerilogGlobals.ContainsRefreshChar(theNewText) || VerilogGlobals.ContainsRefreshChar(theOldText))
                 {
                     string thisFile = VerilogLanguage.VerilogGlobals.GetDocumentPath(_buffer.CurrentSnapshot);
                     if (string.IsNullOrEmpty(thisFile))

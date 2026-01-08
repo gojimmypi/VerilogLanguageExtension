@@ -44,7 +44,7 @@ namespace VerilogLanguage
                             }
                             else
                             {
-                                Context = VerilogTokenContextFromString(ParseState.thisChar);
+                                Context = VerilogTokenContextFromString(ParseState.thisChar.ToString());
                             }
                         }
                     }
@@ -102,19 +102,19 @@ namespace VerilogLanguage
                         thisContinuedParseState = thisToken.ParseState;
                         tokens.Add(thisToken);
 
-                        thisToken = new VerilogToken(thisToken.ParseState.thisChar);
+                        thisToken = new VerilogToken(thisToken.ParseState.thisChar.ToString());
                         thisToken.ParseState = thisContinuedParseState;
                     }
-                    thisToken.ParseState.thisItem = thisToken.ParseState.thisChar; // start building a new token with the current, non-delimiter character, will be used to determine context in VerilogTokenContextFromString
+                    thisToken.ParseState.thisItem = thisToken.ParseState.thisChar.ToString(); // start building a new token with the current, non-delimiter character, will be used to determine context in VerilogTokenContextFromString
                 //}
             }
 
-            thisToken.ParseState = priorToken.ParseState; // when starting, use the priorToken parseState that wouldhave come from the prior line in the span
+            thisToken.ParseState = priorToken.ParseState; // when starting, use the priorToken parseState that would have come from the prior line in the span
 
             for (int i = 0; i < theString.Length; i++)
             {
                 thisToken.ParseState.thisIndex = i;
-                thisToken.ParseState.thisChar = theString.Substring(i, 1); // note setting this values triggers ParseState attribute assignments
+                thisToken.ParseState.thisChar = theString[i]; // note setting this values triggers ParseState attribute assignments
 
                 if (thisToken.ParseState.IsNewDelimitedSegment)
                 {

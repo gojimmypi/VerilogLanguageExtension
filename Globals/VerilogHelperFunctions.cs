@@ -9,11 +9,11 @@ namespace VerilogLanguage
     public static partial class VerilogGlobals
     {
         /// <summary>
-        ///  IsRefreshChar - some characters, when encountered will need to have a full refresh, as they can have far-reaching consequences.
+        ///  ContainsRefreshChar - some characters, when encountered will need to have a full refresh, as they can have far-reaching consequences.
         /// </summary>
         /// <param name="theString"></param>
         /// <returns></returns>
-        static public bool IsRefreshChar(string theString)
+        static public bool ContainsRefreshChar(string theString)
         {
             return (theString.Contains("/")) ||
                    (theString.Contains("*")) ||
@@ -28,47 +28,57 @@ namespace VerilogLanguage
         /// <summary>
         /// IsDelimiter - any keyword delimiter: spaces, operators, brackets, cr/lf
         /// </summary>
-        /// <param name="theString"></param>
+        /// <param name="theChar"></param>
         /// <returns></returns>
+        static public bool IsDelimiter(char theChar)
+        {
+            return (theChar == ' ') ||
+                   (theChar == '+') ||
+                   (theChar == '-') ||
+                   (theChar == '%') ||
+                   (theChar == '=') ||
+                   (theChar == ':') ||
+                   (theChar == '~') ||
+                   (theChar == '!') ||
+                   (theChar == '&') ||
+
+                   // TODO the comment chars as delimiters are not currently working properly (workaround: use a space on either side)
+                   //(theString == '*') ||  // the '*' character
+                   //(theString == '/') ||  // and '/' are tricky, as they are used in comments: // and  /* */
+
+                   (theChar == '[') ||
+                   (theChar == ']') ||
+                   (theChar == '}') ||
+                   (theChar == '{') ||
+                   (theChar == '(') ||
+                   (theChar == ')') ||
+                   (theChar == ';') ||
+                   (theChar == ',') ||
+                   (theChar == '@') ||
+                   (theChar == '\'') || // the literal double quote character
+                   (theChar == '\t');   // a tab
+        }
+
         static public bool IsDelimiter(string theString)
         {
-            return (theString == " ") ||
-                   (theString == "+") ||
-                   (theString == "-") ||
-                   (theString == "%") ||
-                   (theString == "=") ||
-                   (theString == ":") ||
-                   (theString == "~") ||
-                   (theString == "!") ||
-                   (theString == "&") ||
-
-                   // the comment chars as delimiters are not currently working properly (workaround: use a space on either side)
-                   //(theString == "*") ||  // the "*" character
-                   //(theString == "/") ||  // and "/" are tricky, as they are used in comments: // and  /* */
-
-                   (theString == "[") ||
-                   (theString == "]") ||
-                   (theString == "}") ||
-                   (theString == "{") ||
-                   (theString == "(") ||
-                   (theString == ")") ||
-                   (theString == ";") ||
-                   (theString == ",") ||
-                   (theString == "@") ||
-                   (theString == "\"") || // the literal double quote character
-                   (theString == "\t");   // a tab
+            if (!(theString is null) && theString.Length == 1) {
+                return IsDelimiter((char)theString[0]);
+            }
+            else {
+                return false;
+            }
         }
 
         /// <summary>
         /// IsEndingDelimeter: is one of ], }, )
         /// </summary>
-        /// <param name="theString"></param>
+        /// <param name="theChar"></param>
         /// <returns></returns>
-        static public bool IsEndingDelimeter(string theString)
+        static public bool IsEndingDelimeter(char theChar)
         {
-            return (theString == "]") ||
-                   (theString == "}") ||
-                   (theString == ")");
+            return (theChar == ']') ||
+                   (theChar == '}') ||
+                   (theChar == ')');
         }
 
 
@@ -77,16 +87,16 @@ namespace VerilogLanguage
         /// </summary>
         /// <param name="theKeyword"></param>
         /// <returns></returns>
-        private static bool IsVerilogBracket(string theKeyword)
+        private static bool IsVerilogBracket(char theKeyword)
         {
             switch (theKeyword)
             {
-                case "[":
-                case "(":
-                case "{":
-                case "}":
-                case ")":
-                case "]":
+                case '[':
+                case '(':
+                case '{':
+                case '}':
+                case ')':
+                case ']':
                     return true;
                 default:
                     return false;
@@ -94,6 +104,16 @@ namespace VerilogLanguage
 
         }
 
+        private static bool IsVerilogBracket(string theKeyword)
+        {
+            if (theKeyword.Length == 1) {
+                /* return the char checking result, above */
+                return IsVerilogBracket((char)theKeyword[0]);
+            }
+            else {
+                return false;
+            }
+        }
 
         /// <summary>
         ///  IsVerilogNamerKeyword - is the keyword one that names something? (e.g. variable, module, etc)
@@ -169,5 +189,5 @@ namespace VerilogLanguage
             return double.TryParse(input, out _); ;
         }
 
-    }
-}
+    } /* VerilogGlobals */
+} /* namespace VerilogLanguage */

@@ -389,7 +389,7 @@ namespace VerilogLanguage
         /// <param name="HoverText"></param>
         private static void AddHoverItem(string thisScope, string ItemName, string HoverText)
         {
-            if (IsDelimiter(ItemName) || ItemName == string.Empty)
+            if (((ItemName.Length == 1) && IsDelimiter(ItemName[0])) || ItemName == string.Empty)
             {
                 // never add a blank & never add a delimiter TODO - why would we even try? unresolved declaration naming?
                 // sometimes we end up here while typing new declarations
@@ -716,7 +716,7 @@ namespace VerilogLanguage
 
                 case ")":
 
-                    // also add an indivisual parameter as needed
+                    // also add an individual parameter as needed
                     // note all module parameters have test appended: "module [modulename]" + {}  + ")"
                     AddHoverItem(thisModuleName, thisHoverName, thisModuleParameterText);
                     thisModuleParameterText = string.Empty; // upon the colose parenthesis, no more module parameters

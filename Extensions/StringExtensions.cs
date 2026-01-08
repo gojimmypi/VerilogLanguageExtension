@@ -73,7 +73,7 @@ namespace VerilogLanguage
                 }
 
                 // search for  'h, 'b, etc
-                foreach (string item in VerilogGlobals.VerilogRadixChars)
+                foreach (char item in VerilogGlobals.VerilogRadixChars)
                 {
                     string searchRadix = "'" + item;
                     if (value.Contains(searchRadix))
@@ -98,14 +98,14 @@ namespace VerilogLanguage
         /// <param name="value"></param>
         /// <param name="AcceptableValues"></param>
         /// <returns></returns>
-        public static bool AllCharsIn(this string value, List<string> AcceptableValues)
+        public static bool AllCharsIn(this string value, List<char> AcceptableValues)
         {
             bool res = true; // we'll assume the string is valid until proven otherwise
             if (AcceptableValues != null && AcceptableValues.Count > 0 && value != null && value.Length > 0)
             {
                 for (int i = 0; i < value.Length - 1; i++)
                 {
-                    if (!AcceptableValues.Contains(value.Substring(i, 1)))
+                    if (!AcceptableValues.Contains(value[i]))
                     {
                         // as soon as we find a character not in the list, we don't need to continue searching
                         return false;

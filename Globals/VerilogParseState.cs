@@ -8,27 +8,27 @@ namespace VerilogLanguage
 {
     public static partial class VerilogGlobals
     {
-        public static List<string> VerilogRadixChars = new List<string> {  "d", "D",  // for integer (optional)
-                                                                           "h", "H",  //for hexadecimal
-                                                                           "o", "O",  //for octal
-                                                                           "b", "B"   //for bit
-                                                                        };
-        public static List<string> VerilogBinaryChars = new List<string> { "0", "1",
-                                                                           "z", "Z",
-                                                                           "x", "X"
-                                                                          };
-        public static List<string> VerilogDecimalChars = new List<string> { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-                                                                            "z", "Z",
-                                                                            "x", "X"
-                                                                          };
-        public static List<string> VerilogHexChars = new List<string> { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F",
-                                                                            "z", "Z",
-                                                                            "x", "X"
-                                                                          };
-        public static List<string> VerilogOctalChars = new List<string> { "0", "1", "2", "3", "4", "5", "6", "7",
-                                                                            "z", "Z",
-                                                                            "x", "X"
-                                                                          };
+        public static List<char> VerilogRadixChars = new List<char>   {  'd', 'D',  // for integer (optional)
+                                                                         'h', 'H',  // for hexadecimal
+                                                                         'o', 'O',  // for octal
+                                                                         'b', 'B'   // for bit
+                                                                      };
+        public static List<char> VerilogBinaryChars = new List<char>  { '0', '1',
+                                                                        'z', 'Z',
+                                                                        'x', 'X'
+                                                                      };
+        public static List<char> VerilogDecimalChars = new List<char> { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                                                                        'z', 'Z',
+                                                                        'x', 'X'
+                                                                      };
+        public static List<char> VerilogHexChars = new List<char>     { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
+                                                                        'z', 'Z',
+                                                                        'x', 'X'
+                                                                      };
+        public static List<char> VerilogOctalChars = new List<char>   { '0', '1', '2', '3', '4', '5', '6', '7',
+                                                                        'z', 'Z',
+                                                                        'x', 'X'
+                                                                      };
 
 
         /// <summary>
@@ -38,9 +38,9 @@ namespace VerilogLanguage
         {
             public string thisItem;
             public int thisIndex;
-            public string priorChar;
-            public string priorValue;
-            public string priorDelimiter;
+            public char priorChar;
+            public char priorValue;
+            public char priorDelimiter;
             public bool thisCharIsDelimiter; // this includes "special cases", NOT just IsDelimiter(value); see IsDelimiterValue.
             public bool priorCharIsDelimiter;
 
@@ -64,19 +64,34 @@ namespace VerilogLanguage
             public bool IsBuildingNumber; // some numbers could end up being constants with embedded spaces: "8 'h 2A"
             public bool HasRadix; // the middle segment of "8 'h 2A", is there a 'h value? (or other radix values)
             public bool HasConstValue; // the 3rd part: the constant after the radix
+            public string NumberStringValue; // 64 bit constant value
 
-            private string _thisChar;
-            public string thisChar
+            private char _thisChar;
+            public char thisChar
             {
                 get { return _thisChar; }
                 set
                 {
                     _thisChar = value;
-
+#if DEBUG
+                    if (_thisChar == '\0' ) {
+                        Console.WriteLine("_thisChar is null char!");
+                        if (!System.Diagnostics.Debugger.IsAttached) {
+                            System.Diagnostics.Debugger.Launch();
+                        }
+                        System.Diagnostics.Debugger.Break();
+                    }
+#endif
                     char c = Convert.ToChar(value);
                     bool IsDelimiterValue = IsDelimiter(value);
                     bool IsVerilogBracketValue = IsVerilogBracket(value);
-                    bool IsNewItemStart = priorCharIsDelimiter || ((thisItem ?? "").Trim() == string.Empty);
+                    bool IsNewItemStart;
+                    if (thisItem is null) {
+                        IsNewItemStart = true;
+                    }
+                    else {
+                        IsNewItemStart = priorCharIsDelimiter || ((thisItem.ToString() ?? "").Trim() == string.Empty);
+                    }
 
                     // check to see if we've found a constant value after the radix
                     if (IsBuildingEmbeddedSpaceItem && HasRadix && !IsDelimiterValue && !HasConstValue)
@@ -86,16 +101,17 @@ namespace VerilogLanguage
                         HasConstValue = true;
                     }
 
-                    // if we find a delimiter (not including space) during the building of an ebedded space item, we've reached the end
-                    if (IsDelimiterValue && IsBuildingEmbeddedSpaceItem && value != " ")
-                    {
+                    // if we find a delimiter (not including space or radix tick) during the building of an embedded space item, we've reached the end
+                    if (IsDelimiterValue
+                        && (IsBuildingEmbeddedSpaceItem && value != ' ') /* we know there may be an embedded space */
+                        && value != '\'') {
                         IsBuildingNumber = false;
                         HasConstValue = false;
                         IsBuildingEmbeddedSpaceItem = false;
                     }
 
                     // the beginning char of a new item might make it interesting
-                    if (IsNewItemStart ) {
+                    if (IsNewItemStart) {
                         // we are never already building a number for blank items, and not yet processed _thisChar
                         // so set some obvious things:
                         IsBuildingNumber = false;
@@ -115,15 +131,21 @@ namespace VerilogLanguage
                     // have we found a radix while building a number string?
                     // radix values *must* be adjacent (e.g. "3' b001" is not valid)
                     // looking for the "'b" in "3 'b 001" or "3'b 001" or "3'b 001" or "3'b001"
-                    if (IsBuildingNumber && (priorValue == "'") && (VerilogRadixChars.Contains(value)))
-                    {
-                        // we get here on a radix value immediately following a single quote:  (e.g. the "h" in "32'h ffff_ffff)
-                        // IsBuildingEmbeddedSpaceItem = true; // we already assumed IsBuildingEmbeddedSpaceItem = true, above, but we might need to turn it off
-                        HasRadix = true;
-                        HasConstValue = false; // instead of the "3" being the constant, now we are looking for a value after the radix
+                    if (IsBuildingNumber) {
+                        if ((priorValue == '\'') && VerilogRadixChars.Contains(value)) {
+                            // we get here on a radix value immediately following a single quote:  (e.g. the "h" in "32'h ffff_ffff)
+                            // IsBuildingEmbeddedSpaceItem = true; // we already assumed IsBuildingEmbeddedSpaceItem = true, above, but we might need to turn it off
+                            HasRadix = true;
+                            HasConstValue = false; // instead of the "3" being the constant, now we are looking for a value after the radix
+                            NumberStringValue = "";
+                        }
+                        else {
+                            /* Save the as-found number string, could be in a variety of base radix values */
+                            NumberStringValue += value;
+                        }
                     }
 
-                    // need to set FoundPostRadixValue - when a space, not after a closing squiigly, means end of value!
+                    // TODO need to set FoundPostRadixValue - when a space, not after a closing squiggly, means end of value!
 
                     thisCharIsDelimiter = (IsDelimiterValue && !IsBuildingEmbeddedSpaceItem) // the easiest determination
 
@@ -133,22 +155,22 @@ namespace VerilogLanguage
 
                                             ||
 
-                                          // special case for "*" when not a comment delimiter
-                                          (value == "*" && priorValue != "/") // if we did not find "/*", then this "*" is a delimiter
+                                          // special case for '*' when not a comment delimiter
+                                          (value == '*' && priorValue != '/') // if we did not find '/*', then this '*' is a delimiter
                                             ||
-                                          (priorValue == "*" && value != "/") // if we did not find "*/", then this "*" is a delimiter
+                                          (priorValue == '*' && value != '/') // if we did not find '*/', then this '*' is a delimiter
 
                                             ||
 
-                                          // special case for "/" when not a comment delimter
-                                          (value == "/" && priorValue != "*" && priorValue != "/" ) // if we did not find "*/", then this "/" is a delimiter
+                                          // special case for '/' when not a comment delimter
+                                          (value == '/' && priorValue != '*' && priorValue != '/' ) // if we did not find '*/', then this '/' is a delimiter
                                             ||
-                                          (priorValue == "/" && value != "*" && value != "/"); // if we did not find "/*" then this "/" is a delimiter
+                                          (priorValue == '/' && value != '*' && value != '/'); // if we did not find '/*' then this '/' is a delimiter
 
                     thisCharIsEndingDelimiter = IsEndingDelimeter(value); // any of the closing brackets
                     priorCharIsDelimiter = IsDelimiter(priorChar);
 
-                    //priorCharIsDelimiter = IsDelimiter(priorChar); // any common delimiter, including space; TODO - we can save this value at end: priorCharIsDelimiter =  thisCharIsDelimiter
+                  //priorCharIsDelimiter = IsDelimiter(priorChar); // any common delimiter, including space; TODO - we can save this value at end: priorCharIsDelimiter =  thisCharIsDelimiter
 
                     if (IsBuildingEmbeddedSpaceItem)
                     {
@@ -156,8 +178,8 @@ namespace VerilogLanguage
                         IsNewDelimitedSegment = IsVerilogBracketValue
                                                       ||
                                           (     (thisCharIsDelimiter || priorCharIsDelimiter)
-                                            && !(     (_thisChar == " ")
-                                                  && !(priorChar == " ")
+                                            && !(     (_thisChar == ' ')
+                                                  && !(priorChar == ' ')
                                                 )
                                             && !hasOpenSquigglyBracket // e.g. {4'b 0001, 32'b 0}
                                            );
@@ -172,8 +194,8 @@ namespace VerilogLanguage
                                                       ||
                                                 (
                                                 (thisCharIsDelimiter || priorCharIsDelimiter)
-                                                  && !(    (_thisChar == " ")
-                                                        && (priorChar == " ")
+                                                  && !(    (_thisChar == ' ')
+                                                        && (priorChar == ' ')
                                                       )
                                                 );
 
@@ -250,13 +272,13 @@ namespace VerilogLanguage
             // initialize this VerilogParseState at creation time
             public VerilogParseState(int i)
             {
-                _thisChar = string.Empty;
+                _thisChar = '\0';
                 thisIndex = 0;
                 thisItem = string.Empty;
                 IsNewDelimitedSegment = false;
-                priorChar = string.Empty;
-                priorValue = string.Empty;
-                priorDelimiter = string.Empty;
+                priorChar = '\0';
+                priorValue = '\0';
+                priorDelimiter = '\0';
                 thisCharIsDelimiter = false;
                 priorCharIsDelimiter = false;
                 thisCharIsEndingDelimiter = false;
@@ -270,6 +292,7 @@ namespace VerilogLanguage
                 HasRadix = false;
                 HasConstValue = false;
                 OpenSquigglyBracketCount = 0;
+                NumberStringValue = null; /* non-null only for numeric constants */
             }
         }
 

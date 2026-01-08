@@ -18,32 +18,23 @@ namespace VerilogLanguage
             public string Part;
             public VerilogTokenContextType Context;
 
-            public void SetContext()
-            {
-                if (ParseState.hasOpenDoubleQuote)
-                {
+            public void SetContext() {
+                if (ParseState.hasOpenDoubleQuote) {
                     Context = VerilogTokenContextType.DoubleQuoteOpen;
                 }
-                else
-                {
-                    if (ParseState.hasOpenSquareBracket && !IsDelimiter(ParseState.thisChar))
-                    {
+                else {
+                    if (ParseState.hasOpenSquareBracket && !IsDelimiter(ParseState.thisChar)) {
                         Context = VerilogTokenContextType.SquareBracketContents;
                     }
-                    else
-                    {
-                        if (ParseState.hasOpenRoundBracket && !IsDelimiter(ParseState.thisChar))
-                        {
+                    else {
+                        if (ParseState.hasOpenRoundBracket && !IsDelimiter(ParseState.thisChar)) {
                             Context = VerilogTokenContextType.RoundBracketContents;
                         }
-                        else
-                        {
-                            if (ParseState.hasOpenSquigglyBracket && !IsDelimiter(ParseState.thisChar))
-                            {
+                        else {
+                            if (ParseState.hasOpenSquigglyBracket && !IsDelimiter(ParseState.thisChar)) {
                                 Context = VerilogTokenContextType.SquigglyBracketContents;
                             }
-                            else
-                            {
+                            else {
                                 Context = VerilogTokenContextFromString(ParseState.thisChar.ToString());
                             }
                         }
@@ -59,17 +50,14 @@ namespace VerilogLanguage
             /// </summary>
             /// <param name="p"></param>
             /// <param name="c"></param>
-            public VerilogToken(string p = "", VerilogTokenContextType c = VerilogTokenContextType.Undetermined)
-            {
+            public VerilogToken(string p = "", VerilogTokenContextType c = VerilogTokenContextType.Undetermined) {
                 ParseState = new VerilogParseState(0);
                 Part = p ?? ""; // ensure Part is never null (empty string if p is null)
 
-                if (c == VerilogTokenContextType.Undetermined && Part.Length > 0)
-                {
+                if (c == VerilogTokenContextType.Undetermined && Part.Length > 0) {
                     Context = VerilogTokenContextFromString(p); // we'll figure out the context from the first character
                 }
-                else
-                {
+                else {
                     Context = c; // unless otherwise specified
                 }
             }
@@ -80,8 +68,7 @@ namespace VerilogLanguage
         /// </summary>
         /// <param name="theString"></param>
         /// <returns></returns>
-        public static VerilogToken[] VerilogKeywordSplit(string theString, VerilogToken priorToken)
-        {
+        public static VerilogToken[] VerilogKeywordSplit(string theString, VerilogToken priorToken) {
             List<VerilogToken> tokens = new List<VerilogToken>();
             VerilogToken thisToken = new VerilogToken();
             VerilogParseState thisContinuedParseState = new VerilogParseState(0);
@@ -90,34 +77,30 @@ namespace VerilogLanguage
             // reminder that here we are only splitting text into token items.
             // See VerilogTokenTagger for actually setting the context (e.g. color) of  each token item.
             //
-            void AddToken()
-            {
+            void AddToken() {
                 //string thisItem = thisToken.ParseState.thisItem;
                 //if (thisItem != string.Empty) // && thisItem != string.Empty)
                 //{
                 thisToken.Part = thisToken.ParseState.thisItem;
-                if (thisToken.Part != null)
-                    {
-                        // thisToken.Part = thisToken.Part.Trim();
-                        thisContinuedParseState = thisToken.ParseState;
-                        tokens.Add(thisToken);
+                if (thisToken.Part != null) {
+                    // thisToken.Part = thisToken.Part.Trim();
+                    thisContinuedParseState = thisToken.ParseState;
+                    tokens.Add(thisToken);
 
-                        thisToken = new VerilogToken(thisToken.ParseState.thisChar.ToString());
-                        thisToken.ParseState = thisContinuedParseState;
-                    }
-                    thisToken.ParseState.thisItem = thisToken.ParseState.thisChar.ToString(); // start building a new token with the current, non-delimiter character, will be used to determine context in VerilogTokenContextFromString
+                    thisToken = new VerilogToken(thisToken.ParseState.thisChar.ToString());
+                    thisToken.ParseState = thisContinuedParseState;
+                }
+                thisToken.ParseState.thisItem = thisToken.ParseState.thisChar.ToString(); // start building a new token with the current, non-delimiter character, will be used to determine context in VerilogTokenContextFromString
                 //}
             }
 
             thisToken.ParseState = priorToken.ParseState; // when starting, use the priorToken parseState that would have come from the prior line in the span
 
-            for (int i = 0; i < theString.Length; i++)
-            {
+            for (int i = 0; i < theString.Length; i++) {
                 thisToken.ParseState.thisIndex = i;
                 thisToken.ParseState.thisChar = theString[i]; // note setting this values triggers ParseState attribute assignments
 
-                if (thisToken.ParseState.IsNewDelimitedSegment)
-                {
+                if (thisToken.ParseState.IsNewDelimitedSegment) {
                     // anytime a delimiter is encountered, we start a new text segment
                     // note the delimiter itself is in a colorizable segment
 

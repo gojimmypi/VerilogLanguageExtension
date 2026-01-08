@@ -36,12 +36,13 @@ namespace VerilogLanguage
             switch (s)
             {
                 case null:
-                    return VerilogTokenContextType.Undetermined; // short circuit exit 
+                    return VerilogTokenContextType.Undetermined; // short circuit exit
 
                 case "":    // nothing to do for empty string
                 case "\t":  // nor tabs
+                case " ":   // nor spaces
                     return VerilogTokenContextType.Text; // short circuit exit to avoid string operation
-  
+
                 default:
                     switch (s.Substring(0, 1)) // given the first chart of the string, determine the context
                     {

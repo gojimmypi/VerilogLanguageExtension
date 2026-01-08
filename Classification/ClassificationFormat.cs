@@ -2986,7 +2986,7 @@ namespace VerilogLanguage
     //this should be visible to the end user
     [UserVisible(true)]
     //set the priority to be after the default classifiers
-    [Order(Before = Priority.Default)]
+    [Order(After = Priority.Default)]
     internal sealed class Verilog_Bracket0 : ClassificationFormatDefinition
     {
         /// <summary>
@@ -3012,7 +3012,7 @@ namespace VerilogLanguage
     //this should be visible to the end user
     [UserVisible(true)]
     //set the priority to be after the default classifiers
-    [Order(Before = Priority.Default)]
+    [Order(After = Priority.Default)]
     internal sealed class Verilog_Bracket1 : ClassificationFormatDefinition
     {
         /// <summary>
@@ -3023,7 +3023,7 @@ namespace VerilogLanguage
             DisplayName = "Verilog - Bracket Depth 1"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.Red;
+                ForegroundColor = Colors.LightCoral;
             }
             else
             {
@@ -3038,7 +3038,7 @@ namespace VerilogLanguage
     //this should be visible to the end user
     [UserVisible(true)]
     //set the priority to be after the default classifiers
-    [Order(Before = Priority.Default)]
+    [Order(After = Priority.Default)]
     internal sealed class Verilog_Bracket2 : ClassificationFormatDefinition
     {
         /// <summary>
@@ -3049,7 +3049,7 @@ namespace VerilogLanguage
             DisplayName = "Verilog - Bracket Depth 2"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.Yellow;
+                ForegroundColor = Colors.Khaki;
             }
             else
             {
@@ -3064,7 +3064,7 @@ namespace VerilogLanguage
     //this should be visible to the end user
     [UserVisible(true)]
     //set the priority to be after the default classifiers
-    [Order(Before = Priority.Default)]
+    [Order(After = Priority.Default)]
     internal sealed class Verilog_Bracket3 : ClassificationFormatDefinition
     {
         /// <summary>
@@ -3075,7 +3075,7 @@ namespace VerilogLanguage
             DisplayName = "Verilog - Bracket Depth 3"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
             if (ColorThemeAttribute.IsDarkTheme())
             {
-                ForegroundColor = Colors.Blue;
+                ForegroundColor = Colors.SteelBlue;
             }
             else
             {
@@ -3090,7 +3090,7 @@ namespace VerilogLanguage
     //this should be visible to the end user
     [UserVisible(true)]
     //set the priority to be after the default classifiers
-    [Order(Before = Priority.Default)]
+    [Order(After = Priority.Default)]
     internal sealed class Verilog_Bracket4 : ClassificationFormatDefinition
     {
         /// <summary>
@@ -3116,7 +3116,7 @@ namespace VerilogLanguage
     //this should be visible to the end user
     [UserVisible(true)]
     //set the priority to be after the default classifiers
-    [Order(Before = Priority.Default)]
+    [Order(After = Priority.Default)]
     internal sealed class Verilog_Bracket5 : ClassificationFormatDefinition
     {
         /// <summary>
@@ -3144,7 +3144,7 @@ namespace VerilogLanguage
     //this should be visible to the end user
     [UserVisible(true)]
     //set the priority to be after the default classifiers
-    [Order(Before = Priority.Default)]
+    [Order(After = Priority.Default)]
     internal sealed class Verilog_BracketContent : ClassificationFormatDefinition
     {
         /// <summary>

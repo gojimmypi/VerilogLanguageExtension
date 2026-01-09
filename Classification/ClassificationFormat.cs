@@ -43,7 +43,7 @@ namespace VerilogLanguage
     {
         public static System.Windows.Media.Color DarkThemeDefault = Colors.CornflowerBlue;
         public static System.Windows.Media.Color DarkThemeInputOutput = Colors.Thistle;
-        public static System.Windows.Media.Color DarkThemeEdge = Colors.Yellow;
+        public static System.Windows.Media.Color DarkThemeEdge = Colors.Khaki;
 
         public static System.Windows.Media.Color LightThemeDefault = Colors.Thistle;
         public static System.Windows.Media.Color LightThemeInputOutput = Colors.DarkMagenta;

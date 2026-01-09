@@ -27,6 +27,7 @@
 namespace VerilogLanguage.VerilogToken
 {
     using System;
+    using System.IO;
     using System.Collections.Generic;
     using System.ComponentModel.Composition;
     using Microsoft.VisualStudio.Text;
@@ -62,6 +63,11 @@ namespace VerilogLanguage.VerilogToken
         internal static FileExtensionToContentTypeDefinition VerilogFileTypeSV = null; // the ".sv" extension
 
         [Export(typeof(FileExtensionToContentTypeDefinition))]
+        [FileExtension(".svh")]
+        [ContentType("verilog")]
+        internal static FileExtensionToContentTypeDefinition VerilogFileTypeSVH = null; // the ".svh" extension
+
+        [Export(typeof(FileExtensionToContentTypeDefinition))]
         [FileExtension(".v")]
         [ContentType("verilog")]
         internal static FileExtensionToContentTypeDefinition VerilogFileTypeV = null; // the ".v" extension
@@ -82,11 +88,30 @@ namespace VerilogLanguage.VerilogToken
         [Import]
         internal IBufferTagAggregatorFactoryService aggregatorFactory = null;
 
+        [Import]
+        internal ITextDocumentFactoryService TextDocumentFactoryService = null;
+
         // ITextView View { get; set; }
         public ITagger<T> CreateTagger<T>(ITextBuffer buffer) where T : ITag
         {
             // System.Diagnostics.Debugger.Break();
             // System.Diagnostics.Debug.WriteLine("VerilogClassifierProvider.CreateTagger: ContentType=" + buffer.ContentType.TypeName);
+           string filePath = null;
+              ITextDocument doc = null;
+
+            if (TextDocumentFactoryService != null &&
+               TextDocumentFactoryService.TryGetTextDocument(buffer, out doc) &&
+               doc != null) {
+                filePath = doc.FilePath;
+            }
+
+            string ext = null;
+            if (!string.IsNullOrEmpty(filePath)) {
+                ext = Path.GetExtension(filePath);
+            }
+
+            bool isSystemVerilog = string.Equals(ext, ".sv", StringComparison.OrdinalIgnoreCase) ||
+                                  string.Equals(ext, ".svh", StringComparison.OrdinalIgnoreCase);
 
             ITagAggregator<VerilogTokenTag> VerilogTagAggregator =
                                             aggregatorFactory.CreateTagAggregator<VerilogTokenTag>(buffer);

@@ -450,3 +450,13 @@ From [VSIX Manifest Designer](https://docs.microsoft.com/en-us/visualstudio/exte
 * 2019-06-16  [v0.1.2](./releases/VerilogLanguage_v0.1.2.vsix) fixes some syntax delimiter highlighting issues in comments.
 * 2019-04-23  [v0.1.1](./releases/VerilogLanguage_v0.1.1.vsix) support for VS2019, remove extraneous autocomplete
 * 2019-04-21  v0.1   initial code release
+
+## How can I help?
+
+If you enjoy using the extension, please give it a ★★★★★ rating on the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=gojimmypi.gojimmypi-verilog-language-extension). It only takes a few seconds but makes a huge difference!
+
+Found a bug or have a feature idea? Head over to the [GitHub repo](https://github.com/gojimmypi/VerilogLanguageExtension) to open an issue if one doesn't already exist.
+
+Pull requests are enthusiastically welcomed! As this is a personal passion project maintained in my spare time, I can't always address every issue promptly. Your contributions help keep this extension vibrant and reliable for everyone.
+
+If you find this extension saves you time or improves your workflow, please consider sponsoring me on GitHub. Even a small donation helps ensure continued development and support. Your sponsorship directly enables me to dedicate more time to this and other free extensions for the community. Thank you for your support!

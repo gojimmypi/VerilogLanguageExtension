@@ -18,6 +18,29 @@ namespace VerilogLanguage
         public static ITextBuffer TheBuffer;
         public static ITextView TheView; // assigned in QuickInfoControllerProvider see https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.editor.itextview?redirectedfrom=MSDN&view=visualstudiosdk-2017
 
+        /// <summary>
+        /// Warning, includes underscores, Z, X
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
+        public static bool IsVerilogNumberChar(char c) {
+            return VerilogBinaryChars.Contains(c)
+                || VerilogDecimalChars.Contains(c)
+                || VerilogHexChars.Contains(c)
+                || VerilogOctalChars.Contains(c);
+        }
+
+        public static bool IsVerilogNumberStart(char c) {
+            // Sized literal: 32'hFF
+            if (c >= '0' && c <= '9')
+                return true;
+
+            // Unsized literal: 'hFF, 'b0
+            if (c == RADIX_CHAR)
+                return true;
+
+            return false;
+        }
 
         /// <summary>
         ///   VerilogVariableHoverText - dictionary collection of keywords and hover text (variable names and definitions)

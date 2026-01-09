@@ -109,7 +109,7 @@ namespace VerilogLanguage
                     // if we find a delimiter (not including space or radix tick) during the building of an embedded space item, we've reached the end
                     if (IsDelimiterValue
                             && (IsBuildingEmbeddedSpaceItem && value != ' ') /* we know there may be an embedded space */
-                            && value != '\'') {
+                            && value != RADIX_CHAR) {
                         IsBuildingNumber = false;
                         HasConstValue = false;
                         IsBuildingEmbeddedSpaceItem = false;
@@ -126,10 +126,10 @@ namespace VerilogLanguage
                         NumberStringValue = string.Empty;
                         // if we first find a number, we could be bulding a simmple constant like 123
                         // or possibly something more interesting like the "8" in "8 'h 2A"
-                        if (char.IsNumber(c))
+                        if (IsVerilogNumberStart(c))
                         {
                             IsBuildingNumber = true;            // this is only true when the first digit is numeric (note in the second part, could be hex, z, or x
-                            HasConstValue = true;               // this could be either the "8" or the "2A"
+                            HasConstValue = (c != RADIX_CHAR);        // this could be either the "8" or the "2A"
                             IsBuildingEmbeddedSpaceItem = true; // this could be either the "8" in "8 'h f_f"
                         }
                     }

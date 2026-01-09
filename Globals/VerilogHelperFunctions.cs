@@ -55,7 +55,7 @@ namespace VerilogLanguage
                    (theChar == ';') ||
                    (theChar == ',') ||
                    (theChar == '@') ||
-                   (theChar == '\'') || // the literal double quote character
+                   (theChar == '\'') || // the literal single quote character, aka RADIX_CHAR
                    (theChar == '\t');   // a tab
         }
 

@@ -42,6 +42,30 @@ namespace VerilogLanguage
             return false;
         }
 
+        private static bool IsIdentifier(string s)
+        {
+            if (string.IsNullOrEmpty(s)) {
+                return false;
+            }
+
+            char c0 = s[0];
+            if (!(c0 == '_' || (c0 >= 'A' && c0 <= 'Z') || (c0 >= 'a' && c0 <= 'z'))) {
+                return false;
+            }
+
+            for (int i = 1; i < s.Length; i++) {
+                char c = s[i];
+                if (!(c == '_'
+                        || (c >= 'A' && c <= 'Z')
+                        || (c >= 'a' && c <= 'z')
+                        || (c >= '0' && c <= '9'))) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         /// <summary>
         ///   VerilogVariableHoverText - dictionary collection of keywords and hover text (variable names and definitions)
         /// </summary>
@@ -758,16 +782,25 @@ namespace VerilogLanguage
                     else
                     {
                         AddHoverItem(thisModuleName, thisModuleName, thisModuleDeclarationText);
+                        thisHoverName = string.Empty;
                     }
                     break;
 
                 case ",":
+                    if (IsInsideSquigglyBracket) {
+                        // comma inside concatenation: { a, b }  -> not a parameter separator
+                        thisModuleDeclarationText += ItemText;
+                        thisModuleParameterText += ItemText;
+                        break;
+                    }
+
                     thisModuleDeclarationText += ItemText; // only the module declaration will include the comment
                     thisModuleDeclarationText += System.Environment.NewLine;
 
                     // add the module parameter
                     AddHoverItem(thisModuleName, thisHoverName, thisModuleParameterText);
                     thisModuleParameterText = thisModuleParameterText.Replace(thisHoverName, ""); // TODO - use a placeholder here, not an empty string
+                    thisHoverName = string.Empty;
 
                     // the next parameter after the comma will use the same definition
                     BuildHoverState = BuildHoverStates.ModuleParameterMimicNaming;
@@ -779,6 +812,7 @@ namespace VerilogLanguage
 
                     // add the module parameter
                     AddHoverItem(thisModuleName, thisHoverName, thisModuleParameterText);
+                    thisHoverName = string.Empty;
                     thisModuleParameterText = string.Empty; // we can't use the same parameter def after a semicolon
                     BuildHoverState = BuildHoverStates.ModuleParameterNaming; // certainly not mimic naming after a semi-colon!
                     break;
@@ -792,6 +826,11 @@ namespace VerilogLanguage
                     thisModuleParameterText += ItemText;
                     thisModuleDeclarationText += ItemText;
 
+                    if (thisHoverName == string.Empty && IsIdentifier(ItemText) && !IsVerilogNamerKeyword(ItemText))
+                    {
+                        thisHoverName = ItemText;
+                    }
+
                     if (IsVerilogNamerKeyword(ItemText) || IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || IsDelimiter(ItemText))
                     {
                         SetBracketContentStatus_For(ItemText);
@@ -804,7 +843,7 @@ namespace VerilogLanguage
                     }
                     else
                     {
-                        thisHoverName = ItemText;
+                        // thisHoverName = ItemText;
                     }
                     break;
             }
@@ -851,17 +890,26 @@ namespace VerilogLanguage
 
                     // also add an individual parameter as needed
                     AddHoverItem(thisModuleName, thisHoverName, thisModuleParameterText);
+                    thisHoverName = string.Empty;
                     thisModuleParameterText = string.Empty; // upon the close parenthesis, no more module parameters. we might try to re-add the last param during syntax errot (e.g. traling comma immediately followed by closing parenthesis
                     BuildHoverState = BuildHoverStates.UndefinedState; // and no more module definition
                     break;
 
                 case ",":
+                    if (IsInsideSquigglyBracket) {
+                        // comma inside concatenation: { a, b }  -> not a parameter separator
+                        thisModuleDeclarationText += ItemText;
+                        // thisModuleParameterText += ItemText;
+                        break;
+                    }
+
                     thisModuleDeclarationText += ItemText; // only the module declaration will include the comment
                     thisModuleDeclarationText += System.Environment.NewLine;
 
                     // add the module parameter
                     AddHoverItem(thisModuleName, thisHoverName, thisModuleParameterText);
                     thisModuleParameterText = thisModuleParameterText.Replace(thisHoverName, "");
+                    thisHoverName = string.Empty;
                     break;
 
                 case ";":
@@ -870,6 +918,7 @@ namespace VerilogLanguage
 
                     // add the module parameter
                     AddHoverItem(thisModuleName, thisHoverName, thisModuleParameterText);
+                    thisHoverName = string.Empty;
                     thisModuleParameterText = string.Empty;
                     BuildHoverState = BuildHoverStates.ModuleParameterNaming; // certainly not mimic naming after a semi-colon!
                     break;
@@ -892,7 +941,9 @@ namespace VerilogLanguage
                     }
                     else
                     {
-                        thisHoverName = ItemText;
+                        if (thisHoverName == string.Empty && IsIdentifier(ItemText) && !IsVerilogNamerKeyword(ItemText)) {
+                            thisHoverName = ItemText;
+                        }
                         thisModuleParameterText += ItemText;
                     }
                     break;
@@ -959,16 +1010,17 @@ namespace VerilogLanguage
                     }
                     else
                     {
-                        if (IsInsideSquigglyBracket)
-                        {
+                        if (IsInsideSquigglyBracket) {
                             thisVariableDeclarationText += ItemText;
                             // BuildHoverState remains variable building
                         }
                         else
                         {
                             AddHoverItem(thisModuleName, thisHoverName, thisVariableDeclarationText);
-                            // since we en countered a comma, we will use the same declaration text for a new name, so replace this name with a blank
+                            // since we encountered a comma, we will use the same declaration text for a new name, so replace this name with a blank
                             thisVariableDeclarationText = thisVariableDeclarationText.Replace(thisHoverName, "");
+
+                            thisHoverName = string.Empty; // IMPORTANT: next identifier is the next variable name
 
                             BuildHoverState = BuildHoverStates.VariableMimicNaming; // Mimic naming is the same declaration but comma-delimited (e.g. input a,b // b has the input "mimic'd" )
                         }
@@ -991,6 +1043,21 @@ namespace VerilogLanguage
                     break;
 
                 default:
+                    if (thisHoverName == string.Empty && IsIdentifier(ItemText))
+                    {
+                        if (IsInsideSquareBracket || IsInsideSquigglyBracket) {
+                            // Identifier used in a range or concatenation is not a declared name
+                            thisVariableDeclarationText += ItemText;
+                            break;
+                        }
+                        else {
+                            // IS a declared name
+                        }
+                        thisHoverName = ItemText;
+                        thisVariableDeclarationText += ItemText;
+                        break;
+                    }
+
                     // TODO implement IsVerilogAssignment
                     if ((thisHoverName != string.Empty) || (ItemText == "=") || IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || Is_BracketContent_For(thisModuleName, ItemText) || IsDelimiter(ItemText) || IsVerilogVariableSigner(ItemText))
                     {
@@ -1037,10 +1104,12 @@ namespace VerilogLanguage
                 case ",":
                     AddHoverItem(thisModuleName, thisHoverName, thisVariableDeclarationText);
                     thisVariableDeclarationText = thisVariableDeclarationText.Replace(thisHoverName, "");
+                    thisHoverName = string.Empty;
                     break;
 
                 case ";":
                     AddHoverItem(thisModuleName, thisHoverName, thisVariableDeclarationText);
+                    thisHoverName = string.Empty;
                     thisVariableDeclarationText = string.Empty;
                     BuildHoverState = BuildHoverStates.UndefinedState;
                     break;
@@ -1078,7 +1147,15 @@ namespace VerilogLanguage
                         }
                         else
                         {
-                            thisHoverName = ItemText;
+                            if (thisHoverName == string.Empty && IsIdentifier(ItemText)) {
+                                if (IsInsideSquareBracket || IsInsideSquigglyBracket) {
+                                    // Identifier inside is NOT a declared name
+                                }
+                                else {
+                                    // Identifier not used in a range or concatenation IS a declared name
+                                    thisHoverName = ItemText;
+                                }
+                            }
                             thisVariableDeclarationText += ItemText;
                         }
                     }

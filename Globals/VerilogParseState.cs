@@ -15,19 +15,25 @@ namespace VerilogLanguage
                                                                       };
         public static List<char> VerilogBinaryChars = new List<char>  { '0', '1',
                                                                         'z', 'Z',
-                                                                        'x', 'X'
+                                                                        'x', 'X',
+                                                                        '_'
                                                                       };
         public static List<char> VerilogDecimalChars = new List<char> { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
                                                                         'z', 'Z',
-                                                                        'x', 'X'
+                                                                        'x', 'X',
+                                                                        '_'
                                                                       };
-        public static List<char> VerilogHexChars = new List<char>     { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
+        public static List<char> VerilogHexChars = new List<char>     { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                                                                        'A', 'B', 'C', 'D', 'E', 'F',
+                                                                        'a', 'b', 'c', 'd', 'e', 'f',
                                                                         'z', 'Z',
-                                                                        'x', 'X'
+                                                                        'x', 'X',
+                                                                        '_'
                                                                       };
         public static List<char> VerilogOctalChars = new List<char>   { '0', '1', '2', '3', '4', '5', '6', '7',
                                                                         'z', 'Z',
-                                                                        'x', 'X'
+                                                                        'x', 'X',
+                                                                        '_'
                                                                       };
 
 
@@ -114,6 +120,7 @@ namespace VerilogLanguage
                         // we are never already building a number for blank items, and not yet processed _thisChar
                         // so set some obvious things:
                         IsBuildingNumber = false;
+                        HasRadix = false;
                         HasConstValue = false;
                         IsBuildingEmbeddedSpaceItem = false;
                         NumberStringValue = string.Empty;

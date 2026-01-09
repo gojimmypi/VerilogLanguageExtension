@@ -338,7 +338,7 @@ namespace VerilogLanguage
             if (_HoverPart.Length > 1)
             {
                 _HoverValue = _HoverPart[1];
-                if (_HoverValue.Length > 2)
+                if (_HoverValue.Length >= 2)
                 {
 
                     if (int.TryParse(_HoverPart[0], out _HoverBitLength))

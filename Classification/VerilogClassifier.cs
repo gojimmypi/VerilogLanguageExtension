@@ -115,14 +115,18 @@ namespace VerilogLanguage.VerilogToken
             ITagAggregator<VerilogTokenTag> VerilogTagAggregator =
                                             aggregatorFactory.CreateTagAggregator<VerilogTokenTag>(buffer);
 
-            return new VerilogClassifier(buffer, VerilogTagAggregator, ClassificationTypeRegistry) as ITagger<T>;
+            return buffer.Properties.GetOrCreateSingletonProperty<ITagger<T>>(
+                () => new VerilogClassifier(buffer, VerilogTagAggregator, ClassificationTypeRegistry) as ITagger<T>);
         }
     }
-    internal sealed class VerilogClassifier : ITagger<ClassificationTag>
+
+    internal sealed class VerilogClassifier : ITagger<ClassificationTag>, IDisposable
     {
         ITextBuffer _buffer;
         ITagAggregator<VerilogTokenTag> _aggregator;
         IDictionary<VerilogTokenTypes, IClassificationType> _VerilogTypeClassifications;
+
+        private event EventHandler<SnapshotSpanEventArgs> _tagsChanged;
         /// <summary>
         /// Construct the classifier and define search tokens
         /// </summary>
@@ -132,6 +136,7 @@ namespace VerilogLanguage.VerilogToken
             _buffer = buffer;
             _aggregator = VerilogTagAggregator;
 
+            _aggregator.TagsChanged += Aggregator_TagsChanged;
 
             // see also VerilogTkenTag for Dictionary<string, VerilogTokenTypes>
             _VerilogTypeClassifications = new Dictionary<VerilogTokenTypes, IClassificationType>
@@ -257,8 +262,30 @@ namespace VerilogLanguage.VerilogToken
 
         public event EventHandler<SnapshotSpanEventArgs> TagsChanged
         {
-            add { }
-            remove { }
+            add { _tagsChanged += value; }
+            remove { _tagsChanged -= value; }
+        }
+
+        private void Aggregator_TagsChanged(object sender, TagsChangedEventArgs e) {
+            ITextSnapshot snapshot = _buffer.CurrentSnapshot;
+
+            var spans = e.Span.GetSpans(snapshot);
+            if (spans.Count > 0) {
+                _tagsChanged?.Invoke(this, new SnapshotSpanEventArgs(spans[0]));
+                return;
+            }
+
+            if (snapshot.Length > 0) {
+                _tagsChanged?.Invoke(this,
+                    new SnapshotSpanEventArgs(new SnapshotSpan(snapshot, 0, snapshot.Length)));
+            }
+        }
+
+        public void Dispose() {
+            if (_aggregator != null) {
+                _aggregator.TagsChanged -= Aggregator_TagsChanged;
+                _aggregator = null;
+            }
         }
 
         /// <summary>
@@ -268,6 +295,10 @@ namespace VerilogLanguage.VerilogToken
             foreach (var tagSpan in _aggregator.GetTags(spans)) {
                 var tagSpans = tagSpan.Span.GetSpans(spans[0].Snapshot);
                 // each of the text values found for tagSpan.Tag.type must be defined above in VerilogClassifier
+                if (tagSpans.Count == 0) {
+                    // skips this iteration and moves to the next tagSpan
+                    continue;
+                }
                 if (_VerilogTypeClassifications.ContainsKey(tagSpan.Tag.type)) {
                     yield return
                         new TagSpan<ClassificationTag>(tagSpans[0],

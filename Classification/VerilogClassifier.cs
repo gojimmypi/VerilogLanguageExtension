@@ -292,27 +292,42 @@ namespace VerilogLanguage.VerilogToken
         /// Search the given span for any instances of classified tags
         /// </summary>
         public IEnumerable<ITagSpan<ClassificationTag>> GetTags(NormalizedSnapshotSpanCollection spans) {
+            if (spans == null || spans.Count == 0) {
+                yield break;
+            }
+
+            if (_aggregator == null) {
+                yield break;
+            }
+
+            if (_VerilogTypeClassifications == null) {
+                yield break;
+            }
+
             foreach (var tagSpan in _aggregator.GetTags(spans)) {
+                if (tagSpan == null || tagSpan.Tag == null) {
+                    continue;
+                }
+
                 var tagSpans = tagSpan.Span.GetSpans(spans[0].Snapshot);
                 // each of the text values found for tagSpan.Tag.type must be defined above in VerilogClassifier
                 if (tagSpans.Count == 0) {
                     // skips this iteration and moves to the next tagSpan
                     continue;
                 }
-                if (_VerilogTypeClassifications.ContainsKey(tagSpan.Tag.type)) {
-                    yield return
-                        new TagSpan<ClassificationTag>(tagSpans[0],
-                                                       new ClassificationTag(_VerilogTypeClassifications[tagSpan.Tag.type]));
-                }
-                else {
-                    // TODO - how did we get here??
-                    // string a = "Debug: Key not found!";
-                    // System.Diagnostics.Debug.WriteLine("Verilog Classifier found unknown tag type in IEnumerable<ITagSpan<ClassificationTag>> GetTags");
-                    yield return
-                        new TagSpan<ClassificationTag>(tagSpans[0],
-                                                       new ClassificationTag(_VerilogTypeClassifications[VerilogTokenTypes.Verilog_default]));
+
+                IClassificationType classificationType;
+                if (!_VerilogTypeClassifications.TryGetValue(tagSpan.Tag.type, out classificationType) || classificationType == null) {
+                    _VerilogTypeClassifications.TryGetValue(VerilogTokenTypes.Verilog_default, out classificationType);
                 }
 
+                if (classificationType == null) {
+                    continue;
+                }
+
+                yield return new TagSpan<ClassificationTag>(
+                    tagSpans[0],
+                    new ClassificationTag(classificationType));
             }
         }
     }

@@ -1,12 +1,12 @@
 ﻿//Before
 assign[1:0];
-assign   ;;;assign   ;;; // assign   
+assign   ;;;assign   ;;; // assign
 // this is a sample test; [delim]	[tab] ;;// test
-assign;// this is a test 
+assign;// this is a test
 assign/* test */ wow; assignassign;assign;;;assign;;;assigns; //test  [never] at the ;; end;  noope [ ] */ still a comment /* this too */ yes, even this
 assign	assign /* tab dellmited*/ this is not a comment // this is; as is [this]
-assign assign /* space dellmited*/ 
-assign;assign /* semi-colon dellmited*/ 
+assign assign /* space dellmited*/
+assign;assign /* semi-colon dellmited*/
 assign[assign] /* bracket delimited*/
 assign]other bracket /*bracket not a delimiter */
 more;options;assign;stuff;always;
@@ -17,10 +17,10 @@ more;options;assign stuff;alwaysandevermmore
 	wire i_clk;
 
 `ifdef VERILATOR
-/* verilator lint_off UNUSED */		
+/* verilator lint_off UNUSED */
 // this is a sample test; [delim]	[tab] ;;// test
 module ulx3s_adda (
-  input  i_clk, 
+  input  i_clk,
   input  reset,
   output [7:0] o_led,
 	 output o_AD_CLK,
@@ -31,7 +31,7 @@ module ulx3s_adda (
 
     wire i_clk;
     wire [7:0] o_led;
-	
+
   wire o_AD_CLK;
   wire  [7:0] i_ad_port_value;
 
@@ -89,9 +89,9 @@ module top(
 
 	reg [7:0] i_ad_port_value;
 	// assign i_ad_port_value[7:0] = J2_AD_PORT[7:0];
-`endif	
+`endif
 
-	
+
 	assign o_AD_CLK = i_clk;
 	assign o_DA_CLK = i_clk;
 	assign J2_DA_PORT = o_value;
@@ -106,7 +106,7 @@ module top(
     reg [ctr_width-1:0] ctr = 32'b1111_1111_1111_1111_1111_1111_1111_1111;
 
 	// 14ns after edge, data is stable (we'll use 16ns)
-	specify 
+	specify
 		(J2_AD_PORT => i_ad_port_value) = 16;
 	endspecify
 

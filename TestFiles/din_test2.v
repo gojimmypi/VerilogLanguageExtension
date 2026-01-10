@@ -4,5 +4,4 @@ module my_din (
 
    din[7:0] == 0;
 	din = 1;
-endmodule  
-  
+endmodule

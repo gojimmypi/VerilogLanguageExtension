@@ -33,17 +33,17 @@ module top (
 	// assign ledc[2] = btn[2] ^ btn[3];							// Xor Operator example
 	// assign ledc[3] = btn[3] && !nbtn[0];						// And operator example
 	//assign ledc[4] = (btn[1] + btn[2] + btn[3] + 2'b00) >> 1;	// Addition and shift example
-	
-	assign ledc[0] = btn[1] && btn[2]; // led[0] is on when buttons 1 and 2 are pressed simultaneously.							 
+
+	assign ledc[0] = btn[1] && btn[2]; // led[0] is on when buttons 1 and 2 are pressed simultaneously.
 	assign ledc[1] = btn[1] && btn[3]; // led[1] is on when buttons 1 and 3 are pressed simultaneously.
 	assign ledc[2] = btn[2] && btn[3]; // led[2] is on when buttons 2 and 3 are pressed simultaneously.
 	assign ledc[3] = ! nbtn[0]; // led[3] is on when the button 0 is pressed. For this one use the nbtn[0] that has inverted logic instead of the btn[0].
 	assign ledc[4] = btn[0] || btn[1] || btn[2] || btn[3];  // led[4] is on when any of the four buttons is pressed.
 
-	//assign ledc[1] = btn[1] || btn[2]; 
-	//assign ledc[2] = btn[2] ^ btn[3]; 
-	//assign ledc[3] = btn[3] && !nbtn[0]; 
-	//assign ledc[4] = (btn[1] + btn[2] + btn[3] + 2'b00) >> 1;	 
+	//assign ledc[1] = btn[1] || btn[2];
+	//assign ledc[2] = btn[2] ^ btn[3];
+	//assign ledc[3] = btn[3] && !nbtn[0];
+	//assign ledc[4] = (btn[1] + btn[2] + btn[3] + 2'b00) >> 1;
 
 
 	// Synchronous logic
@@ -155,7 +155,7 @@ endmodule
 
 // Convert 4bit numbers to 7 segments
 module seven_seg_hex (
-	input [3:0] din, 
+	input [3:0] din,
 	output reg [6:0] dout
 );
 	always @*

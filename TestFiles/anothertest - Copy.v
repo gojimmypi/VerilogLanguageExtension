@@ -1,7 +1,7 @@
 ﻿// File ulx3s_v20_passthru_wifi.vhd translated with vhd2vl v3.0 VHDL to Verilog RTL translator
 // this is a freshly converted 6a044e8 version from March 2
 // see https://github.com/emard/ulx3s-passthru/blob/71ce18953f84ea8ee07bb42d42ddc5a2673623c3/rtl/ulx3s_v20_passthru_wifi.vhd#L1
-// 
+//
 // vhd2vl settings:
 //  * Verilog Module Declaration Style: 2001
 
@@ -68,7 +68,7 @@ module ulx3s_passthru_wifi(
 	inout  wire [27:0] gn,
 
 	// SHUTDOWN: logic '1' here will shutdown power on PCB >= v1.7.5
-	// 
+	//
 	output wire shutdown,
 
 	// Audio jack 3.5mm
@@ -119,14 +119,14 @@ module ulx3s_passthru_wifi(
   assign shutdown = 0;
 
   wire [1:0] S_prog_in;
-  reg  [1:0] R_prog_in; 
+  reg  [1:0] R_prog_in;
   wire [1:0] S_prog_out;
   reg  [7:0] R_spi_miso;
   wire S_oled_csn;
   parameter C_prog_release_timeout = 17;  // default 17 2^n * 25MHz timeout for initialization phase
   reg [C_prog_release_timeout:0] R_prog_release = 1'b1;  // timeout that holds lines for reliable entering programming mode
   reg [7:0] R_progn = 1'b0;
-  
+
   // TX/RX passthru
   assign ftdi_rxd = wifi_txd;
   assign wifi_rxd = ftdi_txd;
@@ -173,7 +173,7 @@ module ulx3s_passthru_wifi(
   assign led[7] = wifi_gpio5; // for boards without D22 soldered
   assign led[6] = S_prog_out[1];  // green LED indicates ESP32 disabled
   assign led[5] =  ~R_prog_release[(C_prog_release_timeout)]; // ESP32 programming start: blinks too short to be visible
-  
+
 	// green LED indicates ESP32 disabled
 	// assign led[3] = sd_d[3]; //led(3) <= sd_d(3); -- sd_d(3) is sd_cs, pullup=NONE in constraints otherwise SD card will prevents esp32 from entering programming mode...
 	// assign led[2] = sd_d[2]; //led(2) <= sd_d(2);

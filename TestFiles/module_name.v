@@ -8,8 +8,8 @@ endmodule
 
 module top(reg clk);
     other2 myOther(clk);
-    myOther 
-endmodule  
+    myOther
+endmodule
 
 
 

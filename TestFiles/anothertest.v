@@ -1,7 +1,7 @@
 ﻿// File ulx3s_v20_passthru_wifi.vhd translated with vhd2vl v3.0 VHDL to Verilog RTL translator
 // this is a freshly converted 6a044e8 version from March 2
 // see https://github.com/emard/ulx3s-passthru/blob/71ce18953f84ea8ee07bb42d42ddc5a2673623c3/rtl/ulx3s_v20_passthru_wifi.vhd#L1
-// 
+//
 // vhd2vl settings:
 //  * Verilog Module Declaration Style: 2001
 
@@ -33,10 +33,10 @@ module ulx3s_passthru_wifi(
 
 	// UART0 (FTDI USB slave serial)
 	output wire ftdi_rxd,
-	input  wire ftdi_txd,     
+	input  wire ftdi_txd,
 
 	// FTDI additional signaling
-	inout  wire ftdi_ndtr, 
+	inout  wire ftdi_ndtr,
 	// inout  wire ftdi_ndsr, // ERROR: IO 'ftdi_ndsr' is unconstrained in LPF
 	inout  wire ftdi_nrts,
 	inout  wire ftdi_txden,
@@ -68,7 +68,7 @@ module ulx3s_passthru_wifi(
 	inout  wire [27:0] gn,
 
 	// SHUTDOWN: logic '1' here will shutdown power on PCB >= v1.7.5
-	// 
+	//
 	output wire shutdown,
 
 	// Audio jack 3.5mm
@@ -119,7 +119,7 @@ module ulx3s_passthru_wifi(
   assign shutdown = 0;
 
   wire [1:0] S_prog_in;
-  reg  [1:0] R_prog_in; 
+  reg  [1:0] R_prog_in;
   wire [1:0] S_prog_out;
   reg  [7:0] R_spi_miso;
   wire S_oled_csn;
@@ -141,19 +141,19 @@ module ulx3s_passthru_wifi(
   assign S_prog_in[1] = ftdi_ndtr;
   assign S_prog_in[0] = ftdi_nrts;
   assign S_prog_out = S_prog_in == 2'b10 ? 2'b01 : S_prog_in == 2'b01 ? 2'b10 : 2'b11;
-  [] [] [] () {} 
+  [] [] [] () {}
   assign wifi_en = S_prog_out[1];
   assign wifi_gpio0 = S_prog_out[0] & btn[0];
 
-  wire er; 
-  wire er2; 
+  wire er;
+  wire er2;
   []
   ////
-  
+
 
   [
 
-  wire er3; 
+  wire er3;
   // holding BTN0 will hold gpio0 LOW, signal for ESP32 to take control
   //sd_d(0) <= '0' when wifi_gpio0 = '0' else 'Z'; -- gpio2 together with gpio0 to 0
   //sd_d(2) <= '0' when wifi_gpio0 = '0' else 'Z'; -- wifi gpio12
@@ -182,7 +182,7 @@ module ulx3s_passthru_wifi(
   assign led[7] = wifi_gpio5; // for boards without D22 soldered
   assign led[6] = S_prog_out[1];  // green LED indicates ESP32 disabled
   assign led[5] =  ~R_prog_release[(C_prog_release_timeout)]; // ESP32 programming start: blinks too short to be visible
-  
+
 	// green LED indicates ESP32 disabled
 	// assign led[3] = sd_d[3]; //led(3) <= sd_d(3); -- sd_d(3) is sd_cs, pullup=NONE in constraints otherwise SD card will prevents esp32 from entering programming mode...
 	// assign led[2] = sd_d[2]; //led(2) <= sd_d(2);

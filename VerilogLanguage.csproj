@@ -76,10 +76,6 @@
     <Compile Include="Classification\ClassificationType.cs" />
     <Compile Include="Classification\VerilogClassifier.cs" />
     <Compile Include="CommentHelper\CommentHelper.cs" />
-    <Compile Include="EditorClassifier\EditorClassifier1.cs" />
-    <Compile Include="EditorClassifier\EditorClassifier1ClassificationDefinition.cs" />
-    <Compile Include="EditorClassifier\EditorClassifier1Format.cs" />
-    <Compile Include="EditorClassifier\EditorClassifier1Provider.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Globals\BufferAttributes.cs" />
     <Compile Include="Globals\OutputWindow.cs" />
@@ -97,8 +93,6 @@
     <Compile Include="Completion\CompletionController.cs" />
     <Compile Include="Completion\CompletionSource.cs" />
     <Compile Include="Intellisense\VerilogQuickInfoSource.cs" />
-    <Compile Include="Outlining\OutliningTagger.cs" />
-    <Compile Include="Outlining\OutliningTaggerProvider.cs" />
     <Compile Include="BraceMatching\BraceMatchingTagger.cs" />
     <Compile Include="BraceMatching\BraceMatchingTaggerProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -130,13 +124,9 @@
     <Folder Include="Tagger\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-
   <!-- Ensure we are not doing DLL-only builds -->
   <Target Name="FailIfVsSdkMissing" BeforeTargets="Build">
-    <Error Condition="'$(VSToolsPath)' == '' Or !Exists('$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets')"
-          Text="Missing Microsoft.VsSDK.targets. Build from a VS developer prompt or set VisualStudioVersion/VSToolsPath." />
+    <Error Condition="'$(VSToolsPath)' == '' Or !Exists('$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets')" Text="Missing Microsoft.VsSDK.targets. Build from a VS developer prompt or set VisualStudioVersion/VSToolsPath." />
   </Target>
-
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="Exists('$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets')" />
-
 </Project>

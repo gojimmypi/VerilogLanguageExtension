@@ -40,3 +40,17 @@
 /VerilogTokenTag.cs.old
 /VerilogCallStackEvents.dgml
 /CodeMap1.dgml
+/EditorClassifier/EditorClassifier1.cs
+/EditorClassifier/EditorClassifier1ClassificationDefinition.cs
+/EditorClassifier/EditorClassifier1Format.cs
+/EditorClassifier/EditorClassifier1Provider.cs
+/Outlining/OutliningTagger.cs
+/Outlining/OutliningTaggerProvider.cs
+/Outline/CSharpOutliningTagger.cs.old
+/Outline/CSharpOutliningTaggerProvider.cs.old
+/Outline/SnapshotParser.cs.old
+/Outline/TextRegion.cs.old
+/EditorClassifier/EditorClassifier1.cs.old
+/EditorClassifier/EditorClassifier1ClassificationDefinition.cs.old
+/EditorClassifier/EditorClassifier1Format.cs.old
+/EditorClassifier/EditorClassifier1Provider.cs.old

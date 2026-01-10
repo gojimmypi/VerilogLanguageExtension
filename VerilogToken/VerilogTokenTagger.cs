@@ -187,179 +187,209 @@ namespace VerilogLanguage.VerilogToken
         /// <param name="spans"></param>
         /// <returns></returns>
         public IEnumerable<ITagSpan<VerilogTokenTag>> GetTags(NormalizedSnapshotSpanCollection spans)
+{
+    //while (VerilogGlobals.IsReparsing)
+    {
+        // do we really want to do this? (probably not)
+        // System.Threading.Thread.Sleep(10);
+    }
+
+
+    //System.Diagnostics.Debug.WriteLine("Starting IEnumerable<ITagSpan<VerilogTokenTag>>");
+    // bool EditInProgress = spans.snapshot.TextBuffer.EditInProgress;
+    // since we can start mid-text, we don't know if the current span is in the middle of a comment
+
+    // init TODO - we don't really want to call this for every enumeration!
+    // VerilogGlobals.InitHoverBuilder();
+    VerilogGlobals.IsContinuedBlockComment = IsOpenBlockComment(spans); // TODO - does spans always contain the full document? (appears perhaps not)
+    VerilogGlobals.VerilogToken[] tokens = null;
+    VerilogGlobals.VerilogToken priorToken = new VerilogGlobals.VerilogToken();
+
+    // look at each span for tokens, comments, etc
+    foreach (SnapshotSpan curSpan in spans) {
+        if (tokens != null && tokens.Length >= 1) {
+            priorToken = tokens[tokens.Length - 1]; // get the token from the prior line
+        }
+
+        ITextSnapshotLine containingLine = curSpan.Start.GetContainingLine();
+        int curLoc = containingLine.Start.Position;
+        int LinePosition = 0;
+        string thisTokenString = string.Empty;
+
+        tokens = VerilogGlobals.VerilogKeywordSplit(containingLine.GetText(), priorToken);
+
+        Boolean IsContinuedLineComment = false; // comments with "//" are only effective for the current line, but /* can span multiple lines
+        foreach (VerilogGlobals.VerilogToken VerilogToken in tokens) // this group of tokens in in a single line
         {
-            //while (VerilogGlobals.IsReparsing)
+            // by the time we get here, we might have a tag with adjacent comments:
+            //     assign//
+            //     //assign
+            //     assign//comment
+            //     /*assign*/
+            //     assign/*comment*/
+            thisTokenString = VerilogToken.Part;
+            CommentHelper commentHelper = new CommentHelper(thisTokenString,
+                                                            IsContinuedLineComment,
+                                                            VerilogGlobals.IsContinuedBlockComment);
+            VerilogGlobals.IsContinuedBlockComment = commentHelper.HasBlockStartComment;
+            IsContinuedLineComment = commentHelper.HasOpenLineComment; // we'll use this when processing the VerilogToken item in the commentHelper, above
+
+            foreach (CommentHelper.CommentItem Item in commentHelper.CommentItems)
             {
-                // do we really want to do this? (probably not)
-                // System.Threading.Thread.Sleep(10);
-            }
+                bool TestComment = VerilogGlobals.TextIsComment(containingLine.LineNumber, LinePosition);
+                LinePosition += Item.ItemText.Length;
 
-
-            //System.Diagnostics.Debug.WriteLine("Starting IEnumerable<ITagSpan<VerilogTokenTag>>");
-            // bool EditInProgress = spans.snapshot.TextBuffer.EditInProgress;
-            // since we can start mid-text, we don't know if the current span is in the middle of a comment
-
-            // init TODO - we don't really want to call this for every enumeration!
-            // VerilogGlobals.InitHoverBuilder();
-            VerilogGlobals.IsContinuedBlockComment = IsOpenBlockComment(spans); // TODO - does spans always contain the full document? (appears perhaps not)
-            VerilogGlobals.VerilogToken[] tokens = null;
-            VerilogGlobals.VerilogToken priorToken = new VerilogGlobals.VerilogToken();
-
-            // look at each span for tokens, comments, etc
-            foreach (SnapshotSpan curSpan in spans) {
-                if (tokens != null && tokens.Length >= 1) {
-                    priorToken = tokens[tokens.Length - 1]; // get the token from the prior line
-                }
-
-                ITextSnapshotLine containingLine = curSpan.Start.GetContainingLine();
-                int curLoc = containingLine.Start.Position;
-                int LinePosition = 0;
-                string thisTokenString = string.Empty;
-
-                tokens = VerilogGlobals.VerilogKeywordSplit(containingLine.GetText(), priorToken);
-
-                Boolean IsContinuedLineComment = false; // comments with "//" are only effective for the current line, but /* can span multiple lines
-                foreach (VerilogGlobals.VerilogToken VerilogToken in tokens) // this group of tokens in in a single line
+                var tokenSpan = new SnapshotSpan(curSpan.Snapshot, new Span(curLoc, Item.ItemText.Length));
+                if (tokenSpan.IntersectsWith(curSpan))
                 {
-                    // by the time we get here, we might have a tag with adjacent comments:
-                    //     assign//
-                    //     //assign
-                    //     assign//comment
-                    //     /*assign*/
-                    //     assign/*comment*/
-                    thisTokenString = VerilogToken.Part;
-                    CommentHelper commentHelper = new CommentHelper(thisTokenString,
-                                                                    IsContinuedLineComment,
-                                                                    VerilogGlobals.IsContinuedBlockComment);
-                    VerilogGlobals.IsContinuedBlockComment = commentHelper.HasBlockStartComment;
-                    IsContinuedLineComment = commentHelper.HasOpenLineComment; // we'll use this when processing the VerilogToken item in the commentHelper, above
-
-                    foreach (CommentHelper.CommentItem Item in commentHelper.CommentItems)
+                    // is this item a comment? If so, color as appropriate. comments take highest priority: no other condition will change color of a comment
+                    if (Item.IsComment)
                     {
-                        bool TestComment = VerilogGlobals.TextIsComment(containingLine.LineNumber, LinePosition);
-                        LinePosition += Item.ItemText.Length;
+                        // System.Diagnostics.Debug.WriteLine("IEnumerable VerilogTokenTag yield comment for item " + Item.ItemText??"");
+                        yield return new TagSpan<VerilogTokenTag>(tokenSpan,
+                                                              new VerilogTokenTag(VerilogTokenTypes.Verilog_Comment));
+                    }
 
-                        var tokenSpan = new SnapshotSpan(curSpan.Snapshot, new Span(curLoc, Item.ItemText.Length));
-                        if (tokenSpan.IntersectsWith(curSpan))
+                    // otherwise when not a comment, check to see if it is a keyword
+                    else
+                    {
+                        // first check to see if any new variables are being defined;
+
+                        // VerilogGlobals.BuildHoverItems(Item.ItemText);
+
+                        string lookupText = Item.ItemText;
+                        int leadingWhitespace = 0;
+                        int trailingWhitespace = 0;
+
+                        if (!string.IsNullOrEmpty(lookupText))
                         {
-                            // is this item a comment? If so, color as appropriate. comments take highest priority: no other condition will change color of a comment
-                            if (Item.IsComment)
+                            string trimmedStart = lookupText.TrimStart();
+                            string trimmedBoth = lookupText.Trim();
+
+                            leadingWhitespace = lookupText.Length - trimmedStart.Length;
+                            trailingWhitespace = lookupText.Length - lookupText.TrimEnd().Length;
+
+                            lookupText = trimmedBoth;
+                        }
+
+                        if (string.IsNullOrEmpty(lookupText))
+                        {
+                            // no highlighting
+                        }
+                        else
+                        {
+                            var lookupSpan = tokenSpan;
+
+                            if (leadingWhitespace != 0 || trailingWhitespace != 0)
                             {
-                                // System.Diagnostics.Debug.WriteLine("IEnumerable VerilogTokenTag yield comment for item " + Item.ItemText??"");
-                                yield return new TagSpan<VerilogTokenTag>(tokenSpan,
-                                                                      new VerilogTokenTag(VerilogTokenTypes.Verilog_Comment));
+                                int adjustedLoc = curLoc + leadingWhitespace;
+                                int adjustedLen = lookupText.Length;
+
+                                if (adjustedLen > 0)
+                                {
+                                    lookupSpan = new SnapshotSpan(curSpan.Snapshot, new Span(adjustedLoc, adjustedLen));
+                                }
                             }
 
-                            // otherwise when not a comment, check to see if it is a keyword
+                            // check for standard keyword syntax higlighting
+                            if (VerilogGlobals.VerilogTypes.ContainsKey(lookupText))
+                            {
+                                System.Diagnostics.Debug.WriteLine("IEnumerable VerilogTokenTag yield " + lookupText);
+                                yield return new TagSpan<VerilogTokenTag>(lookupSpan,
+                                                                      new VerilogTokenTag(VerilogGlobals.VerilogTypes[lookupText]));
+                            }
+                            else if (VerilogGlobals.VerilogVariables.ContainsKey(lookupText))
+                            {
+                                // we are instantiation a module; recall VerilogVariables is first a dictionary of scope (aka module), then a dictionary of variables in each module scope
+                                // TODO do we need: if (tokenSpan.IntersectsWith(curSpan))
+                                System.Diagnostics.Debug.WriteLine("IEnumerable VerilogTokenTag yield variable module " + lookupText);
+                                yield return new TagSpan<VerilogTokenTag>(lookupSpan,
+                                      new VerilogTokenTag(VerilogGlobals.VerilogTypes["variable_module"]));
+                            }
                             else
                             {
-                                // first check to see if any new variables are being defined;
-
-                                // VerilogGlobals.BuildHoverItems(Item.ItemText);
-
-
-                                // check for standard keyword syntax higlighting
-                                if (VerilogGlobals.VerilogTypes.ContainsKey(Item.ItemText))
-                                {
-                                    System.Diagnostics.Debug.WriteLine("IEnumerable VerilogTokenTag yield " + Item.ItemText);
-                                    yield return new TagSpan<VerilogTokenTag>(tokenSpan,
-                                                                          new VerilogTokenTag(VerilogGlobals.VerilogTypes[Item.ItemText]));
-                                }
-                                else if (VerilogGlobals.VerilogVariables.ContainsKey(Item.ItemText))
-                                {
-                                    // we are instantiation a module; recall VerilogVariables is first a dictionary of scope (aka module), then a dictionary of variables in each module scope
-                                    // TODO do we need: if (tokenSpan.IntersectsWith(curSpan))
-                                    System.Diagnostics.Debug.WriteLine("IEnumerable VerilogTokenTag yield variable module " + Item.ItemText);
-                                    yield return new TagSpan<VerilogTokenTag>(tokenSpan,
-                                          new VerilogTokenTag(VerilogGlobals.VerilogTypes["variable_module"]));
-                                }
-                                else
-                                {
-                                    // check to see if this is a variable
-                                    string thisScope = VerilogGlobals.TextModuleName(containingLine.LineNumber, curLoc - containingLine.Start.Position); // TODO
-                                    if (VerilogGlobals.VerilogVariables.ContainsKey(thisScope))
-                                    {
-                                        // the current scope (typically a module name) is defined. So do we have a known variable?
-                                        if (VerilogGlobals.VerilogVariables[thisScope].ContainsKey(Item.ItemText))
-                                        {
-                                            // TODO do we need: if (tokenSpan.IntersectsWith(curSpan))
-                                            System.Diagnostics.Debug.WriteLine("IEnumerable VerilogTokenTag yield variable " + Item.ItemText);
-                                            yield return new TagSpan<VerilogTokenTag>(tokenSpan,
-                                                                                  new VerilogTokenTag(VerilogGlobals.VerilogVariables[thisScope][Item.ItemText]));
+                                        // check to see if this is a variable
+                                        string thisScope = VerilogGlobals.TextModuleName(containingLine.LineNumber, (curLoc + leadingWhitespace) - containingLine.Start.Position); // TODO
+                                        if (!VerilogGlobals.VerilogVariables.ContainsKey(thisScope)) {
+                                            // fallback: some scope resolvers are position-sensitive; column 0 tends to be stable per line
+                                            thisScope = VerilogGlobals.TextModuleName(containingLine.LineNumber, 0);
                                         }
 
-                                        else if (VerilogGlobals.VerilogVariables.ContainsKey(VerilogGlobals.SCOPE_CONST) && VerilogGlobals.VerilogVariables[VerilogGlobals.SCOPE_CONST].ContainsKey(Item.ItemText))
-                                        {
-                                            yield return new TagSpan<VerilogTokenTag>(tokenSpan,
-                                                                                  new VerilogTokenTag(VerilogGlobals.VerilogVariables[VerilogGlobals.SCOPE_CONST][Item.ItemText]));
-                                        }
-
-                                        else
-                                        {
-                                            // no tag colorization for the explicit token, but perhaps based on context:
-                                            int thisDelimiterIndex = 0;
-                                            int thisDelimiterTotalDepth;
-                                            //int thisDelimiterTotalDepth = VerilogToken.SquareBracketDepth +
-                                            //                              VerilogToken.RoundBracketDepth +
-                                            //                              VerilogToken.SquigglyBracketDepth;
-                                            // int testValue = VerilogGlobals.BracketDepth(containingLine.LineNumber, curLoc - containingLine.Start.Position);
-                                            switch (VerilogToken.Context)
-                                            {
-                                                case VerilogGlobals.VerilogTokenContextType.SquareBracketOpen:
-                                                case VerilogGlobals.VerilogTokenContextType.SquareBracketClose:
-                                                    thisDelimiterTotalDepth = VerilogGlobals.BracketDepth(containingLine.LineNumber, curLoc - containingLine.Start.Position);
-                                                    thisDelimiterIndex = (thisDelimiterTotalDepth % 5);
-                                                    yield return new TagSpan<VerilogTokenTag>(tokenSpan,
-                                                                                          // see _VerilogTypes["bracket_type1"] .. _VerilogTypes["bracket_type5"]
-                                                                                          new VerilogTokenTag(VerilogGlobals.VerilogTypes["bracket_type" + (thisDelimiterIndex).ToString()]));
-                                                    break;
-
-                                                case VerilogGlobals.VerilogTokenContextType.RoundBracketClose:
-                                                case VerilogGlobals.VerilogTokenContextType.RoundBracketOpen:
-                                                    thisDelimiterTotalDepth = VerilogGlobals.BracketDepth(containingLine.LineNumber, curLoc - containingLine.Start.Position);
-                                                    thisDelimiterIndex = (thisDelimiterTotalDepth % 5);
-                                                    yield return new TagSpan<VerilogTokenTag>(tokenSpan,
-                                                                                          // see _VerilogTypes["bracket_type1"] .. _VerilogTypes["bracket_type5"]
-                                                                                          new VerilogTokenTag(VerilogGlobals.VerilogTypes["bracket_type" + (thisDelimiterIndex).ToString()]));
-                                                    break;
-
-                                                case VerilogGlobals.VerilogTokenContextType.SquigglyBracketOpen:
-                                                case VerilogGlobals.VerilogTokenContextType.SquigglyBracketClose:
-                                                    thisDelimiterTotalDepth = VerilogGlobals.BracketDepth(containingLine.LineNumber, curLoc - containingLine.Start.Position);
-                                                    thisDelimiterIndex = (thisDelimiterTotalDepth % 5);
-                                                    // see _VerilogTypes["bracket_type1"] .. _VerilogTypes["bracket_type5"]
-                                                    yield return new TagSpan<VerilogTokenTag>(tokenSpan,
-                                                        new VerilogTokenTag(VerilogGlobals.VerilogTypes["bracket_type" + (thisDelimiterIndex).ToString()]));
-                                                    break;
-
-                                                case VerilogGlobals.VerilogTokenContextType.SquareBracketContents:
-                                                    yield return new TagSpan<VerilogTokenTag>(tokenSpan,
-                                                                                          new VerilogTokenTag(VerilogTokenTypes.Verilog_BracketContent));
-                                                    break;
-
-                                                case VerilogGlobals.VerilogTokenContextType.AlwaysAt:
-                                                    yield return new TagSpan<VerilogTokenTag>(tokenSpan,
-                                                                                          new VerilogTokenTag(VerilogTokenTypes.Verilog_always));
-                                                    break;
-
-                                                default:
-                                                    // no highlighting
-                                                    break;
+                                        if (VerilogGlobals.VerilogVariables.ContainsKey(thisScope)) {
+                                            // the current scope (typically a module name) is defined. So do we have a known variable?
+                                            if (VerilogGlobals.VerilogVariables[thisScope].ContainsKey(lookupText)) {
+                                                // TODO do we need: if (tokenSpan.IntersectsWith(curSpan))
+                                                System.Diagnostics.Debug.WriteLine("IEnumerable VerilogTokenTag yield variable " + lookupText);
+                                                yield return new TagSpan<VerilogTokenTag>(lookupSpan,
+                                                                                      new VerilogTokenTag(VerilogGlobals.VerilogVariables[thisScope][lookupText]));
                                             }
-                                        }
+
+                                            else if (VerilogGlobals.VerilogVariables.ContainsKey(VerilogGlobals.SCOPE_CONST) && VerilogGlobals.VerilogVariables[VerilogGlobals.SCOPE_CONST].ContainsKey(lookupText)) {
+                                                yield return new TagSpan<VerilogTokenTag>(lookupSpan,
+                                                                                      new VerilogTokenTag(VerilogGlobals.VerilogVariables[VerilogGlobals.SCOPE_CONST][lookupText]));
+                                            }
+
+                                            else {
+                                                // no tag colorization for the explicit token, but perhaps based on context:
+                                                int thisDelimiterIndex = 0;
+                                                int thisDelimiterTotalDepth;
+                                                //int thisDelimiterTotalDepth = VerilogToken.SquareBracketDepth +
+                                                //                              VerilogToken.RoundBracketDepth +
+                                                //                              VerilogToken.SquigglyBracketDepth;
+                                                // int testValue = VerilogGlobals.BracketDepth(containingLine.LineNumber, curLoc - containingLine.Start.Position);
+                                                switch (VerilogToken.Context) {
+                                                    case VerilogGlobals.VerilogTokenContextType.SquareBracketOpen:
+                                                    case VerilogGlobals.VerilogTokenContextType.SquareBracketClose:
+                                                        thisDelimiterTotalDepth = VerilogGlobals.BracketDepth(containingLine.LineNumber, curLoc - containingLine.Start.Position);
+                                                        thisDelimiterIndex = (thisDelimiterTotalDepth % 5);
+                                                        yield return new TagSpan<VerilogTokenTag>(tokenSpan,
+                                                                                              // see _VerilogTypes["bracket_type1"] .. _VerilogTypes["bracket_type5"]
+                                                                                              new VerilogTokenTag(VerilogGlobals.VerilogTypes["bracket_type" + (thisDelimiterIndex).ToString()]));
+                                                        break;
+
+                                                    case VerilogGlobals.VerilogTokenContextType.RoundBracketClose:
+                                                    case VerilogGlobals.VerilogTokenContextType.RoundBracketOpen:
+                                                        thisDelimiterTotalDepth = VerilogGlobals.BracketDepth(containingLine.LineNumber, curLoc - containingLine.Start.Position);
+                                                        thisDelimiterIndex = (thisDelimiterTotalDepth % 5);
+                                                        yield return new TagSpan<VerilogTokenTag>(tokenSpan,
+                                                                                              // see _VerilogTypes["bracket_type1"] .. _VerilogTypes["bracket_type5"]
+                                                                                              new VerilogTokenTag(VerilogGlobals.VerilogTypes["bracket_type" + (thisDelimiterIndex).ToString()]));
+                                                        break;
+
+                                                    case VerilogGlobals.VerilogTokenContextType.SquigglyBracketOpen:
+                                                    case VerilogGlobals.VerilogTokenContextType.SquigglyBracketClose:
+                                                        thisDelimiterTotalDepth = VerilogGlobals.BracketDepth(containingLine.LineNumber, curLoc - containingLine.Start.Position);
+                                                        thisDelimiterIndex = (thisDelimiterTotalDepth % 5);
+                                                        // see _VerilogTypes["bracket_type1"] .. _VerilogTypes["bracket_type5"]
+                                                        yield return new TagSpan<VerilogTokenTag>(tokenSpan,
+                                                            new VerilogTokenTag(VerilogGlobals.VerilogTypes["bracket_type" + (thisDelimiterIndex).ToString()]));
+                                                        break;
+
+                                                    case VerilogGlobals.VerilogTokenContextType.SquareBracketContents:
+                                                        yield return new TagSpan<VerilogTokenTag>(tokenSpan,
+                                                                                              new VerilogTokenTag(VerilogTokenTypes.Verilog_BracketContent));
+                                                        break;
+
+                                                    case VerilogGlobals.VerilogTokenContextType.AlwaysAt:
+                                                        yield return new TagSpan<VerilogTokenTag>(tokenSpan,
+                                                                                              new VerilogTokenTag(VerilogTokenTypes.Verilog_always));
+                                                        break;
+
+                                                    default:
+                                                        // no highlighting
+                                                        break;
+                                                }
+                                            }
                                     }
-                                    else
-                                    {
-                                        if (VerilogGlobals.VerilogVariables.ContainsKey(VerilogGlobals.SCOPE_CONST) && VerilogGlobals.VerilogVariables[VerilogGlobals.SCOPE_CONST].ContainsKey(Item.ItemText))
-                                        {
+                                    else {
+                                        if (VerilogGlobals.VerilogVariables.ContainsKey(VerilogGlobals.SCOPE_CONST) && VerilogGlobals.VerilogVariables[VerilogGlobals.SCOPE_CONST].ContainsKey(lookupText)) {
                                             //yield return new TagSpan<VerilogTokenTag>(tokenSpan,
                                             //      new VerilogTokenTag(VerilogGlobals.VerilogTypes["Verilog_Value"]));
-                                            yield return new TagSpan<VerilogTokenTag>(tokenSpan,
-                                                                                      new VerilogTokenTag(VerilogGlobals.VerilogVariables[VerilogGlobals.SCOPE_CONST][Item.ItemText]));
+                                            yield return new TagSpan<VerilogTokenTag>(lookupSpan,
+                                                                                      new VerilogTokenTag(VerilogGlobals.VerilogVariables[VerilogGlobals.SCOPE_CONST][lookupText]));
 
                                         }
-                                        else
-                                        {
+                                        else {
                                             // TODO - how do we get here when thisScope *is* defined? timing?
                                             // A: we destroy the VerilogVariables when rescanning (otherwise everyuthing is a duplicate) TODO: keep track of where variables are defined. don't rebui;d
                                             System.Diagnostics.Debug.WriteLine("Warning! VerilogGlobals.VerilogVariables.ContainsKey({0}) not defined!", thisScope);
@@ -367,15 +397,18 @@ namespace VerilogLanguage.VerilogToken
                                     }
                                 }
                             }
-
-                        }
-
-                        // note that no chars are lost when splitting string with VerilogKeywordSplit, so no adjustment needed in location
-                        curLoc += Item.ItemText.Length;
                     }
+
                 }
+
+                // note that no chars are lost when splitting string with VerilogKeywordSplit, so no adjustment needed in location
+                curLoc += Item.ItemText.Length;
             }
         }
+    }
+
+    yield break;
+}
 
         public event EventHandler<SnapshotSpanEventArgs> TagsChanged;
 

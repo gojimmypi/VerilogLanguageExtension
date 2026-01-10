@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.Text;
@@ -141,8 +141,7 @@ namespace VerilogLanguage.BraceMatching
 
         // Step 9: The following private methods find the matching brace at any level of nesting.
         // The first method finds the close character that matches the open character:
-        private static bool FindMatchingCloseChar(SnapshotPoint startPoint, char open, char close, int maxLines, out SnapshotSpan pairSpan)
-        {
+        private static bool FindMatchingCloseChar(SnapshotPoint startPoint, char open, char close, int maxLines, out SnapshotSpan pairSpan) {
             pairSpan = new SnapshotSpan(startPoint.Snapshot, 1, 1);
             ITextSnapshotLine line = startPoint.GetContainingLine();
             string lineText = line.GetText();
@@ -189,8 +188,7 @@ namespace VerilogLanguage.BraceMatching
         }
 
         // Step 10: The following helper method finds the open character that matches a close character:
-        private static bool FindMatchingOpenChar(SnapshotPoint startPoint, char open, char close, int maxLines, out SnapshotSpan pairSpan)
-        {
+        private static bool FindMatchingOpenChar(SnapshotPoint startPoint, char open, char close, int maxLines, out SnapshotSpan pairSpan) {
             pairSpan = new SnapshotSpan(startPoint, startPoint);
 
             ITextSnapshotLine line = startPoint.GetContainingLine();

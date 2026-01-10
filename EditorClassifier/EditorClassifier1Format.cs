@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.Composition;
+using System.ComponentModel.Composition;
 using System.Windows.Media;
 using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Utilities;
@@ -19,8 +19,7 @@ namespace VerilogLanguage
         /// <summary>
         /// Initializes a new instance of the <see cref="EditorClassifier1Format"/> class.
         /// </summary>
-        public EditorClassifier1Format()
-        {
+        public EditorClassifier1Format() {
             this.DisplayName = "EditorClassifier1"; // Human readable version of the name
             //this.BackgroundColor = Colors.BlueViolet;
             //this.TextDecorations = System.Windows.TextDecorations.Underline;

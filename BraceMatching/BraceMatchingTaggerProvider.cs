@@ -1,4 +1,4 @@
-﻿// adapted from https://github.com/madskristensen/ExtensibilityTools
+// adapted from https://github.com/madskristensen/ExtensibilityTools
 
 using System.ComponentModel.Composition;
 using Microsoft.VisualStudio.Text;

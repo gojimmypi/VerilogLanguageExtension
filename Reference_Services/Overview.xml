@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <!--
- 
+
 Copyright (c) Microsoft Corporation. All rights reserved.
 THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
 ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY
@@ -62,30 +62,30 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
   </SampleInfo>
   <GettingStarted>
     <Paragraph>
-	This sample shows how to create and expose services inside Visual Studio. It creates two services with two 
-	different levels of visibility. The service with global visibility is available for any of Visual Studio's other components. The service with 
-	local visibility is available only from within the package itself or when the IServiceProvider interface 
+	This sample shows how to create and expose services inside Visual Studio. It creates two services with two
+	different levels of visibility. The service with global visibility is available for any of Visual Studio's other components. The service with
+	local visibility is available only from within the package itself or when the IServiceProvider interface
 	implemented by the package is inside the chain of active providers.
     </Paragraph>
     <Paragraph>
-	The sample creates two assemblies, one with the definition of the interfaces used and one with the actual 
-	implementation of the packages and services. The assembly with the implementation, created by the Reference.Services 
-	project, defines two packages. One package exposes the services and a second package uses them. The services are 
+	The sample creates two assemblies, one with the definition of the interfaces used and one with the actual
+	implementation of the packages and services. The assembly with the implementation, created by the Reference.Services
+	project, defines two packages. One package exposes the services and a second package uses them. The services are
 	implemented with two helper classes.
     </Paragraph>
     <Paragraph>
       	The part of interest about how to proffer services is the code inside the ServicesPackage class. Specifically:
     </Paragraph>
     <Paragraph>
-	1. In the declaration of the class we use the ProvideServiceAttribute registration attribute defined in the 
-	Managed Package Framework to add the information about the global service proffered 
+	1. In the declaration of the class we use the ProvideServiceAttribute registration attribute defined in the
+	Managed Package Framework to add the information about the global service proffered
 	by the package to the registry.
     </Paragraph>
     <Paragraph>
 	2. In the constructor of the package we add the types of the proffered services to the list of the services
-	provided by the package. Notice that at this point we donâ€™t create any instance of the service, but we 
-	provide a callback function that will be called the first time a client queries for a specific service. 
-	We do this to optimize performance. We donâ€™t want to construct something that might never 
+	provided by the package. Notice that at this point we donâ€™t create any instance of the service, but we
+	provide a callback function that will be called the first time a client queries for a specific service.
+	We do this to optimize performance. We donâ€™t want to construct something that might never
 	be used.
     </Paragraph>
     <Paragraph>
@@ -108,13 +108,13 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
       <Step>
         On the <bold>Tools</bold> menu, click <bold>Get C# Global Service</bold>.
         A message is displayed in the <bold>Output</bold> window indicating that the global service was consumed.
-        <bold>NOTE:</bold> You might find it useful to set breakpoints in the ServicesPackage.CreateService method 
+        <bold>NOTE:</bold> You might find it useful to set breakpoints in the ServicesPackage.CreateService method
         in ServicesPackage.cs to demonstrate that the event handlers in the ClientPackage class are consuming services.
       </Step>
       <Step>
         On the <bold>Tools</bold> menu, click <bold>Get C# Local Service</bold>.
-        A message is displayed in the <bold>Output</bold> window indicating that a test succeeded. The test guarantees that the 
-        client VSPackage failed to consume a local service on another VSPackage. This illustrates that the service provider 
+        A message is displayed in the <bold>Output</bold> window indicating that a test succeeded. The test guarantees that the
+        client VSPackage failed to consume a local service on another VSPackage. This illustrates that the service provider
         passed to a VSPackage by Visual Studio cannot be used to consume local services.
       </Step>
       <Step>
@@ -137,7 +137,7 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
       Registration is appropriately entered under the experimental instance.
     </Test>
     <Test>
-      After registration in the experimental Visual Studio hive by 
+      After registration in the experimental Visual Studio hive by
       calling 'Devenv /rootsuffix Exp', execute all 3 of the commands on the Tools menu and validate the outputs in the Output window.
     </Test>
   </FunctionalTests>

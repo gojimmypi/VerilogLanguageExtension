@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,8 +16,8 @@ namespace CSharpOutline
 {
     class CSharpOutliningTagger : ITagger<IOutliningRegionTag>, IDisposable
     {
-        //Add some fields to track the text buffer and snapshot and to accumulate the sets of lines that should be tagged as outlining regions. 
-        //This code includes a list of Region objects (to be defined later) that represent the outlining regions.		
+        //Add some fields to track the text buffer and snapshot and to accumulate the sets of lines that should be tagged as outlining regions.
+        //This code includes a list of Region objects (to be defined later) that represent the outlining regions.
         private ITextBuffer Buffer;
         private ITextSnapshot Snapshot;
         private List<TextRegion> Regions = new List<TextRegion>();
@@ -37,7 +37,7 @@ namespace CSharpOutline
             this.EditorOptions = editorOptions;
             // need Microsoft.VisualStudio.Text.Editor.OptionsExtensionMethods namespace to work
             this.TabSize = editorOptions.GetTabSize();
-            //this.Classifier.ClassificationChanged += BufferChanged;			
+            //this.Classifier.ClassificationChanged += BufferChanged;
 
             //timer that will trigger outlining update after some period of no buffer changes
             UpdateTimer = new DispatcherTimer(DispatcherPriority.ApplicationIdle);
@@ -47,12 +47,12 @@ namespace CSharpOutline
                 UpdateTimer.Stop();
                 this.Outline();
             };
-            this.Outline(); // Force an initial full parse			
+            this.Outline(); // Force an initial full parse
         }
 
 
-        //Implement the GetTags method, which instantiates the tag spans. 
-        //This example assumes that the spans in the NormalizedSpanCollection passed in to the method are contiguous, although this may not always be the case. 
+        //Implement the GetTags method, which instantiates the tag spans.
+        //This example assumes that the spans in the NormalizedSpanCollection passed in to the method are contiguous, although this may not always be the case.
         //This method instantiates a new tag span for each of the outlining regions.
         public IEnumerable<ITagSpan<IOutliningRegionTag>> GetTags(NormalizedSnapshotSpanCollection spans)
         {
@@ -80,7 +80,7 @@ namespace CSharpOutline
             UpdateTimer.Start();
         }
 
-        //Add a method that parses the buffer. The example given here is for illustration only. 
+        //Add a method that parses the buffer. The example given here is for illustration only.
         //It synchronously parses the buffer into nested outlining regions.
         private void Outline()
         {

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.Text;
@@ -20,8 +20,8 @@ namespace VerilogLanguage.BraceMatching
         private Dictionary<char, char> m_braceList;
 
 
-        // Step 5: In the tagger constructor, set the properties and subscribe to the view change events 
-        // PositionChanged and LayoutChanged. In this example, for illustrative purposes, the 
+        // Step 5: In the tagger constructor, set the properties and subscribe to the view change events
+        // PositionChanged and LayoutChanged. In this example, for illustrative purposes, the
         // matching pairs are also defined in the constructor.
         internal BraceMatchingTagger(ITextView view, ITextBuffer sourceBuffer)
         {
@@ -66,9 +66,9 @@ namespace VerilogLanguage.BraceMatching
                     SourceBuffer.CurrentSnapshot.Length)));
         }
 
-        // Step 8: Implement the GetTags method to match braces either when the current character 
-        // is an open brace or when the previous character is a close brace, as in Visual Studio. 
-        // When the match is found, this method instantiates two tags, one for the open brace and 
+        // Step 8: Implement the GetTags method to match braces either when the current character
+        // is an open brace or when the previous character is a close brace, as in Visual Studio.
+        // When the match is found, this method instantiates two tags, one for the open brace and
         // one for the close brace.
         public IEnumerable<ITagSpan<TextMarkerTag>> GetTags(NormalizedSnapshotSpanCollection spans)
         {
@@ -104,7 +104,7 @@ namespace VerilogLanguage.BraceMatching
                     yield return new TagSpan<TextMarkerTag>(pairSpan, new TextMarkerTag("blue"));
                 }
             }
-            else if (m_braceList.ContainsValue(lastText))    //the value is the close brace, which is the *previous* character 
+            else if (m_braceList.ContainsValue(lastText))    //the value is the close brace, which is the *previous* character
             {
                 var open = from n in m_braceList
                            where n.Value.Equals(lastText)

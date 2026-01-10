@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -80,7 +80,7 @@ namespace VerilogLanguage
                 {
                     _thisChar = value;
 #if DEBUG
-                    if (_thisChar == '\0' ) {
+                    if (_thisChar == '\0') {
                         Console.WriteLine("_thisChar is null char!");
                         if (!System.Diagnostics.Debugger.IsAttached) {
                             System.Diagnostics.Debugger.Launch();
@@ -126,8 +126,7 @@ namespace VerilogLanguage
                         NumberStringValue = string.Empty;
                         // if we first find a number, we could be bulding a simmple constant like 123
                         // or possibly something more interesting like the "8" in "8 'h 2A"
-                        if (IsVerilogNumberStart(c))
-                        {
+                        if (IsVerilogNumberStart(c)) {
                             IsBuildingNumber = true;            // this is only true when the first digit is numeric (note in the second part, could be hex, z, or x
                             HasConstValue = (c != RADIX_CHAR);        // this could be either the "8" or the "2A"
                             IsBuildingEmbeddedSpaceItem = true; // this could be either the "8" in "8 'h f_f"
@@ -169,14 +168,14 @@ namespace VerilogLanguage
                                             ||
 
                                           // special case for '/' when not a comment delimter
-                                          (value == '/' && priorValue != '*' && priorValue != '/' ) // if we did not find '*/', then this '/' is a delimiter
+                                          (value == '/' && priorValue != '*' && priorValue != '/') // if we did not find '*/', then this '/' is a delimiter
                                             ||
                                           (priorValue == '/' && value != '*' && value != '/'); // if we did not find '/*' then this '/' is a delimiter
 
                     thisCharIsEndingDelimiter = IsEndingDelimeter(value); // any of the closing brackets
                     priorCharIsDelimiter = IsDelimiter(priorChar);
 
-                  //priorCharIsDelimiter = IsDelimiter(priorChar); // any common delimiter, including space; TODO - we can save this value at end: priorCharIsDelimiter =  thisCharIsDelimiter
+                    //priorCharIsDelimiter = IsDelimiter(priorChar); // any common delimiter, including space; TODO - we can save this value at end: priorCharIsDelimiter =  thisCharIsDelimiter
 
                     if (IsBuildingEmbeddedSpaceItem) {
                         // note that spaces ARE allowed when bulding an embedded space item (e.g. the value "32'h ffff_ffff" is just one item!)
@@ -206,33 +205,27 @@ namespace VerilogLanguage
                     }
 
 
-                    if (IsNewDelimitedSegment)
-                    {
+                    if (IsNewDelimitedSegment) {
                         //HasConstValue = false;
                         //IsBuildingEmbeddedSpaceItem = false;
                         //HasRadix = false;
                         //HasConstValue = false;
                         //IsBuildingNumber = false;
                     }
-                    else
-                    {
+                    else {
                         // note  contiguous spaces are a single segment
-                        if (IsBuildingEmbeddedSpaceItem)
-                        {
-                            if (hasOpenSquigglyBracket)
-                            {
+                        if (IsBuildingEmbeddedSpaceItem) {
+                            if (hasOpenSquigglyBracket) {
                                 // we continue searching
                             }
                             else {
                                 // only for closed squiggly, can we end a constant
-                                if (IsBuildingEmbeddedSpaceItem)
-                                {
+                                if (IsBuildingEmbeddedSpaceItem) {
                                     // once we have a constant value, or a constant value after a radix... and a delimiter
                                     // char is found, we've reached the end of this item. Time for a new delimited segment
                                     IsBuildingEmbeddedSpaceItem = !(HasConstValue && HasRadix && thisCharIsDelimiter);
 
-                                    if (!IsBuildingEmbeddedSpaceItem)
-                                    {
+                                    if (!IsBuildingEmbeddedSpaceItem) {
                                         IsNewDelimitedSegment = true;
                                     }
                                 }
@@ -244,12 +237,10 @@ namespace VerilogLanguage
                         }
                     }
 
-                    if (IsNewDelimitedSegment)
-                    {
+                    if (IsNewDelimitedSegment) {
 
                     }
-                    else
-                    {
+                    else {
                         // we only append the items here when building an item to add, otherwise the value is carried over after adding a token
                         // see AddToken: new VerilogToken(thisToken.ParseState.thisChar);
                         thisItem += value;
@@ -259,23 +250,20 @@ namespace VerilogLanguage
                 }
             }
 
-            public void SetPriorValues()
-            {
+            public void SetPriorValues() {
                 // return;
                 priorCharIsDelimiter = thisCharIsDelimiter;
                 priorCharIsIsEndingDelimiter = thisCharIsEndingDelimiter;
 
                 priorChar = thisChar;
-                if (thisCharIsDelimiter)
-                {
+                if (thisCharIsDelimiter) {
                     priorDelimiter = thisChar;
                 }
             }
 
 
             // initialize this VerilogParseState at creation time
-            public VerilogParseState(int i)
-            {
+            public VerilogParseState(int i) {
                 _thisChar = '\0';
                 thisIndex = 0;
                 thisItem = string.Empty;

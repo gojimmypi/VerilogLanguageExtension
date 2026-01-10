@@ -1,4 +1,4 @@
-﻿//***************************************************************************
+//***************************************************************************
 //
 //  MIT License
 //
@@ -53,8 +53,7 @@ namespace VerilogLanguage
         ///   IsDarkTheme - returns true if the current color scheme is dark (background brightness < 0.5)
         /// </summary>
         /// <returns></returns>
-        public static bool IsDarkTheme()
-        {
+        public static bool IsDarkTheme() {
             // System.Drawing.Color thisColor = Microsoft.VisualStudio.PlatformUI.VSColorTheme.GetThemedColor(Microsoft.VisualStudio.PlatformUI.EnvironmentColors.ClassDesignerCommentTextColorKey);
             // ForegroundColor = MColor.FromArgb(thisColor.A, thisColor.R, thisColor.G, thisColor.B);
             // ForegroundColor = ColorConverter.ToMediaColor(VSColorTheme.GetThemedColor(EnvironmentColors.ClassDesignerCommentTextColorKey));
@@ -76,8 +75,7 @@ namespace VerilogLanguage
         /// <summary>
         /// Converts a System.Drawing.Color obtained from GetThemedColor to a System.Windows.Media.Color needed for EditorFormatDefinitions
         /// </summary>
-        public static MColor ToMediaColor(this DColor color)
-        {
+        public static MColor ToMediaColor(this DColor color) {
             // thank you https://stackoverflow.com/questions/6096299/extension-methods-must-be-defined-in-a-non-generic-static-class
             // thank you https://stackoverflow.com/questions/4104910/convert-system-drawing-color-to-system-windows-media-color
             return MColor.FromArgb(color.A, color.R, color.G, color.B);
@@ -102,19 +100,16 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "always" classification type
         /// </summary>
-        public Verilog_always()
-        {
+        public Verilog_always() {
             DisplayName = "Verilog - always"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
                                               //System.Drawing.Color thisColor = Microsoft.VisualStudio.PlatformUI.VSColorTheme.GetThemedColor(Microsoft.VisualStudio.PlatformUI.EnvironmentColors.ClassDesignerCommentTextColorKey);
                                               //ForegroundColor = MColor.FromArgb(thisColor.A, thisColor.R, thisColor.G, thisColor.B);
 
             // ForegroundColor = ColorConverter.ToMediaColor(VSColorTheme.GetThemedColor(EnvironmentColors.ClassDesignerCommentTextColorKey));
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault;
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault;
             }
 
@@ -144,16 +139,13 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "assign" classification type
         /// </summary>
-        public Verilog_assign()
-        {
+        public Verilog_assign() {
             DisplayName = "Verilog - assign"; //human readable version of the name
             // assign and deassign of reg data types is not supported. But assign on wire data type is supported.
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.Orange; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.DarkOrange; // default color for light background
             }
         }
@@ -179,15 +171,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "automatic" classification type
         /// </summary>
-        public Verilog_automatic()
-        {
+        public Verilog_automatic() {
             DisplayName = "Verilog - automatic"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -213,15 +202,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "begin" classification type
         /// </summary>
-        public Verilog_begin()
-        {
+        public Verilog_begin() {
             DisplayName = "Verilog - begin"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -247,15 +233,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "case" classification type
         /// </summary>
-        public Verilog_case()
-        {
+        public Verilog_case() {
             DisplayName = "Verilog - case"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -281,15 +264,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "casex" classification type
         /// </summary>
-        public Verilog_casex()
-        {
+        public Verilog_casex() {
             DisplayName = "Verilog - casex"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -315,15 +295,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "casez" classification type
         /// </summary>
-        public Verilog_casez()
-        {
+        public Verilog_casez() {
             DisplayName = "Verilog - casez"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -349,15 +326,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "cell" classification type
         /// </summary>
-        public Verilog_cell()
-        {
+        public Verilog_cell() {
             DisplayName = "Verilog - cell"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -383,15 +357,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "config" classification type
         /// </summary>
-        public Verilog_config()
-        {
+        public Verilog_config() {
             DisplayName = "Verilog - config"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -417,15 +388,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "deassign" classification type
         /// </summary>
-        public Verilog_deassign()
-        {
+        public Verilog_deassign() {
             DisplayName = "Verilog - deassign"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.Orange; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.DarkOrange; // default color for light background
             }
         }
@@ -451,15 +419,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "default" classification type
         /// </summary>
-        public Verilog_default()
-        {
+        public Verilog_default() {
             DisplayName = "Verilog - default"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -485,15 +450,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "defparam" classification type
         /// </summary>
-        public Verilog_defparam()
-        {
+        public Verilog_defparam() {
             DisplayName = "Verilog - defparam"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -519,15 +481,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "design" classification type
         /// </summary>
-        public Verilog_design()
-        {
+        public Verilog_design() {
             DisplayName = "Verilog - design"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -553,15 +512,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "disable" classification type
         /// </summary>
-        public Verilog_disable()
-        {
+        public Verilog_disable() {
             DisplayName = "Verilog - disable"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -587,15 +543,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "edge" classification type
         /// </summary>
-        public Verilog_edge()
-        {
+        public Verilog_edge() {
             DisplayName = "Verilog - edge"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeEdge; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeEdge; // default color for light background
             }
         }
@@ -621,15 +574,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "else" classification type
         /// </summary>
-        public Verilog_else()
-        {
+        public Verilog_else() {
             DisplayName = "Verilog - else"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -655,15 +605,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "end" classification type
         /// </summary>
-        public Verilog_end()
-        {
+        public Verilog_end() {
             DisplayName = "Verilog - end"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -689,15 +636,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "endcase" classification type
         /// </summary>
-        public Verilog_endcase()
-        {
+        public Verilog_endcase() {
             DisplayName = "Verilog - endcase"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -723,15 +667,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "endconfig" classification type
         /// </summary>
-        public Verilog_endconfig()
-        {
+        public Verilog_endconfig() {
             DisplayName = "Verilog - endconfig"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -757,15 +698,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "endfunction" classification type
         /// </summary>
-        public Verilog_endfunction()
-        {
+        public Verilog_endfunction() {
             DisplayName = "Verilog - endfunction"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -791,15 +729,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "endgenerate" classification type
         /// </summary>
-        public Verilog_endgenerate()
-        {
+        public Verilog_endgenerate() {
             DisplayName = "Verilog - endgenerate"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -825,15 +760,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "endmodule" classification type
         /// </summary>
-        public Verilog_endmodule()
-        {
+        public Verilog_endmodule() {
             DisplayName = "Verilog - endmodule"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -859,16 +791,13 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "endprimitive" classification type
         /// </summary>
-        public Verilog_endprimitive()
-        {
+        public Verilog_endprimitive() {
             DisplayName = "Verilog - endprimitive"; //human readable version of the name
             // Note Construct Not Supported in Synthesis
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.PeachPuff; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.DarkKhaki; // default color for light background
             }
         }
@@ -894,15 +823,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "endspecify" classification type
         /// </summary>
-        public Verilog_endspecify()
-        {
+        public Verilog_endspecify() {
             DisplayName = "Verilog - endspecify"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for light background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for dark background
             }
         }
@@ -928,16 +854,13 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "endtable" classification type
         /// </summary>
-        public Verilog_endtable()
-        {
+        public Verilog_endtable() {
             DisplayName = "Verilog - endtable"; //human readable version of the name
             // Note Construct Not Supported in Synthesis
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.PeachPuff; // default color for light background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.DarkKhaki; // default color for light background
             }
         }
@@ -963,15 +886,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "endtask" classification type
         /// </summary>
-        public Verilog_endtask()
-        {
+        public Verilog_endtask() {
             DisplayName = "Verilog - endtask"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -997,16 +917,13 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "event" classification type
         /// </summary>
-        public Verilog_event()
-        {
+        public Verilog_event() {
             DisplayName = "Verilog - event"; //human readable version of the name
             // Note Construct Not Supported in Synthesis
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.PeachPuff; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.DarkKhaki; // default color for light background
             }
         }
@@ -1032,15 +949,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "for" classification type
         /// </summary>
-        public Verilog_for()
-        {
+        public Verilog_for() {
             DisplayName = "Verilog - for"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for light background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for dark background
             }
         }
@@ -1066,16 +980,13 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "force" classification type
         /// </summary>
-        public Verilog_force()
-        {
+        public Verilog_force() {
             DisplayName = "Verilog - force"; //human readable version of the name
             // Note Construct Not Supported in Synthesis
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.PeachPuff; // default color for light background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.DarkKhaki; // default color for light background
             }
         }
@@ -1101,15 +1012,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "forever" classification type
         /// </summary>
-        public Verilog_forever()
-        {
+        public Verilog_forever() {
             DisplayName = "Verilog - forever"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -1135,16 +1043,13 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "fork" classification type
         /// </summary>
-        public Verilog_fork()
-        {
+        public Verilog_fork() {
             DisplayName = "Verilog - fork"; //human readable version of the name
             // Note Construct Not Supported in Synthesis
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.PeachPuff; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.DarkKhaki; // default color for light background
             }
         }
@@ -1170,15 +1075,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "function" classification type
         /// </summary>
-        public Verilog_function()
-        {
+        public Verilog_function() {
             DisplayName = "Verilog - function"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for light background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for dark background
             }
         }
@@ -1204,15 +1106,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "generate" classification type
         /// </summary>
-        public Verilog_generate()
-        {
+        public Verilog_generate() {
             DisplayName = "Verilog - generate"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for light background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -1238,15 +1137,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "genvar" classification type
         /// </summary>
-        public Verilog_genvar()
-        {
+        public Verilog_genvar() {
             DisplayName = "Verilog - genvar"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -1272,15 +1168,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "if" classification type
         /// </summary>
-        public Verilog_if()
-        {
+        public Verilog_if() {
             DisplayName = "Verilog - if"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -1306,15 +1199,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "ifnone" classification type
         /// </summary>
-        public Verilog_ifnone()
-        {
+        public Verilog_ifnone() {
             DisplayName = "Verilog - ifnone"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -1340,15 +1230,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "incdir" classification type
         /// </summary>
-        public Verilog_incdir()
-        {
+        public Verilog_incdir() {
             DisplayName = "Verilog - incdir"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -1374,15 +1261,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "include" classification type
         /// </summary>
-        public Verilog_include()
-        {
+        public Verilog_include() {
             DisplayName = "Verilog - include"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -1408,16 +1292,13 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "initial" classification type
         /// </summary>
-        public Verilog_initial()
-        {
+        public Verilog_initial() {
             DisplayName = "Verilog - initial"; //human readable version of the name
             // Note Construct Not Supported in Synthesis
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.PeachPuff; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.DarkKhaki; // default color for light background
             }
         }
@@ -1443,15 +1324,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "inout" classification type
         /// </summary>
-        public Verilog_inout()
-        {
+        public Verilog_inout() {
             DisplayName = "Verilog - inout"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeInputOutput; // default color for light background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeInputOutput; // default color for dark background
             }
         }
@@ -1477,15 +1355,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "input" classification type
         /// </summary>
-        public Verilog_input()
-        {
+        public Verilog_input() {
             DisplayName = "Verilog - input"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeInputOutput; // default color for light background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeInputOutput; // default color for dark background
             }
         }
@@ -1511,15 +1386,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "instance" classification type
         /// </summary>
-        public Verilog_instance()
-        {
+        public Verilog_instance() {
             DisplayName = "Verilog - instance"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for light background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for dark background
             }
         }
@@ -1545,16 +1417,13 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "join" classification type
         /// </summary>
-        public Verilog_join()
-        {
+        public Verilog_join() {
             DisplayName = "Verilog - join"; //human readable version of the name
             // Note Construct Not Supported in Synthesis
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.PeachPuff; // default color for light background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.DarkKhaki; // default color for light background
             }
         }
@@ -1580,15 +1449,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "liblist" classification type
         /// </summary>
-        public Verilog_liblist()
-        {
+        public Verilog_liblist() {
             DisplayName = "Verilog - liblist"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -1614,15 +1480,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "library" classification type
         /// </summary>
-        public Verilog_library()
-        {
+        public Verilog_library() {
             DisplayName = "Verilog - library"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -1648,15 +1511,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "localparam" classification type
         /// </summary>
-        public Verilog_localparam()
-        {
+        public Verilog_localparam() {
             DisplayName = "Verilog - localparam"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -1682,15 +1542,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "macromodule" classification type
         /// </summary>
-        public Verilog_macromodule()
-        {
+        public Verilog_macromodule() {
             DisplayName = "Verilog - macromodule"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -1716,15 +1573,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "module" classification type
         /// </summary>
-        public Verilog_module()
-        {
+        public Verilog_module() {
             DisplayName = "Verilog - module"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -1750,15 +1604,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "negedge" classification type
         /// </summary>
-        public Verilog_negedge()
-        {
+        public Verilog_negedge() {
             DisplayName = "Verilog - negedge"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeEdge; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeEdge; // default color for light background
             }
         }
@@ -1784,15 +1635,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "noshowcancelled" classification type
         /// </summary>
-        public Verilog_noshowcancelled()
-        {
+        public Verilog_noshowcancelled() {
             DisplayName = "Verilog - noshowcancelled"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -1818,15 +1666,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "output" classification type
         /// </summary>
-        public Verilog_output()
-        {
+        public Verilog_output() {
             DisplayName = "Verilog - output"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeInputOutput; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeInputOutput; // default color for light background
             }
         }
@@ -1852,15 +1697,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "parameter" classification type
         /// </summary>
-        public Verilog_parameter()
-        {
+        public Verilog_parameter() {
             DisplayName = "Verilog - parameter"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -1886,15 +1728,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "posedge" classification type
         /// </summary>
-        public Verilog_posedge()
-        {
+        public Verilog_posedge() {
             DisplayName = "Verilog - posedge"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeEdge; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeEdge; // default color for light background
             }
         }
@@ -1920,16 +1759,13 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "primitive" classification type
         /// </summary>
-        public Verilog_primitive()
-        {
+        public Verilog_primitive() {
             DisplayName = "Verilog - primitive"; //human readable version of the name
             // Note Construct Not Supported in Synthesis
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.PeachPuff; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.DarkKhaki; // default color for light background
             }
         }
@@ -1955,15 +1791,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "pulsestyle_ondetect" classification type
         /// </summary>
-        public Verilog_pulsestyle_ondetect()
-        {
+        public Verilog_pulsestyle_ondetect() {
             DisplayName = "Verilog - pulsestyle_ondetect"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for light background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for dark background
             }
         }
@@ -1989,16 +1822,13 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "pulsestyle_onevent" classification type
         /// </summary>
-        public Verilog_pulsestyle_onevent()
-        {
+        public Verilog_pulsestyle_onevent() {
             DisplayName = "Verilog - pulsestyle_onevent"; //human readable version of the name
             // Note Construct Not Supported in Synthesis
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.PeachPuff; // default color for light background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.DarkKhaki; // default color for light background
             }
         }
@@ -2024,15 +1854,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "reg" classification type
         /// </summary>
-        public Verilog_reg()
-        {
+        public Verilog_reg() {
             DisplayName = "Verilog - reg"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -2058,16 +1885,13 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "release" classification type
         /// </summary>
-        public Verilog_release()
-        {
+        public Verilog_release() {
             DisplayName = "Verilog - release"; //human readable version of the name
             // Note Construct Not Supported in Synthesis
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.PeachPuff; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.DarkKhaki; // default color for light background
             }
         }
@@ -2093,15 +1917,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "repeat" classification type
         /// </summary>
-        public Verilog_repeat()
-        {
+        public Verilog_repeat() {
             DisplayName = "Verilog - repeat"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for light background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for dark background
             }
         }
@@ -2127,15 +1948,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "scalared" classification type
         /// </summary>
-        public Verilog_scalared()
-        {
+        public Verilog_scalared() {
             DisplayName = "Verilog - scalared"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for light background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for dark background
             }
         }
@@ -2161,15 +1979,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "showcancelled" classification type
         /// </summary>
-        public Verilog_showcancelled()
-        {
+        public Verilog_showcancelled() {
             DisplayName = "Verilog - showcancelled"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for light background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for dark background
             }
         }
@@ -2195,15 +2010,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "signed" classification type
         /// </summary>
-        public Verilog_signed()
-        {
+        public Verilog_signed() {
             DisplayName = "Verilog - signed"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for light background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for dark background
             }
         }
@@ -2229,15 +2041,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "specify" classification type
         /// </summary>
-        public Verilog_specify()
-        {
+        public Verilog_specify() {
             DisplayName = "Verilog - specify"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for light background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for dark background
             }
         }
@@ -2263,15 +2072,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "specparam" classification type
         /// </summary>
-        public Verilog_specparam()
-        {
+        public Verilog_specparam() {
             DisplayName = "Verilog - specparam"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for light background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for dark background
             }
         }
@@ -2297,15 +2103,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "strength" classification type
         /// </summary>
-        public Verilog_strength()
-        {
+        public Verilog_strength() {
             DisplayName = "Verilog - strength"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for light background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for dark background
             }
         }
@@ -2331,16 +2134,13 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "table" classification type
         /// </summary>
-        public Verilog_table()
-        {
+        public Verilog_table() {
             DisplayName = "Verilog - table"; //human readable version of the name
             // Note Construct Not Supported in Synthesis
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.PeachPuff; // default color for light background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.DarkKhaki; // default color for light background
             }
         }
@@ -2366,15 +2166,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "task" classification type
         /// </summary>
-        public Verilog_task()
-        {
+        public Verilog_task() {
             DisplayName = "Verilog - task"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -2400,15 +2197,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "tri" classification type
         /// </summary>
-        public Verilog_tri()
-        {
+        public Verilog_tri() {
             DisplayName = "Verilog - tri"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -2434,15 +2228,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "tri0" classification type
         /// </summary>
-        public Verilog_tri0()
-        {
+        public Verilog_tri0() {
             DisplayName = "Verilog - tri0"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -2468,15 +2259,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "tri1" classification type
         /// </summary>
-        public Verilog_tri1()
-        {
+        public Verilog_tri1() {
             DisplayName = "Verilog - tri1"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -2502,15 +2290,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "triand" classification type
         /// </summary>
-        public Verilog_triand()
-        {
+        public Verilog_triand() {
             DisplayName = "Verilog - triand"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -2536,15 +2321,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "wand" classification type
         /// </summary>
-        public Verilog_wand()
-        {
+        public Verilog_wand() {
             DisplayName = "Verilog - wand"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -2570,15 +2352,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "trior" classification type
         /// </summary>
-        public Verilog_trior()
-        {
+        public Verilog_trior() {
             DisplayName = "Verilog - trior"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -2604,15 +2383,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "wor" classification type
         /// </summary>
-        public Verilog_wor()
-        {
+        public Verilog_wor() {
             DisplayName = "Verilog - wor"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -2638,15 +2414,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "trireg" classification type
         /// </summary>
-        public Verilog_trireg()
-        {
+        public Verilog_trireg() {
             DisplayName = "Verilog - trireg"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -2672,15 +2445,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "unsigned" classification type
         /// </summary>
-        public Verilog_unsigned()
-        {
+        public Verilog_unsigned() {
             DisplayName = "Verilog - unsigned"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -2706,15 +2476,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "use" classification type
         /// </summary>
-        public Verilog_use()
-        {
+        public Verilog_use() {
             DisplayName = "Verilog - use"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -2740,15 +2507,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "vectored" classification type
         /// </summary>
-        public Verilog_vectored()
-        {
+        public Verilog_vectored() {
             DisplayName = "Verilog - vectored"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -2774,15 +2538,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "wait" classification type
         /// </summary>
-        public Verilog_wait()
-        {
+        public Verilog_wait() {
             DisplayName = "Verilog - wait"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -2808,15 +2569,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "while" classification type
         /// </summary>
-        public Verilog_while()
-        {
+        public Verilog_while() {
             DisplayName = "Verilog - while"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -2842,15 +2600,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "wire" classification type
         /// </summary>
-        public Verilog_wire()
-        {
+        public Verilog_wire() {
             DisplayName = "Verilog - wire"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
             }
         }
@@ -2909,15 +2664,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "directive" classification type
         /// </summary>
-        public Verilog_directive()
-        {
+        public Verilog_directive() {
             DisplayName = "Verilog - Directive"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.Salmon; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.IndianRed; // default color for light background
             }
         }
@@ -2938,15 +2690,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "directive" classification type
         /// </summary>
-        public Verilog_Comment()
-        {
+        public Verilog_Comment() {
             DisplayName = "Verilog - Comment"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.LightSeaGreen; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.LimeGreen; // default color for light background
             }
         }
@@ -2967,14 +2716,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the general "Bracket" classification type
         /// </summary>
-        public Verilog_Bracket()
-        {
+        public Verilog_Bracket() {
             DisplayName = "Verilog - Bracket"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
             if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.Cornsilk;
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.Brown;
             }
         }
@@ -2992,15 +2739,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the not-defined "Bracket0" classification type
         /// </summary>
-        public Verilog_Bracket0()
-        {
+        public Verilog_Bracket0() {
             DisplayName = "Verilog - Bracket Depth 0"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.SkyBlue;
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.RoyalBlue;
             }
         }
@@ -3018,15 +2762,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the first level "Bracket1" classification type
         /// </summary>
-        public Verilog_Bracket1()
-        {
+        public Verilog_Bracket1() {
             DisplayName = "Verilog - Bracket Depth 1"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.LightCoral;
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.Brown;
             }
         }
@@ -3044,15 +2785,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the second depth level "Bracket2" classification type
         /// </summary>
-        public Verilog_Bracket2()
-        {
+        public Verilog_Bracket2() {
             DisplayName = "Verilog - Bracket Depth 2"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.Khaki;
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.Brown;
             }
         }
@@ -3070,15 +2808,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the third bracket level "Bracket3" classification type
         /// </summary>
-        public Verilog_Bracket3()
-        {
+        public Verilog_Bracket3() {
             DisplayName = "Verilog - Bracket Depth 3"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.SteelBlue;
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.Brown;
             }
         }
@@ -3096,15 +2831,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the forth bracket level "Bracket4" classification type
         /// </summary>
-        public Verilog_Bracket4()
-        {
+        public Verilog_Bracket4() {
             DisplayName = "Verilog - Bracket Depth 4"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.Orange;
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.Brown;
             }
         }
@@ -3122,15 +2854,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the fifth level bracket "Bracket5" classification type
         /// </summary>
-        public Verilog_Bracket5()
-        {
+        public Verilog_Bracket5() {
             DisplayName = "Verilog - Bracket Depth 5"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.PaleTurquoise;
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.Brown;
             }
         }
@@ -3150,15 +2879,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "directive" classification type
         /// </summary>
-        public Verilog_BracketContent()
-        {
+        public Verilog_BracketContent() {
             DisplayName = "Verilog - Bracket Content"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.Cornsilk;
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.Brown;
             }
         }
@@ -3181,15 +2907,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "variable" classification type
         /// </summary>
-        public Verilog_Variable()
-        {
+        public Verilog_Variable() {
             DisplayName = "Verilog - Variable"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.SkyBlue; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.DarkBlue; // default color for light background
             }
         }
@@ -3208,15 +2931,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "variable - input" classification type
         /// </summary>
-        public Verilog_Variable_input()
-        {
+        public Verilog_Variable_input() {
             DisplayName = "Verilog - Variable - input"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.SkyBlue; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.DarkBlue; // default color for light background
             }
         }
@@ -3234,15 +2954,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "variable - output" classification type
         /// </summary>
-        public Verilog_Variable_output()
-        {
+        public Verilog_Variable_output() {
             DisplayName = "Verilog - Variable - ouput"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.SkyBlue; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.DarkBlue; // default color for light background
             }
         }
@@ -3260,15 +2977,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "variable - inout" classification type
         /// </summary>
-        public Verilog_Variable_inout()
-        {
+        public Verilog_Variable_inout() {
             DisplayName = "Verilog - Variable - inout"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.Red; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.DarkBlue; // default color for light background
             }
         }
@@ -3286,15 +3000,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "variable - wire" classification type
         /// </summary>
-        public Verilog_Variable_wire()
-        {
+        public Verilog_Variable_wire() {
             DisplayName = "Verilog - Variable - wire"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.LightSteelBlue; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.DarkBlue; // default color for light background
             }
         }
@@ -3307,20 +3018,17 @@ namespace VerilogLanguage
     [UserVisible(true)]
     //set the priority to be after the default classifiers
     [Order(Before = Priority.Default)]
-    internal sealed class Verilog_Variable_reg: ClassificationFormatDefinition
+    internal sealed class Verilog_Variable_reg : ClassificationFormatDefinition
     {
         /// <summary>
         /// Defines the visual format for the "variable - reg" classification type
         /// </summary>
-        public Verilog_Variable_reg()
-        {
+        public Verilog_Variable_reg() {
             DisplayName = "Verilog - Variable - reg"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.Plum; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.DarkBlue; // default color for light background
             }
         }
@@ -3338,15 +3046,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "variable - localparam" classification type
         /// </summary>
-        public Verilog_Variable_localparam()
-        {
+        public Verilog_Variable_localparam() {
             DisplayName = "Verilog - Variable - localparam"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.SkyBlue; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.DarkBlue; // default color for light background
             }
         }
@@ -3364,15 +3069,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "variable - parameter" classification type
         /// </summary>
-        public Verilog_Variable_parameter()
-        {
+        public Verilog_Variable_parameter() {
             DisplayName = "Verilog - Variable - parameter"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.SkyBlue; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.DarkBlue; // default color for light background
             }
         }
@@ -3390,15 +3092,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "variable - duplicate" classification type
         /// </summary>
-        public Verilog_Variable_duplicate()
-        {
+        public Verilog_Variable_duplicate() {
             DisplayName = "Verilog - Variable - duplicate"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.Red; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.Red; // default color for light background
             }
         }
@@ -3417,15 +3116,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "variable - duplicate" classification type
         /// </summary>
-        public Verilog_Variable_module()
-        {
+        public Verilog_Variable_module() {
             DisplayName = "Verilog - Variable - module"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.Cyan; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.DarkCyan; // default color for light background
             }
         }
@@ -3446,15 +3142,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "and" primitive keyword classification type
         /// </summary>
-        public Verilog_Primitive_and()
-        {
+        public Verilog_Primitive_and() {
             DisplayName = "Verilog - Primitive and"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.LightGreen; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.Navy; // default color for light background
             }
         }
@@ -3472,15 +3165,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "nand" primitive keyword classification type
         /// </summary>
-        public Verilog_Primitive_nand()
-        {
+        public Verilog_Primitive_nand() {
             DisplayName = "Verilog - Primitive nand"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.LightGreen; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.Navy; // default color for light background
             }
         }
@@ -3498,15 +3188,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "or" primitive keyword classification type
         /// </summary>
-        public Verilog_Primitive_or()
-        {
+        public Verilog_Primitive_or() {
             DisplayName = "Verilog - Primitive or"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.LightGreen; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.Navy; // default color for light background
             }
         }
@@ -3524,15 +3211,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "nor" primitive keyword classification type
         /// </summary>
-        public Verilog_Primitive_nor()
-        {
+        public Verilog_Primitive_nor() {
             DisplayName = "Verilog - Primitive nor"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.LightGreen; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.Navy; // default color for light background
             }
         }
@@ -3550,15 +3234,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "xor" primitive keyword classification type
         /// </summary>
-        public Verilog_Primitive_xor()
-        {
+        public Verilog_Primitive_xor() {
             DisplayName = "Verilog - Primitive xor"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.LightGreen; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.Navy; // default color for light background
             }
         }
@@ -3576,15 +3257,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "xnor" primitive keyword classification type
         /// </summary>
-        public Verilog_Primitive_xnor()
-        {
+        public Verilog_Primitive_xnor() {
             DisplayName = "Verilog - Primitive xnor"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.LightGreen; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.Navy; // default color for light background
             }
         }
@@ -3602,15 +3280,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the "not" primitive keyword classification type
         /// </summary>
-        public Verilog_Primitive_not()
-        {
+        public Verilog_Primitive_not() {
             DisplayName = "Verilog - Primitive not"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.LightGreen; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.Navy; // default color for light background
             }
         }
@@ -3633,15 +3308,12 @@ namespace VerilogLanguage
         /// <summary>
         /// Defines the visual format for the value classification type
         /// </summary>
-        public Verilog_Value()
-        {
+        public Verilog_Value() {
             DisplayName = "Verilog - Values"; //human readable version of the name
-            if (ColorThemeAttribute.IsDarkTheme())
-            {
+            if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.Peru; // default color for dark background
             }
-            else
-            {
+            else {
                 ForegroundColor = Colors.Peru; // default color for light background
             }
         }

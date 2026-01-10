@@ -1,5 +1,5 @@
-﻿//***************************************************************************
-// 
+//***************************************************************************
+//
 //  MIT License
 //
 //  Copyright(c) 2019 gojimmypi
@@ -35,14 +35,13 @@ namespace VerilogLanguage.VerilogToken
     using Microsoft.VisualStudio.Text.Tagging;
     using Microsoft.VisualStudio.Utilities;
     using CommentHelper;
-       
 
-    public class VerilogTokenTag : ITag 
+
+    public class VerilogTokenTag : ITag
     {
         public VerilogTokenTypes type { get; private set; }
 
-        public VerilogTokenTag(VerilogTokenTypes type)
-        {
+        public VerilogTokenTag(VerilogTokenTypes type) {
             VerilogGlobals.PerfMon.VerilogTokenTag_Count++;
             this.type = type;
         }

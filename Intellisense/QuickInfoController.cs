@@ -1,4 +1,4 @@
-﻿//***************************************************************************
+//***************************************************************************
 //
 //    Copyright (c) Microsoft Corporation. All rights reserved.
 //    This code is licensed under the Visual Studio SDK license terms.
@@ -48,18 +48,14 @@ namespace VSLTK.Intellisense
 
         #region IIntellisenseController Members
 
-        public void ConnectSubjectBuffer(ITextBuffer subjectBuffer)
-        {
+        public void ConnectSubjectBuffer(ITextBuffer subjectBuffer) {
         }
 
-        public void DisconnectSubjectBuffer(ITextBuffer subjectBuffer)
-        {
+        public void DisconnectSubjectBuffer(ITextBuffer subjectBuffer) {
         }
 
-        public void Detach(ITextView textView)
-        {
-            if (_textView == textView)
-            {
+        public void Detach(ITextView textView) {
+            if (_textView == textView) {
                 _textView.MouseHover -= OnTextViewMouseHover;
                 _textView = null;
             }
@@ -81,12 +77,10 @@ namespace VSLTK.Intellisense
             string thisFile = VerilogLanguage.VerilogGlobals.GetDocumentPath(_textView.TextSnapshot);
             if (VerilogGlobals.ParseStatusController.NeedReparse(thisFile)) // ensure the dictionary item exists for the ParseStatus of this file and check if it is time to reparse
             {
-                if (_subjectBuffers.Count == 1)
-                    {
+                if (_subjectBuffers.Count == 1) {
                     VerilogLanguage.VerilogGlobals.Reparse(_subjectBuffers[0], thisFile);
                 }
-                else
-                {
+                else {
                     // how do we end up with multiple buffers?
                     // TODO - handle this?
                 }
@@ -114,8 +108,7 @@ namespace VSLTK.Intellisense
         /// <summary>
         /// get mouse location onscreen. Used to determine what word the cursor is currently hovering over
         /// </summary>
-        private SnapshotPoint? GetMousePosition(SnapshotPoint topPosition)
-        {
+        private SnapshotPoint? GetMousePosition(SnapshotPoint topPosition) {
             // Map this point down to the appropriate subject buffer.
 
             return _textView.BufferGraph.MapDownToFirstMatch

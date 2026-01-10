@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.Text;
+using Microsoft.VisualStudio.Text;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -44,16 +44,12 @@ namespace VerilogLanguage
             /// Init  - we want to make sure the ParseStatus for this file is freshly initialized (e.g. when opening / re-opening a file)
             /// </summary>
             /// <param name="targetFile"></param>
-            public static void Init(string targetFile)
-            {
-                lock (_synchronizationParseStatus)
-                {
-                    if (!ParseStatus.ContainsKey(targetFile))
-                    {
+            public static void Init(string targetFile) {
+                lock (_synchronizationParseStatus) {
+                    if (!ParseStatus.ContainsKey(targetFile)) {
                         ParseStatus.Add(targetFile, new ParseAttribute());
                     }
-                    else
-                    {
+                    else {
                         ParseStatus[targetFile] = new ParseAttribute();
                     }
                 }
@@ -80,43 +76,34 @@ namespace VerilogLanguage
             /// </summary>
             /// <param name="forFile"></param>
             /// <returns></returns>
-            public static bool NeedReparse(string forFile)
-            {
-                if (string.IsNullOrEmpty(forFile))
-                {
+            public static bool NeedReparse(string forFile) {
+                if (string.IsNullOrEmpty(forFile)) {
                     return false;
                 }
 
-                lock (_synchronizationParseStatus)
-                {
+                lock (_synchronizationParseStatus) {
                     EnsureExists(forFile);
                     return ParseStatus[forFile].NeedReparse;
                 }
             }
 
-            public static bool IsReparsing(string forFile)
-            {
-                if (string.IsNullOrEmpty(forFile))
-                {
+            public static bool IsReparsing(string forFile) {
+                if (string.IsNullOrEmpty(forFile)) {
                     return false;
                 }
 
-                lock (_synchronizationParseStatus)
-                {
+                lock (_synchronizationParseStatus) {
                     EnsureExists(forFile);
                     return ParseStatus[forFile].IsReparsing;
                 }
 
             }
 
-            public static void NeedReparse_SetValue(string forFile, bool toValue)
-            {
-                if (string.IsNullOrEmpty(forFile))
-                {
+            public static void NeedReparse_SetValue(string forFile, bool toValue) {
+                if (string.IsNullOrEmpty(forFile)) {
                     return;
                 }
-                lock (_synchronizationParseStatus)
-                {
+                lock (_synchronizationParseStatus) {
                     EnsureExists(forFile);
                     ParseStatus[forFile].NeedReparse = toValue;
                 }
@@ -126,16 +113,12 @@ namespace VerilogLanguage
         }
 
 
-        public static int LastPreparseVersion(string forFile)
-        {
-            lock (_synchronizationParseStatus)
-            {
-                if (ParseStatus.ContainsKey(forFile))
-                {
+        public static int LastPreparseVersion(string forFile) {
+            lock (_synchronizationParseStatus) {
+                if (ParseStatus.ContainsKey(forFile)) {
                     return ParseStatus[forFile].LastReparseVersion;
                 }
-                else
-                {
+                else {
                     ParseAttribute newParseAttribute = new ParseAttribute();
                     ParseStatus.Add(forFile, newParseAttribute);
                     return 0;

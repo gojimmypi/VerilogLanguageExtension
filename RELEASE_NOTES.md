@@ -1,4 +1,4 @@
-﻿# Verilog Language Extension Release Notes
+# Verilog Language Extension Release Notes
 
 This is the VS2022 and VS2026 release.
 

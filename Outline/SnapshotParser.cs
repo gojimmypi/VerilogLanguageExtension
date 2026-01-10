@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,8 +22,8 @@ namespace CSharpOutline
 		/// A dictionary (span start => span)
 		/// </summary>
 		private Dictionary<int, ClassificationSpan> SpanIndex = new Dictionary<int, ClassificationSpan>();
-				
-		public ClassificationSpan CurrentSpan {get; private set;}		
+
+		public ClassificationSpan CurrentSpan {get; private set;}
 
 		public SnapshotParser(ITextSnapshot snapshot, IClassifier classifier)
 		{
@@ -47,7 +47,7 @@ namespace CSharpOutline
 			if (!AtEnd())
 			{
 				CurrentPoint = CurrentSpan != null ? CurrentSpan.Span.End : CurrentPoint + 1;
-				
+
 				if (SpanIndex.ContainsKey(CurrentPoint.Position))
 					CurrentSpan = SpanIndex[CurrentPoint.Position];
 				else
@@ -61,7 +61,7 @@ namespace CSharpOutline
 		{
 			return CurrentPoint.Position >= Snapshot.Length;
 		}
-		
+
 		/*public string PeekString(int chars)
 		{
 			string currentText = CurrentLine.GetText();

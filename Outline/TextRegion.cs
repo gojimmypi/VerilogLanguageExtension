@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -185,9 +185,9 @@ namespace CSharpOutline
                     //found the start of the region
                     if (!r.Complete)
                     {
-                        //searching for child regions						
+                        //searching for child regions
                         while (TextRegion.ParseBuffer(parser, r) != null) ;
-                        //found everything						
+                        //found everything
                         r.ExtendStartPoint();
                     }
                     //adding to children or merging with last child
@@ -207,10 +207,10 @@ namespace CSharpOutline
 
         /// <summary>
         /// Tries to move region start point up to get C#-like outlining
-        /// 
+        ///
         /// for (var k in obj)
         /// { -- from here
-        /// 
+        ///
         /// for (var k in obj) -- to here
         /// {
         /// </summary>

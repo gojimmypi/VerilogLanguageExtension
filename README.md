@@ -1,4 +1,4 @@
-﻿# Verilog Language Extension
+# Verilog Language Extension
 
 This Visual Studio Extension adds syntax & keyword higlighting to Visual Studio versions 2022, and 2026. 
 
@@ -318,13 +318,13 @@ From [VSIX Manifest Designer](https://docs.microsoft.com/en-us/visualstudio/exte
 | Visual Studio 2015 | 14.0 |
 | Visual Studio 2013 | 12.0 |
 
-* [ – minimum version inclusive.
+* [ - minimum version inclusive.
 
-* ] – maximum version inclusive. 
+* ] - maximum version inclusive. 
 
-* ( – minimum version exclusive. 
+* ( - minimum version exclusive. 
 
-* ) – maximum version exclusive.
+* ) - maximum version exclusive.
 
 ## Limitations / TODO
 
@@ -453,7 +453,7 @@ From [VSIX Manifest Designer](https://docs.microsoft.com/en-us/visualstudio/exte
 
 ## How can I help?
 
-If you enjoy using the extension, please give it a ★★★★★ rating on the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=gojimmypi.gojimmypi-verilog-language-extension). It only takes a few seconds but makes a huge difference!
+If you enjoy using the extension, please give it a rating on the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=gojimmypi.gojimmypi-verilog-language-extension). It only takes a few seconds but makes a huge difference!
 
 Found a bug or have a feature idea? Head over to the [GitHub repo](https://github.com/gojimmypi/VerilogLanguageExtension) to open an issue if one doesn't already exist.
 

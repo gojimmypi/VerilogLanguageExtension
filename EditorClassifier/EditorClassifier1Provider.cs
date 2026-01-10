@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.Composition;
+using System.ComponentModel.Composition;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Utilities;
@@ -31,8 +31,7 @@ namespace VerilogLanguage
         /// </summary>
         /// <param name="buffer">The <see cref="ITextBuffer"/> to classify.</param>
         /// <returns>A classifier for the text buffer, or null if the provider cannot do so in its current state.</returns>
-        public IClassifier GetClassifier(ITextBuffer buffer)
-        {
+        public IClassifier GetClassifier(ITextBuffer buffer) {
             return buffer.Properties.GetOrCreateSingletonProperty<EditorClassifier1>(creator: () => new EditorClassifier1(this.classificationRegistry));
         }
 

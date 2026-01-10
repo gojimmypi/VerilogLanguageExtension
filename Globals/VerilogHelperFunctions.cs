@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +13,7 @@ namespace VerilogLanguage
         /// </summary>
         /// <param name="theString"></param>
         /// <returns></returns>
-        static public bool ContainsRefreshChar(string theString)
-        {
+        static public bool ContainsRefreshChar(string theString) {
             return (theString.Contains("/")) ||
                    (theString.Contains("*")) ||
                    (theString.Contains("[")) ||
@@ -30,8 +29,7 @@ namespace VerilogLanguage
         /// </summary>
         /// <param name="theChar"></param>
         /// <returns></returns>
-        static public bool IsDelimiter(char theChar)
-        {
+        static public bool IsDelimiter(char theChar) {
             return (theChar == ' ') ||
                    (theChar == '+') ||
                    (theChar == '-') ||
@@ -59,8 +57,7 @@ namespace VerilogLanguage
                    (theChar == '\t');   // a tab
         }
 
-        static public bool IsDelimiter(string theString)
-        {
+        static public bool IsDelimiter(string theString) {
             if (!(theString is null) && theString.Length == 1) {
                 return IsDelimiter((char)theString[0]);
             }
@@ -74,8 +71,7 @@ namespace VerilogLanguage
         /// </summary>
         /// <param name="theChar"></param>
         /// <returns></returns>
-        static public bool IsEndingDelimeter(char theChar)
-        {
+        static public bool IsEndingDelimeter(char theChar) {
             return (theChar == ']') ||
                    (theChar == '}') ||
                    (theChar == ')');
@@ -87,10 +83,8 @@ namespace VerilogLanguage
         /// </summary>
         /// <param name="theKeyword"></param>
         /// <returns></returns>
-        private static bool IsVerilogBracket(char theKeyword)
-        {
-            switch (theKeyword)
-            {
+        private static bool IsVerilogBracket(char theKeyword) {
+            switch (theKeyword) {
                 case '[':
                 case '(':
                 case '{':
@@ -104,8 +98,7 @@ namespace VerilogLanguage
 
         }
 
-        private static bool IsVerilogBracket(string theKeyword)
-        {
+        private static bool IsVerilogBracket(string theKeyword) {
             if (theKeyword.Length == 1) {
                 /* return the char checking result, above */
                 return IsVerilogBracket((char)theKeyword[0]);
@@ -120,8 +113,7 @@ namespace VerilogLanguage
         /// </summary>
         /// <param name="theKeyword"></param>
         /// <returns></returns>
-        private static bool IsVerilogNamerKeyword(string theKeyword)
-        {
+        private static bool IsVerilogNamerKeyword(string theKeyword) {
             return ((theKeyword == "reg") ||
                     (theKeyword == "wire") ||
                     (theKeyword == "bit") || /* System Verilog only, see IsSystemVerilogNamerKeyword  */
@@ -144,8 +136,7 @@ namespace VerilogLanguage
         /// </summary>
         /// <param name="theKeyword"></param>
         /// <returns></returns>
-        private static bool IsVerilogVariableSigner(string theKeyword)
-        {
+        private static bool IsVerilogVariableSigner(string theKeyword) {
             return ((theKeyword == "signed") ||
                     (theKeyword == "unsigned")
                    );
@@ -158,31 +149,25 @@ namespace VerilogLanguage
         /// </summary>
         /// <param name="theKeyword"></param>
         /// <returns></returns>
-        private static bool IsVerilogValue(string theKeyword)
-        {
+        private static bool IsVerilogValue(string theKeyword) {
             // if the keyword is null or blank, it is certainly not a keyword, so return false immediately
-            if ((theKeyword == null) || (theKeyword == string.Empty))
-            {
+            if ((theKeyword == null) || (theKeyword == string.Empty)) {
                 return false;
             }
             bool NumericParts = false; // we'll only have numeric parts, if there are parts to look at! (e.g. "1:1")
             string[] KeywordParts = theKeyword.Split(':');
-            if (KeywordParts.Count() > 1)
-            {
-                foreach (string part in KeywordParts)
-                {
+            if (KeywordParts.Count() > 1) {
+                foreach (string part in KeywordParts) {
                     // recursively call self here, if perhas we have a value like [1'b1:2'b2], or a prevopiusly defined parameter
-                    if (!IsNumeric(part) && !IsVerilogValue(part) && !Is_BracketContent_For(thisModuleName, part))
-                    {
+                    if (!IsNumeric(part) && !IsVerilogValue(part) && !Is_BracketContent_For(thisModuleName, part)) {
                         return false;
                     }
-                    else
-                    {
+                    else {
                         NumericParts = true;
                     }
                 }
             }
-            return NumericParts || (theKeyword.FirstRadixValue() != string.Empty) ;
+            return NumericParts || (theKeyword.FirstRadixValue() != string.Empty);
         }
 
         /// <summary>
@@ -190,8 +175,7 @@ namespace VerilogLanguage
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public static Boolean IsNumeric(String input)
-        {
+        public static Boolean IsNumeric(String input) {
             return double.TryParse(input, out _); ;
         }
 

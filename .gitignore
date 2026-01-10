@@ -1,4 +1,4 @@
-﻿################################################################################
+################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
@@ -35,3 +35,8 @@
 # misc
 /packages.old
 /releases/0.2
+/examples/ExtensibilityToolsOld
+/VerilogLanguage.csproj.user
+/VerilogTokenTag.cs.old
+/VerilogCallStackEvents.dgml
+/CodeMap1.dgml

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,8 +16,7 @@ namespace VerilogLanguage
             public static int CommandFilter_QueryStatus_Count = 0;
             public static int VerilogTokenTagger_IsOpenBlockComment_Count = 0;
 
-            private static void init()
-            {
+            private static void init() {
             }
         }
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Classification;
@@ -19,8 +19,7 @@ namespace VerilogLanguage
         /// Initializes a new instance of the <see cref="EditorClassifier1"/> class.
         /// </summary>
         /// <param name="registry">Classification registry.</param>
-        internal EditorClassifier1(IClassificationTypeRegistryService registry)
-        {
+        internal EditorClassifier1(IClassificationTypeRegistryService registry) {
             this.classificationType = registry.GetClassificationType("EditorClassifier1");
         }
 
@@ -49,8 +48,7 @@ namespace VerilogLanguage
         /// </remarks>
         /// <param name="span">The span currently being classified.</param>
         /// <returns>A list of ClassificationSpans that represent spans identified to be of this classification.</returns>
-        public IList<ClassificationSpan> GetClassificationSpans(SnapshotSpan span)
-         {
+        public IList<ClassificationSpan> GetClassificationSpans(SnapshotSpan span) {
             var result = new List<ClassificationSpan>()
             {
                 new ClassificationSpan(new SnapshotSpan(span.Snapshot, new Span(span.Start, span.Length)), this.classificationType)

@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,10 +31,8 @@ namespace VerilogLanguage
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
-        private static VerilogTokenContextType VerilogTokenContextFromString(string s)
-        {
-            switch (s)
-            {
+        private static VerilogTokenContextType VerilogTokenContextFromString(string s) {
+            switch (s) {
                 case null:
                     return VerilogTokenContextType.Undetermined; // short circuit exit
 

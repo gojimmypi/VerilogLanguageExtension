@@ -1,5 +1,5 @@
-﻿//***************************************************************************
-// 
+//***************************************************************************
+//
 //  MIT License
 //
 //  Copyright(c) 2019 gojimmypi
@@ -37,15 +37,14 @@ namespace VerilogLanguage.VerilogToken
     using CommentHelper;
     //using Microsoft.VisualStudio.Text.Operations;
 
-    // You must export a tagger provider for your tagger. The tagger provider creates an VerilogTokenTag 
+    // You must export a tagger provider for your tagger. The tagger provider creates an VerilogTokenTag
     // for a buffer of the "verilog" content type, or else returns an OutliningTagger if the buffer already has one.
     [Export(typeof(ITaggerProvider))]
     [TagType(typeof(VerilogTokenTag))]
     [ContentType("verilog")] // see _buffer.ContentType (ITextBuffer.ContentType Property)
     internal sealed class VerilogTokenTagProvider : ITaggerProvider
     {
-        public ITagger<T> CreateTagger<T>(ITextBuffer buffer) where T : ITag
-        {
+        public ITagger<T> CreateTagger<T>(ITextBuffer buffer) where T : ITag {
             return new VerilogTokenTagger(buffer) as ITagger<T>;
 
             // TODO which is better? above or below?

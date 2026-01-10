@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,8 +33,8 @@ namespace CSharpOutline
             IEditorOptions editorOptions = factory.GetOptions(buffer);
 			//var spans = c.GetClassificationSpans(new SnapshotSpan(buffer.CurrentSnapshot, 0, buffer.CurrentSnapshot.Length));
 			//create a single tagger for each buffer.
-            
+
 			return buffer.Properties.GetOrCreateSingletonProperty<ITagger<T>>(() => new CSharpOutliningTagger(buffer, classifier, editorOptions) as ITagger<T>);
-		} 
+		}
 	}
 }

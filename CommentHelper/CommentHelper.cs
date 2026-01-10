@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,8 +39,7 @@ namespace CommentHelper
         {
             public string ItemText { get; }
             public bool IsComment { get; }
-            public CommentItem(string itemtext, bool iscomment)
-            {
+            public CommentItem(string itemtext, bool iscomment) {
                 this.ItemText = itemtext;
                 this.IsComment = iscomment;
             }
@@ -48,46 +47,37 @@ namespace CommentHelper
 
         public List<CommentItem> CommentItems { get; }
 
-        private void AppendBlockChar(string thisChar)
-        {
+        private void AppendBlockChar(string thisChar) {
             // depending on the logic above, append the current character
-            if (HasBlockStartComment || HasOpenLineComment)
-            {
+            if (HasBlockStartComment || HasOpenLineComment) {
                 thisCommentBlock += thisChar;
             }
-            else
-            {
+            else {
                 thisNonCommentBlock += thisChar;
             }
         }
 
-        private void AppendCommentListItem(string AdditionalCommentBlock = "")
-        {
+        private void AppendCommentListItem(string AdditionalCommentBlock = "") {
             thisCommentBlock += AdditionalCommentBlock;
-            if (thisCommentBlock != string.Empty)
-            {
+            if (thisCommentBlock != string.Empty) {
                 CommentItems.Add(new CommentItem(thisCommentBlock, true));
                 thisCommentBlock = string.Empty;
             }
         }
 
         // init our CommentHelper
-        public CommentHelper(string item, bool IsContinuedLineComment, bool IsContinuedBlockComment)
-        {
+        public CommentHelper(string item, bool IsContinuedLineComment, bool IsContinuedBlockComment) {
             // item should be a single line of text, with no CR/LF
-            if (item == null)
-            {
+            if (item == null) {
                 // TODO - diagnostic logging, we should never have nulls!
                 thisLine = string.Empty;
             }
-            else
-            {
+            else {
                 thisLine = item;
             }
             CommentItems = new List<CommentItem>();
             this.HasOpenLineComment = IsContinuedLineComment;// we may be string with a string (or tag) on a line after a "//", set to be re-used again
-            if (IsContinuedLineComment)
-            {
+            if (IsContinuedLineComment) {
                 this.HasBlockEndComment = false;
                 this.HasBlockStartComment = false; // we can never have an open block comment when there's an open line comment (e.g. "// comment /* this is still ine comment, not block")
                 AppendCommentListItem(thisLine);
@@ -100,22 +90,18 @@ namespace CommentHelper
             posBlockStartComment = thisLine.IndexOf("/*");
             posBlockEndComment = thisLine.IndexOf("*/");
 
-            if (IsContinuedBlockComment || (posBlockStartComment > -1) || (posBlockEndComment > -1) || (posLineComment > -1))
-            {
-                if (HasOpenLineComment && (posBlockStartComment > posLineComment))
-                {
+            if (IsContinuedBlockComment || (posBlockStartComment > -1) || (posBlockEndComment > -1) || (posLineComment > -1)) {
+                if (HasOpenLineComment && (posBlockStartComment > posLineComment)) {
                     posBlockStartComment = -1; // we are not interested in any starting block comments after a line comment tag
                     HasBlockStartComment = false;
                 }
 
-                if (HasOpenLineComment && (posBlockEndComment > posLineComment))
-                {
+                if (HasOpenLineComment && (posBlockEndComment > posLineComment)) {
                     posBlockEndComment = -1; // we are not interested in any ending block comments after a line comment tag
                     HasBlockEndComment = false;
                 }
 
-                if (HasOpenLineComment && (posLineComment > posBlockStartComment))
-                {
+                if (HasOpenLineComment && (posLineComment > posBlockStartComment)) {
                     posLineComment = -1; // ignore this line comment for now, being after the opening block
                     HasOpenLineComment = false;
                 }
@@ -126,29 +112,23 @@ namespace CommentHelper
                 string nextChar = string.Empty;
                 string thisTag = string.Empty;
 
-                for (int i = 0; i <= this.thisLine.Length - 1; i++)
-                {
+                for (int i = 0; i <= this.thisLine.Length - 1; i++) {
                     thisTag = string.Empty;
                     nextChar = string.Empty;
                     thisChar = thisLine.Substring(i, 1);
-                    if (i < this.thisLine.Length - 1)
-                    {
+                    if (i < this.thisLine.Length - 1) {
                         nextChar = thisLine.Substring(i + 1, 1);
                     }
                     thisTag = thisChar + nextChar;
 
-                    if (thisTag == "//")
-                    {
-                        if (HasBlockStartComment)
-                        {
+                    if (thisTag == "//") {
+                        if (HasBlockStartComment) {
                             // nothing to do, this "//" comment is arleady inside a block comment
                             HasOpenLineComment = false; // for completness, we cannot have an active open line comment "//" inside of a block comment "/"
                         }
-                        else
-                        {
+                        else {
                             HasOpenLineComment = true;
-                            if (thisNonCommentBlock != string.Empty)
-                            {
+                            if (thisNonCommentBlock != string.Empty) {
                                 CommentItems.Add(new CommentItem(thisNonCommentBlock, false));
                                 thisNonCommentBlock = string.Empty;
                             }
@@ -157,15 +137,12 @@ namespace CommentHelper
                     }
 
                     // else check for an opening comment block "/*"
-                    else if (thisTag == "/*")
-                    {
-                        if (thisNonCommentBlock != string.Empty)
-                        {
+                    else if (thisTag == "/*") {
+                        if (thisNonCommentBlock != string.Empty) {
                             CommentItems.Add(new CommentItem(thisNonCommentBlock, false));
                             thisNonCommentBlock = string.Empty;
                         }
-                        if (!HasOpenLineComment)
-                        {
+                        if (!HasOpenLineComment) {
                             // we can only open a block comment outside of an open line comment
                             HasBlockStartComment = true;
                         }
@@ -173,24 +150,19 @@ namespace CommentHelper
                     }
 
                     // else check for closing comment block "*/"
-                    else if (thisTag == "*/")
-                    {
-                        if (HasOpenLineComment)
-                        {
+                    else if (thisTag == "*/") {
+                        if (HasOpenLineComment) {
                             // nothing to do, closing block after open line comment
                         }
-                        else
-                        {
+                        else {
                             AppendBlockChar(thisChar); // append this char to the comment or non-comment block as appropriate
                             AppendBlockChar(nextChar); // append the next char to the comment or non-comment block as appropriate
                             i++;
-                            if (HasBlockStartComment)
-                            {
+                            if (HasBlockStartComment) {
                                 CommentItems.Add(new CommentItem(thisCommentBlock, true));
                                 thisCommentBlock = string.Empty;
                             }
-                            else
-                            {
+                            else {
                                 // closing block comment found without opening, so it is not a comment
                                 CommentItems.Add(new CommentItem(thisNonCommentBlock, false));
                                 thisNonCommentBlock = string.Empty;
@@ -202,8 +174,7 @@ namespace CommentHelper
                     } //  else if (thisTag == "*/")
 
                     // if none of the comment tags are found, continue appaending with whatever state we are in (comment or no-commnet)
-                    else
-                    {
+                    else {
                         // as this is not a comment state change, append thisChar as appropriate
                         AppendBlockChar(thisChar);
                     }
@@ -211,21 +182,18 @@ namespace CommentHelper
                 } // end of for loop checking each char
 
                 // add any outstanding comment text to our list
-                if (thisCommentBlock != string.Empty)
-                {
+                if (thisCommentBlock != string.Empty) {
                     CommentItems.Add(new CommentItem(thisCommentBlock, true));
                     thisCommentBlock = string.Empty;
                 }
 
                 // add any outstanding regaular, non-comment text to our list
-                if (thisNonCommentBlock != string.Empty)
-                {
+                if (thisNonCommentBlock != string.Empty) {
                     CommentItems.Add(new CommentItem(thisNonCommentBlock, false));
                     thisNonCommentBlock = string.Empty;
                 }
             }
-            else
-            {
+            else {
                 // if we didn't have incoming active comment, and didn't find an opening,
                 // then we don't have a comment to consider, so the entire item is not a comment
                 CommentItems.Add(new CommentItem(thisLine, false));

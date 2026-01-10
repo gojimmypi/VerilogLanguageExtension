@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.Composition;
+using System.ComponentModel.Composition;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.Text.Operations;
@@ -13,7 +13,7 @@ namespace VerilogLanguage.Highlighting
 {
     // Creating a Tagger Provider
 
-    // Create a class named HighlightWordTaggerProvider that implements IViewTaggerProvider, 
+    // Create a class named HighlightWordTaggerProvider that implements IViewTaggerProvider,
     // and export it with a ContentTypeAttribute of "text" and a TagTypeAttribute of TextMarkerTag.
     [Export(typeof(IViewTaggerProvider))]
     [ContentType("verilog")]
@@ -27,9 +27,8 @@ namespace VerilogLanguage.Highlighting
         [Import]
         internal ITextStructureNavigatorSelectorService TextStructureNavigatorSelector { get; set; }
         // Step 3: Implement the CreateTagger method to return an instance of HighlightWordTagger.
-        public ITagger<T> CreateTagger<T>(ITextView textView, ITextBuffer buffer) where T : ITag
-        {
-            //provide highlighting only on the top buffer   
+        public ITagger<T> CreateTagger<T>(ITextView textView, ITextBuffer buffer) where T : ITag {
+            //provide highlighting only on the top buffer
             if (textView.TextBuffer != buffer)
                 return null;
 
@@ -38,7 +37,7 @@ namespace VerilogLanguage.Highlighting
             // TODO - do we really want to reparse here??
             // this appears to be the only place called when first opening a file. (?)
             //
-            // keywords: onload initialize startup 
+            // keywords: onload initialize startup
             //
             VerilogGlobals.ParseStatusController.Init(thisFile);
 
@@ -50,7 +49,7 @@ namespace VerilogLanguage.Highlighting
             // VerilogGlobals.ParseStatus_NeedReparse_SetValue(thisFile, true);
             VerilogGlobals.ParseStatusController.NeedReparse_SetValue(thisFile, true);
 
-            VerilogGlobals.Reparse(buffer,thisFile); // parse the buffer at file load time
+            VerilogGlobals.Reparse(buffer, thisFile); // parse the buffer at file load time
 
             ITextStructureNavigator textStructureNavigator =
                 TextStructureNavigatorSelector.GetTextStructureNavigator(buffer);

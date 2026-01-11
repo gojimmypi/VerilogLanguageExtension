@@ -93,8 +93,18 @@ namespace VerilogLanguage.VerilogToken
 
         // ITextView View { get; set; }
         public ITagger<T> CreateTagger<T>(ITextBuffer buffer) where T : ITag {
+#if DEBUG
             // System.Diagnostics.Debugger.Break();
-            // System.Diagnostics.Debug.WriteLine("VerilogClassifierProvider.CreateTagger: ContentType=" + buffer.ContentType.TypeName);
+            System.Diagnostics.Debug.WriteLine("VerilogClassifierProvider.CreateTagger: ContentType=" + buffer.ContentType.TypeName);
+#endif
+            if (buffer == null) {
+                return null;
+            }
+
+            if (aggregatorFactory == null || ClassificationTypeRegistry == null) {
+                return null;
+            }
+
             string filePath = null;
             ITextDocument doc = null;
 
@@ -110,13 +120,19 @@ namespace VerilogLanguage.VerilogToken
             }
 
             bool isSystemVerilog = string.Equals(ext, ".sv", StringComparison.OrdinalIgnoreCase) ||
-                                  string.Equals(ext, ".svh", StringComparison.OrdinalIgnoreCase);
+                                   string.Equals(ext, ".svh", StringComparison.OrdinalIgnoreCase);
 
             ITagAggregator<VerilogTokenTag> VerilogTagAggregator =
                                             aggregatorFactory.CreateTagAggregator<VerilogTokenTag>(buffer);
 
-            return buffer.Properties.GetOrCreateSingletonProperty<ITagger<T>>(
-                () => new VerilogClassifier(buffer, VerilogTagAggregator, ClassificationTypeRegistry) as ITagger<T>);
+            // IMPORTANT:
+            // Return a single tagger instance per buffer.
+            // Creating a new tagger each time causes multiple aggregator subscriptions and unstable behavior.
+            //
+            // Note: the GetOrCreateSingletonProperty key is the T interface, so the cast is safe.
+
+            return buffer.Properties.GetOrCreateSingletonProperty(
+                () => new VerilogClassifier(buffer, VerilogTagAggregator, ClassificationTypeRegistry)) as ITagger<T>;
         }
     }
 
@@ -271,7 +287,19 @@ namespace VerilogLanguage.VerilogToken
 
             var spans = e.Span.GetSpans(snapshot);
             if (spans.Count > 0) {
-                _tagsChanged?.Invoke(this, new SnapshotSpanEventArgs(spans[0]));
+                int start = spans[0].Start.Position;
+                int end = spans[0].End.Position;
+
+                for (int i = 1; i < spans.Count; i++) {
+                    if (spans[i].Start.Position < start) {
+                        start = spans[i].Start.Position;
+                    }
+                    if (spans[i].End.Position > end) {
+                        end = spans[i].End.Position;
+                    }
+                }
+
+                _tagsChanged?.Invoke(this, new SnapshotSpanEventArgs(new SnapshotSpan(snapshot, Span.FromBounds(start, end))));
                 return;
             }
 
@@ -325,11 +353,12 @@ namespace VerilogLanguage.VerilogToken
                     continue;
                 }
 
-                yield return new TagSpan<ClassificationTag>(
-                    tagSpans[0],
-                    new ClassificationTag(classificationType));
+                foreach (var curSpan in tagSpans) {
+                    yield return new TagSpan<ClassificationTag>(
+                        curSpan,
+                        new ClassificationTag(classificationType));
+                }
             }
         }
     }
 }
-

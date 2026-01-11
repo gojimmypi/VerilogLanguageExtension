@@ -1,3 +1,4 @@
+// File: VerilogTokenTagProvider.cs
 //***************************************************************************
 //
 //  MIT License
@@ -24,29 +25,40 @@
 //
 //***************************************************************************
 
+using System;
+using System.ComponentModel.Composition;
+using Microsoft.VisualStudio.Text;
+using Microsoft.VisualStudio.Text.Tagging;
+using Microsoft.VisualStudio.Utilities;
+
 namespace VerilogLanguage.VerilogToken
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.Composition;
-    using Microsoft.VisualStudio.Text;
-    using Microsoft.VisualStudio.Text.Classification;
-    using Microsoft.VisualStudio.Text.Editor;
-    using Microsoft.VisualStudio.Text.Tagging;
-    using Microsoft.VisualStudio.Utilities;
-    using CommentHelper;
-    //using Microsoft.VisualStudio.Text.Operations;
-
-    // You must export a tagger provider for your tagger. The tagger provider creates an VerilogTokenTag
-    // for a buffer of the "verilog" content type, or else returns an OutliningTagger if the buffer already has one.
+    // You must export a tagger provider for your tagger.
+    // IMPORTANT: Only ONE tagger instance per buffer.
     [Export(typeof(ITaggerProvider))]
     [TagType(typeof(VerilogTokenTag))]
     [ContentType("verilog")] // see _buffer.ContentType (ITextBuffer.ContentType Property)
     internal sealed class VerilogTokenTagProvider : ITaggerProvider
     {
         public ITagger<T> CreateTagger<T>(ITextBuffer buffer) where T : ITag {
-            return new VerilogTokenTagger(buffer) as ITagger<T>;
+            System.Diagnostics.Debug.WriteLine(
+                "VerilogTokenTagProvider.CreateTagger: ContentType=" + buffer.ContentType.TypeName);
 
+            if (buffer == null) {
+                return null;
+            }
+
+            // CRITICAL:
+            // Returning a new tagger each time causes:
+            //   - multiple buffer.Changed handlers
+            //   - multiple token scans
+            //   - broken / partial classification
+            //
+            // This MUST be a singleton per buffer.
+            return buffer.Properties.GetOrCreateSingletonProperty<ITagger<T>>(
+                () => new VerilogTokenTagger(buffer) as ITagger<T>);
+
+            // return new VerilogTokenTagger(buffer) as ITagger<T>;
             // TODO which is better? above or below?
 
             //Func<ITagger<T>> sc = delegate () { return new VerilogTokenTagger(buffer) as ITagger<T>; };

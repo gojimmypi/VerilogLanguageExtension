@@ -1,3 +1,4 @@
+// File: BraceMatchingTaggerProvider.cs
 // adapted from https://github.com/madskristensen/ExtensibilityTools
 
 using System.ComponentModel.Composition;
@@ -11,10 +12,13 @@ namespace VerilogLanguage.BraceMatching
     [Export(typeof(IViewTaggerProvider))]
     [ContentType("verilog")]
     [TagType(typeof(TextMarkerTag))]
-    class BraceMatchingTaggerProvider : IViewTaggerProvider
+    internal sealed class BraceMatchingTaggerProvider : IViewTaggerProvider
     {
         // Step 2: Implement the CreateTagger method to instantiate a BraceMatchingTagger.
         public ITagger<T> CreateTagger<T>(ITextView textView, ITextBuffer buffer) where T : ITag {
+#if DEBUG
+            System.Diagnostics.Debug.WriteLine("Verilog BraceMatching: buffer.ContentType=" + buffer.ContentType.TypeName);
+#endif
             if (textView == null) {
                 return null;
             }
@@ -24,7 +28,16 @@ namespace VerilogLanguage.BraceMatching
                 return null;
             }
 
-            return new BraceMatchingTagger(textView, buffer) as ITagger<T>;
+            // old code for reference:
+            // return textView.Properties.GetOrCreateSingletonProperty<ITagger<T>>(
+            //     () => new BraceMatchingTagger(textView, buffer) as ITagger<T>);
+
+            // IMPORTANT:
+            // Return a single tagger instance per view.
+            return textView.Properties.GetOrCreateSingletonProperty(
+                () => new BraceMatchingTagger(textView, buffer)) as ITagger<T>;
+
+
         }
     }
 }

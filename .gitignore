@@ -54,3 +54,9 @@
 /EditorClassifier/EditorClassifier1ClassificationDefinition.cs.old
 /EditorClassifier/EditorClassifier1Format.cs.old
 /EditorClassifier/EditorClassifier1Provider.cs.old
+/Outlining/OutliningTagger.cs.old
+/Outlining/OutliningTaggerProvider.cs.old
+/Tagger/BraceMatchingTagger.cs.old
+/Tagger/BraceMatchingTaggerProvider.cs.old
+/Tagger/OutliningTagger.cs.old
+/Tagger/OutliningTaggerProvider.cs.old

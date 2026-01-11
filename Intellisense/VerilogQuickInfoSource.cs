@@ -111,7 +111,7 @@ namespace VerilogLanguage
             [VerilogToken.VerilogTokenTypes.Verilog_signed] = "Declare reg variables and all net data types using the reserved word signed. The signed reserved word can also be placed on module port declarations. When either the date type or the port is declared signed, the other inherits the property of the signed data type or port. Note Signed operations can be performed with vectors of any size.",
             [VerilogToken.VerilogTokenTypes.Verilog_specify] = "The specify reserved word opens a specify block. Specify blocks can be used to describe various paths across the module, assign delays to those paths, and perform timing checks to ensure that events occurring at the module inputs satisfy the timing constraints of the device described by the module.",
             [VerilogToken.VerilogTokenTypes.Verilog_specparam] = "The reserved word specparam declares parameters within specify blocks called specify parameters (specparams), to distinguish them from module parameters.",
-            [VerilogToken.VerilogTokenTypes.Verilog_strength] = "The reserved word strength specifies drive strength for a gate instance. You can specify the output drive strengths for both 0 and 1 values when you instantiate a gate. When you declare drive strengths, you must specify both the 1 and 0 strengths unless the instance is a pulldown or pullup gate. When you donâ€™t specify strengths, the defaults are strong1, and strong0.",
+            [VerilogToken.VerilogTokenTypes.Verilog_strength] = "The reserved word strength specifies drive strength for a gate instance. You can specify the output drive strengths for both 0 and 1 values when you instantiate a gate. When you declare drive strengths, you must specify both the 1 and 0 strengths unless the instance is a pulldown or pullup gate. When you don't specify strengths, the defaults are strong1, and strong0.",
             [VerilogToken.VerilogTokenTypes.Verilog_table] = "Not Supported in Synthesis: The reserved word table begins a state table. State tables define the behavior of a UDP.",
             [VerilogToken.VerilogTokenTypes.Verilog_task] = "The task reserved word opens a task statement. You may define procedures, or tasks that allow you to execute the same code from many different places in your description. Tasks are also useful in breaking up large procedures into smaller, more manageable blocks. Tasks may return more than one value and may contain timing controls. You can disable tasks in the same manner as named blocks.",
             [VerilogToken.VerilogTokenTypes.Verilog_tri] = "Tri nets connect elements. The net-type tri is identical in syntax and function to the net-type wire. A tri net-type can be used where multiple drivers drive a net.",
@@ -169,10 +169,13 @@ namespace VerilogLanguage
             foreach (IMappingTagSpan<VerilogTokenTag> curTag in _aggregator.GetTags(probeSpan)) {
                 cancellationToken.ThrowIfCancellationRequested();
 
-                SnapshotSpan tagSpan = curTag.Span.GetSpans(_buffer).FirstOrDefault();
-                if (tagSpan.Snapshot == null) {
+                // Normalize mapping span to the current snapshot for this buffer.
+                var spans = curTag.Span.GetSpans(_buffer.CurrentSnapshot);
+                if (spans == null || spans.Count == 0) {
                     continue;
                 }
+
+                SnapshotSpan tagSpan = spans[0];
 
                 ITrackingSpan applicableToSpan = _buffer.CurrentSnapshot.CreateTrackingSpan(
                     tagSpan,
@@ -225,5 +228,3 @@ namespace VerilogLanguage
         }
     }
 }
-
-

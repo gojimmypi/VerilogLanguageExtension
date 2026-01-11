@@ -28,65 +28,104 @@ namespace VerilogLanguage.VerilogToken
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.Composition;
     using Microsoft.VisualStudio.Text;
-    using Microsoft.VisualStudio.Text.Classification;
     using Microsoft.VisualStudio.Text.Editor;
     using Microsoft.VisualStudio.Text.Tagging;
-    using Microsoft.VisualStudio.Utilities;
     using CommentHelper;
     using System.Threading;
 
     internal sealed class VerilogTokenTagger : ITagger<VerilogTokenTag>
     {
+
+        private Timer _reparseCompletionTimer;
+        private string _lastReparseFile = string.Empty;
+
+        private readonly SynchronizationContext _uiContext;
+        private int _initialInvalidateAttempted;
+
         // ITextView View { get; set; }
-        ITextBuffer _buffer;
+        private readonly ITextBuffer _buffer;
 
         internal VerilogTokenTagger(ITextBuffer buffer) {
-
             VerilogGlobals.PerfMon.VerilogTokenTagger_Count++;
             VerilogGlobals.TheBuffer = buffer;
             _buffer = buffer;
 
+            _uiContext = SynchronizationContext.Current;
+
             this._buffer.Changed += BufferChanged;
+
+            // Initial parse is required so module/variable tables exist before the first classification pass.
+            TriggerReparseAndRefreshAll();
+
+            // Do not rely on ctor-time invalidate; there are often no subscribers yet.
+            // We will do a one-shot invalidate when GetTags is first called (subscribers exist then).
         }
 
+        /// <summary>
+        /// Trigger an initial reparse and ensure we repaint AFTER threaded parsing completes.
+        /// </summary>
+        private void TriggerReparseAndRefreshAll() {
+            string thisFile = VerilogLanguage.VerilogGlobals.GetDocumentPath(_buffer.CurrentSnapshot);
+            if (string.IsNullOrEmpty(thisFile)) {
+                return;
+            }
 
+            VerilogGlobals.ParseStatusController.NeedReparse_SetValue(thisFile, true);
 
+            // Start parse (may be threaded).
+            VerilogGlobals.Reparse(_buffer, thisFile);
 
-        //private void Start()
-        //{
-        //    System.Diagnostics.Debug.WriteLine("1. Call thread task");
+            // If threaded, the data will not be ready yet. Refresh again once the thread completes.
+            StartOrResetReparseCompletionWatcher(thisFile);
+        }
 
-        //    StartMyLongRunningTask();
+        private void StartOrResetReparseCompletionWatcher(string forFile) {
+            if (string.IsNullOrEmpty(forFile)) {
+                return;
+            }
 
-        //    System.Diagnostics.Debug.WriteLine("2. Do something else");
-        //}
+            _lastReparseFile = forFile;
 
-        //private void StartMyLongRunningTask()
-        //{
+            if (_reparseCompletionTimer == null) {
+                _reparseCompletionTimer = new Timer(ReparseCompletionTimerCallback, null, 50, 50);
+            }
+            else {
+                _reparseCompletionTimer.Change(50, 50);
+            }
+        }
 
-        //    ThreadStart starter = myLongRunningTask;
+        private void ReparseCompletionTimerCallback(object state) {
+            string forFile = _lastReparseFile;
+            if (string.IsNullOrEmpty(forFile)) {
+                return;
+            }
 
-        //    starter += () =>
-        //    {
-        //        myLongRunningTaskDone();
-        //    };
+            // Wait for parse to complete, then invalidate all.
+            if (VerilogGlobals.ParseStatusController.IsReparsing(forFile)) {
+                return;
+            }
 
-        //    Thread _thread = new Thread(starter) { IsBackground = true };
-        //    _thread.Start();
-        //}
+            // Stop the timer (one-shot behavior).
+            try {
+                _reparseCompletionTimer.Change(Timeout.Infinite, Timeout.Infinite);
+            }
+            catch {
+                // ignore
+            }
 
-        //private void myLongRunningTaskDone()
-        //{
-        //    System.Diagnostics.Debug.WriteLine("3. Task callback result");
-        //}
+            ITextSnapshot snapshot = null;
+            try {
+                snapshot = _buffer.CurrentSnapshot;
+            }
+            catch {
+                snapshot = null;
+            }
 
-        //private void myLongRunningTask()
-        //{
-        //    string thisFile = VerilogLanguage.VerilogGlobals.GetDocumentPath(_buffer.CurrentSnapshot);
-        //    VerilogGlobals.Reparse(_buffer, thisFile); // note that above, we are checking that the e.After is the same as the _buffer
-        //}
+            if (snapshot != null) {
+                InvalidateAll(snapshot);
+            }
+        }
 
         /// <summary>
         ///   BufferChanged - handle Buffer Changed event. If buffer has a character with possible far-reaching consequences
@@ -96,79 +135,153 @@ namespace VerilogLanguage.VerilogToken
         /// <param name="e"></param>
         void BufferChanged(object sender, TextContentChangedEventArgs e) {
             // If this isn't the most up-to-date version of the buffer, then ignore it for now (we'll eventually get another change event).
-            if (e.After != _buffer.CurrentSnapshot)
+            if (e.After != _buffer.CurrentSnapshot) {
                 return;
+            }
 
-            if (e.Changes.Count < 1) {
+            if (e.Changes == null || e.Changes.Count < 1) {
                 // TODO - how did we get here if there are no changes? (found this after exception during debug. no apparent invoke. )
                 return;
             }
 
-            string theNewText = e.Changes[0].NewText;
-            string theOldText = e.Changes[0].OldText;
+            // Always invalidate the affected span so classification refreshes reliably (even when we do not do a full reparse).
+            InvalidateChangedSpan(e);
 
-            if (e.Changes.Count > 1) {
-                // TODO - why exit if there is more than one change (perhaps exit if LESS than 1? no!)
-                return;
-            }
+            bool forceReparse = false;
 
+            foreach (ITextChange change in e.Changes) {
+                string theNewText = change.NewText;
+                string theOldText = change.OldText;
 
-            // we are only interested when the old and new text are different.
-            // yes, the event seems to be triggered even with no apparent changes
-            //
-            if (theNewText != theOldText) {
-                // even if the buffer is different, only certain characters require a full reparse
-                // typically brackets (since we keep track of depth) and comment chars:
-                if (VerilogGlobals.ContainsRefreshChar(theNewText) || VerilogGlobals.ContainsRefreshChar(theOldText)) {
-                    string thisFile = VerilogLanguage.VerilogGlobals.GetDocumentPath(_buffer.CurrentSnapshot);
-                    if (string.IsNullOrEmpty(thisFile)) {
-                        return;
+                // we are only interested when the old and new text are different.
+                // yes, the event seems to be triggered even with no apparent changes
+                //
+                if (theNewText != theOldText) {
+                    // even if the buffer is different, only certain characters require a full reparse
+                    // typically brackets (since we keep track of depth) and comment chars:
+                    if (VerilogGlobals.ContainsRefreshChar(theNewText) || VerilogGlobals.ContainsRefreshChar(theOldText)) {
+                        forceReparse = true;
+                        break;
                     }
-
-                    // VerilogGlobals.ParseStatus_NeedReparse_SetValue(thisFile, true);
-                    VerilogGlobals.ParseStatusController.NeedReparse_SetValue(thisFile, true);
-                    //VerilogGlobals.ParseStatus_EnsureExists(thisFile);
-                    //VerilogGlobals.ParseStatus[thisFile].NeedReparse = true;
-                    // VerilogGlobals.NeedReparse = true;
-
-                    //myLongRunningTask();
-                    VerilogGlobals.Reparse(_buffer, thisFile); // note that above, we are checking that the e.After is the same as the _buffer
+                }
+                else {
+                    System.Diagnostics.Debug.WriteLine("BufferChanged called but new and old text not different!");
                 }
             }
-            else {
-                System.Diagnostics.Debug.WriteLine("BufferChanged called but new and old text not different!");
+
+            if (forceReparse) {
+                string thisFile = VerilogLanguage.VerilogGlobals.GetDocumentPath(_buffer.CurrentSnapshot);
+                if (string.IsNullOrEmpty(thisFile)) {
+                    return;
+                }
+
+                VerilogGlobals.ParseStatusController.NeedReparse_SetValue(thisFile, true);
+
+                // Start parse (may be threaded).
+                VerilogGlobals.Reparse(_buffer, thisFile);
+
+                // IMPORTANT: If threaded, InvalidateAll now is too early. Watch for completion and invalidate then.
+                StartOrResetReparseCompletionWatcher(thisFile);
+
+                // Still invalidate now to avoid "stuck" visuals; completion watcher will repaint again when ready.
+                InvalidateAll(_buffer.CurrentSnapshot);
             }
         }
 
-        //=====================================================================================
-        // TODO - do spans always start on new lines? If not, we'll need an IsOpenLineComment
-        private bool IsOpenBlockComment(NormalizedSnapshotSpanCollection sc) // are we starting with prior text that is already an opening comment block?
-        {
-
-            // return false;
-
+        private bool IsOpenBlockComment(NormalizedSnapshotSpanCollection sc) {
             VerilogGlobals.PerfMon.VerilogTokenTagger_IsOpenBlockComment_Count++;
-            bool isLocalBlockComment = false; // we'll assume there's no open block comment unless otherwise found
+            bool isLocalBlockComment = false;
             bool isLocalLineComment = false;
+
             if (sc != null && sc[0].Snapshot != null && sc[0].Start.Position > 0) {
-                int ToPosition = sc[0].Start.Position - 1; // we are only interested in text priot to our current location
-                // SnapshotSpan PriorText = sc[0].Snapshot(0, ToPosition);
+                int toPosition = sc[0].Start.Position - 1;
                 foreach (ITextSnapshotLine thisLine in sc[0].Snapshot.Lines) {
                     int pos = thisLine.Start.Position;
-                    if (pos > ToPosition) {
-                        break; // nothing to do if the starting position is beyond our starting point, as we are only interested in prior open block
+                    if (pos > toPosition) {
+                        break;
                     }
-                    CommentHelper commentHelper = new CommentHelper(thisLine.GetText(), isLocalLineComment, isLocalBlockComment); // we are starting at the beginning of a string, so there's of course no prior "//" continued line comment
+
+                    CommentHelper commentHelper = new CommentHelper(thisLine.GetText(), isLocalLineComment, isLocalBlockComment);
                     isLocalBlockComment = commentHelper.HasBlockStartComment;
-                    isLocalLineComment = false; // we are sending entire lines here, so we are never worried about continued line comments previously starting with "//"
-                } // for each thisLine
-            } // if sc is not blank
+                    isLocalLineComment = false;
+                }
+            }
+
             return isLocalBlockComment;
         }
 
+        private void RaiseTagsChanged(SnapshotSpan span) {
+            var handler = TagsChanged;
+            if (handler == null) {
+                return;
+            }
 
+            if (_uiContext != null && SynchronizationContext.Current != _uiContext) {
+                _uiContext.Post(_ => handler(this, new SnapshotSpanEventArgs(span)), null);
+                return;
+            }
 
+            handler(this, new SnapshotSpanEventArgs(span));
+        }
 
+        private void InvalidateAll(ITextSnapshot snapshot) {
+            if (snapshot == null || snapshot.Length == 0) {
+                return;
+            }
+
+            RaiseTagsChanged(new SnapshotSpan(snapshot, 0, snapshot.Length));
+        }
+
+        private void InvalidateChangedSpan(TextContentChangedEventArgs e) {
+            ITextSnapshot snapshot = e.After;
+            if (snapshot == null || snapshot.Length == 0) {
+                return;
+            }
+
+            // Compute a conservative span to refresh from the first changed position to the end of the last changed region.
+            int start = int.MaxValue;
+            int end = 0;
+
+            foreach (ITextChange change in e.Changes) {
+                if (change == null) {
+                    continue;
+                }
+
+                if (change.NewPosition < start) {
+                    start = change.NewPosition;
+                }
+
+                int changeEnd = change.NewPosition + change.NewLength;
+                if (changeEnd > end) {
+                    end = changeEnd;
+                }
+            }
+
+            if (start == int.MaxValue) {
+                return;
+            }
+
+            if (start < 0) {
+                start = 0;
+            }
+
+            if (end < start) {
+                end = start;
+            }
+
+            if (end > snapshot.Length) {
+                end = snapshot.Length;
+            }
+
+            int length = end - start;
+            if (length <= 0) {
+                ITextSnapshotLine line = snapshot.GetLineFromPosition(start);
+                RaiseTagsChanged(line.Extent);
+                return;
+            }
+
+            RaiseTagsChanged(new SnapshotSpan(snapshot, start, length));
+        }
 
         /// <summary>
         ///   IEnumerable VerilogTokenTag GetTags
@@ -180,6 +293,12 @@ namespace VerilogLanguage.VerilogToken
             {
                 // do we really want to do this? (probably not)
                 // System.Threading.Thread.Sleep(10);
+            }
+
+            // This is the reliable place to trigger the initial full repaint:
+            // by the time VS asks for tags, the downstream aggregators are subscribed.
+            if (Interlocked.Exchange(ref _initialInvalidateAttempted, 1) == 0) {
+                InvalidateAll(_buffer.CurrentSnapshot);
             }
 
             //System.Diagnostics.Debug.WriteLine("Starting IEnumerable<ITagSpan<VerilogTokenTag>>");
@@ -205,8 +324,7 @@ namespace VerilogLanguage.VerilogToken
                 tokens = VerilogGlobals.VerilogKeywordSplit(containingLine.GetText(), priorToken);
 
                 bool isContinuedLineComment = false; // comments with "//" are only effective for the current line, but /* can span multiple lines
-                foreach (VerilogGlobals.VerilogToken verilogToken in tokens) // this group of tokens in in a single line
-                {
+                foreach (VerilogGlobals.VerilogToken verilogToken in tokens) { // this group of tokens in in a single line
                     // by the time we get here, we might have a tag with adjacent comments:
                     //     assign//
                     //     //assign
@@ -462,13 +580,14 @@ namespace VerilogLanguage.VerilogToken
 
         public event EventHandler<SnapshotSpanEventArgs> TagsChanged;
 
-        void ViewLayoutChanged(object sender, TextViewLayoutChangedEventArgs e) {
-            if (e.NewSnapshot != e.OldSnapshot) //make sure that there has really been a change
-            {
-                TagsChanged?.Invoke(this, new SnapshotSpanEventArgs(new SnapshotSpan(_buffer.CurrentSnapshot, 0,
-                        _buffer.CurrentSnapshot.Length)));
-            }
-        }
+        // TODO: confirm we really want to remove this ViewLayoutChanged
+        //void ViewLayoutChanged(object sender, TextViewLayoutChangedEventArgs e) {
+        //    if (e.NewSnapshot != e.OldSnapshot) //make sure that there has really been a change
+        //    {
+        //        TagsChanged?.Invoke(this, new SnapshotSpanEventArgs(new SnapshotSpan(_buffer.CurrentSnapshot, 0,
+        //                _buffer.CurrentSnapshot.Length)));
+        //    }
+        //}
     }
 
 }

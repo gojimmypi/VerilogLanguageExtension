@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--//***************************************************************************
+// file: source.extension.vsixmanifest
 //
 //    Copyright (c) Microsoft Corporation. All rights reserved.
 //    This code is licensed under the Visual Studio SDK license terms.
@@ -15,7 +16,7 @@
 
     <Metadata>
         <Identity Id="CF0DCF14-5B8F-4B42-8386-9D37BB99F98E"
-                  Version="0.3.6.1"
+                  Version="0.3.6.2"
                   Language="en-US"
                   Publisher="gojimmypi" />
 
@@ -65,6 +66,11 @@ keyword colorization. Useful for FPGA development.
                d:Source="File"
                Path="ProjectTemplates"
                d:TargetPath="ProjectTemplates\Verilog Project.zip" />
+
+        <Asset Type="Microsoft.VisualStudio.VsPackage"
+               d:Source="Project"
+               d:ProjectName="%CurrentProject%"
+               Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
     </Assets>
 
     <Prerequisites>

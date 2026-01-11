@@ -27,7 +27,7 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <FileAlignment>512</FileAlignment>
-    <GeneratePkgDefFile>false</GeneratePkgDefFile>
+    <GeneratePkgDefFile>true</GeneratePkgDefFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -51,6 +51,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <ItemGroup>
+    <VSCTCompile Include="VerilogLanguage.vsct">
+      <ResourceName>Menus.ctmenu</ResourceName>
+    </VSCTCompile>
+  </ItemGroup>
   <!-- PackageReference MUST be before imports/targets -->
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.SDK" Version="17.14.40265" PrivateAssets="all" />
@@ -69,6 +74,7 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase" />
@@ -78,6 +84,13 @@
     <Compile Include="Classification\ClassificationType.cs" />
     <Compile Include="Classification\VerilogClassifier.cs" />
     <Compile Include="CommentHelper\CommentHelper.cs" />
+    <Compile Include="SnapshotExporter\GuidList.cs" />
+    <Compile Include="SnapshotExporter\PkgCmdIDList.cs" />
+    <Compile Include="SnapshotExporter\VerilogLanguagePackage.cs" />
+    <Compile Include="SnapshotExporter\ExportSnapshotCommand.cs" />
+    <Compile Include="SnapshotExporter\SnapshotExporter.cs" />
+    <Compile Include="SnapshotExporter\SnapshotExportOnOpen.cs" />
+    <Compile Include="SnapshotExporter\SnapshotModel.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Globals\BufferAttributes.cs" />
     <Compile Include="Globals\OutputWindow.cs" />

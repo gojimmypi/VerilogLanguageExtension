@@ -39,6 +39,7 @@ namespace VerilogLanguage
                    (theChar == '~') ||
                    (theChar == '!') ||
                    (theChar == '&') ||
+                   (theChar == '|') ||
 
                    // TODO the comment chars as delimiters are not currently working properly (workaround: use a space on either side)
                    //(theString == '*') ||  // the '*' character

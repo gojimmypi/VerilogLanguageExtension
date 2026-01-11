@@ -24,15 +24,20 @@
 //
 //***************************************************************************
 
+#define USE_JTF_DISABLED
+
 namespace VerilogLanguage.VerilogToken
 {
     using System;
     using System.Collections.Generic;
+    using Microsoft.VisualStudio.Shell;
     using Microsoft.VisualStudio.Text;
     using Microsoft.VisualStudio.Text.Editor;
     using Microsoft.VisualStudio.Text.Tagging;
     using CommentHelper;
     using System.Threading;
+    using Microsoft.VisualStudio.Threading;
+
 
     internal sealed class VerilogTokenTagger : ITagger<VerilogTokenTag>
     {
@@ -40,18 +45,27 @@ namespace VerilogLanguage.VerilogToken
         private Timer _reparseCompletionTimer;
         private string _lastReparseFile = string.Empty;
 
-        private readonly SynchronizationContext _uiContext;
         private int _initialInvalidateAttempted;
 
         // ITextView View { get; set; }
         private readonly ITextBuffer _buffer;
 
+#if USE_JTF
+        private readonly JoinableTaskFactory _jtf;
+#else
+        private readonly SynchronizationContext _uiContext;
+#endif
         internal VerilogTokenTagger(ITextBuffer buffer) {
             VerilogGlobals.PerfMon.VerilogTokenTagger_Count++;
             VerilogGlobals.TheBuffer = buffer;
             _buffer = buffer;
 
+#if USE_JTF
+            // Prefer VS JTF for UI-thread switches (avoids VSTHRD001).
+            _jtf = ThreadHelper.JoinableTaskFactory;
+#else
             _uiContext = SynchronizationContext.Current;
+#endif
 
             this._buffer.Changed += BufferChanged;
 
@@ -193,7 +207,7 @@ namespace VerilogLanguage.VerilogToken
             bool isLocalBlockComment = false;
             bool isLocalLineComment = false;
 
-            if (sc != null && sc[0].Snapshot != null && sc[0].Start.Position > 0) {
+            if (sc != null && sc.Count > 0 && sc[0].Snapshot != null && sc[0].Start.Position > 0) {
                 int toPosition = sc[0].Start.Position - 1;
                 foreach (ITextSnapshotLine thisLine in sc[0].Snapshot.Lines) {
                     int pos = thisLine.Start.Position;
@@ -216,10 +230,22 @@ namespace VerilogLanguage.VerilogToken
                 return;
             }
 
-            if (_uiContext != null && SynchronizationContext.Current != _uiContext) {
-                _uiContext.Post(_ => handler(this, new SnapshotSpanEventArgs(span)), null);
+#if USE_JTF
+            if (!_jtf.Context.IsOnMainThread) {
+            _jtf.RunAsync(async () =>
+                {
+                    await _jtf.SwitchToMainThreadAsync();
+                    handler(this, new SnapshotSpanEventArgs(span));
+                });
                 return;
             }
+#else
+            if (_uiContext != null && SynchronizationContext.Current != _uiContext) {
+                _uiContext.Post(_ => handler(this, new SnapshotSpanEventArgs(span)), null); // Post causes warning VSTHRD001: Await JoinableTaskFactory.SwitchToMainThreadAsync() to switch to the UI thread instead of APIs that can deadlock or require specifying a priority (htt
+                return;
+            }
+
+#endif
 
             handler(this, new SnapshotSpanEventArgs(span));
         }
@@ -293,6 +319,10 @@ namespace VerilogLanguage.VerilogToken
             {
                 // do we really want to do this? (probably not)
                 // System.Threading.Thread.Sleep(10);
+            }
+
+            if (spans == null || spans.Count == 0) {
+                yield break;
             }
 
             // This is the reliable place to trigger the initial full repaint:

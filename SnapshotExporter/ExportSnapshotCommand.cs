@@ -30,13 +30,13 @@ using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Editor;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.Text.Tagging;
 using Microsoft.VisualStudio.TextManager.Interop;
 using System;
 using System.ComponentModel.Design;
 using System.IO;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace VerilogLanguage.Testing
@@ -44,19 +44,24 @@ namespace VerilogLanguage.Testing
     internal sealed class ExportSnapshotCommand
     {
         private readonly AsyncPackage _package;
+        private readonly OleMenuCommand _command;
 
         private ExportSnapshotCommand(AsyncPackage package, OleMenuCommandService commandService) {
             _package = package;
 
-            var cmdId = new CommandID(GuidList.GuidVerilogLanguageCmdSet, (int)PkgCmdIDList.CmdIdExportVerilogSnapshot);
-            var cmd = new OleMenuCommand(Execute, cmdId);
-            commandService.AddCommand(cmd);
+            var cmdId = new CommandID(GuidList.GuidVerilogLanguageCmdSet, PkgCmdIDList.CmdIdExportVerilogSnapshot);
+
+            _command = new OleMenuCommand(Execute, cmdId);
+            _command.BeforeQueryStatus += OnBeforeQueryStatus;
+
+            commandService.AddCommand(_command);
         }
 
         public static async Task InitializeAsync(AsyncPackage package) {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            var commandService = await package.GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
+            object commandServiceObj = await package.GetServiceAsync(typeof(IMenuCommandService)).ConfigureAwait(true);
+            var commandService = commandServiceObj as OleMenuCommandService;
             if (commandService == null) {
                 return;
             }
@@ -64,19 +69,40 @@ namespace VerilogLanguage.Testing
             _ = new ExportSnapshotCommand(package, commandService);
         }
 
+        private void OnBeforeQueryStatus(object sender, EventArgs e) {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            // Always show/enable. Even if view acquisition fails, we show a message box.
+            _command.Visible = true;
+            _command.Enabled = true;
+        }
+
         private void Execute(object sender, EventArgs e) {
             ThreadHelper.ThrowIfNotOnUIThread();
 
             ThreadHelper.JoinableTaskFactory.Run(async () =>
             {
-                await ExecuteAsync().ConfigureAwait(true);
+                await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+                try {
+                    await ExecuteAsync().ConfigureAwait(true);
+                }
+                catch (Exception ex) {
+                    VsShellUtilities.ShowMessageBox(
+                        _package,
+                        ex.ToString(),
+                        "Export Verilog Snapshot - Exception",
+                        OLEMSGICON.OLEMSGICON_CRITICAL,
+                        OLEMSGBUTTON.OLEMSGBUTTON_OK,
+                        OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
+                }
             });
         }
 
         private async Task ExecuteAsync() {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            IWpfTextView view = await TryGetActiveWpfTextViewAsync().ConfigureAwait(true);
+            IWpfTextView view = await TryGetActiveWpfTextView_NoAdaptersAsync().ConfigureAwait(true);
             if (view == null) {
                 VsShellUtilities.ShowMessageBox(
                     _package,
@@ -90,17 +116,12 @@ namespace VerilogLanguage.Testing
 
             string filePath = await TryGetActiveDocumentPathAsync().ConfigureAwait(true);
 
-            var componentModelObj = await _package.GetServiceAsync(typeof(SComponentModel)).ConfigureAwait(true);
+            object componentModelObj = await _package.GetServiceAsync(typeof(SComponentModel)).ConfigureAwait(true);
             var componentModel = componentModelObj as IComponentModel;
             if (componentModel == null) {
-                return;
-            }
-
-            var bufferAggFactory = componentModel.GetService<IBufferTagAggregatorFactoryService>();
-            if (bufferAggFactory == null) {
                 VsShellUtilities.ShowMessageBox(
                     _package,
-                    "IBufferTagAggregatorFactoryService not available.",
+                    "SComponentModel not available.",
                     "Export Verilog Snapshot",
                     OLEMSGICON.OLEMSGICON_WARNING,
                     OLEMSGBUTTON.OLEMSGBUTTON_OK,
@@ -108,7 +129,21 @@ namespace VerilogLanguage.Testing
                 return;
             }
 
-            var exporter = new SnapshotExporter(bufferAggFactory);
+            var classifierAgg = componentModel.GetService<IClassifierAggregatorService>();
+            var bufferAggFactory = componentModel.GetService<IBufferTagAggregatorFactoryService>();
+
+            if (classifierAgg == null || bufferAggFactory == null) {
+                VsShellUtilities.ShowMessageBox(
+                    _package,
+                    "Required editor services not available.",
+                    "Export Verilog Snapshot",
+                    OLEMSGICON.OLEMSGICON_WARNING,
+                    OLEMSGBUTTON.OLEMSGBUTTON_OK,
+                    OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
+                return;
+            }
+
+            var exporter = new SnapshotExporter(classifierAgg, bufferAggFactory);
 
             EditorSnapshotExport export = exporter.Export(view, filePath);
 
@@ -138,23 +173,14 @@ namespace VerilogLanguage.Testing
             return name;
         }
 
-        private async Task<IWpfTextView> TryGetActiveWpfTextViewAsync() {
+        // Avoid IVsEditorAdaptersFactoryService.
+        // Pull IWpfTextViewHost from IVsTextView via IVsUserData.
+        private async Task<IWpfTextView> TryGetActiveWpfTextView_NoAdaptersAsync() {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            var textManagerObj = await _package.GetServiceAsync(typeof(SVsTextManager)).ConfigureAwait(true);
+            object textManagerObj = await _package.GetServiceAsync(typeof(SVsTextManager)).ConfigureAwait(true);
             var textManager = textManagerObj as IVsTextManager;
             if (textManager == null) {
-                return null;
-            }
-
-            var componentModelObj = await _package.GetServiceAsync(typeof(SComponentModel)).ConfigureAwait(true);
-            var componentModel = componentModelObj as IComponentModel;
-            if (componentModel == null) {
-                return null;
-            }
-
-            var editorAdapters = componentModel.GetService<IVsEditorAdaptersFactoryService>();
-            if (editorAdapters == null) {
                 return null;
             }
 
@@ -164,48 +190,52 @@ namespace VerilogLanguage.Testing
                 return null;
             }
 
-            return editorAdapters.GetWpfTextView(activeView);
+            var userData = activeView as IVsUserData;
+            if (userData == null) {
+                return null;
+            }
+
+            object holder;
+            Guid guidViewHost = Microsoft.VisualStudio.Editor.DefGuidList.guidIWpfTextViewHost;
+
+            hr = userData.GetData(ref guidViewHost, out holder);
+            if (ErrorHandler.Failed(hr) || holder == null) {
+                return null;
+            }
+
+            var host = holder as IWpfTextViewHost;
+            if (host == null) {
+                return null;
+            }
+
+            return host.TextView;
         }
 
         private async Task<string> TryGetActiveDocumentPathAsync() {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            var monitorSelectionObj = await _package.GetServiceAsync(typeof(SVsShellMonitorSelection)).ConfigureAwait(true);
+            object monitorSelectionObj = await _package.GetServiceAsync(typeof(SVsShellMonitorSelection)).ConfigureAwait(true);
             var monitorSelection = monitorSelectionObj as IVsMonitorSelection;
             if (monitorSelection == null) {
                 return null;
             }
 
-            IntPtr hierarchyPtr = IntPtr.Zero;
-            IntPtr docDataPtr = IntPtr.Zero;
-
-            try {
-                int hr = monitorSelection.GetCurrentElementValue((uint)VSConstants.VSSELELEMID.SEID_DocumentFrame, out object frameObj);
-                if (ErrorHandler.Failed(hr) || frameObj == null) {
-                    return null;
-                }
-
-                var frame = frameObj as IVsWindowFrame;
-                if (frame == null) {
-                    return null;
-                }
-
-                hr = frame.GetProperty((int)__VSFPROPID.VSFPROPID_pszMkDocument, out object mkDoc);
-                if (ErrorHandler.Failed(hr)) {
-                    return null;
-                }
-
-                return mkDoc as string;
+            int hr = monitorSelection.GetCurrentElementValue((uint)VSConstants.VSSELELEMID.SEID_DocumentFrame, out object frameObj);
+            if (ErrorHandler.Failed(hr) || frameObj == null) {
+                return null;
             }
-            finally {
-                if (hierarchyPtr != IntPtr.Zero) {
-                    Marshal.Release(hierarchyPtr);
-                }
 
-                if (docDataPtr != IntPtr.Zero) {
-                    Marshal.Release(docDataPtr);
-                }
+            var frame = frameObj as IVsWindowFrame;
+            if (frame == null) {
+                return null;
             }
+
+            hr = frame.GetProperty((int)__VSFPROPID.VSFPROPID_pszMkDocument, out object mkDoc);
+            if (ErrorHandler.Failed(hr)) {
+                return null;
+            }
+
+            return mkDoc as string;
         }
     }
 }

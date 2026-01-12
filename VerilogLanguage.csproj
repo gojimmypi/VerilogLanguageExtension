@@ -11,6 +11,19 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == '' And '$(VisualStudioVersion)' != ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+
+  <!-- VSSDK build integration comes from NuGet, not from Program Files 
+  <PropertyGroup>
+    <VSSDKBuildToolsProps>$(NuGetPackageRoot)Microsoft.VSSDK.BuildTools\17.14.2120\build\Microsoft.VSSDK.BuildTools.props</VSSDKBuildToolsProps>
+    <VSSDKBuildToolsTargets>$(NuGetPackageRoot)Microsoft.VSSDK.BuildTools\17.14.2120\build\Microsoft.VSSDK.BuildTools.targets</VSSDKBuildToolsTargets>
+  </PropertyGroup>
+  <Import Project="$(VSSDKBuildToolsProps)" Condition="Exists('$(VSSDKBuildToolsProps)')" />
+  <Target Name="VSSDK_DIAG_NoBuildToolsProps" BeforeTargets="PrepareForBuild" Condition="!Exists('$(VSSDKBuildToolsProps)')">
+    <Message Importance="high" Text="VSSDK DIAGNOSTIC: Microsoft.VSSDK.BuildTools.props NOT FOUND at: $(VSSDKBuildToolsProps). VSCT/CTMENU will NOT build until NuGet restore succeeds." />
+  </Target>
+ -->
+
+
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -28,6 +41,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <FileAlignment>512</FileAlignment>
     <GeneratePkgDefFile>true</GeneratePkgDefFile>
+    <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
+    <IncludeDebugSymbolsInVSIXContainer>true</IncludeDebugSymbolsInVSIXContainer>
+    <IncludeDebugSymbolsInLocalVSIXDeployment>true</IncludeDebugSymbolsInLocalVSIXDeployment> 
+    <IncludeAssemblyInLocalVSIXDeployment>true</IncludeAssemblyInLocalVSIXDeployment>
+    <CopyBuildOutputToOutputDirectory>true</CopyBuildOutputToOutputDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -139,10 +157,43 @@
     <Folder Include="Tagger\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="VSSDK_DIAG_VsSDKTargetsMissing" BeforeTargets="Build"
+          Condition="'$(DesignTimeBuild)' != 'true' And !Exists('$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets')">
+    <Message Importance="high" Text="VSSDK DIAGNOSTIC: Microsoft.VsSDK.targets NOT FOUND at: $(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets. Result will be DLL-only (no VSIX, no CTMENU embedding)." />
+  </Target>
+  <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets"
+        Condition="Exists('$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets')" />
+<!--
+  <Import Project="$(VSSDKBuildToolsTargets)" Condition="Exists('$(VSSDKBuildToolsTargets)')" />
+  <Target Name="VSSDK_DIAG_NoBuildToolsTargets" AfterTargets="PrepareForBuild" Condition="!Exists('$(VSSDKBuildToolsTargets)')">
+    <Message Importance="high" Text="VSSDK DIAGNOSTIC: Microsoft.VSSDK.BuildTools.targets NOT FOUND at: $(VSSDKBuildToolsTargets). VSCT/CTMENU embedding will NOT run." />
+  </Target>
+-->
+
   <!-- Ensure we are not doing DLL-only builds
        IMPORTANT: do not hard-fail VSSDK imports during DesignTimeBuild, or IntelliSense loses Microsoft.VisualStudio.Text types -->
   <Target Name="FailIfVsSdkMissing" BeforeTargets="Build" Condition="'$(DesignTimeBuild)' != 'true'">
     <Error Condition="'$(VSToolsPath)' == '' Or !Exists('$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets')" Text="Missing Microsoft.VsSDK.targets. Build from a VS developer prompt or set VisualStudioVersion/VSToolsPath." />
   </Target>
-  <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="Exists('$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets')" />
+  <Target Name="DiagnoseVSSDKImports" BeforeTargets="Build">
+      <!-- Sdk.props 
+      <Message
+          Condition="!Exists('$(VSToolsPath)\VSSDK\Microsoft.VisualStudio.Sdk.props')"
+          Importance="high"
+          Text="VSSDK DIAGNOSTIC: Microsoft.VisualStudio.Sdk.props NOT FOUND — menu resources will NOT be embedded." />
+      -->
+      
+      <!-- Sdk.targets
+      <Message
+          Condition="!Exists('$(VSToolsPath)\VSSDK\Microsoft.VisualStudio.Sdk.targets')"
+          Importance="high"
+          Text="VSSDK DIAGNOSTIC: Microsoft.VisualStudio.Sdk.targets NOT FOUND — VSCT will compile but CTMENU will NOT be embedded." />
+      -->
+      <!-- VsSDK.targets -->
+      <Message
+          Condition="!Exists('$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets')"
+          Importance="high"
+          Text="VSSDK DIAGNOSTIC: Microsoft.VsSDK.targets NOT FOUND — package/menu registration will NOT work." />
+  </Target>
+
 </Project>

@@ -1,43 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable">
 
-    <!-- These imports define guidSHLMainMenu, IDG_VS_MM_TOOLSADDINS, etc. -->
     <Extern href="stdidcmd.h" />
     <Extern href="vsshlids.h" />
 
     <Commands>
         <Menus>
-            <Menu guid="guidTestCommandPackageCmdSet" id="TopLevelMenu" priority="0x700" type="Menu">
-                <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS" />
+            <Menu guid="guidVerilogLanguageCmdSet" id="TopLevelMenu" priority="0x700" type="Menu">
+                <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS" />
                 <Strings>
                     <ButtonText>TestMenu</ButtonText>
                     <CommandName>TestMenu</CommandName>
+                    <CanonicalName>VerilogLanguage.TestMenu</CanonicalName>
                 </Strings>
             </Menu>
         </Menus>
 
         <Groups>
-            <Group guid="guidTestCommandPackageCmdSet" id="TopLevelMenuGroup" priority="0x0100">
-                <Parent guid="guidTestCommandPackageCmdSet" id="TopLevelMenu" />
+            <Group guid="guidVerilogLanguageCmdSet" id="TopLevelMenuGroup" priority="0x0100">
+                <Parent guid="guidVerilogLanguageCmdSet" id="TopLevelMenu" />
             </Group>
         </Groups>
 
         <Buttons>
-            <Button guid="guidTestCommandPackageCmdSet" id="CmdIdExportVerilogSnapshot" priority="0x0100" type="Button">
-                <Parent guid="guidTestCommandPackageCmdSet" id="TopLevelMenuGroup" />
+            <Button guid="guidVerilogLanguageCmdSet" id="CmdIdExportVerilogSnapshot" priority="0x0100" type="Button">
+                <Parent guid="guidVerilogLanguageCmdSet" id="TopLevelMenuGroup" />
+                <CommandFlag>DynamicVisibility</CommandFlag>
                 <Strings>
                     <ButtonText>Export Verilog Snapshot</ButtonText>
                     <CommandName>ExportVerilogSnapshot</CommandName>
+                    <CanonicalName>VerilogLanguage.ExportVerilogSnapshot</CanonicalName>
                 </Strings>
             </Button>
         </Buttons>
     </Commands>
 
     <Symbols>
-        <GuidSymbol name="guidTestCommandPackageCmdSet" value="{C7F8B2F5-7A01-4A07-8E4B-4A29F77A0B9F}">
+        <!-- IMPORTANT: This GUID value MUST match GuidList.GuidVerilogLanguageCmdSet -->
+        <GuidSymbol name="guidVerilogLanguageCmdSet" value="{C7F8B2F5-7A01-4A07-8E4B-4A29F77A0B9F}">
             <IDSymbol name="TopLevelMenu" value="0x1000" />
             <IDSymbol name="TopLevelMenuGroup" value="0x1001" />
             <IDSymbol name="CmdIdExportVerilogSnapshot" value="0x0100" />
         </GuidSymbol>
     </Symbols>
+
 </CommandTable>

@@ -1,5 +1,4 @@
-﻿// file: SnapshotExporter/VerilogLanguagePackage.cs
-//***************************************************************************
+﻿//***************************************************************************
 //
 //  MIT License
 //
@@ -26,6 +25,7 @@
 //***************************************************************************
 
 
+using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using System;
@@ -36,17 +36,47 @@ using VerilogLanguage.Testing;
 
 namespace VerilogLanguage
 {
+    internal static class SnapshotExporterUiContext
+    {
+        // New GUID: generates a stable custom UI context that we can AutoLoad against.
+        public const string GuidString = "B13F0C52-3E9B-4E14-9C0C-8D3D8B7F2A4B";
+    }
+
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
-    [InstalledProductRegistration("VerilogLanguage", "Verilog syntax highlighting", "0.3.6.2")]
+    [InstalledProductRegistration("VerilogLanguage", "Verilog syntax highlighting", "0.3.6.3")]
     [ProvideMenuResource("Menus.ctmenu", 1)]
-    [ProvideAutoLoad(UIContextGuids80.SolutionExists, PackageAutoLoadFlags.BackgroundLoad)]
+
+    // This rule is effectively "always on" once the shell is up because either SolutionExists or NoSolution is true.
+    [ProvideUIContextRule(
+        SnapshotExporterUiContext.GuidString,
+        "VerilogLanguage SnapshotExporter UIContext",
+        "SolutionExists | NoSolution",
+        new[] { "SolutionExists", "NoSolution" },
+        new[] { VSConstants.UICONTEXT.SolutionExists_string, VSConstants.UICONTEXT.NoSolution_string })]
+
+    // Load when our always-true UI context is active.
+    [ProvideAutoLoad(SnapshotExporterUiContext.GuidString, PackageAutoLoadFlags.BackgroundLoad)]
+
     [Guid(GuidList.GuidVerilogLanguagePackageString)]
     public sealed class VerilogLanguagePackage : AsyncPackage
     {
-        protected override async Task InitializeAsync(
-            CancellationToken cancellationToken,
-            IProgress<ServiceProgressData> progress) {
+        protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress) {
             await base.InitializeAsync(cancellationToken, progress);
+
+            // Breadcrumb: confirm package load in ActivityLog.xml (single entry).
+            try {
+                object logObj = await GetServiceAsync(typeof(SVsActivityLog)).ConfigureAwait(false);
+                var log = logObj as IVsActivityLog;
+                if (log != null) {
+                    log.LogEntry(
+                        (uint)__ACTIVITYLOG_ENTRYTYPE.ALE_INFORMATION,
+                        "VerilogLanguage",
+                        "VerilogLanguagePackage.InitializeAsync loaded (SnapshotExporter commands registering).");
+                }
+            }
+            catch {
+                // ignore logging failures
+            }
 
             await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
             await ExportSnapshotCommand.InitializeAsync(this);

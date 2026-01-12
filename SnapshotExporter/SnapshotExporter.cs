@@ -25,22 +25,27 @@
 //
 //***************************************************************************
 
-
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Web.Script.Serialization;
 using Microsoft.VisualStudio.Text;
-using Microsoft.VisualStudio.Text.Tagging;
 using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Text.Editor;
+using Microsoft.VisualStudio.Text.Tagging;
 
 namespace VerilogLanguage.Testing
 {
     internal sealed class SnapshotExporter
     {
+        private readonly IClassifierAggregatorService _classifierAggregatorService;
         private readonly IBufferTagAggregatorFactoryService _bufferAggregatorFactory;
 
-        public SnapshotExporter(IBufferTagAggregatorFactoryService bufferAggregatorFactory) {
+        public SnapshotExporter(
+            IClassifierAggregatorService classifierAggregatorService,
+            IBufferTagAggregatorFactoryService bufferAggregatorFactory) {
+
+            _classifierAggregatorService = classifierAggregatorService;
             _bufferAggregatorFactory = bufferAggregatorFactory;
         }
 
@@ -49,61 +54,74 @@ namespace VerilogLanguage.Testing
                 throw new ArgumentNullException("textView");
             }
 
-            ITextSnapshot snapshot = textView.TextSnapshot;
+            // IMPORTANT: use the EDIT buffer, not the view/projection buffer.
+            ITextBuffer editBuffer = textView.TextViewModel != null
+                ? textView.TextViewModel.EditBuffer
+                : textView.TextBuffer;
+
+            ITextSnapshot snapshot = editBuffer.CurrentSnapshot;
 
             var export = new EditorSnapshotExport();
             export.FilePath = filePath;
             export.SnapshotLength = snapshot.Length;
             export.SnapshotVersion = snapshot.Version.VersionNumber;
 
-            ExportClassifierTags(snapshot, export);
-            ExportVerilogTokenTags(snapshot, export);
+            ExportClassifierSpans(editBuffer, snapshot, export);
+            ExportVerilogTokenTags(editBuffer, snapshot, export);
 
             return export;
         }
 
-        private void ExportClassifierTags(ITextSnapshot snapshot, EditorSnapshotExport export) {
-            if (_bufferAggregatorFactory == null) {
+        private void ExportClassifierSpans(ITextBuffer buffer, ITextSnapshot snapshot, EditorSnapshotExport export) {
+            if (_classifierAggregatorService == null) {
                 return;
             }
 
-            // This captures the ClassificationTags produced by your VerilogClassifier.
-            var agg = _bufferAggregatorFactory.CreateTagAggregator<ClassificationTag>(snapshot.TextBuffer);
+            IClassifier classifier = _classifierAggregatorService.GetClassifier(buffer);
+            if (classifier == null) {
+                return;
+            }
 
-            SnapshotSpan all = new SnapshotSpan(snapshot, 0, snapshot.Length);
+            const int chunkSize = 4096;
+            int pos = 0;
 
-            foreach (IMappingTagSpan<ClassificationTag> mts in agg.GetTags(all)) {
-                if (mts == null || mts.Tag == null) {
-                    continue;
+            while (pos < snapshot.Length) {
+                int len = Math.Min(chunkSize, snapshot.Length - pos);
+                var span = new SnapshotSpan(snapshot, pos, len);
+
+                IList<ClassificationSpan> spans;
+                try {
+                    spans = classifier.GetClassificationSpans(span);
+                }
+                catch {
+                    return;
                 }
 
-                NormalizedSnapshotSpanCollection mapped = mts.Span.GetSpans(snapshot);
-                if (mapped == null || mapped.Count == 0) {
-                    continue;
+                if (spans != null) {
+                    foreach (ClassificationSpan cs in spans) {
+                        if (cs == null || cs.ClassificationType == null) {
+                            continue;
+                        }
+
+                        var run = new ClassificationRun();
+                        run.Start = cs.Span.Start.Position;
+                        run.Length = cs.Span.Length;
+                        run.Types.Add(cs.ClassificationType.Classification);
+
+                        export.Classifications.Add(run);
+                    }
                 }
 
-                SnapshotSpan s = mapped[0];
-
-                var run = new ClassificationRun();
-                run.Start = s.Start.Position;
-                run.Length = s.Length;
-
-                // ClassificationTag.ClassificationType.Classification is the string name
-                if (mts.Tag.ClassificationType != null) {
-                    run.Types.Add(mts.Tag.ClassificationType.Classification);
-                }
-
-                export.Classifications.Add(run);
+                pos += len;
             }
         }
 
-        private void ExportVerilogTokenTags(ITextSnapshot snapshot, EditorSnapshotExport export) {
+        private void ExportVerilogTokenTags(ITextBuffer buffer, ITextSnapshot snapshot, EditorSnapshotExport export) {
             if (_bufferAggregatorFactory == null) {
                 return;
             }
 
-            // Export underlying VerilogTokenTag spans too (useful for debugging).
-            var agg = _bufferAggregatorFactory.CreateTagAggregator<VerilogLanguage.VerilogToken.VerilogTokenTag>(snapshot.TextBuffer);
+            var agg = _bufferAggregatorFactory.CreateTagAggregator<VerilogLanguage.VerilogToken.VerilogTokenTag>(buffer);
 
             SnapshotSpan all = new SnapshotSpan(snapshot, 0, snapshot.Length);
 

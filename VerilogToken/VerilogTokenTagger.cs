@@ -232,7 +232,7 @@ namespace VerilogLanguage.VerilogToken
 
 #if USE_JTF
             if (!_jtf.Context.IsOnMainThread) {
-            _jtf.RunAsync(async () =>
+                _jtf.RunAsync(async () =>
                 {
                     await _jtf.SwitchToMainThreadAsync();
                     handler(this, new SnapshotSpanEventArgs(span));
@@ -240,8 +240,18 @@ namespace VerilogLanguage.VerilogToken
                 return;
             }
 #else
+    #if DEBUG
+            if (_uiContext == null) {
+                System.Diagnostics.Debug.WriteLine("Warning: _uiContext is null; TagsChanged may be raised off UI thread.");
+            }
+    #endif
             if (_uiContext != null && SynchronizationContext.Current != _uiContext) {
+                // NOTE: Using SynchronizationContext.Post can trigger analyzer warning VSTHRD001.
+                // In this extension, enabling the JTF-based path has caused repaint issues, so we keep Post
+                // and locally suppress the analyzer at this call site.
+    #pragma warning disable VSTHRD001
                 _uiContext.Post(_ => handler(this, new SnapshotSpanEventArgs(span)), null); // Post causes warning VSTHRD001: Await JoinableTaskFactory.SwitchToMainThreadAsync() to switch to the UI thread instead of APIs that can deadlock or require specifying a priority (htt
+    #pragma warning restore VSTHRD001
                 return;
             }
 

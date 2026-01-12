@@ -1,4 +1,4 @@
-﻿// file: SnapshotExporter/GuidList.cs
+// file: SnapshotExporter/GuidList.cs
 //***************************************************************************
 //
 //  MIT License

@@ -77,7 +77,7 @@ namespace VerilogLanguage
             catch {
                 // ignore logging failures
             }
-
+            await FirstCommand.InitializeAsync(this, cancellationToken);
             await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
             await ExportSnapshotCommand.InitializeAsync(this);
         }

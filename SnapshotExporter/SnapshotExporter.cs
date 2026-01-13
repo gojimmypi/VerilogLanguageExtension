@@ -40,13 +40,16 @@ namespace VerilogLanguage.Testing
     {
         private readonly IClassifierAggregatorService _classifierAggregatorService;
         private readonly IBufferTagAggregatorFactoryService _bufferAggregatorFactory;
+        private readonly IViewTagAggregatorFactoryService _viewAggregatorFactory;
 
         public SnapshotExporter(
             IClassifierAggregatorService ClassifierAggregatorService,
-            IBufferTagAggregatorFactoryService BufferAggregatorFactory) {
+            IBufferTagAggregatorFactoryService BufferAggregatorFactory,
+            IViewTagAggregatorFactoryService ViewAggregatorFactory) {
 
             _classifierAggregatorService = ClassifierAggregatorService;
             _bufferAggregatorFactory = BufferAggregatorFactory;
+            _viewAggregatorFactory = ViewAggregatorFactory;
         }
 
         public EditorSnapshotExport Export(IWpfTextView textView, string filePath) {
@@ -67,7 +70,7 @@ namespace VerilogLanguage.Testing
             export.SnapshotVersion = snapshot.Version.VersionNumber;
 
             ExportClassifierSpans(editBuffer, snapshot, export);
-            ExportVerilogTokenTags(editBuffer, snapshot, export);
+            ExportVerilogTokenTags(textView, editBuffer, snapshot, export);
 
             return export;
         }
@@ -88,6 +91,12 @@ namespace VerilogLanguage.Testing
             while (pos < snapshot.Length) {
                 int len = Math.Min(chunkSize, snapshot.Length - pos);
                 var span = new SnapshotSpan(snapshot, pos, len);
+
+#if DEBUG
+                if (object.ReferenceEquals(buffer, snapshot.TextBuffer)) {
+                    Console.WriteLine("buffer eqqual");
+                }
+#endif
 
                 IList<ClassificationSpan> spans;
                 try {
@@ -116,12 +125,38 @@ namespace VerilogLanguage.Testing
             }
         }
 
-        private void ExportVerilogTokenTags(ITextBuffer buffer, ITextSnapshot snapshot, EditorSnapshotExport export) {
-            if (_bufferAggregatorFactory == null) {
-                return;
+        private void ExportVerilogTokenTags(IWpfTextView textView, ITextBuffer buffer, ITextSnapshot snapshot, EditorSnapshotExport export) {
+            // First try: buffer-based tags on the edit buffer (what you already had)
+            if (_bufferAggregatorFactory != null) {
+                var agg = _bufferAggregatorFactory.CreateTagAggregator<VerilogLanguage.VerilogToken.VerilogTokenTag>(buffer);
+                ExportTagsFromAggregator(agg, snapshot, export);
+
+                if (export.Tags.Count != 0) {
+                    return;
+                }
             }
 
-            var agg = _bufferAggregatorFactory.CreateTagAggregator<VerilogLanguage.VerilogToken.VerilogTokenTag>(buffer);
+            // Fallback: view-based tags (needed if your tagger is IViewTaggerProvider or attaches to projection/visual buffers)
+            if (_viewAggregatorFactory != null && textView != null) {
+                ITextBuffer viewBuffer = textView.TextViewModel != null
+                    ? textView.TextViewModel.VisualBuffer
+                    : textView.TextBuffer;
+
+                ITextSnapshot viewSnapshot = viewBuffer.CurrentSnapshot;
+
+                var viewAgg = _viewAggregatorFactory.CreateTagAggregator<VerilogLanguage.VerilogToken.VerilogTokenTag>(textView);
+                ExportTagsFromAggregator(viewAgg, viewSnapshot, export);
+            }
+        }
+
+        private static void ExportTagsFromAggregator(
+            ITagAggregator<VerilogLanguage.VerilogToken.VerilogTokenTag> agg,
+            ITextSnapshot snapshot,
+            EditorSnapshotExport export) {
+
+            if (agg == null || snapshot == null) {
+                return;
+            }
 
             SnapshotSpan all = new SnapshotSpan(snapshot, 0, snapshot.Length);
 

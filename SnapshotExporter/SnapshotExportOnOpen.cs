@@ -25,15 +25,19 @@
 //
 //***************************************************************************
 
-using System;
-using System.ComponentModel.Composition;
-using System.IO;
-using System.Threading.Tasks;
+using Microsoft.VisualStudio.ComponentModelHost;
+using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.Text.Tagging;
 using Microsoft.VisualStudio.Utilities;
+using System;
+using System.ComponentModel.Composition;
+using System.ComponentModel.Design;
+using System.IO;
+using System.Threading.Tasks;
 using VerilogLanguage.Testing;
 
 namespace VerilogLanguage
@@ -84,6 +88,21 @@ namespace VerilogLanguage
             await Task.Delay(250).ConfigureAwait(true);
             await Task.Yield();
 
+            IServiceProvider serviceProvider =
+                Package.GetGlobalService(typeof(SVsServiceProvider)) as IServiceProvider;
+
+            IComponentModel componentModel = Package.GetGlobalService(typeof(SComponentModel)) as IComponentModel;
+            if (componentModel == null) {
+                VsShellUtilities.ShowMessageBox(
+                    serviceProvider,
+                        "SComponentModel was not available (MEF).",
+                        "Snapshot Export On Open",
+                        OLEMSGICON.OLEMSGICON_CRITICAL,
+                        OLEMSGBUTTON.OLEMSGBUTTON_OK,
+                        OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
+                return;
+            }
+
             string filePath = null;
 
             ITextDocument doc;
@@ -94,8 +113,12 @@ namespace VerilogLanguage
                 doc != null) {
                 filePath = doc.FilePath;
             }
+            IViewTagAggregatorFactoryService ViewTagAggregatorFactoryService =
+                componentModel.GetService<IViewTagAggregatorFactoryService>();
 
-            var exporter = new VerilogLanguage.Testing.SnapshotExporter(ClassifierAggregatorService, BufferTagAggregatorFactoryService);
+            var exporter = new VerilogLanguage.Testing.SnapshotExporter(ClassifierAggregatorService,
+                                                                         BufferTagAggregatorFactoryService,
+                                                                         ViewTagAggregatorFactoryService);
 
             EditorSnapshotExport export = exporter.Export(textView, filePath);
 

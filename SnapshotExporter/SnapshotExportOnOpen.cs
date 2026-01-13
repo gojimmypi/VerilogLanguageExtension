@@ -95,14 +95,14 @@ namespace VerilogLanguage
                 filePath = doc.FilePath;
             }
 
-            var exporter = new SnapshotExporter(ClassifierAggregatorService, BufferTagAggregatorFactoryService);
+            var exporter = new VerilogLanguage.Testing.SnapshotExporter(ClassifierAggregatorService, BufferTagAggregatorFactoryService);
 
             EditorSnapshotExport export = exporter.Export(textView, filePath);
 
             string outDir = Path.Combine(Path.GetTempPath(), "VerilogLanguageSnapshot");
             string outFile = Path.Combine(outDir, MakeSafeFileName(filePath) + ".snapshot.json");
 
-            SnapshotExporter.WriteJson(export, outFile);
+            VerilogLanguage.Testing.SnapshotExporter.WriteJson(export, outFile);
         }
 
         private static string MakeSafeFileName(string filePath) {

@@ -30,9 +30,10 @@ using Microsoft.VisualStudio.Shell;
 using System;
 using System.Runtime.InteropServices;
 using System.Threading;
+using VerilogLanguage.Testing;
 using Task = System.Threading.Tasks.Task;
 
-namespace VSIXProject1
+namespace VerilogLanguagePackage
 {
     /// <summary>
     /// This is the class that implements the package exposed by this assembly.
@@ -52,12 +53,12 @@ namespace VSIXProject1
     /// </para>
     /// </remarks>
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
-    [Guid(VSIXProject1Package.PackageGuidString)]
+    [Guid(VerilogLanguagePackage.PackageGuidString)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
-    public sealed class VSIXProject1Package : AsyncPackage
+    public sealed class VerilogLanguagePackage : AsyncPackage
     {
         /// <summary>
-        /// VSIXProject1Package GUID string.
+        /// VerilogLanguagePackage GUID string.
         /// </summary>
         public const string PackageGuidString = "8F4C0E2A-4A79-4C64-9B2E-6B2F6B0E1C19";
 
@@ -74,7 +75,7 @@ namespace VSIXProject1
             // When initialized asynchronously, the current thread may be a background thread at this point.
             // Do any initialization that requires the UI thread after switching to the UI thread.
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
-            await SnapshotExporter.InitializeAsync(this);
+            await VerilogLanguage.Testing.ExportSnapshotCommand.InitializeAsync(this);
         }
 
         #endregion

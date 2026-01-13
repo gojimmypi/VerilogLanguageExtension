@@ -42,11 +42,11 @@ namespace VerilogLanguage.Testing
         private readonly IBufferTagAggregatorFactoryService _bufferAggregatorFactory;
 
         public SnapshotExporter(
-            IClassifierAggregatorService classifierAggregatorService,
-            IBufferTagAggregatorFactoryService bufferAggregatorFactory) {
+            IClassifierAggregatorService ClassifierAggregatorService,
+            IBufferTagAggregatorFactoryService BufferAggregatorFactory) {
 
-            _classifierAggregatorService = classifierAggregatorService;
-            _bufferAggregatorFactory = bufferAggregatorFactory;
+            _classifierAggregatorService = ClassifierAggregatorService;
+            _bufferAggregatorFactory = BufferAggregatorFactory;
         }
 
         public EditorSnapshotExport Export(IWpfTextView textView, string filePath) {

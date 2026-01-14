@@ -24,7 +24,9 @@
 //
 //***************************************************************************
 
-#define USE_JTF_DISABLED
+// Optional settings:
+// #define USE_JTF   /* Enable JoinableTaskFactory instead of SynchronizationContext */
+// #define TAG_DEBUG /* Emit some System.Diagnostics.Debug messages */
 
 namespace VerilogLanguage.VerilogToken
 {
@@ -37,7 +39,7 @@ namespace VerilogLanguage.VerilogToken
     using CommentHelper;
     using System.Threading;
     using Microsoft.VisualStudio.Threading;
-
+    using System.Linq.Expressions;
 
     internal sealed class VerilogTokenTagger : ITagger<VerilogTokenTag>
     {
@@ -354,15 +356,53 @@ namespace VerilogLanguage.VerilogToken
 
             // look at each span for tokens, comments, etc
             foreach (SnapshotSpan curSpan in spans) {
-                if (tokens != null && tokens.Length >= 1) {
-                    priorToken = tokens[tokens.Length - 1]; // get the token from the prior line
+                if (curSpan.IsEmpty) {
+                    System.Diagnostics.Debug.WriteLine("VerilogTokenTagger.GetTags: curSpan.IsEmpty");
+                    /* just means this span covers no characters, but
+                     *   SnapshotSpan = (Snapshot + Start + Length)
+                     *   Snapshot represents the entire text buffer,
+                     * So, no "contonue" here. curSpan also never Null */
                 }
 
-                ITextSnapshotLine containingLine = curSpan.Start.GetContainingLine();
-                int curLoc = containingLine.Start.Position;
+                ITextSnapshot snapshot = curSpan.Snapshot;
+                if (snapshot is null) {
+                    /* Nothing to do */
+                    System.Diagnostics.Debug.WriteLine("VerilogTokenTagger.GetTags: snapshot is null");
+                    continue;
+                }
 
-                tokens = VerilogGlobals.VerilogKeywordSplit(containingLine.GetText(), priorToken);
+                if (snapshot.Length == 0) {
+                    /* Nothing to do; this span covers no characters */
+                    System.Diagnostics.Debug.WriteLine("VerilogTokenTagger.GetTags: snapshot.Length == 0");
+                    continue;
+                }
 
+                int startPos = curSpan.Start.Position;
+                int endPos = curSpan.End.Position;
+
+                if (startPos < 0) {
+                    startPos = 0;
+                }
+                if (endPos > snapshot.Length) {
+                    endPos = snapshot.Length;
+                }
+                if (endPos < startPos) {
+                    /* How did this happen? */
+                    System.Diagnostics.Debug.WriteLine("Oddity in VerilogTokenTagger.GetTags: startPos > endPos");
+                    continue;
+                }
+
+                ITextSnapshotLine line = snapshot.GetLineFromPosition(startPos);
+                while (line != null && line.Start.Position < endPos) {
+                    if (tokens != null && tokens.Length >= 1) {
+                        priorToken = tokens[tokens.Length - 1];
+                    }
+
+                    string lineText = line.GetText();
+                    tokens = VerilogGlobals.VerilogKeywordSplit(lineText, priorToken);
+
+
+                    int curLoc = line.Start.Position;
                 bool isContinuedLineComment = false; // comments with "//" are only effective for the current line, but /* can span multiple lines
                 foreach (VerilogGlobals.VerilogToken verilogToken in tokens) { // this group of tokens in in a single line
                     // by the time we get here, we might have a tag with adjacent comments:
@@ -371,36 +411,77 @@ namespace VerilogLanguage.VerilogToken
                     //     assign//comment
                     //     /*assign*/
                     //     assign/*comment*/
-
                     CommentHelper commentHelper;
-                    CreateCommentHelper(
-                        verilogToken.Part,
-                        isContinuedLineComment,
-                        VerilogGlobals.IsContinuedBlockComment,
-                        out commentHelper,
-                        out isContinuedLineComment);
+                        CreateCommentHelper(
+                            verilogToken.Part,
+                            isContinuedLineComment,
+                            VerilogGlobals.IsContinuedBlockComment,
+                            out commentHelper,
+                            out isContinuedLineComment);
 
-                    int linePosition = 0;
+                        foreach (CommentHelper.CommentItem item in commentHelper.CommentItems) {
+                            /* This next length section is typically for not processing EOF, but perhaps will occur elsewhere */
+                            int len = item.ItemText.Length;
+                            ITextSnapshot snap = line.Snapshot;
 
-                    foreach (CommentHelper.CommentItem item in commentHelper.CommentItems) {
-                        bool testComment = VerilogGlobals.TextIsComment(containingLine.LineNumber, linePosition);
-                        linePosition += item.ItemText.Length;
-
-                        SnapshotSpan tokenSpan = new SnapshotSpan(curSpan.Snapshot, new Span(curLoc, item.ItemText.Length));
-                        if (tokenSpan.IntersectsWith(curSpan)) {
-                            foreach (ITagSpan<VerilogTokenTag> tag in ProcessTokenSpan(curSpan, containingLine, verilogToken, tokenSpan, item, curLoc)) {
-                                yield return tag;
+                            if (len <= 0) {
+                                continue;
                             }
-                        }
 
+                            if (curLoc < 0 || curLoc >= snap.Length) {
+                                continue; // at EOF (or invalid), cannot make a non-empty span
+                            }
+
+                            if (curLoc + len > snap.Length) {
+                                len = snap.Length - curLoc; // clamp (or just continue)
+                                if (len <= 0) {
+                                    continue;
+                                }
+                            }
+
+                            SnapshotSpan tokenSpan;
+                            try {
+                                tokenSpan = new SnapshotSpan(line.Snapshot, new Span(curLoc, len));
+                            }
+                            catch (Exception ex)
+                            {
+                                /* Highly unlikely we ended up here, but just in case: */
+                                tokenSpan = new SnapshotSpan();
+                                Console.WriteLine($"Error in VerilogTokenTagger.GetTags: {ex.Message}");
+                                continue;
+                            }
+                            if (tokenSpan.IntersectsWith(curSpan)) {
+                                foreach (ITagSpan<VerilogTokenTag> tag in ProcessTokenSpan(
+                                    curSpan,
+                                    line,
+                                    verilogToken,
+                                    tokenSpan,
+                                    item,
+                                    curLoc)) {
+
+                                    yield return tag;
+                                }
+                            }
                         // note that no chars are lost when splitting string with VerilogKeywordSplit, so no adjustment needed in location
-                        curLoc += item.ItemText.Length;
+                        curLoc += len;
+                        }
                     }
+
+                    if (line.LineBreakLength == 0) {
+                        break;
+                    }
+
+                    int nextLineStart = line.EndIncludingLineBreak.Position;
+                    if (nextLineStart >= snapshot.Length) {
+                        break;
+                    }
+
+                    line = snapshot.GetLineFromPosition(nextLineStart);
                 }
-            }
+            } /* foreach (SnapshotSpan curSpan in spans) */
 
             yield break;
-        }
+        } /* IEnumerable<ITagSpan<VerilogTokenTag>> GetTags */
 
         private static void CreateCommentHelper(
             string tokenText,
@@ -423,7 +504,9 @@ namespace VerilogLanguage.VerilogToken
             int curLoc) {
             // is this item a comment? If so, color as appropriate. comments take highest priority: no other condition will change color of a comment
             if (item.IsComment) {
-                // System.Diagnostics.Debug.WriteLine("IEnumerable VerilogTokenTag yield comment for item " + Item.ItemText??"");
+#if TAG_DEBUG
+                System.Diagnostics.Debug.WriteLine("IEnumerable VerilogTokenTag yield comment for item " + Item.ItemText??"");
+#endif
                 yield return new TagSpan<VerilogTokenTag>(
                     tokenSpan,
                     new VerilogTokenTag(VerilogTokenTypes.Verilog_Comment));
@@ -462,6 +545,8 @@ namespace VerilogLanguage.VerilogToken
             foreach (ITagSpan<VerilogTokenTag> tag in ProcessLookupText(containingLine, verilogToken, tokenSpan, lookupSpan, lookupText, curLoc, leadingWhitespace)) {
                 yield return tag;
             }
+
+            /* There's an implicit yield break here; do not return Null! */
         }
 
         private IEnumerable<ITagSpan<VerilogTokenTag>> ProcessLookupText(
@@ -474,7 +559,9 @@ namespace VerilogLanguage.VerilogToken
             int leadingWhitespace) {
             // check for standard keyword syntax higlighting
             if (VerilogGlobals.VerilogTypes.ContainsKey(lookupText)) {
+#if TAG_DEBUG
                 System.Diagnostics.Debug.WriteLine("IEnumerable VerilogTokenTag yield " + lookupText);
+#endif
                 yield return new TagSpan<VerilogTokenTag>(
                     lookupSpan,
                     new VerilogTokenTag(VerilogGlobals.VerilogTypes[lookupText]));
@@ -484,7 +571,9 @@ namespace VerilogLanguage.VerilogToken
             if (VerilogGlobals.VerilogVariables.ContainsKey(lookupText)) {
                 // we are instantiation a module; recall VerilogVariables is first a dictionary of scope (aka module), then a dictionary of variables in each module scope
                 // TODO do we need: if (tokenSpan.IntersectsWith(curSpan))
+#if TAG_DEBUG
                 System.Diagnostics.Debug.WriteLine("IEnumerable VerilogTokenTag yield variable module " + lookupText);
+#endif
                 yield return new TagSpan<VerilogTokenTag>(
                     lookupSpan,
                     new VerilogTokenTag(VerilogGlobals.VerilogTypes["variable_module"]));
@@ -494,6 +583,8 @@ namespace VerilogLanguage.VerilogToken
             foreach (ITagSpan<VerilogTokenTag> tag in ProcessScopeLookup(containingLine, verilogToken, tokenSpan, lookupSpan, lookupText, curLoc, leadingWhitespace)) {
                 yield return tag;
             }
+
+            /* There's an implicit yield break here; do not return Null! */
         }
 
         private IEnumerable<ITagSpan<VerilogTokenTag>> ProcessScopeLookup(
@@ -518,7 +609,9 @@ namespace VerilogLanguage.VerilogToken
                 // the current scope (typically a module name) is defined. So do we have a known variable?
                 if (VerilogGlobals.VerilogVariables[thisScope].ContainsKey(lookupText)) {
                     // TODO do we need: if (tokenSpan.IntersectsWith(curSpan))
+#if TAG_DEBUG
                     System.Diagnostics.Debug.WriteLine("IEnumerable VerilogTokenTag yield variable " + lookupText);
+#endif
                     yield return new TagSpan<VerilogTokenTag>(
                         lookupSpan,
                         new VerilogTokenTag(VerilogGlobals.VerilogVariables[thisScope][lookupText]));

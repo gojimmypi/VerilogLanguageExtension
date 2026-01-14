@@ -159,9 +159,6 @@ namespace VerilogLanguage.Testing
                 IBufferTagAggregatorFactoryService BufferTagAggregatorFactoryService =
                     componentModel.GetService<IBufferTagAggregatorFactoryService>();
 
-                IViewTagAggregatorFactoryService ViewTagAggregatorFactoryService =
-                    componentModel.GetService<IViewTagAggregatorFactoryService>();
-
                 ITextDocumentFactoryService textDocumentFactoryService =
                     componentModel.GetService<ITextDocumentFactoryService>();
 
@@ -177,10 +174,7 @@ namespace VerilogLanguage.Testing
                     }
                 }
 
-
-                var exporter = new VerilogLanguage.Testing.SnapshotExporter(ClassifierAggregatorService,
-                                                                            BufferTagAggregatorFactoryService,
-                                                                            ViewTagAggregatorFactoryService);
+                var exporter = new VerilogLanguage.Testing.SnapshotExporter(ClassifierAggregatorService, BufferTagAggregatorFactoryService);
 
                 EditorSnapshotExport export = exporter.Export(textView, filePath);
 

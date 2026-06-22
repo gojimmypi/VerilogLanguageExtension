@@ -74,6 +74,25 @@ namespace VerilogLanguage
         public ICompletionBroker Broker { get; private set; }
         public IOleCommandTarget Next { get; set; }
 
+        private static bool CommandMayEditBuffer(VSConstants.VSStd2KCmdID commandId) {
+            switch (commandId) {
+                case VSConstants.VSStd2KCmdID.TYPECHAR:
+                case VSConstants.VSStd2KCmdID.BACKSPACE:
+                case VSConstants.VSStd2KCmdID.RETURN:
+                case VSConstants.VSStd2KCmdID.TAB:
+                    return true;
+            }
+
+            return false;
+        }
+
+        private void MarkCurrentFileForReparse() {
+            string thisFile = VerilogLanguage.VerilogGlobals.GetDocumentPath(TextView.TextSnapshot);
+            if (!string.IsNullOrEmpty(thisFile)) {
+                VerilogGlobals.ParseStatusController.NeedReparse_SetValue(thisFile, true);
+            }
+        }
+
         private char GetTypeChar(IntPtr pvaIn) {
             return (char)(ushort)Marshal.GetObjectForNativeVariant(pvaIn);
         }
@@ -83,10 +102,10 @@ namespace VerilogLanguage
             int hresult = VSConstants.S_OK;
 
             /*
-             *  hack alert! this sets the global flag that the buffer needs to be reparsed.
-             * we typically get here when multiple files are opened, and the tab for a different
-             * file is clicked on. The global bufferAttributes does not know which file is
-             * being viewed. TODO - come up with something proper and more graceful.
+             *  Older versions marked the file as needing reparse for every VSStd2K command.
+             *  That kept parse state fresh, but it was noisy. BufferChanged now remains the
+             *  primary source of truth for real text edits; this command filter only marks
+             *  the file for the small set of editor commands it handles directly.
              *
              * we'll preparse the buffer upon OnTextViewMouseHover in the QuickInfoController
              *
@@ -120,13 +139,10 @@ namespace VerilogLanguage
             // From here on we treat it as editor-related commands.
             Microsoft.VisualStudio.Shell.ThreadHelper.ThrowIfNotOnUIThread();
 
-            string thisFile = VerilogLanguage.VerilogGlobals.GetDocumentPath(TextView.TextSnapshot);
-            if (!string.IsNullOrEmpty(thisFile)) {
-                VerilogGlobals.ParseStatusController.NeedReparse_SetValue(thisFile, true);
-            }
+            VSConstants.VSStd2KCmdID commandId = (VSConstants.VSStd2KCmdID)nCmdID;
 
             // 1. Pre-process editor commands
-            switch ((VSConstants.VSStd2KCmdID)nCmdID) {
+            switch (commandId) {
                 case VSConstants.VSStd2KCmdID.AUTOCOMPLETE:
                 case VSConstants.VSStd2KCmdID.COMPLETEWORD:
                     handled = StartSession();
@@ -157,7 +173,11 @@ namespace VerilogLanguage
 
             // Post-process only on success
             if (ErrorHandler.Succeeded(hresult)) {
-                switch ((VSConstants.VSStd2KCmdID)nCmdID) {
+                if (CommandMayEditBuffer(commandId)) {
+                    MarkCurrentFileForReparse();
+                }
+
+                switch (commandId) {
                     // Keypress handler
                     case VSConstants.VSStd2KCmdID.TYPECHAR: {
                             char ch = GetTypeChar(pvaIn);

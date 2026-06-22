@@ -93,14 +93,14 @@ namespace VerilogLanguage.VerilogToken
 
         // ITextView View { get; set; }
         public ITagger<T> CreateTagger<T>(ITextBuffer buffer) where T : ITag {
-#if DEBUG
-            // System.Diagnostics.Debugger.Break();
-            System.Diagnostics.Debug.WriteLine("VerilogClassifierProvider.CreateTagger: ContentType=" + buffer.ContentType.TypeName);
-#endif
             if (buffer == null) {
                 return null;
             }
 
+#if DEBUG
+            // System.Diagnostics.Debugger.Break();
+            System.Diagnostics.Debug.WriteLine("VerilogClassifierProvider.CreateTagger: ContentType=" + buffer.ContentType.TypeName);
+#endif
             if (aggregatorFactory == null || ClassificationTypeRegistry == null) {
                 return null;
             }
@@ -122,17 +122,19 @@ namespace VerilogLanguage.VerilogToken
             bool isSystemVerilog = string.Equals(ext, ".sv", StringComparison.OrdinalIgnoreCase) ||
                                    string.Equals(ext, ".svh", StringComparison.OrdinalIgnoreCase);
 
-            ITagAggregator<VerilogTokenTag> VerilogTagAggregator =
-                                            aggregatorFactory.CreateTagAggregator<VerilogTokenTag>(buffer);
-
             // IMPORTANT:
-            // Return a single tagger instance per buffer.
-            // Creating a new tagger each time causes multiple aggregator subscriptions and unstable behavior.
-            //
-            // Note: the GetOrCreateSingletonProperty key is the T interface, so the cast is safe.
+            // Return a single classifier instance per buffer.
+            // Creating the token aggregator before GetOrCreateSingletonProperty still leaks
+            // extra aggregator subscriptions on repeated CreateTagger calls.
+            // Keep the aggregator creation inside the singleton factory.
+            VerilogClassifier classifier = buffer.Properties.GetOrCreateSingletonProperty<VerilogClassifier>(
+                () => {
+                    ITagAggregator<VerilogTokenTag> VerilogTagAggregator =
+                        aggregatorFactory.CreateTagAggregator<VerilogTokenTag>(buffer);
+                    return new VerilogClassifier(buffer, VerilogTagAggregator, ClassificationTypeRegistry);
+                });
 
-            return buffer.Properties.GetOrCreateSingletonProperty(
-                () => new VerilogClassifier(buffer, VerilogTagAggregator, ClassificationTypeRegistry)) as ITagger<T>;
+            return classifier as ITagger<T>;
         }
     }
 
@@ -159,6 +161,7 @@ namespace VerilogLanguage.VerilogToken
             {
                 [VerilogTokenTypes.Verilog_always] = typeService.GetClassificationType("always"),
                 [VerilogTokenTypes.Verilog_assign] = typeService.GetClassificationType("assign"),
+                [VerilogTokenTypes.Verilog_automatic] = typeService.GetClassificationType("automatic"),
 
                 [VerilogTokenTypes.Verilog_begin] = typeService.GetClassificationType("begin"),
                 [VerilogTokenTypes.Verilog_case] = typeService.GetClassificationType("case"),

@@ -418,7 +418,7 @@ namespace VerilogLanguage
         /// <param name="ItemName"></param>
         /// <param name="HoverText"></param>
         private static void AddHoverItem(string thisScope, string ItemName, string HoverText) {
-            if (ItemName == string.Empty || (ItemName.Length == 1) && IsDelimiter(ItemName[0]) ) {
+            if (ItemName == string.Empty || (ItemName.Length == 1) && IsDelimiter(ItemName[0])) {
                 // never add a blank & never add a delimiter TODO - why would we even try? unresolved declaration naming?
                 // sometimes we end up here while typing new declarations
                 // string a = "breakpoint"; // we should never end up here TODO do we need to clean up interim values?
@@ -763,11 +763,11 @@ namespace VerilogLanguage
                     thisModuleParameterText += ItemText;
                     thisModuleDeclarationText += ItemText;
 
-                    if (thisHoverName == string.Empty && IsIdentifier(ItemText) && !IsVerilogNamerKeyword(ItemText)) {
+                    if (thisHoverName == string.Empty && IsIdentifier(ItemText) && !IsVerilogNamerKeyword(ItemText) && !IsVerilogVariableSigner(ItemText)) {
                         thisHoverName = ItemText;
                     }
 
-                    if (IsVerilogNamerKeyword(ItemText) || IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || IsDelimiter(ItemText)) {
+                    if (IsVerilogNamerKeyword(ItemText) || IsVerilogVariableSigner(ItemText) || IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || IsDelimiter(ItemText)) {
                         SetBracketContentStatus_For(ItemText);
                         // nothing at this time; we are still bulding the declaration part
                         // thisModuleParameterText += ItemText;
@@ -854,7 +854,7 @@ namespace VerilogLanguage
                     // thisModuleParameterText += ItemText;
                     thisModuleDeclarationText += ItemText;
 
-                    if (IsVerilogNamerKeyword(ItemText) || IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || IsDelimiter(ItemText)) {
+                    if (IsVerilogNamerKeyword(ItemText) || IsVerilogVariableSigner(ItemText) || IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || IsDelimiter(ItemText)) {
                         SetBracketContentStatus_For(ItemText);
 
                         // no longer mimic naming
@@ -865,7 +865,7 @@ namespace VerilogLanguage
                         thisModuleParameterText = ItemText; // start over for the module parameter
                     }
                     else {
-                        if (thisHoverName == string.Empty && IsIdentifier(ItemText) && !IsVerilogNamerKeyword(ItemText)) {
+                        if (thisHoverName == string.Empty && IsIdentifier(ItemText) && !IsVerilogNamerKeyword(ItemText) && !IsVerilogVariableSigner(ItemText)) {
                             thisHoverName = ItemText;
                         }
                         thisModuleParameterText += ItemText;
@@ -956,7 +956,7 @@ namespace VerilogLanguage
                     break;
 
                 default:
-                    if (thisHoverName == string.Empty && IsIdentifier(ItemText)) {
+                    if (thisHoverName == string.Empty && IsIdentifier(ItemText) && !IsVerilogVariableSigner(ItemText)) {
                         if (IsInsideSquareBracket || IsInsideSquigglyBracket) {
                             // Identifier used in a range or concatenation is not a declared name
                             thisVariableDeclarationText += ItemText;
@@ -1043,7 +1043,7 @@ namespace VerilogLanguage
                         Process_UndefinedState_For(ItemText);
                     }
                     else {
-                        if (IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || IsDelimiter(ItemText)) {
+                        if (IsVerilogVariableSigner(ItemText) || IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || IsDelimiter(ItemText)) {
                             SetBracketContentStatus_For(ItemText);
                             if (IsVerilogValue(ItemText)) {
                                 AddHoverItem(SCOPE_CONST, ItemText, ValueHoverText(ItemText));
@@ -1052,7 +1052,7 @@ namespace VerilogLanguage
                             thisVariableDeclarationText += ItemText;
                         }
                         else {
-                            if (thisHoverName == string.Empty && IsIdentifier(ItemText)) {
+                            if (thisHoverName == string.Empty && IsIdentifier(ItemText) && !IsVerilogVariableSigner(ItemText)) {
                                 if (IsInsideSquareBracket || IsInsideSquigglyBracket) {
                                     // Identifier inside is NOT a declared name
                                 }

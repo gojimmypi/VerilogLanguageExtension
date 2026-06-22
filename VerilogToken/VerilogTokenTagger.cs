@@ -49,6 +49,13 @@ namespace VerilogLanguage.VerilogToken
 
         private int _initialInvalidateAttempted;
 
+        private const int ReparseCompletionTimerMaxTicks = 200;
+        private int _reparseCompletionTimerTicks;
+
+        private readonly object _blockCommentStateLock = new object();
+        private ITextSnapshot _blockCommentStateSnapshot;
+        private readonly List<bool> _blockCommentStateAtLineStart = new List<bool>();
+
         // ITextView View { get; set; }
         private readonly ITextBuffer _buffer;
 
@@ -102,6 +109,7 @@ namespace VerilogLanguage.VerilogToken
             }
 
             _lastReparseFile = forFile;
+            _reparseCompletionTimerTicks = 0;
 
             if (_reparseCompletionTimer == null) {
                 _reparseCompletionTimer = new Timer(ReparseCompletionTimerCallback, null, 50, 50);
@@ -118,17 +126,17 @@ namespace VerilogLanguage.VerilogToken
             }
 
             // Wait for parse to complete, then invalidate all.
+            // Bound the watcher so a stuck parse flag cannot keep a Timer alive forever.
             if (VerilogGlobals.ParseStatusController.IsReparsing(forFile)) {
+                _reparseCompletionTimerTicks++;
+                if (_reparseCompletionTimerTicks >= ReparseCompletionTimerMaxTicks) {
+                    StopReparseCompletionWatcher();
+                }
                 return;
             }
 
-            // Stop the timer (one-shot behavior).
-            try {
-                _reparseCompletionTimer.Change(Timeout.Infinite, Timeout.Infinite);
-            }
-            catch {
-                // ignore
-            }
+            // Stop and dispose the timer (one-shot behavior).
+            StopReparseCompletionWatcher();
 
             ITextSnapshot snapshot = null;
             try {
@@ -150,6 +158,8 @@ namespace VerilogLanguage.VerilogToken
         /// <param name="sender"></param>
         /// <param name="e"></param>
         void BufferChanged(object sender, TextContentChangedEventArgs e) {
+            InvalidateBlockCommentStateCache();
+
             // If this isn't the most up-to-date version of the buffer, then ignore it for now (we'll eventually get another change event).
             if (e.After != _buffer.CurrentSnapshot) {
                 return;
@@ -206,25 +216,77 @@ namespace VerilogLanguage.VerilogToken
 
         private bool IsOpenBlockComment(NormalizedSnapshotSpanCollection sc) {
             VerilogGlobals.PerfMon.VerilogTokenTagger_IsOpenBlockComment_Count++;
-            bool isLocalBlockComment = false;
-            bool isLocalLineComment = false;
 
-            if (sc != null && sc.Count > 0 && sc[0].Snapshot != null && sc[0].Start.Position > 0) {
-                int toPosition = sc[0].Start.Position - 1;
-                foreach (ITextSnapshotLine thisLine in sc[0].Snapshot.Lines) {
-                    int pos = thisLine.Start.Position;
-                    if (pos > toPosition) {
-                        break;
-                    }
+            if (sc == null || sc.Count == 0 || sc[0].Snapshot == null || sc[0].Start.Position <= 0) {
+                return false;
+            }
 
-                    CommentHelper commentHelper = new CommentHelper(thisLine.GetText(), isLocalLineComment, isLocalBlockComment);
-                    isLocalBlockComment = commentHelper.HasBlockStartComment;
-                    isLocalLineComment = false;
-                }
+            ITextSnapshot snapshot = sc[0].Snapshot;
+            int startPosition = sc[0].Start.Position;
+            if (startPosition > snapshot.Length) {
+                startPosition = snapshot.Length;
+            }
+
+            ITextSnapshotLine line = snapshot.GetLineFromPosition(startPosition);
+            bool isLocalBlockComment = GetBlockCommentStateAtLineStart(snapshot, line.LineNumber);
+
+            int prefixLength = startPosition - line.Start.Position;
+            if (prefixLength > 0) {
+                string linePrefix = line.GetText().Substring(0, prefixLength);
+                CommentHelper commentHelper = new CommentHelper(linePrefix, false, isLocalBlockComment);
+                isLocalBlockComment = commentHelper.HasBlockStartComment;
             }
 
             return isLocalBlockComment;
         }
+
+        private bool GetBlockCommentStateAtLineStart(ITextSnapshot snapshot, int lineNumber) {
+            if (snapshot == null || lineNumber <= 0) {
+                return false;
+            }
+
+            lock (_blockCommentStateLock) {
+                if (!object.ReferenceEquals(_blockCommentStateSnapshot, snapshot)) {
+                    _blockCommentStateSnapshot = snapshot;
+                    _blockCommentStateAtLineStart.Clear();
+                    _blockCommentStateAtLineStart.Add(false); // line 0 is never continued from a prior line
+                }
+
+                while (_blockCommentStateAtLineStart.Count <= lineNumber) {
+                    int previousLineNumber = _blockCommentStateAtLineStart.Count - 1;
+                    bool isLocalBlockComment = _blockCommentStateAtLineStart[previousLineNumber];
+                    ITextSnapshotLine previousLine = snapshot.GetLineFromLineNumber(previousLineNumber);
+                    CommentHelper commentHelper = new CommentHelper(previousLine.GetText(), false, isLocalBlockComment);
+                    _blockCommentStateAtLineStart.Add(commentHelper.HasBlockStartComment);
+                }
+
+                return _blockCommentStateAtLineStart[lineNumber];
+            }
+        }
+
+        private void InvalidateBlockCommentStateCache() {
+            lock (_blockCommentStateLock) {
+                _blockCommentStateSnapshot = null;
+                _blockCommentStateAtLineStart.Clear();
+            }
+        }
+
+        private void StopReparseCompletionWatcher() {
+            Timer oldTimer = Interlocked.Exchange(ref _reparseCompletionTimer, null);
+            if (oldTimer == null) {
+                return;
+            }
+
+            try {
+                oldTimer.Change(Timeout.Infinite, Timeout.Infinite);
+            }
+            catch {
+                // ignore
+            }
+
+            oldTimer.Dispose();
+        }
+
 
         private void RaiseTagsChanged(SnapshotSpan span) {
             var handler = TagsChanged;
@@ -321,6 +383,28 @@ namespace VerilogLanguage.VerilogToken
             RaiseTagsChanged(new SnapshotSpan(snapshot, start, length));
         }
 
+        private bool EnsureParseDataForCurrentBuffer() {
+            string thisFile = VerilogLanguage.VerilogGlobals.GetDocumentPath(_buffer.CurrentSnapshot);
+            if (string.IsNullOrEmpty(thisFile)) {
+                return true;
+            }
+
+            if (VerilogGlobals.IsActiveParseData(thisFile, _buffer)) {
+                return true;
+            }
+
+            if (VerilogGlobals.ParseStatusController.IsReparsing(thisFile)) {
+                StartOrResetReparseCompletionWatcher(thisFile);
+                return false;
+            }
+
+            VerilogGlobals.ParseStatusController.NeedReparse_SetValue(thisFile, true);
+            VerilogGlobals.Reparse(_buffer, thisFile);
+            StartOrResetReparseCompletionWatcher(thisFile);
+
+            return VerilogGlobals.IsActiveParseData(thisFile, _buffer);
+        }
+
         /// <summary>
         ///   IEnumerable VerilogTokenTag GetTags
         /// </summary>
@@ -337,6 +421,10 @@ namespace VerilogLanguage.VerilogToken
                 yield break;
             }
 
+            if (!EnsureParseDataForCurrentBuffer()) {
+                yield break;
+            }
+
             // This is the reliable place to trigger the initial full repaint:
             // by the time VS asks for tags, the downstream aggregators are subscribed.
             if (Interlocked.Exchange(ref _initialInvalidateAttempted, 1) == 0) {
@@ -349,7 +437,7 @@ namespace VerilogLanguage.VerilogToken
 
             // init TODO - we don't really want to call this for every enumeration!
             // VerilogGlobals.InitHoverBuilder();
-            VerilogGlobals.IsContinuedBlockComment = IsOpenBlockComment(spans); // TODO - does spans always contain the full document? (appears perhaps not)
+            bool isContinuedBlockComment = IsOpenBlockComment(spans); // TODO - does spans always contain the full document? (appears perhaps not)
 
             VerilogGlobals.VerilogToken[] tokens = null;
             VerilogGlobals.VerilogToken priorToken = new VerilogGlobals.VerilogToken();
@@ -401,34 +489,74 @@ namespace VerilogLanguage.VerilogToken
                     string lineText = line.GetText();
                     tokens = VerilogGlobals.VerilogKeywordSplit(lineText, priorToken);
 
-
                     int curLoc = line.Start.Position;
-                bool isContinuedLineComment = false; // comments with "//" are only effective for the current line, but /* can span multiple lines
-                foreach (VerilogGlobals.VerilogToken verilogToken in tokens) { // this group of tokens in in a single line
-                    // by the time we get here, we might have a tag with adjacent comments:
-                    //     assign//
-                    //     //assign
-                    //     assign//comment
-                    //     /*assign*/
-                    //     assign/*comment*/
-                    CommentHelper commentHelper;
+                    bool isContinuedLineComment = false; // comments with "//" are only effective for the current line, but /* can span multiple lines
+                    foreach (VerilogGlobals.VerilogToken verilogToken in tokens) { // this group of tokens in in a single line
+                        string tokenText = verilogToken.Part ?? string.Empty;
+                        int tokenLength = tokenText.Length;
+                        if (tokenLength <= 0) {
+                            continue;
+                        }
+
+                        ITextSnapshot snap = line.Snapshot;
+                        if (curLoc < 0 || curLoc >= snap.Length) {
+                            curLoc += tokenLength;
+                            continue; // at EOF (or invalid), cannot make a non-empty span
+                        }
+
+                        if (curLoc + tokenLength > snap.Length) {
+                            tokenLength = snap.Length - curLoc;
+                            if (tokenLength <= 0) {
+                                continue;
+                            }
+                        }
+
+                        if (verilogToken.Context == VerilogGlobals.VerilogTokenContextType.DoubleQuoteOpen) {
+                            SnapshotSpan directTokenSpan;
+                            try {
+                                directTokenSpan = new SnapshotSpan(line.Snapshot, new Span(curLoc, tokenLength));
+                            }
+                            catch (Exception ex) {
+                                Console.WriteLine($"Error in VerilogTokenTagger.GetTags: {ex.Message}");
+                                curLoc += tokenLength;
+                                continue;
+                            }
+
+                            if (directTokenSpan.IntersectsWith(curSpan)) {
+                                yield return new TagSpan<VerilogTokenTag>(
+                                    directTokenSpan,
+                                    new VerilogTokenTag(VerilogTokenTypes.Verilog_Value));
+                            }
+
+                            curLoc += tokenLength;
+                            continue;
+                        }
+
+                        // by the time we get here, we might have a tag with adjacent comments:
+                        //     assign//
+                        //     //assign
+                        //     assign//comment
+                        //     /*assign*/
+                        //     assign/*comment*/
+                        CommentHelper commentHelper;
                         CreateCommentHelper(
-                            verilogToken.Part,
+                            tokenText,
                             isContinuedLineComment,
-                            VerilogGlobals.IsContinuedBlockComment,
+                            isContinuedBlockComment,
                             out commentHelper,
-                            out isContinuedLineComment);
+                            out isContinuedLineComment,
+                            out isContinuedBlockComment);
 
                         foreach (CommentHelper.CommentItem item in commentHelper.CommentItems) {
                             /* This next length section is typically for not processing EOF, but perhaps will occur elsewhere */
                             int len = item.ItemText.Length;
-                            ITextSnapshot snap = line.Snapshot;
 
                             if (len <= 0) {
                                 continue;
                             }
 
                             if (curLoc < 0 || curLoc >= snap.Length) {
+                                curLoc += len;
                                 continue; // at EOF (or invalid), cannot make a non-empty span
                             }
 
@@ -443,11 +571,11 @@ namespace VerilogLanguage.VerilogToken
                             try {
                                 tokenSpan = new SnapshotSpan(line.Snapshot, new Span(curLoc, len));
                             }
-                            catch (Exception ex)
-                            {
+                            catch (Exception ex) {
                                 /* Highly unlikely we ended up here, but just in case: */
                                 tokenSpan = new SnapshotSpan();
                                 Console.WriteLine($"Error in VerilogTokenTagger.GetTags: {ex.Message}");
+                                curLoc += len;
                                 continue;
                             }
                             if (tokenSpan.IntersectsWith(curSpan)) {
@@ -462,8 +590,8 @@ namespace VerilogLanguage.VerilogToken
                                     yield return tag;
                                 }
                             }
-                        // note that no chars are lost when splitting string with VerilogKeywordSplit, so no adjustment needed in location
-                        curLoc += len;
+                            // note that no chars are lost when splitting string with VerilogKeywordSplit, so no adjustment needed in location
+                            curLoc += len;
                         }
                     }
 
@@ -488,10 +616,11 @@ namespace VerilogLanguage.VerilogToken
             bool isContinuedLineComment,
             bool isContinuedBlockComment,
             out CommentHelper commentHelper,
-            out bool newIsContinuedLineComment) {
+            out bool newIsContinuedLineComment,
+            out bool newIsContinuedBlockComment) {
             commentHelper = new CommentHelper(tokenText, isContinuedLineComment, isContinuedBlockComment);
 
-            VerilogGlobals.IsContinuedBlockComment = commentHelper.HasBlockStartComment;
+            newIsContinuedBlockComment = commentHelper.HasBlockStartComment;
             newIsContinuedLineComment = commentHelper.HasOpenLineComment; // we'll use this when processing the VerilogToken item in the commentHelper, above
         }
 
@@ -549,6 +678,36 @@ namespace VerilogLanguage.VerilogToken
             /* There's an implicit yield break here; do not return Null! */
         }
 
+        private static bool IsVerilogValueText(string text) {
+            if (string.IsNullOrWhiteSpace(text)) {
+                return false;
+            }
+
+            string compact = text.Trim().Replace(" ", string.Empty).Replace("\t", string.Empty);
+            if (compact.Length == 0) {
+                return false;
+            }
+
+            // Sized or unsized based literal: 8'hff, 3'b010, 'hdead, 8'sd-1.
+            int quoteIndex = compact.IndexOf(VerilogGlobals.RADIX_CHAR);
+            if (quoteIndex >= 0) {
+                int radixIndex = quoteIndex + 1;
+                if (radixIndex < compact.Length && (compact[radixIndex] == 's' || compact[radixIndex] == 'S')) {
+                    radixIndex++;
+                }
+
+                if (radixIndex < compact.Length) {
+                    char radix = compact[radixIndex];
+                    if (VerilogGlobals.VerilogRadixChars.Contains(radix)) {
+                        return compact.Length > radixIndex + 1;
+                    }
+                }
+            }
+
+            double numericValue;
+            return double.TryParse(compact, out numericValue);
+        }
+
         private IEnumerable<ITagSpan<VerilogTokenTag>> ProcessLookupText(
             ITextSnapshotLine containingLine,
             VerilogGlobals.VerilogToken verilogToken,
@@ -565,6 +724,13 @@ namespace VerilogLanguage.VerilogToken
                 yield return new TagSpan<VerilogTokenTag>(
                     lookupSpan,
                     new VerilogTokenTag(VerilogGlobals.VerilogTypes[lookupText]));
+                yield break;
+            }
+
+            if (IsVerilogValueText(lookupText)) {
+                yield return new TagSpan<VerilogTokenTag>(
+                    lookupSpan,
+                    new VerilogTokenTag(VerilogTokenTypes.Verilog_Value));
                 yield break;
             }
 

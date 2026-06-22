@@ -12,6 +12,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Input;
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.Language.Intellisense;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
@@ -69,20 +70,27 @@ namespace VSLTK.Intellisense
         /// <summary>
         /// Determine if the mouse is hovering over a token. If so, highlight the token and display QuickInfo
         /// </summary>
-        private void OnTextViewMouseHover(object sender, MouseHoverEventArgs e) {
+        private async void OnTextViewMouseHover(object sender, MouseHoverEventArgs e) {
             if (_textView == null) {
                 return;
             }
 
             string thisFile = VerilogLanguage.VerilogGlobals.GetDocumentPath(_textView.TextSnapshot);
-            if (VerilogGlobals.ParseStatusController.NeedReparse(thisFile)) // ensure the dictionary item exists for the ParseStatus of this file and check if it is time to reparse
-            {
-                if (_subjectBuffers.Count == 1) {
-                    VerilogLanguage.VerilogGlobals.Reparse(_subjectBuffers[0], thisFile);
+            if (!string.IsNullOrEmpty(thisFile)) {
+                try {
+                    if (VerilogGlobals.ParseStatusController.NeedReparse(thisFile)) // ensure the dictionary item exists for the ParseStatus of this file and check if it is time to reparse
+                    {
+                        if (_subjectBuffers != null && _subjectBuffers.Count == 1) {
+                            VerilogLanguage.VerilogGlobals.Reparse(_subjectBuffers[0], thisFile);
+                        }
+                        else {
+                            // how do we end up with multiple buffers?
+                            // TODO - handle this?
+                        }
+                    }
                 }
-                else {
-                    // how do we end up with multiple buffers?
-                    // TODO - handle this?
+                catch (Exception ex) {
+                    System.Diagnostics.Debug.WriteLine("TemplateQuickInfoController reparse check failed: " + ex.Message);
                 }
             }
 
@@ -96,8 +104,12 @@ namespace VSLTK.Intellisense
                 PointTrackingMode.Positive);
 
             if (!_componentContext.QuickInfoBroker.IsQuickInfoActive(_textView)) {
-                // Fire-and-forget is OK here; VS manages the async session lifecycle.
-                _ = _componentContext.QuickInfoBroker.TriggerQuickInfoAsync(_textView, triggerPoint);
+                try {
+                    await _componentContext.QuickInfoBroker.TriggerQuickInfoAsync(_textView, triggerPoint).ConfigureAwait(false);
+                }
+                catch (Exception ex) {
+                    System.Diagnostics.Debug.WriteLine("TriggerQuickInfoAsync failed: " + ex.Message);
+                }
             }
         }
 

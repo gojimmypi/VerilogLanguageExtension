@@ -41,12 +41,12 @@ namespace VerilogLanguage.VerilogToken
     internal sealed class VerilogTokenTagProvider : ITaggerProvider
     {
         public ITagger<T> CreateTagger<T>(ITextBuffer buffer) where T : ITag {
-            System.Diagnostics.Debug.WriteLine(
-                "VerilogTokenTagProvider.CreateTagger: ContentType=" + buffer.ContentType.TypeName);
-
             if (buffer == null) {
                 return null;
             }
+
+            System.Diagnostics.Debug.WriteLine(
+                "VerilogTokenTagProvider.CreateTagger: ContentType=" + buffer.ContentType.TypeName);
 
             // CRITICAL:
             // Returning a new tagger each time causes:

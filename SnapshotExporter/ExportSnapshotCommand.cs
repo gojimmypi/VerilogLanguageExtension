@@ -183,11 +183,23 @@ namespace VerilogLanguage.Testing
 
                 VerilogLanguage.Testing.SnapshotExporter.WriteJson(export, outFile);
 
+                string message = string.Format(CultureInfo.CurrentCulture, "Snapshot exported to:\r\n{0}", outFile);
+                OLEMSGICON icon = OLEMSGICON.OLEMSGICON_INFO;
+
+                if (export.Errors != null && export.Errors.Count > 0) {
+                    message = string.Format(
+                        CultureInfo.CurrentCulture,
+                        "Snapshot exported to:\r\n{0}\r\n\r\nWarning: {1} exporter error(s) were recorded in the JSON output.",
+                        outFile,
+                        export.Errors.Count);
+                    icon = OLEMSGICON.OLEMSGICON_WARNING;
+                }
+
                 VsShellUtilities.ShowMessageBox(
                     this.package,
-                    string.Format(CultureInfo.CurrentCulture, "Snapshot exported to:\r\n{0}", outFile),
+                    message,
                     "Snapshot Exporter",
-                    OLEMSGICON.OLEMSGICON_INFO,
+                    icon,
                     OLEMSGBUTTON.OLEMSGBUTTON_OK,
                     OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
             }

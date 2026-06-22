@@ -27,6 +27,7 @@
 
 using System;
 using System.ComponentModel.Composition;
+using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.Text;
@@ -56,7 +57,7 @@ namespace VerilogLanguage
 #if !DEBUG
             return;
 #else
-            if (textView == null) {
+            if (textView == null || textView.IsClosed) {
                 return;
             }
 
@@ -76,33 +77,48 @@ namespace VerilogLanguage
 
 #if DEBUG
         private async Task ExportAfterDelayAsync(IWpfTextView textView) {
-            // Must remain on UI thread for editor services; delay still yields to message pump.
-            await Microsoft.VisualStudio.Shell.ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            try {
+                // Must remain on UI thread for editor services; delay still yields to message pump.
+                await Microsoft.VisualStudio.Shell.ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            // Two yields + a small delay has proven enough to avoid "empty" exports in practice.
-            await Task.Yield();
-            await Task.Delay(250).ConfigureAwait(true);
-            await Task.Yield();
+                if (textView == null || textView.IsClosed) {
+                    return;
+                }
 
-            string filePath = null;
+                // Two yields + a small delay has proven enough to avoid "empty" exports in practice.
+                await Task.Yield();
+                await Task.Delay(250).ConfigureAwait(true);
+                await Task.Yield();
 
-            ITextDocument doc;
+                if (textView == null || textView.IsClosed) {
+                    return;
+                }
 
-            //TextDocumentFactoryService.TryGetTextDocument(textView.TextBuffer, out doc) &&
-            if (TextDocumentFactoryService != null &&
-                TextDocumentFactoryService.TryGetTextDocument(textView.TextViewModel.EditBuffer, out doc) &&
-                doc != null) {
-                filePath = doc.FilePath;
+                string filePath = null;
+
+                ITextDocument doc;
+                ITextBuffer editBuffer = textView.TextViewModel != null
+                    ? textView.TextViewModel.EditBuffer
+                    : textView.TextBuffer;
+
+                if (TextDocumentFactoryService != null &&
+                    TextDocumentFactoryService.TryGetTextDocument(editBuffer, out doc) &&
+                    doc != null) {
+                    filePath = doc.FilePath;
+                }
+
+                var exporter = new VerilogLanguage.Testing.SnapshotExporter(ClassifierAggregatorService, BufferTagAggregatorFactoryService);
+
+                EditorSnapshotExport export = exporter.Export(textView, filePath);
+
+                string outDir = Path.Combine(Path.GetTempPath(), "VerilogLanguageSnapshot");
+                string outFile = Path.Combine(outDir, MakeSafeFileName(filePath) + ".snapshot.json");
+
+                VerilogLanguage.Testing.SnapshotExporter.WriteJson(export, outFile);
             }
-
-            var exporter = new VerilogLanguage.Testing.SnapshotExporter(ClassifierAggregatorService, BufferTagAggregatorFactoryService);
-
-            EditorSnapshotExport export = exporter.Export(textView, filePath);
-
-            string outDir = Path.Combine(Path.GetTempPath(), "VerilogLanguageSnapshot");
-            string outFile = Path.Combine(outDir, MakeSafeFileName(filePath) + ".snapshot.json");
-
-            VerilogLanguage.Testing.SnapshotExporter.WriteJson(export, outFile);
+            catch (Exception ex) {
+                Trace.WriteLine("VerilogLanguage SnapshotExportOnOpen failed: " + ex);
+            }
         }
 
         private static string MakeSafeFileName(string filePath) {

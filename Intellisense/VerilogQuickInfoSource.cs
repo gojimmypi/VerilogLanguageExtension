@@ -32,6 +32,14 @@ namespace VerilogLanguage
         private IBufferTagAggregatorFactoryService aggService = null;
 
         public IAsyncQuickInfoSource TryCreateQuickInfoSource(ITextBuffer textBuffer) {
+            if (textBuffer == null || aggService == null) {
+                return null;
+            }
+
+            // Return a fresh QuickInfo source. The source owns its tag aggregator and
+            // disposes it when VS disposes the source. The shared token tagger intentionally
+            // does not implement IDisposable, so disposing this temporary aggregator cannot
+            // poison the singleton token tagger used by classification and later hovers.
             return new VerilogAsyncQuickInfoSource(
                 textBuffer,
                 aggService.CreateTagAggregator<VerilogTokenTag>(textBuffer));
@@ -154,8 +162,8 @@ namespace VerilogLanguage
         public Task<QuickInfoItem> GetQuickInfoItemAsync(
             IAsyncQuickInfoSession session,
             CancellationToken cancellationToken) {
-            if (_disposed) {
-                throw new ObjectDisposedException(nameof(VerilogAsyncQuickInfoSource));
+            if (_disposed || cancellationToken.IsCancellationRequested || session == null) {
+                return Task.FromResult<QuickInfoItem>(null);
             }
 
             SnapshotPoint? triggerPoint = session.GetTriggerPoint(_buffer.CurrentSnapshot);
@@ -164,9 +172,30 @@ namespace VerilogLanguage
             }
 
             SnapshotPoint trigger = triggerPoint.Value;
-            SnapshotSpan probeSpan = new SnapshotSpan(trigger, 0);
+            ITextSnapshot snapshot = trigger.Snapshot;
+            if (snapshot == null || snapshot.Length == 0) {
+                return Task.FromResult<QuickInfoItem>(null);
+            }
 
-            foreach (IMappingTagSpan<VerilogTokenTag> curTag in _aggregator.GetTags(probeSpan)) {
+            int probePosition = trigger.Position;
+            if (probePosition >= snapshot.Length) {
+                probePosition = snapshot.Length - 1;
+            }
+            if (probePosition < 0) {
+                return Task.FromResult<QuickInfoItem>(null);
+            }
+
+            SnapshotSpan probeSpan = new SnapshotSpan(snapshot, probePosition, 1);
+            List<IMappingTagSpan<VerilogTokenTag>> tags;
+            try {
+                tags = _aggregator.GetTags(probeSpan).ToList();
+            }
+            catch (Exception ex) {
+                System.Diagnostics.Debug.WriteLine("VerilogAsyncQuickInfoSource.GetTags failed: " + ex.Message);
+                return Task.FromResult<QuickInfoItem>(null);
+            }
+
+            foreach (IMappingTagSpan<VerilogTokenTag> curTag in tags) {
                 cancellationToken.ThrowIfCancellationRequested();
 
                 // Normalize mapping span to the current snapshot for this buffer.
@@ -201,20 +230,16 @@ namespace VerilogLanguage
 
                     Dictionary<string, Dictionary<string, string>> hoverDb = VerilogGlobals.VerilogVariableHoverText;
 
-                    if (!hoverDb.ContainsKey(thisScopeName)) {
-                        hoverDb.Add(thisScopeName, new Dictionary<string, string>());
-                    }
-
-                    if (hoverDb[thisScopeName].TryGetValue(thisHoverKey, out string variableHover)) {
+                    if (hoverDb.TryGetValue(thisScopeName, out Dictionary<string, string> scopeMap) &&
+                        scopeMap != null &&
+                        scopeMap.TryGetValue(thisHoverKey, out string variableHover)) {
                         return Task.FromResult(new QuickInfoItem(applicableToSpan, variableHover));
                     }
 
-                    if (hoverDb.TryGetValue(VerilogGlobals.SCOPE_CONST, out Dictionary<string, string> constMap)) {
-                        if (constMap != null) {
-                            if (constMap.TryGetValue(thisHoverKey, out string constHover)) {
-                                return Task.FromResult(new QuickInfoItem(applicableToSpan, constHover));
-                            }
-                        }
+                    if (hoverDb.TryGetValue(VerilogGlobals.SCOPE_CONST, out Dictionary<string, string> constMap) &&
+                        constMap != null &&
+                        constMap.TryGetValue(thisHoverKey, out string constHover)) {
+                        return Task.FromResult(new QuickInfoItem(applicableToSpan, constHover));
                     }
                 }
 
@@ -224,7 +249,16 @@ namespace VerilogLanguage
         }
 
         public void Dispose() {
+            if (_disposed) {
+                return;
+            }
+
             _disposed = true;
+
+            IDisposable disposableAggregator = _aggregator as IDisposable;
+            if (disposableAggregator != null) {
+                disposableAggregator.Dispose();
+            }
         }
     }
 }

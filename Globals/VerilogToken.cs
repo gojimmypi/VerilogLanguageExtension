@@ -1,14 +1,9 @@
-
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 namespace VerilogLanguage
 {
     public static partial class VerilogGlobals
     {
-
         /// <summary>
         ///   VerilogToken
         /// </summary>
@@ -40,10 +35,7 @@ namespace VerilogLanguage
                         }
                     }
                 }
-
-
             }
-
 
             /// <summary>
             ///   Verilog Token Initializer
@@ -52,13 +44,13 @@ namespace VerilogLanguage
             /// <param name="c"></param>
             public VerilogToken(string p = "", VerilogTokenContextType c = VerilogTokenContextType.Undetermined) {
                 ParseState = new VerilogParseState(0);
-                Part = p ?? ""; // ensure Part is never null (empty string if p is null)
+                Part = p ?? string.Empty;
 
                 if (c == VerilogTokenContextType.Undetermined && Part.Length > 0) {
-                    Context = VerilogTokenContextFromString(p); // we'll figure out the context from the first character
+                    Context = VerilogTokenContextFromString(Part);
                 }
                 else {
-                    Context = c; // unless otherwise specified
+                    Context = c;
                 }
             }
         }
@@ -78,11 +70,8 @@ namespace VerilogLanguage
             // See VerilogTokenTagger for actually setting the context (e.g. color) of  each token item.
             //
             void AddToken() {
-                //string thisItem = thisToken.ParseState.thisItem;
-                //if (thisItem != string.Empty) // && thisItem != string.Empty)
-                //{
                 thisToken.Part = thisToken.ParseState.thisItem;
-                if (thisToken.Part != null) {
+                if (!string.IsNullOrEmpty(thisToken.Part)) {
                     // thisToken.Part = thisToken.Part.Trim();
                     thisContinuedParseState = thisToken.ParseState;
                     tokens.Add(thisToken);
@@ -90,11 +79,10 @@ namespace VerilogLanguage
                     thisToken = new VerilogToken(thisToken.ParseState.thisChar.ToString());
                     thisToken.ParseState = thisContinuedParseState;
                 }
-                thisToken.ParseState.thisItem = thisToken.ParseState.thisChar.ToString(); // start building a new token with the current, non-delimiter character, will be used to determine context in VerilogTokenContextFromString
-                //}
+                thisToken.ParseState.thisItem = (thisToken.ParseState.thisChar == '\0') ? string.Empty : thisToken.ParseState.thisChar.ToString(); // start building a new token with the current, non-delimiter character, will be used to determine context in VerilogTokenContextFromString
             }
 
-            thisToken.ParseState = priorToken.ParseState; // when starting, use the priorToken parseState that would have come from the prior line in the span
+            thisToken.ParseState = priorToken.ParseState; // when starting, use the priorToken parseState that wouldhave come from the prior line in the span
 
             for (int i = 0; i < theString.Length; i++) {
                 thisToken.ParseState.thisIndex = i;
@@ -107,16 +95,9 @@ namespace VerilogLanguage
                     // there's a new delimiter, so add the current item and prep for the next one
                     AddToken();
 
-                    //VerilogToken old = thisToken;
-
                     // once the ParseState is configured (above, when assigning thisChar), set the context of the item
                     thisToken.SetContext(); // TODO do we really need this? context is already set
                     // at the end of each loop, set the prior values
-
-                    //if (old.Context != thisToken.Context)
-                    //{
-                    //    old.Context = thisToken.Context;
-                    //}
                     thisToken.ParseState.SetPriorValues();
                 } // end of for loop look at each char
             }

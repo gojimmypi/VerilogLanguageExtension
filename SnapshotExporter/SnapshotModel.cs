@@ -35,11 +35,14 @@ namespace VerilogLanguage.Testing
         public string FilePath { get; set; }
         public int SnapshotLength { get; set; }
         public int SnapshotVersion { get; set; }
+        public string TextSha256 { get; set; }
 
+        public List<string> Errors { get; set; }
         public List<ClassificationRun> Classifications { get; set; }
         public List<TagRun> Tags { get; set; }
 
         public EditorSnapshotExport() {
+            Errors = new List<string>();
             Classifications = new List<ClassificationRun>();
             Tags = new List<TagRun>();
         }

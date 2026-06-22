@@ -34,6 +34,39 @@ namespace VerilogLanguage
         /// _synchronizationParseStatus - synchronize access to static ParseStatus data by locking a private static object
         /// </summary>
         private static readonly object _synchronizationParseStatus = new object();
+        private static readonly object _synchronizationActiveParseData = new object();
+        private static string _activeParseFile = string.Empty;
+        private static int _activeParseVersion = 0;
+
+        public static bool IsActiveParseData(string targetFile, ITextBuffer buffer) {
+            if (string.IsNullOrEmpty(targetFile) || buffer == null) {
+                return false;
+            }
+
+            int snapshotVersion;
+            try {
+                snapshotVersion = buffer.CurrentSnapshot.Version.VersionNumber;
+            }
+            catch {
+                return false;
+            }
+
+            lock (_synchronizationActiveParseData) {
+                return string.Equals(_activeParseFile, targetFile, StringComparison.OrdinalIgnoreCase) &&
+                    _activeParseVersion == snapshotVersion;
+            }
+        }
+
+        public static void SetActiveParseData(string targetFile, int snapshotVersion) {
+            if (string.IsNullOrEmpty(targetFile) || snapshotVersion == 0) {
+                return;
+            }
+
+            lock (_synchronizationActiveParseData) {
+                _activeParseFile = targetFile;
+                _activeParseVersion = snapshotVersion;
+            }
+        }
 
         /// <summary>
         /// ParseStatusController - thread-safe lock around access to shared ParseStatus dictionary

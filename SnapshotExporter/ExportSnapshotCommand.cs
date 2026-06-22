@@ -178,8 +178,7 @@ namespace VerilogLanguage.Testing
 
                 EditorSnapshotExport export = exporter.Export(textView, filePath);
 
-                string outDir = Path.Combine(Path.GetTempPath(), "VerilogLanguageSnapshot");
-                string outFile = Path.Combine(outDir, MakeSafeFileName(filePath) + ".snapshot.json");
+                string outFile = SnapshotExportSettings.MakeSnapshotFilePath(filePath, 0);
 
                 VerilogLanguage.Testing.SnapshotExporter.WriteJson(export, outFile);
 
@@ -242,17 +241,5 @@ namespace VerilogLanguage.Testing
             return adapters.GetWpfTextView(vsTextView);
         }
 
-        private static string MakeSafeFileName(string filePath) {
-            if (string.IsNullOrEmpty(filePath)) {
-                return "untitled";
-            }
-
-            string name = Path.GetFileName(filePath);
-            foreach (char c in Path.GetInvalidFileNameChars()) {
-                name = name.Replace(c, '_');
-            }
-
-            return name;
-        }
     } /* SnapshowExporter class */
 } /* Namespace */

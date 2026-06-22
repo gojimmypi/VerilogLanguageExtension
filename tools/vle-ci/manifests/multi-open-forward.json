@@ -1,0 +1,11 @@
+{
+    "RunName": "multi-open-forward",
+    "DelayMs": 500,
+    "Files": [
+        "TestFiles/issue10.v",
+        "TestFiles/issue21.v",
+        "TestFiles/issue21_mini.v",
+        "TestFiles/picorv32.v",
+        "TestFiles/issue10.v"
+    ]
+}

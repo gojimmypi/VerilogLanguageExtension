@@ -1,0 +1,17 @@
+{
+    "File": "TestFiles/issue21.v",
+    "MustHaveText": [
+        {
+            "Text": "32'hffff_0000"
+        },
+        {
+            "Text": "32'hffff_ffff"
+        },
+        {
+            "Text": "4 'b0"
+        },
+        {
+            "Text": "3'b 010"
+        }
+    ]
+}

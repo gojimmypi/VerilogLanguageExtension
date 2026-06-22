@@ -28,7 +28,7 @@
 using System;
 using System.ComponentModel.Composition;
 using System.Diagnostics;
-using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Classification;
@@ -44,6 +44,8 @@ namespace VerilogLanguage
     [TextViewRole(PredefinedTextViewRoles.Document)]
     internal sealed class SnapshotExportOnOpen : IWpfTextViewCreationListener
     {
+        private static int _snapshotSequence;
+
         [Import]
         internal ITextDocumentFactoryService TextDocumentFactoryService = null;
 
@@ -61,8 +63,7 @@ namespace VerilogLanguage
                 return;
             }
 
-            string gateFile = Path.Combine(Path.GetTempPath(), "VerilogLanguage.ExportSnapshots.enable");
-            if (!File.Exists(gateFile)) {
+            if (!SnapshotExportSettings.IsExportOnOpenEnabled()) {
                 return;
             }
 
@@ -85,9 +86,9 @@ namespace VerilogLanguage
                     return;
                 }
 
-                // Two yields + a small delay has proven enough to avoid "empty" exports in practice.
+                // Two yields + a configurable delay avoids "empty" exports before classification/taggers are ready.
                 await Task.Yield();
-                await Task.Delay(250).ConfigureAwait(true);
+                await Task.Delay(SnapshotExportSettings.GetDelayMs()).ConfigureAwait(true);
                 await Task.Yield();
 
                 if (textView == null || textView.IsClosed) {
@@ -109,29 +110,16 @@ namespace VerilogLanguage
 
                 var exporter = new VerilogLanguage.Testing.SnapshotExporter(ClassifierAggregatorService, BufferTagAggregatorFactoryService);
 
-                EditorSnapshotExport export = exporter.Export(textView, filePath);
+                EditorSnapshotExport export = exporter.Export(textView, filePath, SnapshotExportSettings.GetRunName());
 
-                string outDir = Path.Combine(Path.GetTempPath(), "VerilogLanguageSnapshot");
-                string outFile = Path.Combine(outDir, MakeSafeFileName(filePath) + ".snapshot.json");
+                int sequence = Interlocked.Increment(ref _snapshotSequence);
+                string outFile = SnapshotExportSettings.MakeSnapshotFilePath(filePath, sequence);
 
                 VerilogLanguage.Testing.SnapshotExporter.WriteJson(export, outFile);
             }
             catch (Exception ex) {
                 Trace.WriteLine("VerilogLanguage SnapshotExportOnOpen failed: " + ex);
             }
-        }
-
-        private static string MakeSafeFileName(string filePath) {
-            if (string.IsNullOrEmpty(filePath)) {
-                return "untitled";
-            }
-
-            string name = Path.GetFileName(filePath);
-            foreach (char c in Path.GetInvalidFileNameChars()) {
-                name = name.Replace(c, '_');
-            }
-
-            return name;
         }
 #endif
     }

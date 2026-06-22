@@ -1,0 +1,10 @@
+{
+    "RunName": "cold-open",
+    "DelayMs": 500,
+    "Files": [
+        "TestFiles/issue10.v",
+        "TestFiles/issue21.v",
+        "TestFiles/issue21_mini.v",
+        "TestFiles/picorv32.v"
+    ]
+}

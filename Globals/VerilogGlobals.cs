@@ -418,7 +418,7 @@ namespace VerilogLanguage
         /// <param name="ItemName"></param>
         /// <param name="HoverText"></param>
         private static void AddHoverItem(string thisScope, string ItemName, string HoverText) {
-            if (ItemName == string.Empty || (ItemName.Length == 1) && IsDelimiter(ItemName[0])) {
+            if (ItemName == string.Empty || (ItemName.Length == 1) && IsDelimiter(ItemName[0]) ) {
                 // never add a blank & never add a delimiter TODO - why would we even try? unresolved declaration naming?
                 // sometimes we end up here while typing new declarations
                 // string a = "breakpoint"; // we should never end up here TODO do we need to clean up interim values?

@@ -29,6 +29,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web.Script.Serialization;
@@ -53,6 +54,10 @@ namespace VerilogLanguage.Testing
         }
 
         public EditorSnapshotExport Export(IWpfTextView textView, string filePath) {
+            return Export(textView, filePath, SnapshotExportSettings.GetRunName());
+        }
+
+        public EditorSnapshotExport Export(IWpfTextView textView, string filePath, string runName) {
             if (textView == null) {
                 throw new ArgumentNullException("textView");
             }
@@ -65,15 +70,76 @@ namespace VerilogLanguage.Testing
             ITextSnapshot snapshot = editBuffer.CurrentSnapshot;
 
             var export = new EditorSnapshotExport();
+            export.RunName = string.IsNullOrWhiteSpace(runName) ? SnapshotExportSettings.GetRunName() : runName;
+            export.ExtensionVersion = GetExtensionVersion();
+            export.GitCommit = SnapshotExportSettings.GetGitCommit();
             export.FilePath = filePath;
+            export.FileRelativePath = SnapshotExportSettings.MakeRelativePath(filePath);
+            export.ContentType = editBuffer.ContentType != null ? editBuffer.ContentType.TypeName : string.Empty;
             export.SnapshotLength = snapshot.Length;
             export.SnapshotVersion = snapshot.Version.VersionNumber;
             export.TextSha256 = ComputeTextSha256(snapshot);
 
+            ExportParserTokens(snapshot, export);
             ExportClassifierSpans(editBuffer, snapshot, export);
             ExportVerilogTokenTags(editBuffer, snapshot, export);
+            ExportSymbols(export);
 
             return export;
+        }
+
+        private static void ExportParserTokens(ITextSnapshot snapshot, EditorSnapshotExport export) {
+            if (snapshot == null) {
+                AddError(export, "Parser token export skipped: snapshot was not available.");
+                return;
+            }
+
+            try {
+                VerilogLanguage.VerilogGlobals.VerilogToken priorToken = new VerilogLanguage.VerilogGlobals.VerilogToken();
+
+                foreach (ITextSnapshotLine line in snapshot.Lines) {
+                    string lineText = line.GetText();
+                    VerilogLanguage.VerilogGlobals.VerilogToken[] tokens = VerilogLanguage.VerilogGlobals.VerilogKeywordSplit(lineText, priorToken);
+                    int searchIndex = 0;
+
+                    if (tokens != null) {
+                        foreach (VerilogLanguage.VerilogGlobals.VerilogToken token in tokens) {
+                            string text = token.Part ?? string.Empty;
+                            if (text.Length == 0) {
+                                continue;
+                            }
+
+                            int columnIndex = lineText.IndexOf(text, searchIndex, StringComparison.Ordinal);
+                            if (columnIndex < 0) {
+                                columnIndex = Math.Min(searchIndex, lineText.Length);
+                            }
+
+                            var run = new TokenRun();
+                            run.Start = line.Start.Position + columnIndex;
+                            run.Length = text.Length;
+                            run.Line = line.LineNumber + 1;
+                            run.Column = columnIndex + 1;
+                            run.Text = text;
+                            run.Context = token.Context.ToString();
+                            export.Tokens.Add(run);
+
+                            searchIndex = Math.Min(columnIndex + text.Length, lineText.Length);
+                        }
+
+                        if (tokens.Length > 0) {
+                            priorToken = tokens[tokens.Length - 1];
+                        }
+                    }
+                }
+            }
+            catch (Exception ex) {
+                AddError(export,
+                    string.Format(
+                        CultureInfo.InvariantCulture,
+                        "Parser token export failed: {0}: {1}",
+                        ex.GetType().FullName,
+                        ex.Message));
+            }
         }
 
         private void ExportClassifierSpans(ITextBuffer buffer, ITextSnapshot snapshot, EditorSnapshotExport export) {
@@ -90,6 +156,10 @@ namespace VerilogLanguage.Testing
 
             const int chunkSize = 4096;
             int pos = 0;
+
+            if (snapshot.Length == 0) {
+                return;
+            }
 
             while (pos < snapshot.Length) {
                 int len = Math.Min(chunkSize, snapshot.Length - pos);
@@ -119,6 +189,7 @@ namespace VerilogLanguage.Testing
                         var run = new ClassificationRun();
                         run.Start = cs.Span.Start.Position;
                         run.Length = cs.Span.Length;
+                        FillSpanLocationAndText(cs.Span, run);
                         run.Types.Add(cs.ClassificationType.Classification);
 
                         export.Classifications.Add(run);
@@ -163,6 +234,12 @@ namespace VerilogLanguage.Testing
                         tr.Length = s.Length;
                         tr.TagType = typeof(VerilogLanguage.VerilogToken.VerilogTokenTag).FullName;
                         tr.TagDetail = mts.Tag.type.ToString();
+                        FillSpanLocationAndText(s, tr);
+
+                        string hoverText;
+                        if (VerilogLanguage.VerilogHoverInfo.TryGetHoverText(mts.Tag.type, snapshot, s, out hoverText)) {
+                            tr.HoverText = hoverText;
+                        }
 
                         export.Tags.Add(tr);
                     }
@@ -175,6 +252,64 @@ namespace VerilogLanguage.Testing
                         "Verilog token tag export failed: {0}: {1}",
                         ex.GetType().FullName,
                         ex.Message));
+            }
+        }
+
+        private static void ExportSymbols(EditorSnapshotExport export) {
+            try {
+                foreach (KeyValuePair<string, Dictionary<string, VerilogLanguage.VerilogToken.VerilogTokenTypes>> scope in VerilogLanguage.VerilogGlobals.VerilogVariables) {
+                    if (scope.Value == null) {
+                        continue;
+                    }
+
+                    foreach (KeyValuePair<string, VerilogLanguage.VerilogToken.VerilogTokenTypes> symbol in scope.Value) {
+                        var run = new SymbolRun();
+                        run.Scope = scope.Key;
+                        run.Name = symbol.Key;
+                        run.TokenType = symbol.Value.ToString();
+
+                        Dictionary<string, string> hoverScope;
+                        string hoverText;
+                        if (VerilogLanguage.VerilogGlobals.VerilogVariableHoverText.TryGetValue(scope.Key, out hoverScope) &&
+                            hoverScope != null &&
+                            hoverScope.TryGetValue(symbol.Key, out hoverText)) {
+                            run.HoverText = hoverText;
+                        }
+
+                        export.Symbols.Add(run);
+                    }
+                }
+            }
+            catch (Exception ex) {
+                AddError(export,
+                    string.Format(
+                        CultureInfo.InvariantCulture,
+                        "Symbol export failed: {0}: {1}",
+                        ex.GetType().FullName,
+                        ex.Message));
+            }
+        }
+
+        private static void FillSpanLocationAndText(SnapshotSpan span, ClassificationRun run) {
+            ITextSnapshotLine line = span.Snapshot.GetLineFromPosition(span.Start.Position);
+            run.Line = line.LineNumber + 1;
+            run.Column = span.Start.Position - line.Start.Position + 1;
+            run.Text = SafeGetText(span);
+        }
+
+        private static void FillSpanLocationAndText(SnapshotSpan span, TagRun run) {
+            ITextSnapshotLine line = span.Snapshot.GetLineFromPosition(span.Start.Position);
+            run.Line = line.LineNumber + 1;
+            run.Column = span.Start.Position - line.Start.Position + 1;
+            run.Text = SafeGetText(span);
+        }
+
+        private static string SafeGetText(SnapshotSpan span) {
+            try {
+                return span.GetText();
+            }
+            catch {
+                return string.Empty;
             }
         }
 
@@ -194,6 +329,17 @@ namespace VerilogLanguage.Testing
 
                 return builder.ToString();
             }
+        }
+
+        private static string GetExtensionVersion() {
+            Assembly assembly = typeof(SnapshotExporter).Assembly;
+            AssemblyInformationalVersionAttribute info = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>();
+            if (info != null && !string.IsNullOrWhiteSpace(info.InformationalVersion)) {
+                return info.InformationalVersion;
+            }
+
+            Version version = assembly.GetName().Version;
+            return version != null ? version.ToString() : string.Empty;
         }
 
         private static void AddError(EditorSnapshotExport export, string message) {

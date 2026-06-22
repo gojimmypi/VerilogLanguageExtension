@@ -1,0 +1,33 @@
+{
+    "File": "TestFiles/issue10.v",
+    "MustHaveSymbols": [
+        {
+            "Name": "dout",
+            "HoverContains": [
+                "output",
+                "reg",
+                "[7:0]",
+                "unsigned",
+                "dout"
+            ]
+        },
+        {
+            "Name": "din",
+            "HoverContains": [
+                "input",
+                "[7:0]",
+                "din"
+            ]
+        }
+    ],
+    "MustNotHaveSymbols": [
+        "unsigned",
+        "signed"
+    ],
+    "MustHaveText": [
+        {
+            "Text": "dout",
+            "HoverContains": "unsigned dout"
+        }
+    ]
+}

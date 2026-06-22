@@ -25,14 +25,19 @@
 //
 //***************************************************************************
 
-
 using System.Collections.Generic;
 
 namespace VerilogLanguage.Testing
 {
     internal sealed class EditorSnapshotExport
     {
+        public int SchemaVersion { get; set; }
+        public string RunName { get; set; }
+        public string ExtensionVersion { get; set; }
+        public string GitCommit { get; set; }
         public string FilePath { get; set; }
+        public string FileRelativePath { get; set; }
+        public string ContentType { get; set; }
         public int SnapshotLength { get; set; }
         public int SnapshotVersion { get; set; }
         public string TextSha256 { get; set; }
@@ -40,11 +45,16 @@ namespace VerilogLanguage.Testing
         public List<string> Errors { get; set; }
         public List<ClassificationRun> Classifications { get; set; }
         public List<TagRun> Tags { get; set; }
+        public List<TokenRun> Tokens { get; set; }
+        public List<SymbolRun> Symbols { get; set; }
 
         public EditorSnapshotExport() {
+            SchemaVersion = 3;
             Errors = new List<string>();
             Classifications = new List<ClassificationRun>();
             Tags = new List<TagRun>();
+            Tokens = new List<TokenRun>();
+            Symbols = new List<SymbolRun>();
         }
     }
 
@@ -52,6 +62,9 @@ namespace VerilogLanguage.Testing
     {
         public int Start { get; set; }
         public int Length { get; set; }
+        public int Line { get; set; }
+        public int Column { get; set; }
+        public string Text { get; set; }
         public List<string> Types { get; set; }
 
         public ClassificationRun() {
@@ -63,7 +76,29 @@ namespace VerilogLanguage.Testing
     {
         public int Start { get; set; }
         public int Length { get; set; }
+        public int Line { get; set; }
+        public int Column { get; set; }
+        public string Text { get; set; }
         public string TagType { get; set; }
         public string TagDetail { get; set; }
+        public string HoverText { get; set; }
+    }
+
+    internal sealed class TokenRun
+    {
+        public int Start { get; set; }
+        public int Length { get; set; }
+        public int Line { get; set; }
+        public int Column { get; set; }
+        public string Text { get; set; }
+        public string Context { get; set; }
+    }
+
+    internal sealed class SymbolRun
+    {
+        public string Scope { get; set; }
+        public string Name { get; set; }
+        public string TokenType { get; set; }
+        public string HoverText { get; set; }
     }
 }

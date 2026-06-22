@@ -52,7 +52,7 @@ namespace VerilogLanguage
         private readonly ITextBuffer _buffer;
         private bool _disposed;
 
-        private static readonly IDictionary<VerilogToken.VerilogTokenTypes, string> VerilogKeywordHoverText = new Dictionary<VerilogToken.VerilogTokenTypes, string>
+        internal static readonly IDictionary<VerilogToken.VerilogTokenTypes, string> VerilogKeywordHoverText = new Dictionary<VerilogToken.VerilogTokenTypes, string>
         {
             // description text thanks: https://www.xilinx.com/support/documentation/sw_manuals/xilinx11/ite_r_verilog_reserved_words.htm
             [VerilogToken.VerilogTokenTypes.Verilog_always] = "An always represents a block of code in a design.",
@@ -210,37 +210,9 @@ namespace VerilogLanguage
                     tagSpan,
                     SpanTrackingMode.EdgeExclusive);
 
-                if (_verilogKeywordHoverText.TryGetValue(curTag.Tag.type, out string hover)) {
+                string hover;
+                if (VerilogHoverInfo.TryGetHoverText(curTag.Tag.type, _buffer.CurrentSnapshot, tagSpan, out hover)) {
                     return Task.FromResult(new QuickInfoItem(applicableToSpan, hover));
-                }
-
-                // Variable and constant hover logic (ported from old AugmentQuickInfoSession)
-                string thisHoverKey = tagSpan.GetText();
-                if (!string.IsNullOrWhiteSpace(thisHoverKey)) {
-                    ITextSnapshotLine lineInfo = tagSpan.Snapshot.GetLineFromPosition(tagSpan.Start.Position);
-
-                    int thisLine = lineInfo.LineNumber;
-                    int thisPosition = tagSpan.Start.Position - lineInfo.Extent.Start.Position;
-
-                    string thisScopeName = VerilogGlobals.TextModuleName(thisLine, thisPosition);
-
-                    if (string.IsNullOrWhiteSpace(thisScopeName)) {
-                        thisScopeName = VerilogGlobals.SCOPE_CONST;
-                    }
-
-                    Dictionary<string, Dictionary<string, string>> hoverDb = VerilogGlobals.VerilogVariableHoverText;
-
-                    if (hoverDb.TryGetValue(thisScopeName, out Dictionary<string, string> scopeMap) &&
-                        scopeMap != null &&
-                        scopeMap.TryGetValue(thisHoverKey, out string variableHover)) {
-                        return Task.FromResult(new QuickInfoItem(applicableToSpan, variableHover));
-                    }
-
-                    if (hoverDb.TryGetValue(VerilogGlobals.SCOPE_CONST, out Dictionary<string, string> constMap) &&
-                        constMap != null &&
-                        constMap.TryGetValue(thisHoverKey, out string constHover)) {
-                        return Task.FromResult(new QuickInfoItem(applicableToSpan, constHover));
-                    }
                 }
 
             }
@@ -259,6 +231,77 @@ namespace VerilogLanguage
             if (disposableAggregator != null) {
                 disposableAggregator.Dispose();
             }
+        }
+    }
+
+    internal static class VerilogHoverInfo
+    {
+        internal static bool TryGetHoverText(
+            VerilogToken.VerilogTokenTypes tokenType,
+            ITextSnapshot snapshot,
+            SnapshotSpan tagSpan,
+            out string hoverText) {
+
+            hoverText = null;
+
+            string keywordHover;
+            if (VerilogAsyncQuickInfoSource.VerilogKeywordHoverText.TryGetValue(tokenType, out keywordHover)) {
+                hoverText = keywordHover;
+                return true;
+            }
+
+            return TryGetVariableHoverText(snapshot, tagSpan, out hoverText);
+        }
+
+        internal static bool TryGetVariableHoverText(
+            ITextSnapshot snapshot,
+            SnapshotSpan tagSpan,
+            out string hoverText) {
+
+            hoverText = null;
+
+            string thisHoverKey = tagSpan.GetText();
+            if (string.IsNullOrWhiteSpace(thisHoverKey)) {
+                return false;
+            }
+
+            ITextSnapshot spanSnapshot = snapshot ?? tagSpan.Snapshot;
+            if (spanSnapshot == null) {
+                return false;
+            }
+
+            ITextSnapshotLine lineInfo = spanSnapshot.GetLineFromPosition(tagSpan.Start.Position);
+
+            int thisLine = lineInfo.LineNumber;
+            int thisPosition = tagSpan.Start.Position - lineInfo.Extent.Start.Position;
+
+            string thisScopeName = VerilogGlobals.TextModuleName(thisLine, thisPosition);
+
+            if (string.IsNullOrWhiteSpace(thisScopeName)) {
+                thisScopeName = VerilogGlobals.SCOPE_CONST;
+            }
+
+            Dictionary<string, Dictionary<string, string>> hoverDb = VerilogGlobals.VerilogVariableHoverText;
+
+            Dictionary<string, string> scopeMap;
+            string variableHover;
+            if (hoverDb.TryGetValue(thisScopeName, out scopeMap) &&
+                scopeMap != null &&
+                scopeMap.TryGetValue(thisHoverKey, out variableHover)) {
+                hoverText = variableHover;
+                return true;
+            }
+
+            Dictionary<string, string> constMap;
+            string constHover;
+            if (hoverDb.TryGetValue(VerilogGlobals.SCOPE_CONST, out constMap) &&
+                constMap != null &&
+                constMap.TryGetValue(thisHoverKey, out constHover)) {
+                hoverText = constHover;
+                return true;
+            }
+
+            return false;
         }
     }
 }

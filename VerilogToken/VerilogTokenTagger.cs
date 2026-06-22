@@ -708,6 +708,29 @@ namespace VerilogLanguage.VerilogToken
             return double.TryParse(compact, out numericValue);
         }
 
+        private static bool IsVerilogIdentifierText(string text) {
+            if (string.IsNullOrEmpty(text)) {
+                return false;
+            }
+
+            if (text[0] == '\\') {
+                return text.Length > 1;
+            }
+
+            if (!(char.IsLetter(text[0]) || text[0] == '_')) {
+                return false;
+            }
+
+            for (int i = 1; i < text.Length; i++) {
+                char c = text[i];
+                if (!(char.IsLetterOrDigit(c) || c == '_' || c == '$')) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         private IEnumerable<ITagSpan<VerilogTokenTag>> ProcessLookupText(
             ITextSnapshotLine containingLine,
             VerilogGlobals.VerilogToken verilogToken,
@@ -734,7 +757,9 @@ namespace VerilogLanguage.VerilogToken
                 yield break;
             }
 
-            if (VerilogGlobals.VerilogVariables.ContainsKey(lookupText)) {
+            bool lookupTextIsIdentifier = IsVerilogIdentifierText(lookupText);
+
+            if (lookupTextIsIdentifier && VerilogGlobals.VerilogVariables.ContainsKey(lookupText)) {
                 // we are instantiation a module; recall VerilogVariables is first a dictionary of scope (aka module), then a dictionary of variables in each module scope
                 // TODO do we need: if (tokenSpan.IntersectsWith(curSpan))
 #if TAG_DEBUG
@@ -761,6 +786,8 @@ namespace VerilogLanguage.VerilogToken
             string lookupText,
             int curLoc,
             int leadingWhitespace) {
+            bool lookupTextIsIdentifier = IsVerilogIdentifierText(lookupText);
+
             // check to see if this is a variable
             string thisScope = VerilogGlobals.TextModuleName(
                 containingLine.LineNumber,
@@ -773,7 +800,7 @@ namespace VerilogLanguage.VerilogToken
 
             if (VerilogGlobals.VerilogVariables.ContainsKey(thisScope)) {
                 // the current scope (typically a module name) is defined. So do we have a known variable?
-                if (VerilogGlobals.VerilogVariables[thisScope].ContainsKey(lookupText)) {
+                if (lookupTextIsIdentifier && VerilogGlobals.VerilogVariables[thisScope].ContainsKey(lookupText)) {
                     // TODO do we need: if (tokenSpan.IntersectsWith(curSpan))
 #if TAG_DEBUG
                     System.Diagnostics.Debug.WriteLine("IEnumerable VerilogTokenTag yield variable " + lookupText);
@@ -784,7 +811,8 @@ namespace VerilogLanguage.VerilogToken
                     yield break;
                 }
 
-                if (VerilogGlobals.VerilogVariables.ContainsKey(VerilogGlobals.SCOPE_CONST) &&
+                if (lookupTextIsIdentifier &&
+                    VerilogGlobals.VerilogVariables.ContainsKey(VerilogGlobals.SCOPE_CONST) &&
                     VerilogGlobals.VerilogVariables[VerilogGlobals.SCOPE_CONST].ContainsKey(lookupText)) {
                     yield return new TagSpan<VerilogTokenTag>(
                         lookupSpan,
@@ -799,7 +827,8 @@ namespace VerilogLanguage.VerilogToken
                 yield break;
             }
 
-            if (VerilogGlobals.VerilogVariables.ContainsKey(VerilogGlobals.SCOPE_CONST) &&
+            if (lookupTextIsIdentifier &&
+                VerilogGlobals.VerilogVariables.ContainsKey(VerilogGlobals.SCOPE_CONST) &&
                 VerilogGlobals.VerilogVariables[VerilogGlobals.SCOPE_CONST].ContainsKey(lookupText)) {
                 //yield return new TagSpan<VerilogTokenTag>(tokenSpan,
                 //      new VerilogTokenTag(VerilogGlobals.VerilogTypes["Verilog_Value"]));
@@ -866,9 +895,9 @@ namespace VerilogLanguage.VerilogToken
                     yield break;
 
                 case VerilogGlobals.VerilogTokenContextType.AlwaysAt:
-                    yield return new TagSpan<VerilogTokenTag>(
-                        tokenSpan,
-                        new VerilogTokenTag(VerilogTokenTypes.Verilog_always));
+                    // The '@' in an event control, such as "always @(posedge clk)",
+                    // is a delimiter/operator. Do not tag it as the "always" keyword.
+                    // The actual "always" text is highlighted by the keyword lookup.
                     yield break;
 
                 default:

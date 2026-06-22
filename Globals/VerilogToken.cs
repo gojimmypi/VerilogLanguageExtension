@@ -65,6 +65,33 @@ namespace VerilogLanguage
             VerilogToken thisToken = new VerilogToken();
             VerilogParseState thisContinuedParseState = new VerilogParseState(0);
 
+            VerilogParseState BeginLineParseState(VerilogParseState priorState) {
+                VerilogParseState state = priorState;
+
+                // Preserve prior-line parse context, but do not carry the prior token
+                // text or character/delimiter bookkeeping into this line. If thisItem
+                // is carried across, the first token on the new line is duplicated
+                // from the prior line, curLoc advances too far, and highlighted spans
+                // shift by one character.
+                state.thisItem = string.Empty;
+                state.thisIndex = 0;
+                state.IsNewDelimitedSegment = false;
+                state.priorChar = '\0';
+                state.priorValue = '\0';
+                state.priorDelimiter = '\0';
+                state.thisCharIsDelimiter = false;
+                state.priorCharIsDelimiter = false;
+                state.thisCharIsEndingDelimiter = false;
+                state.priorCharIsIsEndingDelimiter = false;
+                state.IsBuildingEmbeddedSpaceItem = false;
+                state.IsBuildingNumber = false;
+                state.HasRadix = false;
+                state.HasConstValue = false;
+                state.NumberStringValue = string.Empty;
+
+                return state;
+            }
+
             // AddToken - appends the current token part to the array and create a new thisToken to build.
             // reminder that here we are only splitting text into token items.
             // See VerilogTokenTagger for actually setting the context (e.g. color) of  each token item.
@@ -82,7 +109,9 @@ namespace VerilogLanguage
                 thisToken.ParseState.thisItem = (thisToken.ParseState.thisChar == '\0') ? string.Empty : thisToken.ParseState.thisChar.ToString(); // start building a new token with the current, non-delimiter character, will be used to determine context in VerilogTokenContextFromString
             }
 
-            thisToken.ParseState = priorToken.ParseState; // when starting, use the priorToken parseState that wouldhave come from the prior line in the span
+            // Start this line with the prior-line context, but without stale
+            // token text/delimiter state from the previous line.
+            thisToken.ParseState = BeginLineParseState(priorToken.ParseState);
 
             for (int i = 0; i < theString.Length; i++) {
                 thisToken.ParseState.thisIndex = i;

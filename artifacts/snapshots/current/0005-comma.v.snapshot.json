@@ -2,7 +2,6 @@
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
     "ExtensionVersion":  "0.3.6.3",
-    "GitCommit":  "efc9996",
     "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\comma.v",
     "FileRelativePath":  "TestFiles\\comma.v",
     "ContentType":  "verilog",
@@ -504,11 +503,31 @@
                                           ]
                             },
                             {
+                                "Start":  331,
+                                "Length":  7,
+                                "Line":  19,
+                                "Column":  13,
+                                "Text":  "integer",
+                                "Types":  [
+                                              "Variable_localparam"
+                                          ]
+                            },
+                            {
                                 "Start":  339,
                                 "Length":  14,
                                 "Line":  19,
                                 "Column":  21,
                                 "Text":  "irqregs_offset",
+                                "Types":  [
+                                              "Variable_localparam"
+                                          ]
+                            },
+                            {
+                                "Start":  356,
+                                "Length":  17,
+                                "Line":  19,
+                                "Column":  38,
+                                "Text":  "ENABLE_REGS_16_31",
                                 "Types":  [
                                               "Variable_localparam"
                                           ]
@@ -544,6 +563,16 @@
                                           ]
                             },
                             {
+                                "Start":  397,
+                                "Length":  7,
+                                "Line":  20,
+                                "Column":  13,
+                                "Text":  "integer",
+                                "Types":  [
+                                              "Variable_localparam"
+                                          ]
+                            },
+                            {
                                 "Start":  405,
                                 "Length":  12,
                                 "Line":  20,
@@ -561,6 +590,16 @@
                                 "Text":  "(",
                                 "Types":  [
                                               "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  421,
+                                "Length":  17,
+                                "Line":  20,
+                                "Column":  37,
+                                "Text":  "ENABLE_REGS_16_31",
+                                "Types":  [
+                                              "Variable_localparam"
                                           ]
                             },
                             {
@@ -601,6 +640,26 @@
                                 "Text":  "4",
                                 "Types":  [
                                               "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  454,
+                                "Length":  10,
+                                "Line":  20,
+                                "Column":  70,
+                                "Text":  "ENABLE_IRQ",
+                                "Types":  [
+                                              "Variable_localparam"
+                                          ]
+                            },
+                            {
+                                "Start":  465,
+                                "Length":  16,
+                                "Line":  20,
+                                "Column":  81,
+                                "Text":  "ENABLE_IRQ_QREGS",
+                                "Types":  [
+                                              "Variable_localparam"
                                           ]
                             },
                             {
@@ -1486,6 +1545,16 @@
                      "HoverText":  "Local parameters are identical to parameters, but cannot be directly modified with a defparam statement. A localparam can be assigned the value of parameter constants, and can be indirectly refined from outside the module. A localparam cannot be used within the module port parameter list."
                  },
                  {
+                     "Start":  331,
+                     "Length":  7,
+                     "Line":  19,
+                     "Column":  13,
+                     "Text":  "integer",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_localparam",
+                     "HoverText":  null
+                 },
+                 {
                      "Start":  339,
                      "Length":  14,
                      "Line":  19,
@@ -1494,6 +1563,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_localparam",
                      "HoverText":  "localparam integer irqregs_offset = ENABLE_REGS_16_31 ? 32: 16"
+                 },
+                 {
+                     "Start":  356,
+                     "Length":  17,
+                     "Line":  19,
+                     "Column":  38,
+                     "Text":  "ENABLE_REGS_16_31",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_localparam",
+                     "HoverText":  null
                  },
                  {
                      "Start":  376,
@@ -1526,6 +1605,16 @@
                      "HoverText":  "Local parameters are identical to parameters, but cannot be directly modified with a defparam statement. A localparam can be assigned the value of parameter constants, and can be indirectly refined from outside the module. A localparam cannot be used within the module port parameter list."
                  },
                  {
+                     "Start":  397,
+                     "Length":  7,
+                     "Line":  20,
+                     "Column":  13,
+                     "Text":  "integer",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_localparam",
+                     "HoverText":  null
+                 },
+                 {
                      "Start":  405,
                      "Length":  12,
                      "Line":  20,
@@ -1543,6 +1632,16 @@
                      "Text":  "(",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  421,
+                     "Length":  17,
+                     "Line":  20,
+                     "Column":  37,
+                     "Text":  "ENABLE_REGS_16_31",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_localparam",
                      "HoverText":  null
                  },
                  {
@@ -1583,6 +1682,26 @@
                      "Text":  "4",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  454,
+                     "Length":  10,
+                     "Line":  20,
+                     "Column":  70,
+                     "Text":  "ENABLE_IRQ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_localparam",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  465,
+                     "Length":  16,
+                     "Line":  20,
+                     "Column":  81,
+                     "Text":  "ENABLE_IRQ_QREGS",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_localparam",
                      "HoverText":  null
                  },
                  {

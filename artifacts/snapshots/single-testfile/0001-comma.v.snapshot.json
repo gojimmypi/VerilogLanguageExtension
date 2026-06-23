@@ -523,16 +523,6 @@
                                           ]
                             },
                             {
-                                "Start":  356,
-                                "Length":  17,
-                                "Line":  19,
-                                "Column":  38,
-                                "Text":  "ENABLE_REGS_16_31",
-                                "Types":  [
-                                              "Variable_localparam"
-                                          ]
-                            },
-                            {
                                 "Start":  376,
                                 "Length":  2,
                                 "Line":  19,
@@ -593,16 +583,6 @@
                                           ]
                             },
                             {
-                                "Start":  421,
-                                "Length":  17,
-                                "Line":  20,
-                                "Column":  37,
-                                "Text":  "ENABLE_REGS_16_31",
-                                "Types":  [
-                                              "Variable_localparam"
-                                          ]
-                            },
-                            {
                                 "Start":  441,
                                 "Length":  2,
                                 "Line":  20,
@@ -640,26 +620,6 @@
                                 "Text":  "4",
                                 "Types":  [
                                               "Value"
-                                          ]
-                            },
-                            {
-                                "Start":  454,
-                                "Length":  10,
-                                "Line":  20,
-                                "Column":  70,
-                                "Text":  "ENABLE_IRQ",
-                                "Types":  [
-                                              "Variable_localparam"
-                                          ]
-                            },
-                            {
-                                "Start":  465,
-                                "Length":  16,
-                                "Line":  20,
-                                "Column":  81,
-                                "Text":  "ENABLE_IRQ_QREGS",
-                                "Types":  [
-                                              "Variable_localparam"
                                           ]
                             },
                             {
@@ -1565,16 +1525,6 @@
                      "HoverText":  "localparam integer irqregs_offset = ENABLE_REGS_16_31 ? 32: 16"
                  },
                  {
-                     "Start":  356,
-                     "Length":  17,
-                     "Line":  19,
-                     "Column":  38,
-                     "Text":  "ENABLE_REGS_16_31",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_localparam",
-                     "HoverText":  null
-                 },
-                 {
                      "Start":  376,
                      "Length":  2,
                      "Line":  19,
@@ -1635,16 +1585,6 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  421,
-                     "Length":  17,
-                     "Line":  20,
-                     "Column":  37,
-                     "Text":  "ENABLE_REGS_16_31",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_localparam",
-                     "HoverText":  null
-                 },
-                 {
                      "Start":  441,
                      "Length":  2,
                      "Line":  20,
@@ -1682,26 +1622,6 @@
                      "Text":  "4",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Value",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  454,
-                     "Length":  10,
-                     "Line":  20,
-                     "Column":  70,
-                     "Text":  "ENABLE_IRQ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_localparam",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  465,
-                     "Length":  16,
-                     "Line":  20,
-                     "Column":  81,
-                     "Text":  "ENABLE_IRQ_QREGS",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_localparam",
                      "HoverText":  null
                  },
                  {

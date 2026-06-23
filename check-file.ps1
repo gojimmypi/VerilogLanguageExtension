@@ -1,8 +1,14 @@
 param(
     [string]$SourceFile = "TestFiles/comma.v",
     [string]$RootSuffix = "Exp",
+    [string]$VisualStudioPath = "",
+    [string]$Configuration = "Debug",
     [switch]$CloseVisualStudioWhenDone,
-    [switch]$ResetVisualStudioBeforeRun
+    [switch]$LeaveVisualStudioOpen,
+    [switch]$ResetVisualStudioBeforeRun,
+    [switch]$ReuseExistingVisualStudio,
+    [switch]$SkipExtensionPrep,
+    [switch]$SkipBuildAndDeploy
 )
 
 Set-StrictMode -Version Latest
@@ -133,6 +139,217 @@ function Invoke-CompareSnapshots {
     return $exitCode
 }
 
+function Resolve-VisualStudioPath {
+    param([string]$RequestedPath)
+
+    if (![string]::IsNullOrWhiteSpace($RequestedPath)) {
+        $resolved = [System.IO.Path]::GetFullPath($RequestedPath)
+        if (!(Test-Path -LiteralPath $resolved)) {
+            throw "Visual Studio not found: $resolved"
+        }
+        return $resolved
+    }
+
+    $candidatePaths = @(
+        "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\devenv.exe",
+        "C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\devenv.exe",
+        "C:\Program Files\Microsoft Visual Studio\18\Professional\Common7\IDE\devenv.exe",
+        "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\devenv.exe",
+        "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\devenv.exe",
+        "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\devenv.exe"
+    )
+
+    foreach ($candidate in $candidatePaths) {
+        if (Test-Path -LiteralPath $candidate) {
+            return $candidate
+        }
+    }
+
+    $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+    if (Test-Path -LiteralPath $vswhere) {
+        $installPath = (& $vswhere -latest -products * -property installationPath 2>$null | Select-Object -First 1)
+        if (![string]::IsNullOrWhiteSpace($installPath)) {
+            $candidate = Join-Path $installPath "Common7\IDE\devenv.exe"
+            if (Test-Path -LiteralPath $candidate) {
+                return $candidate
+            }
+        }
+    }
+
+    throw "Could not find Visual Studio. Pass -VisualStudioPath."
+}
+
+function Get-VisualStudioMajorVersion {
+    param([string]$ResolvedVisualStudioPath)
+
+    $normalized = $ResolvedVisualStudioPath.Replace("/", "\")
+    if ($normalized -match "\\Microsoft Visual Studio\\(?<Major>[0-9]+)\\") {
+        return $Matches["Major"]
+    }
+
+    $versionInfo = [System.Diagnostics.FileVersionInfo]::GetVersionInfo($ResolvedVisualStudioPath)
+    if ($versionInfo -ne $null -and $versionInfo.FileMajorPart -gt 0) {
+        return [string]$versionInfo.FileMajorPart
+    }
+
+    throw "Could not determine Visual Studio major version from: $ResolvedVisualStudioPath"
+}
+
+function Get-MsBuildPathForVisualStudio {
+    param([string]$ResolvedVisualStudioPath)
+
+    $ideDir = Split-Path -Parent $ResolvedVisualStudioPath
+    $common7Dir = Split-Path -Parent $ideDir
+    $installDir = Split-Path -Parent $common7Dir
+    $candidate = Join-Path $installDir "MSBuild\Current\Bin\MSBuild.exe"
+
+    if (Test-Path -LiteralPath $candidate) {
+        return $candidate
+    }
+
+    throw "MSBuild not found for Visual Studio path: $ResolvedVisualStudioPath"
+}
+
+function Stop-ExperimentalVisualStudio {
+    param(
+        [string]$ResolvedVisualStudioPath,
+        [string]$RootSuffix
+    )
+
+    $rootSuffixPattern = "(?i)/rootsuffix\s+" + [regex]::Escape($RootSuffix) + "(\s|$)"
+    $targetPath = [System.IO.Path]::GetFullPath($ResolvedVisualStudioPath)
+
+    foreach ($process in @(Get-CimInstance Win32_Process -Filter "name = 'devenv.exe'" -ErrorAction SilentlyContinue)) {
+        $commandLine = [string]$process.CommandLine
+        $exePath = [string]$process.ExecutablePath
+        if ([string]::IsNullOrWhiteSpace($commandLine)) {
+            continue
+        }
+
+        if ($commandLine -notmatch $rootSuffixPattern) {
+            continue
+        }
+
+        if (![string]::IsNullOrWhiteSpace($exePath)) {
+            $exeFullPath = [System.IO.Path]::GetFullPath($exePath)
+            if (![string]::Equals($exeFullPath, $targetPath, [System.StringComparison]::OrdinalIgnoreCase)) {
+                continue
+            }
+        }
+
+        Write-Host "Stopping Experimental Visual Studio PID $($process.ProcessId): $exePath"
+        Stop-Process -Id $process.ProcessId -Force -ErrorAction SilentlyContinue
+    }
+}
+
+function Get-ExperimentalHiveDirectories {
+    param(
+        [string]$VisualStudioMajor,
+        [string]$RootSuffix
+    )
+
+    $visualStudioLocalAppData = Join-Path $env:LOCALAPPDATA "Microsoft\VisualStudio"
+    if (!(Test-Path -LiteralPath $visualStudioLocalAppData)) {
+        return @()
+    }
+
+    $pattern = ("{0}.0*{1}" -f $VisualStudioMajor, $RootSuffix)
+    return @(Get-ChildItem -LiteralPath $visualStudioLocalAppData -Directory -ErrorAction SilentlyContinue |
+        Where-Object { $_.Name -like $pattern })
+}
+
+function Clear-ExperimentalExtensionState {
+    param(
+        [System.IO.DirectoryInfo[]]$Hives
+    )
+
+    foreach ($hive in @($Hives)) {
+        Write-Host "Cleaning Visual Studio hive: $($hive.FullName)"
+
+        $componentModelCache = Join-Path $hive.FullName "ComponentModelCache"
+        if (Test-Path -LiteralPath $componentModelCache) {
+            Write-Host "  Removing MEF cache: $componentModelCache"
+            Remove-Item -LiteralPath $componentModelCache -Recurse -Force -ErrorAction SilentlyContinue
+        }
+
+        $extensionsDir = Join-Path $hive.FullName "Extensions"
+        if (Test-Path -LiteralPath $extensionsDir) {
+            $deployedDlls = @(Get-ChildItem -LiteralPath $extensionsDir -Recurse -Filter "VerilogLanguage.dll" -File -ErrorAction SilentlyContinue)
+            foreach ($dll in $deployedDlls) {
+                $extensionFolder = $dll.Directory.FullName
+                Write-Host "  Removing deployed VLE extension: $extensionFolder"
+                Remove-Item -LiteralPath $extensionFolder -Recurse -Force -ErrorAction SilentlyContinue
+            }
+        }
+    }
+}
+
+function Invoke-ProjectBuildForExpHive {
+    param(
+        [string]$MsBuildPath,
+        [string]$ProjectPath,
+        [string]$Configuration,
+        [string]$RootSuffix
+    )
+
+    Write-Host "Building $Configuration VSIX through MSBuild/VSSDK for root suffix '$RootSuffix'."
+    Write-Host "MSBuild: $MsBuildPath"
+
+    $commonArgs = @(
+        $ProjectPath,
+        "/p:Configuration=$Configuration",
+        "/p:DeployExtension=true",
+        "/p:VSSDKTargetPlatformRegRootSuffix=$RootSuffix",
+        "/v:minimal",
+        "/nologo"
+    )
+
+    & $MsBuildPath @commonArgs "/t:Restore"
+    if ($LASTEXITCODE -ne 0) {
+        throw "MSBuild restore failed with exit code $LASTEXITCODE"
+    }
+
+    & $MsBuildPath @commonArgs "/t:Rebuild"
+    if ($LASTEXITCODE -ne 0) {
+        throw "MSBuild rebuild failed with exit code $LASTEXITCODE"
+    }
+}
+
+function Confirm-ExperimentalDeployment {
+    param(
+        [System.IO.DirectoryInfo[]]$Hives,
+        [string]$RepoRoot,
+        [string]$Configuration
+    )
+
+    $builtDll = Join-Path $RepoRoot ("bin\{0}\VerilogLanguage.dll" -f $Configuration)
+    if (!(Test-Path -LiteralPath $builtDll)) {
+        throw "Built VLE DLL not found: $builtDll"
+    }
+
+    $builtInfo = Get-Item -LiteralPath $builtDll
+    $deployedDlls = @()
+    foreach ($hive in @($Hives)) {
+        $extensionsDir = Join-Path $hive.FullName "Extensions"
+        if (Test-Path -LiteralPath $extensionsDir) {
+            $deployedDlls += @(Get-ChildItem -LiteralPath $extensionsDir -Recurse -Filter "VerilogLanguage.dll" -File -ErrorAction SilentlyContinue)
+        }
+    }
+
+    if ($deployedDlls.Count -lt 1) {
+        throw "No Experimental VLE DLL was found after build/deploy."
+    }
+
+    $newest = @($deployedDlls | Sort-Object LastWriteTime -Descending | Select-Object -First 1)[0]
+    Write-Host "Confirmed Experimental VLE DLL: $($newest.FullName)"
+    Write-Host "  Built:    $($builtInfo.LastWriteTime)  $($builtInfo.Length) bytes"
+    Write-Host "  Deployed: $($newest.LastWriteTime)  $($newest.Length) bytes"
+
+    if ($newest.LastWriteTime -lt $builtInfo.LastWriteTime.AddSeconds(-2)) {
+        throw "Experimental VLE DLL is older than the built DLL. Deployment did not refresh the Exp hive."
+    }
+}
+
 $repoRoot = Get-RepoRoot
 [System.IO.Directory]::SetCurrentDirectory($repoRoot)
 Set-Location -LiteralPath $repoRoot
@@ -145,13 +362,74 @@ $filteredExpectations = Join-RepoPath -RepoRoot $repoRoot -RelativePath "artifac
 $exportScript = Join-RepoPath -RepoRoot $repoRoot -RelativePath "tools\vle-ci\Export-Snapshots.ps1"
 $compareScript = Join-RepoPath -RepoRoot $repoRoot -RelativePath "tools\vle-ci\Compare-Snapshots.py"
 $baselineDir = Join-RepoPath -RepoRoot $repoRoot -RelativePath "tests\snapshots\baselines\development-main\all-testfiles"
+$projectPath = Join-RepoPath -RepoRoot $repoRoot -RelativePath "VerilogLanguage.csproj"
 
-if (!(Test-Path $exportScript)) {
+if (!(Test-Path -LiteralPath $exportScript)) {
     throw "Export script not found: $exportScript"
 }
 
-if (!(Test-Path $compareScript)) {
+if (!(Test-Path -LiteralPath $compareScript)) {
     throw "Compare script not found: $compareScript"
+}
+
+if (!(Test-Path -LiteralPath $projectPath)) {
+    throw "Project file not found: $projectPath"
+}
+
+$resolvedVisualStudioPath = Resolve-VisualStudioPath -RequestedPath $VisualStudioPath
+$visualStudioMajor = Get-VisualStudioMajorVersion -ResolvedVisualStudioPath $resolvedVisualStudioPath
+$msBuildPath = Get-MsBuildPathForVisualStudio -ResolvedVisualStudioPath $resolvedVisualStudioPath
+$hives = @(Get-ExperimentalHiveDirectories -VisualStudioMajor $visualStudioMajor -RootSuffix $RootSuffix)
+
+$effectiveCloseVisualStudioWhenDone = $false
+
+#if ($LeaveVisualStudioOpen.IsPresent) {
+#    $effectiveCloseVisualStudioWhenDone = $false
+#}
+#if ($CloseVisualStudioWhenDone.IsPresent) {
+#    $effectiveCloseVisualStudioWhenDone = $true
+#}
+#
+$effectiveResetVisualStudioBeforeRun = $true
+if ($ReuseExistingVisualStudio.IsPresent) {
+    $effectiveResetVisualStudioBeforeRun = $false
+}
+if ($ResetVisualStudioBeforeRun.IsPresent) {
+    $effectiveResetVisualStudioBeforeRun = $true
+}
+
+Write-Host "Single-file defaults:"
+Write-Host "  Clean Experimental extension cache: $(!$SkipExtensionPrep.IsPresent)"
+Write-Host "  Build/deploy through MSBuild:       $(!$SkipBuildAndDeploy.IsPresent)"
+Write-Host "  VSIXInstaller:                     disabled"
+Write-Host "  Reset Visual Studio before run:    $effectiveResetVisualStudioBeforeRun"
+Write-Host "  Close Visual Studio when done:     $effectiveCloseVisualStudioWhenDone"
+Write-Host "  Visual Studio:                     $resolvedVisualStudioPath"
+Write-Host "  Root suffix:                       $RootSuffix"
+Write-Host "  Hive pattern:                      $visualStudioMajor.0*$RootSuffix"
+
+if ($effectiveResetVisualStudioBeforeRun) {
+    Stop-ExperimentalVisualStudio -ResolvedVisualStudioPath $resolvedVisualStudioPath -RootSuffix $RootSuffix
+}
+
+if (!$SkipExtensionPrep.IsPresent) {
+    if ($hives.Count -lt 1) {
+        Write-Host "No existing Experimental hive matched $visualStudioMajor.0*$RootSuffix. It may be created during deployment."
+    }
+    else {
+        Clear-ExperimentalExtensionState -Hives $hives
+    }
+}
+
+if (!$SkipBuildAndDeploy.IsPresent) {
+    Invoke-ProjectBuildForExpHive `
+        -MsBuildPath $msBuildPath `
+        -ProjectPath $projectPath `
+        -Configuration $Configuration `
+        -RootSuffix $RootSuffix
+
+    $hives = @(Get-ExperimentalHiveDirectories -VisualStudioMajor $visualStudioMajor -RootSuffix $RootSuffix)
+    Confirm-ExperimentalDeployment -Hives $hives -RepoRoot $repoRoot -Configuration $Configuration
 }
 
 # Recreate the one-file snapshot output directory.
@@ -176,10 +454,6 @@ $manifestJson = $manifest | ConvertTo-Json -Depth 5
 Write-Utf8TextFile -Path $manifestPath -Text ($manifestJson + [Environment]::NewLine)
 
 # Export only the file listed in the temporary manifest.
-# The one-file wrapper is intentionally interactive: by default it leaves the
-# VS Experimental Instance open and does not reset it before the run.
-# Use -CloseVisualStudioWhenDone to close it after export, or
-# -ResetVisualStudioBeforeRun to close the matching Experimental Instance first.
 $exportArgs = @{
     Manifest = $manifestPath
     OutputDir = $outputDir
@@ -188,14 +462,21 @@ $exportArgs = @{
     SkipBackgroundProcessCleanup = $true
 }
 
-if (!$CloseVisualStudioWhenDone.IsPresent) {
+if (!$effectiveCloseVisualStudioWhenDone) {
     $exportArgs["LeaveVisualStudioOpen"] = $true
 }
 
-if (!$ResetVisualStudioBeforeRun.IsPresent) {
+if (![string]::IsNullOrWhiteSpace($resolvedVisualStudioPath)) {
+    # Pin snapshot export to the same Visual Studio installation used for build/debug.
+    $exportArgs["VisualStudioPath"] = $resolvedVisualStudioPath
+}
+
+if ($ReuseExistingVisualStudio.IsPresent -and !$ResetVisualStudioBeforeRun.IsPresent) {
     $exportArgs["SkipInitialVisualStudioCleanup"] = $true
 }
 
+# Run the snapshot exporter with explicit arguments so RootSuffix, VS path,
+# cleanup behavior, and output directory are easy to audit in the console log.
 & $exportScript @exportArgs
 
 if ($LASTEXITCODE -ne 0) {

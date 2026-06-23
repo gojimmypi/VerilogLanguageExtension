@@ -223,8 +223,7 @@ function Write-SnapshotConfig {
         [string]$ActiveOutputDir,
         [string]$RunName,
         [string]$DelayMs,
-        [string]$RepoRoot,
-        [string]$GitCommit
+        [string]$RepoRoot
     )
 
     @(
@@ -232,8 +231,7 @@ function Write-SnapshotConfig {
         "OutputDir=$ActiveOutputDir",
         "RunName=$RunName",
         "DelayMs=$DelayMs",
-        "RepoRoot=$RepoRoot",
-        "GitCommit=$GitCommit"
+        "RepoRoot=$RepoRoot"
     ) | Set-Content -Encoding UTF8 -Path $ConfigFile
 
     $env:VLE_SNAPSHOT_ENABLE = "1"
@@ -393,8 +391,7 @@ try {
             -ActiveOutputDir $activeOutputDir `
             -RunName ([string]$manifestJson.RunName) `
             -DelayMs ([string]$manifestJson.DelayMs) `
-            -RepoRoot $repoRoot `
-            -GitCommit $gitCommit
+            -RepoRoot $repoRoot
 
         Write-Host "Opening $file"
         $startedAt = Get-Date

@@ -1,0 +1,8 @@
+{
+    "DelayMs":  3000,
+    "RunName":  "all-testfiles",
+    "Files":  [
+                  "TestFiles/comma.v"
+              ],
+    "FreshInstancePerFile":  false
+}

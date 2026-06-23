@@ -94,6 +94,25 @@ function ConvertTo-SnapshotSafeFileName {
     return $name
 }
 
+function Get-NormalizedFullPath {
+    param([string]$Path)
+
+    return [System.IO.Path]::GetFullPath($Path)
+}
+
+function Resolve-RepoPath {
+    param(
+        [string]$RepoRoot,
+        [string]$Path
+    )
+
+    if ([System.IO.Path]::IsPathRooted($Path)) {
+        return [System.IO.Path]::GetFullPath($Path)
+    }
+
+    return [System.IO.Path]::GetFullPath((Join-Path $RepoRoot $Path))
+}
+
 function Get-ExperimentalDevenvProcesses {
     param([string]$RequestedRootSuffix)
 
@@ -273,9 +292,10 @@ function Copy-SnapshotToFinalName {
 
     $safeName = ConvertTo-SnapshotSafeFileName -FilePath $SourceFilePath
     $targetName = ("{0:0000}-{1}.snapshot.json" -f $Index, $safeName)
-    $targetPath = Join-Path $FinalOutputDir $targetName
+    $targetPath = Get-NormalizedFullPath -Path (Join-Path $FinalOutputDir $targetName)
+    $sourcePath = Get-NormalizedFullPath -Path $SnapshotFile.FullName
 
-    if ($SnapshotFile.FullName -ieq $targetPath) {
+    if ($sourcePath -ieq $targetPath) {
         return $targetPath
     }
 
@@ -283,7 +303,11 @@ function Copy-SnapshotToFinalName {
         Remove-Item -Force $targetPath
     }
 
-    Move-Item -Force -Path $SnapshotFile.FullName -Destination $targetPath
+    if (!(Test-Path $sourcePath)) {
+        throw "Snapshot disappeared before it could be renamed: $sourcePath"
+    }
+
+    Move-Item -Force -Path $sourcePath -Destination $targetPath
     return $targetPath
 }
 
@@ -339,6 +363,11 @@ function Write-SnapshotRunInfo {
         Manifest = $Manifest.Replace("\", "/")
     }
 
+    $parent = Split-Path -Parent $Path
+    if (![string]::IsNullOrWhiteSpace($parent)) {
+        New-Item -ItemType Directory -Force -Path $parent | Out-Null
+    }
+
     $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
     $text = $runInfo | ConvertTo-Json -Depth 5
     [System.IO.File]::WriteAllText($Path, ($text + [Environment]::NewLine), $utf8NoBom)
@@ -376,13 +405,13 @@ function Get-ManifestBoolean {
 }
 
 $repoRoot = Get-RepoRoot
-$manifestPath = Resolve-Path (Join-Path $repoRoot $Manifest)
+$manifestPath = (Resolve-Path -LiteralPath (Resolve-RepoPath -RepoRoot $repoRoot -Path $Manifest)).Path
 $manifestJson = [System.IO.File]::ReadAllText($manifestPath, [System.Text.Encoding]::UTF8) | ConvertFrom-Json
 
 $manifestFreshInstancePerFile = Get-ManifestBoolean -ManifestObject $manifestJson -PropertyName "FreshInstancePerFile"
 $useFreshInstancePerFile = $FreshInstancePerFile.IsPresent -or $manifestFreshInstancePerFile
 
-$finalOutputDir = Join-Path $repoRoot $OutputDir
+$finalOutputDir = Get-NormalizedFullPath -Path (Resolve-RepoPath -RepoRoot $repoRoot -Path $OutputDir)
 if (Test-Path $finalOutputDir) {
     Remove-Item -Recurse -Force $finalOutputDir
 }

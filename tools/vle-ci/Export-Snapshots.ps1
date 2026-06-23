@@ -19,6 +19,7 @@ param(
     [int]$MaxWaitSeconds = 60,
     [switch]$FreshInstancePerFile,
     [switch]$LeaveVisualStudioOpen,
+    [switch]$SkipInitialVisualStudioCleanup,
     [switch]$SkipBackgroundProcessCleanup,
     [string]$VisualStudioPath = ""
 )
@@ -245,13 +246,16 @@ function Write-SnapshotConfig {
         [string]$RepoRoot
     )
 
-    @(
+    $configText = @(
         "Enable=1",
         "OutputDir=$ActiveOutputDir",
         "RunName=$RunName",
         "DelayMs=$DelayMs",
         "RepoRoot=$RepoRoot"
-    ) | Set-Content -Encoding UTF8 -Path $ConfigFile
+    ) -join [Environment]::NewLine
+
+    $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+    [System.IO.File]::WriteAllText($ConfigFile, ($configText + [Environment]::NewLine), $utf8NoBom)
 
     $env:VLE_SNAPSHOT_ENABLE = "1"
     $env:VLE_SNAPSHOT_OUTPUT_DIR = $ActiveOutputDir
@@ -260,7 +264,7 @@ function Write-SnapshotConfig {
     $env:VLE_REPO_ROOT = $RepoRoot
 
     # GitCommit is intentionally not passed to the per-file snapshot exporter.
-    # It is written once to run-info.json instead, which keeps snapshot diffs focused.
+    # Keep generated snapshot JSON and run-info JSON stable for diff review.
     Remove-Item Env:\VLE_GIT_COMMIT -ErrorAction SilentlyContinue
 }
 
@@ -352,14 +356,12 @@ function Write-SnapshotRunInfo {
     param(
         [string]$Path,
         [string]$RunName,
-        [string]$Manifest,
-        [string]$GitCommit
+        [string]$Manifest
     )
 
     $runInfo = [ordered]@{
         SchemaVersion = 1
         RunName = $RunName
-        GitCommit = $GitCommit
         Manifest = $Manifest.Replace("\", "/")
     }
 
@@ -417,14 +419,6 @@ if (Test-Path $finalOutputDir) {
 }
 New-Item -ItemType Directory -Force -Path $finalOutputDir | Out-Null
 
-$gitCommit = ""
-try {
-    $gitCommit = (git -C $repoRoot rev-parse --short HEAD 2>$null).Trim()
-}
-catch {
-    $gitCommit = ""
-}
-
 $configFile = Join-Path ([System.IO.Path]::GetTempPath()) "VerilogLanguage.ExportSnapshots.config"
 $devenv = Get-DevenvPath -RequestedPath $VisualStudioPath
 
@@ -432,19 +426,22 @@ Write-Host "Snapshot output: $finalOutputDir"
 Write-Host "Visual Studio: $devenv"
 Write-Host "Run name: $($manifestJson.RunName)"
 Write-Host "Fresh instance per file: $useFreshInstancePerFile"
+Write-Host "Leave Visual Studio open: $($LeaveVisualStudioOpen.IsPresent)"
+Write-Host "Skip initial Visual Studio cleanup: $($SkipInitialVisualStudioCleanup.IsPresent)"
 
 $runInfoPath = Join-Path $finalOutputDir "run-info.json"
 Write-SnapshotRunInfo `
     -Path $runInfoPath `
     -RunName ([string]$manifestJson.RunName) `
-    -Manifest $Manifest `
-    -GitCommit $gitCommit
-Write-Host "Git commit reference: $runInfoPath"
+    -Manifest $Manifest
+Write-Host "Run info: $runInfoPath"
 
 try {
-    # Start from a known state. This avoids the common case where an already-open
-    # Experimental Instance has the target file loaded, so no new text view is created.
-    Stop-ExperimentalDevenv -RequestedRootSuffix $RootSuffix
+    if (!$SkipInitialVisualStudioCleanup.IsPresent) {
+        # Start from a known state. This avoids the common case where an already-open
+        # Experimental Instance has the target file loaded, so no new text view is created.
+        Stop-ExperimentalDevenv -RequestedRootSuffix $RootSuffix
+    }
 
     $index = 0
     foreach ($file in $manifestJson.Files) {
@@ -518,7 +515,7 @@ try {
                 Remove-Item -Recurse -Force $activeOutputDir
             }
         }
-        else {
+        elseif (!$LeaveVisualStudioOpen.IsPresent) {
             # Close the active document so repeated files in the manifest create a fresh view.
             $closeArguments = "/RootSuffix " + (Quote-CommandLineArgument $RootSuffix) + " /NoSplash /Command File.Close"
             Start-Process -FilePath $devenv -ArgumentList $closeArguments -WindowStyle Minimized | Out-Null

@@ -1,6 +1,8 @@
-﻿param(
+param(
     [string]$SourceFile = "TestFiles/comma.v",
-    [string]$RootSuffix = "Exp"
+    [string]$RootSuffix = "Exp",
+    [switch]$CloseVisualStudioWhenDone,
+    [switch]$ResetVisualStudioBeforeRun
 )
 
 Set-StrictMode -Version Latest
@@ -38,8 +40,7 @@ function Write-Utf8TextFile {
         New-Item -ItemType Directory -Force -Path $parent | Out-Null
     }
 
-    # Generated JSON is UTF-8 without BOM. The checked-in PowerShell scripts
-    # delivered with this fix are UTF-8 with BOM for Visual Studio/Windows.
+    # Generated JSON is UTF-8 without BOM.
     $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
     [System.IO.File]::WriteAllText($Path, $Text, $utf8NoBom)
 }
@@ -175,19 +176,27 @@ $manifestJson = $manifest | ConvertTo-Json -Depth 5
 Write-Utf8TextFile -Path $manifestPath -Text ($manifestJson + [Environment]::NewLine)
 
 # Export only the file listed in the temporary manifest.
-# -Manifest points to the one-file manifest.
-# -OutputDir writes to the isolated one-file snapshot directory.
-# -MaxWaitSeconds limits how long the script waits for the snapshot.
-# -RootSuffix limits any VS cleanup inside Export-Snapshots.ps1 to that
-#   Experimental Instance suffix instead of all Visual Studio sessions.
-# -SkipBackgroundProcessCleanup avoids killing PerfWatson or Copilot helpers
-#   during a one-file local check.
-& $exportScript `
-    -Manifest $manifestPath `
-    -OutputDir $outputDir `
-    -RootSuffix $RootSuffix `
-    -MaxWaitSeconds 45 `
-    -SkipBackgroundProcessCleanup
+# The one-file wrapper is intentionally interactive: by default it leaves the
+# VS Experimental Instance open and does not reset it before the run.
+# Use -CloseVisualStudioWhenDone to close it after export, or
+# -ResetVisualStudioBeforeRun to close the matching Experimental Instance first.
+$exportArgs = @{
+    Manifest = $manifestPath
+    OutputDir = $outputDir
+    RootSuffix = $RootSuffix
+    MaxWaitSeconds = 45
+    SkipBackgroundProcessCleanup = $true
+}
+
+if (!$CloseVisualStudioWhenDone.IsPresent) {
+    $exportArgs["LeaveVisualStudioOpen"] = $true
+}
+
+if (!$ResetVisualStudioBeforeRun.IsPresent) {
+    $exportArgs["SkipInitialVisualStudioCleanup"] = $true
+}
+
+& $exportScript @exportArgs
 
 if ($LASTEXITCODE -ne 0) {
     throw "Export-Snapshots.ps1 failed with exit code $LASTEXITCODE"

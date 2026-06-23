@@ -151,7 +151,7 @@ namespace VerilogLanguage.Highlighting
             //Find all words in the buffer like the one the caret is on
             TextExtent word = TextStructureNavigator.GetExtentOfWord(currentRequest);
             bool foundWord = true;
-            //If we've selected something not worth highlighting, we might have missed a "word" by a little bit
+            //If we've selected something not worth highlighting, we might have missed a "word" by a little bit
             if (!WordExtentIsValid(currentRequest, word)) {
                 //Before we retry, make sure it is worthwhile
                 if (word.Span.Start != currentRequest

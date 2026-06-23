@@ -35,10 +35,195 @@ namespace VerilogLanguage
         /// </summary>
         private static readonly object _synchronizationParseStatus = new object();
         private static readonly object _synchronizationActiveParseData = new object();
+        private static readonly Dictionary<string, ParseDataSnapshot> ParseDataByFile = new Dictionary<string, ParseDataSnapshot>(StringComparer.OrdinalIgnoreCase);
         private static string _activeParseFile = string.Empty;
         private static int _activeParseVersion = 0;
 
-        public static bool IsActiveParseData(string targetFile, ITextBuffer buffer) {
+        public sealed class ParseDataSnapshot
+        {
+            public string TargetFile { get; private set; }
+            public int SnapshotVersion { get; private set; }
+            public Dictionary<byte, string> ModuleNames { get; private set; }
+            public Dictionary<string, byte> ModuleKeys { get; private set; }
+            public List<BufferAttribute> BufferAttributes { get; private set; }
+            public int[] BufferAttributeAtLineNumber { get; private set; }
+            public Dictionary<string, Dictionary<string, VerilogTokenTypes>> VerilogVariables { get; private set; }
+            public Dictionary<string, Dictionary<string, string>> VerilogVariableHoverText { get; private set; }
+
+            public ParseDataSnapshot(
+                string targetFile,
+                int snapshotVersion,
+                Dictionary<byte, string> moduleNames,
+                Dictionary<string, byte> moduleKeys,
+                List<BufferAttribute> bufferAttributes,
+                int[] bufferAttributeAtLineNumber,
+                Dictionary<string, Dictionary<string, VerilogTokenTypes>> verilogVariables,
+                Dictionary<string, Dictionary<string, string>> verilogVariableHoverText) {
+
+                TargetFile = targetFile;
+                SnapshotVersion = snapshotVersion;
+                ModuleNames = moduleNames ?? new Dictionary<byte, string> { { 0, "global" } };
+                ModuleKeys = moduleKeys ?? new Dictionary<string, byte> { { "global", 0 } };
+                BufferAttributes = bufferAttributes ?? new List<BufferAttribute>();
+                BufferAttributeAtLineNumber = bufferAttributeAtLineNumber ?? new int[0];
+                VerilogVariables = verilogVariables ?? new Dictionary<string, Dictionary<string, VerilogTokenTypes>>();
+                VerilogVariableHoverText = verilogVariableHoverText ?? new Dictionary<string, Dictionary<string, string>>();
+            }
+
+            private int GetBufferHint(int forLineNumber) {
+                int thisHint = 0;
+                if ((BufferAttributeAtLineNumber != null) && (BufferAttributeAtLineNumber.Length > forLineNumber) && (forLineNumber >= 0)) {
+                    thisHint = BufferAttributeAtLineNumber[forLineNumber];
+                    if (thisHint < 0 || thisHint >= BufferAttributes.Count) {
+                        thisHint = 0;
+                    }
+                }
+                return thisHint;
+            }
+
+            public string TextModuleName(int AtLine, int AtPosition) {
+                string res = "global";
+
+                int hint = GetBufferHint(AtLine);
+                for (int i = hint; i < BufferAttributes.Count - 1; i++) {
+                    BufferAttribute thisBufferAttribute = BufferAttributes[i];
+                    if (thisBufferAttribute.LineNumber == AtLine) {
+                        byte thisModuleNameKey = thisBufferAttribute.ModuleNameKey;
+                        ModuleNames.TryGetValue(thisModuleNameKey, out res);
+                        break;
+                    }
+
+                    if (thisBufferAttribute.LineNumber > AtLine) {
+                        break;
+                    }
+                }
+
+                return string.IsNullOrEmpty(res) ? "global" : res;
+            }
+
+            public int BracketDepth(int AtLine, int AtPosition) {
+                int res = 0;
+                bool found = false;
+
+                int starting_hint = 0;
+                if ((BufferAttributeAtLineNumber != null) && (BufferAttributeAtLineNumber.Length > AtLine) && (AtLine >= 0)) {
+                    starting_hint = BufferAttributeAtLineNumber[AtLine];
+                    if (starting_hint > BufferAttributes.Count - 1) {
+                        starting_hint = 0;
+                    }
+                }
+
+                if (BufferAttributes != null && BufferAttributes.Count > 0) {
+                    if (BufferAttributes[BufferAttributes.Count - 1] != null && BufferAttributes[BufferAttributes.Count - 1].LineNumber >= AtLine) {
+                        for (int i = starting_hint; i < BufferAttributes.Count - 1; i++) {
+                            if (BufferAttributes[i] != null && BufferAttributes[i].LineNumber == AtLine) {
+                                if (BufferAttributes[i].LineStart == AtPosition) {
+                                    res = BufferAttributes[i].RoundBracketDepth +
+                                          BufferAttributes[i].SquareBracketDepth +
+                                          BufferAttributes[i].SquigglyBracketDepth;
+                                    found = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    if (!found) {
+                        int LastID = BufferAttributes.Count - 1;
+                        res = BufferAttributes[LastID].RoundBracketDepth +
+                              BufferAttributes[LastID].SquareBracketDepth +
+                              BufferAttributes[LastID].SquigglyBracketDepth;
+                    }
+                }
+
+                return res;
+            }
+        }
+
+        private static Dictionary<string, Dictionary<string, VerilogTokenTypes>> CloneVariableMap(IDictionary<string, Dictionary<string, VerilogTokenTypes>> source) {
+            Dictionary<string, Dictionary<string, VerilogTokenTypes>> result = new Dictionary<string, Dictionary<string, VerilogTokenTypes>>();
+            if (source == null) {
+                return result;
+            }
+
+            foreach (KeyValuePair<string, Dictionary<string, VerilogTokenTypes>> scope in source) {
+                result[scope.Key] = scope.Value == null
+                    ? new Dictionary<string, VerilogTokenTypes>()
+                    : new Dictionary<string, VerilogTokenTypes>(scope.Value);
+            }
+
+            return result;
+        }
+
+        private static Dictionary<string, Dictionary<string, string>> CloneHoverMap(Dictionary<string, Dictionary<string, string>> source) {
+            Dictionary<string, Dictionary<string, string>> result = new Dictionary<string, Dictionary<string, string>>();
+            if (source == null) {
+                return result;
+            }
+
+            foreach (KeyValuePair<string, Dictionary<string, string>> scope in source) {
+                result[scope.Key] = scope.Value == null
+                    ? new Dictionary<string, string>()
+                    : new Dictionary<string, string>(scope.Value);
+            }
+
+            return result;
+        }
+
+        private static List<BufferAttribute> CloneBufferAttributes(List<BufferAttribute> source) {
+            List<BufferAttribute> result = new List<BufferAttribute>();
+            if (source == null) {
+                return result;
+            }
+
+            foreach (BufferAttribute item in source) {
+                if (item != null) {
+                    result.Add((BufferAttribute)item.Clone());
+                }
+            }
+
+            return result;
+        }
+
+        private static void ApplyParseDataSnapshot(ParseDataSnapshot parseData) {
+            if (parseData == null) {
+                return;
+            }
+
+            ModuleNames = parseData.ModuleNames;
+            ModuleKeys = parseData.ModuleKeys;
+            BufferAttributes = parseData.BufferAttributes;
+            BufferAttribute_at_LineNumber = parseData.BufferAttributeAtLineNumber;
+            VerilogVariables = parseData.VerilogVariables;
+            VerilogVariableHoverText = parseData.VerilogVariableHoverText;
+            BufferFirstParseComplete = true;
+        }
+
+        public static void PublishParseData(string targetFile, int snapshotVersion) {
+            if (string.IsNullOrEmpty(targetFile) || snapshotVersion == 0) {
+                return;
+            }
+
+            ParseDataSnapshot parseData = new ParseDataSnapshot(
+                targetFile,
+                snapshotVersion,
+                ModuleNames == null ? null : new Dictionary<byte, string>(ModuleNames),
+                ModuleKeys == null ? null : new Dictionary<string, byte>(ModuleKeys),
+                CloneBufferAttributes(BufferAttributes),
+                BufferAttribute_at_LineNumber == null ? null : (int[])BufferAttribute_at_LineNumber.Clone(),
+                CloneVariableMap(VerilogVariables),
+                CloneHoverMap(VerilogVariableHoverText));
+
+            lock (_synchronizationActiveParseData) {
+                ParseDataByFile[targetFile] = parseData;
+                ApplyParseDataSnapshot(parseData);
+                _activeParseFile = targetFile;
+                _activeParseVersion = snapshotVersion;
+            }
+        }
+
+        public static bool TryGetParseData(string targetFile, ITextBuffer buffer, bool allowStale, out ParseDataSnapshot parseData) {
+            parseData = null;
             if (string.IsNullOrEmpty(targetFile) || buffer == null) {
                 return false;
             }
@@ -51,10 +236,32 @@ namespace VerilogLanguage
                 return false;
             }
 
-            lock (_synchronizationActiveParseData) {
-                return string.Equals(_activeParseFile, targetFile, StringComparison.OrdinalIgnoreCase) &&
-                    _activeParseVersion == snapshotVersion;
+            return TryGetParseData(targetFile, snapshotVersion, allowStale, out parseData);
+        }
+
+        public static bool TryGetParseData(string targetFile, int snapshotVersion, bool allowStale, out ParseDataSnapshot parseData) {
+            parseData = null;
+            if (string.IsNullOrEmpty(targetFile)) {
+                return false;
             }
+
+            lock (_synchronizationActiveParseData) {
+                if (!ParseDataByFile.TryGetValue(targetFile, out parseData) || parseData == null) {
+                    return false;
+                }
+
+                if (allowStale || snapshotVersion == 0 || parseData.SnapshotVersion == snapshotVersion) {
+                    return true;
+                }
+
+                parseData = null;
+                return false;
+            }
+        }
+
+        public static bool IsActiveParseData(string targetFile, ITextBuffer buffer) {
+            ParseDataSnapshot parseData;
+            return TryGetParseData(targetFile, buffer, false, out parseData);
         }
 
         public static void SetActiveParseData(string targetFile, int snapshotVersion) {
@@ -63,6 +270,11 @@ namespace VerilogLanguage
             }
 
             lock (_synchronizationActiveParseData) {
+                ParseDataSnapshot parseData;
+                if (ParseDataByFile.TryGetValue(targetFile, out parseData) && parseData != null && parseData.SnapshotVersion == snapshotVersion) {
+                    ApplyParseDataSnapshot(parseData);
+                }
+
                 _activeParseFile = targetFile;
                 _activeParseVersion = snapshotVersion;
             }

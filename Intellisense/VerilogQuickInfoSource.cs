@@ -275,13 +275,27 @@ namespace VerilogLanguage
             int thisLine = lineInfo.LineNumber;
             int thisPosition = tagSpan.Start.Position - lineInfo.Extent.Start.Position;
 
-            string thisScopeName = VerilogGlobals.TextModuleName(thisLine, thisPosition);
+            string thisScopeName = null;
+            Dictionary<string, Dictionary<string, string>> hoverDb = null;
+
+            string thisFile = VerilogGlobals.GetDocumentPath(spanSnapshot);
+            VerilogGlobals.ParseDataSnapshot parseData;
+            if (VerilogGlobals.TryGetParseData(thisFile, spanSnapshot.Version.VersionNumber, true, out parseData)) {
+                thisScopeName = parseData.TextModuleName(thisLine, thisPosition);
+                hoverDb = parseData.VerilogVariableHoverText;
+            }
+            else {
+                thisScopeName = VerilogGlobals.TextModuleName(thisLine, thisPosition);
+                hoverDb = VerilogGlobals.VerilogVariableHoverText;
+            }
 
             if (string.IsNullOrWhiteSpace(thisScopeName)) {
                 thisScopeName = VerilogGlobals.SCOPE_CONST;
             }
 
-            Dictionary<string, Dictionary<string, string>> hoverDb = VerilogGlobals.VerilogVariableHoverText;
+            if (hoverDb == null) {
+                return false;
+            }
 
             Dictionary<string, string> scopeMap;
             string variableHover;

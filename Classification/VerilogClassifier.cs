@@ -27,7 +27,6 @@
 namespace VerilogLanguage.VerilogToken
 {
     using System;
-    using System.IO;
     using System.Collections.Generic;
     using System.ComponentModel.Composition;
     using Microsoft.VisualStudio.Text;
@@ -80,7 +79,7 @@ namespace VerilogLanguage.VerilogToken
         [Export(typeof(FileExtensionToContentTypeDefinition))]
         [FileExtension(".vh")]
         [ContentType("verilog")]
-        internal static FileExtensionToContentTypeDefinition VerilogFileTypeVH = null; // the " .vh extension
+        internal static FileExtensionToContentTypeDefinition VerilogFileTypeVH = null; // the ".vh" extension
 
         [Import]
         internal IClassificationTypeRegistryService ClassificationTypeRegistry = null;
@@ -88,73 +87,38 @@ namespace VerilogLanguage.VerilogToken
         [Import]
         internal IBufferTagAggregatorFactoryService aggregatorFactory = null;
 
-        [Import]
-        internal ITextDocumentFactoryService TextDocumentFactoryService = null;
-
         // ITextView View { get; set; }
-        public ITagger<T> CreateTagger<T>(ITextBuffer buffer) where T : ITag {
-            if (buffer == null) {
-                return null;
-            }
-
-#if DEBUG
+        public ITagger<T> CreateTagger<T>(ITextBuffer buffer) where T : ITag
+        {
             // System.Diagnostics.Debugger.Break();
-            System.Diagnostics.Debug.WriteLine("VerilogClassifierProvider.CreateTagger: ContentType=" + buffer.ContentType.TypeName);
-#endif
-            if (aggregatorFactory == null || ClassificationTypeRegistry == null) {
-                return null;
-            }
+            // System.Diagnostics.Debug.WriteLine("VerilogClassifierProvider.CreateTagger: ContentType=" + buffer.ContentType.TypeName);
 
-            string filePath = null;
-            ITextDocument doc = null;
+            ITagAggregator<VerilogTokenTag> VerilogTagAggregator =
+                                            aggregatorFactory.CreateTagAggregator<VerilogTokenTag>(buffer);
 
-            if (TextDocumentFactoryService != null &&
-               TextDocumentFactoryService.TryGetTextDocument(buffer, out doc) &&
-               doc != null) {
-                filePath = doc.FilePath;
-            }
-
-            string ext = null;
-            if (!string.IsNullOrEmpty(filePath)) {
-                ext = Path.GetExtension(filePath);
-            }
-
-            bool isSystemVerilog = string.Equals(ext, ".sv", StringComparison.OrdinalIgnoreCase) ||
-                                   string.Equals(ext, ".svh", StringComparison.OrdinalIgnoreCase);
-
-            // IMPORTANT:
-            // Return a single classifier instance per buffer.
-            // Creating the token aggregator before GetOrCreateSingletonProperty still leaks
-            // extra aggregator subscriptions on repeated CreateTagger calls.
-            // Keep the aggregator creation inside the singleton factory.
-            VerilogClassifier classifier = buffer.Properties.GetOrCreateSingletonProperty<VerilogClassifier>(
-                () => {
-                    ITagAggregator<VerilogTokenTag> VerilogTagAggregator =
-                        aggregatorFactory.CreateTagAggregator<VerilogTokenTag>(buffer);
-                    return new VerilogClassifier(buffer, VerilogTagAggregator, ClassificationTypeRegistry);
-                });
-
-            return classifier as ITagger<T>;
+            return new VerilogClassifier(buffer, VerilogTagAggregator, ClassificationTypeRegistry) as ITagger<T>;
         }
     }
-
-    internal sealed class VerilogClassifier : ITagger<ClassificationTag>, IDisposable
+    internal sealed class VerilogClassifier : ITagger<ClassificationTag>
     {
         ITextBuffer _buffer;
         ITagAggregator<VerilogTokenTag> _aggregator;
         IDictionary<VerilogTokenTypes, IClassificationType> _VerilogTypeClassifications;
-
-        private event EventHandler<SnapshotSpanEventArgs> _tagsChanged;
         /// <summary>
         /// Construct the classifier and define search tokens
         /// </summary>
         internal VerilogClassifier(ITextBuffer buffer,
                                ITagAggregator<VerilogTokenTag> VerilogTagAggregator,
-                               IClassificationTypeRegistryService typeService) {
+                               IClassificationTypeRegistryService typeService)
+        {
             _buffer = buffer;
             _aggregator = VerilogTagAggregator;
 
-            _aggregator.TagsChanged += Aggregator_TagsChanged;
+            if (_aggregator != null)
+            {
+                _aggregator.TagsChanged += VerilogTagAggregatorTagsChanged;
+            }
+
 
             // see also VerilogTkenTag for Dictionary<string, VerilogTokenTypes>
             _VerilogTypeClassifications = new Dictionary<VerilogTokenTypes, IClassificationType>
@@ -279,87 +243,68 @@ namespace VerilogLanguage.VerilogToken
 
         }
 
-        public event EventHandler<SnapshotSpanEventArgs> TagsChanged
+        public event EventHandler<SnapshotSpanEventArgs> TagsChanged;
+
+        private void VerilogTagAggregatorTagsChanged(object sender, TagsChangedEventArgs e)
         {
-            add { _tagsChanged += value; }
-            remove { _tagsChanged -= value; }
-        }
-
-        private void Aggregator_TagsChanged(object sender, TagsChangedEventArgs e) {
-            ITextSnapshot snapshot = _buffer.CurrentSnapshot;
-
-            var spans = e.Span.GetSpans(snapshot);
-            if (spans.Count > 0) {
-                int start = spans[0].Start.Position;
-                int end = spans[0].End.Position;
-
-                for (int i = 1; i < spans.Count; i++) {
-                    if (spans[i].Start.Position < start) {
-                        start = spans[i].Start.Position;
-                    }
-                    if (spans[i].End.Position > end) {
-                        end = spans[i].End.Position;
-                    }
-                }
-
-                _tagsChanged?.Invoke(this, new SnapshotSpanEventArgs(new SnapshotSpan(snapshot, Span.FromBounds(start, end))));
+            EventHandler<SnapshotSpanEventArgs> handler = TagsChanged;
+            if (handler == null || e == null || e.Span == null || _buffer == null)
+            {
                 return;
             }
 
-            if (snapshot.Length > 0) {
-                _tagsChanged?.Invoke(this,
-                    new SnapshotSpanEventArgs(new SnapshotSpan(snapshot, 0, snapshot.Length)));
+            NormalizedSnapshotSpanCollection spans = e.Span.GetSpans(_buffer.CurrentSnapshot);
+            if (spans == null || spans.Count == 0)
+            {
+                SnapshotSpan snapshotSpan = new SnapshotSpan(_buffer.CurrentSnapshot, 0, _buffer.CurrentSnapshot.Length);
+                handler(this, new SnapshotSpanEventArgs(snapshotSpan));
+                return;
             }
-        }
 
-        public void Dispose() {
-            if (_aggregator != null) {
-                _aggregator.TagsChanged -= Aggregator_TagsChanged;
-                _aggregator = null;
+            foreach (SnapshotSpan span in spans)
+            {
+                handler(this, new SnapshotSpanEventArgs(span));
             }
         }
 
         /// <summary>
         /// Search the given span for any instances of classified tags
         /// </summary>
-        public IEnumerable<ITagSpan<ClassificationTag>> GetTags(NormalizedSnapshotSpanCollection spans) {
-            if (spans == null || spans.Count == 0) {
+        public IEnumerable<ITagSpan<ClassificationTag>> GetTags(NormalizedSnapshotSpanCollection spans)
+        {
+            if (spans == null || spans.Count == 0 || _aggregator == null || _VerilogTypeClassifications == null)
+            {
                 yield break;
             }
 
-            if (_aggregator == null) {
-                yield break;
-            }
-
-            if (_VerilogTypeClassifications == null) {
-                yield break;
-            }
-
-            foreach (var tagSpan in _aggregator.GetTags(spans)) {
-                if (tagSpan == null || tagSpan.Tag == null) {
+            foreach (var tagSpan in _aggregator.GetTags(spans))
+            {
+                if (tagSpan == null || tagSpan.Tag == null)
+                {
                     continue;
                 }
 
-                var tagSpans = tagSpan.Span.GetSpans(spans[0].Snapshot);
-                // each of the text values found for tagSpan.Tag.type must be defined above in VerilogClassifier
-                if (tagSpans.Count == 0) {
-                    // skips this iteration and moves to the next tagSpan
+                NormalizedSnapshotSpanCollection tagSpans = tagSpan.Span.GetSpans(spans[0].Snapshot);
+                if (tagSpans == null || tagSpans.Count == 0)
+                {
                     continue;
                 }
 
                 IClassificationType classificationType;
-                if (!_VerilogTypeClassifications.TryGetValue(tagSpan.Tag.type, out classificationType) || classificationType == null) {
+                if (!_VerilogTypeClassifications.TryGetValue(tagSpan.Tag.type, out classificationType) || classificationType == null)
+                {
                     _VerilogTypeClassifications.TryGetValue(VerilogTokenTypes.Verilog_default, out classificationType);
                 }
 
-                if (classificationType == null) {
+                if (classificationType == null)
+                {
                     continue;
                 }
 
-                foreach (var curSpan in tagSpans) {
-                    yield return new TagSpan<ClassificationTag>(
-                        curSpan,
-                        new ClassificationTag(classificationType));
+                foreach (SnapshotSpan snapshotSpan in tagSpans)
+                {
+                    yield return new TagSpan<ClassificationTag>(snapshotSpan,
+                                                               new ClassificationTag(classificationType));
                 }
             }
         }

@@ -392,13 +392,15 @@ namespace VerilogLanguage.VerilogToken
             RaiseTagsChanged(new SnapshotSpan(snapshot, start, length));
         }
 
-        private bool EnsureParseDataForCurrentBuffer() {
+        private bool TryGetParseDataForCurrentBuffer(out VerilogGlobals.ParseDataSnapshot parseData) {
+            parseData = null;
+
             string thisFile = VerilogLanguage.VerilogGlobals.GetDocumentPath(_buffer.CurrentSnapshot);
             if (string.IsNullOrEmpty(thisFile)) {
-                return true;
+                return false;
             }
 
-            if (VerilogGlobals.IsActiveParseData(thisFile, _buffer)) {
+            if (VerilogGlobals.TryGetParseData(thisFile, _buffer, true, out parseData)) {
                 return true;
             }
 
@@ -411,7 +413,7 @@ namespace VerilogLanguage.VerilogToken
             VerilogGlobals.Reparse(_buffer, thisFile);
             StartOrResetReparseCompletionWatcher(thisFile);
 
-            return VerilogGlobals.IsActiveParseData(thisFile, _buffer);
+            return VerilogGlobals.TryGetParseData(thisFile, _buffer, true, out parseData);
         }
 
         /// <summary>
@@ -430,9 +432,8 @@ namespace VerilogLanguage.VerilogToken
                 yield break;
             }
 
-            if (!EnsureParseDataForCurrentBuffer()) {
-                yield break;
-            }
+            VerilogGlobals.ParseDataSnapshot parseData;
+            bool haveParseData = TryGetParseDataForCurrentBuffer(out parseData);
 
             // This is the reliable place to trigger the initial full repaint:
             // by the time VS asks for tags, the downstream aggregators are subscribed.
@@ -594,7 +595,8 @@ namespace VerilogLanguage.VerilogToken
                                     verilogToken,
                                     tokenSpan,
                                     item,
-                                    curLoc)) {
+                                    curLoc,
+                                    haveParseData ? parseData : null)) {
 
                                     yield return tag;
                                 }
@@ -639,7 +641,8 @@ namespace VerilogLanguage.VerilogToken
             VerilogGlobals.VerilogToken verilogToken,
             SnapshotSpan tokenSpan,
             CommentHelper.CommentItem item,
-            int curLoc) {
+            int curLoc,
+            VerilogGlobals.ParseDataSnapshot parseData) {
             // is this item a comment? If so, color as appropriate. comments take highest priority: no other condition will change color of a comment
             if (item.IsComment) {
 #if TAG_DEBUG
@@ -680,7 +683,7 @@ namespace VerilogLanguage.VerilogToken
                 }
             }
 
-            foreach (ITagSpan<VerilogTokenTag> tag in ProcessLookupText(containingLine, verilogToken, tokenSpan, lookupSpan, lookupText, curLoc, leadingWhitespace)) {
+            foreach (ITagSpan<VerilogTokenTag> tag in ProcessLookupText(containingLine, verilogToken, tokenSpan, lookupSpan, lookupText, curLoc, leadingWhitespace, parseData)) {
                 yield return tag;
             }
 
@@ -747,7 +750,8 @@ namespace VerilogLanguage.VerilogToken
             SnapshotSpan lookupSpan,
             string lookupText,
             int curLoc,
-            int leadingWhitespace) {
+            int leadingWhitespace,
+            VerilogGlobals.ParseDataSnapshot parseData) {
             // check for standard keyword syntax higlighting
             if (VerilogGlobals.VerilogTypes.ContainsKey(lookupText)) {
 #if TAG_DEBUG
@@ -768,7 +772,7 @@ namespace VerilogLanguage.VerilogToken
 
             bool lookupTextIsIdentifier = IsVerilogIdentifierText(lookupText);
 
-            if (lookupTextIsIdentifier && VerilogGlobals.VerilogVariables.ContainsKey(lookupText)) {
+            if (parseData != null && lookupTextIsIdentifier && parseData.VerilogVariables.ContainsKey(lookupText)) {
                 // we are instantiation a module; recall VerilogVariables is first a dictionary of scope (aka module), then a dictionary of variables in each module scope
                 // TODO do we need: if (tokenSpan.IntersectsWith(curSpan))
 #if TAG_DEBUG
@@ -780,7 +784,7 @@ namespace VerilogLanguage.VerilogToken
                 yield break;
             }
 
-            foreach (ITagSpan<VerilogTokenTag> tag in ProcessScopeLookup(containingLine, verilogToken, tokenSpan, lookupSpan, lookupText, curLoc, leadingWhitespace)) {
+            foreach (ITagSpan<VerilogTokenTag> tag in ProcessScopeLookup(containingLine, verilogToken, tokenSpan, lookupSpan, lookupText, curLoc, leadingWhitespace, parseData)) {
                 yield return tag;
             }
 
@@ -794,42 +798,51 @@ namespace VerilogLanguage.VerilogToken
             SnapshotSpan lookupSpan,
             string lookupText,
             int curLoc,
-            int leadingWhitespace) {
+            int leadingWhitespace,
+            VerilogGlobals.ParseDataSnapshot parseData) {
             bool lookupTextIsIdentifier = IsVerilogIdentifierText(lookupText);
 
+            if (parseData == null) {
+                foreach (ITagSpan<VerilogTokenTag> tag in ProcessContextColorization(containingLine, verilogToken, tokenSpan, lookupText, curLoc, parseData)) {
+                    yield return tag;
+                }
+
+                yield break;
+            }
+
             // check to see if this is a variable
-            string thisScope = VerilogGlobals.TextModuleName(
+            string thisScope = parseData.TextModuleName(
                 containingLine.LineNumber,
                 (curLoc + leadingWhitespace) - containingLine.Start.Position); // TODO
 
-            if (!VerilogGlobals.VerilogVariables.ContainsKey(thisScope)) {
+            if (!parseData.VerilogVariables.ContainsKey(thisScope)) {
                 // fallback: some scope resolvers are position-sensitive; column 0 tends to be stable per line
-                thisScope = VerilogGlobals.TextModuleName(containingLine.LineNumber, 0);
+                thisScope = parseData.TextModuleName(containingLine.LineNumber, 0);
             }
 
-            if (VerilogGlobals.VerilogVariables.ContainsKey(thisScope)) {
+            if (parseData.VerilogVariables.ContainsKey(thisScope)) {
                 // the current scope (typically a module name) is defined. So do we have a known variable?
-                if (lookupTextIsIdentifier && VerilogGlobals.VerilogVariables[thisScope].ContainsKey(lookupText)) {
+                if (lookupTextIsIdentifier && parseData.VerilogVariables[thisScope].ContainsKey(lookupText)) {
                     // TODO do we need: if (tokenSpan.IntersectsWith(curSpan))
 #if TAG_DEBUG
                     System.Diagnostics.Debug.WriteLine("IEnumerable VerilogTokenTag yield variable " + lookupText);
 #endif
                     yield return new TagSpan<VerilogTokenTag>(
                         lookupSpan,
-                        new VerilogTokenTag(VerilogGlobals.VerilogVariables[thisScope][lookupText]));
+                        new VerilogTokenTag(parseData.VerilogVariables[thisScope][lookupText]));
                     yield break;
                 }
 
                 if (lookupTextIsIdentifier &&
-                    VerilogGlobals.VerilogVariables.ContainsKey(VerilogGlobals.SCOPE_CONST) &&
-                    VerilogGlobals.VerilogVariables[VerilogGlobals.SCOPE_CONST].ContainsKey(lookupText)) {
+                    parseData.VerilogVariables.ContainsKey(VerilogGlobals.SCOPE_CONST) &&
+                    parseData.VerilogVariables[VerilogGlobals.SCOPE_CONST].ContainsKey(lookupText)) {
                     yield return new TagSpan<VerilogTokenTag>(
                         lookupSpan,
-                        new VerilogTokenTag(VerilogGlobals.VerilogVariables[VerilogGlobals.SCOPE_CONST][lookupText]));
+                        new VerilogTokenTag(parseData.VerilogVariables[VerilogGlobals.SCOPE_CONST][lookupText]));
                     yield break;
                 }
 
-                foreach (ITagSpan<VerilogTokenTag> tag in ProcessContextColorization(containingLine, verilogToken, tokenSpan, lookupText, curLoc)) {
+                foreach (ITagSpan<VerilogTokenTag> tag in ProcessContextColorization(containingLine, verilogToken, tokenSpan, lookupText, curLoc, parseData)) {
                     yield return tag;
                 }
 
@@ -837,13 +850,13 @@ namespace VerilogLanguage.VerilogToken
             }
 
             if (lookupTextIsIdentifier &&
-                VerilogGlobals.VerilogVariables.ContainsKey(VerilogGlobals.SCOPE_CONST) &&
-                VerilogGlobals.VerilogVariables[VerilogGlobals.SCOPE_CONST].ContainsKey(lookupText)) {
+                parseData.VerilogVariables.ContainsKey(VerilogGlobals.SCOPE_CONST) &&
+                parseData.VerilogVariables[VerilogGlobals.SCOPE_CONST].ContainsKey(lookupText)) {
                 //yield return new TagSpan<VerilogTokenTag>(tokenSpan,
                 //      new VerilogTokenTag(VerilogGlobals.VerilogTypes["Verilog_Value"]));
                 yield return new TagSpan<VerilogTokenTag>(
                     lookupSpan,
-                    new VerilogTokenTag(VerilogGlobals.VerilogVariables[VerilogGlobals.SCOPE_CONST][lookupText]));
+                    new VerilogTokenTag(parseData.VerilogVariables[VerilogGlobals.SCOPE_CONST][lookupText]));
                 yield break;
             }
 
@@ -857,7 +870,8 @@ namespace VerilogLanguage.VerilogToken
             VerilogGlobals.VerilogToken verilogToken,
             SnapshotSpan tokenSpan,
             string lookupText,
-            int curLoc) {
+            int curLoc,
+            VerilogGlobals.ParseDataSnapshot parseData) {
             // no tag colorization for the explicit token, but perhaps based on context:
             int thisDelimiterIndex = 0;
             int thisDelimiterTotalDepth;
@@ -869,7 +883,7 @@ namespace VerilogLanguage.VerilogToken
             switch (verilogToken.Context) {
                 case VerilogGlobals.VerilogTokenContextType.SquareBracketOpen:
                 case VerilogGlobals.VerilogTokenContextType.SquareBracketClose:
-                    thisDelimiterTotalDepth = VerilogGlobals.BracketDepth(containingLine.LineNumber, curLoc - containingLine.Start.Position);
+                    thisDelimiterTotalDepth = parseData == null ? 0 : parseData.BracketDepth(containingLine.LineNumber, curLoc - containingLine.Start.Position);
                     thisDelimiterIndex = (thisDelimiterTotalDepth % 5);
                     yield return new TagSpan<VerilogTokenTag>(
                         tokenSpan,
@@ -879,7 +893,7 @@ namespace VerilogLanguage.VerilogToken
 
                 case VerilogGlobals.VerilogTokenContextType.RoundBracketClose:
                 case VerilogGlobals.VerilogTokenContextType.RoundBracketOpen:
-                    thisDelimiterTotalDepth = VerilogGlobals.BracketDepth(containingLine.LineNumber, curLoc - containingLine.Start.Position);
+                    thisDelimiterTotalDepth = parseData == null ? 0 : parseData.BracketDepth(containingLine.LineNumber, curLoc - containingLine.Start.Position);
                     thisDelimiterIndex = (thisDelimiterTotalDepth % 5);
                     yield return new TagSpan<VerilogTokenTag>(
                         tokenSpan,
@@ -889,7 +903,7 @@ namespace VerilogLanguage.VerilogToken
 
                 case VerilogGlobals.VerilogTokenContextType.SquigglyBracketOpen:
                 case VerilogGlobals.VerilogTokenContextType.SquigglyBracketClose:
-                    thisDelimiterTotalDepth = VerilogGlobals.BracketDepth(containingLine.LineNumber, curLoc - containingLine.Start.Position);
+                    thisDelimiterTotalDepth = parseData == null ? 0 : parseData.BracketDepth(containingLine.LineNumber, curLoc - containingLine.Start.Position);
                     thisDelimiterIndex = (thisDelimiterTotalDepth % 5);
                     // see _VerilogTypes["bracket_type1"] .. _VerilogTypes["bracket_type5"]
                     yield return new TagSpan<VerilogTokenTag>(

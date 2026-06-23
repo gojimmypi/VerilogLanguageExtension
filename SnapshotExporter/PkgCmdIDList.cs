@@ -1,4 +1,4 @@
-﻿// file: SnapshotExporter/PkgCmdIDList.cs
+// file: SnapshotExporter/PkgCmdIDList.cs
 //***************************************************************************
 //
 //  MIT License

@@ -1,4 +1,4 @@
-﻿// file: SnapshotExporter/SnapshotModel.cs
+// file: SnapshotExporter/SnapshotModel.cs
 //***************************************************************************
 //
 //  MIT License

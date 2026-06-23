@@ -58,6 +58,19 @@ function Get-MSBuildPath {
     throw "Could not find MSBuild.exe. Run from a Visual Studio Developer PowerShell or install VS Build Tools."
 }
 
+function Remove-SnapshotGitCommit {
+    param([object]$Json)
+
+    if ($null -eq $Json) {
+        return
+    }
+
+    $gitCommitProperty = $Json.PSObject.Properties["GitCommit"]
+    if ($null -ne $gitCommitProperty) {
+        $Json.PSObject.Properties.Remove("GitCommit")
+    }
+}
+
 function Format-JsonFile {
     param([string]$Path)
 
@@ -69,6 +82,11 @@ function Format-JsonFile {
         $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
         $rawJson = [System.IO.File]::ReadAllText($Path, [System.Text.Encoding]::UTF8)
         $json = $rawJson | ConvertFrom-Json
+
+        if ((Split-Path $Path -Leaf) -like "*.snapshot.json") {
+            Remove-SnapshotGitCommit -Json $json
+        }
+
         $text = $json | ConvertTo-Json -Depth 100
         [System.IO.File]::WriteAllText($Path, ($text + [Environment]::NewLine), $utf8NoBom)
     }

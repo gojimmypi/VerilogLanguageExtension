@@ -239,7 +239,10 @@ function Write-SnapshotConfig {
     $env:VLE_SNAPSHOT_RUN_NAME = $RunName
     $env:VLE_SNAPSHOT_DELAY_MS = $DelayMs
     $env:VLE_REPO_ROOT = $RepoRoot
-    $env:VLE_GIT_COMMIT = $GitCommit
+
+    # GitCommit is intentionally not passed to the per-file snapshot exporter.
+    # It is written once to run-info.json instead, which keeps snapshot diffs focused.
+    Remove-Item Env:\VLE_GIT_COMMIT -ErrorAction SilentlyContinue
 }
 
 function Get-LatestSnapshotFile {
@@ -284,6 +287,19 @@ function Copy-SnapshotToFinalName {
     return $targetPath
 }
 
+function Remove-SnapshotGitCommit {
+    param([object]$Json)
+
+    if ($null -eq $Json) {
+        return
+    }
+
+    $gitCommitProperty = $Json.PSObject.Properties["GitCommit"]
+    if ($null -ne $gitCommitProperty) {
+        $Json.PSObject.Properties.Remove("GitCommit")
+    }
+}
+
 function Format-JsonFile {
     param([string]$Path)
 
@@ -295,12 +311,37 @@ function Format-JsonFile {
         $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
         $rawJson = [System.IO.File]::ReadAllText($Path, [System.Text.Encoding]::UTF8)
         $json = $rawJson | ConvertFrom-Json
+
+        if ((Split-Path $Path -Leaf) -like "*.snapshot.json") {
+            Remove-SnapshotGitCommit -Json $json
+        }
+
         $text = $json | ConvertTo-Json -Depth 100
         [System.IO.File]::WriteAllText($Path, ($text + [Environment]::NewLine), $utf8NoBom)
     }
     catch {
         Write-Warning "Could not format JSON $Path`: $_"
     }
+}
+
+function Write-SnapshotRunInfo {
+    param(
+        [string]$Path,
+        [string]$RunName,
+        [string]$Manifest,
+        [string]$GitCommit
+    )
+
+    $runInfo = [ordered]@{
+        SchemaVersion = 1
+        RunName = $RunName
+        GitCommit = $GitCommit
+        Manifest = $Manifest.Replace("\", "/")
+    }
+
+    $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+    $text = $runInfo | ConvertTo-Json -Depth 5
+    [System.IO.File]::WriteAllText($Path, ($text + [Environment]::NewLine), $utf8NoBom)
 }
 
 function Format-GeneratedJsonFiles {
@@ -362,6 +403,14 @@ Write-Host "Snapshot output: $finalOutputDir"
 Write-Host "Visual Studio: $devenv"
 Write-Host "Run name: $($manifestJson.RunName)"
 Write-Host "Fresh instance per file: $useFreshInstancePerFile"
+
+$runInfoPath = Join-Path $finalOutputDir "run-info.json"
+Write-SnapshotRunInfo `
+    -Path $runInfoPath `
+    -RunName ([string]$manifestJson.RunName) `
+    -Manifest $Manifest `
+    -GitCommit $gitCommit
+Write-Host "Git commit reference: $runInfoPath"
 
 try {
     # Start from a known state. This avoids the common case where an already-open

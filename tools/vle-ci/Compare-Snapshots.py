@@ -3,8 +3,8 @@
 
 This tool compares deterministic JSON emitted by SnapshotExporter and checks
 small targeted expectations such as "dout has hover text". It intentionally
-ignores machine-specific fields such as absolute paths, assembly versions, and
-snapshot version numbers.
+ignores machine-specific fields such as absolute paths, assembly versions,
+per-run Git commit references, and snapshot version numbers.
 """
 
 from __future__ import annotations
@@ -21,6 +21,7 @@ from typing import Any, Dict, Iterable, List, Tuple
 
 Snapshot = Dict[str, Any]
 FailureList = List[str]
+RUN_INFO_FILE_NAME = "run-info.json"
 
 KEYWORD_TAG_TEXT = {
     "Verilog_always": "always",
@@ -164,6 +165,21 @@ def normalize_slashes(value: str) -> str:
     return value.replace("\\", "/")
 
 
+def snapshot_for_baseline(snapshot: Snapshot) -> Snapshot:
+    cleaned = dict(snapshot)
+    cleaned.pop("GitCommit", None)
+    return cleaned
+
+
+def copy_run_info(current_root: Path, baseline_root: Path) -> None:
+    src = current_root / RUN_INFO_FILE_NAME
+    if not src.exists():
+        return
+
+    dst = baseline_root / RUN_INFO_FILE_NAME
+    write_json(dst, load_json(src))
+
+
 def snapshot_key(snapshot_path: Path, snapshot_root: Path, snapshot: Snapshot) -> str:
     file_relative_path = snapshot.get("FileRelativePath") or snapshot.get("FilePath") or snapshot_path.name
     file_relative_path = normalize_slashes(str(file_relative_path))
@@ -294,7 +310,9 @@ def update_baseline(current_root: Path, baseline_root: Path) -> None:
     for src in iter_snapshot_files(current_root):
         rel = src.relative_to(current_root)
         dst = baseline_root / rel
-        write_json(dst, load_json(src))
+        write_json(dst, snapshot_for_baseline(load_json(src)))
+
+    copy_run_info(current_root, baseline_root)
 
 
 def matching_snapshots_for_file(current: Dict[str, Tuple[Path, Snapshot, Dict[str, Any]]], expected_file: str) -> List[Tuple[Path, Snapshot, Dict[str, Any]]]:

@@ -656,26 +656,16 @@ namespace VerilogLanguage.VerilogToken
             }
 
             string lookupText = item.ItemText;
-            int leadingWhitespace = 0;
-            int trailingWhitespace = 0;
+            int leadingTrim = 0;
+            int trailingTrim = 0;
 
-            if (!string.IsNullOrEmpty(lookupText)) {
-                string trimmedStart = lookupText.TrimStart();
-                string trimmedBoth = lookupText.Trim();
-
-                leadingWhitespace = lookupText.Length - trimmedStart.Length;
-                trailingWhitespace = lookupText.Length - lookupText.TrimEnd().Length;
-
-                lookupText = trimmedBoth;
-            }
-
-            if (string.IsNullOrEmpty(lookupText)) {
+            if (!TryGetClassifiableLookupText(item.ItemText, out lookupText, out leadingTrim, out trailingTrim)) {
                 yield break; // no highlighting
             }
 
             SnapshotSpan lookupSpan = tokenSpan;
-            if (leadingWhitespace != 0 || trailingWhitespace != 0) {
-                int adjustedLoc = curLoc + leadingWhitespace;
+            if (leadingTrim != 0 || trailingTrim != 0) {
+                int adjustedLoc = curLoc + leadingTrim;
                 int adjustedLen = lookupText.Length;
 
                 if (adjustedLen > 0) {
@@ -683,7 +673,7 @@ namespace VerilogLanguage.VerilogToken
                 }
             }
 
-            foreach (ITagSpan<VerilogTokenTag> tag in ProcessLookupText(containingLine, verilogToken, tokenSpan, lookupSpan, lookupText, curLoc, leadingWhitespace, parseData)) {
+            foreach (ITagSpan<VerilogTokenTag> tag in ProcessLookupText(containingLine, verilogToken, tokenSpan, lookupSpan, lookupText, curLoc, leadingTrim, parseData)) {
                 yield return tag;
             }
 
@@ -735,12 +725,156 @@ namespace VerilogLanguage.VerilogToken
 
             for (int i = 1; i < text.Length; i++) {
                 char c = text[i];
-                if (!(char.IsLetterOrDigit(c) || c == '_' || c == '$')) {
+                if (!IsVerilogIdentifierContinuation(c)) {
                     return false;
                 }
             }
 
             return true;
+        }
+
+        private static bool IsVerilogIdentifierContinuation(char c) {
+            return char.IsLetterOrDigit(c) || c == '_' || c == '$';
+        }
+
+        private static bool IsVerilogIdentifierBoundary(char c) {
+            return !IsVerilogIdentifierContinuation(c);
+        }
+
+        private static bool IsClassifiableTrailingDelimiter(char c) {
+            return c == ',' || c == ';';
+        }
+
+        private static bool TryGetClassifiableLookupText(
+            string sourceText,
+            out string lookupText,
+            out int leadingTrim,
+            out int trailingTrim) {
+            lookupText = string.Empty;
+            leadingTrim = 0;
+            trailingTrim = 0;
+
+            if (string.IsNullOrEmpty(sourceText)) {
+                return false;
+            }
+
+            int start = 0;
+            int end = sourceText.Length;
+
+            while (start < end && char.IsWhiteSpace(sourceText[start])) {
+                start++;
+            }
+
+            while (end > start && char.IsWhiteSpace(sourceText[end - 1])) {
+                end--;
+            }
+
+            // ANSI port and declaration lists can arrive here as a single token like "reg_cond0,".
+            // Classify only the identifier/value part and leave the delimiter untagged.
+            if (start < end && sourceText[start] != '\\') {
+                while (end > start && IsClassifiableTrailingDelimiter(sourceText[end - 1])) {
+                    end--;
+                }
+            }
+
+            if (end <= start) {
+                return false;
+            }
+
+            leadingTrim = start;
+            trailingTrim = sourceText.Length - end;
+            lookupText = sourceText.Substring(start, end - start);
+
+            return true;
+        }
+
+        private static bool IsDeclarationKeywordPrefixBoundary(char c) {
+            return char.IsWhiteSpace(c) || c == '(' || c == ',' || c == ';' || c == '#';
+        }
+
+        private static bool ContainsDeclarationKeyword(string prefixText, string keyword) {
+            if (string.IsNullOrEmpty(prefixText) || string.IsNullOrEmpty(keyword)) {
+                return false;
+            }
+
+            int searchStart = 0;
+            while (searchStart < prefixText.Length) {
+                int index = prefixText.IndexOf(keyword, searchStart, StringComparison.Ordinal);
+                if (index < 0) {
+                    return false;
+                }
+
+                bool validPrefix = index == 0 || IsDeclarationKeywordPrefixBoundary(prefixText[index - 1]);
+                int afterIndex = index + keyword.Length;
+                bool validSuffix = afterIndex >= prefixText.Length || IsVerilogIdentifierBoundary(prefixText[afterIndex]);
+
+                if (validPrefix && validSuffix) {
+                    return true;
+                }
+
+                searchStart = index + keyword.Length;
+            }
+
+            return false;
+        }
+
+        private static bool TryGetDeclarationVariableType(
+            ITextSnapshotLine containingLine,
+            int column,
+            out VerilogTokenTypes variableType) {
+            variableType = VerilogTokenTypes.Verilog_Variable;
+
+            if (containingLine == null || column <= 0) {
+                return false;
+            }
+
+            string lineText = containingLine.GetText();
+            if (string.IsNullOrEmpty(lineText)) {
+                return false;
+            }
+
+            if (column > lineText.Length) {
+                column = lineText.Length;
+            }
+
+            string prefixText = lineText.Substring(0, column);
+
+            if (ContainsDeclarationKeyword(prefixText, "input")) {
+                variableType = VerilogTokenTypes.Verilog_Variable_input;
+                return true;
+            }
+
+            if (ContainsDeclarationKeyword(prefixText, "output")) {
+                variableType = VerilogTokenTypes.Verilog_Variable_output;
+                return true;
+            }
+
+            if (ContainsDeclarationKeyword(prefixText, "inout")) {
+                variableType = VerilogTokenTypes.Verilog_Variable_inout;
+                return true;
+            }
+
+            if (ContainsDeclarationKeyword(prefixText, "localparam")) {
+                variableType = VerilogTokenTypes.Verilog_Variable_localparam;
+                return true;
+            }
+
+            if (ContainsDeclarationKeyword(prefixText, "parameter")) {
+                variableType = VerilogTokenTypes.Verilog_Variable_parameter;
+                return true;
+            }
+
+            if (ContainsDeclarationKeyword(prefixText, "reg")) {
+                variableType = VerilogTokenTypes.Verilog_Variable_reg;
+                return true;
+            }
+
+            if (ContainsDeclarationKeyword(prefixText, "wire")) {
+                variableType = VerilogTokenTypes.Verilog_Variable_wire;
+                return true;
+            }
+
+            return false;
         }
 
         private IEnumerable<ITagSpan<VerilogTokenTag>> ProcessLookupText(
@@ -803,6 +937,19 @@ namespace VerilogLanguage.VerilogToken
             bool lookupTextIsIdentifier = IsVerilogIdentifierText(lookupText);
 
             if (parseData == null) {
+                VerilogTokenTypes declarationVariableType;
+                if (lookupTextIsIdentifier &&
+                    TryGetDeclarationVariableType(
+                        containingLine,
+                        (curLoc + leadingWhitespace) - containingLine.Start.Position,
+                        out declarationVariableType)) {
+
+                    yield return new TagSpan<VerilogTokenTag>(
+                        lookupSpan,
+                        new VerilogTokenTag(declarationVariableType));
+                    yield break;
+                }
+
                 foreach (ITagSpan<VerilogTokenTag> tag in ProcessContextColorization(containingLine, verilogToken, tokenSpan, lookupText, curLoc, parseData)) {
                     yield return tag;
                 }
@@ -842,6 +989,19 @@ namespace VerilogLanguage.VerilogToken
                     yield break;
                 }
 
+                VerilogTokenTypes declarationVariableType;
+                if (lookupTextIsIdentifier &&
+                    TryGetDeclarationVariableType(
+                        containingLine,
+                        (curLoc + leadingWhitespace) - containingLine.Start.Position,
+                        out declarationVariableType)) {
+
+                    yield return new TagSpan<VerilogTokenTag>(
+                        lookupSpan,
+                        new VerilogTokenTag(declarationVariableType));
+                    yield break;
+                }
+
                 foreach (ITagSpan<VerilogTokenTag> tag in ProcessContextColorization(containingLine, verilogToken, tokenSpan, lookupText, curLoc, parseData)) {
                     yield return tag;
                 }
@@ -857,6 +1017,19 @@ namespace VerilogLanguage.VerilogToken
                 yield return new TagSpan<VerilogTokenTag>(
                     lookupSpan,
                     new VerilogTokenTag(parseData.VerilogVariables[VerilogGlobals.SCOPE_CONST][lookupText]));
+                yield break;
+            }
+
+            VerilogTokenTypes fallbackDeclarationVariableType;
+            if (lookupTextIsIdentifier &&
+                TryGetDeclarationVariableType(
+                    containingLine,
+                    (curLoc + leadingWhitespace) - containingLine.Start.Position,
+                    out fallbackDeclarationVariableType)) {
+
+                yield return new TagSpan<VerilogTokenTag>(
+                    lookupSpan,
+                    new VerilogTokenTag(fallbackDeclarationVariableType));
                 yield break;
             }
 

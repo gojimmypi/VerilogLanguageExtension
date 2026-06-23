@@ -141,6 +141,19 @@ function Stop-ProcessTree {
     }
 }
 
+function Test-IsVisualStudioCopilotProcess {
+    param([object]$Process)
+
+    $commandLine = [string]$Process.CommandLine
+    if ([string]::IsNullOrWhiteSpace($commandLine)) {
+        return $false
+    }
+
+    return ($commandLine -match "(?i)\\Common7\\IDE\\Extensions\\Microsoft\\Copilot\\") -or
+        ($commandLine -match "(?i)copilot-language-server") -or
+        ($commandLine -match "(?i)github.?copilot")
+}
+
 function Stop-VisualStudioBackgroundProcesses {
     param([switch]$IncludeCopilot)
 
@@ -162,19 +175,27 @@ function Stop-VisualStudioBackgroundProcesses {
     # Visual Studio Copilot can leave one node.exe-backed language server per
     # short-lived Experimental Instance. With FreshInstancePerFile this can grow
     # into dozens of 700+ MB processes. These are local CI leftovers; killing
-    # them is safer than letting the machine run out of memory.
-    $copilotProcesses = @(Get-CimInstance Win32_Process -Filter "Name = 'copilot-language-server.exe'" -ErrorAction SilentlyContinue)
-    foreach ($process in $copilotProcesses) {
-        $commandLine = [string]$process.CommandLine
-        if ($commandLine -notmatch "(?i)\\Common7\\IDE\\Extensions\\Microsoft\\Copilot\\") {
-            continue
-        }
+    # them is safer than letting the machine run out of memory. Limit node/nodejs
+    # cleanup to command lines that clearly belong to Visual Studio Copilot.
+    $copilotProcessNames = @(
+        "copilot-language-server.exe",
+        "node.exe",
+        "nodejs.exe"
+    )
 
-        try {
-            Stop-Process -Id $process.ProcessId -Force -ErrorAction SilentlyContinue
-        }
-        catch {
-            Write-Warning "Could not stop Copilot language server process $($process.ProcessId): $_"
+    foreach ($processName in $copilotProcessNames) {
+        $copilotProcesses = @(Get-CimInstance Win32_Process -Filter "Name = '$processName'" -ErrorAction SilentlyContinue)
+        foreach ($process in $copilotProcesses) {
+            if (!(Test-IsVisualStudioCopilotProcess -Process $process)) {
+                continue
+            }
+
+            try {
+                Stop-Process -Id $process.ProcessId -Force -ErrorAction SilentlyContinue
+            }
+            catch {
+                Write-Warning "Could not stop Visual Studio Copilot process $($process.ProcessId): $_"
+            }
         }
     }
 }
@@ -263,6 +284,36 @@ function Copy-SnapshotToFinalName {
 
     Move-Item -Force -Path $SnapshotFile.FullName -Destination $targetPath
     return $targetPath
+}
+
+function Format-JsonFile {
+    param([string]$Path)
+
+    if (!(Test-Path $Path)) {
+        return
+    }
+
+    try {
+        $json = Get-Content -Raw -Path $Path | ConvertFrom-Json
+        $text = $json | ConvertTo-Json -Depth 100
+        $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+        [System.IO.File]::WriteAllText($Path, ($text + [Environment]::NewLine), $utf8NoBom)
+    }
+    catch {
+        Write-Warning "Could not format JSON $Path`: $_"
+    }
+}
+
+function Format-GeneratedJsonFiles {
+    param([string]$Directory)
+
+    if (!(Test-Path $Directory)) {
+        return
+    }
+
+    foreach ($jsonFile in @(Get-ChildItem -Path $Directory -Filter "*.json" -File -Recurse -ErrorAction SilentlyContinue)) {
+        Format-JsonFile -Path $jsonFile.FullName
+    }
 }
 
 function Get-ManifestBoolean {
@@ -382,6 +433,7 @@ try {
             -Index $index `
             -SourceFilePath $filePath
 
+        Format-JsonFile -Path $finalSnapshotPath
         Write-Host "Snapshot: $finalSnapshotPath"
 
         if ($useFreshInstancePerFile) {
@@ -392,8 +444,8 @@ try {
         }
         else {
             # Close the active document so repeated files in the manifest create a fresh view.
-            $closeArguments = "/RootSuffix " + (Quote-CommandLineArgument $RootSuffix) + " /Command File.Close"
-            Start-Process -FilePath $devenv -ArgumentList $closeArguments | Out-Null
+            $closeArguments = "/RootSuffix " + (Quote-CommandLineArgument $RootSuffix) + " /NoSplash /Command File.Close"
+            Start-Process -FilePath $devenv -ArgumentList $closeArguments -WindowStyle Minimized | Out-Null
             Start-Sleep -Seconds 1
         }
     }
@@ -407,6 +459,8 @@ finally {
         Remove-Item -Force $configFile -ErrorAction SilentlyContinue
     }
 }
+
+Format-GeneratedJsonFiles -Directory $finalOutputDir
 
 $expectedCount = @($manifestJson.Files).Count
 $actualCount = @(Get-ChildItem -Path $finalOutputDir -Filter "*.snapshot.json" -File -ErrorAction SilentlyContinue).Count

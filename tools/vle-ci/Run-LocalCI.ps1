@@ -58,6 +58,36 @@ function Get-MSBuildPath {
     throw "Could not find MSBuild.exe. Run from a Visual Studio Developer PowerShell or install VS Build Tools."
 }
 
+function Format-JsonFile {
+    param([string]$Path)
+
+    if (!(Test-Path $Path)) {
+        return
+    }
+
+    try {
+        $json = Get-Content -Raw -Path $Path | ConvertFrom-Json
+        $text = $json | ConvertTo-Json -Depth 100
+        $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+        [System.IO.File]::WriteAllText($Path, ($text + [Environment]::NewLine), $utf8NoBom)
+    }
+    catch {
+        Write-Warning "Could not format JSON $Path`: $_"
+    }
+}
+
+function Format-GeneratedJsonFiles {
+    param([string]$Directory)
+
+    if (!(Test-Path $Directory)) {
+        return
+    }
+
+    foreach ($jsonFile in @(Get-ChildItem -Path $Directory -Filter "*.json" -File -Recurse -ErrorAction SilentlyContinue)) {
+        Format-JsonFile -Path $jsonFile.FullName
+    }
+}
+
 $repoRoot = Get-RepoRoot
 $solution = Join-Path $repoRoot "VerilogLanguageExtension.sln"
 $currentSnapshots = Join-Path $repoRoot "artifacts/snapshots/current"
@@ -75,10 +105,12 @@ if (!$SkipBuild) {
 
 if (!$SkipSnapshots) {
     & (Join-Path $repoRoot "tools/vle-ci/Export-Snapshots.ps1") -Manifest $Manifest -OutputDir "artifacts/snapshots/current" -RootSuffix $RootSuffix
+    Format-GeneratedJsonFiles -Directory $currentSnapshots
 }
 
 $python = "python"
 $compareArgs = @("$compareTool", "--current", "$currentSnapshots", "--expectations", "$expectations")
+$baselinePath = ""
 
 if (![string]::IsNullOrWhiteSpace($Baseline)) {
     $baselinePath = Join-Path $repoRoot $Baseline
@@ -94,6 +126,10 @@ elseif ($UpdateBaseline) {
 & $python @compareArgs
 if ($LASTEXITCODE -ne 0) {
     throw "Snapshot comparison failed with exit code $LASTEXITCODE"
+}
+
+if ($UpdateBaseline -and ![string]::IsNullOrWhiteSpace($baselinePath)) {
+    Format-GeneratedJsonFiles -Directory $baselinePath
 }
 
 Write-Host "Local CI completed successfully."

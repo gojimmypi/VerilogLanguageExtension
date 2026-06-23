@@ -150,7 +150,7 @@ def load_json(path: Path) -> Any:
 def write_json(path: Path, value: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="\n") as f:
-        json.dump(value, f, indent=4, sort_keys=True)
+        json.dump(value, f, indent=4)
         f.write("\n")
 
 
@@ -294,8 +294,7 @@ def update_baseline(current_root: Path, baseline_root: Path) -> None:
     for src in iter_snapshot_files(current_root):
         rel = src.relative_to(current_root)
         dst = baseline_root / rel
-        dst.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(src, dst)
+        write_json(dst, load_json(src))
 
 
 def matching_snapshots_for_file(current: Dict[str, Tuple[Path, Snapshot, Dict[str, Any]]], expected_file: str) -> List[Tuple[Path, Snapshot, Dict[str, Any]]]:

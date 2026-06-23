@@ -2,7 +2,7 @@
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
     "ExtensionVersion":  "0.3.6.3",
-    "GitCommit":  "d4aa870",
+    "GitCommit":  "13593c9",
     "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\StopWatch.v",
     "FileRelativePath":  "TestFiles\\StopWatch.v",
     "ContentType":  "verilog",
@@ -5523,7 +5523,7 @@
                      "Text":  "module",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_module",
-                     "HoverText":  "The module declaration is the only design unit in Verilog. It describes both a designÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢s interface to other designs in the same environment, and its functional composition."
+                     "HoverText":  "The module declaration is the only design unit in Verilog. It describes both a design\u0027s interface to other designs in the same environment, and its functional composition."
                  },
                  {
                      "Start":  30,
@@ -13233,7 +13233,7 @@
                      "Text":  "module",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_module",
-                     "HoverText":  "The module declaration is the only design unit in Verilog. It describes both a designÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢s interface to other designs in the same environment, and its functional composition."
+                     "HoverText":  "The module declaration is the only design unit in Verilog. It describes both a design\u0027s interface to other designs in the same environment, and its functional composition."
                  },
                  {
                      "Start":  2597,
@@ -14423,7 +14423,7 @@
                      "Text":  "module",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_module",
-                     "HoverText":  "The module declaration is the only design unit in Verilog. It describes both a designÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢s interface to other designs in the same environment, and its functional composition."
+                     "HoverText":  "The module declaration is the only design unit in Verilog. It describes both a design\u0027s interface to other designs in the same environment, and its functional composition."
                  },
                  {
                      "Start":  3036,
@@ -15703,7 +15703,7 @@
                      "Text":  "module",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_module",
-                     "HoverText":  "The module declaration is the only design unit in Verilog. It describes both a designÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢s interface to other designs in the same environment, and its functional composition."
+                     "HoverText":  "The module declaration is the only design unit in Verilog. It describes both a design\u0027s interface to other designs in the same environment, and its functional composition."
                  },
                  {
                      "Start":  3729,

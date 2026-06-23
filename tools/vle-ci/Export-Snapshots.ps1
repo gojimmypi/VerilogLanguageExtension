@@ -294,9 +294,10 @@ function Format-JsonFile {
     }
 
     try {
-        $json = Get-Content -Raw -Path $Path | ConvertFrom-Json
-        $text = $json | ConvertTo-Json -Depth 100
         $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+        $rawJson = [System.IO.File]::ReadAllText($Path, [System.Text.Encoding]::UTF8)
+        $json = $rawJson | ConvertFrom-Json
+        $text = $json | ConvertTo-Json -Depth 100
         [System.IO.File]::WriteAllText($Path, ($text + [Environment]::NewLine), $utf8NoBom)
     }
     catch {
@@ -337,7 +338,7 @@ function Get-ManifestBoolean {
 
 $repoRoot = Get-RepoRoot
 $manifestPath = Resolve-Path (Join-Path $repoRoot $Manifest)
-$manifestJson = Get-Content -Raw -Path $manifestPath | ConvertFrom-Json
+$manifestJson = [System.IO.File]::ReadAllText($manifestPath, [System.Text.Encoding]::UTF8) | ConvertFrom-Json
 
 $manifestFreshInstancePerFile = Get-ManifestBoolean -ManifestObject $manifestJson -PropertyName "FreshInstancePerFile"
 $useFreshInstancePerFile = $FreshInstancePerFile.IsPresent -or $manifestFreshInstancePerFile

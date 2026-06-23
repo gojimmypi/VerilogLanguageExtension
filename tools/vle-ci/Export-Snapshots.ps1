@@ -19,6 +19,7 @@ param(
     [int]$MaxWaitSeconds = 60,
     [switch]$FreshInstancePerFile,
     [switch]$LeaveVisualStudioOpen,
+    [switch]$SkipBackgroundProcessCleanup,
     [string]$VisualStudioPath = ""
 )
 
@@ -109,21 +110,89 @@ function Get-ExperimentalDevenvProcesses {
     }
 }
 
+function Get-ChildProcessIds {
+    param([int]$ParentProcessId)
+
+    $children = @(Get-CimInstance Win32_Process -Filter "ParentProcessId = $ParentProcessId" -ErrorAction SilentlyContinue)
+    foreach ($child in $children) {
+        [int]$child.ProcessId
+        foreach ($grandChildId in Get-ChildProcessIds -ParentProcessId ([int]$child.ProcessId)) {
+            [int]$grandChildId
+        }
+    }
+}
+
+function Stop-ProcessTree {
+    param([int]$RootProcessId)
+
+    $processIds = @()
+    foreach ($childId in Get-ChildProcessIds -ParentProcessId $RootProcessId) {
+        $processIds += [int]$childId
+    }
+    $processIds += [int]$RootProcessId
+
+    foreach ($processId in ($processIds | Select-Object -Unique | Sort-Object -Descending)) {
+        try {
+            Stop-Process -Id $processId -Force -ErrorAction SilentlyContinue
+        }
+        catch {
+            Write-Warning "Could not stop process $processId`: $_"
+        }
+    }
+}
+
+function Stop-VisualStudioBackgroundProcesses {
+    param([switch]$IncludeCopilot)
+
+    # PerfWatson frequently survives after a crashed Experimental Instance and
+    # can hold resources or produce modal crash dialogs during the next CI pass.
+    foreach ($process in @(Get-Process -Name "PerfWatson2" -ErrorAction SilentlyContinue)) {
+        try {
+            Stop-Process -Id $process.Id -Force -ErrorAction SilentlyContinue
+        }
+        catch {
+            Write-Warning "Could not stop PerfWatson2 process $($process.Id): $_"
+        }
+    }
+
+    if (!$IncludeCopilot.IsPresent) {
+        return
+    }
+
+    # Visual Studio Copilot can leave one node.exe-backed language server per
+    # short-lived Experimental Instance. With FreshInstancePerFile this can grow
+    # into dozens of 700+ MB processes. These are local CI leftovers; killing
+    # them is safer than letting the machine run out of memory.
+    $copilotProcesses = @(Get-CimInstance Win32_Process -Filter "Name = 'copilot-language-server.exe'" -ErrorAction SilentlyContinue)
+    foreach ($process in $copilotProcesses) {
+        $commandLine = [string]$process.CommandLine
+        if ($commandLine -notmatch "(?i)\\Common7\\IDE\\Extensions\\Microsoft\\Copilot\\") {
+            continue
+        }
+
+        try {
+            Stop-Process -Id $process.ProcessId -Force -ErrorAction SilentlyContinue
+        }
+        catch {
+            Write-Warning "Could not stop Copilot language server process $($process.ProcessId): $_"
+        }
+    }
+}
+
 function Stop-ExperimentalDevenv {
     param([string]$RequestedRootSuffix)
 
     $processes = @(Get-ExperimentalDevenvProcesses -RequestedRootSuffix $RequestedRootSuffix)
     foreach ($process in $processes) {
-        try {
-            Stop-Process -Id $process.ProcessId -Force -ErrorAction SilentlyContinue
-        }
-        catch {
-            Write-Warning "Could not stop devenv process $($process.ProcessId): $_"
-        }
+        Stop-ProcessTree -RootProcessId ([int]$process.ProcessId)
     }
 
     if ($processes.Count -gt 0) {
         Start-Sleep -Seconds 2
+    }
+
+    if (!$SkipBackgroundProcessCleanup.IsPresent) {
+        Stop-VisualStudioBackgroundProcesses -IncludeCopilot
     }
 }
 
@@ -277,8 +346,8 @@ try {
 
         Write-Host "Opening $file"
         $startedAt = Get-Date
-        $openArguments = "/nosplash /RootSuffix " + (Quote-CommandLineArgument $RootSuffix) + " " + (Quote-CommandLineArgument $filePath)
-        Start-Process -FilePath $devenv -ArgumentList $openArguments | Out-Null
+        $openArguments = "/RootSuffix " + (Quote-CommandLineArgument $RootSuffix) + " /NoSplash " + (Quote-CommandLineArgument $filePath)
+        Start-Process -FilePath $devenv -ArgumentList $openArguments -WindowStyle Minimized | Out-Null
 
         $configuredDelayMs = 0
         [void][int]::TryParse([string]$manifestJson.DelayMs, [ref]$configuredDelayMs)
@@ -323,7 +392,7 @@ try {
         }
         else {
             # Close the active document so repeated files in the manifest create a fresh view.
-            $closeArguments = "/nosplash /RootSuffix " + (Quote-CommandLineArgument $RootSuffix) + " /Command File.Close"
+            $closeArguments = "/RootSuffix " + (Quote-CommandLineArgument $RootSuffix) + " /Command File.Close"
             Start-Process -FilePath $devenv -ArgumentList $closeArguments | Out-Null
             Start-Sleep -Seconds 1
         }

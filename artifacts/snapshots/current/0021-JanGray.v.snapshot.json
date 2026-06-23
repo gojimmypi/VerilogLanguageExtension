@@ -1,1 +1,2517 @@
-{"SchemaVersion":3,"RunName":"all-testfiles","ExtensionVersion":"0.3.6.3","GitCommit":"b1ebe2c","FilePath":"C:\\workspace\\VerilogLanguageExtension\\TestFiles\\JanGray.v","FileRelativePath":"TestFiles\\JanGray.v","ContentType":"verilog","SnapshotLength":494,"SnapshotVersion":2,"TextSha256":"d9745adf8cba1a977dfe6c302b0bd1d5b6504534206d1c4be03373bdc6764473","Errors":[],"Classifications":[{"Start":0,"Length":66,"Line":1,"Column":1,"Text":"// see https://twitter.com/jangray/status/1158094604681396225?s=20","Types":["comment"]},{"Start":67,"Length":2,"Line":2,"Column":1,"Text":"\nl","Types":["Value"]},{"Start":80,"Length":1,"Line":3,"Column":13,"Text":"\n","Types":["Value"]},{"Start":92,"Length":1,"Line":4,"Column":12,"Text":"(","Types":["always"]},{"Start":93,"Length":1,"Line":4,"Column":13,"Text":"p","Types":["Bracket0"]},{"Start":94,"Length":7,"Line":4,"Column":14,"Text":"osedge ","Types":["posedge"]},{"Start":105,"Length":1,"Line":4,"Column":25,"Text":" ","Types":["Bracket0"]},{"Start":116,"Length":18,"Line":4,"Column":36,"Text":"/ 0 1 0 1 0 1 ...\n","Types":["comment"]},{"Start":166,"Length":18,"Line":5,"Column":33,"Text":"...\nlogic oops = ~","Types":["comment"]},{"Start":202,"Length":18,"Line":6,"Column":33,"Text":"...\n\nIt\u0027s new to S","Types":["comment"]},{"Start":331,"Length":16,"Line":14,"Column":23,"Text":"/ OK constant 1\n","Types":["comment"]},{"Start":347,"Length":1,"Line":15,"Column":1,"Text":"\n","Types":["Value"]},{"Start":361,"Length":1,"Line":16,"Column":14,"Text":";","Types":["Value"]},{"Start":364,"Length":6,"Line":16,"Column":17,"Text":"/ OK, ","Types":["comment"]},{"Start":370,"Length":1,"Line":16,"Column":23,"Text":"i","Types":["Value - comment - (TRANSIENT)"]},{"Start":371,"Length":18,"Line":16,"Column":24,"Text":"nitially 0\nalways ","Types":["comment"]},{"Start":405,"Length":23,"Line":17,"Column":24,"Text":"/ subsequently changes\n","Types":["comment"]},{"Start":454,"Length":40,"Line":18,"Column":27,"Text":"rise, it\u0027s a constant 1, highlight this\n","Types":["comment"]}],"Tags":[{"Start":0,"Length":2,"Line":1,"Column":1,"Text":"//","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":2,"Length":1,"Line":1,"Column":3,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":3,"Length":3,"Line":1,"Column":4,"Text":"see","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":6,"Length":1,"Line":1,"Column":7,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":7,"Length":5,"Line":1,"Column":8,"Text":"https","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":12,"Length":1,"Line":1,"Column":13,"Text":":","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":13,"Length":2,"Line":1,"Column":14,"Text":"//","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":15,"Length":11,"Line":1,"Column":16,"Text":"twitter.com","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":26,"Length":1,"Line":1,"Column":27,"Text":"/","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":27,"Length":7,"Line":1,"Column":28,"Text":"jangray","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":34,"Length":1,"Line":1,"Column":35,"Text":"/","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":35,"Length":6,"Line":1,"Column":36,"Text":"status","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":41,"Length":1,"Line":1,"Column":42,"Text":"/","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":42,"Length":21,"Line":1,"Column":43,"Text":"1158094604681396225?s","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":63,"Length":1,"Line":1,"Column":64,"Text":"=","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":64,"Length":2,"Line":1,"Column":65,"Text":"20","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":67,"Length":2,"Line":2,"Column":1,"Text":"\nl","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":80,"Length":1,"Line":3,"Column":13,"Text":"\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":92,"Length":1,"Line":4,"Column":12,"Text":"(","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_always","HoverText":"An always represents a block of code in a design."},{"Start":93,"Length":1,"Line":4,"Column":13,"Text":"p","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":94,"Length":7,"Line":4,"Column":14,"Text":"osedge ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_posedge","HoverText":"Value changes on nets and registers can be used as events to trigger the execution of a statement. This is known as detecting an implicit event. The event can be based on the direction of the change towards the value 1 (posedge) or towards the value 0 (negedge)."},{"Start":105,"Length":1,"Line":4,"Column":25,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":116,"Length":2,"Line":4,"Column":36,"Text":"/ ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":118,"Length":1,"Line":4,"Column":38,"Text":"0","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":119,"Length":15,"Line":4,"Column":39,"Text":" 1 0 1 0 1 ...\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":166,"Length":2,"Line":5,"Column":33,"Text":"..","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":168,"Length":1,"Line":5,"Column":35,"Text":".","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":169,"Length":15,"Line":5,"Column":36,"Text":"\nlogic oops = ~","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":202,"Length":2,"Line":6,"Column":33,"Text":"..","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":204,"Length":1,"Line":6,"Column":35,"Text":".","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":205,"Length":15,"Line":6,"Column":36,"Text":"\n\nIt\u0027s new to S","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":370,"Length":1,"Line":16,"Column":23,"Text":"i","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":373,"Length":2,"Line":16,"Column":26,"Text":"ti","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":375,"Length":1,"Line":16,"Column":28,"Text":"a","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":376,"Length":2,"Line":16,"Column":29,"Text":"ll","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":378,"Length":1,"Line":16,"Column":31,"Text":"y","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":379,"Length":8,"Line":16,"Column":32,"Text":" 0\nalway","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":387,"Length":1,"Line":17,"Column":6,"Text":"s","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":388,"Length":1,"Line":17,"Column":7,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":331,"Length":2,"Line":14,"Column":23,"Text":"/ ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":333,"Length":1,"Line":14,"Column":25,"Text":"O","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":334,"Length":2,"Line":14,"Column":26,"Text":"K ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":336,"Length":1,"Line":14,"Column":28,"Text":"c","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":337,"Length":8,"Line":14,"Column":29,"Text":"onstant ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":345,"Length":1,"Line":14,"Column":37,"Text":"1","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":346,"Length":1,"Line":14,"Column":38,"Text":"\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":347,"Length":1,"Line":15,"Column":1,"Text":"\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":361,"Length":1,"Line":16,"Column":14,"Text":";","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":364,"Length":2,"Line":16,"Column":17,"Text":"/ ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":366,"Length":1,"Line":16,"Column":19,"Text":"O","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":367,"Length":2,"Line":16,"Column":20,"Text":"K,","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":369,"Length":1,"Line":16,"Column":22,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":370,"Length":1,"Line":16,"Column":23,"Text":"i","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":371,"Length":9,"Line":16,"Column":24,"Text":"nitially ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":380,"Length":1,"Line":16,"Column":33,"Text":"0","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":381,"Length":1,"Line":16,"Column":34,"Text":"\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":405,"Length":2,"Line":17,"Column":24,"Text":"/ ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":407,"Length":1,"Line":17,"Column":26,"Text":"s","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":408,"Length":12,"Line":17,"Column":27,"Text":"ubsequently ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":420,"Length":1,"Line":17,"Column":39,"Text":"c","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":421,"Length":7,"Line":17,"Column":40,"Text":"hanges\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":454,"Length":2,"Line":18,"Column":27,"Text":"ri","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":456,"Length":1,"Line":18,"Column":29,"Text":"s","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":457,"Length":8,"Line":18,"Column":30,"Text":"e, it\u0027s ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":465,"Length":1,"Line":18,"Column":38,"Text":"a","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":466,"Length":1,"Line":18,"Column":39,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":467,"Length":2,"Line":18,"Column":40,"Text":"co","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":469,"Length":1,"Line":18,"Column":42,"Text":"n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":470,"Length":1,"Line":18,"Column":43,"Text":"s","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":471,"Length":1,"Line":18,"Column":44,"Text":"t","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":472,"Length":1,"Line":18,"Column":45,"Text":"a","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":473,"Length":1,"Line":18,"Column":46,"Text":"n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":474,"Length":8,"Line":18,"Column":47,"Text":"t 1, hig","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":482,"Length":1,"Line":18,"Column":55,"Text":"h","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":483,"Length":1,"Line":18,"Column":56,"Text":"l","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":484,"Length":1,"Line":18,"Column":57,"Text":"i","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":485,"Length":1,"Line":18,"Column":58,"Text":"g","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":486,"Length":8,"Line":18,"Column":59,"Text":"ht this\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null}],"Tokens":[{"Start":0,"Length":2,"Line":1,"Column":1,"Text":"//","Context":"Text"},{"Start":2,"Length":1,"Line":1,"Column":3,"Text":" ","Context":"Text"},{"Start":3,"Length":3,"Line":1,"Column":4,"Text":"see","Context":"Text"},{"Start":6,"Length":1,"Line":1,"Column":7,"Text":" ","Context":"Text"},{"Start":7,"Length":5,"Line":1,"Column":8,"Text":"https","Context":"Text"},{"Start":12,"Length":1,"Line":1,"Column":13,"Text":":","Context":"Text"},{"Start":13,"Length":2,"Line":1,"Column":14,"Text":"//","Context":"Text"},{"Start":15,"Length":11,"Line":1,"Column":16,"Text":"twitter.com","Context":"Text"},{"Start":26,"Length":1,"Line":1,"Column":27,"Text":"/","Context":"Text"},{"Start":27,"Length":7,"Line":1,"Column":28,"Text":"jangray","Context":"Text"},{"Start":34,"Length":1,"Line":1,"Column":35,"Text":"/","Context":"Text"},{"Start":35,"Length":6,"Line":1,"Column":36,"Text":"status","Context":"Text"},{"Start":41,"Length":1,"Line":1,"Column":42,"Text":"/","Context":"Text"},{"Start":42,"Length":21,"Line":1,"Column":43,"Text":"1158094604681396225?s","Context":"Text"},{"Start":63,"Length":1,"Line":1,"Column":64,"Text":"=","Context":"Text"},{"Start":64,"Length":2,"Line":1,"Column":65,"Text":"20","Context":"Text"},{"Start":67,"Length":2,"Line":2,"Column":1,"Text":"20","Context":"Undetermined"},{"Start":68,"Length":10,"Line":3,"Column":1,"Text":"20logic q ","Context":"Undetermined"},{"Start":78,"Length":1,"Line":3,"Column":11,"Text":"=","Context":"Text"},{"Start":79,"Length":1,"Line":3,"Column":12,"Text":" ","Context":"Text"},{"Start":80,"Length":1,"Line":3,"Column":13,"Text":"0","Context":"Text"},{"Start":80,"Length":1,"Line":3,"Column":13,"Text":";","Context":"Text"},{"Start":113,"Length":1,"Line":4,"Column":33,"Text":";","Context":"Undetermined"},{"Start":114,"Length":9,"Line":4,"Column":34,"Text":"always_ff","Context":"Text"},{"Start":123,"Length":1,"Line":4,"Column":43,"Text":" ","Context":"Text"},{"Start":124,"Length":1,"Line":4,"Column":44,"Text":"@","Context":"AlwaysAt"},{"Start":125,"Length":1,"Line":4,"Column":45,"Text":"(","Context":"RoundBracketOpen"},{"Start":126,"Length":7,"Line":4,"Column":46,"Text":"posedge","Context":"Text"},{"Start":133,"Length":1,"Line":4,"Column":53,"Text":" ","Context":"Text"},{"Start":133,"Length":3,"Line":4,"Column":53,"Text":"clk","Context":"Text"},{"Start":133,"Length":1,"Line":4,"Column":53,"Text":")","Context":"RoundBracketClose"},{"Start":133,"Length":1,"Line":4,"Column":53,"Text":" ","Context":"Text"},{"Start":133,"Length":1,"Line":4,"Column":53,"Text":"q","Context":"Text"},{"Start":133,"Length":1,"Line":4,"Column":53,"Text":" ","Context":"Text"},{"Start":133,"Length":1,"Line":4,"Column":53,"Text":"\u003c","Context":"Text"},{"Start":133,"Length":1,"Line":4,"Column":53,"Text":"=","Context":"Text"},{"Start":133,"Length":1,"Line":4,"Column":53,"Text":" ","Context":"Text"},{"Start":133,"Length":1,"Line":4,"Column":53,"Text":"~","Context":"Text"},{"Start":133,"Length":1,"Line":4,"Column":53,"Text":"q","Context":"Text"},{"Start":133,"Length":1,"Line":4,"Column":53,"Text":";","Context":"Text"},{"Start":133,"Length":1,"Line":4,"Column":53,"Text":" ","Context":"Text"},{"Start":133,"Length":2,"Line":4,"Column":53,"Text":"//","Context":"Text"},{"Start":133,"Length":1,"Line":4,"Column":53,"Text":" ","Context":"Text"},{"Start":133,"Length":15,"Line":4,"Column":53,"Text":"0 1 0 1 0 1 ...","Context":"Text"},{"Start":134,"Length":26,"Line":5,"Column":1,"Text":"0 1 0 1 0 1 ...wire inv_q ","Context":"Undetermined"},{"Start":160,"Length":1,"Line":5,"Column":27,"Text":"=","Context":"Text"},{"Start":161,"Length":1,"Line":5,"Column":28,"Text":" ","Context":"Text"},{"Start":162,"Length":1,"Line":5,"Column":29,"Text":"~","Context":"Text"},{"Start":163,"Length":1,"Line":5,"Column":30,"Text":"q","Context":"Text"},{"Start":164,"Length":1,"Line":5,"Column":31,"Text":";","Context":"Text"},{"Start":165,"Length":1,"Line":5,"Column":32,"Text":" ","Context":"Text"},{"Start":166,"Length":2,"Line":5,"Column":33,"Text":"//","Context":"Text"},{"Start":168,"Length":1,"Line":5,"Column":35,"Text":" ","Context":"Text"},{"Start":169,"Length":15,"Line":5,"Column":36,"Text":"1 0 1 0 1 0 ...","Context":"Text"},{"Start":170,"Length":26,"Line":6,"Column":1,"Text":"1 0 1 0 1 0 ...logic oops ","Context":"Undetermined"},{"Start":196,"Length":1,"Line":6,"Column":27,"Text":"=","Context":"Text"},{"Start":197,"Length":1,"Line":6,"Column":28,"Text":" ","Context":"Text"},{"Start":198,"Length":1,"Line":6,"Column":29,"Text":"~","Context":"Text"},{"Start":199,"Length":1,"Line":6,"Column":30,"Text":"q","Context":"Text"},{"Start":200,"Length":1,"Line":6,"Column":31,"Text":";","Context":"Text"},{"Start":201,"Length":1,"Line":6,"Column":32,"Text":" ","Context":"Text"},{"Start":202,"Length":2,"Line":6,"Column":33,"Text":"//","Context":"Text"},{"Start":204,"Length":1,"Line":6,"Column":35,"Text":" ","Context":"Text"},{"Start":205,"Length":15,"Line":6,"Column":36,"Text":"1 1 1 1 1 1 ...","Context":"Text"},{"Start":206,"Length":15,"Line":7,"Column":1,"Text":"1 1 1 1 1 1 ...","Context":"Undetermined"},{"Start":207,"Length":54,"Line":8,"Column":1,"Text":"1 1 1 1 1 1 ...It\u0027s new to SV. V doesn\u0027t have \u0027logic\u0027.","Context":"Undetermined"},{"Start":247,"Length":54,"Line":9,"Column":1,"Text":"1 1 1 1 1 1 ...It\u0027s new to SV. V doesn\u0027t have \u0027logic\u0027.","Context":"Undetermined"},{"Start":248,"Length":54,"Line":10,"Column":1,"Text":"1 1 1 1 1 1 ...It\u0027s new to SV. V doesn\u0027t have \u0027logic\u0027.","Context":"Undetermined"},{"Start":249,"Length":54,"Line":11,"Column":1,"Text":"1 1 1 1 1 1 ...It\u0027s new to SV. V doesn\u0027t have \u0027logic\u0027.","Context":"Undetermined"},{"Start":250,"Length":81,"Line":12,"Column":1,"Text":"1 1 1 1 1 1 ...It\u0027s new to SV. V doesn\u0027t have \u0027logic\u0027.Requires semantic analysis.","Context":"Undetermined"},{"Start":278,"Length":90,"Line":13,"Column":1,"Text":"1 1 1 1 1 1 ...It\u0027s new to SV. V doesn\u0027t have \u0027logic\u0027.Requires semantic analysis.logic ok ","Context":"Undetermined"},{"Start":308,"Length":1,"Line":13,"Column":31,"Text":"=","Context":"Text"},{"Start":308,"Length":1,"Line":13,"Column":31,"Text":" ","Context":"Text"},{"Start":308,"Length":1,"Line":13,"Column":31,"Text":"0","Context":"Text"},{"Start":308,"Length":1,"Line":13,"Column":31,"Text":";","Context":"Text"},{"Start":308,"Length":1,"Line":13,"Column":31,"Text":" ","Context":"Text"},{"Start":308,"Length":2,"Line":13,"Column":31,"Text":"//","Context":"Text"},{"Start":308,"Length":1,"Line":13,"Column":31,"Text":" ","Context":"Text"},{"Start":308,"Length":2,"Line":13,"Column":31,"Text":"OK","Context":"Text"},{"Start":308,"Length":1,"Line":13,"Column":31,"Text":" ","Context":"Text"},{"Start":308,"Length":8,"Line":13,"Column":31,"Text":"constant","Context":"Text"},{"Start":308,"Length":1,"Line":13,"Column":31,"Text":" ","Context":"Text"},{"Start":308,"Length":1,"Line":13,"Column":31,"Text":"0","Context":"Text"},{"Start":309,"Length":15,"Line":14,"Column":1,"Text":"0logic also_ok ","Context":"Undetermined"},{"Start":324,"Length":1,"Line":14,"Column":16,"Text":"=","Context":"Text"},{"Start":329,"Length":1,"Line":14,"Column":21,"Text":" ","Context":"Text"},{"Start":330,"Length":1,"Line":14,"Column":22,"Text":"~","Context":"Text"},{"Start":331,"Length":2,"Line":14,"Column":23,"Text":"ok","Context":"Text"},{"Start":333,"Length":1,"Line":14,"Column":25,"Text":";","Context":"Text"},{"Start":335,"Length":1,"Line":14,"Column":27,"Text":" ","Context":"Text"},{"Start":336,"Length":2,"Line":14,"Column":28,"Text":"//","Context":"Text"},{"Start":344,"Length":1,"Line":14,"Column":36,"Text":" ","Context":"Text"},{"Start":345,"Length":2,"Line":14,"Column":37,"Text":"OK","Context":"Text"},{"Start":346,"Length":1,"Line":14,"Column":38,"Text":" ","Context":"Text"},{"Start":346,"Length":8,"Line":14,"Column":38,"Text":"constant","Context":"Text"},{"Start":346,"Length":1,"Line":14,"Column":38,"Text":" ","Context":"Text"},{"Start":346,"Length":1,"Line":14,"Column":38,"Text":"1","Context":"Text"},{"Start":347,"Length":1,"Line":15,"Column":1,"Text":"1","Context":"Undetermined"},{"Start":348,"Length":11,"Line":16,"Column":1,"Text":"1logic ok2 ","Context":"Undetermined"},{"Start":359,"Length":1,"Line":16,"Column":12,"Text":"=","Context":"Text"},{"Start":362,"Length":1,"Line":16,"Column":15,"Text":" ","Context":"Text"},{"Start":380,"Length":1,"Line":16,"Column":33,"Text":"0","Context":"Text"},{"Start":381,"Length":1,"Line":16,"Column":34,"Text":";","Context":"Text"},{"Start":381,"Length":1,"Line":16,"Column":34,"Text":" ","Context":"Text"},{"Start":381,"Length":2,"Line":16,"Column":34,"Text":"//","Context":"Text"},{"Start":381,"Length":1,"Line":16,"Column":34,"Text":" ","Context":"Text"},{"Start":381,"Length":2,"Line":16,"Column":34,"Text":"OK","Context":"Text"},{"Start":381,"Length":1,"Line":16,"Column":34,"Text":",","Context":"Text"},{"Start":381,"Length":1,"Line":16,"Column":34,"Text":" ","Context":"Text"},{"Start":381,"Length":9,"Line":16,"Column":34,"Text":"initially","Context":"Text"},{"Start":381,"Length":1,"Line":16,"Column":34,"Text":" ","Context":"Text"},{"Start":381,"Length":1,"Line":16,"Column":34,"Text":"0","Context":"Text"},{"Start":382,"Length":16,"Line":17,"Column":1,"Text":"0always ... ok2 ","Context":"Undetermined"},{"Start":398,"Length":1,"Line":17,"Column":17,"Text":"=","Context":"Text"},{"Start":403,"Length":1,"Line":17,"Column":22,"Text":" ","Context":"Text"},{"Start":404,"Length":3,"Line":17,"Column":23,"Text":"...","Context":"Text"},{"Start":407,"Length":1,"Line":17,"Column":26,"Text":";","Context":"Text"},{"Start":419,"Length":1,"Line":17,"Column":38,"Text":" ","Context":"Text"},{"Start":420,"Length":2,"Line":17,"Column":39,"Text":"//","Context":"Text"},{"Start":422,"Length":1,"Line":17,"Column":41,"Text":" ","Context":"Text"},{"Start":423,"Length":12,"Line":17,"Column":42,"Text":"subsequently","Context":"Text"},{"Start":427,"Length":1,"Line":17,"Column":46,"Text":" ","Context":"Text"},{"Start":427,"Length":7,"Line":17,"Column":46,"Text":"changes","Context":"Text"},{"Start":428,"Length":12,"Line":18,"Column":1,"Text":"changeslogic","Context":"Undetermined"},{"Start":440,"Length":1,"Line":18,"Column":13,"Text":" ","Context":"Text"},{"Start":441,"Length":4,"Line":18,"Column":14,"Text":"oops","Context":"Text"},{"Start":446,"Length":1,"Line":18,"Column":19,"Text":" ","Context":"Text"},{"Start":447,"Length":1,"Line":18,"Column":20,"Text":"=","Context":"Text"},{"Start":449,"Length":1,"Line":18,"Column":22,"Text":" ","Context":"Text"},{"Start":450,"Length":1,"Line":18,"Column":23,"Text":"~","Context":"Text"},{"Start":451,"Length":3,"Line":18,"Column":24,"Text":"ok2","Context":"Text"},{"Start":454,"Length":1,"Line":18,"Column":27,"Text":";","Context":"Text"},{"Start":459,"Length":1,"Line":18,"Column":32,"Text":" ","Context":"Text"},{"Start":460,"Length":2,"Line":18,"Column":33,"Text":"//","Context":"Text"},{"Start":464,"Length":1,"Line":18,"Column":37,"Text":" ","Context":"Text"},{"Start":465,"Length":8,"Line":18,"Column":38,"Text":"surprise","Context":"Text"},{"Start":477,"Length":1,"Line":18,"Column":50,"Text":",","Context":"Text"},{"Start":478,"Length":1,"Line":18,"Column":51,"Text":" ","Context":"Text"},{"Start":479,"Length":2,"Line":18,"Column":52,"Text":"it","Context":"Text"},{"Start":481,"Length":1,"Line":18,"Column":54,"Text":"\u0027","Context":"Text"},{"Start":492,"Length":1,"Line":18,"Column":65,"Text":"s","Context":"Text"},{"Start":493,"Length":1,"Line":18,"Column":66,"Text":" ","Context":"Text"},{"Start":493,"Length":1,"Line":18,"Column":66,"Text":"a","Context":"Text"},{"Start":493,"Length":1,"Line":18,"Column":66,"Text":" ","Context":"Text"},{"Start":493,"Length":8,"Line":18,"Column":66,"Text":"constant","Context":"Text"},{"Start":493,"Length":1,"Line":18,"Column":66,"Text":" ","Context":"Text"},{"Start":493,"Length":1,"Line":18,"Column":66,"Text":"1","Context":"Text"},{"Start":493,"Length":1,"Line":18,"Column":66,"Text":",","Context":"Text"},{"Start":493,"Length":1,"Line":18,"Column":66,"Text":" ","Context":"Text"},{"Start":493,"Length":9,"Line":18,"Column":66,"Text":"highlight","Context":"Text"},{"Start":493,"Length":1,"Line":18,"Column":66,"Text":" ","Context":"Text"},{"Start":493,"Length":4,"Line":18,"Column":66,"Text":"this","Context":"Text"},{"Start":494,"Length":4,"Line":19,"Column":1,"Text":"this","Context":"Undetermined"}],"Symbols":[{"Scope":"","Name":"inv_q","TokenType":"Verilog_Variable_wire","HoverText":"wire inv_q = ~q"}]}
+{
+    "SchemaVersion":  3,
+    "RunName":  "all-testfiles",
+    "ExtensionVersion":  "0.3.6.3",
+    "GitCommit":  "d4aa870",
+    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\JanGray.v",
+    "FileRelativePath":  "TestFiles\\JanGray.v",
+    "ContentType":  "verilog",
+    "SnapshotLength":  494,
+    "SnapshotVersion":  2,
+    "TextSha256":  "d9745adf8cba1a977dfe6c302b0bd1d5b6504534206d1c4be03373bdc6764473",
+    "Errors":  [
+
+               ],
+    "Classifications":  [
+                            {
+                                "Start":  0,
+                                "Length":  66,
+                                "Line":  1,
+                                "Column":  1,
+                                "Text":  "// see https://twitter.com/jangray/status/1158094604681396225?s=20",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  78,
+                                "Length":  1,
+                                "Line":  3,
+                                "Column":  11,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  92,
+                                "Length":  1,
+                                "Line":  4,
+                                "Column":  12,
+                                "Text":  "(",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  93,
+                                "Length":  7,
+                                "Line":  4,
+                                "Column":  13,
+                                "Text":  "posedge",
+                                "Types":  [
+                                              "posedge"
+                                          ]
+                            },
+                            {
+                                "Start":  104,
+                                "Length":  1,
+                                "Line":  4,
+                                "Column":  24,
+                                "Text":  ")",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  115,
+                                "Length":  18,
+                                "Line":  4,
+                                "Column":  35,
+                                "Text":  "// 0 1 0 1 0 1 ...",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  134,
+                                "Length":  4,
+                                "Line":  5,
+                                "Column":  1,
+                                "Text":  "wire",
+                                "Types":  [
+                                              "wire"
+                                          ]
+                            },
+                            {
+                                "Start":  151,
+                                "Length":  18,
+                                "Line":  5,
+                                "Column":  18,
+                                "Text":  "// 1 0 1 0 1 0 ...",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  187,
+                                "Length":  18,
+                                "Line":  6,
+                                "Column":  18,
+                                "Text":  "// 1 1 1 1 1 1 ...",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  289,
+                                "Length":  1,
+                                "Line":  13,
+                                "Column":  12,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  292,
+                                "Length":  16,
+                                "Line":  13,
+                                "Column":  15,
+                                "Text":  "// OK constant 0",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  330,
+                                "Length":  16,
+                                "Line":  14,
+                                "Column":  22,
+                                "Text":  "// OK constant 1",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  360,
+                                "Length":  1,
+                                "Line":  16,
+                                "Column":  13,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  363,
+                                "Length":  18,
+                                "Line":  16,
+                                "Column":  16,
+                                "Text":  "// OK, initially 0",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  382,
+                                "Length":  6,
+                                "Line":  17,
+                                "Column":  1,
+                                "Text":  "always",
+                                "Types":  [
+                                              "always"
+                                          ]
+                            },
+                            {
+                                "Start":  404,
+                                "Length":  23,
+                                "Line":  17,
+                                "Column":  23,
+                                "Text":  "// subsequently changes",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  447,
+                                "Length":  46,
+                                "Line":  18,
+                                "Column":  20,
+                                "Text":  "// surprise, it\u0027s a constant 1, highlight this",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            }
+                        ],
+    "Tags":  [
+                 {
+                     "Start":  0,
+                     "Length":  2,
+                     "Line":  1,
+                     "Column":  1,
+                     "Text":  "//",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  2,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  3,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  3,
+                     "Length":  3,
+                     "Line":  1,
+                     "Column":  4,
+                     "Text":  "see",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  6,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  7,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  7,
+                     "Length":  5,
+                     "Line":  1,
+                     "Column":  8,
+                     "Text":  "https",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  12,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  13,
+                     "Text":  ":",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  13,
+                     "Length":  2,
+                     "Line":  1,
+                     "Column":  14,
+                     "Text":  "//",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  15,
+                     "Length":  11,
+                     "Line":  1,
+                     "Column":  16,
+                     "Text":  "twitter.com",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  26,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  27,
+                     "Text":  "/",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  27,
+                     "Length":  7,
+                     "Line":  1,
+                     "Column":  28,
+                     "Text":  "jangray",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  34,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  35,
+                     "Text":  "/",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  35,
+                     "Length":  6,
+                     "Line":  1,
+                     "Column":  36,
+                     "Text":  "status",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  41,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  42,
+                     "Text":  "/",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  42,
+                     "Length":  21,
+                     "Line":  1,
+                     "Column":  43,
+                     "Text":  "1158094604681396225?s",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  63,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  64,
+                     "Text":  "=",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  64,
+                     "Length":  2,
+                     "Line":  1,
+                     "Column":  65,
+                     "Text":  "20",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  78,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  11,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  92,
+                     "Length":  1,
+                     "Line":  4,
+                     "Column":  12,
+                     "Text":  "(",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  93,
+                     "Length":  7,
+                     "Line":  4,
+                     "Column":  13,
+                     "Text":  "posedge",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_posedge",
+                     "HoverText":  "Value changes on nets and registers can be used as events to trigger the execution of a statement. This is known as detecting an implicit event. The event can be based on the direction of the change towards the value 1 (posedge) or towards the value 0 (negedge)."
+                 },
+                 {
+                     "Start":  104,
+                     "Length":  1,
+                     "Line":  4,
+                     "Column":  24,
+                     "Text":  ")",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  115,
+                     "Length":  2,
+                     "Line":  4,
+                     "Column":  35,
+                     "Text":  "//",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  117,
+                     "Length":  1,
+                     "Line":  4,
+                     "Column":  37,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  118,
+                     "Length":  15,
+                     "Line":  4,
+                     "Column":  38,
+                     "Text":  "0 1 0 1 0 1 ...",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  134,
+                     "Length":  4,
+                     "Line":  5,
+                     "Column":  1,
+                     "Text":  "wire",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_wire",
+                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
+                 },
+                 {
+                     "Start":  151,
+                     "Length":  2,
+                     "Line":  5,
+                     "Column":  18,
+                     "Text":  "//",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  153,
+                     "Length":  1,
+                     "Line":  5,
+                     "Column":  20,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  154,
+                     "Length":  15,
+                     "Line":  5,
+                     "Column":  21,
+                     "Text":  "1 0 1 0 1 0 ...",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  187,
+                     "Length":  2,
+                     "Line":  6,
+                     "Column":  18,
+                     "Text":  "//",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  189,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  20,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  190,
+                     "Length":  15,
+                     "Line":  6,
+                     "Column":  21,
+                     "Text":  "1 1 1 1 1 1 ...",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  289,
+                     "Length":  1,
+                     "Line":  13,
+                     "Column":  12,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  292,
+                     "Length":  2,
+                     "Line":  13,
+                     "Column":  15,
+                     "Text":  "//",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  294,
+                     "Length":  1,
+                     "Line":  13,
+                     "Column":  17,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  295,
+                     "Length":  2,
+                     "Line":  13,
+                     "Column":  18,
+                     "Text":  "OK",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  297,
+                     "Length":  1,
+                     "Line":  13,
+                     "Column":  20,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  298,
+                     "Length":  8,
+                     "Line":  13,
+                     "Column":  21,
+                     "Text":  "constant",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  306,
+                     "Length":  1,
+                     "Line":  13,
+                     "Column":  29,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  307,
+                     "Length":  1,
+                     "Line":  13,
+                     "Column":  30,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  330,
+                     "Length":  2,
+                     "Line":  14,
+                     "Column":  22,
+                     "Text":  "//",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  332,
+                     "Length":  1,
+                     "Line":  14,
+                     "Column":  24,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  333,
+                     "Length":  2,
+                     "Line":  14,
+                     "Column":  25,
+                     "Text":  "OK",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  335,
+                     "Length":  1,
+                     "Line":  14,
+                     "Column":  27,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  336,
+                     "Length":  8,
+                     "Line":  14,
+                     "Column":  28,
+                     "Text":  "constant",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  344,
+                     "Length":  1,
+                     "Line":  14,
+                     "Column":  36,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  345,
+                     "Length":  1,
+                     "Line":  14,
+                     "Column":  37,
+                     "Text":  "1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  360,
+                     "Length":  1,
+                     "Line":  16,
+                     "Column":  13,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  363,
+                     "Length":  2,
+                     "Line":  16,
+                     "Column":  16,
+                     "Text":  "//",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  365,
+                     "Length":  1,
+                     "Line":  16,
+                     "Column":  18,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  366,
+                     "Length":  2,
+                     "Line":  16,
+                     "Column":  19,
+                     "Text":  "OK",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  368,
+                     "Length":  1,
+                     "Line":  16,
+                     "Column":  21,
+                     "Text":  ",",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  369,
+                     "Length":  1,
+                     "Line":  16,
+                     "Column":  22,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  370,
+                     "Length":  9,
+                     "Line":  16,
+                     "Column":  23,
+                     "Text":  "initially",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  379,
+                     "Length":  1,
+                     "Line":  16,
+                     "Column":  32,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  380,
+                     "Length":  1,
+                     "Line":  16,
+                     "Column":  33,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  382,
+                     "Length":  6,
+                     "Line":  17,
+                     "Column":  1,
+                     "Text":  "always",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_always",
+                     "HoverText":  "An always represents a block of code in a design."
+                 },
+                 {
+                     "Start":  404,
+                     "Length":  2,
+                     "Line":  17,
+                     "Column":  23,
+                     "Text":  "//",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  406,
+                     "Length":  1,
+                     "Line":  17,
+                     "Column":  25,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  407,
+                     "Length":  12,
+                     "Line":  17,
+                     "Column":  26,
+                     "Text":  "subsequently",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  419,
+                     "Length":  1,
+                     "Line":  17,
+                     "Column":  38,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  420,
+                     "Length":  7,
+                     "Line":  17,
+                     "Column":  39,
+                     "Text":  "changes",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  447,
+                     "Length":  2,
+                     "Line":  18,
+                     "Column":  20,
+                     "Text":  "//",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  449,
+                     "Length":  1,
+                     "Line":  18,
+                     "Column":  22,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  450,
+                     "Length":  8,
+                     "Line":  18,
+                     "Column":  23,
+                     "Text":  "surprise",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  458,
+                     "Length":  1,
+                     "Line":  18,
+                     "Column":  31,
+                     "Text":  ",",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  459,
+                     "Length":  1,
+                     "Line":  18,
+                     "Column":  32,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  460,
+                     "Length":  2,
+                     "Line":  18,
+                     "Column":  33,
+                     "Text":  "it",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  462,
+                     "Length":  1,
+                     "Line":  18,
+                     "Column":  35,
+                     "Text":  "\u0027",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  463,
+                     "Length":  1,
+                     "Line":  18,
+                     "Column":  36,
+                     "Text":  "s",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  464,
+                     "Length":  1,
+                     "Line":  18,
+                     "Column":  37,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  465,
+                     "Length":  1,
+                     "Line":  18,
+                     "Column":  38,
+                     "Text":  "a",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  466,
+                     "Length":  1,
+                     "Line":  18,
+                     "Column":  39,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  467,
+                     "Length":  8,
+                     "Line":  18,
+                     "Column":  40,
+                     "Text":  "constant",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  475,
+                     "Length":  1,
+                     "Line":  18,
+                     "Column":  48,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  476,
+                     "Length":  1,
+                     "Line":  18,
+                     "Column":  49,
+                     "Text":  "1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  477,
+                     "Length":  1,
+                     "Line":  18,
+                     "Column":  50,
+                     "Text":  ",",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  478,
+                     "Length":  1,
+                     "Line":  18,
+                     "Column":  51,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  479,
+                     "Length":  9,
+                     "Line":  18,
+                     "Column":  52,
+                     "Text":  "highlight",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  488,
+                     "Length":  1,
+                     "Line":  18,
+                     "Column":  61,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  489,
+                     "Length":  4,
+                     "Line":  18,
+                     "Column":  62,
+                     "Text":  "this",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 }
+             ],
+    "Tokens":  [
+                   {
+                       "Start":  0,
+                       "Length":  2,
+                       "Line":  1,
+                       "Column":  1,
+                       "Text":  "//",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  2,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  3,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  3,
+                       "Length":  3,
+                       "Line":  1,
+                       "Column":  4,
+                       "Text":  "see",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  6,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  7,
+                       "Length":  5,
+                       "Line":  1,
+                       "Column":  8,
+                       "Text":  "https",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  12,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  13,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  13,
+                       "Length":  2,
+                       "Line":  1,
+                       "Column":  14,
+                       "Text":  "//",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  15,
+                       "Length":  11,
+                       "Line":  1,
+                       "Column":  16,
+                       "Text":  "twitter.com",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  26,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  27,
+                       "Text":  "/",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  27,
+                       "Length":  7,
+                       "Line":  1,
+                       "Column":  28,
+                       "Text":  "jangray",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  34,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  35,
+                       "Text":  "/",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  35,
+                       "Length":  6,
+                       "Line":  1,
+                       "Column":  36,
+                       "Text":  "status",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  41,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  42,
+                       "Text":  "/",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  42,
+                       "Length":  21,
+                       "Line":  1,
+                       "Column":  43,
+                       "Text":  "1158094604681396225?s",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  63,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  64,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  64,
+                       "Length":  2,
+                       "Line":  1,
+                       "Column":  65,
+                       "Text":  "20",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  68,
+                       "Length":  5,
+                       "Line":  3,
+                       "Column":  1,
+                       "Text":  "logic",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  73,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  6,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  74,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  7,
+                       "Text":  "q",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  75,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  76,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  9,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  77,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  10,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  78,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  11,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  79,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  12,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  81,
+                       "Length":  9,
+                       "Line":  4,
+                       "Column":  1,
+                       "Text":  "always_ff",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  90,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  10,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  91,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  11,
+                       "Text":  "@",
+                       "Context":  "AlwaysAt"
+                   },
+                   {
+                       "Start":  92,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  12,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  93,
+                       "Length":  7,
+                       "Line":  4,
+                       "Column":  13,
+                       "Text":  "posedge",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  100,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  20,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  101,
+                       "Length":  3,
+                       "Line":  4,
+                       "Column":  21,
+                       "Text":  "clk",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  104,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  24,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  105,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  25,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  106,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  26,
+                       "Text":  "q",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  107,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  27,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  108,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  28,
+                       "Text":  "\u003c",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  109,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  29,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  110,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  30,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  111,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  31,
+                       "Text":  "~",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  112,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  32,
+                       "Text":  "q",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  113,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  33,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  114,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  34,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  115,
+                       "Length":  2,
+                       "Line":  4,
+                       "Column":  35,
+                       "Text":  "//",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  117,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  37,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  118,
+                       "Length":  15,
+                       "Line":  4,
+                       "Column":  38,
+                       "Text":  "0 1 0 1 0 1 ...",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  134,
+                       "Length":  4,
+                       "Line":  5,
+                       "Column":  1,
+                       "Text":  "wire",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  138,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  5,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  139,
+                       "Length":  5,
+                       "Line":  5,
+                       "Column":  6,
+                       "Text":  "inv_q",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  144,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  11,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  145,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  12,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  146,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  13,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  147,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  14,
+                       "Text":  "~",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  148,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  15,
+                       "Text":  "q",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  149,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  16,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  150,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  17,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  151,
+                       "Length":  2,
+                       "Line":  5,
+                       "Column":  18,
+                       "Text":  "//",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  153,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  20,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  154,
+                       "Length":  15,
+                       "Line":  5,
+                       "Column":  21,
+                       "Text":  "1 0 1 0 1 0 ...",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  170,
+                       "Length":  5,
+                       "Line":  6,
+                       "Column":  1,
+                       "Text":  "logic",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  175,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  6,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  176,
+                       "Length":  4,
+                       "Line":  6,
+                       "Column":  7,
+                       "Text":  "oops",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  180,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  11,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  181,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  12,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  182,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  13,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  183,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  14,
+                       "Text":  "~",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  184,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  15,
+                       "Text":  "q",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  185,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  16,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  186,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  17,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  187,
+                       "Length":  2,
+                       "Line":  6,
+                       "Column":  18,
+                       "Text":  "//",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  189,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  20,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  190,
+                       "Length":  15,
+                       "Line":  6,
+                       "Column":  21,
+                       "Text":  "1 1 1 1 1 1 ...",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  207,
+                       "Length":  2,
+                       "Line":  8,
+                       "Column":  1,
+                       "Text":  "It",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  209,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  3,
+                       "Text":  "\u0027",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  210,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  4,
+                       "Text":  "s",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  211,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  5,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  212,
+                       "Length":  3,
+                       "Line":  8,
+                       "Column":  6,
+                       "Text":  "new",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  215,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  9,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  216,
+                       "Length":  2,
+                       "Line":  8,
+                       "Column":  10,
+                       "Text":  "to",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  218,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  12,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  219,
+                       "Length":  3,
+                       "Line":  8,
+                       "Column":  13,
+                       "Text":  "SV.",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  222,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  16,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  223,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  17,
+                       "Text":  "V",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  224,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  18,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  225,
+                       "Length":  5,
+                       "Line":  8,
+                       "Column":  19,
+                       "Text":  "doesn",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  230,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  24,
+                       "Text":  "\u0027",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  231,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  25,
+                       "Text":  "t",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  232,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  26,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  233,
+                       "Length":  4,
+                       "Line":  8,
+                       "Column":  27,
+                       "Text":  "have",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  237,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  31,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  238,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  32,
+                       "Text":  "\u0027",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  239,
+                       "Length":  7,
+                       "Line":  8,
+                       "Column":  33,
+                       "Text":  "logic\u0027.",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  250,
+                       "Length":  8,
+                       "Line":  12,
+                       "Column":  1,
+                       "Text":  "Requires",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  258,
+                       "Length":  1,
+                       "Line":  12,
+                       "Column":  9,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  259,
+                       "Length":  8,
+                       "Line":  12,
+                       "Column":  10,
+                       "Text":  "semantic",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  267,
+                       "Length":  1,
+                       "Line":  12,
+                       "Column":  18,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  268,
+                       "Length":  9,
+                       "Line":  12,
+                       "Column":  19,
+                       "Text":  "analysis.",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  278,
+                       "Length":  5,
+                       "Line":  13,
+                       "Column":  1,
+                       "Text":  "logic",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  283,
+                       "Length":  1,
+                       "Line":  13,
+                       "Column":  6,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  284,
+                       "Length":  2,
+                       "Line":  13,
+                       "Column":  7,
+                       "Text":  "ok",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  286,
+                       "Length":  1,
+                       "Line":  13,
+                       "Column":  9,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  287,
+                       "Length":  1,
+                       "Line":  13,
+                       "Column":  10,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  288,
+                       "Length":  1,
+                       "Line":  13,
+                       "Column":  11,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  289,
+                       "Length":  1,
+                       "Line":  13,
+                       "Column":  12,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  290,
+                       "Length":  1,
+                       "Line":  13,
+                       "Column":  13,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  291,
+                       "Length":  1,
+                       "Line":  13,
+                       "Column":  14,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  292,
+                       "Length":  2,
+                       "Line":  13,
+                       "Column":  15,
+                       "Text":  "//",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  294,
+                       "Length":  1,
+                       "Line":  13,
+                       "Column":  17,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  295,
+                       "Length":  2,
+                       "Line":  13,
+                       "Column":  18,
+                       "Text":  "OK",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  297,
+                       "Length":  1,
+                       "Line":  13,
+                       "Column":  20,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  298,
+                       "Length":  8,
+                       "Line":  13,
+                       "Column":  21,
+                       "Text":  "constant",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  306,
+                       "Length":  1,
+                       "Line":  13,
+                       "Column":  29,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  307,
+                       "Length":  1,
+                       "Line":  13,
+                       "Column":  30,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  309,
+                       "Length":  5,
+                       "Line":  14,
+                       "Column":  1,
+                       "Text":  "logic",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  314,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  6,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  315,
+                       "Length":  7,
+                       "Line":  14,
+                       "Column":  7,
+                       "Text":  "also_ok",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  322,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  14,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  323,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  15,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  324,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  16,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  325,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  17,
+                       "Text":  "~",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  326,
+                       "Length":  2,
+                       "Line":  14,
+                       "Column":  18,
+                       "Text":  "ok",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  328,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  20,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  329,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  21,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  330,
+                       "Length":  2,
+                       "Line":  14,
+                       "Column":  22,
+                       "Text":  "//",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  332,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  24,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  333,
+                       "Length":  2,
+                       "Line":  14,
+                       "Column":  25,
+                       "Text":  "OK",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  335,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  27,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  336,
+                       "Length":  8,
+                       "Line":  14,
+                       "Column":  28,
+                       "Text":  "constant",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  344,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  36,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  345,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  37,
+                       "Text":  "1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  348,
+                       "Length":  5,
+                       "Line":  16,
+                       "Column":  1,
+                       "Text":  "logic",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  353,
+                       "Length":  1,
+                       "Line":  16,
+                       "Column":  6,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  354,
+                       "Length":  3,
+                       "Line":  16,
+                       "Column":  7,
+                       "Text":  "ok2",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  357,
+                       "Length":  1,
+                       "Line":  16,
+                       "Column":  10,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  358,
+                       "Length":  1,
+                       "Line":  16,
+                       "Column":  11,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  359,
+                       "Length":  1,
+                       "Line":  16,
+                       "Column":  12,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  360,
+                       "Length":  1,
+                       "Line":  16,
+                       "Column":  13,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  361,
+                       "Length":  1,
+                       "Line":  16,
+                       "Column":  14,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  362,
+                       "Length":  1,
+                       "Line":  16,
+                       "Column":  15,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  363,
+                       "Length":  2,
+                       "Line":  16,
+                       "Column":  16,
+                       "Text":  "//",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  365,
+                       "Length":  1,
+                       "Line":  16,
+                       "Column":  18,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  366,
+                       "Length":  2,
+                       "Line":  16,
+                       "Column":  19,
+                       "Text":  "OK",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  368,
+                       "Length":  1,
+                       "Line":  16,
+                       "Column":  21,
+                       "Text":  ",",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  369,
+                       "Length":  1,
+                       "Line":  16,
+                       "Column":  22,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  370,
+                       "Length":  9,
+                       "Line":  16,
+                       "Column":  23,
+                       "Text":  "initially",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  379,
+                       "Length":  1,
+                       "Line":  16,
+                       "Column":  32,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  380,
+                       "Length":  1,
+                       "Line":  16,
+                       "Column":  33,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  382,
+                       "Length":  6,
+                       "Line":  17,
+                       "Column":  1,
+                       "Text":  "always",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  388,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  389,
+                       "Length":  3,
+                       "Line":  17,
+                       "Column":  8,
+                       "Text":  "...",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  392,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  11,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  393,
+                       "Length":  3,
+                       "Line":  17,
+                       "Column":  12,
+                       "Text":  "ok2",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  396,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  15,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  397,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  16,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  398,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  17,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  399,
+                       "Length":  3,
+                       "Line":  17,
+                       "Column":  18,
+                       "Text":  "...",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  402,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  21,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  403,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  22,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  404,
+                       "Length":  2,
+                       "Line":  17,
+                       "Column":  23,
+                       "Text":  "//",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  406,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  25,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  407,
+                       "Length":  12,
+                       "Line":  17,
+                       "Column":  26,
+                       "Text":  "subsequently",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  419,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  38,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  420,
+                       "Length":  7,
+                       "Line":  17,
+                       "Column":  39,
+                       "Text":  "changes",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  428,
+                       "Length":  5,
+                       "Line":  18,
+                       "Column":  1,
+                       "Text":  "logic",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  433,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  6,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  434,
+                       "Length":  4,
+                       "Line":  18,
+                       "Column":  7,
+                       "Text":  "oops",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  438,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  11,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  439,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  12,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  440,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  13,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  441,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  14,
+                       "Text":  "~",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  442,
+                       "Length":  3,
+                       "Line":  18,
+                       "Column":  15,
+                       "Text":  "ok2",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  445,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  18,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  446,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  19,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  447,
+                       "Length":  2,
+                       "Line":  18,
+                       "Column":  20,
+                       "Text":  "//",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  449,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  22,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  450,
+                       "Length":  8,
+                       "Line":  18,
+                       "Column":  23,
+                       "Text":  "surprise",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  458,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  31,
+                       "Text":  ",",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  459,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  32,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  460,
+                       "Length":  2,
+                       "Line":  18,
+                       "Column":  33,
+                       "Text":  "it",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  462,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  35,
+                       "Text":  "\u0027",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  463,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  36,
+                       "Text":  "s",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  464,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  37,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  465,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  38,
+                       "Text":  "a",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  466,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  39,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  467,
+                       "Length":  8,
+                       "Line":  18,
+                       "Column":  40,
+                       "Text":  "constant",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  475,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  48,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  476,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  49,
+                       "Text":  "1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  477,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  50,
+                       "Text":  ",",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  478,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  51,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  479,
+                       "Length":  9,
+                       "Line":  18,
+                       "Column":  52,
+                       "Text":  "highlight",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  488,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  61,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  489,
+                       "Length":  4,
+                       "Line":  18,
+                       "Column":  62,
+                       "Text":  "this",
+                       "Context":  "Text"
+                   }
+               ],
+    "Symbols":  [
+                    {
+                        "Scope":  "",
+                        "Name":  "inv_q",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "wire inv_q = ~q"
+                    }
+                ]
+}

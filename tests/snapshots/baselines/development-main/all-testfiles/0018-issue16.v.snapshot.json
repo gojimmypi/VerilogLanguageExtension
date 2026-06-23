@@ -1,1 +1,781 @@
-{"SchemaVersion":3,"RunName":"all-testfiles","ExtensionVersion":"0.3.6.3","GitCommit":"b1ebe2c","FilePath":"C:\\workspace\\VerilogLanguageExtension\\TestFiles\\issue16.v","FileRelativePath":"TestFiles\\issue16.v","ContentType":"verilog","SnapshotLength":105,"SnapshotVersion":2,"TextSha256":"d47cbb25238542dfe5185a4abf138910e2034b95c8812ffde0e262ce2d1b5092","Errors":[],"Classifications":[{"Start":0,"Length":6,"Line":1,"Column":1,"Text":"module","Types":["module"]},{"Start":7,"Length":8,"Line":1,"Column":8,"Text":"picorv32","Types":["Variable_module"]},{"Start":17,"Length":1,"Line":1,"Column":18,"Text":"(","Types":["Bracket1"]},{"Start":21,"Length":9,"Line":2,"Column":3,"Text":"arameter ","Types":["parameter"]},{"Start":31,"Length":1,"Line":2,"Column":13,"Text":" ","Types":["Bracket0"]},{"Start":33,"Length":1,"Line":2,"Column":15,"Text":":","Types":["Value"]},{"Start":35,"Length":1,"Line":2,"Column":17,"Text":"]","Types":["Value"]},{"Start":36,"Length":1,"Line":2,"Column":18,"Text":" ","Types":["Bracket1"]},{"Start":38,"Length":10,"Line":2,"Column":20,"Text":"NABLE_IRQ ","Types":["Variable"]},{"Start":51,"Length":2,"Line":2,"Column":33,"Text":"\n)","Types":["Value"]},{"Start":53,"Length":1,"Line":3,"Column":2,"Text":"\n","Types":["Bracket0"]},{"Start":56,"Length":10,"Line":5,"Column":2,"Text":"ocalparam ","Types":["localparam"]},{"Start":67,"Length":2,"Line":5,"Column":13,"Text":"f ","Types":["Variable_localparam"]},{"Start":72,"Length":1,"Line":5,"Column":18,"Text":"/","Types":["Value"]},{"Start":74,"Length":10,"Line":5,"Column":20,"Text":"NABLE_IRQ ","Types":["Variable"]},{"Start":85,"Length":5,"Line":5,"Column":31,"Text":"* */\n","Types":["comment"]},{"Start":92,"Length":4,"Line":6,"Column":3,"Text":"re a","Types":["wire"]},{"Start":104,"Length":1,"Line":6,"Column":15,"Text":"\n","Types":["Value"]}],"Tags":[{"Start":0,"Length":6,"Line":1,"Column":1,"Text":"module","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_module","HoverText":"The module declaration is the only design unit in Verilog. It describes both a designâ€™s interface to other designs in the same environment, and its functional composition."},{"Start":7,"Length":8,"Line":1,"Column":8,"Text":"picorv32","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable_module","HoverText":"module picorv32 #(  [ 0:0] ENABLE_IRQ = 0)"},{"Start":17,"Length":1,"Line":1,"Column":18,"Text":"(","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket1","HoverText":null},{"Start":21,"Length":9,"Line":2,"Column":3,"Text":"arameter ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_parameter","HoverText":"Parameters are constants that can be modified with the defparam statement or through parameter passing in the module instance statement. Parameters are local to the module in which they have been declared."},{"Start":31,"Length":1,"Line":2,"Column":13,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":33,"Length":1,"Line":2,"Column":15,"Text":":","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":35,"Length":1,"Line":2,"Column":17,"Text":"]","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":36,"Length":1,"Line":2,"Column":18,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket1","HoverText":null},{"Start":38,"Length":10,"Line":2,"Column":20,"Text":"NABLE_IRQ ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable","HoverText":null},{"Start":51,"Length":1,"Line":2,"Column":33,"Text":"\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":52,"Length":1,"Line":3,"Column":1,"Text":")","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":53,"Length":1,"Line":3,"Column":2,"Text":"\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":56,"Length":10,"Line":5,"Column":2,"Text":"ocalparam ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_localparam","HoverText":"Local parameters are identical to parameters, but cannot be directly modified with a defparam statement. A localparam can be assigned the value of parameter constants, and can be indirectly refined from outside the module. A localparam cannot be used within the module port parameter list."},{"Start":67,"Length":2,"Line":5,"Column":13,"Text":"f ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable_localparam","HoverText":null},{"Start":72,"Length":1,"Line":5,"Column":18,"Text":"/","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":74,"Length":10,"Line":5,"Column":20,"Text":"NABLE_IRQ ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable","HoverText":null},{"Start":85,"Length":2,"Line":5,"Column":31,"Text":"* ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":87,"Length":1,"Line":5,"Column":33,"Text":"*","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":88,"Length":2,"Line":5,"Column":34,"Text":"/\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":92,"Length":4,"Line":6,"Column":3,"Text":"re a","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_wire","HoverText":"Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."},{"Start":104,"Length":1,"Line":6,"Column":15,"Text":"\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null}],"Tokens":[{"Start":0,"Length":6,"Line":1,"Column":1,"Text":"module","Context":"Undetermined"},{"Start":6,"Length":1,"Line":1,"Column":7,"Text":" ","Context":"Text"},{"Start":7,"Length":8,"Line":1,"Column":8,"Text":"picorv32","Context":"Text"},{"Start":15,"Length":1,"Line":1,"Column":16,"Text":" ","Context":"Text"},{"Start":16,"Length":1,"Line":1,"Column":17,"Text":"#","Context":"Text"},{"Start":17,"Length":1,"Line":1,"Column":18,"Text":"(","Context":"RoundBracketOpen"},{"Start":19,"Length":1,"Line":2,"Column":1,"Text":"(","Context":"Undetermined"},{"Start":20,"Length":1,"Line":2,"Column":2,"Text":"\t","Context":"Text"},{"Start":21,"Length":9,"Line":2,"Column":3,"Text":"parameter","Context":"Text"},{"Start":31,"Length":1,"Line":2,"Column":13,"Text":" ","Context":"Text"},{"Start":32,"Length":1,"Line":2,"Column":14,"Text":"[","Context":"SquareBracketOpen"},{"Start":36,"Length":1,"Line":2,"Column":18,"Text":" ","Context":"Text"},{"Start":50,"Length":1,"Line":2,"Column":32,"Text":"0","Context":"Text"},{"Start":51,"Length":1,"Line":2,"Column":33,"Text":":","Context":"Text"},{"Start":51,"Length":1,"Line":2,"Column":33,"Text":"0","Context":"Text"},{"Start":51,"Length":1,"Line":2,"Column":33,"Text":"]","Context":"SquareBracketClose"},{"Start":51,"Length":1,"Line":2,"Column":33,"Text":" ","Context":"Text"},{"Start":51,"Length":10,"Line":2,"Column":33,"Text":"ENABLE_IRQ","Context":"Text"},{"Start":51,"Length":1,"Line":2,"Column":33,"Text":" ","Context":"Text"},{"Start":51,"Length":1,"Line":2,"Column":33,"Text":"=","Context":"Text"},{"Start":51,"Length":1,"Line":2,"Column":33,"Text":" ","Context":"Text"},{"Start":51,"Length":1,"Line":2,"Column":33,"Text":"0","Context":"Text"},{"Start":52,"Length":1,"Line":3,"Column":1,"Text":"0","Context":"Undetermined"},{"Start":53,"Length":1,"Line":3,"Column":2,"Text":")","Context":"RoundBracketClose"},{"Start":54,"Length":1,"Line":4,"Column":1,"Text":")","Context":"Undetermined"},{"Start":55,"Length":1,"Line":5,"Column":1,"Text":")","Context":"Undetermined"},{"Start":56,"Length":10,"Line":5,"Column":2,"Text":"localparam","Context":"Text"},{"Start":68,"Length":1,"Line":5,"Column":14,"Text":" ","Context":"Text"},{"Start":69,"Length":2,"Line":5,"Column":15,"Text":"rf","Context":"Text"},{"Start":83,"Length":1,"Line":5,"Column":29,"Text":" ","Context":"Text"},{"Start":84,"Length":1,"Line":5,"Column":30,"Text":"=","Context":"Text"},{"Start":86,"Length":1,"Line":5,"Column":32,"Text":" ","Context":"Text"},{"Start":87,"Length":1,"Line":5,"Column":33,"Text":"4","Context":"Text"},{"Start":88,"Length":1,"Line":5,"Column":34,"Text":"/","Context":"Text"},{"Start":89,"Length":10,"Line":5,"Column":35,"Text":"ENABLE_IRQ","Context":"Text"},{"Start":89,"Length":1,"Line":5,"Column":35,"Text":" ","Context":"Text"},{"Start":89,"Length":2,"Line":5,"Column":35,"Text":"/*","Context":"Text"},{"Start":89,"Length":1,"Line":5,"Column":35,"Text":" ","Context":"Text"},{"Start":89,"Length":2,"Line":5,"Column":35,"Text":"*/","Context":"Text"},{"Start":90,"Length":2,"Line":6,"Column":1,"Text":"*/","Context":"Undetermined"},{"Start":92,"Length":4,"Line":6,"Column":3,"Text":"wire","Context":"Text"},{"Start":96,"Length":1,"Line":6,"Column":7,"Text":" ","Context":"Text"},{"Start":97,"Length":1,"Line":6,"Column":8,"Text":"a","Context":"Text"},{"Start":98,"Length":1,"Line":6,"Column":9,"Text":" ","Context":"Text"},{"Start":99,"Length":1,"Line":6,"Column":10,"Text":"=","Context":"Text"},{"Start":100,"Length":1,"Line":6,"Column":11,"Text":" ","Context":"Text"},{"Start":101,"Length":2,"Line":6,"Column":12,"Text":"rf","Context":"Text"},{"Start":103,"Length":1,"Line":6,"Column":14,"Text":"*","Context":"Text"},{"Start":104,"Length":1,"Line":6,"Column":15,"Text":"4","Context":"Text"},{"Start":104,"Length":1,"Line":6,"Column":15,"Text":";","Context":"Text"},{"Start":105,"Length":1,"Line":7,"Column":1,"Text":";","Context":"Undetermined"}],"Symbols":[{"Scope":"picorv32","Name":"ENABLE_IRQ","TokenType":"Verilog_Variable","HoverText":"module picorv32( .. parameter [ 0:0] ENABLE_IRQ = 0 .. )"},{"Scope":"picorv32","Name":"picorv32","TokenType":"Verilog_Variable_module","HoverText":"module picorv32 #(  [ 0:0] ENABLE_IRQ = 0)"},{"Scope":"picorv32","Name":"rf","TokenType":"Verilog_Variable_localparam","HoverText":"localparam rf = 4/ENABLE_IRQ wire a = rf*4"}]}
+{
+    "SchemaVersion":  3,
+    "RunName":  "all-testfiles",
+    "ExtensionVersion":  "0.3.6.3",
+    "GitCommit":  "d4aa870",
+    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\issue16.v",
+    "FileRelativePath":  "TestFiles\\issue16.v",
+    "ContentType":  "verilog",
+    "SnapshotLength":  105,
+    "SnapshotVersion":  2,
+    "TextSha256":  "d47cbb25238542dfe5185a4abf138910e2034b95c8812ffde0e262ce2d1b5092",
+    "Errors":  [
+
+               ],
+    "Classifications":  [
+                            {
+                                "Start":  0,
+                                "Length":  6,
+                                "Line":  1,
+                                "Column":  1,
+                                "Text":  "module",
+                                "Types":  [
+                                              "module"
+                                          ]
+                            },
+                            {
+                                "Start":  7,
+                                "Length":  8,
+                                "Line":  1,
+                                "Column":  8,
+                                "Text":  "picorv32",
+                                "Types":  [
+                                              "Variable_module"
+                                          ]
+                            },
+                            {
+                                "Start":  17,
+                                "Length":  1,
+                                "Line":  1,
+                                "Column":  18,
+                                "Text":  "(",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  20,
+                                "Length":  9,
+                                "Line":  2,
+                                "Column":  2,
+                                "Text":  "parameter",
+                                "Types":  [
+                                              "parameter"
+                                          ]
+                            },
+                            {
+                                "Start":  30,
+                                "Length":  1,
+                                "Line":  2,
+                                "Column":  12,
+                                "Text":  "[",
+                                "Types":  [
+                                              "Bracket2"
+                                          ]
+                            },
+                            {
+                                "Start":  32,
+                                "Length":  1,
+                                "Line":  2,
+                                "Column":  14,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  34,
+                                "Length":  1,
+                                "Line":  2,
+                                "Column":  16,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  35,
+                                "Length":  1,
+                                "Line":  2,
+                                "Column":  17,
+                                "Text":  "]",
+                                "Types":  [
+                                              "Bracket2"
+                                          ]
+                            },
+                            {
+                                "Start":  37,
+                                "Length":  10,
+                                "Line":  2,
+                                "Column":  19,
+                                "Text":  "ENABLE_IRQ",
+                                "Types":  [
+                                              "Variable"
+                                          ]
+                            },
+                            {
+                                "Start":  50,
+                                "Length":  1,
+                                "Line":  2,
+                                "Column":  32,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  52,
+                                "Length":  1,
+                                "Line":  3,
+                                "Column":  1,
+                                "Text":  ")",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  55,
+                                "Length":  10,
+                                "Line":  5,
+                                "Column":  1,
+                                "Text":  "localparam",
+                                "Types":  [
+                                              "localparam"
+                                          ]
+                            },
+                            {
+                                "Start":  66,
+                                "Length":  2,
+                                "Line":  5,
+                                "Column":  12,
+                                "Text":  "rf",
+                                "Types":  [
+                                              "Variable_localparam"
+                                          ]
+                            },
+                            {
+                                "Start":  71,
+                                "Length":  1,
+                                "Line":  5,
+                                "Column":  17,
+                                "Text":  "4",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  73,
+                                "Length":  10,
+                                "Line":  5,
+                                "Column":  19,
+                                "Text":  "ENABLE_IRQ",
+                                "Types":  [
+                                              "Variable"
+                                          ]
+                            },
+                            {
+                                "Start":  84,
+                                "Length":  5,
+                                "Line":  5,
+                                "Column":  30,
+                                "Text":  "/* */",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  90,
+                                "Length":  4,
+                                "Line":  6,
+                                "Column":  1,
+                                "Text":  "wire",
+                                "Types":  [
+                                              "wire"
+                                          ]
+                            },
+                            {
+                                "Start":  102,
+                                "Length":  1,
+                                "Line":  6,
+                                "Column":  13,
+                                "Text":  "4",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            }
+                        ],
+    "Tags":  [
+                 {
+                     "Start":  0,
+                     "Length":  6,
+                     "Line":  1,
+                     "Column":  1,
+                     "Text":  "module",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_module",
+                     "HoverText":  "The module declaration is the only design unit in Verilog. It describes both a designÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢s interface to other designs in the same environment, and its functional composition."
+                 },
+                 {
+                     "Start":  7,
+                     "Length":  8,
+                     "Line":  1,
+                     "Column":  8,
+                     "Text":  "picorv32",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_module",
+                     "HoverText":  "module picorv32 #(  [ 0:0] ENABLE_IRQ = 0)"
+                 },
+                 {
+                     "Start":  17,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  18,
+                     "Text":  "(",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  20,
+                     "Length":  9,
+                     "Line":  2,
+                     "Column":  2,
+                     "Text":  "parameter",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_parameter",
+                     "HoverText":  "Parameters are constants that can be modified with the defparam statement or through parameter passing in the module instance statement. Parameters are local to the module in which they have been declared."
+                 },
+                 {
+                     "Start":  30,
+                     "Length":  1,
+                     "Line":  2,
+                     "Column":  12,
+                     "Text":  "[",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket2",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  32,
+                     "Length":  1,
+                     "Line":  2,
+                     "Column":  14,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  34,
+                     "Length":  1,
+                     "Line":  2,
+                     "Column":  16,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  35,
+                     "Length":  1,
+                     "Line":  2,
+                     "Column":  17,
+                     "Text":  "]",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket2",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  37,
+                     "Length":  10,
+                     "Line":  2,
+                     "Column":  19,
+                     "Text":  "ENABLE_IRQ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable",
+                     "HoverText":  "module picorv32( .. parameter [ 0:0] ENABLE_IRQ = 0 .. )"
+                 },
+                 {
+                     "Start":  50,
+                     "Length":  1,
+                     "Line":  2,
+                     "Column":  32,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  52,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  1,
+                     "Text":  ")",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  55,
+                     "Length":  10,
+                     "Line":  5,
+                     "Column":  1,
+                     "Text":  "localparam",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_localparam",
+                     "HoverText":  "Local parameters are identical to parameters, but cannot be directly modified with a defparam statement. A localparam can be assigned the value of parameter constants, and can be indirectly refined from outside the module. A localparam cannot be used within the module port parameter list."
+                 },
+                 {
+                     "Start":  66,
+                     "Length":  2,
+                     "Line":  5,
+                     "Column":  12,
+                     "Text":  "rf",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_localparam",
+                     "HoverText":  "localparam rf = 4/ENABLE_IRQ wire a = rf*4"
+                 },
+                 {
+                     "Start":  71,
+                     "Length":  1,
+                     "Line":  5,
+                     "Column":  17,
+                     "Text":  "4",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  73,
+                     "Length":  10,
+                     "Line":  5,
+                     "Column":  19,
+                     "Text":  "ENABLE_IRQ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable",
+                     "HoverText":  "module picorv32( .. parameter [ 0:0] ENABLE_IRQ = 0 .. )"
+                 },
+                 {
+                     "Start":  84,
+                     "Length":  2,
+                     "Line":  5,
+                     "Column":  30,
+                     "Text":  "/*",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  86,
+                     "Length":  1,
+                     "Line":  5,
+                     "Column":  32,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  87,
+                     "Length":  2,
+                     "Line":  5,
+                     "Column":  33,
+                     "Text":  "*/",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  90,
+                     "Length":  4,
+                     "Line":  6,
+                     "Column":  1,
+                     "Text":  "wire",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_wire",
+                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
+                 },
+                 {
+                     "Start":  102,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  13,
+                     "Text":  "4",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 }
+             ],
+    "Tokens":  [
+                   {
+                       "Start":  0,
+                       "Length":  6,
+                       "Line":  1,
+                       "Column":  1,
+                       "Text":  "module",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  6,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  7,
+                       "Length":  8,
+                       "Line":  1,
+                       "Column":  8,
+                       "Text":  "picorv32",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  15,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  16,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  16,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  17,
+                       "Text":  "#",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  17,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  18,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  19,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  1,
+                       "Text":  "\t",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  20,
+                       "Length":  9,
+                       "Line":  2,
+                       "Column":  2,
+                       "Text":  "parameter",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  29,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  11,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  30,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  12,
+                       "Text":  "[",
+                       "Context":  "SquareBracketOpen"
+                   },
+                   {
+                       "Start":  31,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  13,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  32,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  14,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  33,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  15,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  34,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  16,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  35,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  17,
+                       "Text":  "]",
+                       "Context":  "SquareBracketClose"
+                   },
+                   {
+                       "Start":  36,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  18,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  37,
+                       "Length":  10,
+                       "Line":  2,
+                       "Column":  19,
+                       "Text":  "ENABLE_IRQ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  47,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  29,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  48,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  30,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  49,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  31,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  50,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  32,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  52,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  1,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  55,
+                       "Length":  10,
+                       "Line":  5,
+                       "Column":  1,
+                       "Text":  "localparam",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  65,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  11,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  66,
+                       "Length":  2,
+                       "Line":  5,
+                       "Column":  12,
+                       "Text":  "rf",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  68,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  14,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  69,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  15,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  70,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  16,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  71,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  17,
+                       "Text":  "4",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  72,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  18,
+                       "Text":  "/",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  73,
+                       "Length":  10,
+                       "Line":  5,
+                       "Column":  19,
+                       "Text":  "ENABLE_IRQ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  83,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  29,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  84,
+                       "Length":  2,
+                       "Line":  5,
+                       "Column":  30,
+                       "Text":  "/*",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  86,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  32,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  87,
+                       "Length":  2,
+                       "Line":  5,
+                       "Column":  33,
+                       "Text":  "*/",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  90,
+                       "Length":  4,
+                       "Line":  6,
+                       "Column":  1,
+                       "Text":  "wire",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  94,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  5,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  95,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  6,
+                       "Text":  "a",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  96,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  97,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  8,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  98,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  9,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  99,
+                       "Length":  2,
+                       "Line":  6,
+                       "Column":  10,
+                       "Text":  "rf",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  101,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  12,
+                       "Text":  "*",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  102,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  13,
+                       "Text":  "4",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  103,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  14,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   }
+               ],
+    "Symbols":  [
+                    {
+                        "Scope":  "picorv32",
+                        "Name":  "ENABLE_IRQ",
+                        "TokenType":  "Verilog_Variable",
+                        "HoverText":  "module picorv32( .. parameter [ 0:0] ENABLE_IRQ = 0 .. )"
+                    },
+                    {
+                        "Scope":  "picorv32",
+                        "Name":  "picorv32",
+                        "TokenType":  "Verilog_Variable_module",
+                        "HoverText":  "module picorv32 #(  [ 0:0] ENABLE_IRQ = 0)"
+                    },
+                    {
+                        "Scope":  "picorv32",
+                        "Name":  "rf",
+                        "TokenType":  "Verilog_Variable_localparam",
+                        "HoverText":  "localparam rf = 4/ENABLE_IRQ wire a = rf*4"
+                    }
+                ]
+}

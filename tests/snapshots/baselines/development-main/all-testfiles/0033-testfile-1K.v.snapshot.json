@@ -1,1 +1,2479 @@
-{"SchemaVersion":3,"RunName":"all-testfiles","ExtensionVersion":"0.3.6.3","GitCommit":"b1ebe2c","FilePath":"C:\\workspace\\VerilogLanguageExtension\\TestFiles\\testfile-1K.v","FileRelativePath":"TestFiles\\testfile-1K.v","ContentType":"verilog","SnapshotLength":367,"SnapshotVersion":2,"TextSha256":"65f1e58102a4a26ef8a75ebd553e7854c611e5d3bdaabbf5a9a3df576b40d2e8","Errors":[],"Classifications":[{"Start":0,"Length":14,"Line":1,"Column":1,"Text":"// Listing 1.1","Types":["comment"]},{"Start":42,"Length":8,"Line":4,"Column":1,"Text":"   (\n   ","Types":["comment"]},{"Start":50,"Length":1,"Line":5,"Column":4,"Text":" ","Types":["Bracket0 - comment - (TRANSIENT)"]},{"Start":51,"Length":1,"Line":5,"Column":5,"Text":"i","Types":["comment"]},{"Start":52,"Length":2,"Line":5,"Column":6,"Text":"np","Types":["comment - input - (TRANSIENT)"]},{"Start":54,"Length":3,"Line":5,"Column":8,"Text":"ut ","Types":["input"]},{"Start":58,"Length":4,"Line":5,"Column":12,"Text":"ire ","Types":["wire"]},{"Start":63,"Length":2,"Line":5,"Column":17,"Text":"1,","Types":["Variable_duplicate"]},{"Start":67,"Length":2,"Line":5,"Column":21,"Text":"1,","Types":["Variable"]},{"Start":71,"Length":2,"Line":5,"Column":25,"Text":"1,","Types":["Variable"]},{"Start":79,"Length":6,"Line":6,"Column":6,"Text":"utput ","Types":["output"]},{"Start":86,"Length":4,"Line":6,"Column":13,"Text":"ire ","Types":["wire"]},{"Start":91,"Length":4,"Line":6,"Column":18,"Text":"q\n  ","Types":["Variable"]},{"Start":98,"Length":1,"Line":7,"Column":6,"Text":"\n","Types":["Bracket0"]},{"Start":104,"Length":21,"Line":9,"Column":5,"Text":"/ signal declaration\n","Types":["comment"]},{"Start":139,"Length":4,"Line":10,"Column":15,"Text":"1;\n\n","Types":["wire"]},{"Start":144,"Length":3,"Line":12,"Column":2,"Text":"  /","Types":["Variable_wire"]},{"Start":147,"Length":2,"Line":12,"Column":5,"Text":"/ ","Types":["comment"]},{"Start":149,"Length":2,"Line":12,"Column":7,"Text":"bo","Types":["Variable_wire - comment - (TRANSIENT)"]},{"Start":151,"Length":3,"Line":12,"Column":9,"Text":"dy\n","Types":["comment"]},{"Start":161,"Length":27,"Line":13,"Column":8,"Text":"um of two product terms\n   ","Types":["comment"]},{"Start":193,"Length":6,"Line":14,"Column":9,"Text":"n eq =","Types":["assign"]},{"Start":200,"Length":2,"Line":14,"Column":16,"Text":"p0","Types":["Variable"]},{"Start":210,"Length":2,"Line":15,"Column":2,"Text":"  ","Types":["Variable_wire"]},{"Start":213,"Length":16,"Line":15,"Column":5,"Text":"/ product terms\n","Types":["comment"]},{"Start":237,"Length":6,"Line":16,"Column":9,"Text":"n p0 =","Types":["assign"]},{"Start":250,"Length":2,"Line":16,"Column":22,"Text":"~i","Types":["Variable_duplicate"]},{"Start":256,"Length":2,"Line":17,"Column":2,"Text":"  ","Types":["Variable"]},{"Start":259,"Length":6,"Line":17,"Column":5,"Text":"ssign ","Types":["assign"]},{"Start":266,"Length":2,"Line":17,"Column":12,"Text":"1 ","Types":["Variable_wire"]},{"Start":276,"Length":2,"Line":17,"Column":22,"Text":"1;","Types":["Variable"]},{"Start":283,"Length":1,"Line":18,"Column":5,"Text":"]","Types":["Bracket1"]},{"Start":284,"Length":1,"Line":18,"Column":6,"Text":"\n","Types":["Bracket0"]},{"Start":289,"Length":1,"Line":19,"Column":5,"Text":"]","Types":["Bracket1"]},{"Start":290,"Length":1,"Line":19,"Column":6,"Text":"\n","Types":["Bracket0"]},{"Start":295,"Length":16,"Line":20,"Column":5,"Text":"/ this is a tes\n","Types":["comment"]},{"Start":317,"Length":4,"Line":21,"Column":7,"Text":"e er","Types":["wire"]},{"Start":322,"Length":3,"Line":21,"Column":12,"Text":";\n ","Types":["Variable_wire"]},{"Start":328,"Length":4,"Line":22,"Column":5,"Text":"ire ","Types":["wire"]},{"Start":333,"Length":2,"Line":22,"Column":10,"Text":"1;","Types":["Variable_duplicate"]},{"Start":340,"Length":7,"Line":23,"Column":5,"Text":"/ test\n","Types":["comment"]},{"Start":358,"Length":9,"Line":25,"Column":2,"Text":"ndmodule\n","Types":["endmodule"]}],"Tags":[{"Start":0,"Length":2,"Line":1,"Column":1,"Text":"//","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":2,"Length":1,"Line":1,"Column":3,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":3,"Length":7,"Line":1,"Column":4,"Text":"Listing","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":10,"Length":1,"Line":1,"Column":11,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":11,"Length":3,"Line":1,"Column":12,"Text":"1.1","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":42,"Length":2,"Line":4,"Column":1,"Text":"  ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":44,"Length":1,"Line":4,"Column":3,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":45,"Length":1,"Line":4,"Column":4,"Text":"(","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":46,"Length":1,"Line":4,"Column":5,"Text":"\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":47,"Length":1,"Line":5,"Column":1,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":48,"Length":1,"Line":5,"Column":2,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":49,"Length":5,"Line":5,"Column":3,"Text":"  inp","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":50,"Length":1,"Line":5,"Column":4,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":52,"Length":5,"Line":5,"Column":6,"Text":"nput ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_input","HoverText":"The reserved word input is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."},{"Start":58,"Length":4,"Line":5,"Column":12,"Text":"ire ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_wire","HoverText":"Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."},{"Start":63,"Length":2,"Line":5,"Column":17,"Text":"1,","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable_duplicate","HoverText":null},{"Start":67,"Length":2,"Line":5,"Column":21,"Text":"1,","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable","HoverText":null},{"Start":71,"Length":2,"Line":5,"Column":25,"Text":"1,","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable","HoverText":null},{"Start":79,"Length":6,"Line":6,"Column":6,"Text":"utput ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_output","HoverText":"The reserved word output is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."},{"Start":86,"Length":4,"Line":6,"Column":13,"Text":"ire ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_wire","HoverText":"Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."},{"Start":91,"Length":2,"Line":6,"Column":18,"Text":"q\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable","HoverText":null},{"Start":93,"Length":2,"Line":7,"Column":1,"Text":"  ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable","HoverText":null},{"Start":98,"Length":1,"Line":7,"Column":6,"Text":"\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":104,"Length":2,"Line":9,"Column":5,"Text":"/ ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":106,"Length":1,"Line":9,"Column":7,"Text":"s","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":107,"Length":6,"Line":9,"Column":8,"Text":"ignal ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":113,"Length":1,"Line":9,"Column":14,"Text":"d","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":114,"Length":11,"Line":9,"Column":15,"Text":"eclaration\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":139,"Length":4,"Line":10,"Column":15,"Text":"1;\n\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_wire","HoverText":"Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."},{"Start":144,"Length":3,"Line":12,"Column":2,"Text":"  /","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable_wire","HoverText":null},{"Start":149,"Length":2,"Line":12,"Column":7,"Text":"bo","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable_wire","HoverText":null},{"Start":147,"Length":2,"Line":12,"Column":5,"Text":"/ ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":149,"Length":1,"Line":12,"Column":7,"Text":"b","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":150,"Length":4,"Line":12,"Column":8,"Text":"ody\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":161,"Length":2,"Line":13,"Column":8,"Text":"um","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":163,"Length":1,"Line":13,"Column":10,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":164,"Length":3,"Line":13,"Column":11,"Text":"of ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":167,"Length":1,"Line":13,"Column":14,"Text":"t","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":168,"Length":2,"Line":13,"Column":15,"Text":"wo","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":170,"Length":1,"Line":13,"Column":17,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":171,"Length":3,"Line":13,"Column":18,"Text":"pro","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":174,"Length":1,"Line":13,"Column":21,"Text":"d","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":175,"Length":7,"Line":13,"Column":22,"Text":"uct ter","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":182,"Length":1,"Line":13,"Column":29,"Text":"m","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":183,"Length":5,"Line":13,"Column":30,"Text":"s\n   ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":193,"Length":6,"Line":14,"Column":9,"Text":"n eq =","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_assign","HoverText":"The assign statement is used to express the first type of procedural continuous assignment. Assign of reg data types is not supported. "},{"Start":200,"Length":2,"Line":14,"Column":16,"Text":"p0","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable","HoverText":null},{"Start":210,"Length":2,"Line":15,"Column":2,"Text":"  ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable_wire","HoverText":null},{"Start":213,"Length":2,"Line":15,"Column":5,"Text":"/ ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":215,"Length":1,"Line":15,"Column":7,"Text":"p","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":216,"Length":7,"Line":15,"Column":8,"Text":"roduct ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":223,"Length":1,"Line":15,"Column":15,"Text":"t","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":224,"Length":5,"Line":15,"Column":16,"Text":"erms\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":237,"Length":6,"Line":16,"Column":9,"Text":"n p0 =","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_assign","HoverText":"The assign statement is used to express the first type of procedural continuous assignment. Assign of reg data types is not supported. "},{"Start":250,"Length":2,"Line":16,"Column":22,"Text":"~i","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable_duplicate","HoverText":null},{"Start":256,"Length":2,"Line":17,"Column":2,"Text":"  ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable","HoverText":null},{"Start":259,"Length":6,"Line":17,"Column":5,"Text":"ssign ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_assign","HoverText":"The assign statement is used to express the first type of procedural continuous assignment. Assign of reg data types is not supported. "},{"Start":266,"Length":2,"Line":17,"Column":12,"Text":"1 ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable_wire","HoverText":null},{"Start":276,"Length":2,"Line":17,"Column":22,"Text":"1;","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable","HoverText":null},{"Start":283,"Length":1,"Line":18,"Column":5,"Text":"]","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket1","HoverText":null},{"Start":284,"Length":1,"Line":18,"Column":6,"Text":"\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":289,"Length":1,"Line":19,"Column":5,"Text":"]","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket1","HoverText":null},{"Start":290,"Length":1,"Line":19,"Column":6,"Text":"\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":295,"Length":2,"Line":20,"Column":5,"Text":"/ ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":297,"Length":1,"Line":20,"Column":7,"Text":"t","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":298,"Length":4,"Line":20,"Column":8,"Text":"his ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":302,"Length":1,"Line":20,"Column":12,"Text":"i","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":303,"Length":2,"Line":20,"Column":13,"Text":"s ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":305,"Length":1,"Line":20,"Column":15,"Text":"a","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":306,"Length":1,"Line":20,"Column":16,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":307,"Length":1,"Line":20,"Column":17,"Text":"t","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":308,"Length":3,"Line":20,"Column":18,"Text":"es\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":317,"Length":4,"Line":21,"Column":7,"Text":"e er","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_wire","HoverText":"Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."},{"Start":322,"Length":3,"Line":21,"Column":12,"Text":";\n ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable_wire","HoverText":null},{"Start":328,"Length":4,"Line":22,"Column":5,"Text":"ire ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_wire","HoverText":"Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."},{"Start":333,"Length":2,"Line":22,"Column":10,"Text":"1;","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable_duplicate","HoverText":null},{"Start":340,"Length":2,"Line":23,"Column":5,"Text":"/ ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":342,"Length":1,"Line":23,"Column":7,"Text":"t","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":343,"Length":4,"Line":23,"Column":8,"Text":"est\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":358,"Length":9,"Line":25,"Column":2,"Text":"ndmodule\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_endmodule","HoverText":"The endmodule reserved word is used to close a module statement."}],"Tokens":[{"Start":0,"Length":2,"Line":1,"Column":1,"Text":"//","Context":"Text"},{"Start":2,"Length":1,"Line":1,"Column":3,"Text":" ","Context":"Text"},{"Start":3,"Length":7,"Line":1,"Column":4,"Text":"Listing","Context":"Text"},{"Start":10,"Length":1,"Line":1,"Column":11,"Text":" ","Context":"Text"},{"Start":11,"Length":3,"Line":1,"Column":12,"Text":"1.1","Context":"Text"},{"Start":15,"Length":13,"Line":2,"Column":1,"Text":"1.1module eq1","Context":"Undetermined"},{"Start":26,"Length":16,"Line":3,"Column":1,"Text":"1.1module eq1   ","Context":"Undetermined"},{"Start":41,"Length":2,"Line":3,"Column":16,"Text":"//","Context":"Text"},{"Start":41,"Length":1,"Line":3,"Column":16,"Text":" ","Context":"Text"},{"Start":41,"Length":1,"Line":3,"Column":16,"Text":"I","Context":"Text"},{"Start":41,"Length":1,"Line":3,"Column":16,"Text":"/","Context":"Text"},{"Start":41,"Length":1,"Line":3,"Column":16,"Text":"O","Context":"Text"},{"Start":41,"Length":1,"Line":3,"Column":16,"Text":" ","Context":"Text"},{"Start":41,"Length":5,"Line":3,"Column":16,"Text":"ports","Context":"Text"},{"Start":42,"Length":5,"Line":4,"Column":1,"Text":"ports","Context":"Undetermined"},{"Start":46,"Length":3,"Line":4,"Column":5,"Text":"   ","Context":"Text"},{"Start":46,"Length":1,"Line":4,"Column":5,"Text":"(","Context":"RoundBracketOpen"},{"Start":47,"Length":1,"Line":5,"Column":1,"Text":"(","Context":"Undetermined"},{"Start":48,"Length":4,"Line":5,"Column":2,"Text":"    ","Context":"Text"},{"Start":52,"Length":5,"Line":5,"Column":6,"Text":"input","Context":"Text"},{"Start":61,"Length":1,"Line":5,"Column":15,"Text":" ","Context":"Text"},{"Start":62,"Length":4,"Line":5,"Column":16,"Text":"wire","Context":"Text"},{"Start":69,"Length":1,"Line":5,"Column":23,"Text":" ","Context":"Text"},{"Start":70,"Length":2,"Line":5,"Column":24,"Text":"k1","Context":"Text"},{"Start":72,"Length":1,"Line":5,"Column":26,"Text":",","Context":"Text"},{"Start":73,"Length":1,"Line":5,"Column":27,"Text":" ","Context":"Text"},{"Start":73,"Length":2,"Line":5,"Column":27,"Text":"h1","Context":"Text"},{"Start":73,"Length":1,"Line":5,"Column":27,"Text":",","Context":"Text"},{"Start":73,"Length":1,"Line":5,"Column":27,"Text":" ","Context":"Text"},{"Start":73,"Length":2,"Line":5,"Column":27,"Text":"i1","Context":"Text"},{"Start":73,"Length":1,"Line":5,"Column":27,"Text":",","Context":"Text"},{"Start":74,"Length":1,"Line":6,"Column":1,"Text":",","Context":"Undetermined"},{"Start":75,"Length":4,"Line":6,"Column":2,"Text":"    ","Context":"Text"},{"Start":79,"Length":6,"Line":6,"Column":6,"Text":"output","Context":"Text"},{"Start":89,"Length":1,"Line":6,"Column":16,"Text":" ","Context":"Text"},{"Start":90,"Length":4,"Line":6,"Column":17,"Text":"wire","Context":"Text"},{"Start":92,"Length":1,"Line":6,"Column":19,"Text":" ","Context":"Text"},{"Start":92,"Length":2,"Line":6,"Column":19,"Text":"eq","Context":"Text"},{"Start":93,"Length":2,"Line":7,"Column":1,"Text":"eq","Context":"Undetermined"},{"Start":95,"Length":3,"Line":7,"Column":3,"Text":"   ","Context":"Text"},{"Start":98,"Length":1,"Line":7,"Column":6,"Text":")","Context":"RoundBracketClose"},{"Start":98,"Length":1,"Line":7,"Column":6,"Text":";","Context":"Text"},{"Start":99,"Length":1,"Line":8,"Column":1,"Text":";","Context":"Undetermined"},{"Start":100,"Length":1,"Line":9,"Column":1,"Text":";","Context":"Undetermined"},{"Start":101,"Length":3,"Line":9,"Column":2,"Text":"   ","Context":"Text"},{"Start":104,"Length":2,"Line":9,"Column":5,"Text":"//","Context":"Text"},{"Start":112,"Length":1,"Line":9,"Column":13,"Text":" ","Context":"Text"},{"Start":113,"Length":6,"Line":9,"Column":14,"Text":"signal","Context":"Text"},{"Start":119,"Length":1,"Line":9,"Column":20,"Text":" ","Context":"Text"},{"Start":120,"Length":11,"Line":9,"Column":21,"Text":"declaration","Context":"Text"},{"Start":125,"Length":11,"Line":10,"Column":1,"Text":"declaration","Context":"Undetermined"},{"Start":136,"Length":3,"Line":10,"Column":12,"Text":"   ","Context":"Text"},{"Start":139,"Length":4,"Line":10,"Column":15,"Text":"wire","Context":"Text"},{"Start":141,"Length":1,"Line":10,"Column":17,"Text":" ","Context":"Text"},{"Start":141,"Length":3,"Line":10,"Column":17,"Text":"p02","Context":"Text"},{"Start":141,"Length":1,"Line":10,"Column":17,"Text":",","Context":"Text"},{"Start":141,"Length":1,"Line":10,"Column":17,"Text":" ","Context":"Text"},{"Start":141,"Length":2,"Line":10,"Column":17,"Text":"p1","Context":"Text"},{"Start":141,"Length":1,"Line":10,"Column":17,"Text":";","Context":"Text"},{"Start":142,"Length":1,"Line":11,"Column":1,"Text":";","Context":"Undetermined"},{"Start":143,"Length":1,"Line":12,"Column":1,"Text":";","Context":"Undetermined"},{"Start":144,"Length":3,"Line":12,"Column":2,"Text":"   ","Context":"Text"},{"Start":147,"Length":2,"Line":12,"Column":5,"Text":"//","Context":"Text"},{"Start":149,"Length":1,"Line":12,"Column":7,"Text":" ","Context":"Text"},{"Start":150,"Length":4,"Line":12,"Column":8,"Text":"body","Context":"Text"},{"Start":154,"Length":4,"Line":13,"Column":1,"Text":"body","Context":"Undetermined"},{"Start":158,"Length":3,"Line":13,"Column":5,"Text":"   ","Context":"Text"},{"Start":161,"Length":2,"Line":13,"Column":8,"Text":"//","Context":"Text"},{"Start":163,"Length":1,"Line":13,"Column":10,"Text":" ","Context":"Text"},{"Start":164,"Length":3,"Line":13,"Column":11,"Text":"sum","Context":"Text"},{"Start":170,"Length":1,"Line":13,"Column":17,"Text":" ","Context":"Text"},{"Start":171,"Length":2,"Line":13,"Column":18,"Text":"of","Context":"Text"},{"Start":178,"Length":1,"Line":13,"Column":25,"Text":" ","Context":"Text"},{"Start":179,"Length":3,"Line":13,"Column":26,"Text":"two","Context":"Text"},{"Start":182,"Length":1,"Line":13,"Column":29,"Text":" ","Context":"Text"},{"Start":183,"Length":7,"Line":13,"Column":30,"Text":"product","Context":"Text"},{"Start":184,"Length":1,"Line":13,"Column":31,"Text":" ","Context":"Text"},{"Start":184,"Length":5,"Line":13,"Column":31,"Text":"terms","Context":"Text"},{"Start":185,"Length":5,"Line":14,"Column":1,"Text":"terms","Context":"Undetermined"},{"Start":190,"Length":3,"Line":14,"Column":6,"Text":"   ","Context":"Text"},{"Start":193,"Length":6,"Line":14,"Column":9,"Text":"assign","Context":"Text"},{"Start":199,"Length":1,"Line":14,"Column":15,"Text":" ","Context":"Text"},{"Start":200,"Length":2,"Line":14,"Column":16,"Text":"eq","Context":"Text"},{"Start":202,"Length":1,"Line":14,"Column":18,"Text":" ","Context":"Text"},{"Start":203,"Length":1,"Line":14,"Column":19,"Text":"=","Context":"Text"},{"Start":204,"Length":1,"Line":14,"Column":20,"Text":" ","Context":"Text"},{"Start":205,"Length":2,"Line":14,"Column":21,"Text":"p0","Context":"Text"},{"Start":207,"Length":1,"Line":14,"Column":23,"Text":" ","Context":"Text"},{"Start":208,"Length":1,"Line":14,"Column":24,"Text":"|","Context":"Text"},{"Start":208,"Length":1,"Line":14,"Column":24,"Text":" ","Context":"Text"},{"Start":208,"Length":2,"Line":14,"Column":24,"Text":"p1","Context":"Text"},{"Start":208,"Length":1,"Line":14,"Column":24,"Text":";","Context":"Text"},{"Start":209,"Length":1,"Line":15,"Column":1,"Text":";","Context":"Undetermined"},{"Start":210,"Length":3,"Line":15,"Column":2,"Text":"   ","Context":"Text"},{"Start":213,"Length":2,"Line":15,"Column":5,"Text":"//","Context":"Text"},{"Start":222,"Length":1,"Line":15,"Column":14,"Text":" ","Context":"Text"},{"Start":223,"Length":7,"Line":15,"Column":15,"Text":"product","Context":"Text"},{"Start":228,"Length":1,"Line":15,"Column":20,"Text":" ","Context":"Text"},{"Start":228,"Length":5,"Line":15,"Column":20,"Text":"terms","Context":"Text"},{"Start":229,"Length":5,"Line":16,"Column":1,"Text":"terms","Context":"Undetermined"},{"Start":234,"Length":3,"Line":16,"Column":6,"Text":"   ","Context":"Text"},{"Start":237,"Length":6,"Line":16,"Column":9,"Text":"assign","Context":"Text"},{"Start":243,"Length":1,"Line":16,"Column":15,"Text":" ","Context":"Text"},{"Start":244,"Length":2,"Line":16,"Column":16,"Text":"p0","Context":"Text"},{"Start":247,"Length":1,"Line":16,"Column":19,"Text":" ","Context":"Text"},{"Start":248,"Length":1,"Line":16,"Column":20,"Text":"=","Context":"Text"},{"Start":249,"Length":1,"Line":16,"Column":21,"Text":" ","Context":"Text"},{"Start":250,"Length":1,"Line":16,"Column":22,"Text":"~","Context":"Text"},{"Start":251,"Length":2,"Line":16,"Column":23,"Text":"k1","Context":"Text"},{"Start":253,"Length":1,"Line":16,"Column":25,"Text":" ","Context":"Text"},{"Start":254,"Length":1,"Line":16,"Column":26,"Text":"\u0026","Context":"Text"},{"Start":254,"Length":1,"Line":16,"Column":26,"Text":" ","Context":"Text"},{"Start":254,"Length":1,"Line":16,"Column":26,"Text":"~","Context":"Text"},{"Start":254,"Length":2,"Line":16,"Column":26,"Text":"i1","Context":"Text"},{"Start":254,"Length":1,"Line":16,"Column":26,"Text":";","Context":"Text"},{"Start":277,"Length":1,"Line":17,"Column":23,"Text":";","Context":"Undetermined"},{"Start":278,"Length":3,"Line":17,"Column":24,"Text":"   ","Context":"Text"},{"Start":278,"Length":6,"Line":17,"Column":24,"Text":"assign","Context":"Text"},{"Start":278,"Length":1,"Line":17,"Column":24,"Text":" ","Context":"Text"},{"Start":278,"Length":2,"Line":17,"Column":24,"Text":"p1","Context":"Text"},{"Start":278,"Length":1,"Line":17,"Column":24,"Text":" ","Context":"Text"},{"Start":278,"Length":1,"Line":17,"Column":24,"Text":"=","Context":"Text"},{"Start":278,"Length":1,"Line":17,"Column":24,"Text":" ","Context":"Text"},{"Start":278,"Length":2,"Line":17,"Column":24,"Text":"i0","Context":"Text"},{"Start":278,"Length":1,"Line":17,"Column":24,"Text":" ","Context":"Text"},{"Start":278,"Length":1,"Line":17,"Column":24,"Text":"\u0026","Context":"Text"},{"Start":278,"Length":1,"Line":17,"Column":24,"Text":" ","Context":"Text"},{"Start":278,"Length":2,"Line":17,"Column":24,"Text":"i1","Context":"Text"},{"Start":278,"Length":1,"Line":17,"Column":24,"Text":";","Context":"Text"},{"Start":279,"Length":1,"Line":18,"Column":1,"Text":";","Context":"Undetermined"},{"Start":280,"Length":3,"Line":18,"Column":2,"Text":"   ","Context":"Text"},{"Start":283,"Length":1,"Line":18,"Column":5,"Text":"[","Context":"SquareBracketOpen"},{"Start":284,"Length":1,"Line":18,"Column":6,"Text":"]","Context":"SquareBracketClose"},{"Start":289,"Length":1,"Line":19,"Column":5,"Text":"]","Context":"Undetermined"},{"Start":290,"Length":3,"Line":19,"Column":6,"Text":"   ","Context":"Text"},{"Start":290,"Length":1,"Line":19,"Column":6,"Text":"[","Context":"SquareBracketOpen"},{"Start":290,"Length":1,"Line":19,"Column":6,"Text":"]","Context":"SquareBracketClose"},{"Start":291,"Length":1,"Line":20,"Column":1,"Text":"]","Context":"Undetermined"},{"Start":292,"Length":3,"Line":20,"Column":2,"Text":"   ","Context":"Text"},{"Start":295,"Length":2,"Line":20,"Column":5,"Text":"//","Context":"Text"},{"Start":301,"Length":1,"Line":20,"Column":11,"Text":" ","Context":"Text"},{"Start":302,"Length":4,"Line":20,"Column":12,"Text":"this","Context":"Text"},{"Start":306,"Length":1,"Line":20,"Column":16,"Text":" ","Context":"Text"},{"Start":307,"Length":2,"Line":20,"Column":17,"Text":"is","Context":"Text"},{"Start":309,"Length":1,"Line":20,"Column":19,"Text":" ","Context":"Text"},{"Start":310,"Length":1,"Line":20,"Column":20,"Text":"a","Context":"Text"},{"Start":310,"Length":1,"Line":20,"Column":20,"Text":" ","Context":"Text"},{"Start":310,"Length":3,"Line":20,"Column":20,"Text":"tes","Context":"Text"},{"Start":311,"Length":3,"Line":21,"Column":1,"Text":"tes","Context":"Undetermined"},{"Start":314,"Length":3,"Line":21,"Column":4,"Text":"   ","Context":"Text"},{"Start":317,"Length":4,"Line":21,"Column":7,"Text":"wire","Context":"Text"},{"Start":321,"Length":1,"Line":21,"Column":11,"Text":" ","Context":"Text"},{"Start":322,"Length":3,"Line":21,"Column":12,"Text":"er3","Context":"Text"},{"Start":323,"Length":1,"Line":21,"Column":13,"Text":";","Context":"Text"},{"Start":334,"Length":1,"Line":22,"Column":11,"Text":";","Context":"Undetermined"},{"Start":335,"Length":3,"Line":22,"Column":12,"Text":"   ","Context":"Text"},{"Start":335,"Length":4,"Line":22,"Column":12,"Text":"wire","Context":"Text"},{"Start":335,"Length":1,"Line":22,"Column":12,"Text":" ","Context":"Text"},{"Start":335,"Length":2,"Line":22,"Column":12,"Text":"k1","Context":"Text"},{"Start":335,"Length":1,"Line":22,"Column":12,"Text":";","Context":"Text"},{"Start":336,"Length":1,"Line":23,"Column":1,"Text":";","Context":"Undetermined"},{"Start":337,"Length":3,"Line":23,"Column":2,"Text":"   ","Context":"Text"},{"Start":340,"Length":2,"Line":23,"Column":5,"Text":"//","Context":"Text"},{"Start":342,"Length":1,"Line":23,"Column":7,"Text":" ","Context":"Text"},{"Start":343,"Length":4,"Line":23,"Column":8,"Text":"test","Context":"Text"},{"Start":347,"Length":4,"Line":24,"Column":1,"Text":"test","Context":"Undetermined"},{"Start":351,"Length":3,"Line":24,"Column":5,"Text":"   ","Context":"Text"},{"Start":354,"Length":5,"Line":24,"Column":8,"Text":"the5k","Context":"Text"},{"Start":356,"Length":1,"Line":24,"Column":10,"Text":";","Context":"Text"},{"Start":357,"Length":1,"Line":25,"Column":1,"Text":";","Context":"Undetermined"},{"Start":358,"Length":9,"Line":25,"Column":2,"Text":"endmodule","Context":"Text"},{"Start":367,"Length":9,"Line":26,"Column":1,"Text":"endmodule","Context":"Undetermined"}],"Symbols":[{"Scope":"eq1","Name":"k1","TokenType":"Verilog_Variable_duplicate","HoverText":"duplicate? wire k1"},{"Scope":"eq1","Name":"h1","TokenType":"Verilog_Variable","HoverText":"module eq1( .. input wire h1 .. )"},{"Scope":"eq1","Name":"i1","TokenType":"Verilog_Variable","HoverText":"module eq1( .. input wire i1 .. )"},{"Scope":"eq1","Name":"eq","TokenType":"Verilog_Variable","HoverText":"module eq1( .. output wire eq  .. )"},{"Scope":"eq1","Name":"eq1","TokenType":"Verilog_Variable_module","HoverText":"module eq1  (  wire k1,\r\n h1,\r\n i1,\r\n output wire eq )"},{"Scope":"eq1","Name":"p02","TokenType":"Verilog_Variable_wire","HoverText":"wire p02"},{"Scope":"eq1","Name":"p1","TokenType":"Verilog_Variable_wire","HoverText":"wire p1"},{"Scope":"eq1","Name":"er3","TokenType":"Verilog_Variable_wire","HoverText":"wire er3"}]}
+{
+    "SchemaVersion":  3,
+    "RunName":  "all-testfiles",
+    "ExtensionVersion":  "0.3.6.3",
+    "GitCommit":  "d4aa870",
+    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\testfile-1K.v",
+    "FileRelativePath":  "TestFiles\\testfile-1K.v",
+    "ContentType":  "verilog",
+    "SnapshotLength":  367,
+    "SnapshotVersion":  2,
+    "TextSha256":  "65f1e58102a4a26ef8a75ebd553e7854c611e5d3bdaabbf5a9a3df576b40d2e8",
+    "Errors":  [
+
+               ],
+    "Classifications":  [
+                            {
+                                "Start":  0,
+                                "Length":  14,
+                                "Line":  1,
+                                "Column":  1,
+                                "Text":  "// Listing 1.1",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  15,
+                                "Length":  6,
+                                "Line":  2,
+                                "Column":  1,
+                                "Text":  "module",
+                                "Types":  [
+                                              "module"
+                                          ]
+                            },
+                            {
+                                "Start":  22,
+                                "Length":  3,
+                                "Line":  2,
+                                "Column":  8,
+                                "Text":  "eq1",
+                                "Types":  [
+                                              "Variable_module"
+                                          ]
+                            },
+                            {
+                                "Start":  29,
+                                "Length":  12,
+                                "Line":  3,
+                                "Column":  4,
+                                "Text":  "// I/O ports",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  45,
+                                "Length":  1,
+                                "Line":  4,
+                                "Column":  4,
+                                "Text":  "(",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  51,
+                                "Length":  5,
+                                "Line":  5,
+                                "Column":  5,
+                                "Text":  "input",
+                                "Types":  [
+                                              "input"
+                                          ]
+                            },
+                            {
+                                "Start":  57,
+                                "Length":  4,
+                                "Line":  5,
+                                "Column":  11,
+                                "Text":  "wire",
+                                "Types":  [
+                                              "wire"
+                                          ]
+                            },
+                            {
+                                "Start":  62,
+                                "Length":  2,
+                                "Line":  5,
+                                "Column":  16,
+                                "Text":  "k1",
+                                "Types":  [
+                                              "Variable_duplicate"
+                                          ]
+                            },
+                            {
+                                "Start":  66,
+                                "Length":  2,
+                                "Line":  5,
+                                "Column":  20,
+                                "Text":  "h1",
+                                "Types":  [
+                                              "Variable"
+                                          ]
+                            },
+                            {
+                                "Start":  70,
+                                "Length":  2,
+                                "Line":  5,
+                                "Column":  24,
+                                "Text":  "i1",
+                                "Types":  [
+                                              "Variable"
+                                          ]
+                            },
+                            {
+                                "Start":  78,
+                                "Length":  6,
+                                "Line":  6,
+                                "Column":  5,
+                                "Text":  "output",
+                                "Types":  [
+                                              "output"
+                                          ]
+                            },
+                            {
+                                "Start":  85,
+                                "Length":  4,
+                                "Line":  6,
+                                "Column":  12,
+                                "Text":  "wire",
+                                "Types":  [
+                                              "wire"
+                                          ]
+                            },
+                            {
+                                "Start":  90,
+                                "Length":  2,
+                                "Line":  6,
+                                "Column":  17,
+                                "Text":  "eq",
+                                "Types":  [
+                                              "Variable"
+                                          ]
+                            },
+                            {
+                                "Start":  96,
+                                "Length":  1,
+                                "Line":  7,
+                                "Column":  4,
+                                "Text":  ")",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  103,
+                                "Length":  21,
+                                "Line":  9,
+                                "Column":  4,
+                                "Text":  "// signal declaration",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  128,
+                                "Length":  4,
+                                "Line":  10,
+                                "Column":  4,
+                                "Text":  "wire",
+                                "Types":  [
+                                              "wire"
+                                          ]
+                            },
+                            {
+                                "Start":  133,
+                                "Length":  3,
+                                "Line":  10,
+                                "Column":  9,
+                                "Text":  "p02",
+                                "Types":  [
+                                              "Variable_wire"
+                                          ]
+                            },
+                            {
+                                "Start":  138,
+                                "Length":  2,
+                                "Line":  10,
+                                "Column":  14,
+                                "Text":  "p1",
+                                "Types":  [
+                                              "Variable_wire"
+                                          ]
+                            },
+                            {
+                                "Start":  146,
+                                "Length":  7,
+                                "Line":  12,
+                                "Column":  4,
+                                "Text":  "// body",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  157,
+                                "Length":  27,
+                                "Line":  13,
+                                "Column":  4,
+                                "Text":  "// sum of two product terms",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  188,
+                                "Length":  6,
+                                "Line":  14,
+                                "Column":  4,
+                                "Text":  "assign",
+                                "Types":  [
+                                              "assign"
+                                          ]
+                            },
+                            {
+                                "Start":  195,
+                                "Length":  2,
+                                "Line":  14,
+                                "Column":  11,
+                                "Text":  "eq",
+                                "Types":  [
+                                              "Variable"
+                                          ]
+                            },
+                            {
+                                "Start":  205,
+                                "Length":  2,
+                                "Line":  14,
+                                "Column":  21,
+                                "Text":  "p1",
+                                "Types":  [
+                                              "Variable_wire"
+                                          ]
+                            },
+                            {
+                                "Start":  212,
+                                "Length":  16,
+                                "Line":  15,
+                                "Column":  4,
+                                "Text":  "// product terms",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  232,
+                                "Length":  6,
+                                "Line":  16,
+                                "Column":  4,
+                                "Text":  "assign",
+                                "Types":  [
+                                              "assign"
+                                          ]
+                            },
+                            {
+                                "Start":  245,
+                                "Length":  2,
+                                "Line":  16,
+                                "Column":  17,
+                                "Text":  "k1",
+                                "Types":  [
+                                              "Variable_duplicate"
+                                          ]
+                            },
+                            {
+                                "Start":  251,
+                                "Length":  2,
+                                "Line":  16,
+                                "Column":  23,
+                                "Text":  "i1",
+                                "Types":  [
+                                              "Variable"
+                                          ]
+                            },
+                            {
+                                "Start":  258,
+                                "Length":  6,
+                                "Line":  17,
+                                "Column":  4,
+                                "Text":  "assign",
+                                "Types":  [
+                                              "assign"
+                                          ]
+                            },
+                            {
+                                "Start":  265,
+                                "Length":  2,
+                                "Line":  17,
+                                "Column":  11,
+                                "Text":  "p1",
+                                "Types":  [
+                                              "Variable_wire"
+                                          ]
+                            },
+                            {
+                                "Start":  275,
+                                "Length":  2,
+                                "Line":  17,
+                                "Column":  21,
+                                "Text":  "i1",
+                                "Types":  [
+                                              "Variable"
+                                          ]
+                            },
+                            {
+                                "Start":  282,
+                                "Length":  2,
+                                "Line":  18,
+                                "Column":  4,
+                                "Text":  "[]",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  288,
+                                "Length":  2,
+                                "Line":  19,
+                                "Column":  4,
+                                "Text":  "[]",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  294,
+                                "Length":  16,
+                                "Line":  20,
+                                "Column":  4,
+                                "Text":  "// this is a tes",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  314,
+                                "Length":  4,
+                                "Line":  21,
+                                "Column":  4,
+                                "Text":  "wire",
+                                "Types":  [
+                                              "wire"
+                                          ]
+                            },
+                            {
+                                "Start":  319,
+                                "Length":  3,
+                                "Line":  21,
+                                "Column":  9,
+                                "Text":  "er3",
+                                "Types":  [
+                                              "Variable_wire"
+                                          ]
+                            },
+                            {
+                                "Start":  327,
+                                "Length":  4,
+                                "Line":  22,
+                                "Column":  4,
+                                "Text":  "wire",
+                                "Types":  [
+                                              "wire"
+                                          ]
+                            },
+                            {
+                                "Start":  332,
+                                "Length":  2,
+                                "Line":  22,
+                                "Column":  9,
+                                "Text":  "k1",
+                                "Types":  [
+                                              "Variable_duplicate"
+                                          ]
+                            },
+                            {
+                                "Start":  339,
+                                "Length":  7,
+                                "Line":  23,
+                                "Column":  4,
+                                "Text":  "// test",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  357,
+                                "Length":  9,
+                                "Line":  25,
+                                "Column":  1,
+                                "Text":  "endmodule",
+                                "Types":  [
+                                              "endmodule"
+                                          ]
+                            }
+                        ],
+    "Tags":  [
+                 {
+                     "Start":  0,
+                     "Length":  2,
+                     "Line":  1,
+                     "Column":  1,
+                     "Text":  "//",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  2,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  3,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  3,
+                     "Length":  7,
+                     "Line":  1,
+                     "Column":  4,
+                     "Text":  "Listing",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  10,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  11,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  11,
+                     "Length":  3,
+                     "Line":  1,
+                     "Column":  12,
+                     "Text":  "1.1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  15,
+                     "Length":  6,
+                     "Line":  2,
+                     "Column":  1,
+                     "Text":  "module",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_module",
+                     "HoverText":  "The module declaration is the only design unit in Verilog. It describes both a designÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢s interface to other designs in the same environment, and its functional composition."
+                 },
+                 {
+                     "Start":  22,
+                     "Length":  3,
+                     "Line":  2,
+                     "Column":  8,
+                     "Text":  "eq1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_module",
+                     "HoverText":  "module eq1  (  wire k1,\r\n h1,\r\n i1,\r\n output wire eq )"
+                 },
+                 {
+                     "Start":  29,
+                     "Length":  2,
+                     "Line":  3,
+                     "Column":  4,
+                     "Text":  "//",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  31,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  6,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  32,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  7,
+                     "Text":  "I",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  33,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  8,
+                     "Text":  "/",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  34,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  9,
+                     "Text":  "O",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  35,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  10,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  36,
+                     "Length":  5,
+                     "Line":  3,
+                     "Column":  11,
+                     "Text":  "ports",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  45,
+                     "Length":  1,
+                     "Line":  4,
+                     "Column":  4,
+                     "Text":  "(",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  51,
+                     "Length":  5,
+                     "Line":  5,
+                     "Column":  5,
+                     "Text":  "input",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_input",
+                     "HoverText":  "The reserved word input is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
+                 },
+                 {
+                     "Start":  57,
+                     "Length":  4,
+                     "Line":  5,
+                     "Column":  11,
+                     "Text":  "wire",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_wire",
+                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
+                 },
+                 {
+                     "Start":  62,
+                     "Length":  2,
+                     "Line":  5,
+                     "Column":  16,
+                     "Text":  "k1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_duplicate",
+                     "HoverText":  "duplicate? wire k1"
+                 },
+                 {
+                     "Start":  66,
+                     "Length":  2,
+                     "Line":  5,
+                     "Column":  20,
+                     "Text":  "h1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable",
+                     "HoverText":  "module eq1( .. input wire h1 .. )"
+                 },
+                 {
+                     "Start":  70,
+                     "Length":  2,
+                     "Line":  5,
+                     "Column":  24,
+                     "Text":  "i1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable",
+                     "HoverText":  "module eq1( .. input wire i1 .. )"
+                 },
+                 {
+                     "Start":  78,
+                     "Length":  6,
+                     "Line":  6,
+                     "Column":  5,
+                     "Text":  "output",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_output",
+                     "HoverText":  "The reserved word output is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
+                 },
+                 {
+                     "Start":  85,
+                     "Length":  4,
+                     "Line":  6,
+                     "Column":  12,
+                     "Text":  "wire",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_wire",
+                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
+                 },
+                 {
+                     "Start":  90,
+                     "Length":  2,
+                     "Line":  6,
+                     "Column":  17,
+                     "Text":  "eq",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable",
+                     "HoverText":  "module eq1( .. output wire eq  .. )"
+                 },
+                 {
+                     "Start":  96,
+                     "Length":  1,
+                     "Line":  7,
+                     "Column":  4,
+                     "Text":  ")",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  103,
+                     "Length":  2,
+                     "Line":  9,
+                     "Column":  4,
+                     "Text":  "//",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  105,
+                     "Length":  1,
+                     "Line":  9,
+                     "Column":  6,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  106,
+                     "Length":  6,
+                     "Line":  9,
+                     "Column":  7,
+                     "Text":  "signal",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  112,
+                     "Length":  1,
+                     "Line":  9,
+                     "Column":  13,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  113,
+                     "Length":  11,
+                     "Line":  9,
+                     "Column":  14,
+                     "Text":  "declaration",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  128,
+                     "Length":  4,
+                     "Line":  10,
+                     "Column":  4,
+                     "Text":  "wire",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_wire",
+                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
+                 },
+                 {
+                     "Start":  133,
+                     "Length":  3,
+                     "Line":  10,
+                     "Column":  9,
+                     "Text":  "p02",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "wire p02"
+                 },
+                 {
+                     "Start":  138,
+                     "Length":  2,
+                     "Line":  10,
+                     "Column":  14,
+                     "Text":  "p1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "wire p1"
+                 },
+                 {
+                     "Start":  146,
+                     "Length":  2,
+                     "Line":  12,
+                     "Column":  4,
+                     "Text":  "//",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  148,
+                     "Length":  1,
+                     "Line":  12,
+                     "Column":  6,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  149,
+                     "Length":  4,
+                     "Line":  12,
+                     "Column":  7,
+                     "Text":  "body",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  157,
+                     "Length":  2,
+                     "Line":  13,
+                     "Column":  4,
+                     "Text":  "//",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  159,
+                     "Length":  1,
+                     "Line":  13,
+                     "Column":  6,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  160,
+                     "Length":  3,
+                     "Line":  13,
+                     "Column":  7,
+                     "Text":  "sum",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  163,
+                     "Length":  1,
+                     "Line":  13,
+                     "Column":  10,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  164,
+                     "Length":  2,
+                     "Line":  13,
+                     "Column":  11,
+                     "Text":  "of",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  166,
+                     "Length":  1,
+                     "Line":  13,
+                     "Column":  13,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  167,
+                     "Length":  3,
+                     "Line":  13,
+                     "Column":  14,
+                     "Text":  "two",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  170,
+                     "Length":  1,
+                     "Line":  13,
+                     "Column":  17,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  171,
+                     "Length":  7,
+                     "Line":  13,
+                     "Column":  18,
+                     "Text":  "product",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  178,
+                     "Length":  1,
+                     "Line":  13,
+                     "Column":  25,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  179,
+                     "Length":  5,
+                     "Line":  13,
+                     "Column":  26,
+                     "Text":  "terms",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  188,
+                     "Length":  6,
+                     "Line":  14,
+                     "Column":  4,
+                     "Text":  "assign",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_assign",
+                     "HoverText":  "The assign statement is used to express the first type of procedural continuous assignment. Assign of reg data types is not supported. "
+                 },
+                 {
+                     "Start":  195,
+                     "Length":  2,
+                     "Line":  14,
+                     "Column":  11,
+                     "Text":  "eq",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable",
+                     "HoverText":  "module eq1( .. output wire eq  .. )"
+                 },
+                 {
+                     "Start":  205,
+                     "Length":  2,
+                     "Line":  14,
+                     "Column":  21,
+                     "Text":  "p1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "wire p1"
+                 },
+                 {
+                     "Start":  212,
+                     "Length":  2,
+                     "Line":  15,
+                     "Column":  4,
+                     "Text":  "//",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  214,
+                     "Length":  1,
+                     "Line":  15,
+                     "Column":  6,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  215,
+                     "Length":  7,
+                     "Line":  15,
+                     "Column":  7,
+                     "Text":  "product",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  222,
+                     "Length":  1,
+                     "Line":  15,
+                     "Column":  14,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  223,
+                     "Length":  5,
+                     "Line":  15,
+                     "Column":  15,
+                     "Text":  "terms",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  232,
+                     "Length":  6,
+                     "Line":  16,
+                     "Column":  4,
+                     "Text":  "assign",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_assign",
+                     "HoverText":  "The assign statement is used to express the first type of procedural continuous assignment. Assign of reg data types is not supported. "
+                 },
+                 {
+                     "Start":  245,
+                     "Length":  2,
+                     "Line":  16,
+                     "Column":  17,
+                     "Text":  "k1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_duplicate",
+                     "HoverText":  "duplicate? wire k1"
+                 },
+                 {
+                     "Start":  251,
+                     "Length":  2,
+                     "Line":  16,
+                     "Column":  23,
+                     "Text":  "i1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable",
+                     "HoverText":  "module eq1( .. input wire i1 .. )"
+                 },
+                 {
+                     "Start":  258,
+                     "Length":  6,
+                     "Line":  17,
+                     "Column":  4,
+                     "Text":  "assign",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_assign",
+                     "HoverText":  "The assign statement is used to express the first type of procedural continuous assignment. Assign of reg data types is not supported. "
+                 },
+                 {
+                     "Start":  265,
+                     "Length":  2,
+                     "Line":  17,
+                     "Column":  11,
+                     "Text":  "p1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "wire p1"
+                 },
+                 {
+                     "Start":  275,
+                     "Length":  2,
+                     "Line":  17,
+                     "Column":  21,
+                     "Text":  "i1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable",
+                     "HoverText":  "module eq1( .. input wire i1 .. )"
+                 },
+                 {
+                     "Start":  282,
+                     "Length":  1,
+                     "Line":  18,
+                     "Column":  4,
+                     "Text":  "[",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  283,
+                     "Length":  1,
+                     "Line":  18,
+                     "Column":  5,
+                     "Text":  "]",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  288,
+                     "Length":  1,
+                     "Line":  19,
+                     "Column":  4,
+                     "Text":  "[",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  289,
+                     "Length":  1,
+                     "Line":  19,
+                     "Column":  5,
+                     "Text":  "]",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  294,
+                     "Length":  2,
+                     "Line":  20,
+                     "Column":  4,
+                     "Text":  "//",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  296,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  6,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  297,
+                     "Length":  4,
+                     "Line":  20,
+                     "Column":  7,
+                     "Text":  "this",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  301,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  11,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  302,
+                     "Length":  2,
+                     "Line":  20,
+                     "Column":  12,
+                     "Text":  "is",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  304,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  14,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  305,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  15,
+                     "Text":  "a",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  306,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  16,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  307,
+                     "Length":  3,
+                     "Line":  20,
+                     "Column":  17,
+                     "Text":  "tes",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  314,
+                     "Length":  4,
+                     "Line":  21,
+                     "Column":  4,
+                     "Text":  "wire",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_wire",
+                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
+                 },
+                 {
+                     "Start":  319,
+                     "Length":  3,
+                     "Line":  21,
+                     "Column":  9,
+                     "Text":  "er3",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "wire er3"
+                 },
+                 {
+                     "Start":  327,
+                     "Length":  4,
+                     "Line":  22,
+                     "Column":  4,
+                     "Text":  "wire",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_wire",
+                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
+                 },
+                 {
+                     "Start":  332,
+                     "Length":  2,
+                     "Line":  22,
+                     "Column":  9,
+                     "Text":  "k1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_duplicate",
+                     "HoverText":  "duplicate? wire k1"
+                 },
+                 {
+                     "Start":  339,
+                     "Length":  2,
+                     "Line":  23,
+                     "Column":  4,
+                     "Text":  "//",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  341,
+                     "Length":  1,
+                     "Line":  23,
+                     "Column":  6,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  342,
+                     "Length":  4,
+                     "Line":  23,
+                     "Column":  7,
+                     "Text":  "test",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  357,
+                     "Length":  9,
+                     "Line":  25,
+                     "Column":  1,
+                     "Text":  "endmodule",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_endmodule",
+                     "HoverText":  "The endmodule reserved word is used to close a module statement."
+                 }
+             ],
+    "Tokens":  [
+                   {
+                       "Start":  0,
+                       "Length":  2,
+                       "Line":  1,
+                       "Column":  1,
+                       "Text":  "//",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  2,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  3,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  3,
+                       "Length":  7,
+                       "Line":  1,
+                       "Column":  4,
+                       "Text":  "Listing",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  10,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  11,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  11,
+                       "Length":  3,
+                       "Line":  1,
+                       "Column":  12,
+                       "Text":  "1.1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  15,
+                       "Length":  6,
+                       "Line":  2,
+                       "Column":  1,
+                       "Text":  "module",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  21,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  22,
+                       "Length":  3,
+                       "Line":  2,
+                       "Column":  8,
+                       "Text":  "eq1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  26,
+                       "Length":  3,
+                       "Line":  3,
+                       "Column":  1,
+                       "Text":  "   ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  29,
+                       "Length":  2,
+                       "Line":  3,
+                       "Column":  4,
+                       "Text":  "//",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  31,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  6,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  32,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  7,
+                       "Text":  "I",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  33,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  8,
+                       "Text":  "/",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  34,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  9,
+                       "Text":  "O",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  35,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  10,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  36,
+                       "Length":  5,
+                       "Line":  3,
+                       "Column":  11,
+                       "Text":  "ports",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  42,
+                       "Length":  3,
+                       "Line":  4,
+                       "Column":  1,
+                       "Text":  "   ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  45,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  4,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  47,
+                       "Length":  4,
+                       "Line":  5,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  51,
+                       "Length":  5,
+                       "Line":  5,
+                       "Column":  5,
+                       "Text":  "input",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  56,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  10,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  57,
+                       "Length":  4,
+                       "Line":  5,
+                       "Column":  11,
+                       "Text":  "wire",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  61,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  15,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  62,
+                       "Length":  2,
+                       "Line":  5,
+                       "Column":  16,
+                       "Text":  "k1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  64,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  18,
+                       "Text":  ",",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  65,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  19,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  66,
+                       "Length":  2,
+                       "Line":  5,
+                       "Column":  20,
+                       "Text":  "h1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  68,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  22,
+                       "Text":  ",",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  69,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  23,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  70,
+                       "Length":  2,
+                       "Line":  5,
+                       "Column":  24,
+                       "Text":  "i1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  72,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  26,
+                       "Text":  ",",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  74,
+                       "Length":  4,
+                       "Line":  6,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  78,
+                       "Length":  6,
+                       "Line":  6,
+                       "Column":  5,
+                       "Text":  "output",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  84,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  11,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  85,
+                       "Length":  4,
+                       "Line":  6,
+                       "Column":  12,
+                       "Text":  "wire",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  89,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  16,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  90,
+                       "Length":  2,
+                       "Line":  6,
+                       "Column":  17,
+                       "Text":  "eq",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  93,
+                       "Length":  3,
+                       "Line":  7,
+                       "Column":  1,
+                       "Text":  "   ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  96,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  4,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  97,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  5,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  100,
+                       "Length":  3,
+                       "Line":  9,
+                       "Column":  1,
+                       "Text":  "   ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  103,
+                       "Length":  2,
+                       "Line":  9,
+                       "Column":  4,
+                       "Text":  "//",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  105,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  6,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  106,
+                       "Length":  6,
+                       "Line":  9,
+                       "Column":  7,
+                       "Text":  "signal",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  112,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  13,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  113,
+                       "Length":  11,
+                       "Line":  9,
+                       "Column":  14,
+                       "Text":  "declaration",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  125,
+                       "Length":  3,
+                       "Line":  10,
+                       "Column":  1,
+                       "Text":  "   ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  128,
+                       "Length":  4,
+                       "Line":  10,
+                       "Column":  4,
+                       "Text":  "wire",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  132,
+                       "Length":  1,
+                       "Line":  10,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  133,
+                       "Length":  3,
+                       "Line":  10,
+                       "Column":  9,
+                       "Text":  "p02",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  136,
+                       "Length":  1,
+                       "Line":  10,
+                       "Column":  12,
+                       "Text":  ",",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  137,
+                       "Length":  1,
+                       "Line":  10,
+                       "Column":  13,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  138,
+                       "Length":  2,
+                       "Line":  10,
+                       "Column":  14,
+                       "Text":  "p1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  140,
+                       "Length":  1,
+                       "Line":  10,
+                       "Column":  16,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  143,
+                       "Length":  3,
+                       "Line":  12,
+                       "Column":  1,
+                       "Text":  "   ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  146,
+                       "Length":  2,
+                       "Line":  12,
+                       "Column":  4,
+                       "Text":  "//",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  148,
+                       "Length":  1,
+                       "Line":  12,
+                       "Column":  6,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  149,
+                       "Length":  4,
+                       "Line":  12,
+                       "Column":  7,
+                       "Text":  "body",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  154,
+                       "Length":  3,
+                       "Line":  13,
+                       "Column":  1,
+                       "Text":  "   ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  157,
+                       "Length":  2,
+                       "Line":  13,
+                       "Column":  4,
+                       "Text":  "//",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  159,
+                       "Length":  1,
+                       "Line":  13,
+                       "Column":  6,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  160,
+                       "Length":  3,
+                       "Line":  13,
+                       "Column":  7,
+                       "Text":  "sum",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  163,
+                       "Length":  1,
+                       "Line":  13,
+                       "Column":  10,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  164,
+                       "Length":  2,
+                       "Line":  13,
+                       "Column":  11,
+                       "Text":  "of",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  166,
+                       "Length":  1,
+                       "Line":  13,
+                       "Column":  13,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  167,
+                       "Length":  3,
+                       "Line":  13,
+                       "Column":  14,
+                       "Text":  "two",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  170,
+                       "Length":  1,
+                       "Line":  13,
+                       "Column":  17,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  171,
+                       "Length":  7,
+                       "Line":  13,
+                       "Column":  18,
+                       "Text":  "product",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  178,
+                       "Length":  1,
+                       "Line":  13,
+                       "Column":  25,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  179,
+                       "Length":  5,
+                       "Line":  13,
+                       "Column":  26,
+                       "Text":  "terms",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  185,
+                       "Length":  3,
+                       "Line":  14,
+                       "Column":  1,
+                       "Text":  "   ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  188,
+                       "Length":  6,
+                       "Line":  14,
+                       "Column":  4,
+                       "Text":  "assign",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  194,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  10,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  195,
+                       "Length":  2,
+                       "Line":  14,
+                       "Column":  11,
+                       "Text":  "eq",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  197,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  13,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  198,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  14,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  199,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  15,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  200,
+                       "Length":  2,
+                       "Line":  14,
+                       "Column":  16,
+                       "Text":  "p0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  202,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  18,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  203,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  19,
+                       "Text":  "|",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  204,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  20,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  205,
+                       "Length":  2,
+                       "Line":  14,
+                       "Column":  21,
+                       "Text":  "p1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  207,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  23,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  209,
+                       "Length":  3,
+                       "Line":  15,
+                       "Column":  1,
+                       "Text":  "   ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  212,
+                       "Length":  2,
+                       "Line":  15,
+                       "Column":  4,
+                       "Text":  "//",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  214,
+                       "Length":  1,
+                       "Line":  15,
+                       "Column":  6,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  215,
+                       "Length":  7,
+                       "Line":  15,
+                       "Column":  7,
+                       "Text":  "product",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  222,
+                       "Length":  1,
+                       "Line":  15,
+                       "Column":  14,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  223,
+                       "Length":  5,
+                       "Line":  15,
+                       "Column":  15,
+                       "Text":  "terms",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  229,
+                       "Length":  3,
+                       "Line":  16,
+                       "Column":  1,
+                       "Text":  "   ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  232,
+                       "Length":  6,
+                       "Line":  16,
+                       "Column":  4,
+                       "Text":  "assign",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  238,
+                       "Length":  1,
+                       "Line":  16,
+                       "Column":  10,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  239,
+                       "Length":  2,
+                       "Line":  16,
+                       "Column":  11,
+                       "Text":  "p0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  241,
+                       "Length":  1,
+                       "Line":  16,
+                       "Column":  13,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  242,
+                       "Length":  1,
+                       "Line":  16,
+                       "Column":  14,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  243,
+                       "Length":  1,
+                       "Line":  16,
+                       "Column":  15,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  244,
+                       "Length":  1,
+                       "Line":  16,
+                       "Column":  16,
+                       "Text":  "~",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  245,
+                       "Length":  2,
+                       "Line":  16,
+                       "Column":  17,
+                       "Text":  "k1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  247,
+                       "Length":  1,
+                       "Line":  16,
+                       "Column":  19,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  248,
+                       "Length":  1,
+                       "Line":  16,
+                       "Column":  20,
+                       "Text":  "\u0026",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  249,
+                       "Length":  1,
+                       "Line":  16,
+                       "Column":  21,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  250,
+                       "Length":  1,
+                       "Line":  16,
+                       "Column":  22,
+                       "Text":  "~",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  251,
+                       "Length":  2,
+                       "Line":  16,
+                       "Column":  23,
+                       "Text":  "i1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  253,
+                       "Length":  1,
+                       "Line":  16,
+                       "Column":  25,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  255,
+                       "Length":  3,
+                       "Line":  17,
+                       "Column":  1,
+                       "Text":  "   ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  258,
+                       "Length":  6,
+                       "Line":  17,
+                       "Column":  4,
+                       "Text":  "assign",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  264,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  10,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  265,
+                       "Length":  2,
+                       "Line":  17,
+                       "Column":  11,
+                       "Text":  "p1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  267,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  13,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  268,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  14,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  269,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  15,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  270,
+                       "Length":  2,
+                       "Line":  17,
+                       "Column":  16,
+                       "Text":  "i0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  272,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  18,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  273,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  19,
+                       "Text":  "\u0026",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  274,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  20,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  275,
+                       "Length":  2,
+                       "Line":  17,
+                       "Column":  21,
+                       "Text":  "i1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  277,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  23,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  279,
+                       "Length":  3,
+                       "Line":  18,
+                       "Column":  1,
+                       "Text":  "   ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  282,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  4,
+                       "Text":  "[",
+                       "Context":  "SquareBracketOpen"
+                   },
+                   {
+                       "Start":  283,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  5,
+                       "Text":  "]",
+                       "Context":  "SquareBracketClose"
+                   },
+                   {
+                       "Start":  285,
+                       "Length":  3,
+                       "Line":  19,
+                       "Column":  1,
+                       "Text":  "   ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  288,
+                       "Length":  1,
+                       "Line":  19,
+                       "Column":  4,
+                       "Text":  "[",
+                       "Context":  "SquareBracketOpen"
+                   },
+                   {
+                       "Start":  289,
+                       "Length":  1,
+                       "Line":  19,
+                       "Column":  5,
+                       "Text":  "]",
+                       "Context":  "SquareBracketClose"
+                   },
+                   {
+                       "Start":  291,
+                       "Length":  3,
+                       "Line":  20,
+                       "Column":  1,
+                       "Text":  "   ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  294,
+                       "Length":  2,
+                       "Line":  20,
+                       "Column":  4,
+                       "Text":  "//",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  296,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  6,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  297,
+                       "Length":  4,
+                       "Line":  20,
+                       "Column":  7,
+                       "Text":  "this",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  301,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  11,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  302,
+                       "Length":  2,
+                       "Line":  20,
+                       "Column":  12,
+                       "Text":  "is",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  304,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  14,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  305,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  15,
+                       "Text":  "a",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  306,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  16,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  307,
+                       "Length":  3,
+                       "Line":  20,
+                       "Column":  17,
+                       "Text":  "tes",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  311,
+                       "Length":  3,
+                       "Line":  21,
+                       "Column":  1,
+                       "Text":  "   ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  314,
+                       "Length":  4,
+                       "Line":  21,
+                       "Column":  4,
+                       "Text":  "wire",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  318,
+                       "Length":  1,
+                       "Line":  21,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  319,
+                       "Length":  3,
+                       "Line":  21,
+                       "Column":  9,
+                       "Text":  "er3",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  322,
+                       "Length":  1,
+                       "Line":  21,
+                       "Column":  12,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  324,
+                       "Length":  3,
+                       "Line":  22,
+                       "Column":  1,
+                       "Text":  "   ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  327,
+                       "Length":  4,
+                       "Line":  22,
+                       "Column":  4,
+                       "Text":  "wire",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  331,
+                       "Length":  1,
+                       "Line":  22,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  332,
+                       "Length":  2,
+                       "Line":  22,
+                       "Column":  9,
+                       "Text":  "k1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  334,
+                       "Length":  1,
+                       "Line":  22,
+                       "Column":  11,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  336,
+                       "Length":  3,
+                       "Line":  23,
+                       "Column":  1,
+                       "Text":  "   ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  339,
+                       "Length":  2,
+                       "Line":  23,
+                       "Column":  4,
+                       "Text":  "//",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  341,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  6,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  342,
+                       "Length":  4,
+                       "Line":  23,
+                       "Column":  7,
+                       "Text":  "test",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  347,
+                       "Length":  3,
+                       "Line":  24,
+                       "Column":  1,
+                       "Text":  "   ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  350,
+                       "Length":  5,
+                       "Line":  24,
+                       "Column":  4,
+                       "Text":  "the5k",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  355,
+                       "Length":  1,
+                       "Line":  24,
+                       "Column":  9,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  357,
+                       "Length":  9,
+                       "Line":  25,
+                       "Column":  1,
+                       "Text":  "endmodule",
+                       "Context":  "Undetermined"
+                   }
+               ],
+    "Symbols":  [
+                    {
+                        "Scope":  "eq1",
+                        "Name":  "k1",
+                        "TokenType":  "Verilog_Variable_duplicate",
+                        "HoverText":  "duplicate? wire k1"
+                    },
+                    {
+                        "Scope":  "eq1",
+                        "Name":  "h1",
+                        "TokenType":  "Verilog_Variable",
+                        "HoverText":  "module eq1( .. input wire h1 .. )"
+                    },
+                    {
+                        "Scope":  "eq1",
+                        "Name":  "i1",
+                        "TokenType":  "Verilog_Variable",
+                        "HoverText":  "module eq1( .. input wire i1 .. )"
+                    },
+                    {
+                        "Scope":  "eq1",
+                        "Name":  "eq",
+                        "TokenType":  "Verilog_Variable",
+                        "HoverText":  "module eq1( .. output wire eq  .. )"
+                    },
+                    {
+                        "Scope":  "eq1",
+                        "Name":  "eq1",
+                        "TokenType":  "Verilog_Variable_module",
+                        "HoverText":  "module eq1  (  wire k1,\r\n h1,\r\n i1,\r\n output wire eq )"
+                    },
+                    {
+                        "Scope":  "eq1",
+                        "Name":  "p02",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "wire p02"
+                    },
+                    {
+                        "Scope":  "eq1",
+                        "Name":  "p1",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "wire p1"
+                    },
+                    {
+                        "Scope":  "eq1",
+                        "Name":  "er3",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "wire er3"
+                    }
+                ]
+}

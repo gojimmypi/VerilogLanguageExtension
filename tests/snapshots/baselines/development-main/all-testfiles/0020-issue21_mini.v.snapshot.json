@@ -1,1 +1,971 @@
-{"SchemaVersion":3,"RunName":"all-testfiles","ExtensionVersion":"0.3.6.3","GitCommit":"b1ebe2c","FilePath":"C:\\workspace\\VerilogLanguageExtension\\TestFiles\\issue21_mini.v","FileRelativePath":"TestFiles\\issue21_mini.v","ContentType":"verilog","SnapshotLength":151,"SnapshotVersion":2,"TextSha256":"f1e6dc65186bef7a8c886bb9ed27363992977e3af136d5a10a3541594a3c33e6","Errors":[],"Classifications":[{"Start":0,"Length":6,"Line":1,"Column":1,"Text":"module","Types":["module"]},{"Start":7,"Length":4,"Line":1,"Column":8,"Text":"demo","Types":["Variable_module"]},{"Start":11,"Length":1,"Line":1,"Column":12,"Text":"(","Types":["Bracket1"]},{"Start":18,"Length":5,"Line":2,"Column":6,"Text":"nout ","Types":["inout"]},{"Start":24,"Length":1,"Line":2,"Column":12,"Text":" ","Types":["Variable"]},{"Start":28,"Length":9,"Line":2,"Column":16,"Text":" \u0027h f_05,","Types":["Value"]},{"Start":43,"Length":5,"Line":3,"Column":6,"Text":"nout ","Types":["inout"]},{"Start":49,"Length":1,"Line":3,"Column":12,"Text":" ","Types":["Variable"]},{"Start":53,"Length":8,"Line":3,"Column":16,"Text":"\u0027h f_05,","Types":["Value"]},{"Start":67,"Length":5,"Line":4,"Column":6,"Text":"nout ","Types":["inout"]},{"Start":73,"Length":1,"Line":4,"Column":12,"Text":" ","Types":["Variable"]},{"Start":77,"Length":8,"Line":4,"Column":16,"Text":" \u0027hf_05,","Types":["Value"]},{"Start":91,"Length":5,"Line":5,"Column":6,"Text":"nout ","Types":["inout"]},{"Start":97,"Length":1,"Line":5,"Column":12,"Text":" ","Types":["Variable"]},{"Start":101,"Length":13,"Line":5,"Column":16,"Text":"    \u0027h  f_05,","Types":["Value"]},{"Start":120,"Length":5,"Line":6,"Column":6,"Text":"nout ","Types":["inout"]},{"Start":126,"Length":2,"Line":6,"Column":12,"Text":"b ","Types":["Variable"]},{"Start":131,"Length":2,"Line":6,"Column":17,"Text":"\n)","Types":["Value"]},{"Start":133,"Length":1,"Line":7,"Column":2,"Text":"\n","Types":["Bracket0"]},{"Start":135,"Length":1,"Line":8,"Column":2,"Text":" ","Types":["Variable"]},{"Start":139,"Length":1,"Line":8,"Column":6,"Text":";","Types":["Value"]},{"Start":142,"Length":9,"Line":9,"Column":2,"Text":"ndmodule\n","Types":["endmodule"]}],"Tags":[{"Start":0,"Length":6,"Line":1,"Column":1,"Text":"module","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_module","HoverText":"The module declaration is the only design unit in Verilog. It describes both a designâ€™s interface to other designs in the same environment, and its functional composition."},{"Start":7,"Length":4,"Line":1,"Column":8,"Text":"demo","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable_module","HoverText":"module demo(  v = 8 \u0027h f_05,\r\n inout a = 8\u0027h f_05,\r\n inout b = 8 \u0027hf_05,\r\n inout c = 8    \u0027h  f_05,\r\n inout bb = 3)"},{"Start":11,"Length":1,"Line":1,"Column":12,"Text":"(","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket1","HoverText":null},{"Start":18,"Length":5,"Line":2,"Column":6,"Text":"nout ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_inout","HoverText":"The reserved word inout is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."},{"Start":24,"Length":1,"Line":2,"Column":12,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable","HoverText":null},{"Start":28,"Length":9,"Line":2,"Column":16,"Text":" \u0027h f_05,","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":43,"Length":5,"Line":3,"Column":6,"Text":"nout ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_inout","HoverText":"The reserved word inout is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."},{"Start":49,"Length":1,"Line":3,"Column":12,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable","HoverText":null},{"Start":53,"Length":8,"Line":3,"Column":16,"Text":"\u0027h f_05,","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":67,"Length":5,"Line":4,"Column":6,"Text":"nout ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_inout","HoverText":"The reserved word inout is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."},{"Start":73,"Length":1,"Line":4,"Column":12,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable","HoverText":null},{"Start":77,"Length":8,"Line":4,"Column":16,"Text":" \u0027hf_05,","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":91,"Length":5,"Line":5,"Column":6,"Text":"nout ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_inout","HoverText":"The reserved word inout is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."},{"Start":97,"Length":1,"Line":5,"Column":12,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable","HoverText":null},{"Start":101,"Length":13,"Line":5,"Column":16,"Text":"    \u0027h  f_05,","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":120,"Length":5,"Line":6,"Column":6,"Text":"nout ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_inout","HoverText":"The reserved word inout is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."},{"Start":126,"Length":2,"Line":6,"Column":12,"Text":"b ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable","HoverText":null},{"Start":131,"Length":1,"Line":6,"Column":17,"Text":"\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":132,"Length":1,"Line":7,"Column":1,"Text":")","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":133,"Length":1,"Line":7,"Column":2,"Text":"\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":135,"Length":1,"Line":8,"Column":2,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable","HoverText":null},{"Start":139,"Length":1,"Line":8,"Column":6,"Text":";","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":142,"Length":9,"Line":9,"Column":2,"Text":"ndmodule\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_endmodule","HoverText":"The endmodule reserved word is used to close a module statement."}],"Tokens":[{"Start":0,"Length":6,"Line":1,"Column":1,"Text":"module","Context":"Undetermined"},{"Start":6,"Length":1,"Line":1,"Column":7,"Text":" ","Context":"Text"},{"Start":7,"Length":4,"Line":1,"Column":8,"Text":"demo","Context":"Text"},{"Start":11,"Length":1,"Line":1,"Column":12,"Text":"(","Context":"RoundBracketOpen"},{"Start":13,"Length":1,"Line":2,"Column":1,"Text":"(","Context":"Undetermined"},{"Start":14,"Length":4,"Line":2,"Column":2,"Text":"    ","Context":"Text"},{"Start":18,"Length":5,"Line":2,"Column":6,"Text":"inout","Context":"Text"},{"Start":24,"Length":1,"Line":2,"Column":12,"Text":" ","Context":"Text"},{"Start":25,"Length":1,"Line":2,"Column":13,"Text":"v","Context":"Text"},{"Start":26,"Length":1,"Line":2,"Column":14,"Text":" ","Context":"Text"},{"Start":27,"Length":1,"Line":2,"Column":15,"Text":"=","Context":"Text"},{"Start":28,"Length":1,"Line":2,"Column":16,"Text":" ","Context":"Text"},{"Start":29,"Length":9,"Line":2,"Column":17,"Text":"8 \u0027h f_05","Context":"Text"},{"Start":37,"Length":1,"Line":2,"Column":25,"Text":",","Context":"Text"},{"Start":60,"Length":1,"Line":3,"Column":23,"Text":",","Context":"Undetermined"},{"Start":61,"Length":4,"Line":3,"Column":24,"Text":"    ","Context":"Text"},{"Start":61,"Length":5,"Line":3,"Column":24,"Text":"inout","Context":"Text"},{"Start":61,"Length":1,"Line":3,"Column":24,"Text":" ","Context":"Text"},{"Start":61,"Length":1,"Line":3,"Column":24,"Text":"a","Context":"Text"},{"Start":61,"Length":1,"Line":3,"Column":24,"Text":" ","Context":"Text"},{"Start":61,"Length":1,"Line":3,"Column":24,"Text":"=","Context":"Text"},{"Start":61,"Length":1,"Line":3,"Column":24,"Text":" ","Context":"Text"},{"Start":61,"Length":8,"Line":3,"Column":24,"Text":"8\u0027h f_05","Context":"Text"},{"Start":61,"Length":1,"Line":3,"Column":24,"Text":",","Context":"Text"},{"Start":84,"Length":1,"Line":4,"Column":23,"Text":",","Context":"Undetermined"},{"Start":85,"Length":4,"Line":4,"Column":24,"Text":"    ","Context":"Text"},{"Start":85,"Length":5,"Line":4,"Column":24,"Text":"inout","Context":"Text"},{"Start":85,"Length":1,"Line":4,"Column":24,"Text":" ","Context":"Text"},{"Start":85,"Length":1,"Line":4,"Column":24,"Text":"b","Context":"Text"},{"Start":85,"Length":1,"Line":4,"Column":24,"Text":" ","Context":"Text"},{"Start":85,"Length":1,"Line":4,"Column":24,"Text":"=","Context":"Text"},{"Start":85,"Length":1,"Line":4,"Column":24,"Text":" ","Context":"Text"},{"Start":85,"Length":8,"Line":4,"Column":24,"Text":"8 \u0027hf_05","Context":"Text"},{"Start":85,"Length":1,"Line":4,"Column":24,"Text":",","Context":"Text"},{"Start":113,"Length":1,"Line":5,"Column":28,"Text":",","Context":"Undetermined"},{"Start":114,"Length":4,"Line":5,"Column":29,"Text":"    ","Context":"Text"},{"Start":114,"Length":5,"Line":5,"Column":29,"Text":"inout","Context":"Text"},{"Start":114,"Length":1,"Line":5,"Column":29,"Text":" ","Context":"Text"},{"Start":114,"Length":1,"Line":5,"Column":29,"Text":"c","Context":"Text"},{"Start":114,"Length":1,"Line":5,"Column":29,"Text":" ","Context":"Text"},{"Start":114,"Length":1,"Line":5,"Column":29,"Text":"=","Context":"Text"},{"Start":114,"Length":1,"Line":5,"Column":29,"Text":" ","Context":"Text"},{"Start":114,"Length":13,"Line":5,"Column":29,"Text":"8    \u0027h  f_05","Context":"Text"},{"Start":114,"Length":1,"Line":5,"Column":29,"Text":",","Context":"Text"},{"Start":115,"Length":1,"Line":6,"Column":1,"Text":",","Context":"Undetermined"},{"Start":116,"Length":4,"Line":6,"Column":2,"Text":"    ","Context":"Text"},{"Start":120,"Length":5,"Line":6,"Column":6,"Text":"inout","Context":"Text"},{"Start":127,"Length":1,"Line":6,"Column":13,"Text":" ","Context":"Text"},{"Start":128,"Length":2,"Line":6,"Column":14,"Text":"bb","Context":"Text"},{"Start":130,"Length":1,"Line":6,"Column":16,"Text":" ","Context":"Text"},{"Start":131,"Length":1,"Line":6,"Column":17,"Text":"=","Context":"Text"},{"Start":131,"Length":1,"Line":6,"Column":17,"Text":" ","Context":"Text"},{"Start":131,"Length":1,"Line":6,"Column":17,"Text":"3","Context":"Text"},{"Start":132,"Length":1,"Line":7,"Column":1,"Text":"3","Context":"Undetermined"},{"Start":133,"Length":1,"Line":7,"Column":2,"Text":")","Context":"RoundBracketClose"},{"Start":134,"Length":1,"Line":8,"Column":1,"Text":")","Context":"Undetermined"},{"Start":135,"Length":1,"Line":8,"Column":2,"Text":"v","Context":"Text"},{"Start":137,"Length":1,"Line":8,"Column":4,"Text":" ","Context":"Text"},{"Start":138,"Length":1,"Line":8,"Column":5,"Text":"=","Context":"Text"},{"Start":139,"Length":1,"Line":8,"Column":6,"Text":" ","Context":"Text"},{"Start":140,"Length":1,"Line":8,"Column":7,"Text":"1","Context":"Text"},{"Start":140,"Length":1,"Line":8,"Column":7,"Text":";","Context":"Text"},{"Start":141,"Length":1,"Line":9,"Column":1,"Text":";","Context":"Undetermined"},{"Start":142,"Length":9,"Line":9,"Column":2,"Text":"endmodule","Context":"Text"},{"Start":151,"Length":9,"Line":10,"Column":1,"Text":"endmodule","Context":"Undetermined"}],"Symbols":[{"Scope":"demo","Name":"v","TokenType":"Verilog_Variable","HoverText":"module demo( .. inout v = 8 \u0027h f_05 .. )"},{"Scope":"demo","Name":"a","TokenType":"Verilog_Variable","HoverText":"module demo( .. inout a = 8\u0027h f_05 .. )"},{"Scope":"demo","Name":"b","TokenType":"Verilog_Variable","HoverText":"module demo( .. inout b = 8 \u0027hf_05 .. )"},{"Scope":"demo","Name":"c","TokenType":"Verilog_Variable","HoverText":"module demo( .. inout c = 8    \u0027h  f_05 .. )"},{"Scope":"demo","Name":"bb","TokenType":"Verilog_Variable","HoverText":"module demo( .. inout bb = 3 .. )"},{"Scope":"demo","Name":"demo","TokenType":"Verilog_Variable_module","HoverText":"module demo(  v = 8 \u0027h f_05,\r\n inout a = 8\u0027h f_05,\r\n inout b = 8 \u0027hf_05,\r\n inout c = 8    \u0027h  f_05,\r\n inout bb = 3)"},{"Scope":"__CONST__","Name":"8 \u0027h f_05","TokenType":"Verilog_Value","HoverText":"8\u0027HF05 = (8 bit Hex) F05; 111100000101 Warning: Found 12 bits for 8 value!"},{"Scope":"__CONST__","Name":"8\u0027h f_05","TokenType":"Verilog_Value","HoverText":"8\u0027HF05 = (8 bit Hex) F05; 111100000101 Warning: Found 12 bits for 8 value!"},{"Scope":"__CONST__","Name":"8 \u0027hf_05","TokenType":"Verilog_Value","HoverText":"8\u0027HF05 = (8 bit Hex) F05; 111100000101 Warning: Found 12 bits for 8 value!"},{"Scope":"__CONST__","Name":"8    \u0027h  f_05","TokenType":"Verilog_Value","HoverText":"8\u0027HF05 = (8 bit Hex) F05; 111100000101 Warning: Found 12 bits for 8 value!"}]}
+{
+    "SchemaVersion":  3,
+    "RunName":  "all-testfiles",
+    "ExtensionVersion":  "0.3.6.3",
+    "GitCommit":  "d4aa870",
+    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\issue21_mini.v",
+    "FileRelativePath":  "TestFiles\\issue21_mini.v",
+    "ContentType":  "verilog",
+    "SnapshotLength":  151,
+    "SnapshotVersion":  2,
+    "TextSha256":  "f1e6dc65186bef7a8c886bb9ed27363992977e3af136d5a10a3541594a3c33e6",
+    "Errors":  [
+
+               ],
+    "Classifications":  [
+                            {
+                                "Start":  0,
+                                "Length":  6,
+                                "Line":  1,
+                                "Column":  1,
+                                "Text":  "module",
+                                "Types":  [
+                                              "module"
+                                          ]
+                            },
+                            {
+                                "Start":  7,
+                                "Length":  4,
+                                "Line":  1,
+                                "Column":  8,
+                                "Text":  "demo",
+                                "Types":  [
+                                              "Variable_module"
+                                          ]
+                            },
+                            {
+                                "Start":  11,
+                                "Length":  1,
+                                "Line":  1,
+                                "Column":  12,
+                                "Text":  "(",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  17,
+                                "Length":  5,
+                                "Line":  2,
+                                "Column":  5,
+                                "Text":  "inout",
+                                "Types":  [
+                                              "inout"
+                                          ]
+                            },
+                            {
+                                "Start":  23,
+                                "Length":  1,
+                                "Line":  2,
+                                "Column":  11,
+                                "Text":  "v",
+                                "Types":  [
+                                              "Variable"
+                                          ]
+                            },
+                            {
+                                "Start":  27,
+                                "Length":  9,
+                                "Line":  2,
+                                "Column":  15,
+                                "Text":  "8 \u0027h f_05",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  42,
+                                "Length":  5,
+                                "Line":  3,
+                                "Column":  5,
+                                "Text":  "inout",
+                                "Types":  [
+                                              "inout"
+                                          ]
+                            },
+                            {
+                                "Start":  48,
+                                "Length":  1,
+                                "Line":  3,
+                                "Column":  11,
+                                "Text":  "a",
+                                "Types":  [
+                                              "Variable"
+                                          ]
+                            },
+                            {
+                                "Start":  52,
+                                "Length":  8,
+                                "Line":  3,
+                                "Column":  15,
+                                "Text":  "8\u0027h f_05",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  66,
+                                "Length":  5,
+                                "Line":  4,
+                                "Column":  5,
+                                "Text":  "inout",
+                                "Types":  [
+                                              "inout"
+                                          ]
+                            },
+                            {
+                                "Start":  72,
+                                "Length":  1,
+                                "Line":  4,
+                                "Column":  11,
+                                "Text":  "b",
+                                "Types":  [
+                                              "Variable"
+                                          ]
+                            },
+                            {
+                                "Start":  76,
+                                "Length":  8,
+                                "Line":  4,
+                                "Column":  15,
+                                "Text":  "8 \u0027hf_05",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  90,
+                                "Length":  5,
+                                "Line":  5,
+                                "Column":  5,
+                                "Text":  "inout",
+                                "Types":  [
+                                              "inout"
+                                          ]
+                            },
+                            {
+                                "Start":  96,
+                                "Length":  1,
+                                "Line":  5,
+                                "Column":  11,
+                                "Text":  "c",
+                                "Types":  [
+                                              "Variable"
+                                          ]
+                            },
+                            {
+                                "Start":  100,
+                                "Length":  13,
+                                "Line":  5,
+                                "Column":  15,
+                                "Text":  "8    \u0027h  f_05",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  119,
+                                "Length":  5,
+                                "Line":  6,
+                                "Column":  5,
+                                "Text":  "inout",
+                                "Types":  [
+                                              "inout"
+                                          ]
+                            },
+                            {
+                                "Start":  125,
+                                "Length":  2,
+                                "Line":  6,
+                                "Column":  11,
+                                "Text":  "bb",
+                                "Types":  [
+                                              "Variable"
+                                          ]
+                            },
+                            {
+                                "Start":  130,
+                                "Length":  1,
+                                "Line":  6,
+                                "Column":  16,
+                                "Text":  "3",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  132,
+                                "Length":  1,
+                                "Line":  7,
+                                "Column":  1,
+                                "Text":  ")",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  134,
+                                "Length":  1,
+                                "Line":  8,
+                                "Column":  1,
+                                "Text":  "v",
+                                "Types":  [
+                                              "Variable"
+                                          ]
+                            },
+                            {
+                                "Start":  138,
+                                "Length":  1,
+                                "Line":  8,
+                                "Column":  5,
+                                "Text":  "1",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  141,
+                                "Length":  9,
+                                "Line":  9,
+                                "Column":  1,
+                                "Text":  "endmodule",
+                                "Types":  [
+                                              "endmodule"
+                                          ]
+                            }
+                        ],
+    "Tags":  [
+                 {
+                     "Start":  0,
+                     "Length":  6,
+                     "Line":  1,
+                     "Column":  1,
+                     "Text":  "module",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_module",
+                     "HoverText":  "The module declaration is the only design unit in Verilog. It describes both a designÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢s interface to other designs in the same environment, and its functional composition."
+                 },
+                 {
+                     "Start":  7,
+                     "Length":  4,
+                     "Line":  1,
+                     "Column":  8,
+                     "Text":  "demo",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_module",
+                     "HoverText":  "module demo(  v = 8 \u0027h f_05,\r\n inout a = 8\u0027h f_05,\r\n inout b = 8 \u0027hf_05,\r\n inout c = 8    \u0027h  f_05,\r\n inout bb = 3)"
+                 },
+                 {
+                     "Start":  11,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  12,
+                     "Text":  "(",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  17,
+                     "Length":  5,
+                     "Line":  2,
+                     "Column":  5,
+                     "Text":  "inout",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_inout",
+                     "HoverText":  "The reserved word inout is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
+                 },
+                 {
+                     "Start":  23,
+                     "Length":  1,
+                     "Line":  2,
+                     "Column":  11,
+                     "Text":  "v",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable",
+                     "HoverText":  "module demo( .. inout v = 8 \u0027h f_05 .. )"
+                 },
+                 {
+                     "Start":  27,
+                     "Length":  9,
+                     "Line":  2,
+                     "Column":  15,
+                     "Text":  "8 \u0027h f_05",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  "8\u0027HF05 = (8 bit Hex) F05; 111100000101 Warning: Found 12 bits for 8 value!"
+                 },
+                 {
+                     "Start":  42,
+                     "Length":  5,
+                     "Line":  3,
+                     "Column":  5,
+                     "Text":  "inout",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_inout",
+                     "HoverText":  "The reserved word inout is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
+                 },
+                 {
+                     "Start":  48,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  11,
+                     "Text":  "a",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable",
+                     "HoverText":  "module demo( .. inout a = 8\u0027h f_05 .. )"
+                 },
+                 {
+                     "Start":  52,
+                     "Length":  8,
+                     "Line":  3,
+                     "Column":  15,
+                     "Text":  "8\u0027h f_05",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  "8\u0027HF05 = (8 bit Hex) F05; 111100000101 Warning: Found 12 bits for 8 value!"
+                 },
+                 {
+                     "Start":  66,
+                     "Length":  5,
+                     "Line":  4,
+                     "Column":  5,
+                     "Text":  "inout",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_inout",
+                     "HoverText":  "The reserved word inout is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
+                 },
+                 {
+                     "Start":  72,
+                     "Length":  1,
+                     "Line":  4,
+                     "Column":  11,
+                     "Text":  "b",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable",
+                     "HoverText":  "module demo( .. inout b = 8 \u0027hf_05 .. )"
+                 },
+                 {
+                     "Start":  76,
+                     "Length":  8,
+                     "Line":  4,
+                     "Column":  15,
+                     "Text":  "8 \u0027hf_05",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  "8\u0027HF05 = (8 bit Hex) F05; 111100000101 Warning: Found 12 bits for 8 value!"
+                 },
+                 {
+                     "Start":  90,
+                     "Length":  5,
+                     "Line":  5,
+                     "Column":  5,
+                     "Text":  "inout",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_inout",
+                     "HoverText":  "The reserved word inout is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
+                 },
+                 {
+                     "Start":  96,
+                     "Length":  1,
+                     "Line":  5,
+                     "Column":  11,
+                     "Text":  "c",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable",
+                     "HoverText":  "module demo( .. inout c = 8    \u0027h  f_05 .. )"
+                 },
+                 {
+                     "Start":  100,
+                     "Length":  13,
+                     "Line":  5,
+                     "Column":  15,
+                     "Text":  "8    \u0027h  f_05",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  "8\u0027HF05 = (8 bit Hex) F05; 111100000101 Warning: Found 12 bits for 8 value!"
+                 },
+                 {
+                     "Start":  119,
+                     "Length":  5,
+                     "Line":  6,
+                     "Column":  5,
+                     "Text":  "inout",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_inout",
+                     "HoverText":  "The reserved word inout is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
+                 },
+                 {
+                     "Start":  125,
+                     "Length":  2,
+                     "Line":  6,
+                     "Column":  11,
+                     "Text":  "bb",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable",
+                     "HoverText":  "module demo( .. inout bb = 3 .. )"
+                 },
+                 {
+                     "Start":  130,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  16,
+                     "Text":  "3",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  132,
+                     "Length":  1,
+                     "Line":  7,
+                     "Column":  1,
+                     "Text":  ")",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  134,
+                     "Length":  1,
+                     "Line":  8,
+                     "Column":  1,
+                     "Text":  "v",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable",
+                     "HoverText":  "module demo( .. inout v = 8 \u0027h f_05 .. )"
+                 },
+                 {
+                     "Start":  138,
+                     "Length":  1,
+                     "Line":  8,
+                     "Column":  5,
+                     "Text":  "1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  141,
+                     "Length":  9,
+                     "Line":  9,
+                     "Column":  1,
+                     "Text":  "endmodule",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_endmodule",
+                     "HoverText":  "The endmodule reserved word is used to close a module statement."
+                 }
+             ],
+    "Tokens":  [
+                   {
+                       "Start":  0,
+                       "Length":  6,
+                       "Line":  1,
+                       "Column":  1,
+                       "Text":  "module",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  6,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  7,
+                       "Length":  4,
+                       "Line":  1,
+                       "Column":  8,
+                       "Text":  "demo",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  11,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  12,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  13,
+                       "Length":  4,
+                       "Line":  2,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  17,
+                       "Length":  5,
+                       "Line":  2,
+                       "Column":  5,
+                       "Text":  "inout",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  22,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  10,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  23,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  11,
+                       "Text":  "v",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  24,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  12,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  25,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  13,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  26,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  14,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  27,
+                       "Length":  9,
+                       "Line":  2,
+                       "Column":  15,
+                       "Text":  "8 \u0027h f_05",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  36,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  24,
+                       "Text":  ",",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  38,
+                       "Length":  4,
+                       "Line":  3,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  42,
+                       "Length":  5,
+                       "Line":  3,
+                       "Column":  5,
+                       "Text":  "inout",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  47,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  10,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  48,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  11,
+                       "Text":  "a",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  49,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  12,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  50,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  13,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  51,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  14,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  52,
+                       "Length":  8,
+                       "Line":  3,
+                       "Column":  15,
+                       "Text":  "8\u0027h f_05",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  60,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  23,
+                       "Text":  ",",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  62,
+                       "Length":  4,
+                       "Line":  4,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  66,
+                       "Length":  5,
+                       "Line":  4,
+                       "Column":  5,
+                       "Text":  "inout",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  71,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  10,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  72,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  11,
+                       "Text":  "b",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  73,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  12,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  74,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  13,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  75,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  14,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  76,
+                       "Length":  8,
+                       "Line":  4,
+                       "Column":  15,
+                       "Text":  "8 \u0027hf_05",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  84,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  23,
+                       "Text":  ",",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  86,
+                       "Length":  4,
+                       "Line":  5,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  90,
+                       "Length":  5,
+                       "Line":  5,
+                       "Column":  5,
+                       "Text":  "inout",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  95,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  10,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  96,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  11,
+                       "Text":  "c",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  97,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  12,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  98,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  13,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  99,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  14,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  100,
+                       "Length":  13,
+                       "Line":  5,
+                       "Column":  15,
+                       "Text":  "8    \u0027h  f_05",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  113,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  28,
+                       "Text":  ",",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  115,
+                       "Length":  4,
+                       "Line":  6,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  119,
+                       "Length":  5,
+                       "Line":  6,
+                       "Column":  5,
+                       "Text":  "inout",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  124,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  10,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  125,
+                       "Length":  2,
+                       "Line":  6,
+                       "Column":  11,
+                       "Text":  "bb",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  127,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  13,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  128,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  14,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  129,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  15,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  130,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  16,
+                       "Text":  "3",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  132,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  1,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  134,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  1,
+                       "Text":  "v",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  135,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  2,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  136,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  3,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  137,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  4,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  138,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  5,
+                       "Text":  "1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  139,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  6,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  141,
+                       "Length":  9,
+                       "Line":  9,
+                       "Column":  1,
+                       "Text":  "endmodule",
+                       "Context":  "Undetermined"
+                   }
+               ],
+    "Symbols":  [
+                    {
+                        "Scope":  "demo",
+                        "Name":  "v",
+                        "TokenType":  "Verilog_Variable",
+                        "HoverText":  "module demo( .. inout v = 8 \u0027h f_05 .. )"
+                    },
+                    {
+                        "Scope":  "demo",
+                        "Name":  "a",
+                        "TokenType":  "Verilog_Variable",
+                        "HoverText":  "module demo( .. inout a = 8\u0027h f_05 .. )"
+                    },
+                    {
+                        "Scope":  "demo",
+                        "Name":  "b",
+                        "TokenType":  "Verilog_Variable",
+                        "HoverText":  "module demo( .. inout b = 8 \u0027hf_05 .. )"
+                    },
+                    {
+                        "Scope":  "demo",
+                        "Name":  "c",
+                        "TokenType":  "Verilog_Variable",
+                        "HoverText":  "module demo( .. inout c = 8    \u0027h  f_05 .. )"
+                    },
+                    {
+                        "Scope":  "demo",
+                        "Name":  "bb",
+                        "TokenType":  "Verilog_Variable",
+                        "HoverText":  "module demo( .. inout bb = 3 .. )"
+                    },
+                    {
+                        "Scope":  "demo",
+                        "Name":  "demo",
+                        "TokenType":  "Verilog_Variable_module",
+                        "HoverText":  "module demo(  v = 8 \u0027h f_05,\r\n inout a = 8\u0027h f_05,\r\n inout b = 8 \u0027hf_05,\r\n inout c = 8    \u0027h  f_05,\r\n inout bb = 3)"
+                    },
+                    {
+                        "Scope":  "__CONST__",
+                        "Name":  "8 \u0027h f_05",
+                        "TokenType":  "Verilog_Value",
+                        "HoverText":  "8\u0027HF05 = (8 bit Hex) F05; 111100000101 Warning: Found 12 bits for 8 value!"
+                    },
+                    {
+                        "Scope":  "__CONST__",
+                        "Name":  "8\u0027h f_05",
+                        "TokenType":  "Verilog_Value",
+                        "HoverText":  "8\u0027HF05 = (8 bit Hex) F05; 111100000101 Warning: Found 12 bits for 8 value!"
+                    },
+                    {
+                        "Scope":  "__CONST__",
+                        "Name":  "8 \u0027hf_05",
+                        "TokenType":  "Verilog_Value",
+                        "HoverText":  "8\u0027HF05 = (8 bit Hex) F05; 111100000101 Warning: Found 12 bits for 8 value!"
+                    },
+                    {
+                        "Scope":  "__CONST__",
+                        "Name":  "8    \u0027h  f_05",
+                        "TokenType":  "Verilog_Value",
+                        "HoverText":  "8\u0027HF05 = (8 bit Hex) F05; 111100000101 Warning: Found 12 bits for 8 value!"
+                    }
+                ]
+}

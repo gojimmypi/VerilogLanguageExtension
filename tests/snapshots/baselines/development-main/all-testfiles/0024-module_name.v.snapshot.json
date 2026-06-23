@@ -1,1 +1,851 @@
-{"SchemaVersion":3,"RunName":"all-testfiles","ExtensionVersion":"0.3.6.3","GitCommit":"b1ebe2c","FilePath":"C:\\workspace\\VerilogLanguageExtension\\TestFiles\\module_name.v","FileRelativePath":"TestFiles\\module_name.v","ContentType":"verilog","SnapshotLength":131,"SnapshotVersion":2,"TextSha256":"16e262949d9a59a659f9d601f3b4fc9be661c5cba622dde9e8d362b10f18e9e7","Errors":[],"Classifications":[{"Start":0,"Length":8,"Line":1,"Column":1,"Text":"// After","Types":["comment"]},{"Start":22,"Length":6,"Line":3,"Column":13,"Text":"2(\n  r","Types":["Variable_module"]},{"Start":28,"Length":1,"Line":4,"Column":4,"Text":"e","Types":["Bracket0 - reg - (TRANSIENT)"]},{"Start":29,"Length":2,"Line":4,"Column":5,"Text":"g ","Types":["reg"]},{"Start":32,"Length":3,"Line":4,"Column":8,"Text":"lk)","Types":["Variable"]},{"Start":35,"Length":1,"Line":4,"Column":11,"Text":";","Types":["Bracket0"]},{"Start":41,"Length":4,"Line":6,"Column":4,"Text":"ire ","Types":["wire"]},{"Start":46,"Length":1,"Line":6,"Column":9,"Text":";","Types":["Variable_wire"]},{"Start":49,"Length":18,"Line":7,"Column":2,"Text":"ndmodule\n\nmodule t","Types":["endmodule"]},{"Start":75,"Length":3,"Line":9,"Column":17,"Text":"lk)","Types":["Variable_module"]},{"Start":78,"Length":1,"Line":9,"Column":20,"Text":";","Types":["Bracket0"]},{"Start":79,"Length":3,"Line":9,"Column":21,"Text":"\n  ","Types":["reg"]},{"Start":83,"Length":2,"Line":10,"Column":4,"Text":" o","Types":["Variable_wire"]},{"Start":85,"Length":1,"Line":10,"Column":6,"Text":"t","Types":["Variable_module - Variable_wire - (TRANSIENT)"]},{"Start":86,"Length":1,"Line":10,"Column":7,"Text":"h","Types":["Bracket0 - Variable_module - (TRANSIENT)"]},{"Start":87,"Length":4,"Line":10,"Column":8,"Text":"er2 ","Types":["Variable_module"]},{"Start":92,"Length":7,"Line":10,"Column":13,"Text":"yOther(","Types":["Variable_wire"]},{"Start":99,"Length":1,"Line":10,"Column":20,"Text":"c","Types":["Bracket0"]},{"Start":100,"Length":3,"Line":10,"Column":21,"Text":"lk)","Types":["Variable_wire"]},{"Start":103,"Length":1,"Line":10,"Column":24,"Text":";","Types":["Bracket0"]},{"Start":110,"Length":7,"Line":11,"Column":6,"Text":"yOther\n","Types":["Variable_wire"]}],"Tags":[{"Start":0,"Length":2,"Line":1,"Column":1,"Text":"//","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":2,"Length":1,"Line":1,"Column":3,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":3,"Length":5,"Line":1,"Column":4,"Text":"After","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":22,"Length":6,"Line":3,"Column":13,"Text":"2(\n  r","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable_module","HoverText":null},{"Start":28,"Length":1,"Line":4,"Column":4,"Text":"e","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":28,"Length":3,"Line":4,"Column":4,"Text":"eg ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_reg","HoverText":"A reg is an abstraction of a data storage element. The reg stores a value from one assignment to the next. An assignment statement in a procedure acts as a trigger that changes the value in the data storage element. Reg data types can only be assigned inside of the procedural, initial, always blocks or when they are declared."},{"Start":32,"Length":3,"Line":4,"Column":8,"Text":"lk)","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable","HoverText":null},{"Start":35,"Length":1,"Line":4,"Column":11,"Text":";","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":41,"Length":4,"Line":6,"Column":4,"Text":"ire ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_wire","HoverText":"Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."},{"Start":46,"Length":1,"Line":6,"Column":9,"Text":";","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable_wire","HoverText":null},{"Start":49,"Length":9,"Line":7,"Column":2,"Text":"ndmodule\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_endmodule","HoverText":"The endmodule reserved word is used to close a module statement."},{"Start":58,"Length":9,"Line":8,"Column":1,"Text":"\nmodule t","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_endmodule","HoverText":"The endmodule reserved word is used to close a module statement."},{"Start":75,"Length":3,"Line":9,"Column":17,"Text":"lk)","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable_module","HoverText":null},{"Start":78,"Length":1,"Line":9,"Column":20,"Text":";","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":79,"Length":3,"Line":9,"Column":21,"Text":"\n  ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_reg","HoverText":"A reg is an abstraction of a data storage element. The reg stores a value from one assignment to the next. An assignment statement in a procedure acts as a trigger that changes the value in the data storage element. Reg data types can only be assigned inside of the procedural, initial, always blocks or when they are declared."},{"Start":83,"Length":3,"Line":10,"Column":4,"Text":" ot","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable_wire","HoverText":null},{"Start":86,"Length":1,"Line":10,"Column":7,"Text":"h","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":85,"Length":6,"Line":10,"Column":6,"Text":"ther2 ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable_module","HoverText":null},{"Start":92,"Length":7,"Line":10,"Column":13,"Text":"yOther(","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable_wire","HoverText":null},{"Start":99,"Length":1,"Line":10,"Column":20,"Text":"c","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":100,"Length":3,"Line":10,"Column":21,"Text":"lk)","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable_wire","HoverText":null},{"Start":103,"Length":1,"Line":10,"Column":24,"Text":";","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":110,"Length":7,"Line":11,"Column":6,"Text":"yOther\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable_wire","HoverText":null}],"Tokens":[{"Start":0,"Length":2,"Line":1,"Column":1,"Text":"//","Context":"Text"},{"Start":2,"Length":1,"Line":1,"Column":3,"Text":" ","Context":"Text"},{"Start":3,"Length":5,"Line":1,"Column":4,"Text":"After","Context":"Text"},{"Start":9,"Length":5,"Line":2,"Column":1,"Text":"After","Context":"Undetermined"},{"Start":10,"Length":11,"Line":3,"Column":1,"Text":"Aftermodule","Context":"Undetermined"},{"Start":21,"Length":1,"Line":3,"Column":12,"Text":" ","Context":"Text"},{"Start":22,"Length":6,"Line":3,"Column":13,"Text":"other2","Context":"Text"},{"Start":24,"Length":1,"Line":3,"Column":15,"Text":"(","Context":"RoundBracketOpen"},{"Start":25,"Length":1,"Line":4,"Column":1,"Text":"(","Context":"Undetermined"},{"Start":26,"Length":2,"Line":4,"Column":2,"Text":"  ","Context":"Text"},{"Start":28,"Length":3,"Line":4,"Column":4,"Text":"reg","Context":"Text"},{"Start":31,"Length":1,"Line":4,"Column":7,"Text":" ","Context":"Text"},{"Start":32,"Length":3,"Line":4,"Column":8,"Text":"clk","Context":"Text"},{"Start":35,"Length":1,"Line":4,"Column":11,"Text":")","Context":"RoundBracketClose"},{"Start":36,"Length":1,"Line":4,"Column":12,"Text":";","Context":"Text"},{"Start":37,"Length":1,"Line":5,"Column":1,"Text":";","Context":"Undetermined"},{"Start":46,"Length":1,"Line":6,"Column":9,"Text":";","Context":"Undetermined"},{"Start":47,"Length":2,"Line":6,"Column":10,"Text":"  ","Context":"Text"},{"Start":47,"Length":4,"Line":6,"Column":10,"Text":"wire","Context":"Text"},{"Start":47,"Length":1,"Line":6,"Column":10,"Text":" ","Context":"Text"},{"Start":47,"Length":1,"Line":6,"Column":10,"Text":"a","Context":"Text"},{"Start":47,"Length":1,"Line":6,"Column":10,"Text":";","Context":"Text"},{"Start":48,"Length":1,"Line":7,"Column":1,"Text":";","Context":"Undetermined"},{"Start":49,"Length":9,"Line":7,"Column":2,"Text":"endmodule","Context":"Text"},{"Start":58,"Length":9,"Line":8,"Column":1,"Text":"endmodule","Context":"Undetermined"},{"Start":59,"Length":15,"Line":9,"Column":1,"Text":"endmodulemodule","Context":"Undetermined"},{"Start":74,"Length":1,"Line":9,"Column":16,"Text":" ","Context":"Text"},{"Start":75,"Length":3,"Line":9,"Column":17,"Text":"top","Context":"Text"},{"Start":78,"Length":1,"Line":9,"Column":20,"Text":"(","Context":"RoundBracketOpen"},{"Start":79,"Length":3,"Line":9,"Column":21,"Text":"reg","Context":"Text"},{"Start":79,"Length":1,"Line":9,"Column":21,"Text":" ","Context":"Text"},{"Start":79,"Length":3,"Line":9,"Column":21,"Text":"clk","Context":"Text"},{"Start":79,"Length":1,"Line":9,"Column":21,"Text":")","Context":"RoundBracketClose"},{"Start":79,"Length":1,"Line":9,"Column":21,"Text":";","Context":"Text"},{"Start":103,"Length":1,"Line":10,"Column":24,"Text":";","Context":"Undetermined"},{"Start":104,"Length":4,"Line":10,"Column":25,"Text":"    ","Context":"Text"},{"Start":104,"Length":6,"Line":10,"Column":25,"Text":"other2","Context":"Text"},{"Start":104,"Length":1,"Line":10,"Column":25,"Text":" ","Context":"Text"},{"Start":104,"Length":7,"Line":10,"Column":25,"Text":"myOther","Context":"Text"},{"Start":104,"Length":1,"Line":10,"Column":25,"Text":"(","Context":"RoundBracketOpen"},{"Start":104,"Length":3,"Line":10,"Column":25,"Text":"clk","Context":"Text"},{"Start":104,"Length":1,"Line":10,"Column":25,"Text":")","Context":"RoundBracketClose"},{"Start":104,"Length":1,"Line":10,"Column":25,"Text":";","Context":"Text"},{"Start":105,"Length":1,"Line":11,"Column":1,"Text":";","Context":"Undetermined"},{"Start":106,"Length":4,"Line":11,"Column":2,"Text":"    ","Context":"Text"},{"Start":110,"Length":7,"Line":11,"Column":6,"Text":"myOther","Context":"Text"},{"Start":117,"Length":16,"Line":12,"Column":1,"Text":"myOtherendmodule","Context":"Undetermined"},{"Start":127,"Length":16,"Line":13,"Column":1,"Text":"myOtherendmodule","Context":"Undetermined"},{"Start":128,"Length":16,"Line":14,"Column":1,"Text":"myOtherendmodule","Context":"Undetermined"},{"Start":129,"Length":16,"Line":15,"Column":1,"Text":"myOtherendmodule","Context":"Undetermined"},{"Start":130,"Length":16,"Line":16,"Column":1,"Text":"myOtherendmodule","Context":"Undetermined"},{"Start":131,"Length":16,"Line":17,"Column":1,"Text":"myOtherendmodule","Context":"Undetermined"}],"Symbols":[{"Scope":"other2","Name":"clk","TokenType":"Verilog_Variable","HoverText":"module other2( .. reg clk .. )"},{"Scope":"other2","Name":"other2","TokenType":"Verilog_Variable_module","HoverText":"module other2(  clk)"},{"Scope":"other2","Name":"a","TokenType":"Verilog_Variable_wire","HoverText":"wire a"},{"Scope":"top","Name":"clk","TokenType":"Verilog_Variable_wire","HoverText":"module top( .. reg clk .. )"},{"Scope":"top","Name":"top","TokenType":"Verilog_Variable_module","HoverText":"module top( clk)"},{"Scope":"top","Name":"myOther","TokenType":"Verilog_Variable_wire","HoverText":"module other2 myOther(clk)"}]}
+{
+    "SchemaVersion":  3,
+    "RunName":  "all-testfiles",
+    "ExtensionVersion":  "0.3.6.3",
+    "GitCommit":  "d4aa870",
+    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\module_name.v",
+    "FileRelativePath":  "TestFiles\\module_name.v",
+    "ContentType":  "verilog",
+    "SnapshotLength":  131,
+    "SnapshotVersion":  2,
+    "TextSha256":  "16e262949d9a59a659f9d601f3b4fc9be661c5cba622dde9e8d362b10f18e9e7",
+    "Errors":  [
+
+               ],
+    "Classifications":  [
+                            {
+                                "Start":  0,
+                                "Length":  8,
+                                "Line":  1,
+                                "Column":  1,
+                                "Text":  "// After",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  10,
+                                "Length":  6,
+                                "Line":  3,
+                                "Column":  1,
+                                "Text":  "module",
+                                "Types":  [
+                                              "module"
+                                          ]
+                            },
+                            {
+                                "Start":  17,
+                                "Length":  6,
+                                "Line":  3,
+                                "Column":  8,
+                                "Text":  "other2",
+                                "Types":  [
+                                              "Variable_module"
+                                          ]
+                            },
+                            {
+                                "Start":  23,
+                                "Length":  1,
+                                "Line":  3,
+                                "Column":  14,
+                                "Text":  "(",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  27,
+                                "Length":  3,
+                                "Line":  4,
+                                "Column":  3,
+                                "Text":  "reg",
+                                "Types":  [
+                                              "reg"
+                                          ]
+                            },
+                            {
+                                "Start":  31,
+                                "Length":  3,
+                                "Line":  4,
+                                "Column":  7,
+                                "Text":  "clk",
+                                "Types":  [
+                                              "Variable"
+                                          ]
+                            },
+                            {
+                                "Start":  34,
+                                "Length":  1,
+                                "Line":  4,
+                                "Column":  10,
+                                "Text":  ")",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  40,
+                                "Length":  4,
+                                "Line":  6,
+                                "Column":  3,
+                                "Text":  "wire",
+                                "Types":  [
+                                              "wire"
+                                          ]
+                            },
+                            {
+                                "Start":  45,
+                                "Length":  1,
+                                "Line":  6,
+                                "Column":  8,
+                                "Text":  "a",
+                                "Types":  [
+                                              "Variable_wire"
+                                          ]
+                            },
+                            {
+                                "Start":  48,
+                                "Length":  9,
+                                "Line":  7,
+                                "Column":  1,
+                                "Text":  "endmodule",
+                                "Types":  [
+                                              "endmodule"
+                                          ]
+                            },
+                            {
+                                "Start":  59,
+                                "Length":  6,
+                                "Line":  9,
+                                "Column":  1,
+                                "Text":  "module",
+                                "Types":  [
+                                              "module"
+                                          ]
+                            },
+                            {
+                                "Start":  66,
+                                "Length":  3,
+                                "Line":  9,
+                                "Column":  8,
+                                "Text":  "top",
+                                "Types":  [
+                                              "Variable_module"
+                                          ]
+                            },
+                            {
+                                "Start":  69,
+                                "Length":  1,
+                                "Line":  9,
+                                "Column":  11,
+                                "Text":  "(",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  70,
+                                "Length":  3,
+                                "Line":  9,
+                                "Column":  12,
+                                "Text":  "reg",
+                                "Types":  [
+                                              "reg"
+                                          ]
+                            },
+                            {
+                                "Start":  74,
+                                "Length":  3,
+                                "Line":  9,
+                                "Column":  16,
+                                "Text":  "clk",
+                                "Types":  [
+                                              "Variable_wire"
+                                          ]
+                            },
+                            {
+                                "Start":  77,
+                                "Length":  1,
+                                "Line":  9,
+                                "Column":  19,
+                                "Text":  ")",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  84,
+                                "Length":  6,
+                                "Line":  10,
+                                "Column":  5,
+                                "Text":  "other2",
+                                "Types":  [
+                                              "Variable_module"
+                                          ]
+                            },
+                            {
+                                "Start":  91,
+                                "Length":  7,
+                                "Line":  10,
+                                "Column":  12,
+                                "Text":  "myOther",
+                                "Types":  [
+                                              "Variable_wire"
+                                          ]
+                            },
+                            {
+                                "Start":  98,
+                                "Length":  1,
+                                "Line":  10,
+                                "Column":  19,
+                                "Text":  "(",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  99,
+                                "Length":  3,
+                                "Line":  10,
+                                "Column":  20,
+                                "Text":  "clk",
+                                "Types":  [
+                                              "Variable_wire"
+                                          ]
+                            },
+                            {
+                                "Start":  102,
+                                "Length":  1,
+                                "Line":  10,
+                                "Column":  23,
+                                "Text":  ")",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  109,
+                                "Length":  7,
+                                "Line":  11,
+                                "Column":  5,
+                                "Text":  "myOther",
+                                "Types":  [
+                                              "Variable_wire"
+                                          ]
+                            },
+                            {
+                                "Start":  117,
+                                "Length":  9,
+                                "Line":  12,
+                                "Column":  1,
+                                "Text":  "endmodule",
+                                "Types":  [
+                                              "endmodule"
+                                          ]
+                            }
+                        ],
+    "Tags":  [
+                 {
+                     "Start":  0,
+                     "Length":  2,
+                     "Line":  1,
+                     "Column":  1,
+                     "Text":  "//",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  2,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  3,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  3,
+                     "Length":  5,
+                     "Line":  1,
+                     "Column":  4,
+                     "Text":  "After",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  10,
+                     "Length":  6,
+                     "Line":  3,
+                     "Column":  1,
+                     "Text":  "module",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_module",
+                     "HoverText":  "The module declaration is the only design unit in Verilog. It describes both a designÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢s interface to other designs in the same environment, and its functional composition."
+                 },
+                 {
+                     "Start":  17,
+                     "Length":  6,
+                     "Line":  3,
+                     "Column":  8,
+                     "Text":  "other2",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_module",
+                     "HoverText":  "module other2(  clk)"
+                 },
+                 {
+                     "Start":  23,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  14,
+                     "Text":  "(",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  27,
+                     "Length":  3,
+                     "Line":  4,
+                     "Column":  3,
+                     "Text":  "reg",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_reg",
+                     "HoverText":  "A reg is an abstraction of a data storage element. The reg stores a value from one assignment to the next. An assignment statement in a procedure acts as a trigger that changes the value in the data storage element. Reg data types can only be assigned inside of the procedural, initial, always blocks or when they are declared."
+                 },
+                 {
+                     "Start":  31,
+                     "Length":  3,
+                     "Line":  4,
+                     "Column":  7,
+                     "Text":  "clk",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable",
+                     "HoverText":  "module other2( .. reg clk .. )"
+                 },
+                 {
+                     "Start":  34,
+                     "Length":  1,
+                     "Line":  4,
+                     "Column":  10,
+                     "Text":  ")",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  40,
+                     "Length":  4,
+                     "Line":  6,
+                     "Column":  3,
+                     "Text":  "wire",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_wire",
+                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
+                 },
+                 {
+                     "Start":  45,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  8,
+                     "Text":  "a",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "wire a"
+                 },
+                 {
+                     "Start":  48,
+                     "Length":  9,
+                     "Line":  7,
+                     "Column":  1,
+                     "Text":  "endmodule",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_endmodule",
+                     "HoverText":  "The endmodule reserved word is used to close a module statement."
+                 },
+                 {
+                     "Start":  59,
+                     "Length":  6,
+                     "Line":  9,
+                     "Column":  1,
+                     "Text":  "module",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_module",
+                     "HoverText":  "The module declaration is the only design unit in Verilog. It describes both a designÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢s interface to other designs in the same environment, and its functional composition."
+                 },
+                 {
+                     "Start":  66,
+                     "Length":  3,
+                     "Line":  9,
+                     "Column":  8,
+                     "Text":  "top",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_module",
+                     "HoverText":  "module top( clk)"
+                 },
+                 {
+                     "Start":  69,
+                     "Length":  1,
+                     "Line":  9,
+                     "Column":  11,
+                     "Text":  "(",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  70,
+                     "Length":  3,
+                     "Line":  9,
+                     "Column":  12,
+                     "Text":  "reg",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_reg",
+                     "HoverText":  "A reg is an abstraction of a data storage element. The reg stores a value from one assignment to the next. An assignment statement in a procedure acts as a trigger that changes the value in the data storage element. Reg data types can only be assigned inside of the procedural, initial, always blocks or when they are declared."
+                 },
+                 {
+                     "Start":  74,
+                     "Length":  3,
+                     "Line":  9,
+                     "Column":  16,
+                     "Text":  "clk",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "module top( .. reg clk .. )"
+                 },
+                 {
+                     "Start":  77,
+                     "Length":  1,
+                     "Line":  9,
+                     "Column":  19,
+                     "Text":  ")",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  84,
+                     "Length":  6,
+                     "Line":  10,
+                     "Column":  5,
+                     "Text":  "other2",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_module",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  91,
+                     "Length":  7,
+                     "Line":  10,
+                     "Column":  12,
+                     "Text":  "myOther",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "module other2 myOther(clk)"
+                 },
+                 {
+                     "Start":  98,
+                     "Length":  1,
+                     "Line":  10,
+                     "Column":  19,
+                     "Text":  "(",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  99,
+                     "Length":  3,
+                     "Line":  10,
+                     "Column":  20,
+                     "Text":  "clk",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "module top( .. reg clk .. )"
+                 },
+                 {
+                     "Start":  102,
+                     "Length":  1,
+                     "Line":  10,
+                     "Column":  23,
+                     "Text":  ")",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  109,
+                     "Length":  7,
+                     "Line":  11,
+                     "Column":  5,
+                     "Text":  "myOther",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "module other2 myOther(clk)"
+                 },
+                 {
+                     "Start":  117,
+                     "Length":  9,
+                     "Line":  12,
+                     "Column":  1,
+                     "Text":  "endmodule",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_endmodule",
+                     "HoverText":  "The endmodule reserved word is used to close a module statement."
+                 }
+             ],
+    "Tokens":  [
+                   {
+                       "Start":  0,
+                       "Length":  2,
+                       "Line":  1,
+                       "Column":  1,
+                       "Text":  "//",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  2,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  3,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  3,
+                       "Length":  5,
+                       "Line":  1,
+                       "Column":  4,
+                       "Text":  "After",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  10,
+                       "Length":  6,
+                       "Line":  3,
+                       "Column":  1,
+                       "Text":  "module",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  16,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  17,
+                       "Length":  6,
+                       "Line":  3,
+                       "Column":  8,
+                       "Text":  "other2",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  23,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  14,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  25,
+                       "Length":  2,
+                       "Line":  4,
+                       "Column":  1,
+                       "Text":  "  ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  27,
+                       "Length":  3,
+                       "Line":  4,
+                       "Column":  3,
+                       "Text":  "reg",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  30,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  6,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  31,
+                       "Length":  3,
+                       "Line":  4,
+                       "Column":  7,
+                       "Text":  "clk",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  34,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  10,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  35,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  11,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  38,
+                       "Length":  2,
+                       "Line":  6,
+                       "Column":  1,
+                       "Text":  "  ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  40,
+                       "Length":  4,
+                       "Line":  6,
+                       "Column":  3,
+                       "Text":  "wire",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  44,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  45,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  8,
+                       "Text":  "a",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  46,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  9,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  48,
+                       "Length":  9,
+                       "Line":  7,
+                       "Column":  1,
+                       "Text":  "endmodule",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  59,
+                       "Length":  6,
+                       "Line":  9,
+                       "Column":  1,
+                       "Text":  "module",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  65,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  66,
+                       "Length":  3,
+                       "Line":  9,
+                       "Column":  8,
+                       "Text":  "top",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  69,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  11,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  70,
+                       "Length":  3,
+                       "Line":  9,
+                       "Column":  12,
+                       "Text":  "reg",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  73,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  15,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  74,
+                       "Length":  3,
+                       "Line":  9,
+                       "Column":  16,
+                       "Text":  "clk",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  77,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  19,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  78,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  20,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  80,
+                       "Length":  4,
+                       "Line":  10,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  84,
+                       "Length":  6,
+                       "Line":  10,
+                       "Column":  5,
+                       "Text":  "other2",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  90,
+                       "Length":  1,
+                       "Line":  10,
+                       "Column":  11,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  91,
+                       "Length":  7,
+                       "Line":  10,
+                       "Column":  12,
+                       "Text":  "myOther",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  98,
+                       "Length":  1,
+                       "Line":  10,
+                       "Column":  19,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  99,
+                       "Length":  3,
+                       "Line":  10,
+                       "Column":  20,
+                       "Text":  "clk",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  102,
+                       "Length":  1,
+                       "Line":  10,
+                       "Column":  23,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  103,
+                       "Length":  1,
+                       "Line":  10,
+                       "Column":  24,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  105,
+                       "Length":  4,
+                       "Line":  11,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  109,
+                       "Length":  7,
+                       "Line":  11,
+                       "Column":  5,
+                       "Text":  "myOther",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  117,
+                       "Length":  9,
+                       "Line":  12,
+                       "Column":  1,
+                       "Text":  "endmodule",
+                       "Context":  "Undetermined"
+                   }
+               ],
+    "Symbols":  [
+                    {
+                        "Scope":  "other2",
+                        "Name":  "clk",
+                        "TokenType":  "Verilog_Variable",
+                        "HoverText":  "module other2( .. reg clk .. )"
+                    },
+                    {
+                        "Scope":  "other2",
+                        "Name":  "other2",
+                        "TokenType":  "Verilog_Variable_module",
+                        "HoverText":  "module other2(  clk)"
+                    },
+                    {
+                        "Scope":  "other2",
+                        "Name":  "a",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "wire a"
+                    },
+                    {
+                        "Scope":  "top",
+                        "Name":  "clk",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "module top( .. reg clk .. )"
+                    },
+                    {
+                        "Scope":  "top",
+                        "Name":  "top",
+                        "TokenType":  "Verilog_Variable_module",
+                        "HoverText":  "module top( clk)"
+                    },
+                    {
+                        "Scope":  "top",
+                        "Name":  "myOther",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "module other2 myOther(clk)"
+                    }
+                ]
+}

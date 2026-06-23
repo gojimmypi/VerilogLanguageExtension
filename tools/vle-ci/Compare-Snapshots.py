@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 import difflib
 import json
+import re
 import shutil
 import sys
 from pathlib import Path
@@ -20,6 +21,125 @@ from typing import Any, Dict, Iterable, List, Tuple
 
 Snapshot = Dict[str, Any]
 FailureList = List[str]
+
+KEYWORD_TAG_TEXT = {
+    "Verilog_always": "always",
+    "Verilog_assign": "assign",
+    "Verilog_automatic": "automatic",
+    "Verilog_begin": "begin",
+    "Verilog_case": "case",
+    "Verilog_casex": "casex",
+    "Verilog_casez": "casez",
+    "Verilog_cell": "cell",
+    "Verilog_config": "config",
+    "Verilog_deassign": "deassign",
+    "Verilog_default": "default",
+    "Verilog_defparam": "defparam",
+    "Verilog_design": "design",
+    "Verilog_disable": "disable",
+    "Verilog_edge": "edge",
+    "Verilog_else": "else",
+    "Verilog_end": "end",
+    "Verilog_endcase": "endcase",
+    "Verilog_endconfig": "endconfig",
+    "Verilog_endfunction": "endfunction",
+    "Verilog_endgenerate": "endgenerate",
+    "Verilog_endmodule": "endmodule",
+    "Verilog_endprimitive": "endprimitive",
+    "Verilog_endspecify": "endspecify",
+    "Verilog_endtable": "endtable",
+    "Verilog_endtask": "endtask",
+    "Verilog_event": "event",
+    "Verilog_for": "for",
+    "Verilog_force": "force",
+    "Verilog_forever": "forever",
+    "Verilog_fork": "fork",
+    "Verilog_function": "function",
+    "Verilog_generate": "generate",
+    "Verilog_genvar": "genvar",
+    "Verilog_highz0": "highz0",
+    "Verilog_highz1": "highz1",
+    "Verilog_if": "if",
+    "Verilog_ifnone": "ifnone",
+    "Verilog_inout": "inout",
+    "Verilog_input": "input",
+    "Verilog_integer": "integer",
+    "Verilog_join": "join",
+    "Verilog_large": "large",
+    "Verilog_localparam": "localparam",
+    "Verilog_macromodule": "macromodule",
+    "Verilog_medium": "medium",
+    "Verilog_module": "module",
+    "Verilog_nand": "nand",
+    "Verilog_negedge": "negedge",
+    "Verilog_nmos": "nmos",
+    "Verilog_nor": "nor",
+    "Verilog_not": "not",
+    "Verilog_notif0": "notif0",
+    "Verilog_notif1": "notif1",
+    "Verilog_or": "or",
+    "Verilog_output": "output",
+    "Verilog_parameter": "parameter",
+    "Verilog_pmos": "pmos",
+    "Verilog_posedge": "posedge",
+    "Verilog_primitive": "primitive",
+    "Verilog_pull0": "pull0",
+    "Verilog_pull1": "pull1",
+    "Verilog_pulldown": "pulldown",
+    "Verilog_pullup": "pullup",
+    "Verilog_rcmos": "rcmos",
+    "Verilog_real": "real",
+    "Verilog_realtime": "realtime",
+    "Verilog_reg": "reg",
+    "Verilog_release": "release",
+    "Verilog_repeat": "repeat",
+    "Verilog_rnmos": "rnmos",
+    "Verilog_rpmos": "rpmos",
+    "Verilog_rtran": "rtran",
+    "Verilog_rtranif0": "rtranif0",
+    "Verilog_rtranif1": "rtranif1",
+    "Verilog_scalared": "scalared",
+    "Verilog_small": "small",
+    "Verilog_specify": "specify",
+    "Verilog_specparam": "specparam",
+    "Verilog_strong0": "strong0",
+    "Verilog_strong1": "strong1",
+    "Verilog_supply0": "supply0",
+    "Verilog_supply1": "supply1",
+    "Verilog_table": "table",
+    "Verilog_task": "task",
+    "Verilog_time": "time",
+    "Verilog_tran": "tran",
+    "Verilog_tranif0": "tranif0",
+    "Verilog_tranif1": "tranif1",
+    "Verilog_tri": "tri",
+    "Verilog_tri0": "tri0",
+    "Verilog_tri1": "tri1",
+    "Verilog_triand": "triand",
+    "Verilog_trior": "trior",
+    "Verilog_trireg": "trireg",
+    "Verilog_vectored": "vectored",
+    "Verilog_wait": "wait",
+    "Verilog_wand": "wand",
+    "Verilog_weak0": "weak0",
+    "Verilog_weak1": "weak1",
+    "Verilog_while": "while",
+    "Verilog_wire": "wire",
+    "Verilog_wor": "wor",
+    "Verilog_xnor": "xnor",
+    "Verilog_xor": "xor",
+    "Verilog_Primitive_and": "and",
+    "Verilog_Primitive_nand": "nand",
+    "Verilog_Primitive_or": "or",
+    "Verilog_Primitive_nor": "nor",
+    "Verilog_Primitive_xor": "xor",
+    "Verilog_Primitive_xnor": "xnor",
+    "Verilog_Primitive_not": "not",
+}
+
+IDENTIFIER_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_$]*$")
+ESCAPED_IDENTIFIER_RE = re.compile(r"^\\\S+$")
+
 
 
 def load_json(path: Path) -> Any:
@@ -316,6 +436,43 @@ def check_expectations(current_root: Path, expectations_root: Path, failures: Fa
         check_expectation(expectation_path, current, failures)
 
 
+def is_verilog_identifier(text: str) -> bool:
+    if not text:
+        return False
+    return bool(IDENTIFIER_RE.match(text) or ESCAPED_IDENTIFIER_RE.match(text))
+
+
+def check_snapshot_sanity(path: Path, normalized: Dict[str, Any], failures: FailureList) -> None:
+    for item in normalized.get("Tags") or []:
+        tag_detail = str(item.get("TagDetail", ""))
+        text = str(item.get("Text", ""))
+
+        expected_keyword = KEYWORD_TAG_TEXT.get(tag_detail)
+        if expected_keyword is not None and text != expected_keyword:
+            failures.append(
+                f"{path}: tag {tag_detail} covered {text!r}, expected {expected_keyword!r}")
+
+        if tag_detail.startswith("Verilog_Variable_") and not is_verilog_identifier(text):
+            failures.append(
+                f"{path}: variable tag {tag_detail} covered non-identifier text {text!r}")
+
+
+def check_all_snapshot_sanity(current_root: Path, failures: FailureList) -> None:
+    current = load_snapshots(current_root)
+    if not current:
+        failures.append(f"No current snapshots found in {current_root}")
+        return
+
+    for path, _snapshot, normalized in current.values():
+        check_snapshot_sanity(path, normalized, failures)
+
+
+def print_failures(failures: FailureList) -> None:
+    print("Snapshot regression check failed:")
+    for index, failure in enumerate(failures, start=1):
+        print(f"\n[{index}] {failure}")
+
+
 def main(argv: List[str]) -> int:
     parser = argparse.ArgumentParser(description="Compare VerilogLanguageExtension snapshot exports.")
     parser.add_argument("--current", required=True, type=Path, help="Current snapshot directory")
@@ -326,10 +483,15 @@ def main(argv: List[str]) -> int:
 
     failures: FailureList = []
 
+    check_all_snapshot_sanity(args.current, failures)
+
     if args.update_baseline:
         if not args.baseline:
             print("--update-baseline requires --baseline", file=sys.stderr)
             return 2
+        if failures:
+            print_failures(failures)
+            return 1
         update_baseline(args.current, args.baseline)
         print(f"Updated baseline: {args.baseline}")
         return 0
@@ -341,9 +503,7 @@ def main(argv: List[str]) -> int:
         check_expectations(args.current, args.expectations, failures)
 
     if failures:
-        print("Snapshot regression check failed:")
-        for index, failure in enumerate(failures, start=1):
-            print(f"\n[{index}] {failure}")
+        print_failures(failures)
         return 1
 
     print("Snapshot regression check passed.")

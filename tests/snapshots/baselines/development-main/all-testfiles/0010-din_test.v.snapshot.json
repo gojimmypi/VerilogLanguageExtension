@@ -1,1 +1,703 @@
-{"SchemaVersion":3,"RunName":"all-testfiles","ExtensionVersion":"0.3.6.3","GitCommit":"b1ebe2c","FilePath":"C:\\workspace\\VerilogLanguageExtension\\TestFiles\\din_test.v","FileRelativePath":"TestFiles\\din_test.v","ContentType":"verilog","SnapshotLength":76,"SnapshotVersion":2,"TextSha256":"15f3ca3eac76254b0d8f3572b08e583e04fa2093fc035245e5820e02e81f2dbc","Errors":[],"Classifications":[{"Start":0,"Length":6,"Line":1,"Column":1,"Text":"module","Types":["module"]},{"Start":7,"Length":6,"Line":1,"Column":8,"Text":"my_din","Types":["Variable_module"]},{"Start":14,"Length":1,"Line":1,"Column":15,"Text":"(","Types":["Bracket1"]},{"Start":21,"Length":5,"Line":2,"Column":6,"Text":"nput ","Types":["input"]},{"Start":27,"Length":1,"Line":2,"Column":12,"Text":"7","Types":["Bracket0"]},{"Start":28,"Length":1,"Line":2,"Column":13,"Text":":","Types":["Value"]},{"Start":30,"Length":1,"Line":2,"Column":15,"Text":"]","Types":["Value"]},{"Start":31,"Length":1,"Line":2,"Column":16,"Text":" ","Types":["Bracket1"]},{"Start":33,"Length":6,"Line":2,"Column":18,"Text":"in\n);\n","Types":["Variable"]},{"Start":39,"Length":1,"Line":4,"Column":1,"Text":" ","Types":["Bracket0"]},{"Start":44,"Length":3,"Line":4,"Column":6,"Text":"in[","Types":["Variable"]},{"Start":47,"Length":1,"Line":4,"Column":9,"Text":"7","Types":["Bracket0"]},{"Start":48,"Length":1,"Line":4,"Column":10,"Text":":","Types":["Value"]},{"Start":50,"Length":1,"Line":4,"Column":12,"Text":"]","Types":["Value"]},{"Start":51,"Length":1,"Line":4,"Column":13,"Text":" ","Types":["Bracket0"]},{"Start":56,"Length":1,"Line":4,"Column":18,"Text":";","Types":["Value"]},{"Start":60,"Length":3,"Line":5,"Column":3,"Text":"in=","Types":["Variable"]},{"Start":64,"Length":1,"Line":5,"Column":7,"Text":";","Types":["Value"]},{"Start":67,"Length":9,"Line":6,"Column":2,"Text":"ndmodule\n","Types":["endmodule"]}],"Tags":[{"Start":0,"Length":6,"Line":1,"Column":1,"Text":"module","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_module","HoverText":"The module declaration is the only design unit in Verilog. It describes both a designâ€™s interface to other designs in the same environment, and its functional composition."},{"Start":7,"Length":6,"Line":1,"Column":8,"Text":"my_din","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable_module","HoverText":"module my_din (  [7:0] din)"},{"Start":14,"Length":1,"Line":1,"Column":15,"Text":"(","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket1","HoverText":null},{"Start":21,"Length":5,"Line":2,"Column":6,"Text":"nput ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_input","HoverText":"The reserved word input is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."},{"Start":27,"Length":1,"Line":2,"Column":12,"Text":"7","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":28,"Length":1,"Line":2,"Column":13,"Text":":","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":30,"Length":1,"Line":2,"Column":15,"Text":"]","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":31,"Length":1,"Line":2,"Column":16,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket1","HoverText":null},{"Start":33,"Length":3,"Line":2,"Column":18,"Text":"in\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable","HoverText":null},{"Start":36,"Length":3,"Line":3,"Column":1,"Text":");\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable","HoverText":null},{"Start":39,"Length":1,"Line":4,"Column":1,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":44,"Length":3,"Line":4,"Column":6,"Text":"in[","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable","HoverText":null},{"Start":47,"Length":1,"Line":4,"Column":9,"Text":"7","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":48,"Length":1,"Line":4,"Column":10,"Text":":","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":50,"Length":1,"Line":4,"Column":12,"Text":"]","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":51,"Length":1,"Line":4,"Column":13,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":56,"Length":1,"Line":4,"Column":18,"Text":";","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":60,"Length":3,"Line":5,"Column":3,"Text":"in=","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable","HoverText":null},{"Start":64,"Length":1,"Line":5,"Column":7,"Text":";","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":67,"Length":9,"Line":6,"Column":2,"Text":"ndmodule\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_endmodule","HoverText":"The endmodule reserved word is used to close a module statement."}],"Tokens":[{"Start":0,"Length":6,"Line":1,"Column":1,"Text":"module","Context":"Undetermined"},{"Start":6,"Length":1,"Line":1,"Column":7,"Text":" ","Context":"Text"},{"Start":7,"Length":6,"Line":1,"Column":8,"Text":"my_din","Context":"Text"},{"Start":13,"Length":1,"Line":1,"Column":14,"Text":" ","Context":"Text"},{"Start":14,"Length":1,"Line":1,"Column":15,"Text":"(","Context":"RoundBracketOpen"},{"Start":16,"Length":1,"Line":2,"Column":1,"Text":"(","Context":"Undetermined"},{"Start":17,"Length":4,"Line":2,"Column":2,"Text":"    ","Context":"Text"},{"Start":21,"Length":5,"Line":2,"Column":6,"Text":"input","Context":"Text"},{"Start":31,"Length":1,"Line":2,"Column":16,"Text":" ","Context":"Text"},{"Start":32,"Length":1,"Line":2,"Column":17,"Text":"[","Context":"SquareBracketOpen"},{"Start":33,"Length":1,"Line":2,"Column":18,"Text":"7","Context":"Text"},{"Start":34,"Length":1,"Line":2,"Column":19,"Text":":","Context":"Text"},{"Start":35,"Length":1,"Line":2,"Column":20,"Text":"0","Context":"Text"},{"Start":35,"Length":1,"Line":2,"Column":20,"Text":"]","Context":"SquareBracketClose"},{"Start":35,"Length":1,"Line":2,"Column":20,"Text":" ","Context":"Text"},{"Start":35,"Length":3,"Line":2,"Column":20,"Text":"din","Context":"Text"},{"Start":36,"Length":3,"Line":3,"Column":1,"Text":"din","Context":"Undetermined"},{"Start":38,"Length":1,"Line":3,"Column":3,"Text":")","Context":"RoundBracketClose"},{"Start":38,"Length":1,"Line":3,"Column":3,"Text":";","Context":"Text"},{"Start":56,"Length":1,"Line":4,"Column":18,"Text":";","Context":"Undetermined"},{"Start":57,"Length":4,"Line":4,"Column":19,"Text":"    ","Context":"Text"},{"Start":57,"Length":3,"Line":4,"Column":19,"Text":"din","Context":"Text"},{"Start":57,"Length":1,"Line":4,"Column":19,"Text":"[","Context":"SquareBracketOpen"},{"Start":57,"Length":1,"Line":4,"Column":19,"Text":"7","Context":"Text"},{"Start":57,"Length":1,"Line":4,"Column":19,"Text":":","Context":"Text"},{"Start":57,"Length":1,"Line":4,"Column":19,"Text":"0","Context":"Text"},{"Start":57,"Length":1,"Line":4,"Column":19,"Text":"]","Context":"SquareBracketClose"},{"Start":57,"Length":1,"Line":4,"Column":19,"Text":" ","Context":"Text"},{"Start":57,"Length":1,"Line":4,"Column":19,"Text":"=","Context":"Text"},{"Start":57,"Length":1,"Line":4,"Column":19,"Text":"=","Context":"Text"},{"Start":57,"Length":1,"Line":4,"Column":19,"Text":" ","Context":"Text"},{"Start":57,"Length":1,"Line":4,"Column":19,"Text":"0","Context":"Text"},{"Start":57,"Length":1,"Line":4,"Column":19,"Text":";","Context":"Text"},{"Start":64,"Length":1,"Line":5,"Column":7,"Text":";","Context":"Undetermined"},{"Start":65,"Length":1,"Line":5,"Column":8,"Text":"\t","Context":"Text"},{"Start":65,"Length":3,"Line":5,"Column":8,"Text":"din","Context":"Text"},{"Start":65,"Length":1,"Line":5,"Column":8,"Text":"=","Context":"Text"},{"Start":65,"Length":1,"Line":5,"Column":8,"Text":"1","Context":"Text"},{"Start":65,"Length":1,"Line":5,"Column":8,"Text":";","Context":"Text"},{"Start":66,"Length":1,"Line":6,"Column":1,"Text":";","Context":"Undetermined"},{"Start":67,"Length":9,"Line":6,"Column":2,"Text":"endmodule","Context":"Text"},{"Start":76,"Length":9,"Line":7,"Column":1,"Text":"endmodule","Context":"Undetermined"}],"Symbols":[{"Scope":"my_din","Name":"din","TokenType":"Verilog_Variable","HoverText":"module my_din( .. input [7:0] din .. )"},{"Scope":"my_din","Name":"my_din","TokenType":"Verilog_Variable_module","HoverText":"module my_din (  [7:0] din)"}]}
+{
+    "SchemaVersion":  3,
+    "RunName":  "all-testfiles",
+    "ExtensionVersion":  "0.3.6.3",
+    "GitCommit":  "d4aa870",
+    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\din_test.v",
+    "FileRelativePath":  "TestFiles\\din_test.v",
+    "ContentType":  "verilog",
+    "SnapshotLength":  76,
+    "SnapshotVersion":  2,
+    "TextSha256":  "15f3ca3eac76254b0d8f3572b08e583e04fa2093fc035245e5820e02e81f2dbc",
+    "Errors":  [
+
+               ],
+    "Classifications":  [
+                            {
+                                "Start":  0,
+                                "Length":  6,
+                                "Line":  1,
+                                "Column":  1,
+                                "Text":  "module",
+                                "Types":  [
+                                              "module"
+                                          ]
+                            },
+                            {
+                                "Start":  7,
+                                "Length":  6,
+                                "Line":  1,
+                                "Column":  8,
+                                "Text":  "my_din",
+                                "Types":  [
+                                              "Variable_module"
+                                          ]
+                            },
+                            {
+                                "Start":  14,
+                                "Length":  1,
+                                "Line":  1,
+                                "Column":  15,
+                                "Text":  "(",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  20,
+                                "Length":  5,
+                                "Line":  2,
+                                "Column":  5,
+                                "Text":  "input",
+                                "Types":  [
+                                              "input"
+                                          ]
+                            },
+                            {
+                                "Start":  26,
+                                "Length":  1,
+                                "Line":  2,
+                                "Column":  11,
+                                "Text":  "[",
+                                "Types":  [
+                                              "Bracket2"
+                                          ]
+                            },
+                            {
+                                "Start":  27,
+                                "Length":  1,
+                                "Line":  2,
+                                "Column":  12,
+                                "Text":  "7",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  29,
+                                "Length":  1,
+                                "Line":  2,
+                                "Column":  14,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  30,
+                                "Length":  1,
+                                "Line":  2,
+                                "Column":  15,
+                                "Text":  "]",
+                                "Types":  [
+                                              "Bracket2"
+                                          ]
+                            },
+                            {
+                                "Start":  32,
+                                "Length":  3,
+                                "Line":  2,
+                                "Column":  17,
+                                "Text":  "din",
+                                "Types":  [
+                                              "Variable"
+                                          ]
+                            },
+                            {
+                                "Start":  36,
+                                "Length":  1,
+                                "Line":  3,
+                                "Column":  1,
+                                "Text":  ")",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  43,
+                                "Length":  3,
+                                "Line":  4,
+                                "Column":  5,
+                                "Text":  "din",
+                                "Types":  [
+                                              "Variable"
+                                          ]
+                            },
+                            {
+                                "Start":  46,
+                                "Length":  1,
+                                "Line":  4,
+                                "Column":  8,
+                                "Text":  "[",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  47,
+                                "Length":  1,
+                                "Line":  4,
+                                "Column":  9,
+                                "Text":  "7",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  49,
+                                "Length":  1,
+                                "Line":  4,
+                                "Column":  11,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  50,
+                                "Length":  1,
+                                "Line":  4,
+                                "Column":  12,
+                                "Text":  "]",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  55,
+                                "Length":  1,
+                                "Line":  4,
+                                "Column":  17,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  59,
+                                "Length":  3,
+                                "Line":  5,
+                                "Column":  2,
+                                "Text":  "din",
+                                "Types":  [
+                                              "Variable"
+                                          ]
+                            },
+                            {
+                                "Start":  63,
+                                "Length":  1,
+                                "Line":  5,
+                                "Column":  6,
+                                "Text":  "1",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  66,
+                                "Length":  9,
+                                "Line":  6,
+                                "Column":  1,
+                                "Text":  "endmodule",
+                                "Types":  [
+                                              "endmodule"
+                                          ]
+                            }
+                        ],
+    "Tags":  [
+                 {
+                     "Start":  0,
+                     "Length":  6,
+                     "Line":  1,
+                     "Column":  1,
+                     "Text":  "module",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_module",
+                     "HoverText":  "The module declaration is the only design unit in Verilog. It describes both a designÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢s interface to other designs in the same environment, and its functional composition."
+                 },
+                 {
+                     "Start":  7,
+                     "Length":  6,
+                     "Line":  1,
+                     "Column":  8,
+                     "Text":  "my_din",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_module",
+                     "HoverText":  "module my_din (  [7:0] din)"
+                 },
+                 {
+                     "Start":  14,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  15,
+                     "Text":  "(",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  20,
+                     "Length":  5,
+                     "Line":  2,
+                     "Column":  5,
+                     "Text":  "input",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_input",
+                     "HoverText":  "The reserved word input is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
+                 },
+                 {
+                     "Start":  26,
+                     "Length":  1,
+                     "Line":  2,
+                     "Column":  11,
+                     "Text":  "[",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket2",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  27,
+                     "Length":  1,
+                     "Line":  2,
+                     "Column":  12,
+                     "Text":  "7",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  29,
+                     "Length":  1,
+                     "Line":  2,
+                     "Column":  14,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  30,
+                     "Length":  1,
+                     "Line":  2,
+                     "Column":  15,
+                     "Text":  "]",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket2",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  32,
+                     "Length":  3,
+                     "Line":  2,
+                     "Column":  17,
+                     "Text":  "din",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable",
+                     "HoverText":  "module my_din( .. input [7:0] din .. )"
+                 },
+                 {
+                     "Start":  36,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  1,
+                     "Text":  ")",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  43,
+                     "Length":  3,
+                     "Line":  4,
+                     "Column":  5,
+                     "Text":  "din",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable",
+                     "HoverText":  "module my_din( .. input [7:0] din .. )"
+                 },
+                 {
+                     "Start":  46,
+                     "Length":  1,
+                     "Line":  4,
+                     "Column":  8,
+                     "Text":  "[",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  47,
+                     "Length":  1,
+                     "Line":  4,
+                     "Column":  9,
+                     "Text":  "7",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  49,
+                     "Length":  1,
+                     "Line":  4,
+                     "Column":  11,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  50,
+                     "Length":  1,
+                     "Line":  4,
+                     "Column":  12,
+                     "Text":  "]",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  55,
+                     "Length":  1,
+                     "Line":  4,
+                     "Column":  17,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  59,
+                     "Length":  3,
+                     "Line":  5,
+                     "Column":  2,
+                     "Text":  "din",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable",
+                     "HoverText":  "module my_din( .. input [7:0] din .. )"
+                 },
+                 {
+                     "Start":  63,
+                     "Length":  1,
+                     "Line":  5,
+                     "Column":  6,
+                     "Text":  "1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  66,
+                     "Length":  9,
+                     "Line":  6,
+                     "Column":  1,
+                     "Text":  "endmodule",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_endmodule",
+                     "HoverText":  "The endmodule reserved word is used to close a module statement."
+                 }
+             ],
+    "Tokens":  [
+                   {
+                       "Start":  0,
+                       "Length":  6,
+                       "Line":  1,
+                       "Column":  1,
+                       "Text":  "module",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  6,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  7,
+                       "Length":  6,
+                       "Line":  1,
+                       "Column":  8,
+                       "Text":  "my_din",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  13,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  14,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  14,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  15,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  16,
+                       "Length":  4,
+                       "Line":  2,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  20,
+                       "Length":  5,
+                       "Line":  2,
+                       "Column":  5,
+                       "Text":  "input",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  25,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  10,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  26,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  11,
+                       "Text":  "[",
+                       "Context":  "SquareBracketOpen"
+                   },
+                   {
+                       "Start":  27,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  12,
+                       "Text":  "7",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  28,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  13,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  29,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  14,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  30,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  15,
+                       "Text":  "]",
+                       "Context":  "SquareBracketClose"
+                   },
+                   {
+                       "Start":  31,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  16,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  32,
+                       "Length":  3,
+                       "Line":  2,
+                       "Column":  17,
+                       "Text":  "din",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  36,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  1,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  37,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  2,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  39,
+                       "Length":  4,
+                       "Line":  4,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  43,
+                       "Length":  3,
+                       "Line":  4,
+                       "Column":  5,
+                       "Text":  "din",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  46,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  8,
+                       "Text":  "[",
+                       "Context":  "SquareBracketOpen"
+                   },
+                   {
+                       "Start":  47,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  9,
+                       "Text":  "7",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  48,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  10,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  49,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  11,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  50,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  12,
+                       "Text":  "]",
+                       "Context":  "SquareBracketClose"
+                   },
+                   {
+                       "Start":  51,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  13,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  52,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  14,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  53,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  15,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  54,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  16,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  55,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  17,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  56,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  18,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  58,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  1,
+                       "Text":  "\t",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  59,
+                       "Length":  3,
+                       "Line":  5,
+                       "Column":  2,
+                       "Text":  "din",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  62,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  5,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  63,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  6,
+                       "Text":  "1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  64,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  7,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  66,
+                       "Length":  9,
+                       "Line":  6,
+                       "Column":  1,
+                       "Text":  "endmodule",
+                       "Context":  "Undetermined"
+                   }
+               ],
+    "Symbols":  [
+                    {
+                        "Scope":  "my_din",
+                        "Name":  "din",
+                        "TokenType":  "Verilog_Variable",
+                        "HoverText":  "module my_din( .. input [7:0] din .. )"
+                    },
+                    {
+                        "Scope":  "my_din",
+                        "Name":  "my_din",
+                        "TokenType":  "Verilog_Variable_module",
+                        "HoverText":  "module my_din (  [7:0] din)"
+                    }
+                ]
+}

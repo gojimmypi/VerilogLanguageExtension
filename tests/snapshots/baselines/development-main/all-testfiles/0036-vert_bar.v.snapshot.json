@@ -1,1 +1,1337 @@
-{"SchemaVersion":3,"RunName":"all-testfiles","ExtensionVersion":"0.3.6.3","GitCommit":"b1ebe2c","FilePath":"C:\\workspace\\VerilogLanguageExtension\\TestFiles\\vert_bar.v","FileRelativePath":"TestFiles\\vert_bar.v","ContentType":"verilog","SnapshotLength":184,"SnapshotVersion":2,"TextSha256":"bc161f93e17ddd778d3140b139191d5211607c92b9efd2973be674b3de966555","Errors":[],"Classifications":[{"Start":0,"Length":6,"Line":1,"Column":1,"Text":"module","Types":["module"]},{"Start":7,"Length":6,"Line":1,"Column":8,"Text":"my_din","Types":["Variable_module"]},{"Start":13,"Length":1,"Line":1,"Column":14,"Text":"(","Types":["Bracket1"]},{"Start":17,"Length":5,"Line":2,"Column":3,"Text":"nput ","Types":["input"]},{"Start":23,"Length":8,"Line":2,"Column":9,"Text":"est\n )\n\t","Types":["Variable"]},{"Start":32,"Length":1,"Line":4,"Column":3,"Text":"e","Types":["Bracket0 - reg - (TRANSIENT)"]},{"Start":33,"Length":2,"Line":4,"Column":4,"Text":"g ","Types":["reg"]},{"Start":36,"Length":1,"Line":4,"Column":7,"Text":" ","Types":["Variable_reg"]},{"Start":42,"Length":1,"Line":4,"Column":13,"Text":";","Types":["Value"]},{"Start":49,"Length":3,"Line":5,"Column":6,"Text":"eg ","Types":["reg"]},{"Start":53,"Length":1,"Line":5,"Column":10,"Text":";","Types":["Variable_reg"]},{"Start":60,"Length":3,"Line":6,"Column":6,"Text":"eg ","Types":["reg"]},{"Start":64,"Length":1,"Line":6,"Column":10,"Text":"0","Types":["Bracket0"]},{"Start":65,"Length":1,"Line":6,"Column":11,"Text":":","Types":["Value"]},{"Start":67,"Length":1,"Line":6,"Column":13,"Text":"]","Types":["Value"]},{"Start":68,"Length":1,"Line":6,"Column":14,"Text":" ","Types":["Bracket0"]},{"Start":70,"Length":3,"Line":6,"Column":16,"Text":"oa ","Types":["Variable_reg"]},{"Start":76,"Length":1,"Line":6,"Column":22,"Text":"a","Types":["Bracket0"]},{"Start":77,"Length":1,"Line":6,"Column":23,"Text":",","Types":["Variable_reg"]},{"Start":80,"Length":1,"Line":6,"Column":26,"Text":"}","Types":["Variable_reg"]},{"Start":81,"Length":1,"Line":6,"Column":27,"Text":";","Types":["Bracket0"]},{"Start":89,"Length":5,"Line":8,"Column":6,"Text":"nput ","Types":["input"]},{"Start":95,"Length":3,"Line":8,"Column":12,"Text":"lk,","Types":["Variable_input"]},{"Start":100,"Length":6,"Line":8,"Column":17,"Text":"esetn,","Types":["Variable_input"]},{"Start":110,"Length":18,"Line":10,"Column":3,"Text":"ndmodule\n\nmodule m","Types":["endmodule"]},{"Start":136,"Length":4,"Line":12,"Column":17,"Text":"(\n i","Types":["Variable_module"]},{"Start":140,"Length":4,"Line":13,"Column":3,"Text":"nput","Types":["Variable_module - input - (TRANSIENT)"]},{"Start":144,"Length":1,"Line":13,"Column":7,"Text":" ","Types":["input"]},{"Start":145,"Length":1,"Line":13,"Column":8,"Text":"t","Types":["Bracket0"]},{"Start":146,"Length":8,"Line":13,"Column":9,"Text":"est\n);\n\t","Types":["Variable_input"]},{"Start":154,"Length":1,"Line":15,"Column":2,"Text":"L","Types":["Bracket0"]},{"Start":169,"Length":1,"Line":15,"Column":17,"Text":";","Types":["Value"]},{"Start":172,"Length":12,"Line":16,"Column":2,"Text":"ndmodule\n\n\n\n","Types":["endmodule"]}],"Tags":[{"Start":0,"Length":6,"Line":1,"Column":1,"Text":"module","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_module","HoverText":"The module declaration is the only design unit in Verilog. It describes both a designâ€™s interface to other designs in the same environment, and its functional composition."},{"Start":7,"Length":6,"Line":1,"Column":8,"Text":"my_din","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable_module","HoverText":"module my_din(  test )"},{"Start":13,"Length":1,"Line":1,"Column":14,"Text":"(","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket1","HoverText":null},{"Start":17,"Length":5,"Line":2,"Column":3,"Text":"nput ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_input","HoverText":"The reserved word input is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."},{"Start":23,"Length":4,"Line":2,"Column":9,"Text":"est\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable","HoverText":null},{"Start":27,"Length":4,"Line":3,"Column":1,"Text":" )\n\t","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable","HoverText":null},{"Start":32,"Length":1,"Line":4,"Column":3,"Text":"e","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":32,"Length":3,"Line":4,"Column":3,"Text":"eg ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_reg","HoverText":"A reg is an abstraction of a data storage element. The reg stores a value from one assignment to the next. An assignment statement in a procedure acts as a trigger that changes the value in the data storage element. Reg data types can only be assigned inside of the procedural, initial, always blocks or when they are declared."},{"Start":36,"Length":1,"Line":4,"Column":7,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable_reg","HoverText":null},{"Start":42,"Length":1,"Line":4,"Column":13,"Text":";","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":49,"Length":3,"Line":5,"Column":6,"Text":"eg ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_reg","HoverText":"A reg is an abstraction of a data storage element. The reg stores a value from one assignment to the next. An assignment statement in a procedure acts as a trigger that changes the value in the data storage element. Reg data types can only be assigned inside of the procedural, initial, always blocks or when they are declared."},{"Start":53,"Length":1,"Line":5,"Column":10,"Text":";","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable_reg","HoverText":null},{"Start":60,"Length":3,"Line":6,"Column":6,"Text":"eg ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_reg","HoverText":"A reg is an abstraction of a data storage element. The reg stores a value from one assignment to the next. An assignment statement in a procedure acts as a trigger that changes the value in the data storage element. Reg data types can only be assigned inside of the procedural, initial, always blocks or when they are declared."},{"Start":64,"Length":1,"Line":6,"Column":10,"Text":"0","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":65,"Length":1,"Line":6,"Column":11,"Text":":","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":67,"Length":1,"Line":6,"Column":13,"Text":"]","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":68,"Length":1,"Line":6,"Column":14,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":70,"Length":3,"Line":6,"Column":16,"Text":"oa ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable_reg","HoverText":null},{"Start":76,"Length":1,"Line":6,"Column":22,"Text":"a","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":"reg a = | 1"},{"Start":77,"Length":1,"Line":6,"Column":23,"Text":",","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable_reg","HoverText":null},{"Start":80,"Length":1,"Line":6,"Column":26,"Text":"}","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable_reg","HoverText":null},{"Start":81,"Length":1,"Line":6,"Column":27,"Text":";","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":89,"Length":5,"Line":8,"Column":6,"Text":"nput ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_input","HoverText":"The reserved word input is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."},{"Start":95,"Length":3,"Line":8,"Column":12,"Text":"lk,","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable_input","HoverText":null},{"Start":100,"Length":6,"Line":8,"Column":17,"Text":"esetn,","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable_input","HoverText":null},{"Start":110,"Length":9,"Line":10,"Column":3,"Text":"ndmodule\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_endmodule","HoverText":"The endmodule reserved word is used to close a module statement."},{"Start":119,"Length":9,"Line":11,"Column":1,"Text":"\nmodule m","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_endmodule","HoverText":"The endmodule reserved word is used to close a module statement."},{"Start":136,"Length":8,"Line":12,"Column":17,"Text":"(\n input","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable_module","HoverText":null},{"Start":145,"Length":1,"Line":13,"Column":8,"Text":"t","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":140,"Length":5,"Line":13,"Column":3,"Text":"nput ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_input","HoverText":"The reserved word input is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."},{"Start":146,"Length":4,"Line":13,"Column":9,"Text":"est\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable_input","HoverText":null},{"Start":150,"Length":4,"Line":14,"Column":1,"Text":");\n\t","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Variable_input","HoverText":null},{"Start":154,"Length":1,"Line":15,"Column":2,"Text":"L","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":169,"Length":1,"Line":15,"Column":17,"Text":";","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":172,"Length":9,"Line":16,"Column":2,"Text":"ndmodule\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_endmodule","HoverText":"The endmodule reserved word is used to close a module statement."},{"Start":181,"Length":3,"Line":17,"Column":1,"Text":"\n\n\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_endmodule","HoverText":"The endmodule reserved word is used to close a module statement."},{"Start":182,"Length":2,"Line":18,"Column":1,"Text":"\n\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_endmodule","HoverText":"The endmodule reserved word is used to close a module statement."},{"Start":183,"Length":1,"Line":19,"Column":1,"Text":"\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_endmodule","HoverText":"The endmodule reserved word is used to close a module statement."}],"Tokens":[{"Start":0,"Length":6,"Line":1,"Column":1,"Text":"module","Context":"Undetermined"},{"Start":6,"Length":1,"Line":1,"Column":7,"Text":" ","Context":"Text"},{"Start":7,"Length":6,"Line":1,"Column":8,"Text":"my_din","Context":"Text"},{"Start":13,"Length":1,"Line":1,"Column":14,"Text":"(","Context":"RoundBracketOpen"},{"Start":15,"Length":1,"Line":2,"Column":1,"Text":"(","Context":"Undetermined"},{"Start":16,"Length":1,"Line":2,"Column":2,"Text":"\t","Context":"Text"},{"Start":17,"Length":5,"Line":2,"Column":3,"Text":"input","Context":"Text"},{"Start":22,"Length":1,"Line":2,"Column":8,"Text":" ","Context":"Text"},{"Start":23,"Length":4,"Line":2,"Column":9,"Text":"test","Context":"Text"},{"Start":27,"Length":4,"Line":3,"Column":1,"Text":"test","Context":"Undetermined"},{"Start":29,"Length":1,"Line":3,"Column":3,"Text":" ","Context":"Text"},{"Start":29,"Length":1,"Line":3,"Column":3,"Text":")","Context":"RoundBracketClose"},{"Start":30,"Length":1,"Line":4,"Column":1,"Text":")","Context":"Undetermined"},{"Start":31,"Length":1,"Line":4,"Column":2,"Text":"\t","Context":"Text"},{"Start":32,"Length":3,"Line":4,"Column":3,"Text":"reg","Context":"Text"},{"Start":36,"Length":1,"Line":4,"Column":7,"Text":" ","Context":"Text"},{"Start":37,"Length":1,"Line":4,"Column":8,"Text":"a","Context":"Text"},{"Start":38,"Length":1,"Line":4,"Column":9,"Text":" ","Context":"Text"},{"Start":39,"Length":1,"Line":4,"Column":10,"Text":"=","Context":"Text"},{"Start":40,"Length":1,"Line":4,"Column":11,"Text":" ","Context":"Text"},{"Start":41,"Length":1,"Line":4,"Column":12,"Text":"|","Context":"Text"},{"Start":42,"Length":1,"Line":4,"Column":13,"Text":" ","Context":"Text"},{"Start":43,"Length":1,"Line":4,"Column":14,"Text":"1","Context":"Text"},{"Start":43,"Length":1,"Line":4,"Column":14,"Text":";","Context":"Text"},{"Start":53,"Length":1,"Line":5,"Column":10,"Text":";","Context":"Undetermined"},{"Start":54,"Length":4,"Line":5,"Column":11,"Text":"    ","Context":"Text"},{"Start":54,"Length":3,"Line":5,"Column":11,"Text":"reg","Context":"Text"},{"Start":54,"Length":1,"Line":5,"Column":11,"Text":" ","Context":"Text"},{"Start":54,"Length":1,"Line":5,"Column":11,"Text":"b","Context":"Text"},{"Start":54,"Length":1,"Line":5,"Column":11,"Text":";","Context":"Text"},{"Start":81,"Length":1,"Line":6,"Column":27,"Text":";","Context":"Undetermined"},{"Start":82,"Length":4,"Line":6,"Column":28,"Text":"    ","Context":"Text"},{"Start":82,"Length":3,"Line":6,"Column":28,"Text":"reg","Context":"Text"},{"Start":82,"Length":1,"Line":6,"Column":28,"Text":" ","Context":"Text"},{"Start":82,"Length":1,"Line":6,"Column":28,"Text":"[","Context":"SquareBracketOpen"},{"Start":82,"Length":1,"Line":6,"Column":28,"Text":"0","Context":"Text"},{"Start":82,"Length":1,"Line":6,"Column":28,"Text":":","Context":"Text"},{"Start":82,"Length":1,"Line":6,"Column":28,"Text":"0","Context":"Text"},{"Start":82,"Length":1,"Line":6,"Column":28,"Text":"]","Context":"SquareBracketClose"},{"Start":82,"Length":1,"Line":6,"Column":28,"Text":" ","Context":"Text"},{"Start":82,"Length":3,"Line":6,"Column":28,"Text":"goa","Context":"Text"},{"Start":82,"Length":1,"Line":6,"Column":28,"Text":" ","Context":"Text"},{"Start":82,"Length":1,"Line":6,"Column":28,"Text":"=","Context":"Text"},{"Start":82,"Length":1,"Line":6,"Column":28,"Text":" ","Context":"Text"},{"Start":82,"Length":1,"Line":6,"Column":28,"Text":"{","Context":"SquigglyBracketOpen"},{"Start":82,"Length":1,"Line":6,"Column":28,"Text":"a","Context":"Text"},{"Start":82,"Length":1,"Line":6,"Column":28,"Text":",","Context":"Text"},{"Start":82,"Length":1,"Line":6,"Column":28,"Text":" ","Context":"Text"},{"Start":82,"Length":1,"Line":6,"Column":28,"Text":"b","Context":"Text"},{"Start":82,"Length":1,"Line":6,"Column":28,"Text":"}","Context":"SquigglyBracketClose"},{"Start":82,"Length":1,"Line":6,"Column":28,"Text":";","Context":"Text"},{"Start":83,"Length":1,"Line":7,"Column":1,"Text":";","Context":"Undetermined"},{"Start":84,"Length":1,"Line":8,"Column":1,"Text":";","Context":"Undetermined"},{"Start":85,"Length":4,"Line":8,"Column":2,"Text":"    ","Context":"Text"},{"Start":89,"Length":5,"Line":8,"Column":6,"Text":"input","Context":"Text"},{"Start":98,"Length":1,"Line":8,"Column":15,"Text":" ","Context":"Text"},{"Start":99,"Length":3,"Line":8,"Column":16,"Text":"clk","Context":"Text"},{"Start":105,"Length":1,"Line":8,"Column":22,"Text":",","Context":"Text"},{"Start":106,"Length":1,"Line":8,"Column":23,"Text":" ","Context":"Text"},{"Start":106,"Length":6,"Line":8,"Column":23,"Text":"resetn","Context":"Text"},{"Start":106,"Length":1,"Line":8,"Column":23,"Text":",","Context":"Text"},{"Start":107,"Length":1,"Line":9,"Column":1,"Text":",","Context":"Undetermined"},{"Start":108,"Length":1,"Line":10,"Column":1,"Text":",","Context":"Undetermined"},{"Start":109,"Length":1,"Line":10,"Column":2,"Text":" ","Context":"Text"},{"Start":110,"Length":9,"Line":10,"Column":3,"Text":"endmodule","Context":"Text"},{"Start":119,"Length":9,"Line":11,"Column":1,"Text":"endmodule","Context":"Undetermined"},{"Start":120,"Length":15,"Line":12,"Column":1,"Text":"endmodulemodule","Context":"Undetermined"},{"Start":135,"Length":1,"Line":12,"Column":16,"Text":" ","Context":"Text"},{"Start":136,"Length":8,"Line":12,"Column":17,"Text":"myff_din","Context":"Text"},{"Start":137,"Length":1,"Line":12,"Column":18,"Text":" ","Context":"Text"},{"Start":137,"Length":1,"Line":12,"Column":18,"Text":"(","Context":"RoundBracketOpen"},{"Start":138,"Length":1,"Line":13,"Column":1,"Text":"(","Context":"Undetermined"},{"Start":144,"Length":1,"Line":13,"Column":7,"Text":" ","Context":"Text"},{"Start":145,"Length":5,"Line":13,"Column":8,"Text":"input","Context":"Text"},{"Start":149,"Length":1,"Line":13,"Column":12,"Text":" ","Context":"Text"},{"Start":149,"Length":4,"Line":13,"Column":12,"Text":"test","Context":"Text"},{"Start":150,"Length":4,"Line":14,"Column":1,"Text":"test","Context":"Undetermined"},{"Start":152,"Length":1,"Line":14,"Column":3,"Text":")","Context":"RoundBracketClose"},{"Start":152,"Length":1,"Line":14,"Column":3,"Text":";","Context":"Text"},{"Start":169,"Length":1,"Line":15,"Column":17,"Text":";","Context":"Undetermined"},{"Start":170,"Length":1,"Line":15,"Column":18,"Text":"\t","Context":"Text"},{"Start":170,"Length":11,"Line":15,"Column":18,"Text":"LATCHED_IRQ","Context":"Text"},{"Start":170,"Length":1,"Line":15,"Column":18,"Text":" ","Context":"Text"},{"Start":170,"Length":1,"Line":15,"Column":18,"Text":"=","Context":"Text"},{"Start":170,"Length":1,"Line":15,"Column":18,"Text":" ","Context":"Text"},{"Start":170,"Length":1,"Line":15,"Column":18,"Text":"1","Context":"Text"},{"Start":170,"Length":1,"Line":15,"Column":18,"Text":";","Context":"Text"},{"Start":171,"Length":1,"Line":16,"Column":1,"Text":";","Context":"Undetermined"},{"Start":172,"Length":9,"Line":16,"Column":2,"Text":"endmodule","Context":"Text"},{"Start":181,"Length":9,"Line":17,"Column":1,"Text":"endmodule","Context":"Undetermined"},{"Start":182,"Length":9,"Line":18,"Column":1,"Text":"endmodule","Context":"Undetermined"},{"Start":183,"Length":9,"Line":19,"Column":1,"Text":"endmodule","Context":"Undetermined"},{"Start":184,"Length":9,"Line":20,"Column":1,"Text":"endmodule","Context":"Undetermined"}],"Symbols":[{"Scope":"my_din","Name":"test","TokenType":"Verilog_Variable","HoverText":"module my_din( .. input test  .. )"},{"Scope":"my_din","Name":"my_din","TokenType":"Verilog_Variable_module","HoverText":"module my_din(  test )"},{"Scope":"my_din","Name":"a","TokenType":"Verilog_Variable_reg","HoverText":"reg a = | 1"},{"Scope":"my_din","Name":"b","TokenType":"Verilog_Variable_reg","HoverText":"reg b"},{"Scope":"my_din","Name":"goa","TokenType":"Verilog_Variable_reg","HoverText":"reg [0:0] goa = {a, b}"},{"Scope":"my_din","Name":"clk","TokenType":"Verilog_Variable_input","HoverText":"input clk"},{"Scope":"my_din","Name":"resetn","TokenType":"Verilog_Variable_input","HoverText":"input resetn"},{"Scope":"myff_din","Name":"test","TokenType":"Verilog_Variable_input","HoverText":"module myff_din( .. input test .. )"},{"Scope":"myff_din","Name":"myff_din","TokenType":"Verilog_Variable_module","HoverText":"module myff_din (  test)"}]}
+{
+    "SchemaVersion":  3,
+    "RunName":  "all-testfiles",
+    "ExtensionVersion":  "0.3.6.3",
+    "GitCommit":  "d4aa870",
+    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\vert_bar.v",
+    "FileRelativePath":  "TestFiles\\vert_bar.v",
+    "ContentType":  "verilog",
+    "SnapshotLength":  184,
+    "SnapshotVersion":  2,
+    "TextSha256":  "bc161f93e17ddd778d3140b139191d5211607c92b9efd2973be674b3de966555",
+    "Errors":  [
+
+               ],
+    "Classifications":  [
+                            {
+                                "Start":  0,
+                                "Length":  6,
+                                "Line":  1,
+                                "Column":  1,
+                                "Text":  "module",
+                                "Types":  [
+                                              "module"
+                                          ]
+                            },
+                            {
+                                "Start":  7,
+                                "Length":  6,
+                                "Line":  1,
+                                "Column":  8,
+                                "Text":  "my_din",
+                                "Types":  [
+                                              "Variable_module"
+                                          ]
+                            },
+                            {
+                                "Start":  13,
+                                "Length":  1,
+                                "Line":  1,
+                                "Column":  14,
+                                "Text":  "(",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  16,
+                                "Length":  5,
+                                "Line":  2,
+                                "Column":  2,
+                                "Text":  "input",
+                                "Types":  [
+                                              "input"
+                                          ]
+                            },
+                            {
+                                "Start":  22,
+                                "Length":  4,
+                                "Line":  2,
+                                "Column":  8,
+                                "Text":  "test",
+                                "Types":  [
+                                              "Variable"
+                                          ]
+                            },
+                            {
+                                "Start":  28,
+                                "Length":  1,
+                                "Line":  3,
+                                "Column":  2,
+                                "Text":  ")",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  31,
+                                "Length":  3,
+                                "Line":  4,
+                                "Column":  2,
+                                "Text":  "reg",
+                                "Types":  [
+                                              "reg"
+                                          ]
+                            },
+                            {
+                                "Start":  35,
+                                "Length":  1,
+                                "Line":  4,
+                                "Column":  6,
+                                "Text":  "a",
+                                "Types":  [
+                                              "Variable_reg"
+                                          ]
+                            },
+                            {
+                                "Start":  41,
+                                "Length":  1,
+                                "Line":  4,
+                                "Column":  12,
+                                "Text":  "1",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  48,
+                                "Length":  3,
+                                "Line":  5,
+                                "Column":  5,
+                                "Text":  "reg",
+                                "Types":  [
+                                              "reg"
+                                          ]
+                            },
+                            {
+                                "Start":  52,
+                                "Length":  1,
+                                "Line":  5,
+                                "Column":  9,
+                                "Text":  "b",
+                                "Types":  [
+                                              "Variable_reg"
+                                          ]
+                            },
+                            {
+                                "Start":  59,
+                                "Length":  3,
+                                "Line":  6,
+                                "Column":  5,
+                                "Text":  "reg",
+                                "Types":  [
+                                              "reg"
+                                          ]
+                            },
+                            {
+                                "Start":  63,
+                                "Length":  1,
+                                "Line":  6,
+                                "Column":  9,
+                                "Text":  "[",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  64,
+                                "Length":  1,
+                                "Line":  6,
+                                "Column":  10,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  66,
+                                "Length":  1,
+                                "Line":  6,
+                                "Column":  12,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  67,
+                                "Length":  1,
+                                "Line":  6,
+                                "Column":  13,
+                                "Text":  "]",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  69,
+                                "Length":  3,
+                                "Line":  6,
+                                "Column":  15,
+                                "Text":  "goa",
+                                "Types":  [
+                                              "Variable_reg"
+                                          ]
+                            },
+                            {
+                                "Start":  75,
+                                "Length":  1,
+                                "Line":  6,
+                                "Column":  21,
+                                "Text":  "{",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  76,
+                                "Length":  1,
+                                "Line":  6,
+                                "Column":  22,
+                                "Text":  "a",
+                                "Types":  [
+                                              "Variable_reg"
+                                          ]
+                            },
+                            {
+                                "Start":  79,
+                                "Length":  1,
+                                "Line":  6,
+                                "Column":  25,
+                                "Text":  "b",
+                                "Types":  [
+                                              "Variable_reg"
+                                          ]
+                            },
+                            {
+                                "Start":  80,
+                                "Length":  1,
+                                "Line":  6,
+                                "Column":  26,
+                                "Text":  "}",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  88,
+                                "Length":  5,
+                                "Line":  8,
+                                "Column":  5,
+                                "Text":  "input",
+                                "Types":  [
+                                              "input"
+                                          ]
+                            },
+                            {
+                                "Start":  94,
+                                "Length":  3,
+                                "Line":  8,
+                                "Column":  11,
+                                "Text":  "clk",
+                                "Types":  [
+                                              "Variable_input"
+                                          ]
+                            },
+                            {
+                                "Start":  99,
+                                "Length":  6,
+                                "Line":  8,
+                                "Column":  16,
+                                "Text":  "resetn",
+                                "Types":  [
+                                              "Variable_input"
+                                          ]
+                            },
+                            {
+                                "Start":  109,
+                                "Length":  9,
+                                "Line":  10,
+                                "Column":  2,
+                                "Text":  "endmodule",
+                                "Types":  [
+                                              "endmodule"
+                                          ]
+                            },
+                            {
+                                "Start":  120,
+                                "Length":  6,
+                                "Line":  12,
+                                "Column":  1,
+                                "Text":  "module",
+                                "Types":  [
+                                              "module"
+                                          ]
+                            },
+                            {
+                                "Start":  127,
+                                "Length":  8,
+                                "Line":  12,
+                                "Column":  8,
+                                "Text":  "myff_din",
+                                "Types":  [
+                                              "Variable_module"
+                                          ]
+                            },
+                            {
+                                "Start":  136,
+                                "Length":  1,
+                                "Line":  12,
+                                "Column":  17,
+                                "Text":  "(",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  139,
+                                "Length":  5,
+                                "Line":  13,
+                                "Column":  2,
+                                "Text":  "input",
+                                "Types":  [
+                                              "input"
+                                          ]
+                            },
+                            {
+                                "Start":  145,
+                                "Length":  4,
+                                "Line":  13,
+                                "Column":  8,
+                                "Text":  "test",
+                                "Types":  [
+                                              "Variable_input"
+                                          ]
+                            },
+                            {
+                                "Start":  150,
+                                "Length":  1,
+                                "Line":  14,
+                                "Column":  1,
+                                "Text":  ")",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  168,
+                                "Length":  1,
+                                "Line":  15,
+                                "Column":  16,
+                                "Text":  "1",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  171,
+                                "Length":  9,
+                                "Line":  16,
+                                "Column":  1,
+                                "Text":  "endmodule",
+                                "Types":  [
+                                              "endmodule"
+                                          ]
+                            }
+                        ],
+    "Tags":  [
+                 {
+                     "Start":  0,
+                     "Length":  6,
+                     "Line":  1,
+                     "Column":  1,
+                     "Text":  "module",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_module",
+                     "HoverText":  "The module declaration is the only design unit in Verilog. It describes both a designÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢s interface to other designs in the same environment, and its functional composition."
+                 },
+                 {
+                     "Start":  7,
+                     "Length":  6,
+                     "Line":  1,
+                     "Column":  8,
+                     "Text":  "my_din",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_module",
+                     "HoverText":  "module my_din(  test )"
+                 },
+                 {
+                     "Start":  13,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  14,
+                     "Text":  "(",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  16,
+                     "Length":  5,
+                     "Line":  2,
+                     "Column":  2,
+                     "Text":  "input",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_input",
+                     "HoverText":  "The reserved word input is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
+                 },
+                 {
+                     "Start":  22,
+                     "Length":  4,
+                     "Line":  2,
+                     "Column":  8,
+                     "Text":  "test",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable",
+                     "HoverText":  "module my_din( .. input test  .. )"
+                 },
+                 {
+                     "Start":  28,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  2,
+                     "Text":  ")",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  31,
+                     "Length":  3,
+                     "Line":  4,
+                     "Column":  2,
+                     "Text":  "reg",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_reg",
+                     "HoverText":  "A reg is an abstraction of a data storage element. The reg stores a value from one assignment to the next. An assignment statement in a procedure acts as a trigger that changes the value in the data storage element. Reg data types can only be assigned inside of the procedural, initial, always blocks or when they are declared."
+                 },
+                 {
+                     "Start":  35,
+                     "Length":  1,
+                     "Line":  4,
+                     "Column":  6,
+                     "Text":  "a",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  "reg a = | 1"
+                 },
+                 {
+                     "Start":  41,
+                     "Length":  1,
+                     "Line":  4,
+                     "Column":  12,
+                     "Text":  "1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  48,
+                     "Length":  3,
+                     "Line":  5,
+                     "Column":  5,
+                     "Text":  "reg",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_reg",
+                     "HoverText":  "A reg is an abstraction of a data storage element. The reg stores a value from one assignment to the next. An assignment statement in a procedure acts as a trigger that changes the value in the data storage element. Reg data types can only be assigned inside of the procedural, initial, always blocks or when they are declared."
+                 },
+                 {
+                     "Start":  52,
+                     "Length":  1,
+                     "Line":  5,
+                     "Column":  9,
+                     "Text":  "b",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  "reg b"
+                 },
+                 {
+                     "Start":  59,
+                     "Length":  3,
+                     "Line":  6,
+                     "Column":  5,
+                     "Text":  "reg",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_reg",
+                     "HoverText":  "A reg is an abstraction of a data storage element. The reg stores a value from one assignment to the next. An assignment statement in a procedure acts as a trigger that changes the value in the data storage element. Reg data types can only be assigned inside of the procedural, initial, always blocks or when they are declared."
+                 },
+                 {
+                     "Start":  63,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  9,
+                     "Text":  "[",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  64,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  10,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  66,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  12,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  67,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  13,
+                     "Text":  "]",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  69,
+                     "Length":  3,
+                     "Line":  6,
+                     "Column":  15,
+                     "Text":  "goa",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  "reg [0:0] goa = {a, b}"
+                 },
+                 {
+                     "Start":  75,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  21,
+                     "Text":  "{",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  76,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  22,
+                     "Text":  "a",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  "reg a = | 1"
+                 },
+                 {
+                     "Start":  79,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  25,
+                     "Text":  "b",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  "reg b"
+                 },
+                 {
+                     "Start":  80,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  26,
+                     "Text":  "}",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  88,
+                     "Length":  5,
+                     "Line":  8,
+                     "Column":  5,
+                     "Text":  "input",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_input",
+                     "HoverText":  "The reserved word input is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
+                 },
+                 {
+                     "Start":  94,
+                     "Length":  3,
+                     "Line":  8,
+                     "Column":  11,
+                     "Text":  "clk",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_input",
+                     "HoverText":  "input clk"
+                 },
+                 {
+                     "Start":  99,
+                     "Length":  6,
+                     "Line":  8,
+                     "Column":  16,
+                     "Text":  "resetn",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_input",
+                     "HoverText":  "input resetn"
+                 },
+                 {
+                     "Start":  109,
+                     "Length":  9,
+                     "Line":  10,
+                     "Column":  2,
+                     "Text":  "endmodule",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_endmodule",
+                     "HoverText":  "The endmodule reserved word is used to close a module statement."
+                 },
+                 {
+                     "Start":  120,
+                     "Length":  6,
+                     "Line":  12,
+                     "Column":  1,
+                     "Text":  "module",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_module",
+                     "HoverText":  "The module declaration is the only design unit in Verilog. It describes both a designÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢s interface to other designs in the same environment, and its functional composition."
+                 },
+                 {
+                     "Start":  127,
+                     "Length":  8,
+                     "Line":  12,
+                     "Column":  8,
+                     "Text":  "myff_din",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_module",
+                     "HoverText":  "module myff_din (  test)"
+                 },
+                 {
+                     "Start":  136,
+                     "Length":  1,
+                     "Line":  12,
+                     "Column":  17,
+                     "Text":  "(",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  139,
+                     "Length":  5,
+                     "Line":  13,
+                     "Column":  2,
+                     "Text":  "input",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_input",
+                     "HoverText":  "The reserved word input is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
+                 },
+                 {
+                     "Start":  145,
+                     "Length":  4,
+                     "Line":  13,
+                     "Column":  8,
+                     "Text":  "test",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_input",
+                     "HoverText":  "module myff_din( .. input test .. )"
+                 },
+                 {
+                     "Start":  150,
+                     "Length":  1,
+                     "Line":  14,
+                     "Column":  1,
+                     "Text":  ")",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  168,
+                     "Length":  1,
+                     "Line":  15,
+                     "Column":  16,
+                     "Text":  "1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  171,
+                     "Length":  9,
+                     "Line":  16,
+                     "Column":  1,
+                     "Text":  "endmodule",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_endmodule",
+                     "HoverText":  "The endmodule reserved word is used to close a module statement."
+                 }
+             ],
+    "Tokens":  [
+                   {
+                       "Start":  0,
+                       "Length":  6,
+                       "Line":  1,
+                       "Column":  1,
+                       "Text":  "module",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  6,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  7,
+                       "Length":  6,
+                       "Line":  1,
+                       "Column":  8,
+                       "Text":  "my_din",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  13,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  14,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  15,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  1,
+                       "Text":  "\t",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  16,
+                       "Length":  5,
+                       "Line":  2,
+                       "Column":  2,
+                       "Text":  "input",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  21,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  22,
+                       "Length":  4,
+                       "Line":  2,
+                       "Column":  8,
+                       "Text":  "test",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  27,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  1,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  28,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  2,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  30,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  1,
+                       "Text":  "\t",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  31,
+                       "Length":  3,
+                       "Line":  4,
+                       "Column":  2,
+                       "Text":  "reg",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  34,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  5,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  35,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  6,
+                       "Text":  "a",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  36,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  37,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  8,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  38,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  9,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  39,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  10,
+                       "Text":  "|",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  40,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  11,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  41,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  12,
+                       "Text":  "1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  42,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  13,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  44,
+                       "Length":  4,
+                       "Line":  5,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  48,
+                       "Length":  3,
+                       "Line":  5,
+                       "Column":  5,
+                       "Text":  "reg",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  51,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  52,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  9,
+                       "Text":  "b",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  53,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  10,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  55,
+                       "Length":  4,
+                       "Line":  6,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  59,
+                       "Length":  3,
+                       "Line":  6,
+                       "Column":  5,
+                       "Text":  "reg",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  62,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  63,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  9,
+                       "Text":  "[",
+                       "Context":  "SquareBracketOpen"
+                   },
+                   {
+                       "Start":  64,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  10,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  65,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  11,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  66,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  12,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  67,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  13,
+                       "Text":  "]",
+                       "Context":  "SquareBracketClose"
+                   },
+                   {
+                       "Start":  68,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  14,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  69,
+                       "Length":  3,
+                       "Line":  6,
+                       "Column":  15,
+                       "Text":  "goa",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  72,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  18,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  73,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  19,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  74,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  20,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  75,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  21,
+                       "Text":  "{",
+                       "Context":  "SquigglyBracketOpen"
+                   },
+                   {
+                       "Start":  76,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  22,
+                       "Text":  "a",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  77,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  23,
+                       "Text":  ",",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  78,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  24,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  79,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  25,
+                       "Text":  "b",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  80,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  26,
+                       "Text":  "}",
+                       "Context":  "SquigglyBracketClose"
+                   },
+                   {
+                       "Start":  81,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  27,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  84,
+                       "Length":  4,
+                       "Line":  8,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  88,
+                       "Length":  5,
+                       "Line":  8,
+                       "Column":  5,
+                       "Text":  "input",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  93,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  10,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  94,
+                       "Length":  3,
+                       "Line":  8,
+                       "Column":  11,
+                       "Text":  "clk",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  97,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  14,
+                       "Text":  ",",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  98,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  15,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  99,
+                       "Length":  6,
+                       "Line":  8,
+                       "Column":  16,
+                       "Text":  "resetn",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  105,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  22,
+                       "Text":  ",",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  108,
+                       "Length":  1,
+                       "Line":  10,
+                       "Column":  1,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  109,
+                       "Length":  9,
+                       "Line":  10,
+                       "Column":  2,
+                       "Text":  "endmodule",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  120,
+                       "Length":  6,
+                       "Line":  12,
+                       "Column":  1,
+                       "Text":  "module",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  126,
+                       "Length":  1,
+                       "Line":  12,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  127,
+                       "Length":  8,
+                       "Line":  12,
+                       "Column":  8,
+                       "Text":  "myff_din",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  135,
+                       "Length":  1,
+                       "Line":  12,
+                       "Column":  16,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  136,
+                       "Length":  1,
+                       "Line":  12,
+                       "Column":  17,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  138,
+                       "Length":  1,
+                       "Line":  13,
+                       "Column":  1,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  139,
+                       "Length":  5,
+                       "Line":  13,
+                       "Column":  2,
+                       "Text":  "input",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  144,
+                       "Length":  1,
+                       "Line":  13,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  145,
+                       "Length":  4,
+                       "Line":  13,
+                       "Column":  8,
+                       "Text":  "test",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  150,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  1,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  151,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  2,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  153,
+                       "Length":  1,
+                       "Line":  15,
+                       "Column":  1,
+                       "Text":  "\t",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  154,
+                       "Length":  11,
+                       "Line":  15,
+                       "Column":  2,
+                       "Text":  "LATCHED_IRQ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  165,
+                       "Length":  1,
+                       "Line":  15,
+                       "Column":  13,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  166,
+                       "Length":  1,
+                       "Line":  15,
+                       "Column":  14,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  167,
+                       "Length":  1,
+                       "Line":  15,
+                       "Column":  15,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  168,
+                       "Length":  1,
+                       "Line":  15,
+                       "Column":  16,
+                       "Text":  "1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  169,
+                       "Length":  1,
+                       "Line":  15,
+                       "Column":  17,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  171,
+                       "Length":  9,
+                       "Line":  16,
+                       "Column":  1,
+                       "Text":  "endmodule",
+                       "Context":  "Undetermined"
+                   }
+               ],
+    "Symbols":  [
+                    {
+                        "Scope":  "my_din",
+                        "Name":  "test",
+                        "TokenType":  "Verilog_Variable",
+                        "HoverText":  "module my_din( .. input test  .. )"
+                    },
+                    {
+                        "Scope":  "my_din",
+                        "Name":  "my_din",
+                        "TokenType":  "Verilog_Variable_module",
+                        "HoverText":  "module my_din(  test )"
+                    },
+                    {
+                        "Scope":  "my_din",
+                        "Name":  "a",
+                        "TokenType":  "Verilog_Variable_reg",
+                        "HoverText":  "reg a = | 1"
+                    },
+                    {
+                        "Scope":  "my_din",
+                        "Name":  "b",
+                        "TokenType":  "Verilog_Variable_reg",
+                        "HoverText":  "reg b"
+                    },
+                    {
+                        "Scope":  "my_din",
+                        "Name":  "goa",
+                        "TokenType":  "Verilog_Variable_reg",
+                        "HoverText":  "reg [0:0] goa = {a, b}"
+                    },
+                    {
+                        "Scope":  "my_din",
+                        "Name":  "clk",
+                        "TokenType":  "Verilog_Variable_input",
+                        "HoverText":  "input clk"
+                    },
+                    {
+                        "Scope":  "my_din",
+                        "Name":  "resetn",
+                        "TokenType":  "Verilog_Variable_input",
+                        "HoverText":  "input resetn"
+                    },
+                    {
+                        "Scope":  "myff_din",
+                        "Name":  "test",
+                        "TokenType":  "Verilog_Variable_input",
+                        "HoverText":  "module myff_din( .. input test .. )"
+                    },
+                    {
+                        "Scope":  "myff_din",
+                        "Name":  "myff_din",
+                        "TokenType":  "Verilog_Variable_module",
+                        "HoverText":  "module myff_din (  test)"
+                    }
+                ]
+}

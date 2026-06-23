@@ -1,1 +1,2457 @@
-{"SchemaVersion":3,"RunName":"all-testfiles","ExtensionVersion":"0.3.6.3","GitCommit":"b1ebe2c","FilePath":"C:\\workspace\\VerilogLanguageExtension\\TestFiles\\wiretest.verilog","FileRelativePath":"TestFiles\\wiretest.verilog","ContentType":"verilog","SnapshotLength":268,"SnapshotVersion":2,"TextSha256":"8ed0e798687fb3686c7becc1304c81c83583ce4d90776b707f30956664970629","Errors":[],"Classifications":[{"Start":0,"Length":20,"Line":1,"Column":1,"Text":"// 8-bit wire ports:","Types":["comment"]},{"Start":23,"Length":6,"Line":2,"Column":3,"Text":"utput ","Types":["output"]},{"Start":30,"Length":4,"Line":2,"Column":10,"Text":"ire ","Types":["wire"]},{"Start":35,"Length":1,"Line":2,"Column":15,"Text":"7","Types":["Bracket0"]},{"Start":36,"Length":1,"Line":2,"Column":16,"Text":":","Types":["Value"]},{"Start":38,"Length":1,"Line":2,"Column":18,"Text":"]","Types":["Value"]},{"Start":39,"Length":1,"Line":2,"Column":19,"Text":" ","Types":["Bracket0"]},{"Start":45,"Length":5,"Line":3,"Column":3,"Text":"nput ","Types":["input"]},{"Start":52,"Length":4,"Line":3,"Column":10,"Text":"ire ","Types":["wire"]},{"Start":57,"Length":1,"Line":3,"Column":15,"Text":"7","Types":["Bracket0"]},{"Start":58,"Length":1,"Line":3,"Column":16,"Text":":","Types":["Value"]},{"Start":60,"Length":1,"Line":3,"Column":18,"Text":"]","Types":["Value"]},{"Start":61,"Length":1,"Line":3,"Column":19,"Text":" ","Types":["Bracket0"]},{"Start":67,"Length":5,"Line":4,"Column":3,"Text":"nput ","Types":["input"]},{"Start":74,"Length":4,"Line":4,"Column":10,"Text":"ire ","Types":["wire"]},{"Start":79,"Length":1,"Line":4,"Column":15,"Text":"7","Types":["Bracket0"]},{"Start":80,"Length":1,"Line":4,"Column":16,"Text":":","Types":["Value"]},{"Start":82,"Length":1,"Line":4,"Column":18,"Text":"]","Types":["Value"]},{"Start":83,"Length":1,"Line":4,"Column":19,"Text":" ","Types":["Bracket0"]},{"Start":88,"Length":39,"Line":6,"Column":2,"Text":"/ 1-bit wide by 8-bit deep wire arrays\n","Types":["comment"]},{"Start":134,"Length":4,"Line":7,"Column":8,"Text":"bit ","Types":["wire"]},{"Start":147,"Length":1,"Line":7,"Column":21,"Text":"\n","Types":["Bracket0"]},{"Start":148,"Length":1,"Line":8,"Column":1,"Text":" ","Types":["Value"]},{"Start":150,"Length":1,"Line":8,"Column":3,"Text":"i","Types":["Value - wire - (TRANSIENT)"]},{"Start":151,"Length":1,"Line":8,"Column":4,"Text":"r","Types":["Bracket0 - wire - (TRANSIENT)"]},{"Start":152,"Length":2,"Line":8,"Column":5,"Text":"e ","Types":["wire"]},{"Start":163,"Length":1,"Line":8,"Column":16,"Text":"7","Types":["Bracket0"]},{"Start":164,"Length":1,"Line":8,"Column":17,"Text":":","Types":["Value"]},{"Start":166,"Length":1,"Line":8,"Column":19,"Text":"]","Types":["Value"]},{"Start":167,"Length":1,"Line":8,"Column":20,"Text":";","Types":["Bracket0"]},{"Start":171,"Length":4,"Line":9,"Column":3,"Text":"ire ","Types":["wire"]},{"Start":184,"Length":1,"Line":9,"Column":16,"Text":"7","Types":["Bracket0"]},{"Start":185,"Length":1,"Line":9,"Column":17,"Text":":","Types":["Value"]},{"Start":187,"Length":1,"Line":9,"Column":19,"Text":"]","Types":["Value"]},{"Start":188,"Length":1,"Line":9,"Column":20,"Text":";","Types":["Bracket0"]},{"Start":192,"Length":20,"Line":11,"Column":2,"Text":"/ wire declarations\n","Types":["comment"]},{"Start":229,"Length":1,"Line":13,"Column":1,"Text":"w","Types":["Bracket0"]},{"Start":230,"Length":1,"Line":13,"Column":2,"Text":"i","Types":["Value - wire - (TRANSIENT)"]},{"Start":231,"Length":1,"Line":13,"Column":3,"Text":"r","Types":["wire"]},{"Start":232,"Length":1,"Line":13,"Column":4,"Text":"e","Types":["Value - wire - (TRANSIENT)"]},{"Start":233,"Length":1,"Line":13,"Column":5,"Text":" ","Types":["Bracket0 - wire - (TRANSIENT)"]},{"Start":235,"Length":1,"Line":13,"Column":7,"Text":"7","Types":["Bracket0"]},{"Start":236,"Length":1,"Line":13,"Column":8,"Text":":","Types":["Value"]},{"Start":238,"Length":1,"Line":13,"Column":10,"Text":"]","Types":["Value"]},{"Start":239,"Length":1,"Line":13,"Column":11,"Text":" ","Types":["Bracket0"]},{"Start":249,"Length":4,"Line":14,"Column":2,"Text":"ire ","Types":["wire"]},{"Start":254,"Length":1,"Line":14,"Column":7,"Text":"7","Types":["Bracket0"]},{"Start":255,"Length":1,"Line":14,"Column":8,"Text":":","Types":["Value"]},{"Start":257,"Length":1,"Line":14,"Column":10,"Text":"]","Types":["Value"]},{"Start":258,"Length":1,"Line":14,"Column":11,"Text":" ","Types":["Bracket0"]}],"Tags":[{"Start":0,"Length":2,"Line":1,"Column":1,"Text":"//","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":2,"Length":1,"Line":1,"Column":3,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":3,"Length":1,"Line":1,"Column":4,"Text":"8","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":4,"Length":1,"Line":1,"Column":5,"Text":"-","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":5,"Length":3,"Line":1,"Column":6,"Text":"bit","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":8,"Length":1,"Line":1,"Column":9,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":9,"Length":4,"Line":1,"Column":10,"Text":"wire","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":13,"Length":1,"Line":1,"Column":14,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":14,"Length":5,"Line":1,"Column":15,"Text":"ports","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":19,"Length":1,"Line":1,"Column":20,"Text":":","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":23,"Length":6,"Line":2,"Column":3,"Text":"utput ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_output","HoverText":"The reserved word output is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."},{"Start":30,"Length":4,"Line":2,"Column":10,"Text":"ire ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_wire","HoverText":"Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."},{"Start":35,"Length":1,"Line":2,"Column":15,"Text":"7","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":36,"Length":1,"Line":2,"Column":16,"Text":":","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":38,"Length":1,"Line":2,"Column":18,"Text":"]","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":39,"Length":1,"Line":2,"Column":19,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":45,"Length":5,"Line":3,"Column":3,"Text":"nput ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_input","HoverText":"The reserved word input is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."},{"Start":52,"Length":4,"Line":3,"Column":10,"Text":"ire ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_wire","HoverText":"Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."},{"Start":57,"Length":1,"Line":3,"Column":15,"Text":"7","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":58,"Length":1,"Line":3,"Column":16,"Text":":","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":60,"Length":1,"Line":3,"Column":18,"Text":"]","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":61,"Length":1,"Line":3,"Column":19,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":67,"Length":5,"Line":4,"Column":3,"Text":"nput ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_input","HoverText":"The reserved word input is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."},{"Start":74,"Length":4,"Line":4,"Column":10,"Text":"ire ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_wire","HoverText":"Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."},{"Start":79,"Length":1,"Line":4,"Column":15,"Text":"7","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":80,"Length":1,"Line":4,"Column":16,"Text":":","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":82,"Length":1,"Line":4,"Column":18,"Text":"]","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":83,"Length":1,"Line":4,"Column":19,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":88,"Length":2,"Line":6,"Column":2,"Text":"/ ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":90,"Length":1,"Line":6,"Column":4,"Text":"1","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":91,"Length":1,"Line":6,"Column":5,"Text":"-","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":92,"Length":1,"Line":6,"Column":6,"Text":"b","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":93,"Length":3,"Line":6,"Column":7,"Text":"it ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":96,"Length":1,"Line":6,"Column":10,"Text":"w","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":97,"Length":4,"Line":6,"Column":11,"Text":"ide ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":101,"Length":1,"Line":6,"Column":15,"Text":"b","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":102,"Length":2,"Line":6,"Column":16,"Text":"y ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":104,"Length":1,"Line":6,"Column":18,"Text":"8","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":105,"Length":1,"Line":6,"Column":19,"Text":"-","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":106,"Length":1,"Line":6,"Column":20,"Text":"b","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":107,"Length":3,"Line":6,"Column":21,"Text":"it ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":110,"Length":1,"Line":6,"Column":24,"Text":"d","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":111,"Length":4,"Line":6,"Column":25,"Text":"eep ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":115,"Length":1,"Line":6,"Column":29,"Text":"w","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":116,"Length":4,"Line":6,"Column":30,"Text":"ire ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":120,"Length":1,"Line":6,"Column":34,"Text":"a","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":121,"Length":6,"Line":6,"Column":35,"Text":"rrays\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":134,"Length":4,"Line":7,"Column":8,"Text":"bit ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_wire","HoverText":"Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."},{"Start":147,"Length":1,"Line":7,"Column":21,"Text":"\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":148,"Length":1,"Line":8,"Column":1,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":150,"Length":1,"Line":8,"Column":3,"Text":"i","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":151,"Length":1,"Line":8,"Column":4,"Text":"r","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":150,"Length":4,"Line":8,"Column":3,"Text":"ire ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_wire","HoverText":"Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."},{"Start":163,"Length":1,"Line":8,"Column":16,"Text":"7","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":164,"Length":1,"Line":8,"Column":17,"Text":":","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":166,"Length":1,"Line":8,"Column":19,"Text":"]","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":167,"Length":1,"Line":8,"Column":20,"Text":";","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":171,"Length":4,"Line":9,"Column":3,"Text":"ire ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_wire","HoverText":"Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."},{"Start":184,"Length":1,"Line":9,"Column":16,"Text":"7","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":185,"Length":1,"Line":9,"Column":17,"Text":":","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":187,"Length":1,"Line":9,"Column":19,"Text":"]","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":188,"Length":1,"Line":9,"Column":20,"Text":";","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":192,"Length":2,"Line":11,"Column":2,"Text":"/ ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":194,"Length":1,"Line":11,"Column":4,"Text":"w","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":195,"Length":4,"Line":11,"Column":5,"Text":"ire ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":199,"Length":1,"Line":11,"Column":9,"Text":"d","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":200,"Length":12,"Line":11,"Column":10,"Text":"eclarations\n","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Comment","HoverText":null},{"Start":229,"Length":1,"Line":13,"Column":1,"Text":"w","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":230,"Length":1,"Line":13,"Column":2,"Text":"i","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":232,"Length":1,"Line":13,"Column":4,"Text":"e","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":233,"Length":1,"Line":13,"Column":5,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":230,"Length":4,"Line":13,"Column":2,"Text":"ire ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_wire","HoverText":"Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."},{"Start":235,"Length":1,"Line":13,"Column":7,"Text":"7","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":236,"Length":1,"Line":13,"Column":8,"Text":":","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":238,"Length":1,"Line":13,"Column":10,"Text":"]","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":239,"Length":1,"Line":13,"Column":11,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":249,"Length":4,"Line":14,"Column":2,"Text":"ire ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_wire","HoverText":"Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."},{"Start":254,"Length":1,"Line":14,"Column":7,"Text":"7","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":255,"Length":1,"Line":14,"Column":8,"Text":":","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":257,"Length":1,"Line":14,"Column":10,"Text":"]","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":258,"Length":1,"Line":14,"Column":11,"Text":" ","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null}],"Tokens":[{"Start":0,"Length":2,"Line":1,"Column":1,"Text":"//","Context":"Text"},{"Start":2,"Length":1,"Line":1,"Column":3,"Text":" ","Context":"Text"},{"Start":3,"Length":1,"Line":1,"Column":4,"Text":"8","Context":"Text"},{"Start":4,"Length":1,"Line":1,"Column":5,"Text":"-","Context":"Text"},{"Start":5,"Length":3,"Line":1,"Column":6,"Text":"bit","Context":"Text"},{"Start":8,"Length":1,"Line":1,"Column":9,"Text":" ","Context":"Text"},{"Start":9,"Length":4,"Line":1,"Column":10,"Text":"wire","Context":"Text"},{"Start":13,"Length":1,"Line":1,"Column":14,"Text":" ","Context":"Text"},{"Start":14,"Length":5,"Line":1,"Column":15,"Text":"ports","Context":"Text"},{"Start":19,"Length":1,"Line":1,"Column":20,"Text":":","Context":"Text"},{"Start":36,"Length":1,"Line":2,"Column":16,"Text":":","Context":"Undetermined"},{"Start":39,"Length":1,"Line":2,"Column":19,"Text":" ","Context":"Text"},{"Start":40,"Length":6,"Line":2,"Column":20,"Text":"output","Context":"Text"},{"Start":42,"Length":1,"Line":2,"Column":22,"Text":" ","Context":"Text"},{"Start":42,"Length":4,"Line":2,"Column":22,"Text":"wire","Context":"Text"},{"Start":42,"Length":1,"Line":2,"Column":22,"Text":" ","Context":"Text"},{"Start":42,"Length":1,"Line":2,"Column":22,"Text":"[","Context":"SquareBracketOpen"},{"Start":42,"Length":1,"Line":2,"Column":22,"Text":"7","Context":"Text"},{"Start":42,"Length":1,"Line":2,"Column":22,"Text":":","Context":"Text"},{"Start":42,"Length":1,"Line":2,"Column":22,"Text":"0","Context":"Text"},{"Start":42,"Length":1,"Line":2,"Column":22,"Text":"]","Context":"SquareBracketClose"},{"Start":42,"Length":1,"Line":2,"Column":22,"Text":" ","Context":"Text"},{"Start":42,"Length":1,"Line":2,"Column":22,"Text":"r","Context":"Text"},{"Start":42,"Length":1,"Line":2,"Column":22,"Text":",","Context":"Text"},{"Start":63,"Length":1,"Line":3,"Column":21,"Text":",","Context":"Undetermined"},{"Start":64,"Length":1,"Line":3,"Column":22,"Text":" ","Context":"Text"},{"Start":64,"Length":5,"Line":3,"Column":22,"Text":"input","Context":"Text"},{"Start":64,"Length":2,"Line":3,"Column":22,"Text":"  ","Context":"Text"},{"Start":64,"Length":4,"Line":3,"Column":22,"Text":"wire","Context":"Text"},{"Start":64,"Length":1,"Line":3,"Column":22,"Text":" ","Context":"Text"},{"Start":64,"Length":1,"Line":3,"Column":22,"Text":"[","Context":"SquareBracketOpen"},{"Start":64,"Length":1,"Line":3,"Column":22,"Text":"7","Context":"Text"},{"Start":64,"Length":1,"Line":3,"Column":22,"Text":":","Context":"Text"},{"Start":64,"Length":1,"Line":3,"Column":22,"Text":"0","Context":"Text"},{"Start":64,"Length":1,"Line":3,"Column":22,"Text":"]","Context":"SquareBracketClose"},{"Start":64,"Length":1,"Line":3,"Column":22,"Text":" ","Context":"Text"},{"Start":64,"Length":1,"Line":3,"Column":22,"Text":"x","Context":"Text"},{"Start":64,"Length":1,"Line":3,"Column":22,"Text":",","Context":"Text"},{"Start":65,"Length":1,"Line":4,"Column":1,"Text":",","Context":"Undetermined"},{"Start":71,"Length":1,"Line":4,"Column":7,"Text":" ","Context":"Text"},{"Start":72,"Length":5,"Line":4,"Column":8,"Text":"input","Context":"Text"},{"Start":77,"Length":2,"Line":4,"Column":13,"Text":"  ","Context":"Text"},{"Start":79,"Length":4,"Line":4,"Column":15,"Text":"wire","Context":"Text"},{"Start":83,"Length":1,"Line":4,"Column":19,"Text":" ","Context":"Text"},{"Start":84,"Length":1,"Line":4,"Column":20,"Text":"[","Context":"SquareBracketOpen"},{"Start":85,"Length":1,"Line":4,"Column":21,"Text":"7","Context":"Text"},{"Start":85,"Length":1,"Line":4,"Column":21,"Text":":","Context":"Text"},{"Start":85,"Length":1,"Line":4,"Column":21,"Text":"0","Context":"Text"},{"Start":85,"Length":1,"Line":4,"Column":21,"Text":"]","Context":"SquareBracketClose"},{"Start":85,"Length":1,"Line":4,"Column":21,"Text":" ","Context":"Text"},{"Start":85,"Length":1,"Line":4,"Column":21,"Text":"y","Context":"Text"},{"Start":86,"Length":1,"Line":5,"Column":1,"Text":"y","Context":"Undetermined"},{"Start":102,"Length":1,"Line":6,"Column":16,"Text":"y","Context":"Undetermined"},{"Start":103,"Length":2,"Line":6,"Column":17,"Text":"//","Context":"Text"},{"Start":109,"Length":1,"Line":6,"Column":23,"Text":" ","Context":"Text"},{"Start":110,"Length":1,"Line":6,"Column":24,"Text":"1","Context":"Text"},{"Start":111,"Length":1,"Line":6,"Column":25,"Text":"-","Context":"Text"},{"Start":112,"Length":3,"Line":6,"Column":26,"Text":"bit","Context":"Text"},{"Start":119,"Length":1,"Line":6,"Column":33,"Text":" ","Context":"Text"},{"Start":120,"Length":4,"Line":6,"Column":34,"Text":"wide","Context":"Text"},{"Start":124,"Length":1,"Line":6,"Column":38,"Text":" ","Context":"Text"},{"Start":125,"Length":2,"Line":6,"Column":39,"Text":"by","Context":"Text"},{"Start":126,"Length":1,"Line":6,"Column":40,"Text":" ","Context":"Text"},{"Start":126,"Length":1,"Line":6,"Column":40,"Text":"8","Context":"Text"},{"Start":126,"Length":1,"Line":6,"Column":40,"Text":"-","Context":"Text"},{"Start":126,"Length":3,"Line":6,"Column":40,"Text":"bit","Context":"Text"},{"Start":126,"Length":1,"Line":6,"Column":40,"Text":" ","Context":"Text"},{"Start":126,"Length":4,"Line":6,"Column":40,"Text":"deep","Context":"Text"},{"Start":126,"Length":1,"Line":6,"Column":40,"Text":" ","Context":"Text"},{"Start":126,"Length":4,"Line":6,"Column":40,"Text":"wire","Context":"Text"},{"Start":126,"Length":1,"Line":6,"Column":40,"Text":" ","Context":"Text"},{"Start":126,"Length":6,"Line":6,"Column":40,"Text":"arrays","Context":"Text"},{"Start":127,"Length":6,"Line":7,"Column":1,"Text":"arrays","Context":"Undetermined"},{"Start":137,"Length":1,"Line":7,"Column":11,"Text":" ","Context":"Text"},{"Start":138,"Length":4,"Line":7,"Column":12,"Text":"wire","Context":"Text"},{"Start":142,"Length":1,"Line":7,"Column":16,"Text":" ","Context":"Text"},{"Start":143,"Length":4,"Line":7,"Column":17,"Text":"rbit","Context":"Text"},{"Start":147,"Length":4,"Line":7,"Column":21,"Text":"    ","Context":"Text"},{"Start":147,"Length":1,"Line":7,"Column":21,"Text":"[","Context":"SquareBracketOpen"},{"Start":147,"Length":1,"Line":7,"Column":21,"Text":"7","Context":"Text"},{"Start":147,"Length":1,"Line":7,"Column":21,"Text":":","Context":"Text"},{"Start":147,"Length":1,"Line":7,"Column":21,"Text":"0","Context":"Text"},{"Start":147,"Length":1,"Line":7,"Column":21,"Text":"]","Context":"SquareBracketClose"},{"Start":147,"Length":1,"Line":7,"Column":21,"Text":";","Context":"Text"},{"Start":167,"Length":1,"Line":8,"Column":20,"Text":";","Context":"Undetermined"},{"Start":168,"Length":1,"Line":8,"Column":21,"Text":" ","Context":"Text"},{"Start":168,"Length":4,"Line":8,"Column":21,"Text":"wire","Context":"Text"},{"Start":168,"Length":1,"Line":8,"Column":21,"Text":" ","Context":"Text"},{"Start":168,"Length":6,"Line":8,"Column":21,"Text":"onebit","Context":"Text"},{"Start":168,"Length":2,"Line":8,"Column":21,"Text":"  ","Context":"Text"},{"Start":168,"Length":1,"Line":8,"Column":21,"Text":"[","Context":"SquareBracketOpen"},{"Start":168,"Length":1,"Line":8,"Column":21,"Text":"7","Context":"Text"},{"Start":168,"Length":1,"Line":8,"Column":21,"Text":":","Context":"Text"},{"Start":168,"Length":1,"Line":8,"Column":21,"Text":"0","Context":"Text"},{"Start":168,"Length":1,"Line":8,"Column":21,"Text":"]","Context":"SquareBracketClose"},{"Start":168,"Length":1,"Line":8,"Column":21,"Text":";","Context":"Text"},{"Start":188,"Length":1,"Line":9,"Column":20,"Text":";","Context":"Undetermined"},{"Start":189,"Length":1,"Line":9,"Column":21,"Text":" ","Context":"Text"},{"Start":189,"Length":4,"Line":9,"Column":21,"Text":"wire","Context":"Text"},{"Start":189,"Length":1,"Line":9,"Column":21,"Text":" ","Context":"Text"},{"Start":189,"Length":7,"Line":9,"Column":21,"Text":"twocomp","Context":"Text"},{"Start":189,"Length":1,"Line":9,"Column":21,"Text":" ","Context":"Text"},{"Start":189,"Length":1,"Line":9,"Column":21,"Text":"[","Context":"SquareBracketOpen"},{"Start":189,"Length":1,"Line":9,"Column":21,"Text":"7","Context":"Text"},{"Start":189,"Length":1,"Line":9,"Column":21,"Text":":","Context":"Text"},{"Start":189,"Length":1,"Line":9,"Column":21,"Text":"0","Context":"Text"},{"Start":189,"Length":1,"Line":9,"Column":21,"Text":"]","Context":"SquareBracketClose"},{"Start":189,"Length":1,"Line":9,"Column":21,"Text":";","Context":"Text"},{"Start":190,"Length":1,"Line":10,"Column":1,"Text":";","Context":"Undetermined"},{"Start":191,"Length":1,"Line":11,"Column":1,"Text":";","Context":"Undetermined"},{"Start":192,"Length":2,"Line":11,"Column":2,"Text":"//","Context":"Text"},{"Start":198,"Length":1,"Line":11,"Column":8,"Text":" ","Context":"Text"},{"Start":199,"Length":4,"Line":11,"Column":9,"Text":"wire","Context":"Text"},{"Start":203,"Length":1,"Line":11,"Column":13,"Text":" ","Context":"Text"},{"Start":204,"Length":12,"Line":11,"Column":14,"Text":"declarations","Context":"Text"},{"Start":212,"Length":16,"Line":12,"Column":1,"Text":"declarationswire","Context":"Undetermined"},{"Start":228,"Length":1,"Line":12,"Column":17,"Text":" ","Context":"Text"},{"Start":228,"Length":1,"Line":12,"Column":17,"Text":"[","Context":"SquareBracketOpen"},{"Start":228,"Length":1,"Line":12,"Column":17,"Text":"7","Context":"Text"},{"Start":228,"Length":1,"Line":12,"Column":17,"Text":":","Context":"Text"},{"Start":228,"Length":1,"Line":12,"Column":17,"Text":"0","Context":"Text"},{"Start":228,"Length":1,"Line":12,"Column":17,"Text":"]","Context":"SquareBracketClose"},{"Start":228,"Length":1,"Line":12,"Column":17,"Text":" ","Context":"Text"},{"Start":228,"Length":4,"Line":12,"Column":17,"Text":"rbit","Context":"Text"},{"Start":228,"Length":1,"Line":12,"Column":17,"Text":";","Context":"Text"},{"Start":246,"Length":1,"Line":13,"Column":18,"Text":";","Context":"Undetermined"},{"Start":247,"Length":4,"Line":13,"Column":19,"Text":"wire","Context":"Text"},{"Start":247,"Length":1,"Line":13,"Column":19,"Text":" ","Context":"Text"},{"Start":247,"Length":1,"Line":13,"Column":19,"Text":"[","Context":"SquareBracketOpen"},{"Start":247,"Length":1,"Line":13,"Column":19,"Text":"7","Context":"Text"},{"Start":247,"Length":1,"Line":13,"Column":19,"Text":":","Context":"Text"},{"Start":247,"Length":1,"Line":13,"Column":19,"Text":"0","Context":"Text"},{"Start":247,"Length":1,"Line":13,"Column":19,"Text":"]","Context":"SquareBracketClose"},{"Start":247,"Length":1,"Line":13,"Column":19,"Text":" ","Context":"Text"},{"Start":247,"Length":6,"Line":13,"Column":19,"Text":"onebit","Context":"Text"},{"Start":247,"Length":1,"Line":13,"Column":19,"Text":";","Context":"Text"},{"Start":266,"Length":1,"Line":14,"Column":19,"Text":";","Context":"Undetermined"},{"Start":267,"Length":4,"Line":14,"Column":20,"Text":"wire","Context":"Text"},{"Start":267,"Length":1,"Line":14,"Column":20,"Text":" ","Context":"Text"},{"Start":267,"Length":1,"Line":14,"Column":20,"Text":"[","Context":"SquareBracketOpen"},{"Start":267,"Length":1,"Line":14,"Column":20,"Text":"7","Context":"Text"},{"Start":267,"Length":1,"Line":14,"Column":20,"Text":":","Context":"Text"},{"Start":267,"Length":1,"Line":14,"Column":20,"Text":"0","Context":"Text"},{"Start":267,"Length":1,"Line":14,"Column":20,"Text":"]","Context":"SquareBracketClose"},{"Start":267,"Length":1,"Line":14,"Column":20,"Text":" ","Context":"Text"},{"Start":267,"Length":7,"Line":14,"Column":20,"Text":"twocomp","Context":"Text"},{"Start":267,"Length":1,"Line":14,"Column":20,"Text":";","Context":"Text"},{"Start":268,"Length":1,"Line":15,"Column":1,"Text":";","Context":"Undetermined"}],"Symbols":[{"Scope":"","Name":"wire","TokenType":"Verilog_Variable_duplicate","HoverText":"duplicate? input wire [7:0] y wire rbit [7:0]"},{"Scope":"","Name":"onebit","TokenType":"Verilog_Variable_duplicate","HoverText":"duplicate? wire [7:0] onebit"},{"Scope":"","Name":"twocomp","TokenType":"Verilog_Variable_duplicate","HoverText":"duplicate? wire [7:0] twocomp"},{"Scope":"","Name":"rbit","TokenType":"Verilog_Variable_wire","HoverText":"wire [7:0] rbit"}]}
+{
+    "SchemaVersion":  3,
+    "RunName":  "all-testfiles",
+    "ExtensionVersion":  "0.3.6.3",
+    "GitCommit":  "d4aa870",
+    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\wiretest.verilog",
+    "FileRelativePath":  "TestFiles\\wiretest.verilog",
+    "ContentType":  "verilog",
+    "SnapshotLength":  268,
+    "SnapshotVersion":  2,
+    "TextSha256":  "8ed0e798687fb3686c7becc1304c81c83583ce4d90776b707f30956664970629",
+    "Errors":  [
+
+               ],
+    "Classifications":  [
+                            {
+                                "Start":  0,
+                                "Length":  20,
+                                "Line":  1,
+                                "Column":  1,
+                                "Text":  "// 8-bit wire ports:",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  22,
+                                "Length":  6,
+                                "Line":  2,
+                                "Column":  2,
+                                "Text":  "output",
+                                "Types":  [
+                                              "output"
+                                          ]
+                            },
+                            {
+                                "Start":  29,
+                                "Length":  4,
+                                "Line":  2,
+                                "Column":  9,
+                                "Text":  "wire",
+                                "Types":  [
+                                              "wire"
+                                          ]
+                            },
+                            {
+                                "Start":  34,
+                                "Length":  1,
+                                "Line":  2,
+                                "Column":  14,
+                                "Text":  "[",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  35,
+                                "Length":  1,
+                                "Line":  2,
+                                "Column":  15,
+                                "Text":  "7",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  37,
+                                "Length":  1,
+                                "Line":  2,
+                                "Column":  17,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  38,
+                                "Length":  1,
+                                "Line":  2,
+                                "Column":  18,
+                                "Text":  "]",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  44,
+                                "Length":  5,
+                                "Line":  3,
+                                "Column":  2,
+                                "Text":  "input",
+                                "Types":  [
+                                              "input"
+                                          ]
+                            },
+                            {
+                                "Start":  51,
+                                "Length":  4,
+                                "Line":  3,
+                                "Column":  9,
+                                "Text":  "wire",
+                                "Types":  [
+                                              "wire"
+                                          ]
+                            },
+                            {
+                                "Start":  56,
+                                "Length":  1,
+                                "Line":  3,
+                                "Column":  14,
+                                "Text":  "[",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  57,
+                                "Length":  1,
+                                "Line":  3,
+                                "Column":  15,
+                                "Text":  "7",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  59,
+                                "Length":  1,
+                                "Line":  3,
+                                "Column":  17,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  60,
+                                "Length":  1,
+                                "Line":  3,
+                                "Column":  18,
+                                "Text":  "]",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  66,
+                                "Length":  5,
+                                "Line":  4,
+                                "Column":  2,
+                                "Text":  "input",
+                                "Types":  [
+                                              "input"
+                                          ]
+                            },
+                            {
+                                "Start":  73,
+                                "Length":  4,
+                                "Line":  4,
+                                "Column":  9,
+                                "Text":  "wire",
+                                "Types":  [
+                                              "wire"
+                                          ]
+                            },
+                            {
+                                "Start":  78,
+                                "Length":  1,
+                                "Line":  4,
+                                "Column":  14,
+                                "Text":  "[",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  79,
+                                "Length":  1,
+                                "Line":  4,
+                                "Column":  15,
+                                "Text":  "7",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  81,
+                                "Length":  1,
+                                "Line":  4,
+                                "Column":  17,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  82,
+                                "Length":  1,
+                                "Line":  4,
+                                "Column":  18,
+                                "Text":  "]",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  87,
+                                "Length":  39,
+                                "Line":  6,
+                                "Column":  1,
+                                "Text":  "// 1-bit wide by 8-bit deep wire arrays",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  128,
+                                "Length":  4,
+                                "Line":  7,
+                                "Column":  2,
+                                "Text":  "wire",
+                                "Types":  [
+                                              "wire"
+                                          ]
+                            },
+                            {
+                                "Start":  141,
+                                "Length":  1,
+                                "Line":  7,
+                                "Column":  15,
+                                "Text":  "[",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  142,
+                                "Length":  1,
+                                "Line":  7,
+                                "Column":  16,
+                                "Text":  "7",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  144,
+                                "Length":  1,
+                                "Line":  7,
+                                "Column":  18,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  145,
+                                "Length":  1,
+                                "Line":  7,
+                                "Column":  19,
+                                "Text":  "]",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  149,
+                                "Length":  4,
+                                "Line":  8,
+                                "Column":  2,
+                                "Text":  "wire",
+                                "Types":  [
+                                              "wire"
+                                          ]
+                            },
+                            {
+                                "Start":  162,
+                                "Length":  1,
+                                "Line":  8,
+                                "Column":  15,
+                                "Text":  "[",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  163,
+                                "Length":  1,
+                                "Line":  8,
+                                "Column":  16,
+                                "Text":  "7",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  165,
+                                "Length":  1,
+                                "Line":  8,
+                                "Column":  18,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  166,
+                                "Length":  1,
+                                "Line":  8,
+                                "Column":  19,
+                                "Text":  "]",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  170,
+                                "Length":  4,
+                                "Line":  9,
+                                "Column":  2,
+                                "Text":  "wire",
+                                "Types":  [
+                                              "wire"
+                                          ]
+                            },
+                            {
+                                "Start":  183,
+                                "Length":  1,
+                                "Line":  9,
+                                "Column":  15,
+                                "Text":  "[",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  184,
+                                "Length":  1,
+                                "Line":  9,
+                                "Column":  16,
+                                "Text":  "7",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  186,
+                                "Length":  1,
+                                "Line":  9,
+                                "Column":  18,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  187,
+                                "Length":  1,
+                                "Line":  9,
+                                "Column":  19,
+                                "Text":  "]",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  191,
+                                "Length":  20,
+                                "Line":  11,
+                                "Column":  1,
+                                "Text":  "// wire declarations",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  212,
+                                "Length":  4,
+                                "Line":  12,
+                                "Column":  1,
+                                "Text":  "wire",
+                                "Types":  [
+                                              "wire"
+                                          ]
+                            },
+                            {
+                                "Start":  217,
+                                "Length":  1,
+                                "Line":  12,
+                                "Column":  6,
+                                "Text":  "[",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  218,
+                                "Length":  1,
+                                "Line":  12,
+                                "Column":  7,
+                                "Text":  "7",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  220,
+                                "Length":  1,
+                                "Line":  12,
+                                "Column":  9,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  221,
+                                "Length":  1,
+                                "Line":  12,
+                                "Column":  10,
+                                "Text":  "]",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  229,
+                                "Length":  4,
+                                "Line":  13,
+                                "Column":  1,
+                                "Text":  "wire",
+                                "Types":  [
+                                              "wire"
+                                          ]
+                            },
+                            {
+                                "Start":  234,
+                                "Length":  1,
+                                "Line":  13,
+                                "Column":  6,
+                                "Text":  "[",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  235,
+                                "Length":  1,
+                                "Line":  13,
+                                "Column":  7,
+                                "Text":  "7",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  237,
+                                "Length":  1,
+                                "Line":  13,
+                                "Column":  9,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  238,
+                                "Length":  1,
+                                "Line":  13,
+                                "Column":  10,
+                                "Text":  "]",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  248,
+                                "Length":  4,
+                                "Line":  14,
+                                "Column":  1,
+                                "Text":  "wire",
+                                "Types":  [
+                                              "wire"
+                                          ]
+                            },
+                            {
+                                "Start":  253,
+                                "Length":  1,
+                                "Line":  14,
+                                "Column":  6,
+                                "Text":  "[",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  254,
+                                "Length":  1,
+                                "Line":  14,
+                                "Column":  7,
+                                "Text":  "7",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  256,
+                                "Length":  1,
+                                "Line":  14,
+                                "Column":  9,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  257,
+                                "Length":  1,
+                                "Line":  14,
+                                "Column":  10,
+                                "Text":  "]",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            }
+                        ],
+    "Tags":  [
+                 {
+                     "Start":  0,
+                     "Length":  2,
+                     "Line":  1,
+                     "Column":  1,
+                     "Text":  "//",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  2,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  3,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  3,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  4,
+                     "Text":  "8",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  4,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  5,
+                     "Text":  "-",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  5,
+                     "Length":  3,
+                     "Line":  1,
+                     "Column":  6,
+                     "Text":  "bit",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  8,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  9,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  9,
+                     "Length":  4,
+                     "Line":  1,
+                     "Column":  10,
+                     "Text":  "wire",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  13,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  14,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  14,
+                     "Length":  5,
+                     "Line":  1,
+                     "Column":  15,
+                     "Text":  "ports",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  19,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  20,
+                     "Text":  ":",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  22,
+                     "Length":  6,
+                     "Line":  2,
+                     "Column":  2,
+                     "Text":  "output",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_output",
+                     "HoverText":  "The reserved word output is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
+                 },
+                 {
+                     "Start":  29,
+                     "Length":  4,
+                     "Line":  2,
+                     "Column":  9,
+                     "Text":  "wire",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_wire",
+                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
+                 },
+                 {
+                     "Start":  34,
+                     "Length":  1,
+                     "Line":  2,
+                     "Column":  14,
+                     "Text":  "[",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  35,
+                     "Length":  1,
+                     "Line":  2,
+                     "Column":  15,
+                     "Text":  "7",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  37,
+                     "Length":  1,
+                     "Line":  2,
+                     "Column":  17,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  38,
+                     "Length":  1,
+                     "Line":  2,
+                     "Column":  18,
+                     "Text":  "]",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  44,
+                     "Length":  5,
+                     "Line":  3,
+                     "Column":  2,
+                     "Text":  "input",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_input",
+                     "HoverText":  "The reserved word input is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
+                 },
+                 {
+                     "Start":  51,
+                     "Length":  4,
+                     "Line":  3,
+                     "Column":  9,
+                     "Text":  "wire",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_wire",
+                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
+                 },
+                 {
+                     "Start":  56,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  14,
+                     "Text":  "[",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  57,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  15,
+                     "Text":  "7",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  59,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  17,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  60,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  18,
+                     "Text":  "]",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  66,
+                     "Length":  5,
+                     "Line":  4,
+                     "Column":  2,
+                     "Text":  "input",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_input",
+                     "HoverText":  "The reserved word input is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
+                 },
+                 {
+                     "Start":  73,
+                     "Length":  4,
+                     "Line":  4,
+                     "Column":  9,
+                     "Text":  "wire",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_wire",
+                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
+                 },
+                 {
+                     "Start":  78,
+                     "Length":  1,
+                     "Line":  4,
+                     "Column":  14,
+                     "Text":  "[",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  79,
+                     "Length":  1,
+                     "Line":  4,
+                     "Column":  15,
+                     "Text":  "7",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  81,
+                     "Length":  1,
+                     "Line":  4,
+                     "Column":  17,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  82,
+                     "Length":  1,
+                     "Line":  4,
+                     "Column":  18,
+                     "Text":  "]",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  87,
+                     "Length":  2,
+                     "Line":  6,
+                     "Column":  1,
+                     "Text":  "//",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  89,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  3,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  90,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  4,
+                     "Text":  "1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  91,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  5,
+                     "Text":  "-",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  92,
+                     "Length":  3,
+                     "Line":  6,
+                     "Column":  6,
+                     "Text":  "bit",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  95,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  9,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  96,
+                     "Length":  4,
+                     "Line":  6,
+                     "Column":  10,
+                     "Text":  "wide",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  100,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  14,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  101,
+                     "Length":  2,
+                     "Line":  6,
+                     "Column":  15,
+                     "Text":  "by",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  103,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  17,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  104,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  18,
+                     "Text":  "8",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  105,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  19,
+                     "Text":  "-",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  106,
+                     "Length":  3,
+                     "Line":  6,
+                     "Column":  20,
+                     "Text":  "bit",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  109,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  23,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  110,
+                     "Length":  4,
+                     "Line":  6,
+                     "Column":  24,
+                     "Text":  "deep",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  114,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  28,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  115,
+                     "Length":  4,
+                     "Line":  6,
+                     "Column":  29,
+                     "Text":  "wire",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  119,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  33,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  120,
+                     "Length":  6,
+                     "Line":  6,
+                     "Column":  34,
+                     "Text":  "arrays",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  128,
+                     "Length":  4,
+                     "Line":  7,
+                     "Column":  2,
+                     "Text":  "wire",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_wire",
+                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
+                 },
+                 {
+                     "Start":  141,
+                     "Length":  1,
+                     "Line":  7,
+                     "Column":  15,
+                     "Text":  "[",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  142,
+                     "Length":  1,
+                     "Line":  7,
+                     "Column":  16,
+                     "Text":  "7",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  144,
+                     "Length":  1,
+                     "Line":  7,
+                     "Column":  18,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  145,
+                     "Length":  1,
+                     "Line":  7,
+                     "Column":  19,
+                     "Text":  "]",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  149,
+                     "Length":  4,
+                     "Line":  8,
+                     "Column":  2,
+                     "Text":  "wire",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_wire",
+                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
+                 },
+                 {
+                     "Start":  162,
+                     "Length":  1,
+                     "Line":  8,
+                     "Column":  15,
+                     "Text":  "[",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  163,
+                     "Length":  1,
+                     "Line":  8,
+                     "Column":  16,
+                     "Text":  "7",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  165,
+                     "Length":  1,
+                     "Line":  8,
+                     "Column":  18,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  166,
+                     "Length":  1,
+                     "Line":  8,
+                     "Column":  19,
+                     "Text":  "]",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  170,
+                     "Length":  4,
+                     "Line":  9,
+                     "Column":  2,
+                     "Text":  "wire",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_wire",
+                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
+                 },
+                 {
+                     "Start":  183,
+                     "Length":  1,
+                     "Line":  9,
+                     "Column":  15,
+                     "Text":  "[",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  184,
+                     "Length":  1,
+                     "Line":  9,
+                     "Column":  16,
+                     "Text":  "7",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  186,
+                     "Length":  1,
+                     "Line":  9,
+                     "Column":  18,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  187,
+                     "Length":  1,
+                     "Line":  9,
+                     "Column":  19,
+                     "Text":  "]",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  191,
+                     "Length":  2,
+                     "Line":  11,
+                     "Column":  1,
+                     "Text":  "//",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  193,
+                     "Length":  1,
+                     "Line":  11,
+                     "Column":  3,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  194,
+                     "Length":  4,
+                     "Line":  11,
+                     "Column":  4,
+                     "Text":  "wire",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  198,
+                     "Length":  1,
+                     "Line":  11,
+                     "Column":  8,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  199,
+                     "Length":  12,
+                     "Line":  11,
+                     "Column":  9,
+                     "Text":  "declarations",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  212,
+                     "Length":  4,
+                     "Line":  12,
+                     "Column":  1,
+                     "Text":  "wire",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_wire",
+                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
+                 },
+                 {
+                     "Start":  217,
+                     "Length":  1,
+                     "Line":  12,
+                     "Column":  6,
+                     "Text":  "[",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  218,
+                     "Length":  1,
+                     "Line":  12,
+                     "Column":  7,
+                     "Text":  "7",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  220,
+                     "Length":  1,
+                     "Line":  12,
+                     "Column":  9,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  221,
+                     "Length":  1,
+                     "Line":  12,
+                     "Column":  10,
+                     "Text":  "]",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  229,
+                     "Length":  4,
+                     "Line":  13,
+                     "Column":  1,
+                     "Text":  "wire",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_wire",
+                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
+                 },
+                 {
+                     "Start":  234,
+                     "Length":  1,
+                     "Line":  13,
+                     "Column":  6,
+                     "Text":  "[",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  235,
+                     "Length":  1,
+                     "Line":  13,
+                     "Column":  7,
+                     "Text":  "7",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  237,
+                     "Length":  1,
+                     "Line":  13,
+                     "Column":  9,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  238,
+                     "Length":  1,
+                     "Line":  13,
+                     "Column":  10,
+                     "Text":  "]",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  248,
+                     "Length":  4,
+                     "Line":  14,
+                     "Column":  1,
+                     "Text":  "wire",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_wire",
+                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
+                 },
+                 {
+                     "Start":  253,
+                     "Length":  1,
+                     "Line":  14,
+                     "Column":  6,
+                     "Text":  "[",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  254,
+                     "Length":  1,
+                     "Line":  14,
+                     "Column":  7,
+                     "Text":  "7",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  256,
+                     "Length":  1,
+                     "Line":  14,
+                     "Column":  9,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  257,
+                     "Length":  1,
+                     "Line":  14,
+                     "Column":  10,
+                     "Text":  "]",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 }
+             ],
+    "Tokens":  [
+                   {
+                       "Start":  0,
+                       "Length":  2,
+                       "Line":  1,
+                       "Column":  1,
+                       "Text":  "//",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  2,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  3,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  3,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  4,
+                       "Text":  "8",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  4,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  5,
+                       "Text":  "-",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  5,
+                       "Length":  3,
+                       "Line":  1,
+                       "Column":  6,
+                       "Text":  "bit",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  8,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  9,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  9,
+                       "Length":  4,
+                       "Line":  1,
+                       "Column":  10,
+                       "Text":  "wire",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  13,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  14,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  14,
+                       "Length":  5,
+                       "Line":  1,
+                       "Column":  15,
+                       "Text":  "ports",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  19,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  20,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  21,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  1,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  22,
+                       "Length":  6,
+                       "Line":  2,
+                       "Column":  2,
+                       "Text":  "output",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  28,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  29,
+                       "Length":  4,
+                       "Line":  2,
+                       "Column":  9,
+                       "Text":  "wire",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  33,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  13,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  34,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  14,
+                       "Text":  "[",
+                       "Context":  "SquareBracketOpen"
+                   },
+                   {
+                       "Start":  35,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  15,
+                       "Text":  "7",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  36,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  16,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  37,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  17,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  38,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  18,
+                       "Text":  "]",
+                       "Context":  "SquareBracketClose"
+                   },
+                   {
+                       "Start":  39,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  19,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  40,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  20,
+                       "Text":  "r",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  41,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  21,
+                       "Text":  ",",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  43,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  1,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  44,
+                       "Length":  5,
+                       "Line":  3,
+                       "Column":  2,
+                       "Text":  "input",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  49,
+                       "Length":  2,
+                       "Line":  3,
+                       "Column":  7,
+                       "Text":  "  ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  51,
+                       "Length":  4,
+                       "Line":  3,
+                       "Column":  9,
+                       "Text":  "wire",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  55,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  13,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  56,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  14,
+                       "Text":  "[",
+                       "Context":  "SquareBracketOpen"
+                   },
+                   {
+                       "Start":  57,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  15,
+                       "Text":  "7",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  58,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  16,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  59,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  17,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  60,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  18,
+                       "Text":  "]",
+                       "Context":  "SquareBracketClose"
+                   },
+                   {
+                       "Start":  61,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  19,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  62,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  20,
+                       "Text":  "x",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  63,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  21,
+                       "Text":  ",",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  65,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  1,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  66,
+                       "Length":  5,
+                       "Line":  4,
+                       "Column":  2,
+                       "Text":  "input",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  71,
+                       "Length":  2,
+                       "Line":  4,
+                       "Column":  7,
+                       "Text":  "  ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  73,
+                       "Length":  4,
+                       "Line":  4,
+                       "Column":  9,
+                       "Text":  "wire",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  77,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  13,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  78,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  14,
+                       "Text":  "[",
+                       "Context":  "SquareBracketOpen"
+                   },
+                   {
+                       "Start":  79,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  15,
+                       "Text":  "7",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  80,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  16,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  81,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  17,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  82,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  18,
+                       "Text":  "]",
+                       "Context":  "SquareBracketClose"
+                   },
+                   {
+                       "Start":  83,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  19,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  84,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  20,
+                       "Text":  "y",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  87,
+                       "Length":  2,
+                       "Line":  6,
+                       "Column":  1,
+                       "Text":  "//",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  89,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  3,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  90,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  4,
+                       "Text":  "1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  91,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  5,
+                       "Text":  "-",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  92,
+                       "Length":  3,
+                       "Line":  6,
+                       "Column":  6,
+                       "Text":  "bit",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  95,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  9,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  96,
+                       "Length":  4,
+                       "Line":  6,
+                       "Column":  10,
+                       "Text":  "wide",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  100,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  14,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  101,
+                       "Length":  2,
+                       "Line":  6,
+                       "Column":  15,
+                       "Text":  "by",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  103,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  17,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  104,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  18,
+                       "Text":  "8",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  105,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  19,
+                       "Text":  "-",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  106,
+                       "Length":  3,
+                       "Line":  6,
+                       "Column":  20,
+                       "Text":  "bit",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  109,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  23,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  110,
+                       "Length":  4,
+                       "Line":  6,
+                       "Column":  24,
+                       "Text":  "deep",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  114,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  28,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  115,
+                       "Length":  4,
+                       "Line":  6,
+                       "Column":  29,
+                       "Text":  "wire",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  119,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  33,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  120,
+                       "Length":  6,
+                       "Line":  6,
+                       "Column":  34,
+                       "Text":  "arrays",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  127,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  1,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  128,
+                       "Length":  4,
+                       "Line":  7,
+                       "Column":  2,
+                       "Text":  "wire",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  132,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  6,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  133,
+                       "Length":  4,
+                       "Line":  7,
+                       "Column":  7,
+                       "Text":  "rbit",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  137,
+                       "Length":  4,
+                       "Line":  7,
+                       "Column":  11,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  141,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  15,
+                       "Text":  "[",
+                       "Context":  "SquareBracketOpen"
+                   },
+                   {
+                       "Start":  142,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  16,
+                       "Text":  "7",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  143,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  17,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  144,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  18,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  145,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  19,
+                       "Text":  "]",
+                       "Context":  "SquareBracketClose"
+                   },
+                   {
+                       "Start":  146,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  20,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  148,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  1,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  149,
+                       "Length":  4,
+                       "Line":  8,
+                       "Column":  2,
+                       "Text":  "wire",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  153,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  6,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  154,
+                       "Length":  6,
+                       "Line":  8,
+                       "Column":  7,
+                       "Text":  "onebit",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  160,
+                       "Length":  2,
+                       "Line":  8,
+                       "Column":  13,
+                       "Text":  "  ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  162,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  15,
+                       "Text":  "[",
+                       "Context":  "SquareBracketOpen"
+                   },
+                   {
+                       "Start":  163,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  16,
+                       "Text":  "7",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  164,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  17,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  165,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  18,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  166,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  19,
+                       "Text":  "]",
+                       "Context":  "SquareBracketClose"
+                   },
+                   {
+                       "Start":  167,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  20,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  169,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  1,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  170,
+                       "Length":  4,
+                       "Line":  9,
+                       "Column":  2,
+                       "Text":  "wire",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  174,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  6,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  175,
+                       "Length":  7,
+                       "Line":  9,
+                       "Column":  7,
+                       "Text":  "twocomp",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  182,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  14,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  183,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  15,
+                       "Text":  "[",
+                       "Context":  "SquareBracketOpen"
+                   },
+                   {
+                       "Start":  184,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  16,
+                       "Text":  "7",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  185,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  17,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  186,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  18,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  187,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  19,
+                       "Text":  "]",
+                       "Context":  "SquareBracketClose"
+                   },
+                   {
+                       "Start":  188,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  20,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  191,
+                       "Length":  2,
+                       "Line":  11,
+                       "Column":  1,
+                       "Text":  "//",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  193,
+                       "Length":  1,
+                       "Line":  11,
+                       "Column":  3,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  194,
+                       "Length":  4,
+                       "Line":  11,
+                       "Column":  4,
+                       "Text":  "wire",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  198,
+                       "Length":  1,
+                       "Line":  11,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  199,
+                       "Length":  12,
+                       "Line":  11,
+                       "Column":  9,
+                       "Text":  "declarations",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  212,
+                       "Length":  4,
+                       "Line":  12,
+                       "Column":  1,
+                       "Text":  "wire",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  216,
+                       "Length":  1,
+                       "Line":  12,
+                       "Column":  5,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  217,
+                       "Length":  1,
+                       "Line":  12,
+                       "Column":  6,
+                       "Text":  "[",
+                       "Context":  "SquareBracketOpen"
+                   },
+                   {
+                       "Start":  218,
+                       "Length":  1,
+                       "Line":  12,
+                       "Column":  7,
+                       "Text":  "7",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  219,
+                       "Length":  1,
+                       "Line":  12,
+                       "Column":  8,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  220,
+                       "Length":  1,
+                       "Line":  12,
+                       "Column":  9,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  221,
+                       "Length":  1,
+                       "Line":  12,
+                       "Column":  10,
+                       "Text":  "]",
+                       "Context":  "SquareBracketClose"
+                   },
+                   {
+                       "Start":  222,
+                       "Length":  1,
+                       "Line":  12,
+                       "Column":  11,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  223,
+                       "Length":  4,
+                       "Line":  12,
+                       "Column":  12,
+                       "Text":  "rbit",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  227,
+                       "Length":  1,
+                       "Line":  12,
+                       "Column":  16,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  229,
+                       "Length":  4,
+                       "Line":  13,
+                       "Column":  1,
+                       "Text":  "wire",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  233,
+                       "Length":  1,
+                       "Line":  13,
+                       "Column":  5,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  234,
+                       "Length":  1,
+                       "Line":  13,
+                       "Column":  6,
+                       "Text":  "[",
+                       "Context":  "SquareBracketOpen"
+                   },
+                   {
+                       "Start":  235,
+                       "Length":  1,
+                       "Line":  13,
+                       "Column":  7,
+                       "Text":  "7",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  236,
+                       "Length":  1,
+                       "Line":  13,
+                       "Column":  8,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  237,
+                       "Length":  1,
+                       "Line":  13,
+                       "Column":  9,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  238,
+                       "Length":  1,
+                       "Line":  13,
+                       "Column":  10,
+                       "Text":  "]",
+                       "Context":  "SquareBracketClose"
+                   },
+                   {
+                       "Start":  239,
+                       "Length":  1,
+                       "Line":  13,
+                       "Column":  11,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  240,
+                       "Length":  6,
+                       "Line":  13,
+                       "Column":  12,
+                       "Text":  "onebit",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  246,
+                       "Length":  1,
+                       "Line":  13,
+                       "Column":  18,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  248,
+                       "Length":  4,
+                       "Line":  14,
+                       "Column":  1,
+                       "Text":  "wire",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  252,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  5,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  253,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  6,
+                       "Text":  "[",
+                       "Context":  "SquareBracketOpen"
+                   },
+                   {
+                       "Start":  254,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  7,
+                       "Text":  "7",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  255,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  8,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  256,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  9,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  257,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  10,
+                       "Text":  "]",
+                       "Context":  "SquareBracketClose"
+                   },
+                   {
+                       "Start":  258,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  11,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  259,
+                       "Length":  7,
+                       "Line":  14,
+                       "Column":  12,
+                       "Text":  "twocomp",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  266,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  19,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   }
+               ],
+    "Symbols":  [
+                    {
+                        "Scope":  "",
+                        "Name":  "wire",
+                        "TokenType":  "Verilog_Variable_duplicate",
+                        "HoverText":  "duplicate? input wire [7:0] y wire rbit [7:0]"
+                    },
+                    {
+                        "Scope":  "",
+                        "Name":  "onebit",
+                        "TokenType":  "Verilog_Variable_duplicate",
+                        "HoverText":  "duplicate? wire [7:0] onebit"
+                    },
+                    {
+                        "Scope":  "",
+                        "Name":  "twocomp",
+                        "TokenType":  "Verilog_Variable_duplicate",
+                        "HoverText":  "duplicate? wire [7:0] twocomp"
+                    },
+                    {
+                        "Scope":  "",
+                        "Name":  "rbit",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "wire [7:0] rbit"
+                    }
+                ]
+}

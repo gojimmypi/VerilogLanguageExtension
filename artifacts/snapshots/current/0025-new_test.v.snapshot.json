@@ -1,1 +1,261 @@
-{"SchemaVersion":3,"RunName":"all-testfiles","ExtensionVersion":"0.3.6.3","GitCommit":"b1ebe2c","FilePath":"C:\\workspace\\VerilogLanguageExtension\\TestFiles\\new_test.v","FileRelativePath":"TestFiles\\new_test.v","ContentType":"verilog","SnapshotLength":26,"SnapshotVersion":2,"TextSha256":"6e63f0462779237a01d72ef5e7a075b27907b026517ab619a06738e4a0259943","Errors":[],"Classifications":[{"Start":0,"Length":5,"Line":1,"Column":1,"Text":"input","Types":["input"]},{"Start":6,"Length":4,"Line":1,"Column":7,"Text":"wire","Types":["wire"]},{"Start":11,"Length":1,"Line":1,"Column":12,"Text":"[","Types":["Bracket0"]},{"Start":12,"Length":1,"Line":1,"Column":13,"Text":"1","Types":["Value"]},{"Start":14,"Length":1,"Line":1,"Column":15,"Text":"1","Types":["Value"]},{"Start":15,"Length":1,"Line":1,"Column":16,"Text":"]","Types":["Bracket1"]}],"Tags":[{"Start":0,"Length":5,"Line":1,"Column":1,"Text":"input","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_input","HoverText":"The reserved word input is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."},{"Start":6,"Length":4,"Line":1,"Column":7,"Text":"wire","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_wire","HoverText":"Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."},{"Start":11,"Length":1,"Line":1,"Column":12,"Text":"[","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket0","HoverText":null},{"Start":12,"Length":1,"Line":1,"Column":13,"Text":"1","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":14,"Length":1,"Line":1,"Column":15,"Text":"1","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Value","HoverText":null},{"Start":15,"Length":1,"Line":1,"Column":16,"Text":"]","TagType":"VerilogLanguage.VerilogToken.VerilogTokenTag","TagDetail":"Verilog_Bracket1","HoverText":null}],"Tokens":[{"Start":0,"Length":5,"Line":1,"Column":1,"Text":"input","Context":"Undetermined"},{"Start":5,"Length":1,"Line":1,"Column":6,"Text":" ","Context":"Text"},{"Start":6,"Length":4,"Line":1,"Column":7,"Text":"wire","Context":"Text"},{"Start":10,"Length":1,"Line":1,"Column":11,"Text":" ","Context":"Text"},{"Start":11,"Length":1,"Line":1,"Column":12,"Text":"[","Context":"SquareBracketOpen"},{"Start":12,"Length":1,"Line":1,"Column":13,"Text":"1","Context":"Text"},{"Start":13,"Length":1,"Line":1,"Column":14,"Text":":","Context":"Text"},{"Start":14,"Length":1,"Line":1,"Column":15,"Text":"1","Context":"Text"},{"Start":15,"Length":1,"Line":1,"Column":16,"Text":"]","Context":"SquareBracketClose"},{"Start":16,"Length":1,"Line":1,"Column":17,"Text":" ","Context":"Text"},{"Start":17,"Length":2,"Line":1,"Column":18,"Text":"k1","Context":"Text"},{"Start":19,"Length":1,"Line":1,"Column":20,"Text":",","Context":"Text"},{"Start":20,"Length":3,"Line":1,"Column":21,"Text":"   ","Context":"Text"},{"Start":23,"Length":2,"Line":1,"Column":24,"Text":"h1","Context":"Text"},{"Start":26,"Length":2,"Line":2,"Column":1,"Text":"h1","Context":"Undetermined"}],"Symbols":[{"Scope":"","Name":"wire","TokenType":"Verilog_Variable_input","HoverText":"input wire [1:1] k1"}]}
+{
+    "SchemaVersion":  3,
+    "RunName":  "all-testfiles",
+    "ExtensionVersion":  "0.3.6.3",
+    "GitCommit":  "d4aa870",
+    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\new_test.v",
+    "FileRelativePath":  "TestFiles\\new_test.v",
+    "ContentType":  "verilog",
+    "SnapshotLength":  26,
+    "SnapshotVersion":  2,
+    "TextSha256":  "6e63f0462779237a01d72ef5e7a075b27907b026517ab619a06738e4a0259943",
+    "Errors":  [
+
+               ],
+    "Classifications":  [
+                            {
+                                "Start":  0,
+                                "Length":  5,
+                                "Line":  1,
+                                "Column":  1,
+                                "Text":  "input",
+                                "Types":  [
+                                              "input"
+                                          ]
+                            },
+                            {
+                                "Start":  6,
+                                "Length":  4,
+                                "Line":  1,
+                                "Column":  7,
+                                "Text":  "wire",
+                                "Types":  [
+                                              "wire"
+                                          ]
+                            },
+                            {
+                                "Start":  11,
+                                "Length":  1,
+                                "Line":  1,
+                                "Column":  12,
+                                "Text":  "[",
+                                "Types":  [
+                                              "Bracket0"
+                                          ]
+                            },
+                            {
+                                "Start":  12,
+                                "Length":  1,
+                                "Line":  1,
+                                "Column":  13,
+                                "Text":  "1",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  14,
+                                "Length":  1,
+                                "Line":  1,
+                                "Column":  15,
+                                "Text":  "1",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  15,
+                                "Length":  1,
+                                "Line":  1,
+                                "Column":  16,
+                                "Text":  "]",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            }
+                        ],
+    "Tags":  [
+                 {
+                     "Start":  0,
+                     "Length":  5,
+                     "Line":  1,
+                     "Column":  1,
+                     "Text":  "input",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_input",
+                     "HoverText":  "The reserved word input is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
+                 },
+                 {
+                     "Start":  6,
+                     "Length":  4,
+                     "Line":  1,
+                     "Column":  7,
+                     "Text":  "wire",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_wire",
+                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
+                 },
+                 {
+                     "Start":  11,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  12,
+                     "Text":  "[",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket0",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  12,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  13,
+                     "Text":  "1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  14,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  15,
+                     "Text":  "1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  15,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  16,
+                     "Text":  "]",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 }
+             ],
+    "Tokens":  [
+                   {
+                       "Start":  0,
+                       "Length":  5,
+                       "Line":  1,
+                       "Column":  1,
+                       "Text":  "input",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  5,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  6,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  6,
+                       "Length":  4,
+                       "Line":  1,
+                       "Column":  7,
+                       "Text":  "wire",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  10,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  11,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  11,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  12,
+                       "Text":  "[",
+                       "Context":  "SquareBracketOpen"
+                   },
+                   {
+                       "Start":  12,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  13,
+                       "Text":  "1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  13,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  14,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  14,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  15,
+                       "Text":  "1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  15,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  16,
+                       "Text":  "]",
+                       "Context":  "SquareBracketClose"
+                   },
+                   {
+                       "Start":  16,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  17,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  17,
+                       "Length":  2,
+                       "Line":  1,
+                       "Column":  18,
+                       "Text":  "k1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  19,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  20,
+                       "Text":  ",",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  20,
+                       "Length":  3,
+                       "Line":  1,
+                       "Column":  21,
+                       "Text":  "   ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  23,
+                       "Length":  2,
+                       "Line":  1,
+                       "Column":  24,
+                       "Text":  "h1",
+                       "Context":  "Text"
+                   }
+               ],
+    "Symbols":  [
+                    {
+                        "Scope":  "",
+                        "Name":  "wire",
+                        "TokenType":  "Verilog_Variable_input",
+                        "HoverText":  "input wire [1:1] k1"
+                    }
+                ]
+}

@@ -2,7 +2,7 @@
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
     "ExtensionVersion":  "0.3.6.3",
-    "GitCommit":  "13593c9",
+    "GitCommit":  "efc9996",
     "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\issue16.v",
     "FileRelativePath":  "TestFiles\\issue16.v",
     "ContentType":  "verilog",

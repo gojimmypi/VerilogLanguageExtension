@@ -9,6 +9,8 @@ namespace VerilogLanguage
     public static partial class VerilogGlobals
     {
         private static bool threadActive = false; // true to spawn a new thread when reparsing
+        private static ITextBuffer threadbuffer;  // we'll copy the intended buffer to process to this threadBuffer; it will be placed back upon completion
+        private static string threadFile = string.Empty;    // there may be multiple files open. we'll keep track of them here.
         private const int THREAD_TRIGGER_SIZE = 8192;
         private static DateTime ProfileStart;     // we'll keep track of performance; this is the starting time marker
 
@@ -279,7 +281,7 @@ namespace VerilogLanguage
 
         public class ThreadReparse
         {
-            public static void DoWork(ITextBuffer buffer, string targetFile) {
+            public static void DoWork(string targetFile) {
                 // ensure we have a ParseAttribute for this file
                 //if (!ParseStatus.ContainsKey(targetFile))
                 //{
@@ -303,7 +305,7 @@ namespace VerilogLanguage
                     //if ( 1==1 || (DateTime.Now - LastRefresh).TotalSeconds > 10)
                     //{
                     //    System.Diagnostics.Debug.WriteLine("BufferAttributes calling ReparseWork");
-                    VerilogGlobals.ReparseWork(buffer, targetFile);
+                    VerilogGlobals.ReparseWork(threadbuffer, threadFile);
                     //    LastRefresh = DateTime.Now;
                     //}
 
@@ -332,6 +334,9 @@ namespace VerilogLanguage
             //if (NeedReparse)
             if (VerilogGlobals.ParseStatusController.NeedReparse(forFile)) // ensure the dictionary item exists for the ParseStatus of this file and check if it is time to reparse
             {
+                threadbuffer = buffer;
+                threadFile = forFile;
+
                 // we'll only use threads if the CurrentSnapshot is larger than a specified size
                 threadActive = (buffer.CurrentSnapshot.Length > THREAD_TRIGGER_SIZE);
                 if (threadActive) {
@@ -343,7 +348,7 @@ namespace VerilogLanguage
                     System.Diagnostics.Debug.WriteLine("Reparse (threaded)...");
                     Thread thread1 = new Thread(() =>
                     {
-                        ThreadReparse.DoWork(buffer, forFile);
+                        ThreadReparse.DoWork(forFile);
                         // LongRunningTaskIsDone();  // this doesn't help much, as we don't have access to TagChanged from within this class
                     })
                     { IsBackground = true }; ;
@@ -353,13 +358,14 @@ namespace VerilogLanguage
                 else {
                     // Do blocking reparse work when the files are relatively small
                     System.Diagnostics.Debug.WriteLine("Reparse (non-threaded)...");
-                    ThreadReparse.DoWork(buffer, forFile);
+                    ThreadReparse.DoWork(forFile);
                 }
             }
             // ThreadReparse.DoWork();
         }
         public static void ReparseWork(ITextBuffer buffer, string targetFile) {
             int thisBufferVersion = 0;
+            ITextSnapshot newSnapshot = null;
 
             System.Diagnostics.Debug.WriteLine("Starting ReparseWork...");
 
@@ -391,25 +397,25 @@ namespace VerilogLanguage
                 }
 
                 try {
-                    thisBufferVersion = buffer.CurrentSnapshot.Version.VersionNumber;
+                    newSnapshot = buffer.CurrentSnapshot;
+                    thisBufferVersion = newSnapshot.Version.VersionNumber;
                 }
                 catch {
                     thisBufferVersion = 0;
                 }
 
-                editingBufferAttribute_at_LineNumber = new int[buffer.CurrentSnapshot.LineCount]; // int does not allow null;  all the array elements are initialized to zero.
-
-                // If we could not determine a version, exit. If this same buffer version is already
-                // the active parse data, exit. If another file has since become active, reparse this
-                // same version so the shared legacy parse tables are restored for this buffer.
-                if ((thisBufferVersion == 0) ||
-                    ((ParseStatus[targetFile].LastReparseVersion == thisBufferVersion) &&
-                     VerilogGlobals.IsActiveParseData(targetFile, buffer))) {
+                // if we could not determine a version ( = 0), or if the last time we reparsed was for this same buffer, then exit
+                if ((newSnapshot == null) || (thisBufferVersion == 0) || (ParseStatus[targetFile].LastReparseVersion == thisBufferVersion)) {
+                    if ((newSnapshot != null) && (thisBufferVersion != 0) && (ParseStatus[targetFile].LastReparseVersion == thisBufferVersion)) {
+                        VerilogGlobals.SetActiveParseData(targetFile, thisBufferVersion);
+                    }
                     ParseStatus[targetFile].IsReparsing = false;
                     VerilogGlobals.ParseStatusController.NeedReparse_SetValue(targetFile, false);
                     // IsReparsing = false;
                     return;
                 }
+
+                editingBufferAttribute_at_LineNumber = new int[newSnapshot.LineCount]; // int does not allow null;  all the array elements are initialized to zero.
             }
 
 
@@ -419,7 +425,7 @@ namespace VerilogLanguage
             //    return; // never reparse more than once a second
             //}
             ProfileStart = DateTime.Now;
-            ITextSnapshot newSnapshot = buffer.CurrentSnapshot;
+            // Use the immutable snapshot captured above for this reparse pass.
             string thisChar = string.Empty;
             string lastChar = string.Empty;
             string thisLine = string.Empty;
@@ -471,7 +477,7 @@ namespace VerilogLanguage
                     editingBufferAttributes.Add(bufferAttribute);
 
                     // we'll keep track of the first buffer position in an array of line numbers
-                    if (editingBufferAttribute_at_LineNumber[thisLineNumber] == 0) {
+                    if ((thisLineNumber >= 0) && (thisLineNumber < editingBufferAttribute_at_LineNumber.Length) && (editingBufferAttribute_at_LineNumber[thisLineNumber] == 0)) {
                         editingBufferAttribute_at_LineNumber[thisLineNumber] = editingBufferAttributes.Count - 1;
                     }
 
@@ -638,7 +644,9 @@ namespace VerilogLanguage
 
                     if (thisLine == "") {
                         // TODO Count or Count - 1 ?
-                        editingBufferAttribute_at_LineNumber[thisLineNumber] = editingBufferAttributes.Count;
+                        if ((thisLineNumber >= 0) && (thisLineNumber < editingBufferAttribute_at_LineNumber.Length)) {
+                            editingBufferAttribute_at_LineNumber[thisLineNumber] = editingBufferAttributes.Count;
+                        }
                     }
                     else {
                         // parse the entire line for tokens

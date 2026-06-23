@@ -45,6 +45,7 @@ namespace VerilogLanguage.VerilogToken
     {
 
         private Timer _reparseCompletionTimer;
+        private readonly object _reparseCompletionTimerLock = new object();
         private string _lastReparseFile = string.Empty;
 
         private int _initialInvalidateAttempted;
@@ -108,14 +109,23 @@ namespace VerilogLanguage.VerilogToken
                 return;
             }
 
-            _lastReparseFile = forFile;
-            _reparseCompletionTimerTicks = 0;
+            lock (_reparseCompletionTimerLock) {
+                _lastReparseFile = forFile;
+                _reparseCompletionTimerTicks = 0;
 
-            if (_reparseCompletionTimer == null) {
-                _reparseCompletionTimer = new Timer(ReparseCompletionTimerCallback, null, 50, 50);
-            }
-            else {
-                _reparseCompletionTimer.Change(50, 50);
+                if (_reparseCompletionTimer == null) {
+                    _reparseCompletionTimer = new Timer(ReparseCompletionTimerCallback, null, 50, 50);
+                    return;
+                }
+
+                try {
+                    _reparseCompletionTimer.Change(50, 50);
+                }
+                catch (ObjectDisposedException) {
+                    // A callback from an older parse can race with a new parse request.
+                    // Recreate the watcher instead of letting a disposed Timer break classification.
+                    _reparseCompletionTimer = new Timer(ReparseCompletionTimerCallback, null, 50, 50);
+                }
             }
         }
 
@@ -272,19 +282,18 @@ namespace VerilogLanguage.VerilogToken
         }
 
         private void StopReparseCompletionWatcher() {
-            Timer oldTimer = Interlocked.Exchange(ref _reparseCompletionTimer, null);
-            if (oldTimer == null) {
-                return;
-            }
+            lock (_reparseCompletionTimerLock) {
+                if (_reparseCompletionTimer == null) {
+                    return;
+                }
 
-            try {
-                oldTimer.Change(Timeout.Infinite, Timeout.Infinite);
+                try {
+                    _reparseCompletionTimer.Change(Timeout.Infinite, Timeout.Infinite);
+                }
+                catch (ObjectDisposedException) {
+                    _reparseCompletionTimer = null;
+                }
             }
-            catch {
-                // ignore
-            }
-
-            oldTimer.Dispose();
         }
 
 

@@ -216,7 +216,7 @@ function Add-ExistingManifestSnapshotNameMappings {
         }
     }
     catch {
-        Write-Warning "Could not read existing manifest $ExistingManifestPath: $_"
+        Write-Warning "Could not read existing manifest ${ExistingManifestPath}: $_"
     }
 }
 

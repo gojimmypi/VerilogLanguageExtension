@@ -1,4 +1,4 @@
-﻿// File ulx3s_v20_passthru_wifi.vhd translated with vhd2vl v3.0 VHDL to Verilog RTL translator
+// File ulx3s_v20_passthru_wifi.vhd translated with vhd2vl v3.0 VHDL to Verilog RTL translator
 // this is a freshly converted 6a044e8 version from March 2
 // see https://github.com/emard/ulx3s-passthru/blob/71ce18953f84ea8ee07bb42d42ddc5a2673623c3/rtl/ulx3s_v20_passthru_wifi.vhd#L1
 //

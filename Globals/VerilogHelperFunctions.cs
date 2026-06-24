@@ -20,6 +20,7 @@ namespace VerilogLanguage
                    (theString.Contains("]")) ||
                    (theString.Contains("}")) ||
                    (theString.Contains("{")) ||
+                   (theString.Contains("`")) ||
                    (theString.Contains("(")) ||
                    (theString.Contains(")"));
         }

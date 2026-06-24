@@ -2674,6 +2674,48 @@ namespace VerilogLanguage
             }
         }
     }
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "Macro")]
+    [Name("Macro")]
+    [UserVisible(true)]
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_Macro : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "Macro" classification type.
+        /// </summary>
+        public Verilog_Macro() {
+            DisplayName = "Verilog - Macro";
+            if (ColorThemeAttribute.IsDarkTheme()) {
+                ForegroundColor = Colors.MediumPurple;
+            }
+            else {
+                ForegroundColor = Colors.Purple;
+            }
+        }
+    }
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "MacroDefinition")]
+    [Name("MacroDefinition")]
+    [UserVisible(true)]
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_MacroDefinition : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "MacroDefinition" classification type.
+        /// </summary>
+        public Verilog_MacroDefinition() {
+            DisplayName = "Verilog - Macro Conditional Definition";
+            if (ColorThemeAttribute.IsDarkTheme()) {
+                ForegroundColor = Colors.Goldenrod;
+            }
+            else {
+                ForegroundColor = Colors.DarkGoldenrod;
+            }
+        }
+    }
     #endregion
 
     #region comments

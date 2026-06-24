@@ -733,6 +733,66 @@ namespace VerilogLanguage.VerilogToken
             return true;
         }
 
+        private static bool TryGetMacroNameFromLookupText(string lookupText, out string macroName) {
+            macroName = string.Empty;
+            if (string.IsNullOrEmpty(lookupText) || lookupText[0] != '`') {
+                return false;
+            }
+
+            string candidate = lookupText.Substring(1);
+            if (!IsVerilogIdentifierText(candidate)) {
+                return false;
+            }
+
+            switch (lookupText) {
+                case "`celldefine":
+                case "`endcelldefine":
+                case "`default_nettype":
+                case "`define":
+                case "`undef":
+                case "`ifdef":
+                case "`ifndef":
+                case "`elsif":
+                case "`else":
+                case "`endif":
+                case "`include":
+                case "`resetall":
+                case "`line":
+                case "`timescale":
+                case "`unconnected_drive":
+                case "`nounconnected_driv":
+                    return false;
+
+                default:
+                    macroName = candidate;
+                    return true;
+            }
+        }
+
+        private static bool IsPreprocessorMacroContext(ITextSnapshotLine containingLine, int lookupColumn, string lookupText) {
+            if (containingLine == null || string.IsNullOrEmpty(lookupText)) {
+                return false;
+            }
+
+            string lineText = containingLine.GetText();
+            if (lookupColumn < 0 || lookupColumn > lineText.Length) {
+                return false;
+            }
+
+            string prefixText = lineText.Substring(0, lookupColumn);
+            string trimmedPrefix = prefixText.Trim();
+
+            if (trimmedPrefix.EndsWith("`define", StringComparison.Ordinal) ||
+                trimmedPrefix.EndsWith("`ifdef", StringComparison.Ordinal) ||
+                trimmedPrefix.EndsWith("`ifndef", StringComparison.Ordinal) ||
+                trimmedPrefix.EndsWith("`elsif", StringComparison.Ordinal) ||
+                trimmedPrefix.EndsWith("`undef", StringComparison.Ordinal)) {
+                return IsVerilogIdentifierText(lookupText);
+            }
+
+            return false;
+        }
+
         private static bool IsVerilogIdentifierContinuation(char c) {
             return char.IsLetterOrDigit(c) || c == '_' || c == '$';
         }
@@ -909,7 +969,37 @@ namespace VerilogLanguage.VerilogToken
                 yield break;
             }
 
+            string macroName;
+            if (TryGetMacroNameFromLookupText(lookupText, out macroName)) {
+                yield return new TagSpan<VerilogTokenTag>(
+                    lookupSpan,
+                    new VerilogTokenTag(VerilogTokenTypes.Verilog_Macro));
+                yield break;
+            }
+
             bool lookupTextIsIdentifier = IsVerilogIdentifierText(lookupText);
+
+            if (lookupTextIsIdentifier &&
+                IsPreprocessorMacroContext(
+                    containingLine,
+                    (curLoc + leadingWhitespace) - containingLine.Start.Position,
+                    lookupText)) {
+
+                yield return new TagSpan<VerilogTokenTag>(
+                    lookupSpan,
+                    new VerilogTokenTag(VerilogTokenTypes.Verilog_Macro));
+                yield break;
+            }
+
+            if (parseData != null && lookupTextIsIdentifier &&
+                parseData.VerilogVariables.ContainsKey(VerilogGlobals.SCOPE_MACRO) &&
+                parseData.VerilogVariables[VerilogGlobals.SCOPE_MACRO].ContainsKey(lookupText)) {
+
+                yield return new TagSpan<VerilogTokenTag>(
+                    lookupSpan,
+                    new VerilogTokenTag(parseData.VerilogVariables[VerilogGlobals.SCOPE_MACRO][lookupText]));
+                yield break;
+            }
 
             if (parseData != null && lookupTextIsIdentifier && parseData.VerilogVariables.ContainsKey(lookupText)) {
                 // we are instantiation a module; recall VerilogVariables is first a dictionary of scope (aka module), then a dictionary of variables in each module scope

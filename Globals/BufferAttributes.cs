@@ -676,6 +676,8 @@ namespace VerilogLanguage
                     thisLine = line.GetText();
                     thisLineNumber = line.LineNumber; // zero-based line numbers
 
+                    VerilogGlobals.ProcessPreprocessorLine(thisLine);
+
                     if (thisLine == "") {
                         // TODO Count or Count - 1 ?
                         if ((thisLineNumber >= 0) && (thisLineNumber < editingBufferAttribute_at_LineNumber.Length)) {

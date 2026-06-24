@@ -704,6 +704,20 @@ namespace VerilogLanguage
         [Name("Directive")]
         internal static ClassificationTypeDefinition Verilog_Directive = null;
 
+        /// <summary>
+        /// Defines the "Verilog_Macro" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Macro")]
+        internal static ClassificationTypeDefinition Verilog_Macro = null;
+
+        /// <summary>
+        /// Defines the "Verilog_MacroDefinition" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("MacroDefinition")]
+        internal static ClassificationTypeDefinition Verilog_MacroDefinition = null;
+
         #endregion
 
         #region comments

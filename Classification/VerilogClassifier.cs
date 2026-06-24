@@ -209,6 +209,8 @@ namespace VerilogLanguage.VerilogToken
                 [VerilogTokenTypes.Verilog_bit] = typeService.GetClassificationType("bit"),
 
                 [VerilogTokenTypes.Verilog_Directive] = typeService.GetClassificationType("directive"), // type must be one of VerilogTokenTagger
+                [VerilogTokenTypes.Verilog_Macro] = typeService.GetClassificationType("Macro"),
+                [VerilogTokenTypes.Verilog_MacroDefinition] = typeService.GetClassificationType("MacroDefinition"),
                 [VerilogTokenTypes.Verilog_Comment] = typeService.GetClassificationType("Comment"), // GetClassificationType string must be defined in ClassificationType.cs
                 [VerilogTokenTypes.Verilog_Bracket] = typeService.GetClassificationType("Bracket"),
                 [VerilogTokenTypes.Verilog_Bracket0] = typeService.GetClassificationType("Bracket0"),

@@ -315,6 +315,20 @@ namespace VerilogLanguage
                 return true;
             }
 
+            string macroHoverKey = thisHoverKey;
+            if (macroHoverKey.StartsWith("`", StringComparison.Ordinal)) {
+                macroHoverKey = macroHoverKey.Substring(1);
+            }
+
+            Dictionary<string, string> macroMap;
+            string macroHover;
+            if (hoverDb.TryGetValue(VerilogGlobals.SCOPE_MACRO, out macroMap) &&
+                macroMap != null &&
+                macroMap.TryGetValue(macroHoverKey, out macroHover)) {
+                hoverText = macroHover;
+                return true;
+            }
+
             return false;
         }
     }

@@ -112,6 +112,8 @@ namespace VerilogLanguage.VerilogToken
         Verilog_wire,
 
         Verilog_Directive, // note that all directives are colorized the same
+        Verilog_Macro, // macro name/reference from `define, `ifdef, `ifndef, `elsif, or `MACRO use
+        Verilog_MacroDefinition, // declaration name defined inside preprocessor conditional text
 
         //
         Verilog_Comment,

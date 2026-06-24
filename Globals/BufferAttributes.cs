@@ -730,6 +730,7 @@ namespace VerilogLanguage
             BufferAttributes = editingBufferAttributes;
             BufferAttribute_at_LineNumber = editingBufferAttribute_at_LineNumber;
             BufferFirstParseComplete = true;
+            VerilogGlobals.MarkDuplicateDeclarationsFromSnapshot(buffer.CurrentSnapshot);
             VerilogGlobals.PublishParseData(targetFile, thisBufferVersion);
             lock (_synchronizationParseStatus) {
                 ParseStatus[targetFile].IsReparsing = false;

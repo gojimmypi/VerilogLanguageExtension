@@ -6,7 +6,7 @@
     "FileRelativePath":  "TestFiles\\issue10.v",
     "ContentType":  "verilog",
     "SnapshotLength":  896,
-    "SnapshotVersion":  4,
+    "SnapshotVersion":  2,
     "TextSha256":  "8620ae15030716a8f03c82720b53995804769049393d7019918ec4431bee4402",
     "Errors":  [
 
@@ -39,7 +39,7 @@
                                 "Column":  12,
                                 "Text":  "d1",
                                 "Types":  [
-                                              "Variable_input"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -99,7 +99,7 @@
                                 "Column":  23,
                                 "Text":  "a",
                                 "Types":  [
-                                              "Variable_input"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -219,7 +219,7 @@
                                 "Column":  2,
                                 "Text":  "a",
                                 "Types":  [
-                                              "Variable_input"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -229,7 +229,7 @@
                                 "Column":  6,
                                 "Text":  "a",
                                 "Types":  [
-                                              "Variable_input"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -309,7 +309,7 @@
                                 "Column":  23,
                                 "Text":  "a2",
                                 "Types":  [
-                                              "Variable_localparam"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -609,7 +609,7 @@
                                 "Column":  14,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable_parameter"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -689,7 +689,7 @@
                                 "Column":  28,
                                 "Text":  "dout",
                                 "Types":  [
-                                              "Variable_parameter"
+                                              "Variable_reg"
                                           ]
                             },
                             {
@@ -889,7 +889,7 @@
                                 "Column":  4,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable_parameter"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -949,7 +949,7 @@
                                 "Column":  5,
                                 "Text":  "dout",
                                 "Types":  [
-                                              "Variable_parameter"
+                                              "Variable_reg"
                                           ]
                             },
                             {
@@ -969,7 +969,7 @@
                                 "Column":  4,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable_parameter"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -1029,7 +1029,7 @@
                                 "Column":  5,
                                 "Text":  "dout",
                                 "Types":  [
-                                              "Variable_parameter"
+                                              "Variable_reg"
                                           ]
                             },
                             {
@@ -1049,7 +1049,7 @@
                                 "Column":  13,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable_parameter"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -1139,7 +1139,7 @@
                                 "Column":  5,
                                 "Text":  "dout",
                                 "Types":  [
-                                              "Variable_parameter"
+                                              "Variable_reg"
                                           ]
                             },
                             {
@@ -1159,7 +1159,7 @@
                                 "Column":  13,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable_parameter"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -1209,7 +1209,7 @@
                                 "Column":  23,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable_parameter"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -1329,7 +1329,7 @@
                                 "Column":  2,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable_parameter"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -1381,8 +1381,8 @@
                      "Column":  12,
                      "Text":  "d1",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_input",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "input wire d1"
                  },
                  {
                      "Start":  16,
@@ -1441,7 +1441,7 @@
                      "Column":  23,
                      "Text":  "a",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_input",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module wow( .. input wire a  .. )"
                  },
                  {
@@ -1741,7 +1741,7 @@
                      "Column":  2,
                      "Text":  "a",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_input",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module wow( .. input wire a  .. )"
                  },
                  {
@@ -1751,7 +1751,7 @@
                      "Column":  6,
                      "Text":  "a",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_input",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module wow( .. input wire a  .. )"
                  },
                  {
@@ -1831,7 +1831,7 @@
                      "Column":  23,
                      "Text":  "a2",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_localparam",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module wow2( .. input wire a2  .. )"
                  },
                  {
@@ -2431,7 +2431,7 @@
                      "Column":  14,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_parameter",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module bcd8_increment( .. input [7:0] din .. )"
                  },
                  {
@@ -2511,7 +2511,7 @@
                      "Column":  28,
                      "Text":  "dout",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_parameter",
+                     "TagDetail":  "Verilog_Variable_reg",
                      "HoverText":  "module bcd8_increment( .. output reg [7:0] unsigned dout .. )"
                  },
                  {
@@ -2711,7 +2711,7 @@
                      "Column":  4,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_parameter",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module bcd8_increment( .. input [7:0] din .. )"
                  },
                  {
@@ -2771,7 +2771,7 @@
                      "Column":  5,
                      "Text":  "dout",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_parameter",
+                     "TagDetail":  "Verilog_Variable_reg",
                      "HoverText":  "module bcd8_increment( .. output reg [7:0] unsigned dout .. )"
                  },
                  {
@@ -2791,7 +2791,7 @@
                      "Column":  4,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_parameter",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module bcd8_increment( .. input [7:0] din .. )"
                  },
                  {
@@ -2851,7 +2851,7 @@
                      "Column":  5,
                      "Text":  "dout",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_parameter",
+                     "TagDetail":  "Verilog_Variable_reg",
                      "HoverText":  "module bcd8_increment( .. output reg [7:0] unsigned dout .. )"
                  },
                  {
@@ -2871,7 +2871,7 @@
                      "Column":  13,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_parameter",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module bcd8_increment( .. input [7:0] din .. )"
                  },
                  {
@@ -2961,7 +2961,7 @@
                      "Column":  5,
                      "Text":  "dout",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_parameter",
+                     "TagDetail":  "Verilog_Variable_reg",
                      "HoverText":  "module bcd8_increment( .. output reg [7:0] unsigned dout .. )"
                  },
                  {
@@ -2981,7 +2981,7 @@
                      "Column":  13,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_parameter",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module bcd8_increment( .. input [7:0] din .. )"
                  },
                  {
@@ -3031,7 +3031,7 @@
                      "Column":  23,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_parameter",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module bcd8_increment( .. input [7:0] din .. )"
                  },
                  {
@@ -3151,7 +3151,7 @@
                      "Column":  2,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_parameter",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module bcd8_increment( .. input [7:0] din .. )"
                  },
                  {
@@ -6331,15 +6331,15 @@
                ],
     "Symbols":  [
                     {
-                        "Scope":  "",
-                        "Name":  "wire",
-                        "TokenType":  "Verilog_Variable_input",
+                        "Scope":  "global",
+                        "Name":  "d1",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "input wire d1"
                     },
                     {
                         "Scope":  "wow",
                         "Name":  "a",
-                        "TokenType":  "Verilog_Variable_input",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module wow( .. input wire a  .. )"
                     },
                     {
@@ -6363,7 +6363,7 @@
                     {
                         "Scope":  "wow2",
                         "Name":  "a2",
-                        "TokenType":  "Verilog_Variable_localparam",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module wow2( .. input wire a2  .. )"
                     },
                     {
@@ -6399,13 +6399,13 @@
                     {
                         "Scope":  "bcd8_increment",
                         "Name":  "din",
-                        "TokenType":  "Verilog_Variable_parameter",
+                        "TokenType":  "Verilog_Variable_input",
                         "HoverText":  "module bcd8_increment( .. input [7:0] din .. )"
                     },
                     {
                         "Scope":  "bcd8_increment",
                         "Name":  "dout",
-                        "TokenType":  "Verilog_Variable_parameter",
+                        "TokenType":  "Verilog_Variable_reg",
                         "HoverText":  "module bcd8_increment( .. output reg [7:0] unsigned dout .. )"
                     },
                     {

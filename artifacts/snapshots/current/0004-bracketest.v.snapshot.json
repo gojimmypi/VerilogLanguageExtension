@@ -119,7 +119,7 @@
                                 "Column":  20,
                                 "Text":  "led",
                                 "Types":  [
-                                              "Variable_output"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -189,7 +189,7 @@
                                 "Column":  20,
                                 "Text":  "btn",
                                 "Types":  [
-                                              "Variable_input"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -259,7 +259,7 @@
                                 "Column":  20,
                                 "Text":  "sw",
                                 "Types":  [
-                                              "Variable_input"
+                                              "Variable_wire"
                                           ]
                             }
                         ],
@@ -391,7 +391,7 @@
                      "Column":  20,
                      "Text":  "led",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_output",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  null
                  },
                  {
@@ -461,7 +461,7 @@
                      "Column":  20,
                      "Text":  "btn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_input",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  null
                  },
                  {
@@ -531,7 +531,7 @@
                      "Column":  20,
                      "Text":  "sw",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_input",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  null
                  }
              ],

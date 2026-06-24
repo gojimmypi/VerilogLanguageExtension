@@ -109,7 +109,7 @@
                                 "Column":  21,
                                 "Text":  "LATCHED_IRQ5",
                                 "Types":  [
-                                              "Variable_localparam"
+                                              "Variable_duplicate"
                                           ]
                             },
                             {
@@ -319,7 +319,7 @@
                                 "Column":  24,
                                 "Text":  "LATCHED_IRQ5",
                                 "Types":  [
-                                              "Variable_localparam"
+                                              "Variable_duplicate"
                                           ]
                             },
                             {
@@ -992,7 +992,7 @@
                      "Text":  "demo",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_module",
-                     "HoverText":  null
+                     "HoverText":  "module demo(  [31:0] LATCHED_IRQ5 = 32\u0027hffff_0000;\r\n)"
                  },
                  {
                      "Start":  40,
@@ -1061,8 +1061,8 @@
                      "Column":  21,
                      "Text":  "LATCHED_IRQ5",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_localparam",
-                     "HoverText":  "localparam [31:0] LATCHED_IRQ5 = 32\u0027hffff_ffff"
+                     "TagDetail":  "Verilog_Variable_duplicate",
+                     "HoverText":  "duplicate? localparam [31:0] LATCHED_IRQ5 = 32\u0027hffff_ffff"
                  },
                  {
                      "Start":  78,
@@ -1271,8 +1271,8 @@
                      "Column":  24,
                      "Text":  "LATCHED_IRQ5",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_localparam",
-                     "HoverText":  "localparam [31:0] LATCHED_IRQ5 = 32\u0027hffff_ffff"
+                     "TagDetail":  "Verilog_Variable_duplicate",
+                     "HoverText":  "duplicate? localparam [31:0] LATCHED_IRQ5 = 32\u0027hffff_ffff"
                  },
                  {
                      "Start":  207,
@@ -4112,6 +4112,18 @@
     "Symbols":  [
                     {
                         "Scope":  "demo",
+                        "Name":  "LATCHED_IRQ5",
+                        "TokenType":  "Verilog_Variable_duplicate",
+                        "HoverText":  "duplicate? localparam [31:0] LATCHED_IRQ5 = 32\u0027hffff_ffff"
+                    },
+                    {
+                        "Scope":  "demo",
+                        "Name":  "demo",
+                        "TokenType":  "Verilog_Variable_module",
+                        "HoverText":  "module demo(  [31:0] LATCHED_IRQ5 = 32\u0027hffff_0000;\r\n)"
+                    },
+                    {
+                        "Scope":  "demo",
                         "Name":  "mem_rdata_q",
                         "TokenType":  "Verilog_Variable_reg",
                         "HoverText":  "reg [31:0] mem_rdata_q"
@@ -4121,12 +4133,6 @@
                         "Name":  "mem_rdata_latched",
                         "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "wire [31:0] mem_rdata_latched = 32\u0027hffff_ffff "
-                    },
-                    {
-                        "Scope":  "demo",
-                        "Name":  "LATCHED_IRQ5",
-                        "TokenType":  "Verilog_Variable_localparam",
-                        "HoverText":  "localparam [31:0] LATCHED_IRQ5 = 32\u0027hffff_ffff"
                     },
                     {
                         "Scope":  "demo",

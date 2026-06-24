@@ -69,7 +69,7 @@
                                 "Column":  9,
                                 "Text":  "clk",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -129,7 +129,7 @@
                                 "Column":  14,
                                 "Text":  "nbtn",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -189,7 +189,7 @@
                                 "Column":  16,
                                 "Text":  "ledc",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_output"
                                           ]
                             },
                             {
@@ -249,7 +249,7 @@
                                 "Column":  15,
                                 "Text":  "pmod",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_output"
                                           ]
                             },
                             {
@@ -339,7 +339,7 @@
                                 "Column":  20,
                                 "Text":  "nbtn",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -439,7 +439,7 @@
                                 "Column":  9,
                                 "Text":  "pmod",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_output"
                                           ]
                             },
                             {
@@ -959,7 +959,7 @@
                                 "Column":  9,
                                 "Text":  "ledc",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_output"
                                           ]
                             },
                             {
@@ -1099,7 +1099,7 @@
                                 "Column":  9,
                                 "Text":  "ledc",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_output"
                                           ]
                             },
                             {
@@ -1239,7 +1239,7 @@
                                 "Column":  9,
                                 "Text":  "ledc",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_output"
                                           ]
                             },
                             {
@@ -1379,7 +1379,7 @@
                                 "Column":  9,
                                 "Text":  "ledc",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_output"
                                           ]
                             },
                             {
@@ -1419,7 +1419,7 @@
                                 "Column":  21,
                                 "Text":  "nbtn",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -1479,7 +1479,7 @@
                                 "Column":  9,
                                 "Text":  "ledc",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_output"
                                           ]
                             },
                             {
@@ -1769,7 +1769,7 @@
                                 "Column":  19,
                                 "Text":  "clk",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -2589,7 +2589,7 @@
                                 "Column":  8,
                                 "Text":  "clk",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -2819,7 +2819,7 @@
                                 "Column":  14,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable_reg"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -2969,7 +2969,7 @@
                                 "Column":  4,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable_reg"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -3049,7 +3049,7 @@
                                 "Column":  4,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable_reg"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -3129,7 +3129,7 @@
                                 "Column":  13,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable_reg"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -3239,7 +3239,7 @@
                                 "Column":  13,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable_reg"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -3289,7 +3289,7 @@
                                 "Column":  23,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable_reg"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -3469,7 +3469,7 @@
                                 "Column":  8,
                                 "Text":  "clk",
                                 "Types":  [
-                                              "Variable_reg"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -3529,7 +3529,7 @@
                                 "Column":  14,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable_reg"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -3769,7 +3769,7 @@
                                 "Column":  8,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable_reg"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -3899,7 +3899,7 @@
                                 "Column":  8,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable_reg"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -4159,7 +4159,7 @@
                                 "Column":  19,
                                 "Text":  "clk",
                                 "Types":  [
-                                              "Variable_reg"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -4749,7 +4749,7 @@
                                 "Column":  14,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable_reg"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -4869,7 +4869,7 @@
                                 "Column":  9,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable_reg"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -5561,7 +5561,7 @@
                      "Column":  9,
                      "Text":  "clk",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module top( .. input clk .. )"
                  },
                  {
@@ -5621,7 +5621,7 @@
                      "Column":  14,
                      "Text":  "nbtn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module top( .. input [7:0] nbtn .. )"
                  },
                  {
@@ -5681,7 +5681,7 @@
                      "Column":  16,
                      "Text":  "ledc",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_output",
                      "HoverText":  "module top( .. output [10:0] ledc .. )"
                  },
                  {
@@ -5741,7 +5741,7 @@
                      "Column":  15,
                      "Text":  "pmod",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_output",
                      "HoverText":  "module top( .. output [7:0] pmod .. )"
                  },
                  {
@@ -5971,7 +5971,7 @@
                      "Column":  20,
                      "Text":  "nbtn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module top( .. input [7:0] nbtn .. )"
                  },
                  {
@@ -6131,7 +6131,7 @@
                      "Column":  9,
                      "Text":  "pmod",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_output",
                      "HoverText":  "module top( .. output [7:0] pmod .. )"
                  },
                  {
@@ -8851,7 +8851,7 @@
                      "Column":  9,
                      "Text":  "ledc",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_output",
                      "HoverText":  "module top( .. output [10:0] ledc .. )"
                  },
                  {
@@ -9141,7 +9141,7 @@
                      "Column":  9,
                      "Text":  "ledc",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_output",
                      "HoverText":  "module top( .. output [10:0] ledc .. )"
                  },
                  {
@@ -9431,7 +9431,7 @@
                      "Column":  9,
                      "Text":  "ledc",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_output",
                      "HoverText":  "module top( .. output [10:0] ledc .. )"
                  },
                  {
@@ -9721,7 +9721,7 @@
                      "Column":  9,
                      "Text":  "ledc",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_output",
                      "HoverText":  "module top( .. output [10:0] ledc .. )"
                  },
                  {
@@ -9761,7 +9761,7 @@
                      "Column":  21,
                      "Text":  "nbtn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module top( .. input [7:0] nbtn .. )"
                  },
                  {
@@ -10221,7 +10221,7 @@
                      "Column":  9,
                      "Text":  "ledc",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_output",
                      "HoverText":  "module top( .. output [10:0] ledc .. )"
                  },
                  {
@@ -11841,7 +11841,7 @@
                      "Column":  19,
                      "Text":  "clk",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module top( .. input clk .. )"
                  },
                  {
@@ -12961,7 +12961,7 @@
                      "Column":  8,
                      "Text":  "clk",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module top( .. input clk .. )"
                  },
                  {
@@ -13311,7 +13311,7 @@
                      "Column":  14,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module bcd8_increment( .. input [7:0] din .. )"
                  },
                  {
@@ -13461,7 +13461,7 @@
                      "Column":  4,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module bcd8_increment( .. input [7:0] din .. )"
                  },
                  {
@@ -13541,7 +13541,7 @@
                      "Column":  4,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module bcd8_increment( .. input [7:0] din .. )"
                  },
                  {
@@ -13621,7 +13621,7 @@
                      "Column":  13,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module bcd8_increment( .. input [7:0] din .. )"
                  },
                  {
@@ -13731,7 +13731,7 @@
                      "Column":  13,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module bcd8_increment( .. input [7:0] din .. )"
                  },
                  {
@@ -13781,7 +13781,7 @@
                      "Column":  23,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module bcd8_increment( .. input [7:0] din .. )"
                  },
                  {
@@ -14461,7 +14461,7 @@
                      "Column":  8,
                      "Text":  "clk",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module seven_seg_ctrl( .. input clk .. )"
                  },
                  {
@@ -14521,7 +14521,7 @@
                      "Column":  14,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module seven_seg_ctrl( .. input [7:0] din .. )"
                  },
                  {
@@ -14761,7 +14761,7 @@
                      "Column":  8,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module seven_seg_ctrl( .. input [7:0] din .. )"
                  },
                  {
@@ -14891,7 +14891,7 @@
                      "Column":  8,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module seven_seg_ctrl( .. input [7:0] din .. )"
                  },
                  {
@@ -15151,7 +15151,7 @@
                      "Column":  19,
                      "Text":  "clk",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module seven_seg_ctrl( .. input clk .. )"
                  },
                  {
@@ -15781,7 +15781,7 @@
                      "Column":  14,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module seven_seg_hex( .. input [3:0] din .. )"
                  },
                  {
@@ -15901,7 +15901,7 @@
                      "Column":  9,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module seven_seg_hex( .. input [3:0] din .. )"
                  },
                  {
@@ -31511,25 +31511,25 @@
                     {
                         "Scope":  "top",
                         "Name":  "clk",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_input",
                         "HoverText":  "module top( .. input clk .. )"
                     },
                     {
                         "Scope":  "top",
                         "Name":  "nbtn",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_input",
                         "HoverText":  "module top( .. input [7:0] nbtn .. )"
                     },
                     {
                         "Scope":  "top",
                         "Name":  "ledc",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_output",
                         "HoverText":  "module top( .. output [10:0] ledc .. )"
                     },
                     {
                         "Scope":  "top",
                         "Name":  "pmod",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_output",
                         "HoverText":  "module top( .. output [7:0] pmod .. )"
                     },
                     {
@@ -31595,7 +31595,7 @@
                     {
                         "Scope":  "bcd8_increment",
                         "Name":  "din",
-                        "TokenType":  "Verilog_Variable_reg",
+                        "TokenType":  "Verilog_Variable_input",
                         "HoverText":  "module bcd8_increment( .. input [7:0] din .. )"
                     },
                     {
@@ -31841,13 +31841,13 @@
                     {
                         "Scope":  "seven_seg_ctrl",
                         "Name":  "clk",
-                        "TokenType":  "Verilog_Variable_reg",
+                        "TokenType":  "Verilog_Variable_input",
                         "HoverText":  "module seven_seg_ctrl( .. input clk .. )"
                     },
                     {
                         "Scope":  "seven_seg_ctrl",
                         "Name":  "din",
-                        "TokenType":  "Verilog_Variable_reg",
+                        "TokenType":  "Verilog_Variable_input",
                         "HoverText":  "module seven_seg_ctrl( .. input [7:0] din .. )"
                     },
                     {
@@ -31895,7 +31895,7 @@
                     {
                         "Scope":  "seven_seg_hex",
                         "Name":  "din",
-                        "TokenType":  "Verilog_Variable_reg",
+                        "TokenType":  "Verilog_Variable_input",
                         "HoverText":  "module seven_seg_hex( .. input [3:0] din .. )"
                     },
                     {

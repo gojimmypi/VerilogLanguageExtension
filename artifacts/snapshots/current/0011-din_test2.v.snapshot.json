@@ -99,7 +99,7 @@
                                 "Column":  17,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -119,7 +119,7 @@
                                 "Column":  4,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -179,7 +179,7 @@
                                 "Column":  2,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -291,7 +291,7 @@
                      "Column":  17,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module my_din( .. input [7:0] din .. )"
                  },
                  {
@@ -311,7 +311,7 @@
                      "Column":  4,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module my_din( .. input [7:0] din .. )"
                  },
                  {
@@ -371,7 +371,7 @@
                      "Column":  2,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module my_din( .. input [7:0] din .. )"
                  },
                  {
@@ -705,7 +705,7 @@
                     {
                         "Scope":  "my_din",
                         "Name":  "din",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_input",
                         "HoverText":  "module my_din( .. input [7:0] din .. )"
                     },
                     {

@@ -59,7 +59,7 @@
                                 "Column":  11,
                                 "Text":  "v",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_inout"
                                           ]
                             },
                             {
@@ -89,7 +89,7 @@
                                 "Column":  11,
                                 "Text":  "a",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_inout"
                                           ]
                             },
                             {
@@ -119,7 +119,7 @@
                                 "Column":  11,
                                 "Text":  "b",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_inout"
                                           ]
                             },
                             {
@@ -149,7 +149,7 @@
                                 "Column":  11,
                                 "Text":  "c",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_inout"
                                           ]
                             },
                             {
@@ -179,7 +179,7 @@
                                 "Column":  11,
                                 "Text":  "bb",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_inout"
                                           ]
                             },
                             {
@@ -209,7 +209,7 @@
                                 "Column":  1,
                                 "Text":  "v",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_inout"
                                           ]
                             },
                             {
@@ -281,7 +281,7 @@
                      "Column":  11,
                      "Text":  "v",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_inout",
                      "HoverText":  "module demo( .. inout v = 8 \u0027h f_05 .. )"
                  },
                  {
@@ -311,7 +311,7 @@
                      "Column":  11,
                      "Text":  "a",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_inout",
                      "HoverText":  "module demo( .. inout a = 8\u0027h f_05 .. )"
                  },
                  {
@@ -341,7 +341,7 @@
                      "Column":  11,
                      "Text":  "b",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_inout",
                      "HoverText":  "module demo( .. inout b = 8 \u0027hf_05 .. )"
                  },
                  {
@@ -371,7 +371,7 @@
                      "Column":  11,
                      "Text":  "c",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_inout",
                      "HoverText":  "module demo( .. inout c = 8    \u0027h  f_05 .. )"
                  },
                  {
@@ -401,7 +401,7 @@
                      "Column":  11,
                      "Text":  "bb",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_inout",
                      "HoverText":  "module demo( .. inout bb = 3 .. )"
                  },
                  {
@@ -431,7 +431,7 @@
                      "Column":  1,
                      "Text":  "v",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_inout",
                      "HoverText":  "module demo( .. inout v = 8 \u0027h f_05 .. )"
                  },
                  {
@@ -909,31 +909,31 @@
                     {
                         "Scope":  "demo",
                         "Name":  "v",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_inout",
                         "HoverText":  "module demo( .. inout v = 8 \u0027h f_05 .. )"
                     },
                     {
                         "Scope":  "demo",
                         "Name":  "a",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_inout",
                         "HoverText":  "module demo( .. inout a = 8\u0027h f_05 .. )"
                     },
                     {
                         "Scope":  "demo",
                         "Name":  "b",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_inout",
                         "HoverText":  "module demo( .. inout b = 8 \u0027hf_05 .. )"
                     },
                     {
                         "Scope":  "demo",
                         "Name":  "c",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_inout",
                         "HoverText":  "module demo( .. inout c = 8    \u0027h  f_05 .. )"
                     },
                     {
                         "Scope":  "demo",
                         "Name":  "bb",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_inout",
                         "HoverText":  "module demo( .. inout bb = 3 .. )"
                     },
                     {

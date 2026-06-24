@@ -129,7 +129,7 @@
                                 "Column":  20,
                                 "Text":  "r",
                                 "Types":  [
-                                              "Variable_output"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -199,7 +199,7 @@
                                 "Column":  20,
                                 "Text":  "x",
                                 "Types":  [
-                                              "Variable_input"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -269,7 +269,7 @@
                                 "Column":  20,
                                 "Text":  "y",
                                 "Types":  [
-                                              "Variable_input"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -299,7 +299,7 @@
                                 "Column":  7,
                                 "Text":  "rbit",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_duplicate"
                                           ]
                             },
                             {
@@ -529,7 +529,7 @@
                                 "Column":  12,
                                 "Text":  "rbit",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_duplicate"
                                           ]
                             },
                             {
@@ -1191,8 +1191,8 @@
                      "Column":  20,
                      "Text":  "r",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_output",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "output wire [7:0] r"
                  },
                  {
                      "Start":  162,
@@ -1261,8 +1261,8 @@
                      "Column":  20,
                      "Text":  "x",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_input",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "input wire [7:0] x"
                  },
                  {
                      "Start":  184,
@@ -1331,8 +1331,8 @@
                      "Column":  20,
                      "Text":  "y",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_input",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "input wire [7:0] y wire rbit [7:0]"
                  },
                  {
                      "Start":  205,
@@ -1502,7 +1502,7 @@
                      "Text":  "wire",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "duplicate? input wire [7:0] y wire rbit [7:0]"
+                     "HoverText":  null
                  },
                  {
                      "Start":  237,
@@ -1541,8 +1541,8 @@
                      "Column":  7,
                      "Text":  "rbit",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  "wire [7:0] rbit"
+                     "TagDetail":  "Verilog_Variable_duplicate",
+                     "HoverText":  "duplicate? wire [7:0] rbit"
                  },
                  {
                      "Start":  259,
@@ -1732,7 +1732,7 @@
                      "Text":  "wire",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "duplicate? input wire [7:0] y wire rbit [7:0]"
+                     "HoverText":  null
                  },
                  {
                      "Start":  316,
@@ -1811,8 +1811,8 @@
                      "Column":  12,
                      "Text":  "rbit",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  "wire [7:0] rbit"
+                     "TagDetail":  "Verilog_Variable_duplicate",
+                     "HoverText":  "duplicate? wire [7:0] rbit"
                  },
                  {
                      "Start":  347,
@@ -3342,9 +3342,21 @@
     "Symbols":  [
                     {
                         "Scope":  "wow",
-                        "Name":  "wire",
-                        "TokenType":  "Verilog_Variable_duplicate",
-                        "HoverText":  "duplicate? input wire [7:0] y wire rbit [7:0]"
+                        "Name":  "r",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "output wire [7:0] r"
+                    },
+                    {
+                        "Scope":  "wow",
+                        "Name":  "x",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "input wire [7:0] x"
+                    },
+                    {
+                        "Scope":  "wow",
+                        "Name":  "y",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "input wire [7:0] y wire rbit [7:0]"
                     },
                     {
                         "Scope":  "wow",
@@ -3361,8 +3373,8 @@
                     {
                         "Scope":  "wow",
                         "Name":  "rbit",
-                        "TokenType":  "Verilog_Variable_wire",
-                        "HoverText":  "wire [7:0] rbit"
+                        "TokenType":  "Verilog_Variable_duplicate",
+                        "HoverText":  "duplicate? wire [7:0] rbit"
                     }
                 ]
 }

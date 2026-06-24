@@ -69,7 +69,7 @@
                                 "Column":  18,
                                 "Text":  "cl",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -251,7 +251,7 @@
                      "Column":  18,
                      "Text":  "cl",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module test( .. wire cl .. )"
                  },
                  {
@@ -609,7 +609,7 @@
                     {
                         "Scope":  "test",
                         "Name":  "cl",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module test( .. wire cl .. )"
                     },
                     {

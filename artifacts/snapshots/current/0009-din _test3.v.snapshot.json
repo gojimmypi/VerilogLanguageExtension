@@ -99,7 +99,7 @@
                                 "Column":  19,
                                 "Text":  "MASKED_IRQ",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_parameter"
                                           ]
                             },
                             {
@@ -169,7 +169,7 @@
                                 "Column":  18,
                                 "Text":  "WOWWOW",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_parameter"
                                           ]
                             },
                             {
@@ -239,7 +239,7 @@
                                 "Column":  18,
                                 "Text":  "WOWWOWw",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_parameter"
                                           ]
                             },
                             {
@@ -319,7 +319,7 @@
                                 "Column":  20,
                                 "Text":  "mem_addr",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_reg"
                                           ]
                             },
                             {
@@ -379,7 +379,7 @@
                                 "Column":  19,
                                 "Text":  "LATCHED_IR",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_parameter"
                                           ]
                             },
                             {
@@ -399,7 +399,7 @@
                                 "Column":  7,
                                 "Text":  "mywire",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -419,7 +419,7 @@
                                 "Column":  8,
                                 "Text":  "test",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -579,7 +579,7 @@
                                 "Column":  13,
                                 "Text":  "trap",
                                 "Types":  [
-                                              "Variable_output"
+                                              "Variable_reg"
                                           ]
                             },
                             {
@@ -1199,7 +1199,7 @@
                                 "Column":  17,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable_parameter"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -1219,7 +1219,7 @@
                                 "Column":  5,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable_parameter"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -1279,7 +1279,7 @@
                                 "Column":  2,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable_parameter"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -1411,7 +1411,7 @@
                      "Column":  19,
                      "Text":  "MASKED_IRQ",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_parameter",
                      "HoverText":  "module my_din( .. parameter [31:0] MASKED_IRQ = 32\u0027H 0000_0000 .. )"
                  },
                  {
@@ -1481,7 +1481,7 @@
                      "Column":  18,
                      "Text":  "WOWWOW",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_parameter",
                      "HoverText":  "module my_din( .. parameter [5:5] WOWWOW = 32\u0027o ff .. )"
                  },
                  {
@@ -1551,7 +1551,7 @@
                      "Column":  18,
                      "Text":  "WOWWOWw",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_parameter",
                      "HoverText":  "module my_din( .. parameter [6:6] WOWWOWw = 32\u0027b ff .. )"
                  },
                  {
@@ -1631,7 +1631,7 @@
                      "Column":  20,
                      "Text":  "mem_addr",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_reg",
                      "HoverText":  "module my_din( .. output reg [31:0] mem_addr .. )"
                  },
                  {
@@ -1691,7 +1691,7 @@
                      "Column":  19,
                      "Text":  "LATCHED_IR",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_parameter",
                      "HoverText":  "module my_din( .. parameter [31:0] LATCHED_IR .. )"
                  },
                  {
@@ -1711,7 +1711,7 @@
                      "Column":  7,
                      "Text":  "mywire",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module my_din( .. wire mywire .. )"
                  },
                  {
@@ -1731,7 +1731,7 @@
                      "Column":  8,
                      "Text":  "test",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module my_din( .. input test  .. )"
                  },
                  {
@@ -1891,7 +1891,7 @@
                      "Column":  13,
                      "Text":  "trap",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_output",
+                     "TagDetail":  "Verilog_Variable_reg",
                      "HoverText":  "output reg trap"
                  },
                  {
@@ -2511,7 +2511,7 @@
                      "Column":  17,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_parameter",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module myff_din( .. input [7:0] din .. )"
                  },
                  {
@@ -2531,7 +2531,7 @@
                      "Column":  5,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_parameter",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module myff_din( .. input [7:0] din .. )"
                  },
                  {
@@ -2591,7 +2591,7 @@
                      "Column":  2,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_parameter",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module myff_din( .. input [7:0] din .. )"
                  },
                  {
@@ -5025,43 +5025,43 @@
                     {
                         "Scope":  "my_din",
                         "Name":  "MASKED_IRQ",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_parameter",
                         "HoverText":  "module my_din( .. parameter [31:0] MASKED_IRQ = 32\u0027H 0000_0000 .. )"
                     },
                     {
                         "Scope":  "my_din",
                         "Name":  "WOWWOW",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_parameter",
                         "HoverText":  "module my_din( .. parameter [5:5] WOWWOW = 32\u0027o ff .. )"
                     },
                     {
                         "Scope":  "my_din",
                         "Name":  "WOWWOWw",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_parameter",
                         "HoverText":  "module my_din( .. parameter [6:6] WOWWOWw = 32\u0027b ff .. )"
                     },
                     {
                         "Scope":  "my_din",
                         "Name":  "mem_addr",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_reg",
                         "HoverText":  "module my_din( .. output reg [31:0] mem_addr .. )"
                     },
                     {
                         "Scope":  "my_din",
                         "Name":  "LATCHED_IR",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_parameter",
                         "HoverText":  "module my_din( .. parameter [31:0] LATCHED_IR .. )"
                     },
                     {
                         "Scope":  "my_din",
                         "Name":  "mywire",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module my_din( .. wire mywire .. )"
                     },
                     {
                         "Scope":  "my_din",
                         "Name":  "test",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_input",
                         "HoverText":  "module my_din( .. input test  .. )"
                     },
                     {
@@ -5103,7 +5103,7 @@
                     {
                         "Scope":  "my_din",
                         "Name":  "trap",
-                        "TokenType":  "Verilog_Variable_output",
+                        "TokenType":  "Verilog_Variable_reg",
                         "HoverText":  "output reg trap"
                     },
                     {
@@ -5205,7 +5205,7 @@
                     {
                         "Scope":  "myff_din",
                         "Name":  "din",
-                        "TokenType":  "Verilog_Variable_parameter",
+                        "TokenType":  "Verilog_Variable_input",
                         "HoverText":  "module myff_din( .. input [7:0] din .. )"
                     },
                     {

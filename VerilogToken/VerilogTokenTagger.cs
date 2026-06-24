@@ -788,36 +788,6 @@ namespace VerilogLanguage.VerilogToken
             return true;
         }
 
-        private static bool IsDeclarationKeywordPrefixBoundary(char c) {
-            return char.IsWhiteSpace(c) || c == '(' || c == ',' || c == ';' || c == '#';
-        }
-
-        private static bool ContainsDeclarationKeyword(string prefixText, string keyword) {
-            if (string.IsNullOrEmpty(prefixText) || string.IsNullOrEmpty(keyword)) {
-                return false;
-            }
-
-            int searchStart = 0;
-            while (searchStart < prefixText.Length) {
-                int index = prefixText.IndexOf(keyword, searchStart, StringComparison.Ordinal);
-                if (index < 0) {
-                    return false;
-                }
-
-                bool validPrefix = index == 0 || IsDeclarationKeywordPrefixBoundary(prefixText[index - 1]);
-                int afterIndex = index + keyword.Length;
-                bool validSuffix = afterIndex >= prefixText.Length || IsVerilogIdentifierBoundary(prefixText[afterIndex]);
-
-                if (validPrefix && validSuffix) {
-                    return true;
-                }
-
-                searchStart = index + keyword.Length;
-            }
-
-            return false;
-        }
-
         private static bool HasAssignmentInCurrentDeclarationItem(string prefixText) {
             if (string.IsNullOrEmpty(prefixText)) {
                 return false;
@@ -909,42 +879,7 @@ namespace VerilogLanguage.VerilogToken
                 return false;
             }
 
-            if (ContainsDeclarationKeyword(prefixText, "input")) {
-                variableType = VerilogTokenTypes.Verilog_Variable_input;
-                return true;
-            }
-
-            if (ContainsDeclarationKeyword(prefixText, "output")) {
-                variableType = VerilogTokenTypes.Verilog_Variable_output;
-                return true;
-            }
-
-            if (ContainsDeclarationKeyword(prefixText, "inout")) {
-                variableType = VerilogTokenTypes.Verilog_Variable_inout;
-                return true;
-            }
-
-            if (ContainsDeclarationKeyword(prefixText, "localparam")) {
-                variableType = VerilogTokenTypes.Verilog_Variable_localparam;
-                return true;
-            }
-
-            if (ContainsDeclarationKeyword(prefixText, "parameter")) {
-                variableType = VerilogTokenTypes.Verilog_Variable_parameter;
-                return true;
-            }
-
-            if (ContainsDeclarationKeyword(prefixText, "reg")) {
-                variableType = VerilogTokenTypes.Verilog_Variable_reg;
-                return true;
-            }
-
-            if (ContainsDeclarationKeyword(prefixText, "wire")) {
-                variableType = VerilogTokenTypes.Verilog_Variable_wire;
-                return true;
-            }
-
-            return false;
+            return VerilogGlobals.TryGetDeclarationVariableTypeFromText(prefixText, out variableType);
         }
 
         private IEnumerable<ITagSpan<VerilogTokenTag>> ProcessLookupText(
@@ -1035,6 +970,11 @@ namespace VerilogLanguage.VerilogToken
             if (!parseData.VerilogVariables.ContainsKey(thisScope)) {
                 // fallback: some scope resolvers are position-sensitive; column 0 tends to be stable per line
                 thisScope = parseData.TextModuleName(containingLine.LineNumber, 0);
+            }
+
+            if (!parseData.VerilogVariables.ContainsKey(thisScope) && thisScope == "global" && parseData.VerilogVariables.ContainsKey(string.Empty)) {
+                // Older parse data used an empty string for file-scope declarations.
+                thisScope = string.Empty;
             }
 
             if (parseData.VerilogVariables.ContainsKey(thisScope)) {

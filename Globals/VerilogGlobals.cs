@@ -65,6 +65,99 @@ namespace VerilogLanguage
             return true;
         }
 
+        private static bool IsVerilogIdentifierChar(char c) {
+            return c == '_'
+                || (c >= 'A' && c <= 'Z')
+                || (c >= 'a' && c <= 'z')
+                || (c >= '0' && c <= '9');
+        }
+
+        private static bool IsDeclarationKeywordPrefixBoundary(char c) {
+            return char.IsWhiteSpace(c) || c == '(' || c == ',' || c == ';' || c == '#';
+        }
+
+        private static bool ContainsDeclarationKeyword(string text, string keyword) {
+            if (string.IsNullOrEmpty(text) || string.IsNullOrEmpty(keyword)) {
+                return false;
+            }
+
+            int searchStart = 0;
+            while (searchStart < text.Length) {
+                int index = text.IndexOf(keyword, searchStart, StringComparison.Ordinal);
+                if (index < 0) {
+                    return false;
+                }
+
+                bool validPrefix = index == 0 || IsDeclarationKeywordPrefixBoundary(text[index - 1]);
+                int afterIndex = index + keyword.Length;
+                bool validSuffix = afterIndex >= text.Length || !IsVerilogIdentifierChar(text[afterIndex]);
+
+                if (validPrefix && validSuffix) {
+                    return true;
+                }
+
+                searchStart = index + keyword.Length;
+            }
+
+            return false;
+        }
+
+        public static bool TryGetDeclarationVariableTypeFromText(string text, out VerilogTokenTypes variableType) {
+            variableType = VerilogTokenTypes.Verilog_Variable;
+
+            if (string.IsNullOrEmpty(text)) {
+                return false;
+            }
+
+            if (ContainsDeclarationKeyword(text, "localparam")) {
+                variableType = VerilogTokenTypes.Verilog_Variable_localparam;
+                return true;
+            }
+
+            if (ContainsDeclarationKeyword(text, "parameter")) {
+                variableType = VerilogTokenTypes.Verilog_Variable_parameter;
+                return true;
+            }
+
+            if (ContainsDeclarationKeyword(text, "reg")
+                    || ContainsDeclarationKeyword(text, "integer")
+                    || ContainsDeclarationKeyword(text, "logic")
+                    || ContainsDeclarationKeyword(text, "bit")) {
+                variableType = VerilogTokenTypes.Verilog_Variable_reg;
+                return true;
+            }
+
+            if (ContainsDeclarationKeyword(text, "wire")
+                    || ContainsDeclarationKeyword(text, "tri")
+                    || ContainsDeclarationKeyword(text, "tri0")
+                    || ContainsDeclarationKeyword(text, "tri1")
+                    || ContainsDeclarationKeyword(text, "triand")
+                    || ContainsDeclarationKeyword(text, "trior")
+                    || ContainsDeclarationKeyword(text, "trireg")
+                    || ContainsDeclarationKeyword(text, "wand")
+                    || ContainsDeclarationKeyword(text, "wor")) {
+                variableType = VerilogTokenTypes.Verilog_Variable_wire;
+                return true;
+            }
+
+            if (ContainsDeclarationKeyword(text, "inout")) {
+                variableType = VerilogTokenTypes.Verilog_Variable_inout;
+                return true;
+            }
+
+            if (ContainsDeclarationKeyword(text, "output")) {
+                variableType = VerilogTokenTypes.Verilog_Variable_output;
+                return true;
+            }
+
+            if (ContainsDeclarationKeyword(text, "input")) {
+                variableType = VerilogTokenTypes.Verilog_Variable_input;
+                return true;
+            }
+
+            return false;
+        }
+
         /// <summary>
         ///   VerilogVariableHoverText - dictionary collection of keywords and hover text (variable names and definitions)
         /// </summary>
@@ -338,6 +431,12 @@ namespace VerilogLanguage
             thisModuleParameterText = string.Empty;
             thisModuleName = string.Empty;
 
+            lastHoverItem = string.Empty;
+            lastNonblankHoverItem = string.Empty;
+            IsInsideSquareBracket = false;
+            IsInsideSquigglyBracket = false;
+            thisVariableType = VerilogTokenTypes.Verilog_Variable;
+
             BuildHoverState = BuildHoverStates.UndefinedState;
         }
 
@@ -417,7 +516,250 @@ namespace VerilogLanguage
         /// </summary>
         /// <param name="ItemName"></param>
         /// <param name="HoverText"></param>
+        private static void UpdateCurrentDeclarationVariableType(string text) {
+            VerilogTokenTypes declarationVariableType;
+            if (TryGetDeclarationVariableTypeFromText(text, out declarationVariableType)) {
+                thisVariableType = declarationVariableType;
+            }
+        }
+
+        private static VerilogTokenTypes GetDeclarationVariableTypeForHoverText(string hoverText) {
+            VerilogTokenTypes declarationVariableType;
+            if (TryGetDeclarationVariableTypeFromText(hoverText, out declarationVariableType)) {
+                return declarationVariableType;
+            }
+
+            return thisVariableType;
+        }
+
+        private static bool IsDeclarationStartKeyword(string itemText) {
+            switch (itemText) {
+                case "input":
+                case "output":
+                case "inout":
+                case "wire":
+                case "tri":
+                case "tri0":
+                case "tri1":
+                case "triand":
+                case "trior":
+                case "trireg":
+                case "wand":
+                case "wor":
+                case "reg":
+                case "logic":
+                case "bit":
+                case "integer":
+                case "parameter":
+                case "localparam":
+                    return true;
+
+                default:
+                    return false;
+            }
+        }
+
+        private static bool IsDeclarationModifierKeyword(string itemText) {
+            return IsDeclarationStartKeyword(itemText) || IsVerilogVariableSigner(itemText);
+        }
+
+        private static string StripLineCommentForDuplicateScan(string lineText) {
+            if (string.IsNullOrEmpty(lineText)) {
+                return string.Empty;
+            }
+
+            int lineCommentIndex = lineText.IndexOf("//", StringComparison.Ordinal);
+            if (lineCommentIndex >= 0) {
+                return lineText.Substring(0, lineCommentIndex);
+            }
+
+            return lineText;
+        }
+
+        private static string NormalizeDeclarationDuplicateScope(string scope) {
+            if (string.IsNullOrEmpty(scope)) {
+                scope = "global";
+            }
+
+            if (VerilogVariables.ContainsKey(scope)) {
+                return scope;
+            }
+
+            if (scope == "global" && VerilogVariables.ContainsKey(string.Empty)) {
+                return string.Empty;
+            }
+
+            return scope;
+        }
+
+        private static void AddDuplicateScanName(
+            Dictionary<string, Dictionary<string, int>> countsByScope,
+            string scope,
+            string name) {
+            if (string.IsNullOrEmpty(name) || !IsIdentifier(name)) {
+                return;
+            }
+
+            if (!countsByScope.ContainsKey(scope)) {
+                countsByScope.Add(scope, new Dictionary<string, int>());
+            }
+
+            if (!countsByScope[scope].ContainsKey(name)) {
+                countsByScope[scope].Add(name, 0);
+            }
+
+            countsByScope[scope][name]++;
+        }
+
+        private static void CountDeclarationNamesInLine(
+            Dictionary<string, Dictionary<string, int>> countsByScope,
+            string scope,
+            string lineText) {
+            string codeText = StripLineCommentForDuplicateScan(lineText);
+            if (string.IsNullOrWhiteSpace(codeText)) {
+                return;
+            }
+
+            VerilogToken[] lineTokens = VerilogKeywordSplit(codeText, new VerilogToken());
+            List<string> items = new List<string>();
+
+            foreach (VerilogToken token in lineTokens) {
+                string itemText = (token.Part ?? string.Empty).Trim();
+                if (!string.IsNullOrEmpty(itemText)) {
+                    items.Add(itemText);
+                }
+            }
+
+            if (items.Count == 0 || !IsDeclarationStartKeyword(items[0])) {
+                return;
+            }
+
+            int squareDepth = 0;
+            int roundDepth = 0;
+            int squigglyDepth = 0;
+            bool skippingInitializer = false;
+
+            for (int i = 0; i < items.Count; i++) {
+                string itemText = items[i];
+
+                if (itemText == "[") {
+                    squareDepth++;
+                    continue;
+                }
+
+                if (itemText == "]") {
+                    if (squareDepth > 0) {
+                        squareDepth--;
+                    }
+                    continue;
+                }
+
+                if (itemText == "(") {
+                    roundDepth++;
+                    continue;
+                }
+
+                if (itemText == ")") {
+                    if (roundDepth > 0) {
+                        roundDepth--;
+                    }
+                    continue;
+                }
+
+                if (itemText == "{") {
+                    squigglyDepth++;
+                    continue;
+                }
+
+                if (itemText == "}") {
+                    if (squigglyDepth > 0) {
+                        squigglyDepth--;
+                    }
+                    continue;
+                }
+
+                if (squareDepth != 0 || roundDepth != 0 || squigglyDepth != 0) {
+                    continue;
+                }
+
+                if (itemText == ";") {
+                    break;
+                }
+
+                if (itemText == ",") {
+                    skippingInitializer = false;
+                    continue;
+                }
+
+                if (itemText == "=") {
+                    skippingInitializer = true;
+                    continue;
+                }
+
+                if (skippingInitializer) {
+                    continue;
+                }
+
+                if (IsDeclarationModifierKeyword(itemText) || IsDelimiter(itemText) || IsNumeric(itemText) || IsVerilogValue(itemText)) {
+                    continue;
+                }
+
+                if (IsIdentifier(itemText)) {
+                    AddDuplicateScanName(countsByScope, scope, itemText);
+
+                    // A name can be followed by an unpacked dimension, as in:
+                    //     wire rbit [7:0];
+                    // Do not treat identifiers inside that range as additional declared names.
+                    continue;
+                }
+            }
+        }
+
+        private static void MarkDuplicateDeclarationsFromSnapshot(ITextSnapshot snapshot) {
+            if (snapshot == null || snapshot.Length == 0) {
+                return;
+            }
+
+            Dictionary<string, Dictionary<string, int>> countsByScope = new Dictionary<string, Dictionary<string, int>>();
+
+            foreach (ITextSnapshotLine line in snapshot.Lines) {
+                string scope = NormalizeDeclarationDuplicateScope(TextModuleName(line.LineNumber, 0));
+                CountDeclarationNamesInLine(countsByScope, scope, line.GetText());
+            }
+
+            foreach (KeyValuePair<string, Dictionary<string, int>> scopeCounts in countsByScope) {
+                string scope = NormalizeDeclarationDuplicateScope(scopeCounts.Key);
+
+                if (!VerilogVariables.ContainsKey(scope)) {
+                    VerilogVariables.Add(scope, new Dictionary<string, VerilogTokenTypes>());
+                }
+
+                if (!VerilogVariableHoverText.ContainsKey(scope)) {
+                    VerilogVariableHoverText.Add(scope, new Dictionary<string, string>());
+                }
+
+                foreach (KeyValuePair<string, int> nameCount in scopeCounts.Value) {
+                    if (nameCount.Value <= 1) {
+                        continue;
+                    }
+
+                    VerilogVariables[scope][nameCount.Key] = VerilogTokenTypes.Verilog_Variable_duplicate;
+
+                    if (VerilogVariableHoverText[scope].ContainsKey(nameCount.Key)) {
+                        if (!VerilogVariableHoverText[scope][nameCount.Key].StartsWith("duplicate? ", StringComparison.Ordinal)) {
+                            VerilogVariableHoverText[scope][nameCount.Key] = "duplicate? " + VerilogVariableHoverText[scope][nameCount.Key];
+                        }
+                    }
+                    else {
+                        VerilogVariableHoverText[scope].Add(nameCount.Key, "duplicate? " + nameCount.Key);
+                    }
+                }
+            }
+        }
+
         private static void AddHoverItem(string thisScope, string ItemName, string HoverText) {
+            thisScope = NormalizeDeclarationDuplicateScope(thisScope);
+
             if (ItemName == string.Empty || (ItemName.Length == 1) && IsDelimiter(ItemName[0]) ) {
                 // never add a blank & never add a delimiter TODO - why would we even try? unresolved declaration naming?
                 // sometimes we end up here while typing new declarations
@@ -459,7 +801,7 @@ namespace VerilogLanguage
                             VerilogVariables[thisScope].Add(ItemName, VerilogTokenTypes.Verilog_Variable_module);
                         }
                         else {
-                            VerilogVariables[thisScope].Add(ItemName, thisVariableType);
+                            VerilogVariables[thisScope].Add(ItemName, GetDeclarationVariableTypeForHoverText(HoverText));
                         }
                     }
                 }
@@ -570,7 +912,7 @@ namespace VerilogLanguage
                             break;
                     }
 
-                    thisVariableType = VerilogGlobals.VerilogTypes["variable_" + ItemText];
+                    UpdateCurrentDeclarationVariableType(ItemText);
                     break;
 
                 case "endmodule":
@@ -659,10 +1001,12 @@ namespace VerilogLanguage
                 case "inout":
                 case "wire":
                 case "reg":
+                case "localparam":
                 case "parameter":
                     // the same keywords could be used for module parameters, or variables:
                     BuildHoverState = BuildHoverStates.ModuleParameterNaming;
                     thisModuleParameterText = ItemText;
+                    UpdateCurrentDeclarationVariableType(ItemText);
                     break;
 
                 default:
@@ -757,11 +1101,13 @@ namespace VerilogLanguage
                 case "=":
                     thisModuleParameterText += ItemText;
                     thisModuleDeclarationText += ItemText;
+                    UpdateCurrentDeclarationVariableType(thisModuleParameterText);
                     break;
 
                 default:
                     thisModuleParameterText += ItemText;
                     thisModuleDeclarationText += ItemText;
+                    UpdateCurrentDeclarationVariableType(thisModuleParameterText);
 
                     if (thisHoverName == string.Empty && IsIdentifier(ItemText) && !IsVerilogNamerKeyword(ItemText) && !IsVerilogVariableSigner(ItemText)) {
                         thisHoverName = ItemText;
@@ -863,6 +1209,7 @@ namespace VerilogLanguage
                             AddHoverItem(SCOPE_CONST, ItemText, ValueHoverText(ItemText));
                         }
                         thisModuleParameterText = ItemText; // start over for the module parameter
+                        UpdateCurrentDeclarationVariableType(thisModuleParameterText);
                     }
                     else {
                         if (thisHoverName == string.Empty && IsIdentifier(ItemText) && !IsVerilogNamerKeyword(ItemText) && !IsVerilogVariableSigner(ItemText)) {
@@ -940,9 +1287,18 @@ namespace VerilogLanguage
                     }
                     break;
 
+                case "input":
+                case "output":
+                case "inout":
+                case "wire":
                 case "reg":
+                case "localparam":
+                case "parameter":
+                case "bit":
+                case "logic":
                 case "integer":
                     thisVariableDeclarationText += ItemText;
+                    UpdateCurrentDeclarationVariableType(thisVariableDeclarationText);
                     break;
 
                 case "endmodule":

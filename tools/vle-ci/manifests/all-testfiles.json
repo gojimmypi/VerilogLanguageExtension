@@ -1,6 +1,6 @@
 ﻿{
     "RunName":  "all-testfiles",
-    "DelayMs":  3000,
+    "DelayMs":  7000,
     "FreshInstancePerFile":  true,
     "Files":  [
                   "TestFiles/anothertest - Copy.v",

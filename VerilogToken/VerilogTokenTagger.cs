@@ -888,6 +888,58 @@ namespace VerilogLanguage.VerilogToken
             return true;
         }
 
+        private static bool IsTaskDeclarationNameContext(ITextSnapshotLine containingLine, int lookupColumn, string lookupText) {
+            if (containingLine == null || !IsVerilogIdentifierText(lookupText)) {
+                return false;
+            }
+
+            string lineText = containingLine.GetText();
+            if (lookupColumn < 0 || lookupColumn > lineText.Length) {
+                return false;
+            }
+
+            List<string> prefixItems = GetSimpleCodeItems(lineText.Substring(0, lookupColumn));
+            int taskIndex = -1;
+            for (int i = 0; i < prefixItems.Count; i++) {
+                if (prefixItems[i] == "task") {
+                    taskIndex = i;
+                }
+            }
+
+            if (taskIndex < 0) {
+                return false;
+            }
+
+            int squareDepth = 0;
+            for (int i = taskIndex + 1; i < prefixItems.Count; i++) {
+                string item = prefixItems[i];
+
+                if (item == "[") {
+                    squareDepth++;
+                    continue;
+                }
+
+                if (item == "]") {
+                    if (squareDepth > 0) {
+                        squareDepth--;
+                    }
+                    continue;
+                }
+
+                if (squareDepth > 0) {
+                    continue;
+                }
+
+                if (item == ":" || item == "," || IsFunctionReturnTypeText(item) || IsVerilogValueText(item)) {
+                    continue;
+                }
+
+                return false;
+            }
+
+            return true;
+        }
+
         private static bool TryFindActiveFunctionName(ITextSnapshot snapshot, int lineNumber, out string functionName) {
             functionName = string.Empty;
 
@@ -904,6 +956,29 @@ namespace VerilogLanguage.VerilogToken
                 }
 
                 if (VerilogGlobals.TryGetFunctionNameFromLineText(lineText, out functionName)) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool TryFindActiveTaskName(ITextSnapshot snapshot, int lineNumber, out string taskName) {
+            taskName = string.Empty;
+
+            if (snapshot == null || lineNumber < 0) {
+                return false;
+            }
+
+            int lastLine = Math.Min(lineNumber, snapshot.LineCount - 1);
+            for (int i = lastLine; i >= 0; i--) {
+                string lineText = snapshot.GetLineFromLineNumber(i).GetText();
+
+                if (VerilogGlobals.IsEndTaskLineText(lineText)) {
+                    return false;
+                }
+
+                if (VerilogGlobals.TryGetTaskNameFromLineText(lineText, out taskName)) {
                     return true;
                 }
             }
@@ -1230,10 +1305,14 @@ namespace VerilogLanguage.VerilogToken
             }
 
             if (lookupTextIsIdentifier &&
-                IsFunctionDeclarationNameContext(
+                (IsFunctionDeclarationNameContext(
                     containingLine,
                     (curLoc + leadingWhitespace) - containingLine.Start.Position,
-                    lookupText)) {
+                    lookupText) ||
+                 IsTaskDeclarationNameContext(
+                    containingLine,
+                    (curLoc + leadingWhitespace) - containingLine.Start.Position,
+                    lookupText))) {
 
                 yield return new TagSpan<VerilogTokenTag>(
                     lookupSpan,
@@ -1316,6 +1395,19 @@ namespace VerilogLanguage.VerilogToken
                     yield return new TagSpan<VerilogTokenTag>(
                         lookupSpan,
                         new VerilogTokenTag(parseData.VerilogVariables[functionScope][lookupText]));
+                    yield break;
+                }
+            }
+
+            string activeTaskName;
+            if (lookupTextIsIdentifier &&
+                TryFindActiveTaskName(containingLine.Snapshot, containingLine.LineNumber, out activeTaskName)) {
+                string taskScope = VerilogGlobals.TaskLocalScopeName(thisScope, activeTaskName);
+                if (parseData.VerilogVariables.ContainsKey(taskScope) &&
+                    parseData.VerilogVariables[taskScope].ContainsKey(lookupText)) {
+                    yield return new TagSpan<VerilogTokenTag>(
+                        lookupSpan,
+                        new VerilogTokenTag(parseData.VerilogVariables[taskScope][lookupText]));
                     yield break;
                 }
             }

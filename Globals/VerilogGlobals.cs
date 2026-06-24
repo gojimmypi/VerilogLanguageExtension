@@ -16,6 +16,7 @@ namespace VerilogLanguage
         public const string SCOPE_CONST = "__CONST__";
         public const string SCOPE_MACRO = "__MACRO__";
         public const string SCOPE_FUNCTION_PREFIX = "__FUNCTION__";
+        public const string SCOPE_TASK_PREFIX = "__TASK__";
         public const char RADIX_CHAR = '\'';
         public static ITextBuffer TheBuffer;
         public static ITextView TheView; // assigned in QuickInfoControllerProvider see https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.editor.itextview?redirectedfrom=MSDN&view=visualstudiosdk-2017
@@ -659,6 +660,15 @@ namespace VerilogLanguage
             return normalizedModuleScope + "::" + SCOPE_FUNCTION_PREFIX + "::" + functionName;
         }
 
+        public static string TaskLocalScopeName(string moduleScope, string taskName) {
+            string normalizedModuleScope = NormalizeDeclarationDuplicateScope(moduleScope);
+            if (string.IsNullOrEmpty(taskName)) {
+                return normalizedModuleScope;
+            }
+
+            return normalizedModuleScope + "::" + SCOPE_TASK_PREFIX + "::" + taskName;
+        }
+
         public static bool TryGetFunctionNameFromLineText(string lineText, out string functionName) {
             functionName = string.Empty;
 
@@ -727,6 +737,74 @@ namespace VerilogLanguage
             return false;
         }
 
+        public static bool TryGetTaskNameFromLineText(string lineText, out string taskName) {
+            taskName = string.Empty;
+
+            string codeText = StripLineCommentForDuplicateScan(lineText);
+            if (string.IsNullOrWhiteSpace(codeText)) {
+                return false;
+            }
+
+            VerilogToken[] lineTokens = VerilogKeywordSplit(codeText, new VerilogToken());
+            List<string> items = new List<string>();
+
+            foreach (VerilogToken token in lineTokens) {
+                string itemText = (token.Part ?? string.Empty).Trim();
+                if (!string.IsNullOrEmpty(itemText)) {
+                    items.Add(itemText);
+                }
+            }
+
+            int taskIndex = -1;
+            for (int i = 0; i < items.Count; i++) {
+                if (items[i] == "task") {
+                    taskIndex = i;
+                    break;
+                }
+            }
+
+            if (taskIndex < 0) {
+                return false;
+            }
+
+            int squareDepth = 0;
+            for (int i = taskIndex + 1; i < items.Count; i++) {
+                string itemText = items[i];
+
+                if (itemText == "[") {
+                    squareDepth++;
+                    continue;
+                }
+
+                if (itemText == "]") {
+                    if (squareDepth > 0) {
+                        squareDepth--;
+                    }
+                    continue;
+                }
+
+                if (squareDepth > 0) {
+                    continue;
+                }
+
+                if (itemText == ";") {
+                    return false;
+                }
+
+                if (IsDelimiter(itemText) || IsNumeric(itemText) || IsVerilogValue(itemText) ||
+                    IsFunctionReturnTypeToken(itemText)) {
+                    continue;
+                }
+
+                if (IsIdentifier(itemText)) {
+                    taskName = itemText;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public static bool IsEndFunctionLineText(string lineText) {
             string codeText = StripLineCommentForDuplicateScan(lineText);
             if (string.IsNullOrWhiteSpace(codeText)) {
@@ -737,6 +815,23 @@ namespace VerilogLanguage
             foreach (VerilogToken token in lineTokens) {
                 string itemText = (token.Part ?? string.Empty).Trim();
                 if (itemText == "endfunction") {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public static bool IsEndTaskLineText(string lineText) {
+            string codeText = StripLineCommentForDuplicateScan(lineText);
+            if (string.IsNullOrWhiteSpace(codeText)) {
+                return false;
+            }
+
+            VerilogToken[] lineTokens = VerilogKeywordSplit(codeText, new VerilogToken());
+            foreach (VerilogToken token in lineTokens) {
+                string itemText = (token.Part ?? string.Empty).Trim();
+                if (itemText == "endtask") {
                     return true;
                 }
             }
@@ -1255,7 +1350,7 @@ namespace VerilogLanguage
                 return;
             }
 
-            string scope = NormalizeDeclarationDuplicateScope(thisModuleName);
+            string scope = ActiveDeclarationScope(thisModuleName);
             string conditionText = CurrentPreprocessorConditionText();
             int groupId = CurrentPreprocessorConditionalGroupId();
             int branchId = CurrentPreprocessorConditionalBranchId();
@@ -1396,22 +1491,26 @@ namespace VerilogLanguage
 
             Dictionary<string, Dictionary<string, int>> countsByScope = new Dictionary<string, Dictionary<string, int>>();
 
-            string activeFunctionScope = string.Empty;
+            string activeLocalScope = string.Empty;
 
             foreach (ITextSnapshotLine line in snapshot.Lines) {
                 string lineText = line.GetText();
                 string moduleScope = NormalizeDeclarationDuplicateScope(TextModuleName(line.LineNumber, 0));
                 string functionName;
+                string taskName;
 
                 if (TryGetFunctionNameFromLineText(lineText, out functionName)) {
-                    activeFunctionScope = FunctionLocalScopeName(moduleScope, functionName);
+                    activeLocalScope = FunctionLocalScopeName(moduleScope, functionName);
+                }
+                else if (TryGetTaskNameFromLineText(lineText, out taskName)) {
+                    activeLocalScope = TaskLocalScopeName(moduleScope, taskName);
                 }
 
-                string scope = string.IsNullOrEmpty(activeFunctionScope) ? moduleScope : activeFunctionScope;
+                string scope = string.IsNullOrEmpty(activeLocalScope) ? moduleScope : activeLocalScope;
                 CountDeclarationNamesInLine(countsByScope, scope, lineText);
 
-                if (IsEndFunctionLineText(lineText)) {
-                    activeFunctionScope = string.Empty;
+                if (IsEndFunctionLineText(lineText) || IsEndTaskLineText(lineText)) {
+                    activeLocalScope = string.Empty;
                 }
             }
 
@@ -1599,6 +1698,11 @@ namespace VerilogLanguage
                     thisVariableDeclarationText = ItemText;
                     break;
 
+                case "task":
+                    BuildHoverState = BuildHoverStates.TaskNaming;
+                    thisVariableDeclarationText = ItemText;
+                    break;
+
                 case "input":
                 case "output":
                 case "inout":
@@ -1636,6 +1740,12 @@ namespace VerilogLanguage
                     break;
 
                 case "endfunction":
+                    BuildHoverState = BuildHoverStates.UndefinedState;
+                    thisFunctionName = string.Empty;
+                    thisFunctionScope = string.Empty;
+                    break;
+
+                case "endtask":
                     BuildHoverState = BuildHoverStates.UndefinedState;
                     thisFunctionName = string.Empty;
                     thisFunctionScope = string.Empty;
@@ -2028,6 +2138,60 @@ namespace VerilogLanguage
         }
 
         /// <summary>
+        ///    Process_TaskNaming_For
+        /// </summary>
+        /// <param name="ItemText"></param>
+        private static void Process_TaskNaming_For(string ItemText) {
+            switch (ItemText) {
+                case "":
+                    if (!string.IsNullOrEmpty(thisVariableDeclarationText) &&
+                        !thisVariableDeclarationText.EndsWith(" ", StringComparison.Ordinal)) {
+                        thisVariableDeclarationText += " ";
+                    }
+                    break;
+
+                case ";":
+                    thisVariableDeclarationText = string.Empty;
+                    BuildHoverState = BuildHoverStates.UndefinedState;
+                    break;
+
+                default:
+                    bool wasInsideSquareBracket = IsInsideSquareBracket;
+                    SetBracketContentStatus_For(ItemText);
+
+                    if (wasInsideSquareBracket || IsInsideSquareBracket || IsVerilogBracket(ItemText) ||
+                        IsDelimiter(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) ||
+                        IsFunctionReturnTypeToken(ItemText)) {
+                        thisVariableDeclarationText += ItemText;
+                        break;
+                    }
+
+                    if (IsIdentifier(ItemText)) {
+                        thisVariableDeclarationText += ItemText;
+                        AddFunctionHoverItem(thisModuleName, ItemText, thisVariableDeclarationText);
+                        thisFunctionName = ItemText;
+                        thisFunctionScope = TaskLocalScopeName(thisModuleName, thisFunctionName);
+                        thisVariableDeclarationText = string.Empty;
+                        BuildHoverState = BuildHoverStates.TaskDeclarationRemainder;
+                        break;
+                    }
+
+                    thisVariableDeclarationText += ItemText;
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///    Process_TaskDeclarationRemainder_For
+        /// </summary>
+        /// <param name="ItemText"></param>
+        private static void Process_TaskDeclarationRemainder_For(string ItemText) {
+            if (ItemText == ";") {
+                BuildHoverState = BuildHoverStates.UndefinedState;
+            }
+        }
+
+        /// <summary>
         ///    Process_VariableNaming_For
         /// </summary>
         /// <param name="ItemText"></param>
@@ -2250,6 +2414,8 @@ namespace VerilogLanguage
             VariableMimicNaming,
             FunctionNaming,
             FunctionDeclarationRemainder,
+            TaskNaming,
+            TaskDeclarationRemainder,
         };
 
 
@@ -2299,6 +2465,14 @@ namespace VerilogLanguage
 
                 case BuildHoverStates.FunctionDeclarationRemainder:
                     Process_FunctionDeclarationRemainder_For(thisTrimmedItem);
+                    break;
+
+                case BuildHoverStates.TaskNaming:
+                    Process_TaskNaming_For(thisTrimmedItem);
+                    break;
+
+                case BuildHoverStates.TaskDeclarationRemainder:
+                    Process_TaskDeclarationRemainder_For(thisTrimmedItem);
                     break;
 
                 default:

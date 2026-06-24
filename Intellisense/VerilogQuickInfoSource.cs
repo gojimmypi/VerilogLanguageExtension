@@ -322,6 +322,29 @@ namespace VerilogLanguage
             return false;
         }
 
+        private static bool TryFindActiveTaskName(ITextSnapshot snapshot, int lineNumber, out string taskName) {
+            taskName = string.Empty;
+
+            if (snapshot == null || lineNumber < 0) {
+                return false;
+            }
+
+            int lastLine = Math.Min(lineNumber, snapshot.LineCount - 1);
+            for (int i = lastLine; i >= 0; i--) {
+                string lineText = snapshot.GetLineFromLineNumber(i).GetText();
+
+                if (VerilogGlobals.IsEndTaskLineText(lineText)) {
+                    return false;
+                }
+
+                if (VerilogGlobals.TryGetTaskNameFromLineText(lineText, out taskName)) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         internal static bool TryGetVariableHoverText(
             ITextSnapshot snapshot,
             SnapshotSpan tagSpan,
@@ -375,6 +398,18 @@ namespace VerilogLanguage
                 functionScopeMap != null &&
                 functionScopeMap.TryGetValue(thisHoverKey, out functionVariableHover)) {
                 hoverText = functionVariableHover;
+                return true;
+            }
+
+            string activeTaskName;
+            Dictionary<string, string> taskScopeMap;
+            string taskVariableHover;
+            if (IsVerilogIdentifierText(thisHoverKey) &&
+                TryFindActiveTaskName(spanSnapshot, thisLine, out activeTaskName) &&
+                hoverDb.TryGetValue(VerilogGlobals.TaskLocalScopeName(thisScopeName, activeTaskName), out taskScopeMap) &&
+                taskScopeMap != null &&
+                taskScopeMap.TryGetValue(thisHoverKey, out taskVariableHover)) {
+                hoverText = taskVariableHover;
                 return true;
             }
 

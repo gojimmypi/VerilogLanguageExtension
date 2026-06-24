@@ -14,6 +14,7 @@ param(
     [string]$Manifest = "tools/vle-ci/manifests/cold-open.json",
     [string]$Baseline = "",
     [switch]$UpdateBaseline,
+    [switch]$AllowNewSnapshots,
     [switch]$SkipBuild,
     [switch]$SkipSnapshots,
     [string]$RootSuffix = "Exp"
@@ -140,6 +141,10 @@ if (![string]::IsNullOrWhiteSpace($Baseline)) {
 }
 elseif ($UpdateBaseline) {
     throw "-UpdateBaseline requires -Baseline"
+}
+
+if ($AllowNewSnapshots) {
+    $compareArgs += "--allow-new-snapshots"
 }
 
 & $python @compareArgs

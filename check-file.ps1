@@ -89,6 +89,58 @@ function Test-ExpectationMatchesSourceFile {
         (![string]::IsNullOrWhiteSpace($expectedLeaf) -and $expectedLeaf -eq $sourceLeaf))
 }
 
+
+function Get-SnapshotRelativeSourceFile {
+    param([string]$SnapshotPath)
+
+    try {
+        $rawJson = [System.IO.File]::ReadAllText($SnapshotPath, [System.Text.Encoding]::UTF8)
+        $json = $rawJson | ConvertFrom-Json
+        $relativeProperty = $json.PSObject.Properties["FileRelativePath"]
+        if ($null -ne $relativeProperty -and $null -ne $relativeProperty.Value) {
+            return [string]$relativeProperty.Value
+        }
+
+        $pathProperty = $json.PSObject.Properties["FilePath"]
+        if ($null -ne $pathProperty -and $null -ne $pathProperty.Value) {
+            return [string]$pathProperty.Value
+        }
+    }
+    catch {
+        Write-Warning "Could not read baseline snapshot $SnapshotPath`: $_"
+    }
+
+    return ""
+}
+
+function Find-BaselineSnapshotForSourceFile {
+    param(
+        [string]$SourceFile,
+        [string]$BaselineDir
+    )
+
+    if (!(Test-Path -LiteralPath $BaselineDir)) {
+        return @()
+    }
+
+    $matches = @()
+    foreach ($snapshotPath in @(Get-ChildItem -LiteralPath $BaselineDir -Filter "*.snapshot.json" -File -ErrorAction SilentlyContinue)) {
+        $snapshotSourceFile = Get-SnapshotRelativeSourceFile -SnapshotPath $snapshotPath.FullName
+        if (Test-ExpectationMatchesSourceFile -ExpectedFile $snapshotSourceFile -SourceFile $SourceFile) {
+            $matches += $snapshotPath
+        }
+    }
+
+    if ($matches.Count -gt 0) {
+        return @($matches | Sort-Object Name | Select-Object -First 1)
+    }
+
+    $baseName = Split-Path $SourceFile -Leaf
+    return @(Get-ChildItem -Path (Join-Path $BaselineDir "*-$baseName.snapshot.json") -File -ErrorAction SilentlyContinue |
+        Sort-Object Name |
+        Select-Object -First 1)
+}
+
 function New-FilteredExpectationDirectory {
     param(
         [string]$SourceFile,
@@ -442,12 +494,23 @@ New-Item $outputDir -ItemType Directory -Force | Out-Null
 # with the normal approved baseline naming/content.
 # DelayMs controls how long VS waits after opening the file.
 # FreshInstancePerFile is false because this manifest contains only one file.
+$baselineForSource = @(Find-BaselineSnapshotForSourceFile -SourceFile $SourceFile -BaselineDir $baselineDir)
+if ($baselineForSource.Count -gt 0) {
+    $sourceManifestEntry = [ordered]@{
+        Path = $SourceFile
+        SnapshotFileName = $baselineForSource[0].Name
+    }
+}
+else {
+    $sourceManifestEntry = $SourceFile
+}
+
 $manifest = @{
     RunName = "all-testfiles"
     DelayMs = 3000
     FreshInstancePerFile = $false
     Files = @(
-        $SourceFile
+        $sourceManifestEntry
     )
 }
 $manifestJson = $manifest | ConvertTo-Json -Depth 5
@@ -517,10 +580,9 @@ else {
 }
 
 # Find the matching approved baseline snapshot from the full all-testfiles baseline.
-# The wildcard handles the numeric prefix changing between manifests.
-$baseName = Split-Path $SourceFile -Leaf
-$baseline = @(Get-ChildItem -Path (Join-Path $baselineDir "*-$baseName.snapshot.json") -File -ErrorAction SilentlyContinue |
-    Select-Object -First 1)
+# Prefer FileRelativePath inside the snapshot; fall back to the leaf-name wildcard
+# for older baselines.
+$baseline = @(Find-BaselineSnapshotForSourceFile -SourceFile $SourceFile -BaselineDir $baselineDir)
 
 if ($baseline.Count -lt 1) {
     Write-Warning "No matching baseline snapshot found for $SourceFile; skipping baseline diff."

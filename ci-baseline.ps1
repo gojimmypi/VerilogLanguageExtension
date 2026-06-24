@@ -54,6 +54,10 @@ function Format-GeneratedJsonFiles {
     }
 }
 
+# Refresh the all-testfiles manifest first. Existing baseline snapshot names are
+# preserved, and new files are placed first in the run order.
+.\create-testfile-manifest.ps1 -BaselineDir $baselineDir
+
 # Run the baseline update for the all-testfiles manifest.
 # -Manifest selects the generated manifest that opens all Verilog test files.
 # -Baseline selects the approved baseline directory to replace.

@@ -291,11 +291,21 @@ function Copy-SnapshotToFinalName {
         [System.IO.FileInfo]$SnapshotFile,
         [string]$FinalOutputDir,
         [int]$Index,
-        [string]$SourceFilePath
+        [string]$SourceFilePath,
+        [string]$SnapshotFileName = ""
     )
 
-    $safeName = ConvertTo-SnapshotSafeFileName -FilePath $SourceFilePath
-    $targetName = ("{0:0000}-{1}.snapshot.json" -f $Index, $safeName)
+    if (![string]::IsNullOrWhiteSpace($SnapshotFileName)) {
+        if (!(Test-SnapshotFileNameIsSafe -SnapshotFileName $SnapshotFileName)) {
+            throw "Unsafe SnapshotFileName in manifest: $SnapshotFileName"
+        }
+        $targetName = $SnapshotFileName
+    }
+    else {
+        $safeName = ConvertTo-SnapshotSafeFileName -FilePath $SourceFilePath
+        $targetName = ("{0:0000}-{1}.snapshot.json" -f $Index, $safeName)
+    }
+
     $targetPath = Get-NormalizedFullPath -Path (Join-Path $FinalOutputDir $targetName)
     $sourcePath = Get-NormalizedFullPath -Path $SnapshotFile.FullName
 
@@ -406,6 +416,76 @@ function Get-ManifestBoolean {
     return [System.Convert]::ToBoolean([string]$value)
 }
 
+
+function Get-ManifestEntryProperty {
+    param(
+        [object]$FileEntry,
+        [string[]]$Names
+    )
+
+    if ($null -eq $FileEntry) {
+        return ""
+    }
+
+    foreach ($name in $Names) {
+        $property = $FileEntry.PSObject.Properties[$name]
+        if ($null -ne $property -and $null -ne $property.Value) {
+            return [string]$property.Value
+        }
+    }
+
+    return ""
+}
+
+function Get-ManifestEntryPath {
+    param([object]$FileEntry)
+
+    if ($FileEntry -is [string]) {
+        return [string]$FileEntry
+    }
+
+    $path = Get-ManifestEntryProperty -FileEntry $FileEntry -Names @("Path", "File", "SourceFile")
+    if ([string]::IsNullOrWhiteSpace($path)) {
+        throw "Manifest file entry is missing Path."
+    }
+
+    return $path
+}
+
+function Get-ManifestEntrySnapshotFileName {
+    param([object]$FileEntry)
+
+    if ($FileEntry -is [string]) {
+        return ""
+    }
+
+    return Get-ManifestEntryProperty -FileEntry $FileEntry -Names @("SnapshotFileName", "SnapshotName", "OutputName")
+}
+
+function Test-SnapshotFileNameIsSafe {
+    param([string]$SnapshotFileName)
+
+    if ([string]::IsNullOrWhiteSpace($SnapshotFileName)) {
+        return $true
+    }
+
+    if ([System.IO.Path]::IsPathRooted($SnapshotFileName)) {
+        return $false
+    }
+
+    if ($SnapshotFileName.Contains("/") -or $SnapshotFileName.Contains("\")) {
+        return $false
+    }
+
+    foreach ($c in [System.IO.Path]::GetInvalidFileNameChars()) {
+        if ($SnapshotFileName.Contains([string]$c)) {
+            return $false
+        }
+    }
+
+    return $SnapshotFileName.EndsWith(".snapshot.json", [System.StringComparison]::OrdinalIgnoreCase)
+}
+
 $repoRoot = Get-RepoRoot
 $manifestPath = (Resolve-Path -LiteralPath (Resolve-RepoPath -RepoRoot $repoRoot -Path $Manifest)).Path
 $manifestJson = [System.IO.File]::ReadAllText($manifestPath, [System.Text.Encoding]::UTF8) | ConvertFrom-Json
@@ -444,9 +524,11 @@ try {
     }
 
     $index = 0
-    foreach ($file in $manifestJson.Files) {
+    foreach ($fileEntry in $manifestJson.Files) {
         $index++
-        $filePath = Join-Path $repoRoot ([string]$file)
+        $file = Get-ManifestEntryPath -FileEntry $fileEntry
+        $snapshotFileName = Get-ManifestEntrySnapshotFileName -FileEntry $fileEntry
+        $filePath = Resolve-RepoPath -RepoRoot $repoRoot -Path $file
         if (!(Test-Path $filePath)) {
             throw "Manifest file not found: $filePath"
         }
@@ -504,7 +586,8 @@ try {
             -SnapshotFile $snapshotFile `
             -FinalOutputDir $finalOutputDir `
             -Index $index `
-            -SourceFilePath $filePath
+            -SourceFilePath $filePath `
+            -SnapshotFileName $snapshotFileName
 
         Format-JsonFile -Path $finalSnapshotPath
         Write-Host "Snapshot: $finalSnapshotPath"

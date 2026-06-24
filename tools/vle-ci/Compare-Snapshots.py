@@ -265,7 +265,7 @@ def load_snapshots(root: Path) -> Dict[str, Tuple[Path, Snapshot, Dict[str, Any]
     return result
 
 
-def compare_snapshots(current_root: Path, baseline_root: Path, failures: FailureList) -> None:
+def compare_snapshots(current_root: Path, baseline_root: Path, failures: FailureList, allow_new_snapshots: bool = False) -> None:
     current = load_snapshots(current_root)
     baseline = load_snapshots(baseline_root)
 
@@ -281,7 +281,10 @@ def compare_snapshots(current_root: Path, baseline_root: Path, failures: Failure
     baseline_keys = set(baseline)
 
     for key in sorted(current_keys - baseline_keys):
-        failures.append(f"Baseline missing snapshot: {key}")
+        if allow_new_snapshots:
+            print(f"New current snapshot without baseline (allowed): {key}")
+        else:
+            failures.append(f"Baseline missing snapshot: {key}")
 
     for key in sorted(baseline_keys - current_keys):
         failures.append(f"Current run missing snapshot: {key}")
@@ -496,6 +499,7 @@ def main(argv: List[str]) -> int:
     parser.add_argument("--baseline", type=Path, help="Baseline snapshot directory")
     parser.add_argument("--expectations", type=Path, help="Expectation JSON directory")
     parser.add_argument("--update-baseline", action="store_true", help="Replace baseline with current snapshots")
+    parser.add_argument("--allow-new-snapshots", action="store_true", help="Allow current snapshots that are not in the baseline yet")
     args = parser.parse_args(argv)
 
     failures: FailureList = []
@@ -514,7 +518,7 @@ def main(argv: List[str]) -> int:
         return 0
 
     if args.baseline:
-        compare_snapshots(args.current, args.baseline, failures)
+        compare_snapshots(args.current, args.baseline, failures, args.allow_new_snapshots)
 
     if args.expectations:
         check_expectations(args.current, args.expectations, failures)

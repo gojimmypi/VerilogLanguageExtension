@@ -6,6 +6,7 @@ param(
     [string]$ManifestPath = "tools\vle-ci\manifests\all-testfiles.json",
     [string]$BaselineDir = "tests\snapshots\baselines\development-main\all-testfiles",
     [int]$DelayMs = 3000,
+    [int]$MaxWaitSeconds = 180,
     [switch]$NoStableSnapshotNames,
     [switch]$AcceptCurrentManifest
 )
@@ -472,6 +473,7 @@ foreach ($file in $orderedFiles) {
 $manifest = [ordered]@{
     RunName = "all-testfiles"
     DelayMs = $DelayMs
+    MaxWaitSeconds = $MaxWaitSeconds
     FreshInstancePerFile = $true
     Files = @($fileEntries)
 }

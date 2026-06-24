@@ -491,12 +491,22 @@ namespace VerilogLanguage.VerilogToken
                 }
 
                 ITextSnapshotLine line = snapshot.GetLineFromPosition(startPos);
+                string activeLocalScope = string.Empty;
+                if (haveParseData && parseData != null) {
+                    TryFindActiveLocalScope(line.Snapshot, line.LineNumber, parseData, out activeLocalScope);
+                }
+
                 while (line != null && line.Start.Position < endPos) {
                     if (tokens != null && tokens.Length >= 1) {
                         priorToken = tokens[tokens.Length - 1];
                     }
 
                     string lineText = line.GetText();
+                    if (haveParseData && parseData != null) {
+                        UpdateActiveLocalScopeForLineStart(line, parseData, ref activeLocalScope);
+                    }
+
+                    List<Span> staticStringLineSpans = GetStaticStringLineSpans(lineText);
                     tokens = VerilogGlobals.VerilogKeywordSplit(lineText, priorToken);
 
                     int curLoc = line.Start.Position;
@@ -596,7 +606,9 @@ namespace VerilogLanguage.VerilogToken
                                     tokenSpan,
                                     item,
                                     curLoc,
-                                    haveParseData ? parseData : null)) {
+                                    haveParseData ? parseData : null,
+                                    activeLocalScope,
+                                    staticStringLineSpans)) {
 
                                     yield return tag;
                                 }
@@ -604,6 +616,10 @@ namespace VerilogLanguage.VerilogToken
                             // note that no chars are lost when splitting string with VerilogKeywordSplit, so no adjustment needed in location
                             curLoc += len;
                         }
+                    }
+
+                    if (haveParseData && parseData != null) {
+                        ClearActiveLocalScopeForLineEnd(line, ref activeLocalScope);
                     }
 
                     if (line.LineBreakLength == 0) {
@@ -642,7 +658,9 @@ namespace VerilogLanguage.VerilogToken
             SnapshotSpan tokenSpan,
             CommentHelper.CommentItem item,
             int curLoc,
-            VerilogGlobals.ParseDataSnapshot parseData) {
+            VerilogGlobals.ParseDataSnapshot parseData,
+            string activeLocalScope,
+            List<Span> staticStringLineSpans) {
             // is this item a comment? If so, color as appropriate. comments take highest priority: no other condition will change color of a comment
             if (item.IsComment) {
 #if TAG_DEBUG
@@ -657,7 +675,7 @@ namespace VerilogLanguage.VerilogToken
 
             SnapshotSpan staticStringSpan;
             bool staticStringStartsInToken;
-            if (TryGetStaticStringSpanForToken(containingLine, tokenSpan, out staticStringSpan, out staticStringStartsInToken)) {
+            if (TryGetStaticStringSpanForToken(containingLine, tokenSpan, staticStringLineSpans, out staticStringSpan, out staticStringStartsInToken)) {
                 if (staticStringStartsInToken) {
                     yield return new TagSpan<VerilogTokenTag>(
                         staticStringSpan,
@@ -685,36 +703,19 @@ namespace VerilogLanguage.VerilogToken
                 }
             }
 
-            foreach (ITagSpan<VerilogTokenTag> tag in ProcessLookupText(containingLine, verilogToken, tokenSpan, lookupSpan, lookupText, curLoc, leadingTrim, parseData)) {
+            foreach (ITagSpan<VerilogTokenTag> tag in ProcessLookupText(containingLine, verilogToken, tokenSpan, lookupSpan, lookupText, curLoc, leadingTrim, parseData, activeLocalScope)) {
                 yield return tag;
             }
 
             /* There's an implicit yield break here; do not return Null! */
         }
 
-        private static bool TryGetStaticStringSpanForToken(
-            ITextSnapshotLine containingLine,
-            SnapshotSpan tokenSpan,
-            out SnapshotSpan staticStringSpan,
-            out bool staticStringStartsInToken) {
-            staticStringSpan = new SnapshotSpan();
-            staticStringStartsInToken = false;
-
-            if (containingLine == null || tokenSpan.Length <= 0) {
-                return false;
+        private static List<Span> GetStaticStringLineSpans(string lineText) {
+            if (string.IsNullOrEmpty(lineText) || lineText.IndexOf('"') < 0) {
+                return null;
             }
 
-            string lineText = containingLine.GetText();
-            if (string.IsNullOrEmpty(lineText)) {
-                return false;
-            }
-
-            int tokenStart = tokenSpan.Start.Position - containingLine.Start.Position;
-            int tokenEnd = tokenStart + tokenSpan.Length;
-            if (tokenStart < 0 || tokenEnd <= tokenStart) {
-                return false;
-            }
-
+            List<Span> spans = new List<Span>();
             bool inString = false;
             bool escaped = false;
             int stringStart = -1;
@@ -732,15 +733,7 @@ namespace VerilogLanguage.VerilogToken
                 }
 
                 if (c == '"' && !escaped) {
-                    int stringEnd = i + 1;
-                    if (stringStart < tokenEnd && stringEnd > tokenStart) {
-                        staticStringStartsInToken = stringStart >= tokenStart && stringStart < tokenEnd;
-                        staticStringSpan = new SnapshotSpan(
-                            containingLine.Snapshot,
-                            new Span(containingLine.Start.Position + stringStart, stringEnd - stringStart));
-                        return true;
-                    }
-
+                    spans.Add(new Span(stringStart, i + 1 - stringStart));
                     inString = false;
                     escaped = false;
                     stringStart = -1;
@@ -752,6 +745,40 @@ namespace VerilogLanguage.VerilogToken
                 }
                 else {
                     escaped = false;
+                }
+            }
+
+            return spans;
+        }
+
+        private static bool TryGetStaticStringSpanForToken(
+            ITextSnapshotLine containingLine,
+            SnapshotSpan tokenSpan,
+            List<Span> staticStringLineSpans,
+            out SnapshotSpan staticStringSpan,
+            out bool staticStringStartsInToken) {
+            staticStringSpan = new SnapshotSpan();
+            staticStringStartsInToken = false;
+
+            if (containingLine == null || tokenSpan.Length <= 0 || staticStringLineSpans == null || staticStringLineSpans.Count == 0) {
+                return false;
+            }
+
+            int tokenStart = tokenSpan.Start.Position - containingLine.Start.Position;
+            int tokenEnd = tokenStart + tokenSpan.Length;
+            if (tokenStart < 0 || tokenEnd <= tokenStart) {
+                return false;
+            }
+
+            foreach (Span lineSpan in staticStringLineSpans) {
+                int stringStart = lineSpan.Start;
+                int stringEnd = lineSpan.End;
+                if (stringStart < tokenEnd && stringEnd > tokenStart) {
+                    staticStringStartsInToken = stringStart >= tokenStart && stringStart < tokenEnd;
+                    staticStringSpan = new SnapshotSpan(
+                        containingLine.Snapshot,
+                        new Span(containingLine.Start.Position + stringStart, lineSpan.Length));
+                    return true;
                 }
             }
 
@@ -836,12 +863,20 @@ namespace VerilogLanguage.VerilogToken
             return items;
         }
 
+        private static bool LineTextMayContainItem(string lineText, string itemText) {
+            return !string.IsNullOrEmpty(lineText) && lineText.IndexOf(itemText, StringComparison.Ordinal) >= 0;
+        }
+
         private static bool IsFunctionDeclarationNameContext(ITextSnapshotLine containingLine, int lookupColumn, string lookupText) {
             if (containingLine == null || !IsVerilogIdentifierText(lookupText)) {
                 return false;
             }
 
             string lineText = containingLine.GetText();
+            if (!LineTextMayContainItem(lineText, "function")) {
+                return false;
+            }
+
             if (lookupColumn < 0 || lookupColumn > lineText.Length) {
                 return false;
             }
@@ -894,6 +929,10 @@ namespace VerilogLanguage.VerilogToken
             }
 
             string lineText = containingLine.GetText();
+            if (!LineTextMayContainItem(lineText, "task")) {
+                return false;
+            }
+
             if (lookupColumn < 0 || lookupColumn > lineText.Length) {
                 return false;
             }
@@ -940,22 +979,69 @@ namespace VerilogLanguage.VerilogToken
             return true;
         }
 
-        private static bool TryFindActiveFunctionName(ITextSnapshot snapshot, int lineNumber, out string functionName) {
-            functionName = string.Empty;
+        private static string ResolveVariableScope(
+            ITextSnapshotLine containingLine,
+            int lookupColumn,
+            VerilogGlobals.ParseDataSnapshot parseData) {
+            if (parseData == null || containingLine == null) {
+                return string.Empty;
+            }
 
-            if (snapshot == null || lineNumber < 0) {
+            string thisScope = parseData.TextModuleName(containingLine.LineNumber, lookupColumn);
+
+            if (!parseData.VerilogVariables.ContainsKey(thisScope)) {
+                // Fallback: some scope resolvers are position-sensitive; column 0 tends to be stable per line.
+                thisScope = parseData.TextModuleName(containingLine.LineNumber, 0);
+            }
+
+            if (!parseData.VerilogVariables.ContainsKey(thisScope) && thisScope == "global" && parseData.VerilogVariables.ContainsKey(string.Empty)) {
+                // Older parse data used an empty string for file-scope declarations.
+                thisScope = string.Empty;
+            }
+
+            return thisScope;
+        }
+
+        private static bool TryFindActiveLocalScope(
+            ITextSnapshot snapshot,
+            int lineNumber,
+            VerilogGlobals.ParseDataSnapshot parseData,
+            out string activeLocalScope) {
+            activeLocalScope = string.Empty;
+
+            if (snapshot == null || parseData == null || lineNumber < 0) {
                 return false;
             }
 
             int lastLine = Math.Min(lineNumber, snapshot.LineCount - 1);
             for (int i = lastLine; i >= 0; i--) {
-                string lineText = snapshot.GetLineFromLineNumber(i).GetText();
+                ITextSnapshotLine line = snapshot.GetLineFromLineNumber(i);
+                string lineText = line.GetText();
 
-                if (VerilogGlobals.IsEndFunctionLineText(lineText)) {
+                bool mayContainEndFunction = LineTextMayContainItem(lineText, "endfunction");
+                bool mayContainEndTask = LineTextMayContainItem(lineText, "endtask");
+                if ((mayContainEndFunction && VerilogGlobals.IsEndFunctionLineText(lineText)) ||
+                    (mayContainEndTask && VerilogGlobals.IsEndTaskLineText(lineText))) {
                     return false;
                 }
 
-                if (VerilogGlobals.TryGetFunctionNameFromLineText(lineText, out functionName)) {
+                bool mayContainFunction = LineTextMayContainItem(lineText, "function");
+                bool mayContainTask = LineTextMayContainItem(lineText, "task");
+                if (!mayContainFunction && !mayContainTask) {
+                    continue;
+                }
+
+                string functionName;
+                if (mayContainFunction && VerilogGlobals.TryGetFunctionNameFromLineText(lineText, out functionName)) {
+                    string moduleScope = ResolveVariableScope(line, 0, parseData);
+                    activeLocalScope = VerilogGlobals.FunctionLocalScopeName(moduleScope, functionName);
+                    return true;
+                }
+
+                string taskName;
+                if (mayContainTask && VerilogGlobals.TryGetTaskNameFromLineText(lineText, out taskName)) {
+                    string moduleScope = ResolveVariableScope(line, 0, parseData);
+                    activeLocalScope = VerilogGlobals.TaskLocalScopeName(moduleScope, taskName);
                     return true;
                 }
             }
@@ -963,27 +1049,45 @@ namespace VerilogLanguage.VerilogToken
             return false;
         }
 
-        private static bool TryFindActiveTaskName(ITextSnapshot snapshot, int lineNumber, out string taskName) {
-            taskName = string.Empty;
-
-            if (snapshot == null || lineNumber < 0) {
-                return false;
+        private static void UpdateActiveLocalScopeForLineStart(
+            ITextSnapshotLine line,
+            VerilogGlobals.ParseDataSnapshot parseData,
+            ref string activeLocalScope) {
+            if (line == null || parseData == null) {
+                return;
             }
 
-            int lastLine = Math.Min(lineNumber, snapshot.LineCount - 1);
-            for (int i = lastLine; i >= 0; i--) {
-                string lineText = snapshot.GetLineFromLineNumber(i).GetText();
-
-                if (VerilogGlobals.IsEndTaskLineText(lineText)) {
-                    return false;
-                }
-
-                if (VerilogGlobals.TryGetTaskNameFromLineText(lineText, out taskName)) {
-                    return true;
-                }
+            string lineText = line.GetText();
+            bool mayContainFunction = LineTextMayContainItem(lineText, "function");
+            bool mayContainTask = LineTextMayContainItem(lineText, "task");
+            if (!mayContainFunction && !mayContainTask) {
+                return;
             }
 
-            return false;
+            string functionName;
+            if (mayContainFunction && VerilogGlobals.TryGetFunctionNameFromLineText(lineText, out functionName)) {
+                string moduleScope = ResolveVariableScope(line, 0, parseData);
+                activeLocalScope = VerilogGlobals.FunctionLocalScopeName(moduleScope, functionName);
+                return;
+            }
+
+            string taskName;
+            if (mayContainTask && VerilogGlobals.TryGetTaskNameFromLineText(lineText, out taskName)) {
+                string moduleScope = ResolveVariableScope(line, 0, parseData);
+                activeLocalScope = VerilogGlobals.TaskLocalScopeName(moduleScope, taskName);
+            }
+        }
+
+        private static void ClearActiveLocalScopeForLineEnd(ITextSnapshotLine line, ref string activeLocalScope) {
+            if (line == null || string.IsNullOrEmpty(activeLocalScope)) {
+                return;
+            }
+
+            string lineText = line.GetText();
+            if ((LineTextMayContainItem(lineText, "endfunction") && VerilogGlobals.IsEndFunctionLineText(lineText)) ||
+                (LineTextMayContainItem(lineText, "endtask") && VerilogGlobals.IsEndTaskLineText(lineText))) {
+                activeLocalScope = string.Empty;
+            }
         }
 
         private static bool IsVerilogValueText(string text) {
@@ -1256,7 +1360,8 @@ namespace VerilogLanguage.VerilogToken
             string lookupText,
             int curLoc,
             int leadingWhitespace,
-            VerilogGlobals.ParseDataSnapshot parseData) {
+            VerilogGlobals.ParseDataSnapshot parseData,
+            string activeLocalScope) {
             if (IsStaticStringText(lookupText)) {
                 yield return new TagSpan<VerilogTokenTag>(
                     lookupSpan,
@@ -1332,7 +1437,7 @@ namespace VerilogLanguage.VerilogToken
                 yield break;
             }
 
-            foreach (ITagSpan<VerilogTokenTag> tag in ProcessScopeLookup(containingLine, verilogToken, tokenSpan, lookupSpan, lookupText, curLoc, leadingWhitespace, parseData)) {
+            foreach (ITagSpan<VerilogTokenTag> tag in ProcessScopeLookup(containingLine, verilogToken, tokenSpan, lookupSpan, lookupText, curLoc, leadingWhitespace, parseData, activeLocalScope)) {
                 yield return tag;
             }
 
@@ -1347,7 +1452,8 @@ namespace VerilogLanguage.VerilogToken
             string lookupText,
             int curLoc,
             int leadingWhitespace,
-            VerilogGlobals.ParseDataSnapshot parseData) {
+            VerilogGlobals.ParseDataSnapshot parseData,
+            string activeLocalScope) {
             bool lookupTextIsIdentifier = IsVerilogIdentifierText(lookupText);
 
             if (parseData == null) {
@@ -1372,44 +1478,19 @@ namespace VerilogLanguage.VerilogToken
             }
 
             // check to see if this is a variable
-            string thisScope = parseData.TextModuleName(
-                containingLine.LineNumber,
-                (curLoc + leadingWhitespace) - containingLine.Start.Position); // TODO
+            string thisScope = ResolveVariableScope(
+                containingLine,
+                (curLoc + leadingWhitespace) - containingLine.Start.Position,
+                parseData);
 
-            if (!parseData.VerilogVariables.ContainsKey(thisScope)) {
-                // fallback: some scope resolvers are position-sensitive; column 0 tends to be stable per line
-                thisScope = parseData.TextModuleName(containingLine.LineNumber, 0);
-            }
-
-            if (!parseData.VerilogVariables.ContainsKey(thisScope) && thisScope == "global" && parseData.VerilogVariables.ContainsKey(string.Empty)) {
-                // Older parse data used an empty string for file-scope declarations.
-                thisScope = string.Empty;
-            }
-
-            string activeFunctionName;
             if (lookupTextIsIdentifier &&
-                TryFindActiveFunctionName(containingLine.Snapshot, containingLine.LineNumber, out activeFunctionName)) {
-                string functionScope = VerilogGlobals.FunctionLocalScopeName(thisScope, activeFunctionName);
-                if (parseData.VerilogVariables.ContainsKey(functionScope) &&
-                    parseData.VerilogVariables[functionScope].ContainsKey(lookupText)) {
-                    yield return new TagSpan<VerilogTokenTag>(
-                        lookupSpan,
-                        new VerilogTokenTag(parseData.VerilogVariables[functionScope][lookupText]));
-                    yield break;
-                }
-            }
-
-            string activeTaskName;
-            if (lookupTextIsIdentifier &&
-                TryFindActiveTaskName(containingLine.Snapshot, containingLine.LineNumber, out activeTaskName)) {
-                string taskScope = VerilogGlobals.TaskLocalScopeName(thisScope, activeTaskName);
-                if (parseData.VerilogVariables.ContainsKey(taskScope) &&
-                    parseData.VerilogVariables[taskScope].ContainsKey(lookupText)) {
-                    yield return new TagSpan<VerilogTokenTag>(
-                        lookupSpan,
-                        new VerilogTokenTag(parseData.VerilogVariables[taskScope][lookupText]));
-                    yield break;
-                }
+                !string.IsNullOrEmpty(activeLocalScope) &&
+                parseData.VerilogVariables.ContainsKey(activeLocalScope) &&
+                parseData.VerilogVariables[activeLocalScope].ContainsKey(lookupText)) {
+                yield return new TagSpan<VerilogTokenTag>(
+                    lookupSpan,
+                    new VerilogTokenTag(parseData.VerilogVariables[activeLocalScope][lookupText]));
+                yield break;
             }
 
             if (parseData.VerilogVariables.ContainsKey(thisScope)) {

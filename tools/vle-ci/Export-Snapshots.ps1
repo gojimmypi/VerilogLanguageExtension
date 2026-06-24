@@ -502,6 +502,25 @@ function Get-ManifestBoolean {
     return [System.Convert]::ToBoolean([string]$value)
 }
 
+function Get-ManifestInt {
+    param(
+        [object]$ManifestObject,
+        [string]$PropertyName,
+        [int]$DefaultValue
+    )
+
+    $property = $ManifestObject.PSObject.Properties[$PropertyName]
+    if ($null -eq $property -or $null -eq $property.Value) {
+        return $DefaultValue
+    }
+
+    $value = 0
+    if (![int]::TryParse([string]$property.Value, [ref]$value)) {
+        throw "Manifest property $PropertyName must be an integer."
+    }
+
+    return $value
+}
 
 function Get-ManifestEntryProperty {
     param(
@@ -578,6 +597,10 @@ $manifestJson = [System.IO.File]::ReadAllText($manifestPath, [System.Text.Encodi
 
 $manifestFreshInstancePerFile = Get-ManifestBoolean -ManifestObject $manifestJson -PropertyName "FreshInstancePerFile"
 $useFreshInstancePerFile = $FreshInstancePerFile.IsPresent -or $manifestFreshInstancePerFile
+$effectiveMaxWaitSeconds = Get-ManifestInt -ManifestObject $manifestJson -PropertyName "MaxWaitSeconds" -DefaultValue $MaxWaitSeconds
+if ($effectiveMaxWaitSeconds -lt 1) {
+    throw "MaxWaitSeconds must be at least 1."
+}
 
 $finalOutputDir = Get-NormalizedFullPath -Path (Resolve-RepoPath -RepoRoot $repoRoot -Path $OutputDir)
 $configFile = Join-Path ([System.IO.Path]::GetTempPath()) "VerilogLanguage.ExportSnapshots.config"
@@ -587,6 +610,7 @@ Write-Host "Snapshot output: $finalOutputDir"
 Write-Host "Visual Studio: $devenv"
 Write-Host "Run name: $($manifestJson.RunName)"
 Write-Host "Fresh instance per file: $useFreshInstancePerFile"
+Write-Host "Max wait seconds: $effectiveMaxWaitSeconds"
 Write-Host "Leave Visual Studio open: $($LeaveVisualStudioOpen.IsPresent)"
 Write-Host "Skip initial Visual Studio cleanup: $($SkipInitialVisualStudioCleanup.IsPresent)"
 
@@ -652,7 +676,7 @@ try {
         $configuredDelayMs = 0
         [void][int]::TryParse([string]$manifestJson.DelayMs, [ref]$configuredDelayMs)
         $minimumWait = [Math]::Ceiling($configuredDelayMs / 1000.0) + $DelaySeconds + 15
-        $deadlineSeconds = [Math]::Max($MaxWaitSeconds, [int]$minimumWait)
+        $deadlineSeconds = [Math]::Max($effectiveMaxWaitSeconds, [int]$minimumWait)
         $deadline = (Get-Date).AddSeconds($deadlineSeconds)
         $snapshotFile = $null
 

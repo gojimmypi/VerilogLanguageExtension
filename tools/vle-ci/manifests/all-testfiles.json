@@ -1,6 +1,7 @@
 {
     "RunName":  "all-testfiles",
     "DelayMs":  3000,
+    "MaxWaitSeconds":  180,
     "FreshInstancePerFile":  true,
     "Files":  [
                   {

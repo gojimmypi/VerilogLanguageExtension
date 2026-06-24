@@ -655,6 +655,18 @@ namespace VerilogLanguage.VerilogToken
                 yield break;
             }
 
+            SnapshotSpan staticStringSpan;
+            bool staticStringStartsInToken;
+            if (TryGetStaticStringSpanForToken(containingLine, tokenSpan, out staticStringSpan, out staticStringStartsInToken)) {
+                if (staticStringStartsInToken) {
+                    yield return new TagSpan<VerilogTokenTag>(
+                        staticStringSpan,
+                        new VerilogTokenTag(VerilogTokenTypes.Verilog_StaticString));
+                }
+
+                yield break;
+            }
+
             string lookupText = item.ItemText;
             int leadingTrim = 0;
             int trailingTrim = 0;
@@ -678,6 +690,202 @@ namespace VerilogLanguage.VerilogToken
             }
 
             /* There's an implicit yield break here; do not return Null! */
+        }
+
+        private static bool TryGetStaticStringSpanForToken(
+            ITextSnapshotLine containingLine,
+            SnapshotSpan tokenSpan,
+            out SnapshotSpan staticStringSpan,
+            out bool staticStringStartsInToken) {
+            staticStringSpan = new SnapshotSpan();
+            staticStringStartsInToken = false;
+
+            if (containingLine == null || tokenSpan.Length <= 0) {
+                return false;
+            }
+
+            string lineText = containingLine.GetText();
+            if (string.IsNullOrEmpty(lineText)) {
+                return false;
+            }
+
+            int tokenStart = tokenSpan.Start.Position - containingLine.Start.Position;
+            int tokenEnd = tokenStart + tokenSpan.Length;
+            if (tokenStart < 0 || tokenEnd <= tokenStart) {
+                return false;
+            }
+
+            bool inString = false;
+            bool escaped = false;
+            int stringStart = -1;
+
+            for (int i = 0; i < lineText.Length; i++) {
+                char c = lineText[i];
+
+                if (!inString) {
+                    if (c == '"') {
+                        inString = true;
+                        escaped = false;
+                        stringStart = i;
+                    }
+                    continue;
+                }
+
+                if (c == '"' && !escaped) {
+                    int stringEnd = i + 1;
+                    if (stringStart < tokenEnd && stringEnd > tokenStart) {
+                        staticStringStartsInToken = stringStart >= tokenStart && stringStart < tokenEnd;
+                        staticStringSpan = new SnapshotSpan(
+                            containingLine.Snapshot,
+                            new Span(containingLine.Start.Position + stringStart, stringEnd - stringStart));
+                        return true;
+                    }
+
+                    inString = false;
+                    escaped = false;
+                    stringStart = -1;
+                    continue;
+                }
+
+                if (c == '\\' && !escaped) {
+                    escaped = true;
+                }
+                else {
+                    escaped = false;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool IsStaticStringText(string text) {
+            if (string.IsNullOrEmpty(text)) {
+                return false;
+            }
+
+            string trimmed = text.Trim();
+            if (trimmed.Length < 2 || trimmed[0] != '"') {
+                return false;
+            }
+
+            bool escaped = false;
+            for (int i = 1; i < trimmed.Length; i++) {
+                char c = trimmed[i];
+                if (c == '"' && !escaped) {
+                    return i == trimmed.Length - 1;
+                }
+
+                if (c == '\\' && !escaped) {
+                    escaped = true;
+                }
+                else {
+                    escaped = false;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool IsFunctionReturnTypeText(string text) {
+            switch (text) {
+                case "automatic":
+                case "signed":
+                case "unsigned":
+                case "reg":
+                case "logic":
+                case "bit":
+                case "integer":
+                case "time":
+                case "real":
+                case "realtime":
+                    return true;
+
+                default:
+                    return false;
+            }
+        }
+
+        private static List<string> GetSimpleCodeItems(string text) {
+            List<string> items = new List<string>();
+            if (string.IsNullOrEmpty(text)) {
+                return items;
+            }
+
+            string current = string.Empty;
+            for (int i = 0; i < text.Length; i++) {
+                char c = text[i];
+                if (char.IsLetterOrDigit(c) || c == '_' || c == '$' || c == '\\') {
+                    current += c;
+                    continue;
+                }
+
+                if (!string.IsNullOrEmpty(current)) {
+                    items.Add(current);
+                    current = string.Empty;
+                }
+
+                if (!char.IsWhiteSpace(c)) {
+                    items.Add(c.ToString());
+                }
+            }
+
+            if (!string.IsNullOrEmpty(current)) {
+                items.Add(current);
+            }
+
+            return items;
+        }
+
+        private static bool IsFunctionDeclarationNameContext(ITextSnapshotLine containingLine, int lookupColumn, string lookupText) {
+            if (containingLine == null || !IsVerilogIdentifierText(lookupText)) {
+                return false;
+            }
+
+            string lineText = containingLine.GetText();
+            if (lookupColumn < 0 || lookupColumn > lineText.Length) {
+                return false;
+            }
+
+            List<string> prefixItems = GetSimpleCodeItems(lineText.Substring(0, lookupColumn));
+            int functionIndex = -1;
+            for (int i = 0; i < prefixItems.Count; i++) {
+                if (prefixItems[i] == "function") {
+                    functionIndex = i;
+                }
+            }
+
+            if (functionIndex < 0) {
+                return false;
+            }
+
+            int squareDepth = 0;
+            for (int i = functionIndex + 1; i < prefixItems.Count; i++) {
+                string item = prefixItems[i];
+
+                if (item == "[") {
+                    squareDepth++;
+                    continue;
+                }
+
+                if (item == "]") {
+                    if (squareDepth > 0) {
+                        squareDepth--;
+                    }
+                    continue;
+                }
+
+                if (squareDepth > 0) {
+                    continue;
+                }
+
+                if (item == ":" || item == "," || IsFunctionReturnTypeText(item) || IsVerilogValueText(item)) {
+                    continue;
+                }
+
+                return false;
+            }
+
+            return true;
         }
 
         private static bool IsVerilogValueText(string text) {
@@ -951,6 +1159,13 @@ namespace VerilogLanguage.VerilogToken
             int curLoc,
             int leadingWhitespace,
             VerilogGlobals.ParseDataSnapshot parseData) {
+            if (IsStaticStringText(lookupText)) {
+                yield return new TagSpan<VerilogTokenTag>(
+                    lookupSpan,
+                    new VerilogTokenTag(VerilogTokenTypes.Verilog_StaticString));
+                yield break;
+            }
+
             // check for standard keyword syntax higlighting
             if (VerilogGlobals.VerilogTypes.ContainsKey(lookupText)) {
 #if TAG_DEBUG
@@ -988,6 +1203,18 @@ namespace VerilogLanguage.VerilogToken
                 yield return new TagSpan<VerilogTokenTag>(
                     lookupSpan,
                     new VerilogTokenTag(VerilogTokenTypes.Verilog_Macro));
+                yield break;
+            }
+
+            if (lookupTextIsIdentifier &&
+                IsFunctionDeclarationNameContext(
+                    containingLine,
+                    (curLoc + leadingWhitespace) - containingLine.Start.Position,
+                    lookupText)) {
+
+                yield return new TagSpan<VerilogTokenTag>(
+                    lookupSpan,
+                    new VerilogTokenTag(VerilogTokenTypes.Verilog_FunctionName));
                 yield break;
             }
 

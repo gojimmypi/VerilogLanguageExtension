@@ -2716,6 +2716,48 @@ namespace VerilogLanguage
             }
         }
     }
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "StaticString")]
+    [Name("StaticString")]
+    [UserVisible(true)]
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_StaticString : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "StaticString" classification type.
+        /// </summary>
+        public Verilog_StaticString() {
+            DisplayName = "Verilog - Static String";
+            if (ColorThemeAttribute.IsDarkTheme()) {
+                ForegroundColor = Colors.LightSalmon;
+            }
+            else {
+                ForegroundColor = Colors.Sienna;
+            }
+        }
+    }
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "FunctionName")]
+    [Name("FunctionName")]
+    [UserVisible(true)]
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_FunctionName : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "FunctionName" classification type.
+        /// </summary>
+        public Verilog_FunctionName() {
+            DisplayName = "Verilog - Function Name";
+            if (ColorThemeAttribute.IsDarkTheme()) {
+                ForegroundColor = Colors.MediumSpringGreen;
+            }
+            else {
+                ForegroundColor = Colors.SeaGreen;
+            }
+        }
+    }
     #endregion
 
     #region comments

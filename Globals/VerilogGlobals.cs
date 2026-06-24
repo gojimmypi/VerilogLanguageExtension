@@ -322,6 +322,9 @@ namespace VerilogLanguage
             ["variable_duplicate"] = VerilogTokenTypes.Verilog_Variable_duplicate,
             ["variable_module"] = VerilogTokenTypes.Verilog_Variable_module,
 
+            ["static_string"] = VerilogTokenTypes.Verilog_StaticString,
+            ["function_name"] = VerilogTokenTypes.Verilog_FunctionName,
+
             // primitives
             ["and"] = VerilogTokenTypes.Verilog_Primitive_and,
             ["nand"] = VerilogTokenTypes.Verilog_Primitive_nand,
@@ -1005,6 +1008,10 @@ namespace VerilogLanguage
             AddOrAppendHoverItem(SCOPE_MACRO, macroName, VerilogTokenTypes.Verilog_Macro, hoverText);
         }
 
+        private static void AddFunctionHoverItem(string scope, string functionName, string hoverText) {
+            AddOrAppendHoverItem(NormalizeDeclarationDuplicateScope(scope), functionName, VerilogTokenTypes.Verilog_FunctionName, hoverText);
+        }
+
         private static void AddConditionalDefinitionHoverItem(string scope, string itemName, string hoverText) {
             AddOrAppendHoverItem(scope, itemName, VerilogTokenTypes.Verilog_MacroDefinition, hoverText);
         }
@@ -1463,6 +1470,11 @@ namespace VerilogLanguage
                     thisModuleDeclarationText = ItemText;
                     break;
 
+                case "function":
+                    BuildHoverState = BuildHoverStates.FunctionNaming;
+                    thisVariableDeclarationText = ItemText;
+                    break;
+
                 case "input":
                 case "output":
                 case "inout":
@@ -1810,6 +1822,77 @@ namespace VerilogLanguage
             }
         }
 
+        private static bool IsFunctionReturnTypeToken(string itemText) {
+            switch (itemText) {
+                case "automatic":
+                case "signed":
+                case "unsigned":
+                case "reg":
+                case "logic":
+                case "bit":
+                case "integer":
+                case "time":
+                case "real":
+                case "realtime":
+                    return true;
+
+                default:
+                    return false;
+            }
+        }
+
+        /// <summary>
+        ///    Process_FunctionNaming_For
+        /// </summary>
+        /// <param name="ItemText"></param>
+        private static void Process_FunctionNaming_For(string ItemText) {
+            switch (ItemText) {
+                case "":
+                    if (!string.IsNullOrEmpty(thisVariableDeclarationText) &&
+                        !thisVariableDeclarationText.EndsWith(" ", StringComparison.Ordinal)) {
+                        thisVariableDeclarationText += " ";
+                    }
+                    break;
+
+                case ";":
+                    thisVariableDeclarationText = string.Empty;
+                    BuildHoverState = BuildHoverStates.UndefinedState;
+                    break;
+
+                default:
+                    bool wasInsideSquareBracket = IsInsideSquareBracket;
+                    SetBracketContentStatus_For(ItemText);
+
+                    if (wasInsideSquareBracket || IsInsideSquareBracket || IsVerilogBracket(ItemText) ||
+                        IsDelimiter(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) ||
+                        IsFunctionReturnTypeToken(ItemText)) {
+                        thisVariableDeclarationText += ItemText;
+                        break;
+                    }
+
+                    if (IsIdentifier(ItemText)) {
+                        thisVariableDeclarationText += ItemText;
+                        AddFunctionHoverItem(thisModuleName, ItemText, thisVariableDeclarationText);
+                        thisVariableDeclarationText = string.Empty;
+                        BuildHoverState = BuildHoverStates.FunctionDeclarationRemainder;
+                        break;
+                    }
+
+                    thisVariableDeclarationText += ItemText;
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///    Process_FunctionDeclarationRemainder_For
+        /// </summary>
+        /// <param name="ItemText"></param>
+        private static void Process_FunctionDeclarationRemainder_For(string ItemText) {
+            if (ItemText == ";") {
+                BuildHoverState = BuildHoverStates.UndefinedState;
+            }
+        }
+
         /// <summary>
         ///    Process_VariableNaming_For
         /// </summary>
@@ -2027,6 +2110,8 @@ namespace VerilogLanguage
             ModuleCloseParen,      // we found the module open paranthesis
             VariableNaming,        // we found a keyword to initiate or continue variable decaration
             VariableMimicNaming,
+            FunctionNaming,
+            FunctionDeclarationRemainder,
         };
 
 
@@ -2068,6 +2153,14 @@ namespace VerilogLanguage
 
                 case BuildHoverStates.VariableMimicNaming: // comma-delimited types have the type copied (mimic) into hover text for each variable
                     Process_VariableMimicNaming_For(thisTrimmedItem);
+                    break;
+
+                case BuildHoverStates.FunctionNaming:
+                    Process_FunctionNaming_For(thisTrimmedItem);
+                    break;
+
+                case BuildHoverStates.FunctionDeclarationRemainder:
+                    Process_FunctionDeclarationRemainder_For(thisTrimmedItem);
                     break;
 
                 default:

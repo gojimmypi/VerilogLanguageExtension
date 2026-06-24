@@ -718,6 +718,20 @@ namespace VerilogLanguage
         [Name("MacroDefinition")]
         internal static ClassificationTypeDefinition Verilog_MacroDefinition = null;
 
+        /// <summary>
+        /// Defines the "Verilog_StaticString" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("StaticString")]
+        internal static ClassificationTypeDefinition Verilog_StaticString = null;
+
+        /// <summary>
+        /// Defines the "Verilog_FunctionName" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("FunctionName")]
+        internal static ClassificationTypeDefinition Verilog_FunctionName = null;
+
         #endregion
 
         #region comments

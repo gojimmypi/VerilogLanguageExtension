@@ -1,47 +1,219 @@
-﻿{
-    "RunName":  "all-testfiles",
-    "DelayMs":  7000,
-    "FreshInstancePerFile":  true,
-    "Files":  [
-                  "TestFiles/anothertest - Copy.v",
-                  "TestFiles/anothertest.v",
-                  "TestFiles/asterisk_issue_16.v",
-                  "TestFiles/bracketest.v",
-                  "TestFiles/comma.v",
-                  "TestFiles/const.v",
-                  "TestFiles/current_bracket_issue.v",
-                  "TestFiles/declaration_text.v",
-                  "TestFiles/din _test3.v",
-                  "TestFiles/din_test.v",
-                  "TestFiles/din_test2.v",
-                  "TestFiles/din_test4.v",
-                  "TestFiles/EmptyFile.v",
-                  "TestFiles/file1.v",
-                  "TestFiles/file2.v",
-                  "TestFiles/issue10.v",
-                  "TestFiles/issue12.v",
-                  "TestFiles/issue16.v",
-                  "TestFiles/issue21.v",
-                  "TestFiles/issue21_mini.v",
-                  "TestFiles/JanGray.v",
-                  "TestFiles/mini_test - Copy.v",
-                  "TestFiles/mini_test.v",
-                  "TestFiles/module_name.v",
-                  "TestFiles/new_test.v",
-                  "TestFiles/otherfile.verilog",
-                  "TestFiles/picorv32.v",
-                  "TestFiles/primitives_test.v",
-                  "TestFiles/StopWatch.v",
-                  "TestFiles/test - bigfile.v",
-                  "TestFiles/test.v",
-                  "TestFiles/test2.v",
-                  "TestFiles/testfile-1K.v",
-                  "TestFiles/testfile-4K.v",
-                  "TestFiles/testfile-5K.v",
-                  "TestFiles/vert_bar.v",
-                  "TestFiles/wiretest.verilog",
-                  "TestFiles/wow.v",
-                  "TestFiles/wow2.sv",
-                  "TestFiles/wow3.svh"
-              ]
+{
+    "RunName": "all-testfiles",
+    "DelayMs": 3000,
+    "FreshInstancePerFile": true,
+    "Files": [
+        {
+            "Path": "TestFiles/src/JTAG/jtag_core.v",
+            "SnapshotFileName": "0041-jtag_core.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/src/PINS/pin_id_core.v",
+            "SnapshotFileName": "0042-pin_id_core.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/src/project.v",
+            "SnapshotFileName": "0043-project.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/src/project_config.v",
+            "SnapshotFileName": "0044-project_config.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/src/SPI/spi_slave.v",
+            "SnapshotFileName": "0045-spi_slave.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/src/target_pdk.v",
+            "SnapshotFileName": "0046-target_pdk.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/src/TRNG/trng_cfg_ascii_core.v",
+            "SnapshotFileName": "0047-trng_cfg_ascii_core.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/src/TRNG/trng_lab_core.v",
+            "SnapshotFileName": "0048-trng_lab_core.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/src/TRNG/trng_stub.v",
+            "SnapshotFileName": "0049-trng_stub.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/src/tt_um_main.v",
+            "SnapshotFileName": "0050-tt_um_main.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/src/UART/uart_rx_min.v",
+            "SnapshotFileName": "0051-uart_rx_min.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/src/UART/uart_trng_ascii_core.v",
+            "SnapshotFileName": "0052-uart_trng_ascii_core.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/src/UART/uart_tx_min.v",
+            "SnapshotFileName": "0053-uart_tx_min.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/anothertest - Copy.v",
+            "SnapshotFileName": "0001-anothertest - Copy.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/anothertest.v",
+            "SnapshotFileName": "0002-anothertest.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/asterisk_issue_16.v",
+            "SnapshotFileName": "0003-asterisk_issue_16.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/bracketest.v",
+            "SnapshotFileName": "0004-bracketest.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/comma.v",
+            "SnapshotFileName": "0005-comma.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/const.v",
+            "SnapshotFileName": "0006-const.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/current_bracket_issue.v",
+            "SnapshotFileName": "0007-current_bracket_issue.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/declaration_text.v",
+            "SnapshotFileName": "0008-declaration_text.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/din _test3.v",
+            "SnapshotFileName": "0009-din _test3.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/din_test.v",
+            "SnapshotFileName": "0010-din_test.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/din_test2.v",
+            "SnapshotFileName": "0011-din_test2.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/din_test4.v",
+            "SnapshotFileName": "0012-din_test4.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/EmptyFile.v",
+            "SnapshotFileName": "0013-EmptyFile.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/file1.v",
+            "SnapshotFileName": "0014-file1.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/file2.v",
+            "SnapshotFileName": "0015-file2.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/issue10.v",
+            "SnapshotFileName": "0016-issue10.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/issue12.v",
+            "SnapshotFileName": "0017-issue12.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/issue16.v",
+            "SnapshotFileName": "0018-issue16.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/issue21.v",
+            "SnapshotFileName": "0019-issue21.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/issue21_mini.v",
+            "SnapshotFileName": "0020-issue21_mini.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/JanGray.v",
+            "SnapshotFileName": "0021-JanGray.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/mini_test - Copy.v",
+            "SnapshotFileName": "0022-mini_test - Copy.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/mini_test.v",
+            "SnapshotFileName": "0023-mini_test.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/module_name.v",
+            "SnapshotFileName": "0024-module_name.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/new_test.v",
+            "SnapshotFileName": "0025-new_test.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/otherfile.verilog",
+            "SnapshotFileName": "0026-otherfile.verilog.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/picorv32.v",
+            "SnapshotFileName": "0027-picorv32.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/primitives_test.v",
+            "SnapshotFileName": "0028-primitives_test.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/StopWatch.v",
+            "SnapshotFileName": "0029-StopWatch.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/test - bigfile.v",
+            "SnapshotFileName": "0030-test - bigfile.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/test.v",
+            "SnapshotFileName": "0031-test.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/test2.v",
+            "SnapshotFileName": "0032-test2.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/testfile-1K.v",
+            "SnapshotFileName": "0033-testfile-1K.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/testfile-4K.v",
+            "SnapshotFileName": "0034-testfile-4K.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/testfile-5K.v",
+            "SnapshotFileName": "0035-testfile-5K.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/vert_bar.v",
+            "SnapshotFileName": "0036-vert_bar.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/wiretest.verilog",
+            "SnapshotFileName": "0037-wiretest.verilog.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/wow.v",
+            "SnapshotFileName": "0038-wow.v.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/wow2.sv",
+            "SnapshotFileName": "0039-wow2.sv.snapshot.json"
+        },
+        {
+            "Path": "TestFiles/wow3.svh",
+            "SnapshotFileName": "0040-wow3.svh.snapshot.json"
+        }
+    ]
 }

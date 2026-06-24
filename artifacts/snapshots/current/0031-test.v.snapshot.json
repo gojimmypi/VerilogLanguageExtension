@@ -463,6 +463,16 @@
                                           ]
                             },
                             {
+                                "Start":  688,
+                                "Length":  9,
+                                "Line":  19,
+                                "Column":  8,
+                                "Text":  "VERILATOR",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
                                 "Start":  698,
                                 "Length":  31,
                                 "Line":  20,
@@ -4543,6 +4553,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Directive",
                      "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  688,
+                     "Length":  9,
+                     "Line":  19,
+                     "Column":  8,
+                     "Text":  "VERILATOR",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "macro condition:\r\n`ifdef VERILATOR"
                  },
                  {
                      "Start":  698,
@@ -23453,6 +23473,12 @@
                         "Name":  "i_clk",
                         "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "wire i_clk"
+                    },
+                    {
+                        "Scope":  "__MACRO__",
+                        "Name":  "VERILATOR",
+                        "TokenType":  "Verilog_Macro",
+                        "HoverText":  "macro condition:\r\n`ifdef VERILATOR"
                     },
                     {
                         "Scope":  "ulx3s_adda",

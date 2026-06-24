@@ -392,7 +392,7 @@
                      "Text":  "led",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  null
+                     "HoverText":  "output wire [7:0] led"
                  },
                  {
                      "Start":  57,
@@ -462,7 +462,7 @@
                      "Text":  "btn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  null
+                     "HoverText":  "input  wire [6:0] btn"
                  },
                  {
                      "Start":  81,
@@ -532,7 +532,7 @@
                      "Text":  "sw",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  null
+                     "HoverText":  "input  wire [1:4] sw"
                  }
              ],
     "Tokens":  [
@@ -906,6 +906,23 @@
                    }
                ],
     "Symbols":  [
-
+                    {
+                        "Scope":  "ulx3s_passthru_wifi",
+                        "Name":  "led",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "output wire [7:0] led"
+                    },
+                    {
+                        "Scope":  "ulx3s_passthru_wifi",
+                        "Name":  "btn",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "input  wire [6:0] btn"
+                    },
+                    {
+                        "Scope":  "ulx3s_passthru_wifi",
+                        "Name":  "sw",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "input  wire [1:4] sw"
+                    }
                 ]
 }

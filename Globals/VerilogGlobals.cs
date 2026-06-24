@@ -394,9 +394,26 @@ namespace VerilogLanguage
         private static bool IsInsideSquareBracket = false;
         private static bool IsInsideSquigglyBracket = false;
         private static VerilogTokenTypes thisVariableType = VerilogTokenTypes.Verilog_Variable;
+        private sealed class ConditionalDefinitionCandidate
+        {
+            public string Scope { get; set; }
+            public string Name { get; set; }
+            public int GroupId { get; set; }
+            public int BranchId { get; set; }
+            public bool HasMacroReference { get; set; }
+            public string HoverText { get; set; }
+            public string DeclarationText { get; set; }
+            public VerilogTokenTypes DeclarationType { get; set; }
+        }
+
         private static readonly List<string> PreprocessorConditionStack = new List<string>();
         private static readonly List<List<string>> PreprocessorBranchTextStack = new List<List<string>>();
+        private static readonly List<int> PreprocessorConditionalGroupIdStack = new List<int>();
+        private static readonly List<int> PreprocessorConditionalBranchIdStack = new List<int>();
+        private static readonly List<ConditionalDefinitionCandidate> PreprocessorConditionalDefinitionCandidates = new List<ConditionalDefinitionCandidate>();
+        private static readonly Dictionary<string, bool> PreprocessorConditionalDuplicateSuppressions = new Dictionary<string, bool>();
         private static bool PreprocessorScanBlockCommentOpen = false;
+        private static int PreprocessorNextConditionalGroupId = 1;
 
         /// <summary>
         ///   InitHoverBuilder - prep for another refresh of hover item lookup
@@ -454,7 +471,12 @@ namespace VerilogLanguage
 
             PreprocessorConditionStack.Clear();
             PreprocessorBranchTextStack.Clear();
+            PreprocessorConditionalGroupIdStack.Clear();
+            PreprocessorConditionalBranchIdStack.Clear();
+            PreprocessorConditionalDefinitionCandidates.Clear();
+            PreprocessorConditionalDuplicateSuppressions.Clear();
             PreprocessorScanBlockCommentOpen = false;
+            PreprocessorNextConditionalGroupId = 1;
 
             BuildHoverState = BuildHoverStates.UndefinedState;
         }
@@ -549,6 +571,15 @@ namespace VerilogLanguage
             }
 
             return thisVariableType;
+        }
+
+        private static VerilogTokenTypes GetDeclarationVariableTypeForConditionalText(string declarationText) {
+            VerilogTokenTypes declarationVariableType;
+            if (TryGetDeclarationVariableTypeFromText(declarationText, out declarationVariableType)) {
+                return declarationVariableType;
+            }
+
+            return VerilogTokenTypes.Verilog_Variable;
         }
 
         private static bool IsDeclarationStartKeyword(string itemText) {
@@ -840,9 +871,34 @@ namespace VerilogLanguage
             branchText.Add(TrimLineForHover(directiveText));
         }
 
+        private static void PushPreprocessorConditionalGroup() {
+            PreprocessorConditionalGroupIdStack.Add(PreprocessorNextConditionalGroupId++);
+            PreprocessorConditionalBranchIdStack.Add(0);
+        }
+
+        private static void AdvanceCurrentPreprocessorConditionalBranch() {
+            if (PreprocessorConditionalBranchIdStack.Count == 0) {
+                PushPreprocessorConditionalGroup();
+                return;
+            }
+
+            int lastIndex = PreprocessorConditionalBranchIdStack.Count - 1;
+            PreprocessorConditionalBranchIdStack[lastIndex] = PreprocessorConditionalBranchIdStack[lastIndex] + 1;
+        }
+
         private static void PopPreprocessorBranchText() {
             if (PreprocessorBranchTextStack.Count > 0) {
                 PreprocessorBranchTextStack.RemoveAt(PreprocessorBranchTextStack.Count - 1);
+            }
+        }
+
+        private static void PopPreprocessorConditionalGroup() {
+            if (PreprocessorConditionalGroupIdStack.Count > 0) {
+                PreprocessorConditionalGroupIdStack.RemoveAt(PreprocessorConditionalGroupIdStack.Count - 1);
+            }
+
+            if (PreprocessorConditionalBranchIdStack.Count > 0) {
+                PreprocessorConditionalBranchIdStack.RemoveAt(PreprocessorConditionalBranchIdStack.Count - 1);
             }
         }
 
@@ -860,12 +916,15 @@ namespace VerilogLanguage
         }
 
         private static string CurrentPreprocessorBranchText(string fallbackLineText) {
+            if (PreprocessorBranchTextStack.Count == 0) {
+                return TrimLineForHover(fallbackLineText);
+            }
+
             List<string> branchLines = new List<string>();
-            foreach (List<string> branchText in PreprocessorBranchTextStack) {
-                foreach (string branchLine in branchText) {
-                    if (!string.IsNullOrWhiteSpace(branchLine)) {
-                        branchLines.Add(branchLine);
-                    }
+            List<string> branchText = PreprocessorBranchTextStack[PreprocessorBranchTextStack.Count - 1];
+            foreach (string branchLine in branchText) {
+                if (!string.IsNullOrWhiteSpace(branchLine)) {
+                    branchLines.Add(branchLine);
                 }
             }
 
@@ -874,6 +933,43 @@ namespace VerilogLanguage
             }
 
             return string.Join(Environment.NewLine, branchLines.ToArray());
+        }
+
+        private static bool HasMacroReferenceInLine(string text) {
+            if (string.IsNullOrEmpty(text)) {
+                return false;
+            }
+
+            for (int i = 0; i < text.Length - 1; i++) {
+                if (text[i] != '`') {
+                    continue;
+                }
+
+                char next = text[i + 1];
+                if (next == '_' ||
+                    (next >= 'A' && next <= 'Z') ||
+                    (next >= 'a' && next <= 'z')) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static int CurrentPreprocessorConditionalGroupId() {
+            if (PreprocessorConditionalGroupIdStack.Count == 0) {
+                return 0;
+            }
+
+            return PreprocessorConditionalGroupIdStack[PreprocessorConditionalGroupIdStack.Count - 1];
+        }
+
+        private static int CurrentPreprocessorConditionalBranchId() {
+            if (PreprocessorConditionalBranchIdStack.Count == 0) {
+                return 0;
+            }
+
+            return PreprocessorConditionalBranchIdStack[PreprocessorConditionalBranchIdStack.Count - 1];
         }
 
         private static void EnsureHoverScope(string scope) {
@@ -913,6 +1009,31 @@ namespace VerilogLanguage
             AddOrAppendHoverItem(scope, itemName, VerilogTokenTypes.Verilog_MacroDefinition, hoverText);
         }
 
+        private static void QueueConditionalDefinitionCandidate(
+            string scope,
+            string itemName,
+            int groupId,
+            int branchId,
+            bool hasMacroReference,
+            string hoverText,
+            string declarationText,
+            VerilogTokenTypes declarationType) {
+            if (string.IsNullOrEmpty(scope) || string.IsNullOrEmpty(itemName) || groupId <= 0 || string.IsNullOrEmpty(hoverText)) {
+                return;
+            }
+
+            PreprocessorConditionalDefinitionCandidates.Add(new ConditionalDefinitionCandidate {
+                Scope = scope,
+                Name = itemName,
+                GroupId = groupId,
+                BranchId = branchId,
+                HasMacroReference = hasMacroReference,
+                HoverText = hoverText,
+                DeclarationText = declarationText,
+                DeclarationType = declarationType
+            });
+        }
+
         public static void ProcessPreprocessorLine(string lineText) {
             string codeText = StripCommentsForPreprocessorLine(lineText);
             List<string> items = GetTrimmedLineItems(codeText);
@@ -934,6 +1055,7 @@ namespace VerilogLanguage
                         if (!string.IsNullOrEmpty(macroName)) {
                             AddMacroHoverItem(macroName, "macro condition:" + Environment.NewLine + trimmedLine);
                             PreprocessorConditionStack.Add(firstItem + " " + macroName);
+                            PushPreprocessorConditionalGroup();
                             PushPreprocessorBranchText(trimmedLine);
                         }
                     }
@@ -947,10 +1069,12 @@ namespace VerilogLanguage
                             if (PreprocessorConditionStack.Count > 0) {
                                 string previousCondition = PreprocessorConditionStack[PreprocessorConditionStack.Count - 1];
                                 PreprocessorConditionStack[PreprocessorConditionStack.Count - 1] = firstItem + " " + macroName + " (from " + previousCondition + ")";
+                                AdvanceCurrentPreprocessorConditionalBranch();
                                 ReplaceCurrentPreprocessorBranchText(trimmedLine);
                             }
                             else {
                                 PreprocessorConditionStack.Add(firstItem + " " + macroName);
+                                PushPreprocessorConditionalGroup();
                                 PushPreprocessorBranchText(trimmedLine);
                             }
                         }
@@ -961,10 +1085,12 @@ namespace VerilogLanguage
                     if (PreprocessorConditionStack.Count > 0) {
                         string previousCondition = PreprocessorConditionStack[PreprocessorConditionStack.Count - 1];
                         PreprocessorConditionStack[PreprocessorConditionStack.Count - 1] = "`else (from " + previousCondition + ")";
+                        AdvanceCurrentPreprocessorConditionalBranch();
                         ReplaceCurrentPreprocessorBranchText(trimmedLine);
                     }
                     else {
                         PreprocessorConditionStack.Add("`else");
+                        PushPreprocessorConditionalGroup();
                         PushPreprocessorBranchText(trimmedLine);
                     }
                     return;
@@ -974,6 +1100,7 @@ namespace VerilogLanguage
                         PreprocessorConditionStack.RemoveAt(PreprocessorConditionStack.Count - 1);
                     }
                     PopPreprocessorBranchText();
+                    PopPreprocessorConditionalGroup();
                     return;
 
                 case "`define":
@@ -1012,11 +1139,136 @@ namespace VerilogLanguage
             }
 
             string scope = NormalizeDeclarationDuplicateScope(thisModuleName);
-            string hoverTextForLine = "conditional definition:" + Environment.NewLine + CurrentPreprocessorBranchText(trimmedLine) + Environment.NewLine + Environment.NewLine +
-                                      "condition:" + Environment.NewLine + CurrentPreprocessorConditionText();
+            string conditionText = CurrentPreprocessorConditionText();
+            int groupId = CurrentPreprocessorConditionalGroupId();
+            int branchId = CurrentPreprocessorConditionalBranchId();
+            bool hasMacroReference = HasMacroReferenceInLine(codeText);
+            string hoverTextForLine = "conditional macro-controlled definition:" + Environment.NewLine + CurrentPreprocessorBranchText(trimmedLine) + Environment.NewLine + Environment.NewLine +
+                                      "condition:" + Environment.NewLine + conditionText;
+            VerilogTokenTypes declarationType = GetDeclarationVariableTypeForConditionalText(trimmedLine);
 
             foreach (string declarationName in declarationNames) {
-                AddConditionalDefinitionHoverItem(scope, declarationName, hoverTextForLine);
+                QueueConditionalDefinitionCandidate(scope, declarationName, groupId, branchId, hasMacroReference, hoverTextForLine, trimmedLine, declarationType);
+            }
+        }
+
+        private static string ConditionalDefinitionKey(string scope, string name) {
+            return (scope ?? string.Empty) + "::" + (name ?? string.Empty);
+        }
+
+        private static int DeclarationCount(
+            Dictionary<string, Dictionary<string, int>> countsByScope,
+            string scope,
+            string name) {
+            Dictionary<string, int> scopeCounts;
+            int count;
+            if (countsByScope.TryGetValue(scope, out scopeCounts) &&
+                scopeCounts.TryGetValue(name, out count)) {
+                return count;
+            }
+
+            return 0;
+        }
+
+        private static bool IsConditionalDuplicateSuppressed(string scope, string name) {
+            return PreprocessorConditionalDuplicateSuppressions.ContainsKey(ConditionalDefinitionKey(scope, name));
+        }
+
+        private static void ApplyConditionalDefinitionCandidates(Dictionary<string, Dictionary<string, int>> countsByScope) {
+            Dictionary<string, List<int>> candidateBranchIds = new Dictionary<string, List<int>>();
+            Dictionary<string, Dictionary<int, int>> candidateBranchCounts = new Dictionary<string, Dictionary<int, int>>();
+            Dictionary<string, List<string>> candidateHoverText = new Dictionary<string, List<string>>();
+            Dictionary<string, bool> candidateHasMacroReference = new Dictionary<string, bool>();
+            Dictionary<string, string> candidateScopeByKey = new Dictionary<string, string>();
+            Dictionary<string, string> candidateNameByKey = new Dictionary<string, string>();
+            Dictionary<string, int> candidateTotalCounts = new Dictionary<string, int>();
+            Dictionary<string, string> candidateDeclarationText = new Dictionary<string, string>();
+            Dictionary<string, VerilogTokenTypes> candidateDeclarationType = new Dictionary<string, VerilogTokenTypes>();
+
+            foreach (ConditionalDefinitionCandidate candidate in PreprocessorConditionalDefinitionCandidates) {
+                if (candidate == null || string.IsNullOrEmpty(candidate.Name) || candidate.GroupId <= 0) {
+                    continue;
+                }
+
+                string scope = NormalizeDeclarationDuplicateScope(candidate.Scope);
+                string key = ConditionalDefinitionKey(scope, candidate.Name) + "::" + candidate.GroupId.ToString();
+
+                if (!candidateBranchIds.ContainsKey(key)) {
+                    candidateBranchIds.Add(key, new List<int>());
+                    candidateBranchCounts.Add(key, new Dictionary<int, int>());
+                    candidateHasMacroReference.Add(key, false);
+                    candidateScopeByKey.Add(key, scope);
+                    candidateNameByKey.Add(key, candidate.Name);
+                    candidateTotalCounts.Add(key, 0);
+                    candidateDeclarationText.Add(key, candidate.DeclarationText ?? candidate.Name);
+                    candidateDeclarationType.Add(key, candidate.DeclarationType);
+                }
+
+                if (!candidateBranchIds[key].Contains(candidate.BranchId)) {
+                    candidateBranchIds[key].Add(candidate.BranchId);
+                }
+
+                if (!candidateBranchCounts[key].ContainsKey(candidate.BranchId)) {
+                    candidateBranchCounts[key].Add(candidate.BranchId, 0);
+                }
+                candidateBranchCounts[key][candidate.BranchId]++;
+                candidateTotalCounts[key]++;
+
+                if (candidate.HasMacroReference) {
+                    candidateHasMacroReference[key] = true;
+                }
+
+                if (!candidateHoverText.ContainsKey(key)) {
+                    candidateHoverText.Add(key, new List<string>());
+                }
+
+                if (!string.IsNullOrEmpty(candidate.HoverText) &&
+                    !candidateHoverText[key].Contains(candidate.HoverText)) {
+                    candidateHoverText[key].Add(candidate.HoverText);
+                }
+            }
+
+            foreach (KeyValuePair<string, List<int>> branchIds in candidateBranchIds) {
+                string key = branchIds.Key;
+                string scope = candidateScopeByKey[key];
+                string name = candidateNameByKey[key];
+
+                if (branchIds.Value.Count <= 1) {
+                    continue;
+                }
+
+                int totalDeclarationCount = DeclarationCount(countsByScope, scope, name);
+                if (totalDeclarationCount <= 1 || totalDeclarationCount != candidateTotalCounts[key]) {
+                    continue;
+                }
+
+                bool duplicateInSameBranch = false;
+                foreach (KeyValuePair<int, int> branchCount in candidateBranchCounts[key]) {
+                    if (branchCount.Value > 1) {
+                        duplicateInSameBranch = true;
+                        break;
+                    }
+                }
+
+                if (duplicateInSameBranch) {
+                    continue;
+                }
+
+                PreprocessorConditionalDuplicateSuppressions[ConditionalDefinitionKey(scope, name)] = true;
+                EnsureHoverScope(scope);
+
+                if (candidateHasMacroReference.ContainsKey(key) && candidateHasMacroReference[key]) {
+                    VerilogVariables[scope][name] = VerilogTokenTypes.Verilog_MacroDefinition;
+
+                    List<string> hoverLines;
+                    if (candidateHoverText.TryGetValue(key, out hoverLines) && hoverLines.Count > 0) {
+                        VerilogVariableHoverText[scope][name] = string.Join(Environment.NewLine + Environment.NewLine, hoverLines.ToArray());
+                    }
+                }
+                else {
+                    VerilogVariables[scope][name] = candidateDeclarationType[key];
+                    VerilogVariableHoverText[scope][name] = candidateDeclarationText[key];
+                }
             }
         }
 
@@ -1031,6 +1283,8 @@ namespace VerilogLanguage
                 string scope = NormalizeDeclarationDuplicateScope(TextModuleName(line.LineNumber, 0));
                 CountDeclarationNamesInLine(countsByScope, scope, line.GetText());
             }
+
+            ApplyConditionalDefinitionCandidates(countsByScope);
 
             foreach (KeyValuePair<string, Dictionary<string, int>> scopeCounts in countsByScope) {
                 string scope = NormalizeDeclarationDuplicateScope(scopeCounts.Key);
@@ -1050,6 +1304,10 @@ namespace VerilogLanguage
 
                     if (VerilogVariables[scope].ContainsKey(nameCount.Key) &&
                         VerilogVariables[scope][nameCount.Key] == VerilogTokenTypes.Verilog_MacroDefinition) {
+                        continue;
+                    }
+
+                    if (IsConditionalDuplicateSuppressed(scope, nameCount.Key)) {
                         continue;
                     }
 

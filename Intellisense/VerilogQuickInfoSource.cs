@@ -253,6 +253,52 @@ namespace VerilogLanguage
             return TryGetVariableHoverText(snapshot, tagSpan, out hoverText);
         }
 
+        private static bool IsVerilogIdentifierContinuation(char c) {
+            return char.IsLetterOrDigit(c) || c == '_' || c == '$';
+        }
+
+        private static bool IsVerilogIdentifierText(string text) {
+            if (string.IsNullOrEmpty(text)) {
+                return false;
+            }
+
+            if (!(char.IsLetter(text[0]) || text[0] == '_')) {
+                return false;
+            }
+
+            for (int i = 1; i < text.Length; i++) {
+                if (!IsVerilogIdentifierContinuation(text[i])) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private static bool IsPreprocessorMacroContext(ITextSnapshotLine lineInfo, int column, string lookupText) {
+            if (lineInfo == null || string.IsNullOrEmpty(lookupText)) {
+                return false;
+            }
+
+            string lineText = lineInfo.GetText();
+            if (column < 0 || column > lineText.Length) {
+                return false;
+            }
+
+            string prefixText = lineText.Substring(0, column);
+            string trimmedPrefix = prefixText.Trim();
+
+            if (trimmedPrefix.EndsWith("`define", StringComparison.Ordinal) ||
+                trimmedPrefix.EndsWith("`ifdef", StringComparison.Ordinal) ||
+                trimmedPrefix.EndsWith("`ifndef", StringComparison.Ordinal) ||
+                trimmedPrefix.EndsWith("`elsif", StringComparison.Ordinal) ||
+                trimmedPrefix.EndsWith("`undef", StringComparison.Ordinal)) {
+                return IsVerilogIdentifierText(lookupText);
+            }
+
+            return false;
+        }
+
         internal static bool TryGetVariableHoverText(
             ITextSnapshot snapshot,
             SnapshotSpan tagSpan,
@@ -315,18 +361,23 @@ namespace VerilogLanguage
                 return true;
             }
 
-            string macroHoverKey = thisHoverKey;
-            if (macroHoverKey.StartsWith("`", StringComparison.Ordinal)) {
-                macroHoverKey = macroHoverKey.Substring(1);
-            }
+            bool isBacktickMacroReference = thisHoverKey.StartsWith("`", StringComparison.Ordinal) && thisHoverKey.Length > 1;
+            bool isDirectiveMacroOperand = IsPreprocessorMacroContext(lineInfo, thisPosition, thisHoverKey);
 
-            Dictionary<string, string> macroMap;
-            string macroHover;
-            if (hoverDb.TryGetValue(VerilogGlobals.SCOPE_MACRO, out macroMap) &&
-                macroMap != null &&
-                macroMap.TryGetValue(macroHoverKey, out macroHover)) {
-                hoverText = macroHover;
-                return true;
+            if (isBacktickMacroReference || isDirectiveMacroOperand) {
+                string macroHoverKey = thisHoverKey;
+                if (macroHoverKey.StartsWith("`", StringComparison.Ordinal)) {
+                    macroHoverKey = macroHoverKey.Substring(1);
+                }
+
+                Dictionary<string, string> macroMap;
+                string macroHover;
+                if (hoverDb.TryGetValue(VerilogGlobals.SCOPE_MACRO, out macroMap) &&
+                    macroMap != null &&
+                    macroMap.TryGetValue(macroHoverKey, out macroHover)) {
+                    hoverText = macroHover;
+                    return true;
+                }
             }
 
             return false;

@@ -991,16 +991,6 @@ namespace VerilogLanguage.VerilogToken
                 yield break;
             }
 
-            if (parseData != null && lookupTextIsIdentifier &&
-                parseData.VerilogVariables.ContainsKey(VerilogGlobals.SCOPE_MACRO) &&
-                parseData.VerilogVariables[VerilogGlobals.SCOPE_MACRO].ContainsKey(lookupText)) {
-
-                yield return new TagSpan<VerilogTokenTag>(
-                    lookupSpan,
-                    new VerilogTokenTag(parseData.VerilogVariables[VerilogGlobals.SCOPE_MACRO][lookupText]));
-                yield break;
-            }
-
             if (parseData != null && lookupTextIsIdentifier && parseData.VerilogVariables.ContainsKey(lookupText)) {
                 // we are instantiation a module; recall VerilogVariables is first a dictionary of scope (aka module), then a dictionary of variables in each module scope
                 // TODO do we need: if (tokenSpan.IntersectsWith(curSpan))

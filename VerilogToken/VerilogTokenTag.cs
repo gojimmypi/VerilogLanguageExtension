@@ -24,6 +24,8 @@
 //
 //***************************************************************************
 
+// TODO confirm
+
 namespace VerilogLanguage.VerilogToken
 {
     using System;

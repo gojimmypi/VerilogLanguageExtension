@@ -2,7 +2,6 @@
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
     "ExtensionVersion":  "0.3.6.3",
-    "GitCommit":  "efc9996",
     "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\mini_test - Copy.v",
     "FileRelativePath":  "TestFiles\\mini_test - Copy.v",
     "ContentType":  "verilog",
@@ -201,6 +200,16 @@
                                 "Text":  "]",
                                 "Types":  [
                                               "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  132,
+                                "Length":  10,
+                                "Line":  14,
+                                "Column":  14,
+                                "Text":  "J2_AD_PORT",
+                                "Types":  [
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -1453,6 +1462,16 @@
                      "Text":  "]",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  132,
+                     "Length":  10,
+                     "Line":  14,
+                     "Column":  14,
+                     "Text":  "J2_AD_PORT",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  null
                  },
                  {

@@ -884,89 +884,6 @@ namespace VerilogLanguage.VerilogToken
             return hasAssignment;
         }
 
-        private static string GetCurrentTopLevelStatementPrefix(string prefixText) {
-            if (string.IsNullOrEmpty(prefixText)) {
-                return string.Empty;
-            }
-
-            int statementStart = 0;
-            int squareDepth = 0;
-            int roundDepth = 0;
-            int squigglyDepth = 0;
-
-            for (int i = 0; i < prefixText.Length; i++) {
-                char c = prefixText[i];
-
-                if (c == '[') {
-                    squareDepth++;
-                    continue;
-                }
-
-                if (c == ']') {
-                    if (squareDepth > 0) {
-                        squareDepth--;
-                    }
-                    continue;
-                }
-
-                if (c == '(') {
-                    roundDepth++;
-                    continue;
-                }
-
-                if (c == ')') {
-                    if (roundDepth > 0) {
-                        roundDepth--;
-                    }
-                    continue;
-                }
-
-                if (c == '{') {
-                    squigglyDepth++;
-                    continue;
-                }
-
-                if (c == '}') {
-                    if (squigglyDepth > 0) {
-                        squigglyDepth--;
-                    }
-                    continue;
-                }
-
-                if (squareDepth == 0 && roundDepth == 0 && squigglyDepth == 0 && c == ';') {
-                    statementStart = i + 1;
-                }
-            }
-
-            return prefixText.Substring(statementStart);
-        }
-
-        private static bool ShouldSuppressDeclarationRhsIdentifierColor(
-            ITextSnapshotLine containingLine,
-            int column) {
-            if (containingLine == null || column <= 0) {
-                return false;
-            }
-
-            string lineText = containingLine.GetText();
-            if (string.IsNullOrEmpty(lineText)) {
-                return false;
-            }
-
-            if (column > lineText.Length) {
-                column = lineText.Length;
-            }
-
-            string prefixText = lineText.Substring(0, column);
-            if (!HasAssignmentInCurrentDeclarationItem(prefixText)) {
-                return false;
-            }
-
-            string statementPrefixText = GetCurrentTopLevelStatementPrefix(prefixText);
-            return ContainsDeclarationKeyword(statementPrefixText, "localparam") ||
-                   ContainsDeclarationKeyword(statementPrefixText, "parameter");
-        }
-
         private static bool TryGetDeclarationVariableType(
             ITextSnapshotLine containingLine,
             int column,
@@ -1058,14 +975,6 @@ namespace VerilogLanguage.VerilogToken
             }
 
             bool lookupTextIsIdentifier = IsVerilogIdentifierText(lookupText);
-
-            if (lookupTextIsIdentifier &&
-                ShouldSuppressDeclarationRhsIdentifierColor(
-                    containingLine,
-                    (curLoc + leadingWhitespace) - containingLine.Start.Position)) {
-
-                yield break;
-            }
 
             if (parseData != null && lookupTextIsIdentifier && parseData.VerilogVariables.ContainsKey(lookupText)) {
                 // we are instantiation a module; recall VerilogVariables is first a dictionary of scope (aka module), then a dictionary of variables in each module scope

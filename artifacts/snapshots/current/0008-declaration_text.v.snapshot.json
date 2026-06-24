@@ -2,7 +2,6 @@
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
     "ExtensionVersion":  "0.3.6.3",
-    "GitCommit":  "efc9996",
     "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\declaration_text.v",
     "FileRelativePath":  "TestFiles\\declaration_text.v",
     "ContentType":  "verilog",
@@ -124,6 +123,16 @@
                                           ]
                             },
                             {
+                                "Start":  158,
+                                "Length":  1,
+                                "Line":  5,
+                                "Column":  20,
+                                "Text":  "r",
+                                "Types":  [
+                                              "Variable_output"
+                                          ]
+                            },
+                            {
                                 "Start":  162,
                                 "Length":  5,
                                 "Line":  6,
@@ -184,6 +193,16 @@
                                           ]
                             },
                             {
+                                "Start":  180,
+                                "Length":  1,
+                                "Line":  6,
+                                "Column":  20,
+                                "Text":  "x",
+                                "Types":  [
+                                              "Variable_input"
+                                          ]
+                            },
+                            {
                                 "Start":  184,
                                 "Length":  5,
                                 "Line":  7,
@@ -241,6 +260,16 @@
                                 "Text":  "]",
                                 "Types":  [
                                               "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  202,
+                                "Length":  1,
+                                "Line":  7,
+                                "Column":  20,
+                                "Text":  "y",
+                                "Types":  [
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -1156,6 +1185,16 @@
                      "HoverText":  null
                  },
                  {
+                     "Start":  158,
+                     "Length":  1,
+                     "Line":  5,
+                     "Column":  20,
+                     "Text":  "r",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_output",
+                     "HoverText":  null
+                 },
+                 {
                      "Start":  162,
                      "Length":  5,
                      "Line":  6,
@@ -1216,6 +1255,16 @@
                      "HoverText":  null
                  },
                  {
+                     "Start":  180,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  20,
+                     "Text":  "x",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_input",
+                     "HoverText":  null
+                 },
+                 {
                      "Start":  184,
                      "Length":  5,
                      "Line":  7,
@@ -1273,6 +1322,16 @@
                      "Text":  "]",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  202,
+                     "Length":  1,
+                     "Line":  7,
+                     "Column":  20,
+                     "Text":  "y",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  null
                  },
                  {

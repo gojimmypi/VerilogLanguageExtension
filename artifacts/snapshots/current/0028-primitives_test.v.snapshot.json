@@ -6,7 +6,7 @@
     "FileRelativePath":  "TestFiles\\primitives_test.v",
     "ContentType":  "verilog",
     "SnapshotLength":  444,
-    "SnapshotVersion":  2,
+    "SnapshotVersion":  6,
     "TextSha256":  "b0f51e9e0680446b56696b52337517327f24756af4ad48fee487d3ef8e06d36b",
     "Errors":  [
 
@@ -99,7 +99,7 @@
                                 "Column":  20,
                                 "Text":  "h1",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -109,7 +109,7 @@
                                 "Column":  24,
                                 "Text":  "i1",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -139,7 +139,7 @@
                                 "Column":  17,
                                 "Text":  "eq",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -339,7 +339,7 @@
                                 "Column":  11,
                                 "Text":  "eq",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -389,7 +389,7 @@
                                 "Column":  23,
                                 "Text":  "i1",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -419,7 +419,7 @@
                                 "Column":  21,
                                 "Text":  "i1",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -701,7 +701,7 @@
                      "Column":  20,
                      "Text":  "h1",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module eq1( .. input wire h1 .. )"
                  },
                  {
@@ -711,7 +711,7 @@
                      "Column":  24,
                      "Text":  "i1",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module eq1( .. input wire i1 .. )"
                  },
                  {
@@ -741,7 +741,7 @@
                      "Column":  17,
                      "Text":  "eq",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module eq1( .. output wire eq  .. )"
                  },
                  {
@@ -1101,7 +1101,7 @@
                      "Column":  11,
                      "Text":  "eq",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module eq1( .. output wire eq  .. )"
                  },
                  {
@@ -1191,7 +1191,7 @@
                      "Column":  23,
                      "Text":  "i1",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module eq1( .. input wire i1 .. )"
                  },
                  {
@@ -1221,7 +1221,7 @@
                      "Column":  21,
                      "Text":  "i1",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module eq1( .. input wire i1 .. )"
                  },
                  {
@@ -2895,19 +2895,19 @@
                     {
                         "Scope":  "eq1",
                         "Name":  "h1",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module eq1( .. input wire h1 .. )"
                     },
                     {
                         "Scope":  "eq1",
                         "Name":  "i1",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module eq1( .. input wire i1 .. )"
                     },
                     {
                         "Scope":  "eq1",
                         "Name":  "eq",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module eq1( .. output wire eq  .. )"
                     },
                     {

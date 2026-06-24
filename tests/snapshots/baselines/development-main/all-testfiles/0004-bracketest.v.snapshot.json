@@ -2,7 +2,6 @@
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
     "ExtensionVersion":  "0.3.6.3",
-    "GitCommit":  "efc9996",
     "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\bracketest.v",
     "FileRelativePath":  "TestFiles\\bracketest.v",
     "ContentType":  "verilog",
@@ -114,6 +113,16 @@
                                           ]
                             },
                             {
+                                "Start":  51,
+                                "Length":  3,
+                                "Line":  3,
+                                "Column":  20,
+                                "Text":  "led",
+                                "Types":  [
+                                              "Variable_output"
+                                          ]
+                            },
+                            {
                                 "Start":  57,
                                 "Length":  5,
                                 "Line":  4,
@@ -174,6 +183,16 @@
                                           ]
                             },
                             {
+                                "Start":  75,
+                                "Length":  3,
+                                "Line":  4,
+                                "Column":  20,
+                                "Text":  "btn",
+                                "Types":  [
+                                              "Variable_input"
+                                          ]
+                            },
+                            {
                                 "Start":  81,
                                 "Length":  5,
                                 "Line":  5,
@@ -231,6 +250,16 @@
                                 "Text":  "]",
                                 "Types":  [
                                               "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  99,
+                                "Length":  2,
+                                "Line":  5,
+                                "Column":  20,
+                                "Text":  "sw",
+                                "Types":  [
+                                              "Variable_input"
                                           ]
                             }
                         ],
@@ -356,6 +385,16 @@
                      "HoverText":  null
                  },
                  {
+                     "Start":  51,
+                     "Length":  3,
+                     "Line":  3,
+                     "Column":  20,
+                     "Text":  "led",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_output",
+                     "HoverText":  null
+                 },
+                 {
                      "Start":  57,
                      "Length":  5,
                      "Line":  4,
@@ -416,6 +455,16 @@
                      "HoverText":  null
                  },
                  {
+                     "Start":  75,
+                     "Length":  3,
+                     "Line":  4,
+                     "Column":  20,
+                     "Text":  "btn",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_input",
+                     "HoverText":  null
+                 },
+                 {
                      "Start":  81,
                      "Length":  5,
                      "Line":  5,
@@ -473,6 +522,16 @@
                      "Text":  "]",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  99,
+                     "Length":  2,
+                     "Line":  5,
+                     "Column":  20,
+                     "Text":  "sw",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  null
                  }
              ],

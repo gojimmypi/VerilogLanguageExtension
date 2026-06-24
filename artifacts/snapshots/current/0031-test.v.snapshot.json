@@ -2,7 +2,6 @@
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
     "ExtensionVersion":  "0.3.6.3",
-    "GitCommit":  "efc9996",
     "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\test.v",
     "FileRelativePath":  "TestFiles\\test.v",
     "ContentType":  "verilog",
@@ -441,6 +440,16 @@
                                 "Text":  "wire",
                                 "Types":  [
                                               "wire"
+                                          ]
+                            },
+                            {
+                                "Start":  673,
+                                "Length":  5,
+                                "Line":  17,
+                                "Column":  7,
+                                "Text":  "i_clk",
+                                "Types":  [
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -4514,6 +4523,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_wire",
                      "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
+                 },
+                 {
+                     "Start":  673,
+                     "Length":  5,
+                     "Line":  17,
+                     "Column":  7,
+                     "Text":  "i_clk",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  null
                  },
                  {
                      "Start":  681,

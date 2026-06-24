@@ -2,7 +2,6 @@
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
     "ExtensionVersion":  "0.3.6.3",
-    "GitCommit":  "efc9996",
     "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\din _test3.v",
     "FileRelativePath":  "TestFiles\\din _test3.v",
     "ContentType":  "verilog",
@@ -694,6 +693,16 @@
                                           ]
                             },
                             {
+                                "Start":  355,
+                                "Length":  7,
+                                "Line":  14,
+                                "Column":  13,
+                                "Text":  "integer",
+                                "Types":  [
+                                              "Variable_localparam"
+                                          ]
+                            },
+                            {
                                 "Start":  363,
                                 "Length":  9,
                                 "Line":  14,
@@ -724,6 +733,16 @@
                                           ]
                             },
                             {
+                                "Start":  390,
+                                "Length":  7,
+                                "Line":  15,
+                                "Column":  13,
+                                "Text":  "integer",
+                                "Types":  [
+                                              "Variable_localparam"
+                                          ]
+                            },
+                            {
                                 "Start":  398,
                                 "Length":  10,
                                 "Line":  15,
@@ -751,6 +770,16 @@
                                 "Text":  "parameter",
                                 "Types":  [
                                               "parameter"
+                                          ]
+                            },
+                            {
+                                "Start":  425,
+                                "Length":  7,
+                                "Line":  16,
+                                "Column":  12,
+                                "Text":  "integer",
+                                "Types":  [
+                                              "Variable_parameter"
                                           ]
                             },
                             {
@@ -1976,6 +2005,16 @@
                      "HoverText":  "Local parameters are identical to parameters, but cannot be directly modified with a defparam statement. A localparam can be assigned the value of parameter constants, and can be indirectly refined from outside the module. A localparam cannot be used within the module port parameter list."
                  },
                  {
+                     "Start":  355,
+                     "Length":  7,
+                     "Line":  14,
+                     "Column":  13,
+                     "Text":  "integer",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_localparam",
+                     "HoverText":  null
+                 },
+                 {
                      "Start":  363,
                      "Length":  9,
                      "Line":  14,
@@ -2006,6 +2045,16 @@
                      "HoverText":  "Local parameters are identical to parameters, but cannot be directly modified with a defparam statement. A localparam can be assigned the value of parameter constants, and can be indirectly refined from outside the module. A localparam cannot be used within the module port parameter list."
                  },
                  {
+                     "Start":  390,
+                     "Length":  7,
+                     "Line":  15,
+                     "Column":  13,
+                     "Text":  "integer",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_localparam",
+                     "HoverText":  null
+                 },
+                 {
                      "Start":  398,
                      "Length":  10,
                      "Line":  15,
@@ -2034,6 +2083,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_parameter",
                      "HoverText":  "Parameters are constants that can be modified with the defparam statement or through parameter passing in the module instance statement. Parameters are local to the module in which they have been declared."
+                 },
+                 {
+                     "Start":  425,
+                     "Length":  7,
+                     "Line":  16,
+                     "Column":  12,
+                     "Text":  "integer",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_parameter",
+                     "HoverText":  null
                  },
                  {
                      "Start":  433,

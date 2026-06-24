@@ -2,13 +2,12 @@
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
     "ExtensionVersion":  "0.3.6.3",
-    "GitCommit":  "efc9996",
     "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\declaration_text.v",
     "FileRelativePath":  "TestFiles\\declaration_text.v",
     "ContentType":  "verilog",
-    "SnapshotLength":  396,
+    "SnapshotLength":  404,
     "SnapshotVersion":  2,
-    "TextSha256":  "5facc8449787184af1683c0127449cce1698c54bf80b5539c289e88e5985e254",
+    "TextSha256":  "8662079c8c897fbc0302759db33c274e4c8d45ba96e218fdc8c3d3d9fb2e917f",
     "Errors":  [
 
                ],
@@ -124,6 +123,16 @@
                                           ]
                             },
                             {
+                                "Start":  158,
+                                "Length":  1,
+                                "Line":  5,
+                                "Column":  20,
+                                "Text":  "r",
+                                "Types":  [
+                                              "Variable_output"
+                                          ]
+                            },
+                            {
                                 "Start":  162,
                                 "Length":  5,
                                 "Line":  6,
@@ -184,6 +193,16 @@
                                           ]
                             },
                             {
+                                "Start":  180,
+                                "Length":  1,
+                                "Line":  6,
+                                "Column":  20,
+                                "Text":  "x",
+                                "Types":  [
+                                              "Variable_input"
+                                          ]
+                            },
+                            {
                                 "Start":  184,
                                 "Length":  5,
                                 "Line":  7,
@@ -241,6 +260,16 @@
                                 "Text":  "]",
                                 "Types":  [
                                               "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  202,
+                                "Length":  1,
+                                "Line":  7,
+                                "Column":  20,
+                                "Text":  "y",
+                                "Types":  [
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -624,9 +653,19 @@
                                           ]
                             },
                             {
-                                "Start":  386,
-                                "Length":  9,
+                                "Start":  391,
+                                "Length":  1,
                                 "Line":  18,
+                                "Column":  5,
+                                "Text":  "2",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  394,
+                                "Length":  9,
+                                "Line":  19,
                                 "Column":  1,
                                 "Text":  "endmodule",
                                 "Types":  [
@@ -1156,6 +1195,16 @@
                      "HoverText":  null
                  },
                  {
+                     "Start":  158,
+                     "Length":  1,
+                     "Line":  5,
+                     "Column":  20,
+                     "Text":  "r",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_output",
+                     "HoverText":  null
+                 },
+                 {
                      "Start":  162,
                      "Length":  5,
                      "Line":  6,
@@ -1216,6 +1265,16 @@
                      "HoverText":  null
                  },
                  {
+                     "Start":  180,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  20,
+                     "Text":  "x",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_input",
+                     "HoverText":  null
+                 },
+                 {
                      "Start":  184,
                      "Length":  5,
                      "Line":  7,
@@ -1273,6 +1332,16 @@
                      "Text":  "]",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  202,
+                     "Length":  1,
+                     "Line":  7,
+                     "Column":  20,
+                     "Text":  "y",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  null
                  },
                  {
@@ -1876,9 +1945,19 @@
                      "HoverText":  "duplicate? wire [7:0] twocomp"
                  },
                  {
-                     "Start":  386,
-                     "Length":  9,
+                     "Start":  391,
+                     "Length":  1,
                      "Line":  18,
+                     "Column":  5,
+                     "Text":  "2",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  394,
+                     "Length":  9,
+                     "Line":  19,
                      "Column":  1,
                      "Text":  "endmodule",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -3272,9 +3351,57 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  386,
-                       "Length":  9,
+                       "Start":  387,
+                       "Length":  1,
                        "Line":  18,
+                       "Column":  1,
+                       "Text":  "r",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  388,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  2,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  389,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  3,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  390,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  4,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  391,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  5,
+                       "Text":  "2",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  392,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  6,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  394,
+                       "Length":  9,
+                       "Line":  19,
                        "Column":  1,
                        "Text":  "endmodule",
                        "Context":  "Undetermined"

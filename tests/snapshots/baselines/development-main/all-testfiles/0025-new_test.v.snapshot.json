@@ -2,7 +2,6 @@
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
     "ExtensionVersion":  "0.3.6.3",
-    "GitCommit":  "efc9996",
     "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\new_test.v",
     "FileRelativePath":  "TestFiles\\new_test.v",
     "ContentType":  "verilog",
@@ -72,6 +71,26 @@
                                 "Types":  [
                                               "Bracket1"
                                           ]
+                            },
+                            {
+                                "Start":  17,
+                                "Length":  2,
+                                "Line":  1,
+                                "Column":  18,
+                                "Text":  "k1",
+                                "Types":  [
+                                              "Variable_input"
+                                          ]
+                            },
+                            {
+                                "Start":  23,
+                                "Length":  2,
+                                "Line":  1,
+                                "Column":  24,
+                                "Text":  "h1",
+                                "Types":  [
+                                              "Variable_input"
+                                          ]
                             }
                         ],
     "Tags":  [
@@ -133,6 +152,26 @@
                      "Text":  "]",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  17,
+                     "Length":  2,
+                     "Line":  1,
+                     "Column":  18,
+                     "Text":  "k1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_input",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  23,
+                     "Length":  2,
+                     "Line":  1,
+                     "Column":  24,
+                     "Text":  "h1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  null
                  }
              ],

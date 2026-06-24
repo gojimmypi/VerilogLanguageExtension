@@ -2,7 +2,6 @@
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
     "ExtensionVersion":  "0.3.6.3",
-    "GitCommit":  "efc9996",
     "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\file2.v",
     "FileRelativePath":  "TestFiles\\file2.v",
     "ContentType":  "verilog",
@@ -61,6 +60,16 @@
                                 "Text":  "]",
                                 "Types":  [
                                               "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  11,
+                                "Length":  4,
+                                "Line":  1,
+                                "Column":  12,
+                                "Text":  "var2",
+                                "Types":  [
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -233,6 +242,16 @@
                      "Text":  "]",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  11,
+                     "Length":  4,
+                     "Line":  1,
+                     "Column":  12,
+                     "Text":  "var2",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  null
                  },
                  {

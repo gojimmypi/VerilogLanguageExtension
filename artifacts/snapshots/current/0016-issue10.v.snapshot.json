@@ -2,12 +2,11 @@
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
     "ExtensionVersion":  "0.3.6.3",
-    "GitCommit":  "efc9996",
     "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\issue10.v",
     "FileRelativePath":  "TestFiles\\issue10.v",
     "ContentType":  "verilog",
     "SnapshotLength":  896,
-    "SnapshotVersion":  2,
+    "SnapshotVersion":  4,
     "TextSha256":  "8620ae15030716a8f03c82720b53995804769049393d7019918ec4431bee4402",
     "Errors":  [
 
@@ -31,6 +30,16 @@
                                 "Text":  "wire",
                                 "Types":  [
                                               "wire"
+                                          ]
+                            },
+                            {
+                                "Start":  11,
+                                "Length":  2,
+                                "Line":  1,
+                                "Column":  12,
+                                "Text":  "d1",
+                                "Types":  [
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -1364,6 +1373,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_wire",
                      "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
+                 },
+                 {
+                     "Start":  11,
+                     "Length":  2,
+                     "Line":  1,
+                     "Column":  12,
+                     "Text":  "d1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_input",
+                     "HoverText":  null
                  },
                  {
                      "Start":  16,

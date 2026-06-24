@@ -4,58 +4,6 @@
     "FreshInstancePerFile":  true,
     "Files":  [
                   {
-                      "Path":  "TestFiles/src/JTAG/jtag_core.v",
-                      "SnapshotFileName":  "0041-jtag_core.v.snapshot.json"
-                  },
-                  {
-                      "Path":  "TestFiles/src/PINS/pin_id_core.v",
-                      "SnapshotFileName":  "0042-pin_id_core.v.snapshot.json"
-                  },
-                  {
-                      "Path":  "TestFiles/src/project.v",
-                      "SnapshotFileName":  "0043-project.v.snapshot.json"
-                  },
-                  {
-                      "Path":  "TestFiles/src/project_config.v",
-                      "SnapshotFileName":  "0044-project_config.v.snapshot.json"
-                  },
-                  {
-                      "Path":  "TestFiles/src/SPI/spi_slave.v",
-                      "SnapshotFileName":  "0045-spi_slave.v.snapshot.json"
-                  },
-                  {
-                      "Path":  "TestFiles/src/target_pdk.v",
-                      "SnapshotFileName":  "0046-target_pdk.v.snapshot.json"
-                  },
-                  {
-                      "Path":  "TestFiles/src/TRNG/trng_cfg_ascii_core.v",
-                      "SnapshotFileName":  "0047-trng_cfg_ascii_core.v.snapshot.json"
-                  },
-                  {
-                      "Path":  "TestFiles/src/TRNG/trng_lab_core.v",
-                      "SnapshotFileName":  "0048-trng_lab_core.v.snapshot.json"
-                  },
-                  {
-                      "Path":  "TestFiles/src/TRNG/trng_stub.v",
-                      "SnapshotFileName":  "0049-trng_stub.v.snapshot.json"
-                  },
-                  {
-                      "Path":  "TestFiles/src/tt_um_main.v",
-                      "SnapshotFileName":  "0050-tt_um_main.v.snapshot.json"
-                  },
-                  {
-                      "Path":  "TestFiles/src/UART/uart_rx_min.v",
-                      "SnapshotFileName":  "0051-uart_rx_min.v.snapshot.json"
-                  },
-                  {
-                      "Path":  "TestFiles/src/UART/uart_trng_ascii_core.v",
-                      "SnapshotFileName":  "0052-uart_trng_ascii_core.v.snapshot.json"
-                  },
-                  {
-                      "Path":  "TestFiles/src/UART/uart_tx_min.v",
-                      "SnapshotFileName":  "0053-uart_tx_min.v.snapshot.json"
-                  },
-                  {
                       "Path":  "TestFiles/anothertest - Copy.v",
                       "SnapshotFileName":  "0001-anothertest - Copy.v.snapshot.json"
                   },
@@ -214,6 +162,58 @@
                   {
                       "Path":  "TestFiles/wow3.svh",
                       "SnapshotFileName":  "0040-wow3.svh.snapshot.json"
+                  },
+                  {
+                      "Path":  "TestFiles/src/JTAG/jtag_core.v",
+                      "SnapshotFileName":  "0041-jtag_core.v.snapshot.json"
+                  },
+                  {
+                      "Path":  "TestFiles/src/PINS/pin_id_core.v",
+                      "SnapshotFileName":  "0042-pin_id_core.v.snapshot.json"
+                  },
+                  {
+                      "Path":  "TestFiles/src/project.v",
+                      "SnapshotFileName":  "0043-project.v.snapshot.json"
+                  },
+                  {
+                      "Path":  "TestFiles/src/project_config.v",
+                      "SnapshotFileName":  "0044-project_config.v.snapshot.json"
+                  },
+                  {
+                      "Path":  "TestFiles/src/SPI/spi_slave.v",
+                      "SnapshotFileName":  "0045-spi_slave.v.snapshot.json"
+                  },
+                  {
+                      "Path":  "TestFiles/src/target_pdk.v",
+                      "SnapshotFileName":  "0046-target_pdk.v.snapshot.json"
+                  },
+                  {
+                      "Path":  "TestFiles/src/TRNG/trng_cfg_ascii_core.v",
+                      "SnapshotFileName":  "0047-trng_cfg_ascii_core.v.snapshot.json"
+                  },
+                  {
+                      "Path":  "TestFiles/src/TRNG/trng_lab_core.v",
+                      "SnapshotFileName":  "0048-trng_lab_core.v.snapshot.json"
+                  },
+                  {
+                      "Path":  "TestFiles/src/TRNG/trng_stub.v",
+                      "SnapshotFileName":  "0049-trng_stub.v.snapshot.json"
+                  },
+                  {
+                      "Path":  "TestFiles/src/tt_um_main.v",
+                      "SnapshotFileName":  "0050-tt_um_main.v.snapshot.json"
+                  },
+                  {
+                      "Path":  "TestFiles/src/UART/uart_rx_min.v",
+                      "SnapshotFileName":  "0051-uart_rx_min.v.snapshot.json"
+                  },
+                  {
+                      "Path":  "TestFiles/src/UART/uart_trng_ascii_core.v",
+                      "SnapshotFileName":  "0052-uart_trng_ascii_core.v.snapshot.json"
+                  },
+                  {
+                      "Path":  "TestFiles/src/UART/uart_tx_min.v",
+                      "SnapshotFileName":  "0053-uart_tx_min.v.snapshot.json"
                   }
               ]
 }

@@ -6,7 +6,8 @@ param(
     [string]$ManifestPath = "tools\vle-ci\manifests\all-testfiles.json",
     [string]$BaselineDir = "tests\snapshots\baselines\development-main\all-testfiles",
     [int]$DelayMs = 3000,
-    [switch]$NoStableSnapshotNames
+    [switch]$NoStableSnapshotNames,
+    [switch]$AcceptCurrentManifest
 )
 
 Set-StrictMode -Version Latest
@@ -108,6 +109,32 @@ function Get-PropertyValue {
     return ""
 }
 
+function Get-PropertyBooleanValue {
+    param(
+        [object]$Object,
+        [string[]]$Names
+    )
+
+    if ($null -eq $Object) {
+        return $false
+    }
+
+    foreach ($name in $Names) {
+        $property = $Object.PSObject.Properties[$name]
+        if ($null -eq $property -or $null -eq $property.Value) {
+            continue
+        }
+
+        if ($property.Value -is [bool]) {
+            return [bool]$property.Value
+        }
+
+        return [System.Convert]::ToBoolean([string]$property.Value)
+    }
+
+    return $false
+}
+
 function Get-ManifestEntryPath {
     param([object]$Entry)
 
@@ -126,6 +153,16 @@ function Get-ManifestEntrySnapshotFileName {
     }
 
     return Get-PropertyValue -Object $Entry -Names @("SnapshotFileName", "SnapshotName", "OutputName")
+}
+
+function Get-ManifestEntryIsNew {
+    param([object]$Entry)
+
+    if ($Entry -is [string]) {
+        return $false
+    }
+
+    return Get-PropertyBooleanValue -Object $Entry -Names @("IsNew", "NewFile")
 }
 
 function Add-SnapshotNameMapping {
@@ -154,6 +191,53 @@ function Add-SnapshotNameMapping {
     }
 }
 
+function Add-ExistingManifestState {
+    param(
+        [string]$ExistingManifestPath,
+        [hashtable]$SnapshotNameByPath,
+        [hashtable]$UsedSnapshotNames,
+        [hashtable]$ManifestNewByPath,
+        [hashtable]$ManifestOrderByPath,
+        [ref]$MaxSnapshotIndex
+    )
+
+    if (!(Test-Path -LiteralPath $ExistingManifestPath)) {
+        return
+    }
+
+    try {
+        $manifest = Read-JsonFile -Path $ExistingManifestPath
+        $order = 0
+        foreach ($entry in @($manifest.Files)) {
+            $order++
+            $relativePath = Get-ManifestEntryPath -Entry $entry
+            if ([string]::IsNullOrWhiteSpace($relativePath)) {
+                continue
+            }
+
+            $key = ConvertTo-NormalizedKey -Path $relativePath
+            if (!$ManifestOrderByPath.ContainsKey($key)) {
+                $ManifestOrderByPath[$key] = $order
+            }
+
+            if (Get-ManifestEntryIsNew -Entry $entry) {
+                $ManifestNewByPath[$key] = $true
+            }
+
+            $snapshotFileName = Get-ManifestEntrySnapshotFileName -Entry $entry
+            Add-SnapshotNameMapping `
+                -SnapshotNameByPath $SnapshotNameByPath `
+                -UsedSnapshotNames $UsedSnapshotNames `
+                -MaxSnapshotIndex $MaxSnapshotIndex `
+                -RelativePath $relativePath `
+                -SnapshotFileName $snapshotFileName
+        }
+    }
+    catch {
+        Write-Warning "Could not read existing manifest ${ExistingManifestPath}: $_"
+    }
+}
+
 function Add-BaselineSnapshotNameMappings {
     param(
         [string]$BaselineRoot,
@@ -176,13 +260,15 @@ function Add-BaselineSnapshotNameMappings {
                 $BaselineKnownKeys[$baselineKey] = $true
             }
 
+            # The manifest is the stable-name map once it exists. Baseline JSON
+            # only fills gaps, so an interrupted baseline refresh cannot rename
+            # entries already recorded in the manifest.
             Add-SnapshotNameMapping `
                 -SnapshotNameByPath $SnapshotNameByPath `
                 -UsedSnapshotNames $UsedSnapshotNames `
                 -MaxSnapshotIndex $MaxSnapshotIndex `
                 -RelativePath $relativePath `
-                -SnapshotFileName $snapshotPath.Name `
-                -Overwrite
+                -SnapshotFileName $snapshotPath.Name
         }
         catch {
             Write-Warning "Could not read baseline snapshot $($snapshotPath.FullName): $_"
@@ -190,40 +276,8 @@ function Add-BaselineSnapshotNameMappings {
     }
 }
 
-function Add-ExistingManifestSnapshotNameMappings {
-    param(
-        [string]$ExistingManifestPath,
-        [hashtable]$SnapshotNameByPath,
-        [hashtable]$UsedSnapshotNames,
-        [ref]$MaxSnapshotIndex
-    )
-
-    if (!(Test-Path -LiteralPath $ExistingManifestPath)) {
-        return
-    }
-
-    try {
-        $manifest = Read-JsonFile -Path $ExistingManifestPath
-        foreach ($entry in @($manifest.Files)) {
-            $relativePath = Get-ManifestEntryPath -Entry $entry
-            $snapshotFileName = Get-ManifestEntrySnapshotFileName -Entry $entry
-            Add-SnapshotNameMapping `
-                -SnapshotNameByPath $SnapshotNameByPath `
-                -UsedSnapshotNames $UsedSnapshotNames `
-                -MaxSnapshotIndex $MaxSnapshotIndex `
-                -RelativePath $relativePath `
-                -SnapshotFileName $snapshotFileName
-        }
-    }
-    catch {
-        Write-Warning "Could not read existing manifest ${ExistingManifestPath}: $_"
-    }
-}
-
 function Test-IsExcludedPath {
-    param(
-        [string]$RelativePath
-    )
+    param([string]$RelativePath)
 
     $normalized = ConvertTo-NormalizedKey -Path $RelativePath
     $parts = $normalized.Split([char[]]@("/"), [System.StringSplitOptions]::RemoveEmptyEntries)
@@ -260,11 +314,10 @@ function Get-VerilogTestFiles {
             continue
         }
 
-        $key = ConvertTo-NormalizedKey -Path $relativePath
         $result += [pscustomobject]@{
             RelativePath = $relativePath
             FullName = $file.FullName
-            Key = $key
+            Key = ConvertTo-NormalizedKey -Path $relativePath
         }
     }
 
@@ -297,6 +350,32 @@ function Write-Utf8JsonFile {
     [System.IO.File]::WriteAllText($Path, ($text + [Environment]::NewLine), $utf8NoBom)
 }
 
+function ConvertTo-ManifestEntriesWithAcceptedState {
+    param([object]$Manifest)
+
+    $entries = @()
+    foreach ($entry in @($Manifest.Files)) {
+        $path = Get-ManifestEntryPath -Entry $entry
+        if ([string]::IsNullOrWhiteSpace($path)) {
+            continue
+        }
+
+        $snapshotFileName = Get-ManifestEntrySnapshotFileName -Entry $entry
+        if ([string]::IsNullOrWhiteSpace($snapshotFileName)) {
+            $entries += $path
+        }
+        else {
+            $entries += [ordered]@{
+                Path = $path
+                SnapshotFileName = $snapshotFileName
+                IsNew = $false
+            }
+        }
+    }
+
+    return @($entries)
+}
+
 $repoRoot = Get-RepoRoot
 [System.IO.Directory]::SetCurrentDirectory($repoRoot)
 Set-Location -LiteralPath $repoRoot
@@ -304,20 +383,38 @@ Set-Location -LiteralPath $repoRoot
 $resolvedManifestPath = Join-RepoPath -RepoRoot $repoRoot -RelativePath $ManifestPath
 $resolvedBaselineDir = Join-RepoPath -RepoRoot $repoRoot -RelativePath $BaselineDir
 
+if ($AcceptCurrentManifest.IsPresent) {
+    if (!(Test-Path -LiteralPath $resolvedManifestPath)) {
+        throw "Manifest not found: $resolvedManifestPath"
+    }
+
+    $manifestToAccept = Read-JsonFile -Path $resolvedManifestPath
+    $manifestToAccept.Files = ConvertTo-ManifestEntriesWithAcceptedState -Manifest $manifestToAccept
+    Write-Utf8JsonFile -Path $resolvedManifestPath -Value $manifestToAccept
+    Write-Host "Accepted current manifest file order: $resolvedManifestPath"
+    return
+}
+
 $snapshotNameByPath = @{}
 $usedSnapshotNames = @{}
 $baselineKnownKeys = @{}
+$manifestNewByPath = @{}
+$manifestOrderByPath = @{}
 $maxSnapshotIndex = 0
 
 if (!$NoStableSnapshotNames.IsPresent) {
-    Add-ExistingManifestSnapshotNameMappings `
+    # The manifest is the stable file-name map. It can preserve a new-file
+    # priority marker across failed or interrupted baseline refresh attempts.
+    Add-ExistingManifestState `
         -ExistingManifestPath $resolvedManifestPath `
         -SnapshotNameByPath $snapshotNameByPath `
         -UsedSnapshotNames $usedSnapshotNames `
+        -ManifestNewByPath $manifestNewByPath `
+        -ManifestOrderByPath $manifestOrderByPath `
         -MaxSnapshotIndex ([ref]$maxSnapshotIndex)
 
-    # The approved baseline is authoritative for existing files. This keeps old
-    # snapshot file names fixed even when new files are run before them.
+    # Baseline snapshots seed the map when there is no manifest entry yet.
+    # No git state is needed or consulted.
     Add-BaselineSnapshotNameMappings `
         -BaselineRoot $resolvedBaselineDir `
         -SnapshotNameByPath $snapshotNameByPath `
@@ -327,10 +424,19 @@ if (!$NoStableSnapshotNames.IsPresent) {
 }
 
 $allFiles = @(Get-VerilogTestFiles -RepoRoot $repoRoot -TestFilesRoot $TestFilesRoot)
-$newFiles = @($allFiles | Where-Object { !$baselineKnownKeys.ContainsKey($_.Key) } | Sort-Object RelativePath)
-$knownFiles = @($allFiles | Where-Object { $baselineKnownKeys.ContainsKey($_.Key) } | Sort-Object `
-    @{ Expression = { Get-SnapshotIndexFromName -SnapshotFileName $snapshotNameByPath[$_.Key] } },
-    @{ Expression = { $_.RelativePath } })
+
+$newFiles = @($allFiles | Where-Object {
+        $manifestNewByPath.ContainsKey($_.Key) -or !$baselineKnownKeys.ContainsKey($_.Key)
+    } | Sort-Object `
+        @{ Expression = { if ($manifestOrderByPath.ContainsKey($_.Key)) { [int]$manifestOrderByPath[$_.Key] } else { [int]::MaxValue } } },
+        @{ Expression = { $_.RelativePath } })
+
+$knownFiles = @($allFiles | Where-Object {
+        !$manifestNewByPath.ContainsKey($_.Key) -and $baselineKnownKeys.ContainsKey($_.Key)
+    } | Sort-Object `
+        @{ Expression = { if ($snapshotNameByPath.ContainsKey($_.Key)) { Get-SnapshotIndexFromName -SnapshotFileName $snapshotNameByPath[$_.Key] } else { [int]::MaxValue } } },
+        @{ Expression = { if ($manifestOrderByPath.ContainsKey($_.Key)) { [int]$manifestOrderByPath[$_.Key] } else { [int]::MaxValue } } },
+        @{ Expression = { $_.RelativePath } })
 
 $nextSnapshotIndex = $maxSnapshotIndex + 1
 foreach ($file in $newFiles) {
@@ -358,6 +464,7 @@ foreach ($file in $orderedFiles) {
         $fileEntries += [ordered]@{
             Path = $file.RelativePath
             SnapshotFileName = $snapshotNameByPath[$file.Key]
+            IsNew = [bool]($manifestNewByPath.ContainsKey($file.Key) -or !$baselineKnownKeys.ContainsKey($file.Key))
         }
     }
 }
@@ -375,4 +482,5 @@ Write-Host "Generated manifest: $resolvedManifestPath"
 Write-Host "  Files:          $($orderedFiles.Count)"
 Write-Host "  New files:      $($newFiles.Count)"
 Write-Host "  Existing files: $($knownFiles.Count)"
+Write-Host "  Baseline keys:  $($baselineKnownKeys.Count)"
 Write-Host "  Stable names:   $(!$NoStableSnapshotNames.IsPresent)"

@@ -286,6 +286,84 @@ function Get-LatestSnapshotFile {
     return $files[0]
 }
 
+function Wait-SnapshotFileReady {
+    param(
+        [string]$Path,
+        [int]$TimeoutSeconds = 30
+    )
+
+    $deadline = (Get-Date).AddSeconds($TimeoutSeconds)
+    $lastLength = -1L
+    $lastWriteUtc = [datetime]::MinValue
+    $stableCount = 0
+    $lastError = $null
+
+    do {
+        try {
+            if (!(Test-Path -LiteralPath $Path)) {
+                throw "File not found: $Path"
+            }
+
+            $item = Get-Item -LiteralPath $Path -ErrorAction Stop
+            $stream = [System.IO.File]::Open($item.FullName, [System.IO.FileMode]::Open, [System.IO.FileAccess]::Read, [System.IO.FileShare]::None)
+            $stream.Dispose()
+
+            if (($item.Length -eq $lastLength) -and ($item.LastWriteTimeUtc -eq $lastWriteUtc)) {
+                $stableCount++
+            }
+            else {
+                $stableCount = 1
+                $lastLength = $item.Length
+                $lastWriteUtc = $item.LastWriteTimeUtc
+            }
+
+            if ($stableCount -ge 2) {
+                return
+            }
+        }
+        catch {
+            $lastError = $_
+            $stableCount = 0
+        }
+
+        Start-Sleep -Milliseconds 250
+    } while ((Get-Date) -lt $deadline)
+
+    if ($null -ne $lastError) {
+        throw "Snapshot file stayed locked or unstable for $TimeoutSeconds seconds: $Path. Last error: $lastError"
+    }
+
+    throw "Snapshot file stayed unstable for $TimeoutSeconds seconds: $Path"
+}
+
+function Invoke-FileOperationWithRetry {
+    param(
+        [scriptblock]$Operation,
+        [string]$Description,
+        [int]$MaxAttempts = 40,
+        [int]$DelayMilliseconds = 250
+    )
+
+    $lastError = $null
+
+    for ($attempt = 1; $attempt -le $MaxAttempts; $attempt++) {
+        try {
+            & $Operation
+            return
+        }
+        catch {
+            $lastError = $_
+            if ($attempt -ge $MaxAttempts) {
+                break
+            }
+
+            Start-Sleep -Milliseconds $DelayMilliseconds
+        }
+    }
+
+    throw "$Description failed after $MaxAttempts attempts. Last error: $lastError"
+}
+
 function Copy-SnapshotToFinalName {
     param(
         [System.IO.FileInfo]$SnapshotFile,
@@ -309,19 +387,27 @@ function Copy-SnapshotToFinalName {
     $targetPath = Get-NormalizedFullPath -Path (Join-Path $FinalOutputDir $targetName)
     $sourcePath = Get-NormalizedFullPath -Path $SnapshotFile.FullName
 
+    if (!(Test-Path -LiteralPath $sourcePath)) {
+        throw "Snapshot disappeared before it could be copied: $sourcePath"
+    }
+
+    Wait-SnapshotFileReady -Path $sourcePath -TimeoutSeconds 30
+
     if ($sourcePath -ieq $targetPath) {
         return $targetPath
     }
 
-    if (Test-Path $targetPath) {
-        Remove-Item -Force $targetPath
+    if (Test-Path -LiteralPath $targetPath) {
+        Invoke-FileOperationWithRetry `
+            -Description "Remove old snapshot $targetPath" `
+            -Operation { Remove-Item -LiteralPath $targetPath -Force -ErrorAction Stop }
     }
 
-    if (!(Test-Path $sourcePath)) {
-        throw "Snapshot disappeared before it could be renamed: $sourcePath"
-    }
+    Invoke-FileOperationWithRetry `
+        -Description "Copy snapshot $sourcePath to $targetPath" `
+        -Operation { Copy-Item -LiteralPath $sourcePath -Destination $targetPath -Force -ErrorAction Stop }
 
-    Move-Item -Force -Path $sourcePath -Destination $targetPath
+    Wait-SnapshotFileReady -Path $targetPath -TimeoutSeconds 30
     return $targetPath
 }
 
@@ -494,11 +580,6 @@ $manifestFreshInstancePerFile = Get-ManifestBoolean -ManifestObject $manifestJso
 $useFreshInstancePerFile = $FreshInstancePerFile.IsPresent -or $manifestFreshInstancePerFile
 
 $finalOutputDir = Get-NormalizedFullPath -Path (Resolve-RepoPath -RepoRoot $repoRoot -Path $OutputDir)
-if (Test-Path $finalOutputDir) {
-    Remove-Item -Recurse -Force $finalOutputDir
-}
-New-Item -ItemType Directory -Force -Path $finalOutputDir | Out-Null
-
 $configFile = Join-Path ([System.IO.Path]::GetTempPath()) "VerilogLanguage.ExportSnapshots.config"
 $devenv = Get-DevenvPath -RequestedPath $VisualStudioPath
 
@@ -509,21 +590,29 @@ Write-Host "Fresh instance per file: $useFreshInstancePerFile"
 Write-Host "Leave Visual Studio open: $($LeaveVisualStudioOpen.IsPresent)"
 Write-Host "Skip initial Visual Studio cleanup: $($SkipInitialVisualStudioCleanup.IsPresent)"
 
-$runInfoPath = Join-Path $finalOutputDir "run-info.json"
-Write-SnapshotRunInfo `
-    -Path $runInfoPath `
-    -RunName ([string]$manifestJson.RunName) `
-    -Manifest $Manifest
-Write-Host "Run info: $runInfoPath"
-
 try {
     if (!$SkipInitialVisualStudioCleanup.IsPresent) {
-        # Start from a known state. This avoids the common case where an already-open
-        # Experimental Instance has the target file loaded, so no new text view is created.
+        # Start from a known state before clearing output. This avoids stale VS
+        # file handles from a failed previous run keeping _work_* files locked.
         Stop-ExperimentalDevenv -RequestedRootSuffix $RootSuffix
     }
 
+    if (Test-Path -LiteralPath $finalOutputDir) {
+        Invoke-FileOperationWithRetry `
+            -Description "Remove old snapshot output directory $finalOutputDir" `
+            -Operation { Remove-Item -LiteralPath $finalOutputDir -Recurse -Force -ErrorAction Stop }
+    }
+    New-Item -ItemType Directory -Force -Path $finalOutputDir | Out-Null
+
+    $runInfoPath = Join-Path $finalOutputDir "run-info.json"
+    Write-SnapshotRunInfo `
+        -Path $runInfoPath `
+        -RunName ([string]$manifestJson.RunName) `
+        -Manifest $Manifest
+    Write-Host "Run info: $runInfoPath"
+
     $index = 0
+    $fileCount = @($manifestJson.Files).Count
     foreach ($fileEntry in $manifestJson.Files) {
         $index++
         $file = Get-ManifestEntryPath -FileEntry $fileEntry
@@ -550,7 +639,12 @@ try {
             -DelayMs ([string]$manifestJson.DelayMs) `
             -RepoRoot $repoRoot
 
-        Write-Host "Opening $file"
+        if ([string]::IsNullOrWhiteSpace($snapshotFileName)) {
+            Write-Host "Opening [$index/$fileCount] $file"
+        }
+        else {
+            Write-Host "Opening [$index/$fileCount] $file -> $snapshotFileName"
+        }
         $startedAt = Get-Date
         $openArguments = "/RootSuffix " + (Quote-CommandLineArgument $RootSuffix) + " /NoSplash " + (Quote-CommandLineArgument $filePath)
         Start-Process -FilePath $devenv -ArgumentList $openArguments -WindowStyle Minimized | Out-Null
@@ -582,6 +676,10 @@ try {
             throw "No snapshot was written after opening $file. The file exists and VS was launched, but no export appeared within $deadlineSeconds seconds."
         }
 
+        if ($useFreshInstancePerFile) {
+            Stop-ExperimentalDevenv -RequestedRootSuffix $RootSuffix
+        }
+
         $finalSnapshotPath = Copy-SnapshotToFinalName `
             -SnapshotFile $snapshotFile `
             -FinalOutputDir $finalOutputDir `
@@ -593,9 +691,10 @@ try {
         Write-Host "Snapshot: $finalSnapshotPath"
 
         if ($useFreshInstancePerFile) {
-            Stop-ExperimentalDevenv -RequestedRootSuffix $RootSuffix
             if (Test-Path $activeOutputDir) {
-                Remove-Item -Recurse -Force $activeOutputDir
+                Invoke-FileOperationWithRetry `
+                    -Description "Remove work snapshot directory $activeOutputDir" `
+                    -Operation { Remove-Item -LiteralPath $activeOutputDir -Recurse -Force -ErrorAction Stop }
             }
         }
         elseif (!$LeaveVisualStudioOpen.IsPresent) {

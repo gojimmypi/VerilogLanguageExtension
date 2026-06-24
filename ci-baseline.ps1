@@ -71,3 +71,7 @@ function Format-GeneratedJsonFiles {
 # Run-LocalCI.ps1 and Compare-Snapshots.py should already write formatted JSON, but this keeps
 # ci-baseline.ps1 safe if either script is run from an older local copy.
 Format-GeneratedJsonFiles -Directory $baselineDir
+
+# The baseline refresh completed successfully. Clear the temporary "new file"
+# priority markers so the next run treats these files as normal baseline files.
+.\create-testfile-manifest.ps1 -BaselineDir $baselineDir -AcceptCurrentManifest

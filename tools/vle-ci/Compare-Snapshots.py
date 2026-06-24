@@ -306,16 +306,46 @@ def compare_snapshots(current_root: Path, baseline_root: Path, failures: Failure
 
 
 def update_baseline(current_root: Path, baseline_root: Path) -> None:
-    if baseline_root.exists():
-        shutil.rmtree(baseline_root)
-    baseline_root.mkdir(parents=True, exist_ok=True)
+    """Replace a baseline only after a complete staged copy exists.
 
-    for src in iter_snapshot_files(current_root):
-        rel = src.relative_to(current_root)
-        dst = baseline_root / rel
-        write_json(dst, snapshot_for_baseline(load_json(src)))
+    This avoids leaving a half-populated approved baseline if the refresh is
+    interrupted while JSON files are being written. The old baseline is kept
+    until the new one is fully staged.
+    """
+    parent = baseline_root.parent
+    parent.mkdir(parents=True, exist_ok=True)
 
-    copy_run_info(current_root, baseline_root)
+    staging_root = parent / f".{baseline_root.name}.tmp-update"
+    backup_root = parent / f".{baseline_root.name}.old-update"
+
+    if staging_root.exists():
+        shutil.rmtree(staging_root)
+    if backup_root.exists():
+        shutil.rmtree(backup_root)
+
+    staging_root.mkdir(parents=True, exist_ok=True)
+
+    try:
+        for src in iter_snapshot_files(current_root):
+            rel = src.relative_to(current_root)
+            dst = staging_root / rel
+            write_json(dst, snapshot_for_baseline(load_json(src)))
+
+        copy_run_info(current_root, staging_root)
+
+        if baseline_root.exists():
+            baseline_root.rename(backup_root)
+
+        staging_root.rename(baseline_root)
+
+        if backup_root.exists():
+            shutil.rmtree(backup_root)
+    except Exception:
+        if not baseline_root.exists() and backup_root.exists():
+            backup_root.rename(baseline_root)
+        if staging_root.exists():
+            shutil.rmtree(staging_root, ignore_errors=True)
+        raise
 
 
 def matching_snapshots_for_file(current: Dict[str, Tuple[Path, Snapshot, Dict[str, Any]]], expected_file: str) -> List[Tuple[Path, Snapshot, Dict[str, Any]]]:

@@ -888,6 +888,29 @@ namespace VerilogLanguage.VerilogToken
             return true;
         }
 
+        private static bool TryFindActiveFunctionName(ITextSnapshot snapshot, int lineNumber, out string functionName) {
+            functionName = string.Empty;
+
+            if (snapshot == null || lineNumber < 0) {
+                return false;
+            }
+
+            int lastLine = Math.Min(lineNumber, snapshot.LineCount - 1);
+            for (int i = lastLine; i >= 0; i--) {
+                string lineText = snapshot.GetLineFromLineNumber(i).GetText();
+
+                if (VerilogGlobals.IsEndFunctionLineText(lineText)) {
+                    return false;
+                }
+
+                if (VerilogGlobals.TryGetFunctionNameFromLineText(lineText, out functionName)) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         private static bool IsVerilogValueText(string text) {
             if (string.IsNullOrWhiteSpace(text)) {
                 return false;
@@ -1282,6 +1305,19 @@ namespace VerilogLanguage.VerilogToken
             if (!parseData.VerilogVariables.ContainsKey(thisScope) && thisScope == "global" && parseData.VerilogVariables.ContainsKey(string.Empty)) {
                 // Older parse data used an empty string for file-scope declarations.
                 thisScope = string.Empty;
+            }
+
+            string activeFunctionName;
+            if (lookupTextIsIdentifier &&
+                TryFindActiveFunctionName(containingLine.Snapshot, containingLine.LineNumber, out activeFunctionName)) {
+                string functionScope = VerilogGlobals.FunctionLocalScopeName(thisScope, activeFunctionName);
+                if (parseData.VerilogVariables.ContainsKey(functionScope) &&
+                    parseData.VerilogVariables[functionScope].ContainsKey(lookupText)) {
+                    yield return new TagSpan<VerilogTokenTag>(
+                        lookupSpan,
+                        new VerilogTokenTag(parseData.VerilogVariables[functionScope][lookupText]));
+                    yield break;
+                }
             }
 
             if (parseData.VerilogVariables.ContainsKey(thisScope)) {

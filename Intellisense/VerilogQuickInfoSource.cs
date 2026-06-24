@@ -299,6 +299,29 @@ namespace VerilogLanguage
             return false;
         }
 
+        private static bool TryFindActiveFunctionName(ITextSnapshot snapshot, int lineNumber, out string functionName) {
+            functionName = string.Empty;
+
+            if (snapshot == null || lineNumber < 0) {
+                return false;
+            }
+
+            int lastLine = Math.Min(lineNumber, snapshot.LineCount - 1);
+            for (int i = lastLine; i >= 0; i--) {
+                string lineText = snapshot.GetLineFromLineNumber(i).GetText();
+
+                if (VerilogGlobals.IsEndFunctionLineText(lineText)) {
+                    return false;
+                }
+
+                if (VerilogGlobals.TryGetFunctionNameFromLineText(lineText, out functionName)) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         internal static bool TryGetVariableHoverText(
             ITextSnapshot snapshot,
             SnapshotSpan tagSpan,
@@ -341,6 +364,18 @@ namespace VerilogLanguage
 
             if (hoverDb == null) {
                 return false;
+            }
+
+            string activeFunctionName;
+            Dictionary<string, string> functionScopeMap;
+            string functionVariableHover;
+            if (IsVerilogIdentifierText(thisHoverKey) &&
+                TryFindActiveFunctionName(spanSnapshot, thisLine, out activeFunctionName) &&
+                hoverDb.TryGetValue(VerilogGlobals.FunctionLocalScopeName(thisScopeName, activeFunctionName), out functionScopeMap) &&
+                functionScopeMap != null &&
+                functionScopeMap.TryGetValue(thisHoverKey, out functionVariableHover)) {
+                hoverText = functionVariableHover;
+                return true;
             }
 
             Dictionary<string, string> scopeMap;

@@ -15,6 +15,7 @@ namespace VerilogLanguage
     {
         public const string SCOPE_CONST = "__CONST__";
         public const string SCOPE_MACRO = "__MACRO__";
+        public const string SCOPE_FUNCTION_PREFIX = "__FUNCTION__";
         public const char RADIX_CHAR = '\'';
         public static ITextBuffer TheBuffer;
         public static ITextView TheView; // assigned in QuickInfoControllerProvider see https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.editor.itextview?redirectedfrom=MSDN&view=visualstudiosdk-2017
@@ -392,6 +393,8 @@ namespace VerilogLanguage
         private static string lastNonblankHoverItem = string.Empty;
         private static string thisVariableDeclarationText = string.Empty;
         private static string thisModuleName = string.Empty;
+        private static string thisFunctionName = string.Empty;
+        private static string thisFunctionScope = string.Empty;
         private static string thisModuleDeclarationText = string.Empty;
         private static string thisModuleParameterText = string.Empty;
         private static bool IsInsideSquareBracket = false;
@@ -465,6 +468,8 @@ namespace VerilogLanguage
             thisModuleDeclarationText = string.Empty; // this is the full module declaration
             thisModuleParameterText = string.Empty;
             thisModuleName = string.Empty;
+            thisFunctionName = string.Empty;
+            thisFunctionScope = string.Empty;
 
             lastHoverItem = string.Empty;
             lastNonblankHoverItem = string.Empty;
@@ -643,6 +648,111 @@ namespace VerilogLanguage
             }
 
             return scope;
+        }
+
+        public static string FunctionLocalScopeName(string moduleScope, string functionName) {
+            string normalizedModuleScope = NormalizeDeclarationDuplicateScope(moduleScope);
+            if (string.IsNullOrEmpty(functionName)) {
+                return normalizedModuleScope;
+            }
+
+            return normalizedModuleScope + "::" + SCOPE_FUNCTION_PREFIX + "::" + functionName;
+        }
+
+        public static bool TryGetFunctionNameFromLineText(string lineText, out string functionName) {
+            functionName = string.Empty;
+
+            string codeText = StripLineCommentForDuplicateScan(lineText);
+            if (string.IsNullOrWhiteSpace(codeText)) {
+                return false;
+            }
+
+            VerilogToken[] lineTokens = VerilogKeywordSplit(codeText, new VerilogToken());
+            List<string> items = new List<string>();
+
+            foreach (VerilogToken token in lineTokens) {
+                string itemText = (token.Part ?? string.Empty).Trim();
+                if (!string.IsNullOrEmpty(itemText)) {
+                    items.Add(itemText);
+                }
+            }
+
+            int functionIndex = -1;
+            for (int i = 0; i < items.Count; i++) {
+                if (items[i] == "function") {
+                    functionIndex = i;
+                    break;
+                }
+            }
+
+            if (functionIndex < 0) {
+                return false;
+            }
+
+            int squareDepth = 0;
+            for (int i = functionIndex + 1; i < items.Count; i++) {
+                string itemText = items[i];
+
+                if (itemText == "[") {
+                    squareDepth++;
+                    continue;
+                }
+
+                if (itemText == "]") {
+                    if (squareDepth > 0) {
+                        squareDepth--;
+                    }
+                    continue;
+                }
+
+                if (squareDepth > 0) {
+                    continue;
+                }
+
+                if (itemText == ";") {
+                    return false;
+                }
+
+                if (IsDelimiter(itemText) || IsNumeric(itemText) || IsVerilogValue(itemText) ||
+                    IsFunctionReturnTypeToken(itemText)) {
+                    continue;
+                }
+
+                if (IsIdentifier(itemText)) {
+                    functionName = itemText;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public static bool IsEndFunctionLineText(string lineText) {
+            string codeText = StripLineCommentForDuplicateScan(lineText);
+            if (string.IsNullOrWhiteSpace(codeText)) {
+                return false;
+            }
+
+            VerilogToken[] lineTokens = VerilogKeywordSplit(codeText, new VerilogToken());
+            foreach (VerilogToken token in lineTokens) {
+                string itemText = (token.Part ?? string.Empty).Trim();
+                if (itemText == "endfunction") {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static string ActiveDeclarationScope(string scope) {
+            string normalizedScope = NormalizeDeclarationDuplicateScope(scope);
+            if (!string.IsNullOrEmpty(thisFunctionScope) &&
+                normalizedScope != SCOPE_CONST &&
+                normalizedScope != SCOPE_MACRO) {
+                return thisFunctionScope;
+            }
+
+            return normalizedScope;
         }
 
         private static void AddDuplicateScanName(
@@ -1286,9 +1396,23 @@ namespace VerilogLanguage
 
             Dictionary<string, Dictionary<string, int>> countsByScope = new Dictionary<string, Dictionary<string, int>>();
 
+            string activeFunctionScope = string.Empty;
+
             foreach (ITextSnapshotLine line in snapshot.Lines) {
-                string scope = NormalizeDeclarationDuplicateScope(TextModuleName(line.LineNumber, 0));
-                CountDeclarationNamesInLine(countsByScope, scope, line.GetText());
+                string lineText = line.GetText();
+                string moduleScope = NormalizeDeclarationDuplicateScope(TextModuleName(line.LineNumber, 0));
+                string functionName;
+
+                if (TryGetFunctionNameFromLineText(lineText, out functionName)) {
+                    activeFunctionScope = FunctionLocalScopeName(moduleScope, functionName);
+                }
+
+                string scope = string.IsNullOrEmpty(activeFunctionScope) ? moduleScope : activeFunctionScope;
+                CountDeclarationNamesInLine(countsByScope, scope, lineText);
+
+                if (IsEndFunctionLineText(lineText)) {
+                    activeFunctionScope = string.Empty;
+                }
             }
 
             ApplyConditionalDefinitionCandidates(countsByScope);
@@ -1333,7 +1457,7 @@ namespace VerilogLanguage
         }
 
         private static void AddHoverItem(string thisScope, string ItemName, string HoverText) {
-            thisScope = NormalizeDeclarationDuplicateScope(thisScope);
+            thisScope = ActiveDeclarationScope(thisScope);
 
             if (ItemName == string.Empty || (ItemName.Length == 1) && IsDelimiter(ItemName[0]) ) {
                 // never add a blank & never add a delimiter TODO - why would we even try? unresolved declaration naming?
@@ -1506,7 +1630,15 @@ namespace VerilogLanguage
                 case "endmodule":
                     // we're naming a module
                     BuildHoverState = BuildHoverStates.UndefinedState;
+                    thisFunctionName = string.Empty;
+                    thisFunctionScope = string.Empty;
                     // this is likely a syntax error
+                    break;
+
+                case "endfunction":
+                    BuildHoverState = BuildHoverStates.UndefinedState;
+                    thisFunctionName = string.Empty;
+                    thisFunctionScope = string.Empty;
                     break;
 
                 default:
@@ -1873,6 +2005,8 @@ namespace VerilogLanguage
                     if (IsIdentifier(ItemText)) {
                         thisVariableDeclarationText += ItemText;
                         AddFunctionHoverItem(thisModuleName, ItemText, thisVariableDeclarationText);
+                        thisFunctionName = ItemText;
+                        thisFunctionScope = FunctionLocalScopeName(thisModuleName, thisFunctionName);
                         thisVariableDeclarationText = string.Empty;
                         BuildHoverState = BuildHoverStates.FunctionDeclarationRemainder;
                         break;
@@ -1967,6 +2101,8 @@ namespace VerilogLanguage
                     thisHoverName = string.Empty;
                     thisVariableDeclarationText = string.Empty;
                     thisModuleName = string.Empty;
+                    thisFunctionName = string.Empty;
+                    thisFunctionScope = string.Empty;
                     thisModuleParameterText = string.Empty;
                     break;
 
@@ -2041,6 +2177,8 @@ namespace VerilogLanguage
 
                 case "endmodule":
                     BuildHoverState = BuildHoverStates.UndefinedState;
+                    thisFunctionName = string.Empty;
+                    thisFunctionScope = string.Empty;
                     // we're done naming a module
                     //AddHoverItem(thisModuleName, thisHoverName, thisModuleParameterText);
                     //BuildHoverState = BuildHoverStates.ModuleNamed;

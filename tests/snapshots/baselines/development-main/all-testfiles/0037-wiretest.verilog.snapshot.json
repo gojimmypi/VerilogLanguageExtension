@@ -89,7 +89,7 @@
                                 "Column":  20,
                                 "Text":  "r",
                                 "Types":  [
-                                              "Variable_output"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -159,7 +159,7 @@
                                 "Column":  20,
                                 "Text":  "x",
                                 "Types":  [
-                                              "Variable_input"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -229,7 +229,7 @@
                                 "Column":  20,
                                 "Text":  "y",
                                 "Types":  [
-                                              "Variable_input"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -259,7 +259,7 @@
                                 "Column":  7,
                                 "Text":  "rbit",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_duplicate"
                                           ]
                             },
                             {
@@ -319,7 +319,7 @@
                                 "Column":  7,
                                 "Text":  "onebit",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_duplicate"
                                           ]
                             },
                             {
@@ -379,7 +379,7 @@
                                 "Column":  7,
                                 "Text":  "twocomp",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_duplicate"
                                           ]
                             },
                             {
@@ -489,7 +489,7 @@
                                 "Column":  12,
                                 "Text":  "rbit",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_duplicate"
                                           ]
                             },
                             {
@@ -549,7 +549,7 @@
                                 "Column":  12,
                                 "Text":  "onebit",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_duplicate"
                                           ]
                             },
                             {
@@ -609,7 +609,7 @@
                                 "Column":  12,
                                 "Text":  "twocomp",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_duplicate"
                                           ]
                             }
                         ],
@@ -781,8 +781,8 @@
                      "Column":  20,
                      "Text":  "r",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_output",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "output wire [7:0] r"
                  },
                  {
                      "Start":  44,
@@ -851,8 +851,8 @@
                      "Column":  20,
                      "Text":  "x",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_input",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "input wire [7:0] x"
                  },
                  {
                      "Start":  66,
@@ -921,8 +921,8 @@
                      "Column":  20,
                      "Text":  "y",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_input",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "input wire [7:0] y wire rbit [7:0]"
                  },
                  {
                      "Start":  87,
@@ -1131,8 +1131,8 @@
                      "Column":  7,
                      "Text":  "rbit",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_Variable_duplicate",
+                     "HoverText":  "duplicate? wire [7:0] rbit"
                  },
                  {
                      "Start":  141,
@@ -1191,8 +1191,8 @@
                      "Column":  7,
                      "Text":  "onebit",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_Variable_duplicate",
+                     "HoverText":  "duplicate? wire [7:0] onebit"
                  },
                  {
                      "Start":  162,
@@ -1251,8 +1251,8 @@
                      "Column":  7,
                      "Text":  "twocomp",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_Variable_duplicate",
+                     "HoverText":  "duplicate? wire [7:0] twocomp"
                  },
                  {
                      "Start":  183,
@@ -1401,8 +1401,8 @@
                      "Column":  12,
                      "Text":  "rbit",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_Variable_duplicate",
+                     "HoverText":  "duplicate? wire [7:0] rbit"
                  },
                  {
                      "Start":  229,
@@ -1461,8 +1461,8 @@
                      "Column":  12,
                      "Text":  "onebit",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_Variable_duplicate",
+                     "HoverText":  "duplicate? wire [7:0] onebit"
                  },
                  {
                      "Start":  248,
@@ -1521,8 +1521,8 @@
                      "Column":  12,
                      "Text":  "twocomp",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_Variable_duplicate",
+                     "HoverText":  "duplicate? wire [7:0] twocomp"
                  }
              ],
     "Tokens":  [
@@ -2609,28 +2609,40 @@
                ],
     "Symbols":  [
                     {
-                        "Scope":  "",
-                        "Name":  "wire",
-                        "TokenType":  "Verilog_Variable_duplicate",
-                        "HoverText":  "duplicate? input wire [7:0] y wire rbit [7:0]"
+                        "Scope":  "global",
+                        "Name":  "r",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "output wire [7:0] r"
                     },
                     {
-                        "Scope":  "",
+                        "Scope":  "global",
+                        "Name":  "x",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "input wire [7:0] x"
+                    },
+                    {
+                        "Scope":  "global",
+                        "Name":  "y",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "input wire [7:0] y wire rbit [7:0]"
+                    },
+                    {
+                        "Scope":  "global",
                         "Name":  "onebit",
                         "TokenType":  "Verilog_Variable_duplicate",
                         "HoverText":  "duplicate? wire [7:0] onebit"
                     },
                     {
-                        "Scope":  "",
+                        "Scope":  "global",
                         "Name":  "twocomp",
                         "TokenType":  "Verilog_Variable_duplicate",
                         "HoverText":  "duplicate? wire [7:0] twocomp"
                     },
                     {
-                        "Scope":  "",
+                        "Scope":  "global",
                         "Name":  "rbit",
-                        "TokenType":  "Verilog_Variable_wire",
-                        "HoverText":  "wire [7:0] rbit"
+                        "TokenType":  "Verilog_Variable_duplicate",
+                        "HoverText":  "duplicate? wire [7:0] rbit"
                     }
                 ]
 }

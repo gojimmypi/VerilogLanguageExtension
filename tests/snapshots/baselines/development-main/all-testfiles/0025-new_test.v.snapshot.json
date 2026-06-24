@@ -79,7 +79,7 @@
                                 "Column":  18,
                                 "Text":  "k1",
                                 "Types":  [
-                                              "Variable_input"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -89,7 +89,7 @@
                                 "Column":  24,
                                 "Text":  "h1",
                                 "Types":  [
-                                              "Variable_input"
+                                              "Variable_wire"
                                           ]
                             }
                         ],
@@ -161,8 +161,8 @@
                      "Column":  18,
                      "Text":  "k1",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_input",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "input wire [1:1] k1"
                  },
                  {
                      "Start":  23,
@@ -171,7 +171,7 @@
                      "Column":  24,
                      "Text":  "h1",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_input",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  null
                  }
              ],
@@ -291,9 +291,9 @@
                ],
     "Symbols":  [
                     {
-                        "Scope":  "",
-                        "Name":  "wire",
-                        "TokenType":  "Verilog_Variable_input",
+                        "Scope":  "global",
+                        "Name":  "k1",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "input wire [1:1] k1"
                     }
                 ]

@@ -99,7 +99,7 @@
                                 "Column":  19,
                                 "Text":  "ENABLE_IRQ",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_parameter"
                                           ]
                             },
                             {
@@ -159,7 +159,7 @@
                                 "Column":  19,
                                 "Text":  "ENABLE_IRQ",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_parameter"
                                           ]
                             },
                             {
@@ -311,7 +311,7 @@
                      "Column":  19,
                      "Text":  "ENABLE_IRQ",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_parameter",
                      "HoverText":  "module picorv32( .. parameter [ 0:0] ENABLE_IRQ = 0 .. )"
                  },
                  {
@@ -371,7 +371,7 @@
                      "Column":  19,
                      "Text":  "ENABLE_IRQ",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_parameter",
                      "HoverText":  "module picorv32( .. parameter [ 0:0] ENABLE_IRQ = 0 .. )"
                  },
                  {
@@ -991,7 +991,7 @@
                     {
                         "Scope":  "picorv32",
                         "Name":  "ENABLE_IRQ",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_parameter",
                         "HoverText":  "module picorv32( .. parameter [ 0:0] ENABLE_IRQ = 0 .. )"
                     },
                     {

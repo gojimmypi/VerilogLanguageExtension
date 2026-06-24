@@ -109,7 +109,7 @@
                                 "Column":  19,
                                 "Text":  "LATCHED_IRQ",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_parameter"
                                           ]
                             },
                             {
@@ -179,7 +179,7 @@
                                 "Column":  19,
                                 "Text":  "LATCHED_IRQ2",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_parameter"
                                           ]
                             },
                             {
@@ -249,7 +249,7 @@
                                 "Column":  21,
                                 "Text":  "LATCHED_IRQ4",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_localparam"
                                           ]
                             },
                             {
@@ -319,7 +319,7 @@
                                 "Column":  20,
                                 "Text":  "TRACE_BRANCH",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_localparam"
                                           ]
                             },
                             {
@@ -429,7 +429,7 @@
                                 "Column":  14,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -559,7 +559,7 @@
                                 "Column":  2,
                                 "Text":  "LATCHED_IRQ",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_parameter"
                                           ]
                             },
                             {
@@ -741,7 +741,7 @@
                      "Column":  19,
                      "Text":  "LATCHED_IRQ",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_parameter",
                      "HoverText":  "module my_din( .. parameter [31:0] LATCHED_IRQ = 32\u0027h ffff_ffff .. )"
                  },
                  {
@@ -811,7 +811,7 @@
                      "Column":  19,
                      "Text":  "LATCHED_IRQ2",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_parameter",
                      "HoverText":  "module my_din( .. parameter [31:0] LATCHED_IRQ2 = 32\u0027hffff_ffff .. )"
                  },
                  {
@@ -881,7 +881,7 @@
                      "Column":  21,
                      "Text":  "LATCHED_IRQ4",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_localparam",
                      "HoverText":  "module my_din( .. localparam [31:0] LATCHED_IRQ4 = 32\u0027hffff_ffff .. )"
                  },
                  {
@@ -951,7 +951,7 @@
                      "Column":  20,
                      "Text":  "TRACE_BRANCH",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_localparam",
                      "HoverText":  "module my_din( .. localparam [35:0] TRACE_BRANCH = {4\u0027b 0001, 32\u0027b 0} .. )"
                  },
                  {
@@ -1161,7 +1161,7 @@
                      "Column":  14,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module my_din( .. input [7:0] din .. )"
                  },
                  {
@@ -1291,7 +1291,7 @@
                      "Column":  2,
                      "Text":  "LATCHED_IRQ",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_parameter",
                      "HoverText":  "module my_din( .. parameter [31:0] LATCHED_IRQ = 32\u0027h ffff_ffff .. )"
                  },
                  {
@@ -2497,31 +2497,31 @@
                     {
                         "Scope":  "my_din",
                         "Name":  "LATCHED_IRQ",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_parameter",
                         "HoverText":  "module my_din( .. parameter [31:0] LATCHED_IRQ = 32\u0027h ffff_ffff .. )"
                     },
                     {
                         "Scope":  "my_din",
                         "Name":  "LATCHED_IRQ2",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_parameter",
                         "HoverText":  "module my_din( .. parameter [31:0] LATCHED_IRQ2 = 32\u0027hffff_ffff .. )"
                     },
                     {
                         "Scope":  "my_din",
                         "Name":  "LATCHED_IRQ4",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_localparam",
                         "HoverText":  "module my_din( .. localparam [31:0] LATCHED_IRQ4 = 32\u0027hffff_ffff .. )"
                     },
                     {
                         "Scope":  "my_din",
                         "Name":  "TRACE_BRANCH",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_localparam",
                         "HoverText":  "module my_din( .. localparam [35:0] TRACE_BRANCH = {4\u0027b 0001, 32\u0027b 0} .. )"
                     },
                     {
                         "Scope":  "my_din",
                         "Name":  "din",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_input",
                         "HoverText":  "module my_din( .. input [7:0] din .. )"
                     },
                     {

@@ -109,6 +109,7 @@
     <Compile Include="SnapshotExporter\PkgCmdIDList.cs" />
     <Compile Include="SnapshotExporter\SnapshotExporter.cs" />
     <Compile Include="SnapshotExporter\SnapshotExportOnOpen.cs" />
+    <Compile Include="SnapshotExporter\SnapshotExportSettings.cs" />
     <Compile Include="SnapshotExporter\SnapshotModel.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Globals\BufferAttributes.cs" />
@@ -138,6 +139,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".github\workflows\build-verilog-language-extension.yml" />
+    <None Include="tools\vle-ci\Compare-Snapshots.py" />
+    <None Include="tools\vle-ci\Export-Snapshots.ps1" />
+    <None Include="tools\vle-ci\Run-LocalCI.ps1" />
+    <None Include="tools\vle-ci\expectations\issue10.expect.json" />
+    <None Include="tools\vle-ci\expectations\issue21.expect.json" />
+    <None Include="tools\vle-ci\manifests\cold-open.json" />
+    <None Include="tools\vle-ci\manifests\multi-open-forward.json" />
     <None Include="CODE_OF_CONDUCT.md" />
     <None Include="README.md" />
     <None Include="RELEASE_NOTES.md" />

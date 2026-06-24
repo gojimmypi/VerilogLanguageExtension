@@ -89,7 +89,7 @@
                                 "Column":  16,
                                 "Text":  "k1",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -99,7 +99,7 @@
                                 "Column":  20,
                                 "Text":  "h1",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -109,7 +109,7 @@
                                 "Column":  24,
                                 "Text":  "i1",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -139,7 +139,7 @@
                                 "Column":  17,
                                 "Text":  "eq",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -229,7 +229,7 @@
                                 "Column":  11,
                                 "Text":  "eq",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -269,7 +269,7 @@
                                 "Column":  24,
                                 "Text":  "i1",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -299,7 +299,7 @@
                                 "Column":  21,
                                 "Text":  "i1",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -781,7 +781,7 @@
                      "Column":  16,
                      "Text":  "k1",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module global( .. input wire k1 .. )"
                  },
                  {
@@ -791,7 +791,7 @@
                      "Column":  20,
                      "Text":  "h1",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module global( .. input wire h1 .. )"
                  },
                  {
@@ -801,7 +801,7 @@
                      "Column":  24,
                      "Text":  "i1",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module global( .. input wire i1 .. )"
                  },
                  {
@@ -831,7 +831,7 @@
                      "Column":  17,
                      "Text":  "eq",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module global( .. output wire eq  .. )"
                  },
                  {
@@ -1081,7 +1081,7 @@
                      "Column":  11,
                      "Text":  "eq",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module global( .. output wire eq  .. )"
                  },
                  {
@@ -1161,7 +1161,7 @@
                      "Column":  24,
                      "Text":  "i1",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module global( .. input wire i1 .. )"
                  },
                  {
@@ -1191,7 +1191,7 @@
                      "Column":  21,
                      "Text":  "i1",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module global( .. input wire i1 .. )"
                  },
                  {
@@ -3625,25 +3625,25 @@
                     {
                         "Scope":  "global",
                         "Name":  "k1",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module global( .. input wire k1 .. )"
                     },
                     {
                         "Scope":  "global",
                         "Name":  "h1",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module global( .. input wire h1 .. )"
                     },
                     {
                         "Scope":  "global",
                         "Name":  "i1",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module global( .. input wire i1 .. )"
                     },
                     {
                         "Scope":  "global",
                         "Name":  "eq",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module global( .. output wire eq  .. )"
                     },
                     {

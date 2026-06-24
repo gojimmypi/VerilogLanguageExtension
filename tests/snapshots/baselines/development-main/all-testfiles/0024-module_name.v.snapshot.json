@@ -69,7 +69,7 @@
                                 "Column":  7,
                                 "Text":  "clk",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_reg"
                                           ]
                             },
                             {
@@ -159,7 +159,7 @@
                                 "Column":  16,
                                 "Text":  "clk",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_reg"
                                           ]
                             },
                             {
@@ -189,7 +189,7 @@
                                 "Column":  12,
                                 "Text":  "myOther",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_reg"
                                           ]
                             },
                             {
@@ -209,7 +209,7 @@
                                 "Column":  20,
                                 "Text":  "clk",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_reg"
                                           ]
                             },
                             {
@@ -229,7 +229,7 @@
                                 "Column":  5,
                                 "Text":  "myOther",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_reg"
                                           ]
                             },
                             {
@@ -321,7 +321,7 @@
                      "Column":  7,
                      "Text":  "clk",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_reg",
                      "HoverText":  "module other2( .. reg clk .. )"
                  },
                  {
@@ -411,7 +411,7 @@
                      "Column":  16,
                      "Text":  "clk",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
+                     "TagDetail":  "Verilog_Variable_reg",
                      "HoverText":  "module top( .. reg clk .. )"
                  },
                  {
@@ -441,7 +441,7 @@
                      "Column":  12,
                      "Text":  "myOther",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
+                     "TagDetail":  "Verilog_Variable_reg",
                      "HoverText":  "module other2 myOther(clk)"
                  },
                  {
@@ -461,7 +461,7 @@
                      "Column":  20,
                      "Text":  "clk",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
+                     "TagDetail":  "Verilog_Variable_reg",
                      "HoverText":  "module top( .. reg clk .. )"
                  },
                  {
@@ -481,7 +481,7 @@
                      "Column":  5,
                      "Text":  "myOther",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
+                     "TagDetail":  "Verilog_Variable_reg",
                      "HoverText":  "module other2 myOther(clk)"
                  },
                  {
@@ -813,7 +813,7 @@
                     {
                         "Scope":  "other2",
                         "Name":  "clk",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_reg",
                         "HoverText":  "module other2( .. reg clk .. )"
                     },
                     {
@@ -831,7 +831,7 @@
                     {
                         "Scope":  "top",
                         "Name":  "clk",
-                        "TokenType":  "Verilog_Variable_wire",
+                        "TokenType":  "Verilog_Variable_reg",
                         "HoverText":  "module top( .. reg clk .. )"
                     },
                     {
@@ -843,7 +843,7 @@
                     {
                         "Scope":  "top",
                         "Name":  "myOther",
-                        "TokenType":  "Verilog_Variable_wire",
+                        "TokenType":  "Verilog_Variable_reg",
                         "HoverText":  "module other2 myOther(clk)"
                     }
                 ]

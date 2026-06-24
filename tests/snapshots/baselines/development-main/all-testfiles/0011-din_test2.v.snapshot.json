@@ -5,9 +5,9 @@
     "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\din_test2.v",
     "FileRelativePath":  "TestFiles\\din_test2.v",
     "ContentType":  "verilog",
-    "SnapshotLength":  89,
+    "SnapshotLength":  78,
     "SnapshotVersion":  2,
-    "TextSha256":  "c5c8a9fdc677ee52a7023261e5cda807fd84880d39538bc2e9a8eb56ab8e8a64",
+    "TextSha256":  "702591950e3b7a9a186084030242c8d9c061be563726880c9d3be09247caf604",
     "Errors":  [
 
                ],
@@ -99,7 +99,7 @@
                                 "Column":  17,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -119,7 +119,7 @@
                                 "Column":  4,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -179,7 +179,7 @@
                                 "Column":  2,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -193,29 +193,9 @@
                                           ]
                             },
                             {
-                                "Start":  70,
-                                "Length":  3,
-                                "Line":  7,
-                                "Column":  2,
-                                "Text":  "din",
-                                "Types":  [
-                                              "Variable"
-                                          ]
-                            },
-                            {
-                                "Start":  76,
-                                "Length":  1,
-                                "Line":  7,
-                                "Column":  8,
-                                "Text":  "3",
-                                "Types":  [
-                                              "Value"
-                                          ]
-                            },
-                            {
-                                "Start":  79,
+                                "Start":  68,
                                 "Length":  9,
-                                "Line":  8,
+                                "Line":  7,
                                 "Column":  1,
                                 "Text":  "endmodule",
                                 "Types":  [
@@ -311,7 +291,7 @@
                      "Column":  17,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module my_din( .. input [7:0] din .. )"
                  },
                  {
@@ -331,7 +311,7 @@
                      "Column":  4,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module my_din( .. input [7:0] din .. )"
                  },
                  {
@@ -391,7 +371,7 @@
                      "Column":  2,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module my_din( .. input [7:0] din .. )"
                  },
                  {
@@ -405,29 +385,9 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  70,
-                     "Length":  3,
-                     "Line":  7,
-                     "Column":  2,
-                     "Text":  "din",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
-                     "HoverText":  "module my_din( .. input [7:0] din .. )"
-                 },
-                 {
-                     "Start":  76,
-                     "Length":  1,
-                     "Line":  7,
-                     "Column":  8,
-                     "Text":  "3",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Value",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  79,
+                     "Start":  68,
                      "Length":  9,
-                     "Line":  8,
+                     "Line":  7,
                      "Column":  1,
                      "Text":  "endmodule",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -733,65 +693,9 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  69,
-                       "Length":  1,
-                       "Line":  7,
-                       "Column":  1,
-                       "Text":  "\t",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  70,
-                       "Length":  3,
-                       "Line":  7,
-                       "Column":  2,
-                       "Text":  "din",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  73,
-                       "Length":  1,
-                       "Line":  7,
-                       "Column":  5,
-                       "Text":  " ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  74,
-                       "Length":  1,
-                       "Line":  7,
-                       "Column":  6,
-                       "Text":  "=",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  75,
-                       "Length":  1,
-                       "Line":  7,
-                       "Column":  7,
-                       "Text":  " ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  76,
-                       "Length":  1,
-                       "Line":  7,
-                       "Column":  8,
-                       "Text":  "3",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  77,
-                       "Length":  1,
-                       "Line":  7,
-                       "Column":  9,
-                       "Text":  ";",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  79,
+                       "Start":  68,
                        "Length":  9,
-                       "Line":  8,
+                       "Line":  7,
                        "Column":  1,
                        "Text":  "endmodule",
                        "Context":  "Undetermined"
@@ -801,7 +705,7 @@
                     {
                         "Scope":  "my_din",
                         "Name":  "din",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_input",
                         "HoverText":  "module my_din( .. input [7:0] din .. )"
                     },
                     {

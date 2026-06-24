@@ -23,6 +23,16 @@
                                           ]
                             },
                             {
+                                "Start":  74,
+                                "Length":  1,
+                                "Line":  3,
+                                "Column":  7,
+                                "Text":  "q",
+                                "Types":  [
+                                              "Variable_reg"
+                                          ]
+                            },
+                            {
                                 "Start":  78,
                                 "Length":  1,
                                 "Line":  3,
@@ -93,16 +103,6 @@
                                           ]
                             },
                             {
-                                "Start":  148,
-                                "Length":  1,
-                                "Line":  5,
-                                "Column":  15,
-                                "Text":  "q",
-                                "Types":  [
-                                              "Variable_wire"
-                                          ]
-                            },
-                            {
                                 "Start":  151,
                                 "Length":  18,
                                 "Line":  5,
@@ -113,6 +113,16 @@
                                           ]
                             },
                             {
+                                "Start":  176,
+                                "Length":  4,
+                                "Line":  6,
+                                "Column":  7,
+                                "Text":  "oops",
+                                "Types":  [
+                                              "Variable_duplicate"
+                                          ]
+                            },
+                            {
                                 "Start":  187,
                                 "Length":  18,
                                 "Line":  6,
@@ -120,6 +130,16 @@
                                 "Text":  "// 1 1 1 1 1 1 ...",
                                 "Types":  [
                                               "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  284,
+                                "Length":  2,
+                                "Line":  13,
+                                "Column":  7,
+                                "Text":  "ok",
+                                "Types":  [
+                                              "Variable_reg"
                                           ]
                             },
                             {
@@ -143,6 +163,16 @@
                                           ]
                             },
                             {
+                                "Start":  315,
+                                "Length":  7,
+                                "Line":  14,
+                                "Column":  7,
+                                "Text":  "also_ok",
+                                "Types":  [
+                                              "Variable_reg"
+                                          ]
+                            },
+                            {
                                 "Start":  330,
                                 "Length":  16,
                                 "Line":  14,
@@ -150,6 +180,16 @@
                                 "Text":  "// OK constant 1",
                                 "Types":  [
                                               "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  354,
+                                "Length":  3,
+                                "Line":  16,
+                                "Column":  7,
+                                "Text":  "ok2",
+                                "Types":  [
+                                              "Variable_reg"
                                           ]
                             },
                             {
@@ -190,6 +230,16 @@
                                 "Text":  "// subsequently changes",
                                 "Types":  [
                                               "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  434,
+                                "Length":  4,
+                                "Line":  18,
+                                "Column":  7,
+                                "Text":  "oops",
+                                "Types":  [
+                                              "Variable_duplicate"
                                           ]
                             },
                             {
@@ -365,6 +415,16 @@
                      "HoverText":  null
                  },
                  {
+                     "Start":  74,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  7,
+                     "Text":  "q",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  null
+                 },
+                 {
                      "Start":  78,
                      "Length":  1,
                      "Line":  3,
@@ -452,17 +512,7 @@
                      "Text":  "inv_q",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  148,
-                     "Length":  1,
-                     "Line":  5,
-                     "Column":  15,
-                     "Text":  "q",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  null
+                     "HoverText":  "wire inv_q = ~q"
                  },
                  {
                      "Start":  151,
@@ -495,6 +545,16 @@
                      "HoverText":  null
                  },
                  {
+                     "Start":  176,
+                     "Length":  4,
+                     "Line":  6,
+                     "Column":  7,
+                     "Text":  "oops",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_duplicate",
+                     "HoverText":  "duplicate? oops"
+                 },
+                 {
                      "Start":  187,
                      "Length":  2,
                      "Line":  6,
@@ -522,6 +582,16 @@
                      "Text":  "1 1 1 1 1 1 ...",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  284,
+                     "Length":  2,
+                     "Line":  13,
+                     "Column":  7,
+                     "Text":  "ok",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_reg",
                      "HoverText":  null
                  },
                  {
@@ -605,6 +675,16 @@
                      "HoverText":  null
                  },
                  {
+                     "Start":  315,
+                     "Length":  7,
+                     "Line":  14,
+                     "Column":  7,
+                     "Text":  "also_ok",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  null
+                 },
+                 {
                      "Start":  330,
                      "Length":  2,
                      "Line":  14,
@@ -672,6 +752,16 @@
                      "Text":  "1",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  354,
+                     "Length":  3,
+                     "Line":  16,
+                     "Column":  7,
+                     "Text":  "ok2",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_reg",
                      "HoverText":  null
                  },
                  {
@@ -823,6 +913,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  434,
+                     "Length":  4,
+                     "Line":  18,
+                     "Column":  7,
+                     "Text":  "oops",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_duplicate",
+                     "HoverText":  "duplicate? oops"
                  },
                  {
                      "Start":  447,
@@ -2547,10 +2647,16 @@
                ],
     "Symbols":  [
                     {
-                        "Scope":  "",
+                        "Scope":  "global",
                         "Name":  "inv_q",
                         "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "wire inv_q = ~q"
+                    },
+                    {
+                        "Scope":  "global",
+                        "Name":  "oops",
+                        "TokenType":  "Verilog_Variable_duplicate",
+                        "HoverText":  "duplicate? oops"
                     }
                 ]
 }

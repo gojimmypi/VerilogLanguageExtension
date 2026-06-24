@@ -99,7 +99,7 @@
                                 "Column":  18,
                                 "Text":  "ENABLE_COUNTERS",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_parameter"
                                           ]
                             },
                             {
@@ -291,7 +291,7 @@
                      "Column":  18,
                      "Text":  "ENABLE_COUNTERS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_parameter",
                      "HoverText":  "module picorv32( .. parameter [0:0] ENABLE_COUNTERS = 1 .. )"
                  },
                  {
@@ -1009,7 +1009,7 @@
                     {
                         "Scope":  "picorv32",
                         "Name":  "ENABLE_COUNTERS",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_parameter",
                         "HoverText":  "module picorv32( .. parameter [0:0] ENABLE_COUNTERS = 1 .. )"
                     },
                     {

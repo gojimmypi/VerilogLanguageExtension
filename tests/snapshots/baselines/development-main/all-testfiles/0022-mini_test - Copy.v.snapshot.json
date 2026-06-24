@@ -209,7 +209,7 @@
                                 "Column":  14,
                                 "Text":  "J2_AD_PORT",
                                 "Types":  [
-                                              "Variable_input"
+                                              "Variable_duplicate"
                                           ]
                             },
                             {
@@ -1202,7 +1202,7 @@
                      "Text":  "J2_AD_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
+                     "HoverText":  "duplicate? input [7:0] J2_AD_PORT"
                  },
                  {
                      "Start":  40,
@@ -1471,8 +1471,8 @@
                      "Column":  14,
                      "Text":  "J2_AD_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_input",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_Variable_duplicate",
+                     "HoverText":  "duplicate? input [7:0] J2_AD_PORT"
                  },
                  {
                      "Start":  144,
@@ -1782,7 +1782,7 @@
                      "Text":  "J2_AD_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
+                     "HoverText":  "duplicate? input [7:0] J2_AD_PORT"
                  },
                  {
                      "Start":  251,
@@ -2182,7 +2182,7 @@
                      "Text":  "J2_AD_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
+                     "HoverText":  "duplicate? input [7:0] J2_AD_PORT"
                  },
                  {
                      "Start":  360,
@@ -2582,7 +2582,7 @@
                      "Text":  "J2_AD_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
+                     "HoverText":  "duplicate? input [7:0] J2_AD_PORT"
                  },
                  {
                      "Start":  469,
@@ -2982,7 +2982,7 @@
                      "Text":  "J2_AD_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
+                     "HoverText":  "duplicate? input [7:0] J2_AD_PORT"
                  },
                  {
                      "Start":  578,
@@ -3382,7 +3382,7 @@
                      "Text":  "J2_AD_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
+                     "HoverText":  "duplicate? input [7:0] J2_AD_PORT"
                  },
                  {
                      "Start":  687,
@@ -3782,7 +3782,7 @@
                      "Text":  "J2_AD_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
+                     "HoverText":  "duplicate? input [7:0] J2_AD_PORT"
                  },
                  {
                      "Start":  796,
@@ -6555,10 +6555,10 @@
                ],
     "Symbols":  [
                     {
-                        "Scope":  "",
+                        "Scope":  "global",
                         "Name":  "J2_AD_PORT",
-                        "TokenType":  "Verilog_Variable_input",
-                        "HoverText":  "input [7:0] J2_AD_PORT"
+                        "TokenType":  "Verilog_Variable_duplicate",
+                        "HoverText":  "duplicate? input [7:0] J2_AD_PORT"
                     }
                 ]
 }

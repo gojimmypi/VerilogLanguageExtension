@@ -59,7 +59,7 @@
                                 "Column":  8,
                                 "Text":  "test",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -391,7 +391,7 @@
                      "Column":  8,
                      "Text":  "test",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module my_din( .. input test  .. )"
                  },
                  {
@@ -1281,7 +1281,7 @@
                     {
                         "Scope":  "my_din",
                         "Name":  "test",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_input",
                         "HoverText":  "module my_din( .. input test  .. )"
                     },
                     {

@@ -329,7 +329,7 @@
                                 "Column":  14,
                                 "Text":  "clk_25mhz",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -379,7 +379,7 @@
                                 "Column":  14,
                                 "Text":  "ftdi_rxd",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -409,7 +409,7 @@
                                 "Column":  14,
                                 "Text":  "ftdi_txd",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -449,7 +449,7 @@
                                 "Column":  14,
                                 "Text":  "ftdi_ndtr",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -489,7 +489,7 @@
                                 "Column":  14,
                                 "Text":  "ftdi_nrts",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -519,7 +519,7 @@
                                 "Column":  14,
                                 "Text":  "ftdi_txden",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -559,7 +559,7 @@
                                 "Column":  14,
                                 "Text":  "wifi_rxd",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -589,7 +589,7 @@
                                 "Column":  14,
                                 "Text":  "wifi_txd",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -619,7 +619,7 @@
                                 "Column":  14,
                                 "Text":  "wifi_en",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -659,7 +659,7 @@
                                 "Column":  14,
                                 "Text":  "wifi_gpio0",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -699,7 +699,7 @@
                                 "Column":  13,
                                 "Text":  "wifi_gpio5",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -729,7 +729,7 @@
                                 "Column":  14,
                                 "Text":  "wifi_gpio16",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -759,7 +759,7 @@
                                 "Column":  14,
                                 "Text":  "wifi_gpio17",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -839,7 +839,7 @@
                                 "Column":  20,
                                 "Text":  "led",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -909,7 +909,7 @@
                                 "Column":  20,
                                 "Text":  "btn",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -979,7 +979,7 @@
                                 "Column":  20,
                                 "Text":  "sw",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -1009,7 +1009,7 @@
                                 "Column":  14,
                                 "Text":  "oled_csn",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -1039,7 +1039,7 @@
                                 "Column":  14,
                                 "Text":  "oled_clk",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -1069,7 +1069,7 @@
                                 "Column":  14,
                                 "Text":  "oled_mosi",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -1099,7 +1099,7 @@
                                 "Column":  14,
                                 "Text":  "oled_dc",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -1129,7 +1129,7 @@
                                 "Column":  14,
                                 "Text":  "oled_resn",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -1209,7 +1209,7 @@
                                 "Column":  21,
                                 "Text":  "gp",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -1279,7 +1279,7 @@
                                 "Column":  21,
                                 "Text":  "gn",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -1329,7 +1329,7 @@
                                 "Column":  14,
                                 "Text":  "shutdown",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -1409,7 +1409,7 @@
                                 "Column":  20,
                                 "Text":  "audio_l",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -1479,7 +1479,7 @@
                                 "Column":  20,
                                 "Text":  "audio_r",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -1549,7 +1549,7 @@
                                 "Column":  20,
                                 "Text":  "audio_v",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -1589,7 +1589,7 @@
                                 "Column":  14,
                                 "Text":  "flash_holdn",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -1619,7 +1619,7 @@
                                 "Column":  14,
                                 "Text":  "flash_wpn",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -1699,7 +1699,7 @@
                                 "Column":  20,
                                 "Text":  "sd_d",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -1729,7 +1729,7 @@
                                 "Column":  14,
                                 "Text":  "sd_cmd",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -1759,7 +1759,7 @@
                                 "Column":  14,
                                 "Text":  "sd_clk",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -1789,7 +1789,7 @@
                                 "Column":  14,
                                 "Text":  "sd_cdn",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -1819,7 +1819,7 @@
                                 "Column":  14,
                                 "Text":  "sd_wp",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -1849,7 +1849,7 @@
                                 "Column":  14,
                                 "Text":  "user_programn",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -2109,7 +2109,7 @@
                                 "Column":  10,
                                 "Text":  "shutdown",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -2599,7 +2599,7 @@
                                 "Column":  10,
                                 "Text":  "ftdi_rxd",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -2609,7 +2609,7 @@
                                 "Column":  21,
                                 "Text":  "wifi_txd",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -2629,7 +2629,7 @@
                                 "Column":  10,
                                 "Text":  "wifi_rxd",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -2639,7 +2639,7 @@
                                 "Column":  21,
                                 "Text":  "ftdi_txd",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -2779,7 +2779,7 @@
                                 "Column":  25,
                                 "Text":  "ftdi_ndtr",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -2839,7 +2839,7 @@
                                 "Column":  25,
                                 "Text":  "ftdi_nrts",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -2949,7 +2949,7 @@
                                 "Column":  10,
                                 "Text":  "wifi_en",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -3009,7 +3009,7 @@
                                 "Column":  10,
                                 "Text":  "wifi_gpio0",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -3059,7 +3059,7 @@
                                 "Column":  39,
                                 "Text":  "btn",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -3139,7 +3139,7 @@
                                 "Column":  10,
                                 "Text":  "sd_d",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -3459,7 +3459,7 @@
                                 "Column":  23,
                                 "Text":  "wifi_gpio17",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -3479,7 +3479,7 @@
                                 "Column":  10,
                                 "Text":  "oled_csn",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -3509,7 +3509,7 @@
                                 "Column":  10,
                                 "Text":  "oled_clk",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -3519,7 +3519,7 @@
                                 "Column":  21,
                                 "Text":  "sd_clk",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -3549,7 +3549,7 @@
                                 "Column":  10,
                                 "Text":  "oled_mosi",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -3559,7 +3559,7 @@
                                 "Column":  22,
                                 "Text":  "sd_cmd",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -3589,7 +3589,7 @@
                                 "Column":  10,
                                 "Text":  "oled_dc",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -3599,7 +3599,7 @@
                                 "Column":  20,
                                 "Text":  "wifi_gpio16",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -3619,7 +3619,7 @@
                                 "Column":  10,
                                 "Text":  "oled_resn",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -3629,7 +3629,7 @@
                                 "Column":  22,
                                 "Text":  "gp",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -3729,7 +3729,7 @@
                                 "Column":  10,
                                 "Text":  "led",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -3769,7 +3769,7 @@
                                 "Column":  19,
                                 "Text":  "wifi_gpio5",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -3799,7 +3799,7 @@
                                 "Column":  10,
                                 "Text":  "led",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -3899,7 +3899,7 @@
                                 "Column":  10,
                                 "Text":  "led",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -4099,7 +4099,7 @@
                                 "Column":  20,
                                 "Text":  "clk_25mhz",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -4639,7 +4639,7 @@
                                 "Column":  20,
                                 "Text":  "sd_clk",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -4659,7 +4659,7 @@
                                 "Column":  36,
                                 "Text":  "wifi_gpio17",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -4719,7 +4719,7 @@
                                 "Column":  8,
                                 "Text":  "wifi_gpio17",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -4789,7 +4789,7 @@
                                 "Column":  27,
                                 "Text":  "btn",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -5109,7 +5109,7 @@
                                 "Column":  20,
                                 "Text":  "clk_25mhz",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -5159,7 +5159,7 @@
                                 "Column":  8,
                                 "Text":  "btn",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -5209,7 +5209,7 @@
                                 "Column":  26,
                                 "Text":  "btn",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -5459,7 +5459,7 @@
                                 "Column":  10,
                                 "Text":  "user_programn",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -8991,7 +8991,7 @@
                      "Column":  14,
                      "Text":  "clk_25mhz",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. input wire clk_25mhz .. )"
                  },
                  {
@@ -9291,7 +9291,7 @@
                      "Column":  14,
                      "Text":  "ftdi_rxd",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. output wire ftdi_rxd .. )"
                  },
                  {
@@ -9321,7 +9321,7 @@
                      "Column":  14,
                      "Text":  "ftdi_txd",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. input wire ftdi_txd .. )"
                  },
                  {
@@ -9421,7 +9421,7 @@
                      "Column":  14,
                      "Text":  "ftdi_ndtr",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. inout wire ftdi_ndtr .. )"
                  },
                  {
@@ -9631,7 +9631,7 @@
                      "Column":  14,
                      "Text":  "ftdi_nrts",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. inout wire ftdi_nrts .. )"
                  },
                  {
@@ -9661,7 +9661,7 @@
                      "Column":  14,
                      "Text":  "ftdi_txden",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. inout wire ftdi_txden .. )"
                  },
                  {
@@ -9781,7 +9781,7 @@
                      "Column":  14,
                      "Text":  "wifi_rxd",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. output wire wifi_rxd .. )"
                  },
                  {
@@ -9811,7 +9811,7 @@
                      "Column":  14,
                      "Text":  "wifi_txd",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. input wire wifi_txd .. )"
                  },
                  {
@@ -9841,7 +9841,7 @@
                      "Column":  14,
                      "Text":  "wifi_en",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. inout wire wifi_en .. )"
                  },
                  {
@@ -9941,7 +9941,7 @@
                      "Column":  14,
                      "Text":  "wifi_gpio0",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. inout wire wifi_gpio0 .. )"
                  },
                  {
@@ -10151,7 +10151,7 @@
                      "Column":  13,
                      "Text":  "wifi_gpio5",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. inout wire wifi_gpio5 .. )"
                  },
                  {
@@ -10181,7 +10181,7 @@
                      "Column":  14,
                      "Text":  "wifi_gpio16",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. inout wire wifi_gpio16 .. )"
                  },
                  {
@@ -10211,7 +10211,7 @@
                      "Column":  14,
                      "Text":  "wifi_gpio17",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. inout wire wifi_gpio17 .. )"
                  },
                  {
@@ -10331,7 +10331,7 @@
                      "Column":  20,
                      "Text":  "led",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. output wire [7:0] led .. )"
                  },
                  {
@@ -10401,7 +10401,7 @@
                      "Column":  20,
                      "Text":  "btn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. input wire [6:0] btn .. )"
                  },
                  {
@@ -10471,7 +10471,7 @@
                      "Column":  20,
                      "Text":  "sw",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. input wire [1:4] sw .. )"
                  },
                  {
@@ -10501,7 +10501,7 @@
                      "Column":  14,
                      "Text":  "oled_csn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. output wire oled_csn .. )"
                  },
                  {
@@ -10531,7 +10531,7 @@
                      "Column":  14,
                      "Text":  "oled_clk",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. output wire oled_clk .. )"
                  },
                  {
@@ -10561,7 +10561,7 @@
                      "Column":  14,
                      "Text":  "oled_mosi",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. output wire oled_mosi .. )"
                  },
                  {
@@ -10591,7 +10591,7 @@
                      "Column":  14,
                      "Text":  "oled_dc",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. output wire oled_dc .. )"
                  },
                  {
@@ -10621,7 +10621,7 @@
                      "Column":  14,
                      "Text":  "oled_resn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. output wire oled_resn .. )"
                  },
                  {
@@ -10881,7 +10881,7 @@
                      "Column":  21,
                      "Text":  "gp",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [27:0] gp .. )"
                  },
                  {
@@ -10951,7 +10951,7 @@
                      "Column":  21,
                      "Text":  "gn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [27:0] gn .. )"
                  },
                  {
@@ -11111,7 +11111,7 @@
                      "Column":  14,
                      "Text":  "shutdown",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. output wire shutdown .. )"
                  },
                  {
@@ -11251,7 +11251,7 @@
                      "Column":  20,
                      "Text":  "audio_l",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] audio_l .. )"
                  },
                  {
@@ -11321,7 +11321,7 @@
                      "Column":  20,
                      "Text":  "audio_r",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] audio_r .. )"
                  },
                  {
@@ -11391,7 +11391,7 @@
                      "Column":  20,
                      "Text":  "audio_v",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] audio_v .. )"
                  },
                  {
@@ -11511,7 +11511,7 @@
                      "Column":  14,
                      "Text":  "flash_holdn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. output wire flash_holdn .. )"
                  },
                  {
@@ -11541,7 +11541,7 @@
                      "Column":  14,
                      "Text":  "flash_wpn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. output wire flash_wpn .. )"
                  },
                  {
@@ -11701,7 +11701,7 @@
                      "Column":  20,
                      "Text":  "sd_d",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] sd_d .. )"
                  },
                  {
@@ -11731,7 +11731,7 @@
                      "Column":  14,
                      "Text":  "sd_cmd",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. input wire sd_cmd .. )"
                  },
                  {
@@ -11761,7 +11761,7 @@
                      "Column":  14,
                      "Text":  "sd_clk",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. input wire sd_clk .. )"
                  },
                  {
@@ -11791,7 +11791,7 @@
                      "Column":  14,
                      "Text":  "sd_cdn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. input wire sd_cdn .. )"
                  },
                  {
@@ -11821,7 +11821,7 @@
                      "Column":  14,
                      "Text":  "sd_wp",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. input wire sd_wp .. )"
                  },
                  {
@@ -11851,7 +11851,7 @@
                      "Column":  14,
                      "Text":  "user_programn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. output wire user_programn .. )"
                  },
                  {
@@ -14081,7 +14081,7 @@
                      "Column":  10,
                      "Text":  "shutdown",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. output wire shutdown .. )"
                  },
                  {
@@ -14881,7 +14881,7 @@
                      "Column":  10,
                      "Text":  "ftdi_rxd",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. output wire ftdi_rxd .. )"
                  },
                  {
@@ -14891,7 +14891,7 @@
                      "Column":  21,
                      "Text":  "wifi_txd",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. input wire wifi_txd .. )"
                  },
                  {
@@ -14911,7 +14911,7 @@
                      "Column":  10,
                      "Text":  "wifi_rxd",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. output wire wifi_rxd .. )"
                  },
                  {
@@ -14921,7 +14921,7 @@
                      "Column":  21,
                      "Text":  "ftdi_txd",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. input wire ftdi_txd .. )"
                  },
                  {
@@ -15351,7 +15351,7 @@
                      "Column":  25,
                      "Text":  "ftdi_ndtr",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. inout wire ftdi_ndtr .. )"
                  },
                  {
@@ -15411,7 +15411,7 @@
                      "Column":  25,
                      "Text":  "ftdi_nrts",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. inout wire ftdi_nrts .. )"
                  },
                  {
@@ -15521,7 +15521,7 @@
                      "Column":  10,
                      "Text":  "wifi_en",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. inout wire wifi_en .. )"
                  },
                  {
@@ -15581,7 +15581,7 @@
                      "Column":  10,
                      "Text":  "wifi_gpio0",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. inout wire wifi_gpio0 .. )"
                  },
                  {
@@ -15631,7 +15631,7 @@
                      "Column":  39,
                      "Text":  "btn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. input wire [6:0] btn .. )"
                  },
                  {
@@ -16481,7 +16481,7 @@
                      "Column":  10,
                      "Text":  "sd_d",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] sd_d .. )"
                  },
                  {
@@ -19721,7 +19721,7 @@
                      "Column":  23,
                      "Text":  "wifi_gpio17",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. inout wire wifi_gpio17 .. )"
                  },
                  {
@@ -19741,7 +19741,7 @@
                      "Column":  10,
                      "Text":  "oled_csn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. output wire oled_csn .. )"
                  },
                  {
@@ -19771,7 +19771,7 @@
                      "Column":  10,
                      "Text":  "oled_clk",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. output wire oled_clk .. )"
                  },
                  {
@@ -19781,7 +19781,7 @@
                      "Column":  21,
                      "Text":  "sd_clk",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. input wire sd_clk .. )"
                  },
                  {
@@ -19831,7 +19831,7 @@
                      "Column":  10,
                      "Text":  "oled_mosi",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. output wire oled_mosi .. )"
                  },
                  {
@@ -19841,7 +19841,7 @@
                      "Column":  22,
                      "Text":  "sd_cmd",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. input wire sd_cmd .. )"
                  },
                  {
@@ -19891,7 +19891,7 @@
                      "Column":  10,
                      "Text":  "oled_dc",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. output wire oled_dc .. )"
                  },
                  {
@@ -19901,7 +19901,7 @@
                      "Column":  20,
                      "Text":  "wifi_gpio16",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. inout wire wifi_gpio16 .. )"
                  },
                  {
@@ -19921,7 +19921,7 @@
                      "Column":  10,
                      "Text":  "oled_resn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. output wire oled_resn .. )"
                  },
                  {
@@ -19931,7 +19931,7 @@
                      "Column":  22,
                      "Text":  "gp",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [27:0] gp .. )"
                  },
                  {
@@ -21601,7 +21601,7 @@
                      "Column":  10,
                      "Text":  "led",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. output wire [7:0] led .. )"
                  },
                  {
@@ -21641,7 +21641,7 @@
                      "Column":  19,
                      "Text":  "wifi_gpio5",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. inout wire wifi_gpio5 .. )"
                  },
                  {
@@ -21771,7 +21771,7 @@
                      "Column":  10,
                      "Text":  "led",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. output wire [7:0] led .. )"
                  },
                  {
@@ -21971,7 +21971,7 @@
                      "Column":  10,
                      "Text":  "led",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. output wire [7:0] led .. )"
                  },
                  {
@@ -24131,7 +24131,7 @@
                      "Column":  20,
                      "Text":  "clk_25mhz",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. input wire clk_25mhz .. )"
                  },
                  {
@@ -24681,7 +24681,7 @@
                      "Column":  20,
                      "Text":  "sd_clk",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. input wire sd_clk .. )"
                  },
                  {
@@ -24701,7 +24701,7 @@
                      "Column":  36,
                      "Text":  "wifi_gpio17",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. inout wire wifi_gpio17 .. )"
                  },
                  {
@@ -24841,7 +24841,7 @@
                      "Column":  8,
                      "Text":  "wifi_gpio17",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. inout wire wifi_gpio17 .. )"
                  },
                  {
@@ -24911,7 +24911,7 @@
                      "Column":  27,
                      "Text":  "btn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. input wire [6:0] btn .. )"
                  },
                  {
@@ -25671,7 +25671,7 @@
                      "Column":  20,
                      "Text":  "clk_25mhz",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. input wire clk_25mhz .. )"
                  },
                  {
@@ -25721,7 +25721,7 @@
                      "Column":  8,
                      "Text":  "btn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. input wire [6:0] btn .. )"
                  },
                  {
@@ -25771,7 +25771,7 @@
                      "Column":  26,
                      "Text":  "btn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. input wire [6:0] btn .. )"
                  },
                  {
@@ -26201,7 +26201,7 @@
                      "Column":  10,
                      "Text":  "user_programn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module ulx3s_passthru_wifi( .. output wire user_programn .. )"
                  },
                  {
@@ -47313,211 +47313,211 @@
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "clk_25mhz",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. input wire clk_25mhz .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "ftdi_rxd",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. output wire ftdi_rxd .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "ftdi_txd",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. input wire ftdi_txd .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "ftdi_ndtr",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. inout wire ftdi_ndtr .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "ftdi_nrts",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. inout wire ftdi_nrts .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "ftdi_txden",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. inout wire ftdi_txden .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "wifi_rxd",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. output wire wifi_rxd .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "wifi_txd",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. input wire wifi_txd .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "wifi_en",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. inout wire wifi_en .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "wifi_gpio0",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. inout wire wifi_gpio0 .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "wifi_gpio5",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. inout wire wifi_gpio5 .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "wifi_gpio16",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. inout wire wifi_gpio16 .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "wifi_gpio17",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. inout wire wifi_gpio17 .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "led",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. output wire [7:0] led .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "btn",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. input wire [6:0] btn .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "sw",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. input wire [1:4] sw .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "oled_csn",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. output wire oled_csn .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "oled_clk",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. output wire oled_clk .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "oled_mosi",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. output wire oled_mosi .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "oled_dc",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. output wire oled_dc .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "oled_resn",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. output wire oled_resn .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "gp",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [27:0] gp .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "gn",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [27:0] gn .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "shutdown",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. output wire shutdown .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "audio_l",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] audio_l .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "audio_r",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] audio_r .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "audio_v",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] audio_v .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "flash_holdn",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. output wire flash_holdn .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "flash_wpn",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. output wire flash_wpn .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "sd_d",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] sd_d .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "sd_cmd",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. input wire sd_cmd .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "sd_clk",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. input wire sd_clk .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "sd_cdn",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. input wire sd_cdn .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "sd_wp",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. input wire sd_wp .. )"
                     },
                     {
                         "Scope":  "ulx3s_passthru_wifi",
                         "Name":  "user_programn",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module ulx3s_passthru_wifi( .. output wire user_programn .. )"
                     },
                     {

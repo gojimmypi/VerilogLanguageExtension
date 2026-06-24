@@ -109,7 +109,7 @@
                                 "Column":  19,
                                 "Text":  "LATCHED_IRQ",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_parameter"
                                           ]
                             },
                             {
@@ -139,7 +139,7 @@
                                 "Column":  8,
                                 "Text":  "test",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -239,7 +239,7 @@
                                 "Column":  4,
                                 "Text":  "LATCHED_IRQ",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_parameter"
                                           ]
                             },
                             {
@@ -511,7 +511,7 @@
                      "Column":  19,
                      "Text":  "LATCHED_IRQ",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_parameter",
                      "HoverText":  "module my_din( .. parameter [31:0] LATCHED_IRQ = 32\u0027h 0001_0000 .. )"
                  },
                  {
@@ -541,7 +541,7 @@
                      "Column":  8,
                      "Text":  "test",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module my_din( .. input test  .. )"
                  },
                  {
@@ -641,7 +641,7 @@
                      "Column":  4,
                      "Text":  "LATCHED_IRQ",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_parameter",
                      "HoverText":  "module my_din( .. parameter [31:0] LATCHED_IRQ = 32\u0027h 0001_0000 .. )"
                  },
                  {
@@ -1263,13 +1263,13 @@
                     {
                         "Scope":  "my_din",
                         "Name":  "LATCHED_IRQ",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_parameter",
                         "HoverText":  "module my_din( .. parameter [31:0] LATCHED_IRQ = 32\u0027h 0001_0000 .. )"
                     },
                     {
                         "Scope":  "my_din",
                         "Name":  "test",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_input",
                         "HoverText":  "module my_din( .. input test  .. )"
                     },
                     {

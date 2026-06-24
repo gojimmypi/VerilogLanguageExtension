@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.4.11626.88 stable
+VisualStudioVersion = 18.4.11626.88
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerilogLanguage", "VerilogLanguage.csproj", "{F091221E-FD10-41A7-AAC4-C9359178BDB1}"
 EndProject
@@ -49,6 +49,28 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample Test Files", "Sample
 		TestFiles\wow3.svh = TestFiles\wow3.svh
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{58A6FBED-E8BC-45E2-8652-954E7BB5C8C9}"
+	ProjectSection(SolutionItems) = preProject
+		build_vsix.bat = build_vsix.bat
+		check-file.ps1 = check-file.ps1
+		ci-baseline.ps1 = ci-baseline.ps1
+		ci-check.ps1 = ci-check.ps1
+		ci-pass.ps1 = ci-pass.ps1
+		create-testfile-manifest.ps1 = create-testfile-manifest.ps1
+		refresh-tests.ps1 = refresh-tests.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{5A2EEC68-C81E-4FCE-A2CA-47E0E6F7A6F9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{9ACB96E2-FD3C-43A5-9815-8DF9C3C036DB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "vle-ci", "vle-ci", "{93C4636B-91E9-405B-93D8-70075FC51C98}"
+	ProjectSection(SolutionItems) = preProject
+		tools\vle-ci\Compare-Snapshots.py = tools\vle-ci\Compare-Snapshots.py
+		tools\vle-ci\Export-Snapshots.ps1 = tools\vle-ci\Export-Snapshots.ps1
+		tools\vle-ci\Run-LocalCI.ps1 = tools\vle-ci\Run-LocalCI.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +84,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5A2EEC68-C81E-4FCE-A2CA-47E0E6F7A6F9} = {58A6FBED-E8BC-45E2-8652-954E7BB5C8C9}
+		{9ACB96E2-FD3C-43A5-9815-8DF9C3C036DB} = {58A6FBED-E8BC-45E2-8652-954E7BB5C8C9}
+		{93C4636B-91E9-405B-93D8-70075FC51C98} = {9ACB96E2-FD3C-43A5-9815-8DF9C3C036DB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {63A107C7-D336-4F68-AA9B-67E8459AFFC0}

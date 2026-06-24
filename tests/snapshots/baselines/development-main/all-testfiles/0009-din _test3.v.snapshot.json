@@ -5,9 +5,9 @@
     "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\din _test3.v",
     "FileRelativePath":  "TestFiles\\din _test3.v",
     "ContentType":  "verilog",
-    "SnapshotLength":  954,
+    "SnapshotLength":  802,
     "SnapshotVersion":  2,
-    "TextSha256":  "38157423acd6055212617fc8b5c3f26e3093e0aef17950f2f363b02d8b8987a2",
+    "TextSha256":  "f62007d9bd498294b30218674311194e4369c0061fb78e6dbfb68022b93f8f09",
     "Errors":  [
 
                ],
@@ -99,7 +99,7 @@
                                 "Column":  19,
                                 "Text":  "MASKED_IRQ",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_parameter"
                                           ]
                             },
                             {
@@ -169,7 +169,7 @@
                                 "Column":  18,
                                 "Text":  "WOWWOW",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_parameter"
                                           ]
                             },
                             {
@@ -239,7 +239,7 @@
                                 "Column":  18,
                                 "Text":  "WOWWOWw",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_parameter"
                                           ]
                             },
                             {
@@ -319,7 +319,7 @@
                                 "Column":  20,
                                 "Text":  "mem_addr",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_reg"
                                           ]
                             },
                             {
@@ -379,7 +379,7 @@
                                 "Column":  19,
                                 "Text":  "LATCHED_IR",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_parameter"
                                           ]
                             },
                             {
@@ -399,7 +399,7 @@
                                 "Column":  7,
                                 "Text":  "mywire",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -419,7 +419,7 @@
                                 "Column":  8,
                                 "Text":  "test",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -579,7 +579,7 @@
                                 "Column":  13,
                                 "Text":  "trap",
                                 "Types":  [
-                                              "Variable_output"
+                                              "Variable_reg"
                                           ]
                             },
                             {
@@ -953,19 +953,9 @@
                                           ]
                             },
                             {
-                                "Start":  574,
-                                "Length":  95,
-                                "Line":  20,
-                                "Column":  2,
-                                "Text":  "/* LATCHED_IRQ should NOT be highlighted here in this module, defined in myff_din below only */",
-                                "Types":  [
-                                              "comment"
-                                          ]
-                            },
-                            {
-                                "Start":  687,
+                                "Start":  590,
                                 "Length":  1,
-                                "Line":  21,
+                                "Line":  20,
                                 "Column":  18,
                                 "Text":  "1",
                                 "Types":  [
@@ -973,9 +963,9 @@
                                           ]
                             },
                             {
-                                "Start":  691,
+                                "Start":  594,
                                 "Length":  9,
-                                "Line":  22,
+                                "Line":  21,
                                 "Column":  2,
                                 "Text":  "endmodule",
                                 "Types":  [
@@ -983,9 +973,9 @@
                                           ]
                             },
                             {
-                                "Start":  703,
+                                "Start":  606,
                                 "Length":  6,
-                                "Line":  24,
+                                "Line":  23,
                                 "Column":  2,
                                 "Text":  "module",
                                 "Types":  [
@@ -993,9 +983,9 @@
                                           ]
                             },
                             {
-                                "Start":  710,
+                                "Start":  613,
                                 "Length":  8,
-                                "Line":  24,
+                                "Line":  23,
                                 "Column":  9,
                                 "Text":  "myff_din",
                                 "Types":  [
@@ -1003,9 +993,9 @@
                                           ]
                             },
                             {
-                                "Start":  719,
+                                "Start":  622,
                                 "Length":  1,
-                                "Line":  24,
+                                "Line":  23,
                                 "Column":  18,
                                 "Text":  "(",
                                 "Types":  [
@@ -1013,19 +1003,9 @@
                                           ]
                             },
                             {
-                                "Start":  723,
-                                "Length":  52,
-                                "Line":  25,
-                                "Column":  2,
-                                "Text":  "/* LATCHED_IRQ is highlighted here in this module */",
-                                "Types":  [
-                                              "comment"
-                                          ]
-                            },
-                            {
-                                "Start":  777,
+                                "Start":  625,
                                 "Length":  9,
-                                "Line":  26,
+                                "Line":  24,
                                 "Column":  2,
                                 "Text":  "parameter",
                                 "Types":  [
@@ -1033,9 +1013,9 @@
                                           ]
                             },
                             {
-                                "Start":  787,
+                                "Start":  635,
                                 "Length":  1,
-                                "Line":  26,
+                                "Line":  24,
                                 "Column":  12,
                                 "Text":  "[",
                                 "Types":  [
@@ -1043,9 +1023,9 @@
                                           ]
                             },
                             {
-                                "Start":  788,
+                                "Start":  636,
                                 "Length":  2,
-                                "Line":  26,
+                                "Line":  24,
                                 "Column":  13,
                                 "Text":  "31",
                                 "Types":  [
@@ -1053,9 +1033,9 @@
                                           ]
                             },
                             {
-                                "Start":  791,
+                                "Start":  639,
                                 "Length":  1,
-                                "Line":  26,
+                                "Line":  24,
                                 "Column":  16,
                                 "Text":  "0",
                                 "Types":  [
@@ -1063,9 +1043,9 @@
                                           ]
                             },
                             {
-                                "Start":  792,
+                                "Start":  640,
                                 "Length":  1,
-                                "Line":  26,
+                                "Line":  24,
                                 "Column":  17,
                                 "Text":  "]",
                                 "Types":  [
@@ -1073,9 +1053,9 @@
                                           ]
                             },
                             {
-                                "Start":  794,
+                                "Start":  642,
                                 "Length":  11,
-                                "Line":  26,
+                                "Line":  24,
                                 "Column":  19,
                                 "Text":  "MASKED_IRQz",
                                 "Types":  [
@@ -1083,9 +1063,9 @@
                                           ]
                             },
                             {
-                                "Start":  808,
+                                "Start":  656,
                                 "Length":  13,
-                                "Line":  26,
+                                "Line":  24,
                                 "Column":  33,
                                 "Text":  "32\u0027h0000_0000",
                                 "Types":  [
@@ -1093,9 +1073,9 @@
                                           ]
                             },
                             {
-                                "Start":  825,
+                                "Start":  673,
                                 "Length":  9,
-                                "Line":  27,
+                                "Line":  25,
                                 "Column":  3,
                                 "Text":  "parameter",
                                 "Types":  [
@@ -1103,9 +1083,9 @@
                                           ]
                             },
                             {
-                                "Start":  835,
+                                "Start":  683,
                                 "Length":  1,
-                                "Line":  27,
+                                "Line":  25,
                                 "Column":  13,
                                 "Text":  "[",
                                 "Types":  [
@@ -1113,9 +1093,9 @@
                                           ]
                             },
                             {
-                                "Start":  836,
+                                "Start":  684,
                                 "Length":  2,
-                                "Line":  27,
+                                "Line":  25,
                                 "Column":  14,
                                 "Text":  "31",
                                 "Types":  [
@@ -1123,9 +1103,9 @@
                                           ]
                             },
                             {
-                                "Start":  839,
+                                "Start":  687,
                                 "Length":  1,
-                                "Line":  27,
+                                "Line":  25,
                                 "Column":  17,
                                 "Text":  "0",
                                 "Types":  [
@@ -1133,9 +1113,9 @@
                                           ]
                             },
                             {
-                                "Start":  840,
+                                "Start":  688,
                                 "Length":  1,
-                                "Line":  27,
+                                "Line":  25,
                                 "Column":  18,
                                 "Text":  "]",
                                 "Types":  [
@@ -1143,9 +1123,9 @@
                                           ]
                             },
                             {
-                                "Start":  842,
+                                "Start":  690,
                                 "Length":  11,
-                                "Line":  27,
+                                "Line":  25,
                                 "Column":  20,
                                 "Text":  "LATCHED_IRQ",
                                 "Types":  [
@@ -1153,9 +1133,9 @@
                                           ]
                             },
                             {
-                                "Start":  856,
+                                "Start":  704,
                                 "Length":  14,
-                                "Line":  27,
+                                "Line":  25,
                                 "Column":  34,
                                 "Text":  "32\u0027h ffff_ffff",
                                 "Types":  [
@@ -1163,9 +1143,9 @@
                                           ]
                             },
                             {
-                                "Start":  876,
+                                "Start":  724,
                                 "Length":  5,
-                                "Line":  28,
+                                "Line":  26,
                                 "Column":  5,
                                 "Text":  "input",
                                 "Types":  [
@@ -1173,9 +1153,9 @@
                                           ]
                             },
                             {
-                                "Start":  882,
+                                "Start":  730,
                                 "Length":  1,
-                                "Line":  28,
+                                "Line":  26,
                                 "Column":  11,
                                 "Text":  "[",
                                 "Types":  [
@@ -1183,9 +1163,9 @@
                                           ]
                             },
                             {
-                                "Start":  883,
+                                "Start":  731,
                                 "Length":  1,
-                                "Line":  28,
+                                "Line":  26,
                                 "Column":  12,
                                 "Text":  "7",
                                 "Types":  [
@@ -1193,9 +1173,9 @@
                                           ]
                             },
                             {
-                                "Start":  885,
+                                "Start":  733,
                                 "Length":  1,
-                                "Line":  28,
+                                "Line":  26,
                                 "Column":  14,
                                 "Text":  "0",
                                 "Types":  [
@@ -1203,9 +1183,9 @@
                                           ]
                             },
                             {
-                                "Start":  886,
+                                "Start":  734,
                                 "Length":  1,
-                                "Line":  28,
+                                "Line":  26,
                                 "Column":  15,
                                 "Text":  "]",
                                 "Types":  [
@@ -1213,19 +1193,19 @@
                                           ]
                             },
                             {
-                                "Start":  888,
+                                "Start":  736,
                                 "Length":  3,
-                                "Line":  28,
+                                "Line":  26,
                                 "Column":  17,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable_parameter"
+                                              "Variable_input"
                                           ]
                             },
                             {
-                                "Start":  892,
+                                "Start":  740,
                                 "Length":  1,
-                                "Line":  29,
+                                "Line":  27,
                                 "Column":  1,
                                 "Text":  ")",
                                 "Types":  [
@@ -1233,19 +1213,19 @@
                                           ]
                             },
                             {
-                                "Start":  899,
+                                "Start":  747,
                                 "Length":  3,
-                                "Line":  30,
+                                "Line":  28,
                                 "Column":  5,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable_parameter"
+                                              "Variable_input"
                                           ]
                             },
                             {
-                                "Start":  902,
+                                "Start":  750,
                                 "Length":  1,
-                                "Line":  30,
+                                "Line":  28,
                                 "Column":  8,
                                 "Text":  "[",
                                 "Types":  [
@@ -1253,9 +1233,9 @@
                                           ]
                             },
                             {
-                                "Start":  903,
+                                "Start":  751,
                                 "Length":  1,
-                                "Line":  30,
+                                "Line":  28,
                                 "Column":  9,
                                 "Text":  "7",
                                 "Types":  [
@@ -1263,9 +1243,9 @@
                                           ]
                             },
                             {
-                                "Start":  905,
+                                "Start":  753,
                                 "Length":  1,
-                                "Line":  30,
+                                "Line":  28,
                                 "Column":  11,
                                 "Text":  "0",
                                 "Types":  [
@@ -1273,9 +1253,9 @@
                                           ]
                             },
                             {
-                                "Start":  906,
+                                "Start":  754,
                                 "Length":  1,
-                                "Line":  30,
+                                "Line":  28,
                                 "Column":  12,
                                 "Text":  "]",
                                 "Types":  [
@@ -1283,9 +1263,9 @@
                                           ]
                             },
                             {
-                                "Start":  911,
+                                "Start":  759,
                                 "Length":  1,
-                                "Line":  30,
+                                "Line":  28,
                                 "Column":  17,
                                 "Text":  "0",
                                 "Types":  [
@@ -1293,19 +1273,19 @@
                                           ]
                             },
                             {
-                                "Start":  915,
+                                "Start":  763,
                                 "Length":  3,
-                                "Line":  31,
+                                "Line":  29,
                                 "Column":  2,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable_parameter"
+                                              "Variable_input"
                                           ]
                             },
                             {
-                                "Start":  920,
+                                "Start":  768,
                                 "Length":  1,
-                                "Line":  31,
+                                "Line":  29,
                                 "Column":  7,
                                 "Text":  "1",
                                 "Types":  [
@@ -1313,9 +1293,9 @@
                                           ]
                             },
                             {
-                                "Start":  924,
+                                "Start":  772,
                                 "Length":  11,
-                                "Line":  32,
+                                "Line":  30,
                                 "Column":  2,
                                 "Text":  "LATCHED_IRQ",
                                 "Types":  [
@@ -1323,9 +1303,9 @@
                                           ]
                             },
                             {
-                                "Start":  938,
+                                "Start":  786,
                                 "Length":  1,
-                                "Line":  32,
+                                "Line":  30,
                                 "Column":  16,
                                 "Text":  "1",
                                 "Types":  [
@@ -1333,9 +1313,9 @@
                                           ]
                             },
                             {
-                                "Start":  941,
+                                "Start":  789,
                                 "Length":  9,
-                                "Line":  33,
+                                "Line":  31,
                                 "Column":  1,
                                 "Text":  "endmodule",
                                 "Types":  [
@@ -1431,7 +1411,7 @@
                      "Column":  19,
                      "Text":  "MASKED_IRQ",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_parameter",
                      "HoverText":  "module my_din( .. parameter [31:0] MASKED_IRQ = 32\u0027H 0000_0000 .. )"
                  },
                  {
@@ -1501,7 +1481,7 @@
                      "Column":  18,
                      "Text":  "WOWWOW",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_parameter",
                      "HoverText":  "module my_din( .. parameter [5:5] WOWWOW = 32\u0027o ff .. )"
                  },
                  {
@@ -1571,7 +1551,7 @@
                      "Column":  18,
                      "Text":  "WOWWOWw",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_parameter",
                      "HoverText":  "module my_din( .. parameter [6:6] WOWWOWw = 32\u0027b ff .. )"
                  },
                  {
@@ -1651,7 +1631,7 @@
                      "Column":  20,
                      "Text":  "mem_addr",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_reg",
                      "HoverText":  "module my_din( .. output reg [31:0] mem_addr .. )"
                  },
                  {
@@ -1711,7 +1691,7 @@
                      "Column":  19,
                      "Text":  "LATCHED_IR",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_parameter",
                      "HoverText":  "module my_din( .. parameter [31:0] LATCHED_IR .. )"
                  },
                  {
@@ -1731,7 +1711,7 @@
                      "Column":  7,
                      "Text":  "mywire",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "module my_din( .. wire mywire .. )"
                  },
                  {
@@ -1751,7 +1731,7 @@
                      "Column":  8,
                      "Text":  "test",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module my_din( .. input test  .. )"
                  },
                  {
@@ -1911,7 +1891,7 @@
                      "Column":  13,
                      "Text":  "trap",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_output",
+                     "TagDetail":  "Verilog_Variable_reg",
                      "HoverText":  "output reg trap"
                  },
                  {
@@ -2285,329 +2265,9 @@
                      "HoverText":  "32\u0027HFFF4FFFF = (32 bit Hex) FFF4FFFF; 11111111111101001111111111111111"
                  },
                  {
-                     "Start":  574,
-                     "Length":  2,
-                     "Line":  20,
-                     "Column":  2,
-                     "Text":  "/*",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  576,
+                     "Start":  590,
                      "Length":  1,
                      "Line":  20,
-                     "Column":  4,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  577,
-                     "Length":  11,
-                     "Line":  20,
-                     "Column":  5,
-                     "Text":  "LATCHED_IRQ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  588,
-                     "Length":  1,
-                     "Line":  20,
-                     "Column":  16,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  589,
-                     "Length":  6,
-                     "Line":  20,
-                     "Column":  17,
-                     "Text":  "should",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  595,
-                     "Length":  1,
-                     "Line":  20,
-                     "Column":  23,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  596,
-                     "Length":  3,
-                     "Line":  20,
-                     "Column":  24,
-                     "Text":  "NOT",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  599,
-                     "Length":  1,
-                     "Line":  20,
-                     "Column":  27,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  600,
-                     "Length":  2,
-                     "Line":  20,
-                     "Column":  28,
-                     "Text":  "be",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  602,
-                     "Length":  1,
-                     "Line":  20,
-                     "Column":  30,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  603,
-                     "Length":  11,
-                     "Line":  20,
-                     "Column":  31,
-                     "Text":  "highlighted",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  614,
-                     "Length":  1,
-                     "Line":  20,
-                     "Column":  42,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  615,
-                     "Length":  4,
-                     "Line":  20,
-                     "Column":  43,
-                     "Text":  "here",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  619,
-                     "Length":  1,
-                     "Line":  20,
-                     "Column":  47,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  620,
-                     "Length":  2,
-                     "Line":  20,
-                     "Column":  48,
-                     "Text":  "in",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  622,
-                     "Length":  1,
-                     "Line":  20,
-                     "Column":  50,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  623,
-                     "Length":  4,
-                     "Line":  20,
-                     "Column":  51,
-                     "Text":  "this",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  627,
-                     "Length":  1,
-                     "Line":  20,
-                     "Column":  55,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  628,
-                     "Length":  6,
-                     "Line":  20,
-                     "Column":  56,
-                     "Text":  "module",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  634,
-                     "Length":  1,
-                     "Line":  20,
-                     "Column":  62,
-                     "Text":  ",",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  635,
-                     "Length":  1,
-                     "Line":  20,
-                     "Column":  63,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  636,
-                     "Length":  7,
-                     "Line":  20,
-                     "Column":  64,
-                     "Text":  "defined",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  643,
-                     "Length":  1,
-                     "Line":  20,
-                     "Column":  71,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  644,
-                     "Length":  2,
-                     "Line":  20,
-                     "Column":  72,
-                     "Text":  "in",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  646,
-                     "Length":  1,
-                     "Line":  20,
-                     "Column":  74,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  647,
-                     "Length":  8,
-                     "Line":  20,
-                     "Column":  75,
-                     "Text":  "myff_din",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  655,
-                     "Length":  1,
-                     "Line":  20,
-                     "Column":  83,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  656,
-                     "Length":  5,
-                     "Line":  20,
-                     "Column":  84,
-                     "Text":  "below",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  661,
-                     "Length":  1,
-                     "Line":  20,
-                     "Column":  89,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  662,
-                     "Length":  4,
-                     "Line":  20,
-                     "Column":  90,
-                     "Text":  "only",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  666,
-                     "Length":  1,
-                     "Line":  20,
-                     "Column":  94,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  667,
-                     "Length":  2,
-                     "Line":  20,
-                     "Column":  95,
-                     "Text":  "*/",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  687,
-                     "Length":  1,
-                     "Line":  21,
                      "Column":  18,
                      "Text":  "1",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2615,9 +2275,9 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  691,
+                     "Start":  594,
                      "Length":  9,
-                     "Line":  22,
+                     "Line":  21,
                      "Column":  2,
                      "Text":  "endmodule",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2625,9 +2285,9 @@
                      "HoverText":  "The endmodule reserved word is used to close a module statement."
                  },
                  {
-                     "Start":  703,
+                     "Start":  606,
                      "Length":  6,
-                     "Line":  24,
+                     "Line":  23,
                      "Column":  2,
                      "Text":  "module",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2635,19 +2295,19 @@
                      "HoverText":  "The module declaration is the only design unit in Verilog. It describes both a design\u0027s interface to other designs in the same environment, and its functional composition."
                  },
                  {
-                     "Start":  710,
+                     "Start":  613,
                      "Length":  8,
-                     "Line":  24,
+                     "Line":  23,
                      "Column":  9,
                      "Text":  "myff_din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_module",
-                     "HoverText":  "module myff_din (   [31:0] MASKED_IRQz = 32\u0027h0000_0000,\r\n parameter [31:0] LATCHED_IRQ = 32\u0027h ffff_ffff;\r\ninput [7:0] din)"
+                     "HoverText":  "module myff_din (  [31:0] MASKED_IRQz = 32\u0027h0000_0000,\r\n parameter [31:0] LATCHED_IRQ = 32\u0027h ffff_ffff;\r\ninput [7:0] din)"
                  },
                  {
-                     "Start":  719,
+                     "Start":  622,
                      "Length":  1,
-                     "Line":  24,
+                     "Line":  23,
                      "Column":  18,
                      "Text":  "(",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2655,179 +2315,9 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  723,
-                     "Length":  2,
-                     "Line":  25,
-                     "Column":  2,
-                     "Text":  "/*",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  725,
-                     "Length":  1,
-                     "Line":  25,
-                     "Column":  4,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  726,
-                     "Length":  11,
-                     "Line":  25,
-                     "Column":  5,
-                     "Text":  "LATCHED_IRQ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module myff_din( .. parameter [31:0] LATCHED_IRQ = 32\u0027h ffff_ffff .. )"
-                 },
-                 {
-                     "Start":  737,
-                     "Length":  1,
-                     "Line":  25,
-                     "Column":  16,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  738,
-                     "Length":  2,
-                     "Line":  25,
-                     "Column":  17,
-                     "Text":  "is",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  740,
-                     "Length":  1,
-                     "Line":  25,
-                     "Column":  19,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  741,
-                     "Length":  11,
-                     "Line":  25,
-                     "Column":  20,
-                     "Text":  "highlighted",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  752,
-                     "Length":  1,
-                     "Line":  25,
-                     "Column":  31,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  753,
-                     "Length":  4,
-                     "Line":  25,
-                     "Column":  32,
-                     "Text":  "here",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  757,
-                     "Length":  1,
-                     "Line":  25,
-                     "Column":  36,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  758,
-                     "Length":  2,
-                     "Line":  25,
-                     "Column":  37,
-                     "Text":  "in",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  760,
-                     "Length":  1,
-                     "Line":  25,
-                     "Column":  39,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  761,
-                     "Length":  4,
-                     "Line":  25,
-                     "Column":  40,
-                     "Text":  "this",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  765,
-                     "Length":  1,
-                     "Line":  25,
-                     "Column":  44,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  766,
-                     "Length":  6,
-                     "Line":  25,
-                     "Column":  45,
-                     "Text":  "module",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  772,
-                     "Length":  1,
-                     "Line":  25,
-                     "Column":  51,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  773,
-                     "Length":  2,
-                     "Line":  25,
-                     "Column":  52,
-                     "Text":  "*/",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  777,
+                     "Start":  625,
                      "Length":  9,
-                     "Line":  26,
+                     "Line":  24,
                      "Column":  2,
                      "Text":  "parameter",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2835,9 +2325,9 @@
                      "HoverText":  "Parameters are constants that can be modified with the defparam statement or through parameter passing in the module instance statement. Parameters are local to the module in which they have been declared."
                  },
                  {
-                     "Start":  787,
+                     "Start":  635,
                      "Length":  1,
-                     "Line":  26,
+                     "Line":  24,
                      "Column":  12,
                      "Text":  "[",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2845,9 +2335,9 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  788,
+                     "Start":  636,
                      "Length":  2,
-                     "Line":  26,
+                     "Line":  24,
                      "Column":  13,
                      "Text":  "31",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2855,9 +2345,9 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  791,
+                     "Start":  639,
                      "Length":  1,
-                     "Line":  26,
+                     "Line":  24,
                      "Column":  16,
                      "Text":  "0",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2865,9 +2355,9 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  792,
+                     "Start":  640,
                      "Length":  1,
-                     "Line":  26,
+                     "Line":  24,
                      "Column":  17,
                      "Text":  "]",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2875,9 +2365,9 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  794,
+                     "Start":  642,
                      "Length":  11,
-                     "Line":  26,
+                     "Line":  24,
                      "Column":  19,
                      "Text":  "MASKED_IRQz",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2885,9 +2375,9 @@
                      "HoverText":  "module myff_din( .. parameter [31:0] MASKED_IRQz = 32\u0027h0000_0000 .. )"
                  },
                  {
-                     "Start":  808,
+                     "Start":  656,
                      "Length":  13,
-                     "Line":  26,
+                     "Line":  24,
                      "Column":  33,
                      "Text":  "32\u0027h0000_0000",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2895,9 +2385,9 @@
                      "HoverText":  "32\u0027H00000000 = (32 bit Hex) 00000000; 00000000000000000000000000000000"
                  },
                  {
-                     "Start":  825,
+                     "Start":  673,
                      "Length":  9,
-                     "Line":  27,
+                     "Line":  25,
                      "Column":  3,
                      "Text":  "parameter",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2905,9 +2395,9 @@
                      "HoverText":  "Parameters are constants that can be modified with the defparam statement or through parameter passing in the module instance statement. Parameters are local to the module in which they have been declared."
                  },
                  {
-                     "Start":  835,
+                     "Start":  683,
                      "Length":  1,
-                     "Line":  27,
+                     "Line":  25,
                      "Column":  13,
                      "Text":  "[",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2915,9 +2405,9 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  836,
+                     "Start":  684,
                      "Length":  2,
-                     "Line":  27,
+                     "Line":  25,
                      "Column":  14,
                      "Text":  "31",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2925,9 +2415,9 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  839,
+                     "Start":  687,
                      "Length":  1,
-                     "Line":  27,
+                     "Line":  25,
                      "Column":  17,
                      "Text":  "0",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2935,9 +2425,9 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  840,
+                     "Start":  688,
                      "Length":  1,
-                     "Line":  27,
+                     "Line":  25,
                      "Column":  18,
                      "Text":  "]",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2945,9 +2435,9 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  842,
+                     "Start":  690,
                      "Length":  11,
-                     "Line":  27,
+                     "Line":  25,
                      "Column":  20,
                      "Text":  "LATCHED_IRQ",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2955,9 +2445,9 @@
                      "HoverText":  "module myff_din( .. parameter [31:0] LATCHED_IRQ = 32\u0027h ffff_ffff .. )"
                  },
                  {
-                     "Start":  856,
+                     "Start":  704,
                      "Length":  14,
-                     "Line":  27,
+                     "Line":  25,
                      "Column":  34,
                      "Text":  "32\u0027h ffff_ffff",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2965,9 +2455,9 @@
                      "HoverText":  "32\u0027HFFFFFFFF = (32 bit Hex) FFFFFFFF; 11111111111111111111111111111111"
                  },
                  {
-                     "Start":  876,
+                     "Start":  724,
                      "Length":  5,
-                     "Line":  28,
+                     "Line":  26,
                      "Column":  5,
                      "Text":  "input",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2975,9 +2465,9 @@
                      "HoverText":  "The reserved word input is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
                  },
                  {
-                     "Start":  882,
+                     "Start":  730,
                      "Length":  1,
-                     "Line":  28,
+                     "Line":  26,
                      "Column":  11,
                      "Text":  "[",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2985,9 +2475,9 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  883,
+                     "Start":  731,
                      "Length":  1,
-                     "Line":  28,
+                     "Line":  26,
                      "Column":  12,
                      "Text":  "7",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2995,9 +2485,9 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  885,
+                     "Start":  733,
                      "Length":  1,
-                     "Line":  28,
+                     "Line":  26,
                      "Column":  14,
                      "Text":  "0",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -3005,9 +2495,9 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  886,
+                     "Start":  734,
                      "Length":  1,
-                     "Line":  28,
+                     "Line":  26,
                      "Column":  15,
                      "Text":  "]",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -3015,19 +2505,19 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  888,
+                     "Start":  736,
                      "Length":  3,
-                     "Line":  28,
+                     "Line":  26,
                      "Column":  17,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_parameter",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module myff_din( .. input [7:0] din .. )"
                  },
                  {
-                     "Start":  892,
+                     "Start":  740,
                      "Length":  1,
-                     "Line":  29,
+                     "Line":  27,
                      "Column":  1,
                      "Text":  ")",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -3035,19 +2525,19 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  899,
+                     "Start":  747,
                      "Length":  3,
-                     "Line":  30,
+                     "Line":  28,
                      "Column":  5,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_parameter",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module myff_din( .. input [7:0] din .. )"
                  },
                  {
-                     "Start":  902,
+                     "Start":  750,
                      "Length":  1,
-                     "Line":  30,
+                     "Line":  28,
                      "Column":  8,
                      "Text":  "[",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -3055,9 +2545,9 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  903,
+                     "Start":  751,
                      "Length":  1,
-                     "Line":  30,
+                     "Line":  28,
                      "Column":  9,
                      "Text":  "7",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -3065,9 +2555,9 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  905,
+                     "Start":  753,
                      "Length":  1,
-                     "Line":  30,
+                     "Line":  28,
                      "Column":  11,
                      "Text":  "0",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -3075,9 +2565,9 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  906,
+                     "Start":  754,
                      "Length":  1,
-                     "Line":  30,
+                     "Line":  28,
                      "Column":  12,
                      "Text":  "]",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -3085,9 +2575,9 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  911,
+                     "Start":  759,
                      "Length":  1,
-                     "Line":  30,
+                     "Line":  28,
                      "Column":  17,
                      "Text":  "0",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -3095,19 +2585,19 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  915,
+                     "Start":  763,
                      "Length":  3,
-                     "Line":  31,
+                     "Line":  29,
                      "Column":  2,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_parameter",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module myff_din( .. input [7:0] din .. )"
                  },
                  {
-                     "Start":  920,
+                     "Start":  768,
                      "Length":  1,
-                     "Line":  31,
+                     "Line":  29,
                      "Column":  7,
                      "Text":  "1",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -3115,9 +2605,9 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  924,
+                     "Start":  772,
                      "Length":  11,
-                     "Line":  32,
+                     "Line":  30,
                      "Column":  2,
                      "Text":  "LATCHED_IRQ",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -3125,9 +2615,9 @@
                      "HoverText":  "module myff_din( .. parameter [31:0] LATCHED_IRQ = 32\u0027h ffff_ffff .. )"
                  },
                  {
-                     "Start":  938,
+                     "Start":  786,
                      "Length":  1,
-                     "Line":  32,
+                     "Line":  30,
                      "Column":  16,
                      "Text":  "1",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -3135,9 +2625,9 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  941,
+                     "Start":  789,
                      "Length":  9,
-                     "Line":  33,
+                     "Line":  31,
                      "Column":  1,
                      "Text":  "endmodule",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -4852,34 +4342,26 @@
                    },
                    {
                        "Start":  573,
-                       "Length":  1,
+                       "Length":  3,
                        "Line":  20,
                        "Column":  1,
-                       "Text":  "\t",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  574,
-                       "Length":  2,
-                       "Line":  20,
-                       "Column":  2,
-                       "Text":  "/*",
+                       "Text":  "   ",
                        "Context":  "Text"
                    },
                    {
                        "Start":  576,
-                       "Length":  1,
+                       "Length":  11,
                        "Line":  20,
                        "Column":  4,
-                       "Text":  " ",
+                       "Text":  "LATCHED_IRQ",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  577,
-                       "Length":  11,
+                       "Start":  587,
+                       "Length":  1,
                        "Line":  20,
-                       "Column":  5,
-                       "Text":  "LATCHED_IRQ",
+                       "Column":  15,
+                       "Text":  " ",
                        "Context":  "Text"
                    },
                    {
@@ -4887,1053 +4369,653 @@
                        "Length":  1,
                        "Line":  20,
                        "Column":  16,
-                       "Text":  " ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  589,
-                       "Length":  6,
-                       "Line":  20,
-                       "Column":  17,
-                       "Text":  "should",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  595,
-                       "Length":  1,
-                       "Line":  20,
-                       "Column":  23,
-                       "Text":  " ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  596,
-                       "Length":  3,
-                       "Line":  20,
-                       "Column":  24,
-                       "Text":  "NOT",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  599,
-                       "Length":  1,
-                       "Line":  20,
-                       "Column":  27,
-                       "Text":  " ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  600,
-                       "Length":  2,
-                       "Line":  20,
-                       "Column":  28,
-                       "Text":  "be",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  602,
-                       "Length":  1,
-                       "Line":  20,
-                       "Column":  30,
-                       "Text":  " ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  603,
-                       "Length":  11,
-                       "Line":  20,
-                       "Column":  31,
-                       "Text":  "highlighted",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  614,
-                       "Length":  1,
-                       "Line":  20,
-                       "Column":  42,
-                       "Text":  " ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  615,
-                       "Length":  4,
-                       "Line":  20,
-                       "Column":  43,
-                       "Text":  "here",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  619,
-                       "Length":  1,
-                       "Line":  20,
-                       "Column":  47,
-                       "Text":  " ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  620,
-                       "Length":  2,
-                       "Line":  20,
-                       "Column":  48,
-                       "Text":  "in",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  622,
-                       "Length":  1,
-                       "Line":  20,
-                       "Column":  50,
-                       "Text":  " ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  623,
-                       "Length":  4,
-                       "Line":  20,
-                       "Column":  51,
-                       "Text":  "this",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  627,
-                       "Length":  1,
-                       "Line":  20,
-                       "Column":  55,
-                       "Text":  " ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  628,
-                       "Length":  6,
-                       "Line":  20,
-                       "Column":  56,
-                       "Text":  "module",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  634,
-                       "Length":  1,
-                       "Line":  20,
-                       "Column":  62,
-                       "Text":  ",",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  635,
-                       "Length":  1,
-                       "Line":  20,
-                       "Column":  63,
-                       "Text":  " ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  636,
-                       "Length":  7,
-                       "Line":  20,
-                       "Column":  64,
-                       "Text":  "defined",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  643,
-                       "Length":  1,
-                       "Line":  20,
-                       "Column":  71,
-                       "Text":  " ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  644,
-                       "Length":  2,
-                       "Line":  20,
-                       "Column":  72,
-                       "Text":  "in",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  646,
-                       "Length":  1,
-                       "Line":  20,
-                       "Column":  74,
-                       "Text":  " ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  647,
-                       "Length":  8,
-                       "Line":  20,
-                       "Column":  75,
-                       "Text":  "myff_din",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  655,
-                       "Length":  1,
-                       "Line":  20,
-                       "Column":  83,
-                       "Text":  " ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  656,
-                       "Length":  5,
-                       "Line":  20,
-                       "Column":  84,
-                       "Text":  "below",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  661,
-                       "Length":  1,
-                       "Line":  20,
-                       "Column":  89,
-                       "Text":  " ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  662,
-                       "Length":  4,
-                       "Line":  20,
-                       "Column":  90,
-                       "Text":  "only",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  666,
-                       "Length":  1,
-                       "Line":  20,
-                       "Column":  94,
-                       "Text":  " ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  667,
-                       "Length":  2,
-                       "Line":  20,
-                       "Column":  95,
-                       "Text":  "*/",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  670,
-                       "Length":  3,
-                       "Line":  21,
-                       "Column":  1,
-                       "Text":  "   ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  673,
-                       "Length":  11,
-                       "Line":  21,
-                       "Column":  4,
-                       "Text":  "LATCHED_IRQ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  684,
-                       "Length":  1,
-                       "Line":  21,
-                       "Column":  15,
-                       "Text":  " ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  685,
-                       "Length":  1,
-                       "Line":  21,
-                       "Column":  16,
                        "Text":  "=",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  686,
+                       "Start":  589,
                        "Length":  1,
-                       "Line":  21,
+                       "Line":  20,
                        "Column":  17,
                        "Text":  " ",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  687,
+                       "Start":  590,
                        "Length":  1,
-                       "Line":  21,
+                       "Line":  20,
                        "Column":  18,
                        "Text":  "1",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  688,
+                       "Start":  591,
                        "Length":  1,
-                       "Line":  21,
+                       "Line":  20,
                        "Column":  19,
                        "Text":  ";",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  690,
+                       "Start":  593,
                        "Length":  1,
-                       "Line":  22,
+                       "Line":  21,
                        "Column":  1,
                        "Text":  " ",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  691,
+                       "Start":  594,
                        "Length":  9,
-                       "Line":  22,
+                       "Line":  21,
                        "Column":  2,
                        "Text":  "endmodule",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  702,
+                       "Start":  605,
                        "Length":  1,
-                       "Line":  24,
+                       "Line":  23,
                        "Column":  1,
                        "Text":  " ",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  703,
+                       "Start":  606,
                        "Length":  6,
-                       "Line":  24,
+                       "Line":  23,
                        "Column":  2,
                        "Text":  "module",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  709,
+                       "Start":  612,
                        "Length":  1,
-                       "Line":  24,
+                       "Line":  23,
                        "Column":  8,
                        "Text":  " ",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  710,
+                       "Start":  613,
                        "Length":  8,
-                       "Line":  24,
+                       "Line":  23,
                        "Column":  9,
                        "Text":  "myff_din",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  718,
+                       "Start":  621,
                        "Length":  1,
-                       "Line":  24,
+                       "Line":  23,
                        "Column":  17,
                        "Text":  " ",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  719,
+                       "Start":  622,
                        "Length":  1,
-                       "Line":  24,
+                       "Line":  23,
                        "Column":  18,
                        "Text":  "(",
                        "Context":  "RoundBracketOpen"
                    },
                    {
-                       "Start":  722,
+                       "Start":  624,
                        "Length":  1,
-                       "Line":  25,
+                       "Line":  24,
                        "Column":  1,
                        "Text":  "\t",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  723,
-                       "Length":  2,
-                       "Line":  25,
-                       "Column":  2,
-                       "Text":  "/*",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  725,
-                       "Length":  1,
-                       "Line":  25,
-                       "Column":  4,
-                       "Text":  " ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  726,
-                       "Length":  11,
-                       "Line":  25,
-                       "Column":  5,
-                       "Text":  "LATCHED_IRQ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  737,
-                       "Length":  1,
-                       "Line":  25,
-                       "Column":  16,
-                       "Text":  " ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  738,
-                       "Length":  2,
-                       "Line":  25,
-                       "Column":  17,
-                       "Text":  "is",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  740,
-                       "Length":  1,
-                       "Line":  25,
-                       "Column":  19,
-                       "Text":  " ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  741,
-                       "Length":  11,
-                       "Line":  25,
-                       "Column":  20,
-                       "Text":  "highlighted",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  752,
-                       "Length":  1,
-                       "Line":  25,
-                       "Column":  31,
-                       "Text":  " ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  753,
-                       "Length":  4,
-                       "Line":  25,
-                       "Column":  32,
-                       "Text":  "here",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  757,
-                       "Length":  1,
-                       "Line":  25,
-                       "Column":  36,
-                       "Text":  " ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  758,
-                       "Length":  2,
-                       "Line":  25,
-                       "Column":  37,
-                       "Text":  "in",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  760,
-                       "Length":  1,
-                       "Line":  25,
-                       "Column":  39,
-                       "Text":  " ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  761,
-                       "Length":  4,
-                       "Line":  25,
-                       "Column":  40,
-                       "Text":  "this",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  765,
-                       "Length":  1,
-                       "Line":  25,
-                       "Column":  44,
-                       "Text":  " ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  766,
-                       "Length":  6,
-                       "Line":  25,
-                       "Column":  45,
-                       "Text":  "module",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  772,
-                       "Length":  1,
-                       "Line":  25,
-                       "Column":  51,
-                       "Text":  " ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  773,
-                       "Length":  2,
-                       "Line":  25,
-                       "Column":  52,
-                       "Text":  "*/",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  776,
-                       "Length":  1,
-                       "Line":  26,
-                       "Column":  1,
-                       "Text":  "\t",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  777,
+                       "Start":  625,
                        "Length":  9,
-                       "Line":  26,
+                       "Line":  24,
                        "Column":  2,
                        "Text":  "parameter",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  786,
+                       "Start":  634,
                        "Length":  1,
-                       "Line":  26,
+                       "Line":  24,
                        "Column":  11,
                        "Text":  " ",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  787,
+                       "Start":  635,
                        "Length":  1,
-                       "Line":  26,
+                       "Line":  24,
                        "Column":  12,
                        "Text":  "[",
                        "Context":  "SquareBracketOpen"
                    },
                    {
-                       "Start":  788,
+                       "Start":  636,
                        "Length":  2,
-                       "Line":  26,
+                       "Line":  24,
                        "Column":  13,
                        "Text":  "31",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  790,
+                       "Start":  638,
                        "Length":  1,
-                       "Line":  26,
+                       "Line":  24,
                        "Column":  15,
                        "Text":  ":",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  791,
+                       "Start":  639,
                        "Length":  1,
-                       "Line":  26,
+                       "Line":  24,
                        "Column":  16,
                        "Text":  "0",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  792,
+                       "Start":  640,
                        "Length":  1,
-                       "Line":  26,
+                       "Line":  24,
                        "Column":  17,
                        "Text":  "]",
                        "Context":  "SquareBracketClose"
                    },
                    {
-                       "Start":  793,
+                       "Start":  641,
                        "Length":  1,
-                       "Line":  26,
+                       "Line":  24,
                        "Column":  18,
                        "Text":  " ",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  794,
+                       "Start":  642,
                        "Length":  11,
-                       "Line":  26,
+                       "Line":  24,
                        "Column":  19,
                        "Text":  "MASKED_IRQz",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  805,
+                       "Start":  653,
                        "Length":  1,
-                       "Line":  26,
+                       "Line":  24,
                        "Column":  30,
                        "Text":  " ",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  806,
+                       "Start":  654,
                        "Length":  1,
-                       "Line":  26,
+                       "Line":  24,
                        "Column":  31,
                        "Text":  "=",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  807,
+                       "Start":  655,
                        "Length":  1,
-                       "Line":  26,
+                       "Line":  24,
                        "Column":  32,
                        "Text":  " ",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  808,
+                       "Start":  656,
                        "Length":  13,
-                       "Line":  26,
+                       "Line":  24,
                        "Column":  33,
                        "Text":  "32\u0027h0000_0000",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  821,
+                       "Start":  669,
                        "Length":  1,
-                       "Line":  26,
+                       "Line":  24,
                        "Column":  46,
                        "Text":  ",",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  823,
+                       "Start":  671,
                        "Length":  1,
-                       "Line":  27,
+                       "Line":  25,
                        "Column":  1,
                        "Text":  " ",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  824,
+                       "Start":  672,
                        "Length":  1,
-                       "Line":  27,
+                       "Line":  25,
                        "Column":  2,
                        "Text":  "\t",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  825,
+                       "Start":  673,
                        "Length":  9,
-                       "Line":  27,
+                       "Line":  25,
                        "Column":  3,
                        "Text":  "parameter",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  834,
+                       "Start":  682,
                        "Length":  1,
-                       "Line":  27,
+                       "Line":  25,
                        "Column":  12,
                        "Text":  " ",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  835,
+                       "Start":  683,
                        "Length":  1,
-                       "Line":  27,
+                       "Line":  25,
                        "Column":  13,
                        "Text":  "[",
                        "Context":  "SquareBracketOpen"
                    },
                    {
-                       "Start":  836,
+                       "Start":  684,
                        "Length":  2,
-                       "Line":  27,
+                       "Line":  25,
                        "Column":  14,
                        "Text":  "31",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  838,
+                       "Start":  686,
                        "Length":  1,
-                       "Line":  27,
+                       "Line":  25,
                        "Column":  16,
                        "Text":  ":",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  839,
+                       "Start":  687,
                        "Length":  1,
-                       "Line":  27,
+                       "Line":  25,
                        "Column":  17,
                        "Text":  "0",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  840,
+                       "Start":  688,
                        "Length":  1,
-                       "Line":  27,
+                       "Line":  25,
                        "Column":  18,
                        "Text":  "]",
                        "Context":  "SquareBracketClose"
                    },
                    {
-                       "Start":  841,
+                       "Start":  689,
                        "Length":  1,
-                       "Line":  27,
+                       "Line":  25,
                        "Column":  19,
                        "Text":  " ",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  842,
+                       "Start":  690,
                        "Length":  11,
-                       "Line":  27,
+                       "Line":  25,
                        "Column":  20,
                        "Text":  "LATCHED_IRQ",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  853,
+                       "Start":  701,
                        "Length":  1,
-                       "Line":  27,
+                       "Line":  25,
                        "Column":  31,
                        "Text":  " ",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  854,
+                       "Start":  702,
                        "Length":  1,
-                       "Line":  27,
+                       "Line":  25,
                        "Column":  32,
                        "Text":  "=",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  855,
+                       "Start":  703,
                        "Length":  1,
-                       "Line":  27,
+                       "Line":  25,
                        "Column":  33,
                        "Text":  " ",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  856,
+                       "Start":  704,
                        "Length":  14,
-                       "Line":  27,
+                       "Line":  25,
                        "Column":  34,
                        "Text":  "32\u0027h ffff_ffff",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  870,
+                       "Start":  718,
                        "Length":  1,
-                       "Line":  27,
+                       "Line":  25,
                        "Column":  48,
                        "Text":  ";",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  872,
+                       "Start":  720,
                        "Length":  4,
-                       "Line":  28,
+                       "Line":  26,
                        "Column":  1,
                        "Text":  "    ",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  876,
+                       "Start":  724,
                        "Length":  5,
-                       "Line":  28,
+                       "Line":  26,
                        "Column":  5,
                        "Text":  "input",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  881,
+                       "Start":  729,
                        "Length":  1,
-                       "Line":  28,
+                       "Line":  26,
                        "Column":  10,
                        "Text":  " ",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  882,
+                       "Start":  730,
                        "Length":  1,
-                       "Line":  28,
+                       "Line":  26,
                        "Column":  11,
                        "Text":  "[",
                        "Context":  "SquareBracketOpen"
                    },
                    {
-                       "Start":  883,
+                       "Start":  731,
                        "Length":  1,
-                       "Line":  28,
+                       "Line":  26,
                        "Column":  12,
                        "Text":  "7",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  884,
+                       "Start":  732,
                        "Length":  1,
-                       "Line":  28,
+                       "Line":  26,
                        "Column":  13,
                        "Text":  ":",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  885,
+                       "Start":  733,
                        "Length":  1,
-                       "Line":  28,
+                       "Line":  26,
                        "Column":  14,
                        "Text":  "0",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  886,
+                       "Start":  734,
                        "Length":  1,
-                       "Line":  28,
+                       "Line":  26,
                        "Column":  15,
                        "Text":  "]",
                        "Context":  "SquareBracketClose"
                    },
                    {
-                       "Start":  887,
+                       "Start":  735,
                        "Length":  1,
-                       "Line":  28,
+                       "Line":  26,
                        "Column":  16,
                        "Text":  " ",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  888,
+                       "Start":  736,
                        "Length":  3,
-                       "Line":  28,
+                       "Line":  26,
                        "Column":  17,
                        "Text":  "din",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  892,
+                       "Start":  740,
                        "Length":  1,
-                       "Line":  29,
+                       "Line":  27,
                        "Column":  1,
                        "Text":  ")",
                        "Context":  "RoundBracketClose"
                    },
                    {
-                       "Start":  893,
+                       "Start":  741,
                        "Length":  1,
-                       "Line":  29,
+                       "Line":  27,
                        "Column":  2,
                        "Text":  ";",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  895,
+                       "Start":  743,
                        "Length":  4,
-                       "Line":  30,
+                       "Line":  28,
                        "Column":  1,
                        "Text":  "    ",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  899,
+                       "Start":  747,
                        "Length":  3,
-                       "Line":  30,
+                       "Line":  28,
                        "Column":  5,
                        "Text":  "din",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  902,
+                       "Start":  750,
                        "Length":  1,
-                       "Line":  30,
+                       "Line":  28,
                        "Column":  8,
                        "Text":  "[",
                        "Context":  "SquareBracketOpen"
                    },
                    {
-                       "Start":  903,
+                       "Start":  751,
                        "Length":  1,
-                       "Line":  30,
+                       "Line":  28,
                        "Column":  9,
                        "Text":  "7",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  904,
+                       "Start":  752,
                        "Length":  1,
-                       "Line":  30,
+                       "Line":  28,
                        "Column":  10,
                        "Text":  ":",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  905,
+                       "Start":  753,
                        "Length":  1,
-                       "Line":  30,
+                       "Line":  28,
                        "Column":  11,
                        "Text":  "0",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  906,
+                       "Start":  754,
                        "Length":  1,
-                       "Line":  30,
+                       "Line":  28,
                        "Column":  12,
                        "Text":  "]",
                        "Context":  "SquareBracketClose"
                    },
                    {
-                       "Start":  907,
+                       "Start":  755,
                        "Length":  1,
-                       "Line":  30,
+                       "Line":  28,
                        "Column":  13,
                        "Text":  " ",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  908,
+                       "Start":  756,
                        "Length":  1,
-                       "Line":  30,
+                       "Line":  28,
                        "Column":  14,
                        "Text":  "=",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  909,
+                       "Start":  757,
                        "Length":  1,
-                       "Line":  30,
+                       "Line":  28,
                        "Column":  15,
                        "Text":  "=",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  910,
+                       "Start":  758,
                        "Length":  1,
-                       "Line":  30,
+                       "Line":  28,
                        "Column":  16,
                        "Text":  " ",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  911,
+                       "Start":  759,
                        "Length":  1,
-                       "Line":  30,
+                       "Line":  28,
                        "Column":  17,
                        "Text":  "0",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  912,
+                       "Start":  760,
                        "Length":  1,
-                       "Line":  30,
+                       "Line":  28,
                        "Column":  18,
                        "Text":  ";",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  914,
+                       "Start":  762,
                        "Length":  1,
-                       "Line":  31,
+                       "Line":  29,
                        "Column":  1,
                        "Text":  "\t",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  915,
+                       "Start":  763,
                        "Length":  3,
-                       "Line":  31,
+                       "Line":  29,
                        "Column":  2,
                        "Text":  "din",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  918,
+                       "Start":  766,
                        "Length":  1,
-                       "Line":  31,
+                       "Line":  29,
                        "Column":  5,
                        "Text":  " ",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  919,
+                       "Start":  767,
                        "Length":  1,
-                       "Line":  31,
+                       "Line":  29,
                        "Column":  6,
                        "Text":  "=",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  920,
+                       "Start":  768,
                        "Length":  1,
-                       "Line":  31,
+                       "Line":  29,
                        "Column":  7,
                        "Text":  "1",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  921,
+                       "Start":  769,
                        "Length":  1,
-                       "Line":  31,
+                       "Line":  29,
                        "Column":  8,
                        "Text":  ";",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  923,
+                       "Start":  771,
                        "Length":  1,
-                       "Line":  32,
+                       "Line":  30,
                        "Column":  1,
                        "Text":  "\t",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  924,
+                       "Start":  772,
                        "Length":  11,
-                       "Line":  32,
+                       "Line":  30,
                        "Column":  2,
                        "Text":  "LATCHED_IRQ",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  935,
+                       "Start":  783,
                        "Length":  1,
-                       "Line":  32,
+                       "Line":  30,
                        "Column":  13,
                        "Text":  " ",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  936,
+                       "Start":  784,
                        "Length":  1,
-                       "Line":  32,
+                       "Line":  30,
                        "Column":  14,
                        "Text":  "=",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  937,
+                       "Start":  785,
                        "Length":  1,
-                       "Line":  32,
+                       "Line":  30,
                        "Column":  15,
                        "Text":  " ",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  938,
+                       "Start":  786,
                        "Length":  1,
-                       "Line":  32,
+                       "Line":  30,
                        "Column":  16,
                        "Text":  "1",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  939,
+                       "Start":  787,
                        "Length":  1,
-                       "Line":  32,
+                       "Line":  30,
                        "Column":  17,
                        "Text":  ";",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  941,
+                       "Start":  789,
                        "Length":  9,
-                       "Line":  33,
+                       "Line":  31,
                        "Column":  1,
                        "Text":  "endmodule",
                        "Context":  "Undetermined"
@@ -5943,43 +5025,43 @@
                     {
                         "Scope":  "my_din",
                         "Name":  "MASKED_IRQ",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_parameter",
                         "HoverText":  "module my_din( .. parameter [31:0] MASKED_IRQ = 32\u0027H 0000_0000 .. )"
                     },
                     {
                         "Scope":  "my_din",
                         "Name":  "WOWWOW",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_parameter",
                         "HoverText":  "module my_din( .. parameter [5:5] WOWWOW = 32\u0027o ff .. )"
                     },
                     {
                         "Scope":  "my_din",
                         "Name":  "WOWWOWw",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_parameter",
                         "HoverText":  "module my_din( .. parameter [6:6] WOWWOWw = 32\u0027b ff .. )"
                     },
                     {
                         "Scope":  "my_din",
                         "Name":  "mem_addr",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_reg",
                         "HoverText":  "module my_din( .. output reg [31:0] mem_addr .. )"
                     },
                     {
                         "Scope":  "my_din",
                         "Name":  "LATCHED_IR",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_parameter",
                         "HoverText":  "module my_din( .. parameter [31:0] LATCHED_IR .. )"
                     },
                     {
                         "Scope":  "my_din",
                         "Name":  "mywire",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module my_din( .. wire mywire .. )"
                     },
                     {
                         "Scope":  "my_din",
                         "Name":  "test",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_input",
                         "HoverText":  "module my_din( .. input test  .. )"
                     },
                     {
@@ -6021,7 +5103,7 @@
                     {
                         "Scope":  "my_din",
                         "Name":  "trap",
-                        "TokenType":  "Verilog_Variable_output",
+                        "TokenType":  "Verilog_Variable_reg",
                         "HoverText":  "output reg trap"
                     },
                     {
@@ -6123,14 +5205,14 @@
                     {
                         "Scope":  "myff_din",
                         "Name":  "din",
-                        "TokenType":  "Verilog_Variable_parameter",
+                        "TokenType":  "Verilog_Variable_input",
                         "HoverText":  "module myff_din( .. input [7:0] din .. )"
                     },
                     {
                         "Scope":  "myff_din",
                         "Name":  "myff_din",
                         "TokenType":  "Verilog_Variable_module",
-                        "HoverText":  "module myff_din (   [31:0] MASKED_IRQz = 32\u0027h0000_0000,\r\n parameter [31:0] LATCHED_IRQ = 32\u0027h ffff_ffff;\r\ninput [7:0] din)"
+                        "HoverText":  "module myff_din (  [31:0] MASKED_IRQz = 32\u0027h0000_0000,\r\n parameter [31:0] LATCHED_IRQ = 32\u0027h ffff_ffff;\r\ninput [7:0] din)"
                     }
                 ]
 }

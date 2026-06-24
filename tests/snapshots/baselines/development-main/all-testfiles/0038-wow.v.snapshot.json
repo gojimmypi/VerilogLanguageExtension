@@ -99,7 +99,7 @@
                                 "Column":  19,
                                 "Text":  "P1",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_parameter"
                                           ]
                             },
                             {
@@ -169,7 +169,7 @@
                                 "Column":  19,
                                 "Text":  "P2",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_parameter"
                                           ]
                             },
                             {
@@ -411,7 +411,7 @@
                      "Column":  19,
                      "Text":  "P1",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_parameter",
                      "HoverText":  "module picorv32( .. parameter [31:0] P1 = 32\u0027h 0000 .. )"
                  },
                  {
@@ -481,7 +481,7 @@
                      "Column":  19,
                      "Text":  "P2",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_parameter",
                      "HoverText":  "module picorv32( .. parameter [31:0] P2 = 32\u0027h 0000_0000 .. )"
                  },
                  {
@@ -1161,13 +1161,13 @@
                     {
                         "Scope":  "picorv32",
                         "Name":  "P1",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_parameter",
                         "HoverText":  "module picorv32( .. parameter [31:0] P1 = 32\u0027h 0000 .. )"
                     },
                     {
                         "Scope":  "picorv32",
                         "Name":  "P2",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_parameter",
                         "HoverText":  "module picorv32( .. parameter [31:0] P2 = 32\u0027h 0000_0000 .. )"
                     },
                     {

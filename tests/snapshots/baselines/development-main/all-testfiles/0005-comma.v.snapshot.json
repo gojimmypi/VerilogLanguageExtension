@@ -109,7 +109,7 @@
                                 "Column":  14,
                                 "Text":  "din",
                                 "Types":  [
-                                              "Variable"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -279,7 +279,7 @@
                                 "Column":  13,
                                 "Text":  "trap",
                                 "Types":  [
-                                              "Variable_output"
+                                              "Variable_reg"
                                           ]
                             },
                             {
@@ -439,7 +439,7 @@
                                 "Column":  28,
                                 "Text":  "a",
                                 "Types":  [
-                                              "Variable_output"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -523,16 +523,6 @@
                                           ]
                             },
                             {
-                                "Start":  356,
-                                "Length":  17,
-                                "Line":  19,
-                                "Column":  38,
-                                "Text":  "ENABLE_REGS_16_31",
-                                "Types":  [
-                                              "Variable_localparam"
-                                          ]
-                            },
-                            {
                                 "Start":  376,
                                 "Length":  2,
                                 "Line":  19,
@@ -593,16 +583,6 @@
                                           ]
                             },
                             {
-                                "Start":  421,
-                                "Length":  17,
-                                "Line":  20,
-                                "Column":  37,
-                                "Text":  "ENABLE_REGS_16_31",
-                                "Types":  [
-                                              "Variable_localparam"
-                                          ]
-                            },
-                            {
                                 "Start":  441,
                                 "Length":  2,
                                 "Line":  20,
@@ -640,26 +620,6 @@
                                 "Text":  "4",
                                 "Types":  [
                                               "Value"
-                                          ]
-                            },
-                            {
-                                "Start":  454,
-                                "Length":  10,
-                                "Line":  20,
-                                "Column":  70,
-                                "Text":  "ENABLE_IRQ",
-                                "Types":  [
-                                              "Variable_localparam"
-                                          ]
-                            },
-                            {
-                                "Start":  465,
-                                "Length":  16,
-                                "Line":  20,
-                                "Column":  81,
-                                "Text":  "ENABLE_IRQ_QREGS",
-                                "Types":  [
-                                              "Variable_localparam"
                                           ]
                             },
                             {
@@ -1001,7 +961,7 @@
                      "Column":  14,
                      "Text":  "din",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module my_din( .. input [7:0] din .. )"
                  },
                  {
@@ -1171,7 +1131,7 @@
                      "Column":  13,
                      "Text":  "trap",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_output",
+                     "TagDetail":  "Verilog_Variable_reg",
                      "HoverText":  "output reg trap"
                  },
                  {
@@ -1441,7 +1401,7 @@
                      "Column":  28,
                      "Text":  "a",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_output",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module adder( .. input [31:0] a .. )"
                  },
                  {
@@ -1565,16 +1525,6 @@
                      "HoverText":  "localparam integer irqregs_offset = ENABLE_REGS_16_31 ? 32: 16"
                  },
                  {
-                     "Start":  356,
-                     "Length":  17,
-                     "Line":  19,
-                     "Column":  38,
-                     "Text":  "ENABLE_REGS_16_31",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_localparam",
-                     "HoverText":  null
-                 },
-                 {
                      "Start":  376,
                      "Length":  2,
                      "Line":  19,
@@ -1635,16 +1585,6 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  421,
-                     "Length":  17,
-                     "Line":  20,
-                     "Column":  37,
-                     "Text":  "ENABLE_REGS_16_31",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_localparam",
-                     "HoverText":  null
-                 },
-                 {
                      "Start":  441,
                      "Length":  2,
                      "Line":  20,
@@ -1682,26 +1622,6 @@
                      "Text":  "4",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Value",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  454,
-                     "Length":  10,
-                     "Line":  20,
-                     "Column":  70,
-                     "Text":  "ENABLE_IRQ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_localparam",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  465,
-                     "Length":  16,
-                     "Line":  20,
-                     "Column":  81,
-                     "Text":  "ENABLE_IRQ_QREGS",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_localparam",
                      "HoverText":  null
                  },
                  {
@@ -3599,7 +3519,7 @@
                     {
                         "Scope":  "my_din",
                         "Name":  "din",
-                        "TokenType":  "Verilog_Variable",
+                        "TokenType":  "Verilog_Variable_input",
                         "HoverText":  "module my_din( .. input [7:0] din .. )"
                     },
                     {
@@ -3623,7 +3543,7 @@
                     {
                         "Scope":  "my_din",
                         "Name":  "trap",
-                        "TokenType":  "Verilog_Variable_output",
+                        "TokenType":  "Verilog_Variable_reg",
                         "HoverText":  "output reg trap"
                     },
                     {
@@ -3665,7 +3585,7 @@
                     {
                         "Scope":  "adder",
                         "Name":  "a",
-                        "TokenType":  "Verilog_Variable_output",
+                        "TokenType":  "Verilog_Variable_input",
                         "HoverText":  "module adder( .. input [31:0] a .. )"
                     },
                     {

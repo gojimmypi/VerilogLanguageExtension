@@ -1,6 +1,5 @@
 {
     "SchemaVersion":  1,
     "RunName":  "all-testfiles",
-    "GitCommit":  "ba2e032",
     "Manifest":  "tools/vle-ci/manifests/all-testfiles.json"
 }

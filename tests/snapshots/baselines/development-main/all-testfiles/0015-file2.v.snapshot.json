@@ -252,7 +252,7 @@
                      "Text":  "var2",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  null
+                     "HoverText":  "wire [5:5] var2"
                  },
                  {
                      "Start":  23,
@@ -905,7 +905,7 @@
                ],
     "Symbols":  [
                     {
-                        "Scope":  "",
+                        "Scope":  "global",
                         "Name":  "var2",
                         "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "wire [5:5] var2"

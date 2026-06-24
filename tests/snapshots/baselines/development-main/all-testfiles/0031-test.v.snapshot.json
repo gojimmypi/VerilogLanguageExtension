@@ -549,7 +549,7 @@
                                 "Column":  10,
                                 "Text":  "reset",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -689,7 +689,7 @@
                                 "Column":  16,
                                 "Text":  "J2_AD_PORT",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -769,7 +769,7 @@
                                 "Column":  16,
                                 "Text":  "J2_DA_PORT",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_output"
                                           ]
                             },
                             {
@@ -1089,7 +1089,7 @@
                                 "Column":  9,
                                 "Text":  "clk_25mhz",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -1159,7 +1159,7 @@
                                 "Column":  16,
                                 "Text":  "led",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_output"
                                           ]
                             },
                             {
@@ -1179,7 +1179,7 @@
                                 "Column":  10,
                                 "Text":  "J2_AD_CLK",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_output"
                                           ]
                             },
                             {
@@ -1239,7 +1239,7 @@
                                 "Column":  16,
                                 "Text":  "J2_AD_PORT",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -1259,7 +1259,7 @@
                                 "Column":  10,
                                 "Text":  "J2_DA_CLK",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_output"
                                           ]
                             },
                             {
@@ -1319,7 +1319,7 @@
                                 "Column":  16,
                                 "Text":  "J2_DA_PORT",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_output"
                                           ]
                             },
                             {
@@ -1339,7 +1339,7 @@
                                 "Column":  10,
                                 "Text":  "wifi_gpio0",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_output"
                                           ]
                             },
                             {
@@ -1399,7 +1399,7 @@
                                 "Column":  17,
                                 "Text":  "clk_25mhz",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -1429,7 +1429,7 @@
                                 "Column":  12,
                                 "Text":  "wifi_gpio0",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_output"
                                           ]
                             },
                             {
@@ -1539,7 +1539,7 @@
                                 "Column":  9,
                                 "Text":  "J2_AD_CLK",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_output"
                                           ]
                             },
                             {
@@ -1589,7 +1589,7 @@
                                 "Column":  20,
                                 "Text":  "clk_25mhz",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -1679,7 +1679,7 @@
                                 "Column":  9,
                                 "Text":  "J2_DA_CLK",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_output"
                                           ]
                             },
                             {
@@ -1719,7 +1719,7 @@
                                 "Column":  20,
                                 "Text":  "clk_25mhz",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -1799,7 +1799,7 @@
                                 "Column":  9,
                                 "Text":  "led",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_output"
                                           ]
                             },
                             {
@@ -1889,7 +1889,7 @@
                                 "Column":  9,
                                 "Text":  "J2_DA_PORT",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_output"
                                           ]
                             },
                             {
@@ -2059,7 +2059,7 @@
                                 "Column":  9,
                                 "Text":  "J2_DA_PORT",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_output"
                                           ]
                             },
                             {
@@ -2269,7 +2269,7 @@
                                 "Column":  4,
                                 "Text":  "J2_AD_PORT",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -2459,7 +2459,7 @@
                                 "Column":  28,
                                 "Text":  "J2_AD_PORT",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -4532,7 +4532,7 @@
                      "Text":  "i_clk",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  null
+                     "HoverText":  "wire i_clk"
                  },
                  {
                      "Start":  681,
@@ -4961,7 +4961,7 @@
                      "Column":  10,
                      "Text":  "reset",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module ulx3s_adda( .. input reset .. )"
                  },
                  {
@@ -5101,7 +5101,7 @@
                      "Column":  16,
                      "Text":  "J2_AD_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module ulx3s_adda( .. input [7:0] J2_AD_PORT .. )"
                  },
                  {
@@ -5181,7 +5181,7 @@
                      "Column":  16,
                      "Text":  "J2_DA_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
+                     "TagDetail":  "Verilog_Variable_output",
                      "HoverText":  "module ulx3s_adda( .. output [7:0] J2_DA_PORT .. )"
                  },
                  {
@@ -5581,7 +5581,7 @@
                      "Column":  9,
                      "Text":  "clk_25mhz",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module top( .. input clk_25mhz .. )"
                  },
                  {
@@ -5701,7 +5701,7 @@
                      "Column":  16,
                      "Text":  "led",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
+                     "TagDetail":  "Verilog_Variable_output",
                      "HoverText":  "module top( .. output [7:0] led .. )"
                  },
                  {
@@ -5721,7 +5721,7 @@
                      "Column":  10,
                      "Text":  "J2_AD_CLK",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
+                     "TagDetail":  "Verilog_Variable_output",
                      "HoverText":  "module top( .. output J2_AD_CLK .. )"
                  },
                  {
@@ -5781,7 +5781,7 @@
                      "Column":  16,
                      "Text":  "J2_AD_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module top( .. input [7:0] J2_AD_PORT .. )"
                  },
                  {
@@ -5801,7 +5801,7 @@
                      "Column":  10,
                      "Text":  "J2_DA_CLK",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
+                     "TagDetail":  "Verilog_Variable_output",
                      "HoverText":  "module top( .. output J2_DA_CLK .. )"
                  },
                  {
@@ -5861,7 +5861,7 @@
                      "Column":  16,
                      "Text":  "J2_DA_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
+                     "TagDetail":  "Verilog_Variable_output",
                      "HoverText":  "module top( .. output [7:0] J2_DA_PORT .. )"
                  },
                  {
@@ -5881,7 +5881,7 @@
                      "Column":  10,
                      "Text":  "wifi_gpio0",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
+                     "TagDetail":  "Verilog_Variable_output",
                      "HoverText":  "module top( .. output wifi_gpio0 .. )"
                  },
                  {
@@ -5941,7 +5941,7 @@
                      "Column":  17,
                      "Text":  "clk_25mhz",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module top( .. input clk_25mhz .. )"
                  },
                  {
@@ -6131,7 +6131,7 @@
                      "Column":  12,
                      "Text":  "wifi_gpio0",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
+                     "TagDetail":  "Verilog_Variable_output",
                      "HoverText":  "module top( .. output wifi_gpio0 .. )"
                  },
                  {
@@ -7501,7 +7501,7 @@
                      "Column":  9,
                      "Text":  "J2_AD_CLK",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
+                     "TagDetail":  "Verilog_Variable_output",
                      "HoverText":  "module top( .. output J2_AD_CLK .. )"
                  },
                  {
@@ -7601,7 +7601,7 @@
                      "Column":  20,
                      "Text":  "clk_25mhz",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module top( .. input clk_25mhz .. )"
                  },
                  {
@@ -8551,7 +8551,7 @@
                      "Column":  9,
                      "Text":  "J2_DA_CLK",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
+                     "TagDetail":  "Verilog_Variable_output",
                      "HoverText":  "module top( .. output J2_DA_CLK .. )"
                  },
                  {
@@ -8591,7 +8591,7 @@
                      "Column":  20,
                      "Text":  "clk_25mhz",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module top( .. input clk_25mhz .. )"
                  },
                  {
@@ -8671,7 +8671,7 @@
                      "Column":  9,
                      "Text":  "led",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
+                     "TagDetail":  "Verilog_Variable_output",
                      "HoverText":  "module top( .. output [7:0] led .. )"
                  },
                  {
@@ -8761,7 +8761,7 @@
                      "Column":  9,
                      "Text":  "J2_DA_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
+                     "TagDetail":  "Verilog_Variable_output",
                      "HoverText":  "module top( .. output [7:0] J2_DA_PORT .. )"
                  },
                  {
@@ -9121,7 +9121,7 @@
                      "Column":  9,
                      "Text":  "J2_DA_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
+                     "TagDetail":  "Verilog_Variable_output",
                      "HoverText":  "module top( .. output [7:0] J2_DA_PORT .. )"
                  },
                  {
@@ -10291,7 +10291,7 @@
                      "Column":  4,
                      "Text":  "J2_AD_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module top( .. input [7:0] J2_AD_PORT .. )"
                  },
                  {
@@ -10571,7 +10571,7 @@
                      "Column":  28,
                      "Text":  "J2_AD_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
+                     "TagDetail":  "Verilog_Variable_input",
                      "HoverText":  "module top( .. input [7:0] J2_AD_PORT .. )"
                  },
                  {
@@ -23449,7 +23449,7 @@
                ],
     "Symbols":  [
                     {
-                        "Scope":  "",
+                        "Scope":  "global",
                         "Name":  "i_clk",
                         "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "wire i_clk"
@@ -23463,7 +23463,7 @@
                     {
                         "Scope":  "ulx3s_adda",
                         "Name":  "reset",
-                        "TokenType":  "Verilog_Variable_wire",
+                        "TokenType":  "Verilog_Variable_input",
                         "HoverText":  "module ulx3s_adda( .. input reset .. )"
                     },
                     {
@@ -23481,7 +23481,7 @@
                     {
                         "Scope":  "ulx3s_adda",
                         "Name":  "J2_AD_PORT",
-                        "TokenType":  "Verilog_Variable_wire",
+                        "TokenType":  "Verilog_Variable_input",
                         "HoverText":  "module ulx3s_adda( .. input [7:0] J2_AD_PORT .. )"
                     },
                     {
@@ -23493,7 +23493,7 @@
                     {
                         "Scope":  "ulx3s_adda",
                         "Name":  "J2_DA_PORT",
-                        "TokenType":  "Verilog_Variable_wire",
+                        "TokenType":  "Verilog_Variable_output",
                         "HoverText":  "module ulx3s_adda( .. output [7:0] J2_DA_PORT .. )"
                     },
                     {
@@ -23517,43 +23517,43 @@
                     {
                         "Scope":  "top",
                         "Name":  "clk_25mhz",
-                        "TokenType":  "Verilog_Variable_wire",
+                        "TokenType":  "Verilog_Variable_input",
                         "HoverText":  "module top( .. input clk_25mhz .. )"
                     },
                     {
                         "Scope":  "top",
                         "Name":  "led",
-                        "TokenType":  "Verilog_Variable_wire",
+                        "TokenType":  "Verilog_Variable_output",
                         "HoverText":  "module top( .. output [7:0] led .. )"
                     },
                     {
                         "Scope":  "top",
                         "Name":  "J2_AD_CLK",
-                        "TokenType":  "Verilog_Variable_wire",
+                        "TokenType":  "Verilog_Variable_output",
                         "HoverText":  "module top( .. output J2_AD_CLK .. )"
                     },
                     {
                         "Scope":  "top",
                         "Name":  "J2_AD_PORT",
-                        "TokenType":  "Verilog_Variable_wire",
+                        "TokenType":  "Verilog_Variable_input",
                         "HoverText":  "module top( .. input [7:0] J2_AD_PORT .. )"
                     },
                     {
                         "Scope":  "top",
                         "Name":  "J2_DA_CLK",
-                        "TokenType":  "Verilog_Variable_wire",
+                        "TokenType":  "Verilog_Variable_output",
                         "HoverText":  "module top( .. output J2_DA_CLK .. )"
                     },
                     {
                         "Scope":  "top",
                         "Name":  "J2_DA_PORT",
-                        "TokenType":  "Verilog_Variable_wire",
+                        "TokenType":  "Verilog_Variable_output",
                         "HoverText":  "module top( .. output [7:0] J2_DA_PORT .. )"
                     },
                     {
                         "Scope":  "top",
                         "Name":  "wifi_gpio0",
-                        "TokenType":  "Verilog_Variable_wire",
+                        "TokenType":  "Verilog_Variable_output",
                         "HoverText":  "module top( .. output wifi_gpio0 .. )"
                     },
                     {

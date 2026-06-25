@@ -652,7 +652,7 @@
                      "Text":  "oops",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_duplicate",
-                     "HoverText":  "duplicate? oops"
+                     "HoverText":  "duplicate? logic oops = ~q"
                  },
                  {
                      "Start":  184,
@@ -1052,7 +1052,7 @@
                      "Text":  "oops",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_duplicate",
-                     "HoverText":  "duplicate? oops"
+                     "HoverText":  "duplicate? logic oops = ~q"
                  },
                  {
                      "Start":  442,
@@ -2794,15 +2794,15 @@
                     },
                     {
                         "Scope":  "global",
-                        "Name":  "oops",
-                        "TokenType":  "Verilog_Variable_duplicate",
-                        "HoverText":  "duplicate? oops"
-                    },
-                    {
-                        "Scope":  "global",
                         "Name":  "q",
                         "TokenType":  "Verilog_Variable_reg",
                         "HoverText":  "logic q = 0"
+                    },
+                    {
+                        "Scope":  "global",
+                        "Name":  "oops",
+                        "TokenType":  "Verilog_Variable_duplicate",
+                        "HoverText":  "duplicate? logic oops = ~q"
                     },
                     {
                         "Scope":  "global",

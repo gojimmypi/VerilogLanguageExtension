@@ -413,14 +413,6 @@ namespace VerilogLanguage
             public VerilogTokenTypes DeclarationType { get; set; }
         }
 
-        private sealed class DeclarationBackfillCandidate
-        {
-            public string Scope { get; set; }
-            public string Name { get; set; }
-            public string HoverText { get; set; }
-            public VerilogTokenTypes VariableType { get; set; }
-        }
-
         private static readonly List<string> PreprocessorConditionStack = new List<string>();
         private static readonly List<List<string>> PreprocessorBranchTextStack = new List<List<string>>();
         private static readonly List<int> PreprocessorConditionalGroupIdStack = new List<int>();
@@ -643,56 +635,6 @@ namespace VerilogLanguage
             return lineText;
         }
 
-        private static bool ContainsStandaloneCodeKeyword(string lineText, string keyword) {
-            if (string.IsNullOrEmpty(lineText) || string.IsNullOrEmpty(keyword)) {
-                return false;
-            }
-
-            string codeText = StripLineCommentForDuplicateScan(lineText);
-            int searchStart = 0;
-            while (searchStart < codeText.Length) {
-                int index = codeText.IndexOf(keyword, searchStart, StringComparison.Ordinal);
-                if (index < 0) {
-                    return false;
-                }
-
-                bool validPrefix = index == 0 || !IsVerilogIdentifierChar(codeText[index - 1]);
-                int afterIndex = index + keyword.Length;
-                bool validSuffix = afterIndex >= codeText.Length || !IsVerilogIdentifierChar(codeText[afterIndex]);
-
-                if (validPrefix && validSuffix) {
-                    return true;
-                }
-
-                searchStart = index + keyword.Length;
-            }
-
-            return false;
-        }
-
-        private static bool CodeLineStartsWithDeclarationKeyword(string lineText) {
-            string codeText = StripLineCommentForDuplicateScan(lineText);
-            if (string.IsNullOrWhiteSpace(codeText)) {
-                return false;
-            }
-
-            int index = 0;
-            while (index < codeText.Length && char.IsWhiteSpace(codeText[index])) {
-                index++;
-            }
-
-            int keywordStart = index;
-            while (index < codeText.Length && IsVerilogIdentifierChar(codeText[index])) {
-                index++;
-            }
-
-            if (index == keywordStart) {
-                return false;
-            }
-
-            return IsDeclarationStartKeyword(codeText.Substring(keywordStart, index - keywordStart));
-        }
-
         private static string NormalizeDeclarationDuplicateScope(string scope) {
             if (string.IsNullOrEmpty(scope)) {
                 scope = "global";
@@ -745,190 +687,127 @@ namespace VerilogLanguage
             return NormalizeDeclarationDuplicateScope(scope);
         }
 
-        public static bool TryGetFunctionNameFromLineText(string lineText, out string functionName) {
-            functionName = string.Empty;
-
-            if (!ContainsStandaloneCodeKeyword(lineText, "function")) {
-                return false;
+        private static int FindStandaloneCodeKeyword(string lineText, string keyword) {
+            string codeText = StripLineCommentForDuplicateScan(lineText);
+            if (string.IsNullOrEmpty(codeText) || string.IsNullOrEmpty(keyword)) {
+                return -1;
             }
 
+            int searchStart = 0;
+            while (searchStart < codeText.Length) {
+                int index = codeText.IndexOf(keyword, searchStart, StringComparison.Ordinal);
+                if (index < 0) {
+                    return -1;
+                }
+
+                bool validPrefix = index == 0 || !IsVerilogIdentifierChar(codeText[index - 1]);
+                int afterIndex = index + keyword.Length;
+                bool validSuffix = afterIndex >= codeText.Length || !IsVerilogIdentifierChar(codeText[afterIndex]);
+
+                if (validPrefix && validSuffix) {
+                    return index;
+                }
+
+                searchStart = index + keyword.Length;
+            }
+
+            return -1;
+        }
+
+        private static bool CodeLineStartsWithDeclarationKeyword(string lineText) {
             string codeText = StripLineCommentForDuplicateScan(lineText);
             if (string.IsNullOrWhiteSpace(codeText)) {
                 return false;
             }
 
-            VerilogToken[] lineTokens = VerilogKeywordSplit(codeText, new VerilogToken());
-            List<string> items = new List<string>();
-
-            foreach (VerilogToken token in lineTokens) {
-                string itemText = (token.Part ?? string.Empty).Trim();
-                if (!string.IsNullOrEmpty(itemText)) {
-                    items.Add(itemText);
-                }
+            int index = 0;
+            while (index < codeText.Length && char.IsWhiteSpace(codeText[index])) {
+                index++;
             }
 
-            int functionIndex = -1;
-            for (int i = 0; i < items.Count; i++) {
-                if (items[i] == "function") {
-                    functionIndex = i;
-                    break;
-                }
+            int start = index;
+            while (index < codeText.Length && IsVerilogIdentifierChar(codeText[index])) {
+                index++;
             }
 
-            if (functionIndex < 0) {
+            if (index == start) {
                 return false;
             }
 
+            return IsDeclarationStartKeyword(codeText.Substring(start, index - start));
+        }
+
+        private static bool TryGetRoutineNameFromLineText(string lineText, string keyword, out string routineName) {
+            routineName = string.Empty;
+
+            int keywordIndex = FindStandaloneCodeKeyword(lineText, keyword);
+            if (keywordIndex < 0) {
+                return false;
+            }
+
+            string codeText = StripLineCommentForDuplicateScan(lineText);
+            int index = keywordIndex + keyword.Length;
             int squareDepth = 0;
-            for (int i = functionIndex + 1; i < items.Count; i++) {
-                string itemText = items[i];
 
-                if (itemText == "[") {
-                    squareDepth++;
-                    continue;
-                }
+            while (index < codeText.Length) {
+                char c = codeText[index];
 
-                if (itemText == "]") {
-                    if (squareDepth > 0) {
-                        squareDepth--;
-                    }
-                    continue;
-                }
-
-                if (squareDepth > 0) {
-                    continue;
-                }
-
-                if (itemText == ";") {
+                if (c == ';') {
                     return false;
                 }
 
-                if (IsDelimiter(itemText) || IsNumeric(itemText) || IsVerilogValue(itemText) ||
-                    IsFunctionReturnTypeToken(itemText)) {
+                if (c == '[') {
+                    squareDepth++;
+                    index++;
                     continue;
                 }
 
-                if (IsIdentifier(itemText)) {
-                    functionName = itemText;
+                if (c == ']') {
+                    if (squareDepth > 0) {
+                        squareDepth--;
+                    }
+                    index++;
+                    continue;
+                }
+
+                if (squareDepth > 0 || !IsVerilogIdentifierChar(c)) {
+                    index++;
+                    continue;
+                }
+
+                int nameStart = index;
+                while (index < codeText.Length && IsVerilogIdentifierChar(codeText[index])) {
+                    index++;
+                }
+
+                string candidate = codeText.Substring(nameStart, index - nameStart);
+                if (IsFunctionReturnTypeToken(candidate)) {
+                    continue;
+                }
+
+                if (IsIdentifier(candidate)) {
+                    routineName = candidate;
                     return true;
                 }
             }
 
             return false;
+        }
+
+        public static bool TryGetFunctionNameFromLineText(string lineText, out string functionName) {
+            return TryGetRoutineNameFromLineText(lineText, "function", out functionName);
         }
 
         public static bool TryGetTaskNameFromLineText(string lineText, out string taskName) {
-            taskName = string.Empty;
-
-            if (!ContainsStandaloneCodeKeyword(lineText, "task")) {
-                return false;
-            }
-
-            string codeText = StripLineCommentForDuplicateScan(lineText);
-            if (string.IsNullOrWhiteSpace(codeText)) {
-                return false;
-            }
-
-            VerilogToken[] lineTokens = VerilogKeywordSplit(codeText, new VerilogToken());
-            List<string> items = new List<string>();
-
-            foreach (VerilogToken token in lineTokens) {
-                string itemText = (token.Part ?? string.Empty).Trim();
-                if (!string.IsNullOrEmpty(itemText)) {
-                    items.Add(itemText);
-                }
-            }
-
-            int taskIndex = -1;
-            for (int i = 0; i < items.Count; i++) {
-                if (items[i] == "task") {
-                    taskIndex = i;
-                    break;
-                }
-            }
-
-            if (taskIndex < 0) {
-                return false;
-            }
-
-            int squareDepth = 0;
-            for (int i = taskIndex + 1; i < items.Count; i++) {
-                string itemText = items[i];
-
-                if (itemText == "[") {
-                    squareDepth++;
-                    continue;
-                }
-
-                if (itemText == "]") {
-                    if (squareDepth > 0) {
-                        squareDepth--;
-                    }
-                    continue;
-                }
-
-                if (squareDepth > 0) {
-                    continue;
-                }
-
-                if (itemText == ";") {
-                    return false;
-                }
-
-                if (IsDelimiter(itemText) || IsNumeric(itemText) || IsVerilogValue(itemText) ||
-                    IsFunctionReturnTypeToken(itemText)) {
-                    continue;
-                }
-
-                if (IsIdentifier(itemText)) {
-                    taskName = itemText;
-                    return true;
-                }
-            }
-
-            return false;
+            return TryGetRoutineNameFromLineText(lineText, "task", out taskName);
         }
 
         public static bool IsEndFunctionLineText(string lineText) {
-            if (!ContainsStandaloneCodeKeyword(lineText, "endfunction")) {
-                return false;
-            }
-
-            string codeText = StripLineCommentForDuplicateScan(lineText);
-            if (string.IsNullOrWhiteSpace(codeText)) {
-                return false;
-            }
-
-            VerilogToken[] lineTokens = VerilogKeywordSplit(codeText, new VerilogToken());
-            foreach (VerilogToken token in lineTokens) {
-                string itemText = (token.Part ?? string.Empty).Trim();
-                if (itemText == "endfunction") {
-                    return true;
-                }
-            }
-
-            return false;
+            return FindStandaloneCodeKeyword(lineText, "endfunction") >= 0;
         }
 
         public static bool IsEndTaskLineText(string lineText) {
-            if (!ContainsStandaloneCodeKeyword(lineText, "endtask")) {
-                return false;
-            }
-
-            string codeText = StripLineCommentForDuplicateScan(lineText);
-            if (string.IsNullOrWhiteSpace(codeText)) {
-                return false;
-            }
-
-            VerilogToken[] lineTokens = VerilogKeywordSplit(codeText, new VerilogToken());
-            foreach (VerilogToken token in lineTokens) {
-                string itemText = (token.Part ?? string.Empty).Trim();
-                if (itemText == "endtask") {
-                    return true;
-                }
-            }
-
-            return false;
+            return FindStandaloneCodeKeyword(lineText, "endtask") >= 0;
         }
 
         private static string ActiveDeclarationScope(string scope) {
@@ -1083,88 +962,23 @@ namespace VerilogLanguage
             return hoverText.Trim().TrimEnd(',', ';').Trim();
         }
 
-        private static void BackfillMissingDeclarationsFromSnapshot(ITextSnapshot snapshot) {
-            if (snapshot == null || snapshot.Length == 0) {
+        private static void AddMissingDeclarationSymbol(
+            string scope,
+            string name,
+            string hoverText,
+            VerilogTokenTypes variableType) {
+            if (string.IsNullOrEmpty(scope) || string.IsNullOrEmpty(name) || !IsIdentifier(name)) {
                 return;
             }
 
-            string activeLocalScope = string.Empty;
+            EnsureHoverScope(scope);
 
-            foreach (ITextSnapshotLine line in snapshot.Lines) {
-                string lineText = line.GetText();
-                bool mayContainFunction = ContainsStandaloneCodeKeyword(lineText, "function");
-                bool mayContainTask = ContainsStandaloneCodeKeyword(lineText, "task");
-                bool mayContainDeclaration = CodeLineStartsWithDeclarationKeyword(lineText);
-                bool mayContainEndScope = !string.IsNullOrEmpty(activeLocalScope) &&
-                    (ContainsStandaloneCodeKeyword(lineText, "endfunction") || ContainsStandaloneCodeKeyword(lineText, "endtask"));
-
-                if (!mayContainFunction && !mayContainTask && !mayContainDeclaration && !mayContainEndScope) {
-                    continue;
-                }
-
-                string moduleScope = string.Empty;
-                if (mayContainFunction || mayContainTask || (mayContainDeclaration && string.IsNullOrEmpty(activeLocalScope))) {
-                    moduleScope = NormalizeDeclarationDuplicateScope(TextModuleName(line.LineNumber, 0));
-                }
-
-                string functionName;
-                string taskName;
-
-                if (mayContainFunction && TryGetFunctionNameFromLineText(lineText, out functionName)) {
-                    activeLocalScope = FunctionLocalScopeName(moduleScope, functionName);
-                }
-                else if (mayContainTask && TryGetTaskNameFromLineText(lineText, out taskName)) {
-                    activeLocalScope = TaskLocalScopeName(moduleScope, taskName);
-                }
-
-                VerilogTokenTypes variableType;
-                if (mayContainDeclaration && TryGetDeclarationVariableTypeFromText(lineText, out variableType)) {
-                    string scope = string.IsNullOrEmpty(activeLocalScope) ? moduleScope : activeLocalScope;
-                    string hoverText = BackfillDeclarationHoverText(lineText);
-
-                    foreach (string name in CollectDeclarationNamesInLine(lineText)) {
-                        if (string.IsNullOrEmpty(name)) {
-                            continue;
-                        }
-
-                        EnsureHoverScope(scope);
-
-                        if (!VerilogVariables[scope].ContainsKey(name)) {
-                            VerilogVariables[scope].Add(name, variableType);
-                        }
-
-                        if (!string.IsNullOrEmpty(hoverText) && !VerilogVariableHoverText[scope].ContainsKey(name)) {
-                            VerilogVariableHoverText[scope].Add(name, hoverText);
-                        }
-                    }
-                }
-
-                if (mayContainEndScope && (IsEndFunctionLineText(lineText) || IsEndTaskLineText(lineText))) {
-                    activeLocalScope = string.Empty;
-                }
-            }
-        }
-
-        private static void ApplyDeclarationBackfillCandidates(List<DeclarationBackfillCandidate> candidates) {
-            if (candidates == null || candidates.Count == 0) {
-                return;
+            if (!VerilogVariables[scope].ContainsKey(name)) {
+                VerilogVariables[scope].Add(name, variableType);
             }
 
-            foreach (DeclarationBackfillCandidate candidate in candidates) {
-                if (candidate == null || string.IsNullOrEmpty(candidate.Scope) || string.IsNullOrEmpty(candidate.Name)) {
-                    continue;
-                }
-
-                EnsureHoverScope(candidate.Scope);
-
-                if (!VerilogVariables[candidate.Scope].ContainsKey(candidate.Name)) {
-                    VerilogVariables[candidate.Scope].Add(candidate.Name, candidate.VariableType);
-                }
-
-                if (!string.IsNullOrEmpty(candidate.HoverText) &&
-                    !VerilogVariableHoverText[candidate.Scope].ContainsKey(candidate.Name)) {
-                    VerilogVariableHoverText[candidate.Scope].Add(candidate.Name, candidate.HoverText);
-                }
+            if (!string.IsNullOrEmpty(hoverText) && !VerilogVariableHoverText[scope].ContainsKey(name)) {
+                VerilogVariableHoverText[scope].Add(name, hoverText);
             }
         }
 
@@ -1676,39 +1490,44 @@ namespace VerilogLanguage
             }
 
             Dictionary<string, Dictionary<string, int>> countsByScope = new Dictionary<string, Dictionary<string, int>>();
-            List<DeclarationBackfillCandidate> backfillCandidates = new List<DeclarationBackfillCandidate>();
 
             string activeLocalScope = string.Empty;
 
             foreach (ITextSnapshotLine line in snapshot.Lines) {
                 string lineText = line.GetText();
-                bool mayContainFunction = ContainsStandaloneCodeKeyword(lineText, "function");
-                bool mayContainTask = ContainsStandaloneCodeKeyword(lineText, "task");
+                bool mayContainFunction = lineText.IndexOf("function", StringComparison.Ordinal) >= 0;
+                bool mayContainTask = lineText.IndexOf("task", StringComparison.Ordinal) >= 0;
                 bool mayContainDeclaration = CodeLineStartsWithDeclarationKeyword(lineText);
-                bool mayContainEndScope = !string.IsNullOrEmpty(activeLocalScope) &&
-                    (ContainsStandaloneCodeKeyword(lineText, "endfunction") || ContainsStandaloneCodeKeyword(lineText, "endtask"));
+                bool mayEndLocalScope = !string.IsNullOrEmpty(activeLocalScope) &&
+                    (lineText.IndexOf("endfunction", StringComparison.Ordinal) >= 0 ||
+                     lineText.IndexOf("endtask", StringComparison.Ordinal) >= 0);
 
-                if (!mayContainFunction && !mayContainTask && !mayContainDeclaration && !mayContainEndScope) {
+                if (!mayContainFunction && !mayContainTask && !mayContainDeclaration && !mayEndLocalScope) {
                     continue;
                 }
 
                 string moduleScope = string.Empty;
-                if (mayContainFunction || mayContainTask || (mayContainDeclaration && string.IsNullOrEmpty(activeLocalScope))) {
-                    moduleScope = NormalizeDeclarationDuplicateScope(TextModuleName(line.LineNumber, 0));
-                }
-
                 string functionName;
                 string taskName;
 
                 if (mayContainFunction && TryGetFunctionNameFromLineText(lineText, out functionName)) {
+                    moduleScope = NormalizeDeclarationDuplicateScope(TextModuleName(line.LineNumber, 0));
                     activeLocalScope = FunctionLocalScopeName(moduleScope, functionName);
                 }
                 else if (mayContainTask && TryGetTaskNameFromLineText(lineText, out taskName)) {
+                    moduleScope = NormalizeDeclarationDuplicateScope(TextModuleName(line.LineNumber, 0));
                     activeLocalScope = TaskLocalScopeName(moduleScope, taskName);
                 }
 
                 if (mayContainDeclaration) {
-                    string scope = string.IsNullOrEmpty(activeLocalScope) ? moduleScope : activeLocalScope;
+                    string scope = activeLocalScope;
+                    if (string.IsNullOrEmpty(scope)) {
+                        if (string.IsNullOrEmpty(moduleScope)) {
+                            moduleScope = NormalizeDeclarationDuplicateScope(TextModuleName(line.LineNumber, 0));
+                        }
+                        scope = moduleScope;
+                    }
+
                     List<string> declarationNames = CollectDeclarationNamesInLine(lineText);
                     foreach (string name in declarationNames) {
                         AddDuplicateScanName(countsByScope, scope, name);
@@ -1718,19 +1537,12 @@ namespace VerilogLanguage
                     if (TryGetDeclarationVariableTypeFromText(lineText, out variableType)) {
                         string hoverText = BackfillDeclarationHoverText(lineText);
                         foreach (string name in declarationNames) {
-                            if (!string.IsNullOrEmpty(name)) {
-                                backfillCandidates.Add(new DeclarationBackfillCandidate {
-                                    Scope = scope,
-                                    Name = name,
-                                    HoverText = hoverText,
-                                    VariableType = variableType
-                                });
-                            }
+                            AddMissingDeclarationSymbol(scope, name, hoverText, variableType);
                         }
                     }
                 }
 
-                if (mayContainEndScope && (IsEndFunctionLineText(lineText) || IsEndTaskLineText(lineText))) {
+                if (mayEndLocalScope && (IsEndFunctionLineText(lineText) || IsEndTaskLineText(lineText))) {
                     activeLocalScope = string.Empty;
                 }
             }
@@ -1774,8 +1586,6 @@ namespace VerilogLanguage
                     }
                 }
             }
-
-            ApplyDeclarationBackfillCandidates(backfillCandidates);
         }
 
         private static void AddHoverItem(string thisScope, string ItemName, string HoverText) {

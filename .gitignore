@@ -73,3 +73,10 @@
 /VerilogLanguage.zip
 /VerilogToken/VerilogTokenTagger.cs.WIP
 /UpgradeLog3.htm
+/ci_baseline.log
+/ci_baseline.log.old
+/ci_check.log
+/ci_check.log.old
+/ci_pass.log
+/ci_pass.log.old
+/code_review-TODO.md

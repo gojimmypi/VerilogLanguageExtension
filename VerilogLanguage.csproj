@@ -163,7 +163,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="images\" />
-    <Folder Include="Tagger\" />
   </ItemGroup>
   <ItemGroup>
     <VSCTCompile Include="VerilogLanguagePackage.vsct">
@@ -194,16 +193,16 @@
       <Message
           Condition="!Exists('$(VSToolsPath)\VSSDK\Microsoft.VisualStudio.Sdk.props')"
           Importance="high"
-          Text="VSSDK DIAGNOSTIC: Microsoft.VisualStudio.Sdk.props NOT FOUND — menu resources will NOT be embedded." />
+          Text="VSSDK DIAGNOSTIC: Microsoft.VisualStudio.Sdk.props NOT FOUND - menu resources will NOT be embedded." />
       -->
     <!-- Sdk.targets
       <Message
           Condition="!Exists('$(VSToolsPath)\VSSDK\Microsoft.VisualStudio.Sdk.targets')"
           Importance="high"
-          Text="VSSDK DIAGNOSTIC: Microsoft.VisualStudio.Sdk.targets NOT FOUND — VSCT will compile but CTMENU will NOT be embedded." />
+          Text="VSSDK DIAGNOSTIC: Microsoft.VisualStudio.Sdk.targets NOT FOUND - VSCT will compile but CTMENU will NOT be embedded." />
       -->
     <!-- VsSDK.targets -->
-    <Message Condition="!Exists('$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets')" Importance="high" Text="VSSDK DIAGNOSTIC: Microsoft.VsSDK.targets NOT FOUND — package/menu registration will NOT work." />
+    <Message Condition="!Exists('$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets')" Importance="high" Text="VSSDK DIAGNOSTIC: Microsoft.VsSDK.targets NOT FOUND - package/menu registration will NOT work." />
   </Target>
   <!--
 <Import Project="$(NuGetPackageRoot)Microsoft.VSSDK.BuildTools\17.14.2120\build\Microsoft.VSSDK.BuildTools.props"

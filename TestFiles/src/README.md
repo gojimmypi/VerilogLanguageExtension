@@ -5,11 +5,11 @@ This is the main project source directory.
 ## Files
 
  - `src\config.json` - edit with caution.
- 
+
  - `src\project_config.v` - project-wide parameter values and macros. Use by source in other directories requires `Makefile` edits (e.g. `tt/tt_tool.py`)
- 
+
  - `src\project.v` - the main template shim. Keep it simple for portability.
- - `src\tt_um_main.v` - the main project file, which instantiates the JTAG, SPI, UART and TRNG cores.  
+ - `src\tt_um_main.v` - the main project file, which instantiates the JTAG, SPI, UART and TRNG cores.
 
  - `src\UART\uart_rx_min.v` - a simple UART receiver core, which receives ASCII characters and outputs them as 8-bit values.
  - `src\UART\uart_tx_min.v` - a simple UART transmitter core, which sends 8-bit values as ASCII characters.
@@ -18,7 +18,7 @@ This is the main project source directory.
  - `src\TRNG\trng_cfg_ascii_core.v` - a simple TRNG core that can be configured via UART commands, and sends random numbers over UART when a specific command is received. This is a more complex version of the `uart_trng_ascii_core` that allows for configuration of the TRNG parameters.
  - `src\TRNG\trng_stub.v` - a stub TRNG core that can be used for testing the UART functionality without the complexity of a real TRNG. It generates pseudo-random numbers based on a simple counter and some bit manipulation, and sends them over UART when a specific command is received. This can be useful for testing the UART communication and command parsing without needing a real TRNG implementation.
  - `src\TRNG\trng_lab_core.v` - an optional TRNG lab core that provides an alternative to the `trng_stub` for experimentation and testing purposes.
- 
+
 ## Config Edits
 
 Although the GH Actions were all green, digging into the logs some concerns were observed. See [suggestion](https://discord.com/channels/1009193568256135208/1513299711975489566/1513680659447812276).
@@ -45,7 +45,7 @@ These changes have been applied / added to `src\config.json`:
 
 The design is intended for 25 MHz but is intentionally set to `"CLOCK_PERIOD": 20` (50 MHz) over-constraint.
 
-First GDS Post Design Repair log in GF180: [GRT / GPL Design Repair Test #49](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/actions/runs/27211329394/job/80340895326) 
+First GDS Post Design Repair log in GF180: [GRT / GPL Design Repair Test #49](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/actions/runs/27211329394/job/80340895326)
 in [Commit d3155f9](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/commit/d3155f9d3418fc884a32badff31be2cce4a5a792).
 
 Second Max Slew Rate 30% Percent log in GF180: [Add REPAIR_MAX_SLEW_PCT 30% #50](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/actions/runs/27216708803)
@@ -125,6 +125,6 @@ SKY130 success: [Increase slew repair to 40 percent #191](https://github.com/goj
 
 References:
 
-- [LibreLane Option 1 — Macro-First Hardening strategy](https://librelane.readthedocs.io/en/stable/additional_material/caravel/macro_first_hardening/index.html)
+- [LibreLane Option 1 - Macro-First Hardening strategy](https://librelane.readthedocs.io/en/stable/additional_material/caravel/macro_first_hardening/index.html)
 - [Module 3: Routing and Physical Optimization](https://silicon-sprint-auc.readthedocs.io/en/latest/MODULE3.html)
 - [GlobalFoundries 180nm MCU 7 track standard cells libraries](https://github.com/google/globalfoundries-pdk-libs-gf180mcu_fd_sc_mcu7t5v0/tree/main/liberty)

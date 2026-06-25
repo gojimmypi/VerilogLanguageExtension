@@ -1,4 +1,4 @@
-﻿// file: FirsrtCommand.cs
+// file: FirsrtCommand.cs
 //***************************************************************************
 //
 //  MIT License

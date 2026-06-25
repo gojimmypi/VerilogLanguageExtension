@@ -344,7 +344,7 @@ namespace VerilogLanguage
                     lock (_synchronizationParseStatus) {
                         ParseStatusController.EnsureExists(targetFile);
                         ParseStatus[targetFile].IsReparsing = false;
-                        ParseStatus[targetFile].NeedReparse = false;
+                        ParseStatus[targetFile].NeedReparse = true;
                     }
                 }
                 //    LastRefresh = DateTime.Now;
@@ -796,7 +796,7 @@ namespace VerilogLanguage
             int hint = GetBufferHint(AtLine);
 
             //foreach (var thisBufferAttribute in BufferAttributes)
-            for (int i = hint; i < BufferAttributes.Count - 1; i++) {
+            for (int i = hint; i < BufferAttributes.Count; i++) {
                 BufferAttribute thisBufferAttribute = BufferAttributes[i];
                 if (thisBufferAttribute.LineNumber == AtLine) // we only need the line number (we don't use the hint, in case wit was zero!)
                 {
@@ -843,7 +843,7 @@ namespace VerilogLanguage
                 }
 
                 // now using hint for starting point, instead of: foreach (var thisBufferAttribute in BufferAttributes)
-                for (int i = hint; i < BufferAttributes.Count - 1; i++) {
+                for (int i = hint; i < BufferAttributes.Count; i++) {
                     BufferAttribute thisBufferAttribute = BufferAttributes[i];
                     if ((thisBufferAttribute.LineNumber == AtLine) // TODO: can we stop looking when thisBufferAttribute.LineNumber > AtLine?
                           && (thisBufferAttribute.LineStart <= AtPosition)
@@ -885,7 +885,7 @@ namespace VerilogLanguage
 
             if (BufferAttributes != null && BufferAttributes.Count > 0) {
                 if (BufferAttributes[BufferAttributes.Count - 1] != null && BufferAttributes[BufferAttributes.Count - 1].LineNumber >= AtLine) {
-                    for (int i = starting_hint; i < BufferAttributes.Count - 1; i++) {
+                    for (int i = starting_hint; i < BufferAttributes.Count; i++) {
                         if (BufferAttributes[i] != null && BufferAttributes[i].LineNumber == AtLine) {
                             if (BufferAttributes[i].LineStart == AtPosition) {
                                 res = BufferAttributes[i].RoundBracketDepth +

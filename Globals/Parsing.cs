@@ -85,7 +85,7 @@ namespace VerilogLanguage
                 string res = "global";
 
                 int hint = GetBufferHint(AtLine);
-                for (int i = hint; i < BufferAttributes.Count - 1; i++) {
+                for (int i = hint; i < BufferAttributes.Count; i++) {
                     BufferAttribute thisBufferAttribute = BufferAttributes[i];
                     if (thisBufferAttribute.LineNumber == AtLine) {
                         byte thisModuleNameKey = thisBufferAttribute.ModuleNameKey;
@@ -115,7 +115,7 @@ namespace VerilogLanguage
 
                 if (BufferAttributes != null && BufferAttributes.Count > 0) {
                     if (BufferAttributes[BufferAttributes.Count - 1] != null && BufferAttributes[BufferAttributes.Count - 1].LineNumber >= AtLine) {
-                        for (int i = starting_hint; i < BufferAttributes.Count - 1; i++) {
+                        for (int i = starting_hint; i < BufferAttributes.Count; i++) {
                             if (BufferAttributes[i] != null && BufferAttributes[i].LineNumber == AtLine) {
                                 if (BufferAttributes[i].LineStart == AtPosition) {
                                     res = BufferAttributes[i].RoundBracketDepth +

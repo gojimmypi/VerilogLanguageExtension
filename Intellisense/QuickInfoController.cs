@@ -12,6 +12,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Input;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.Language.Intellisense;
 using Microsoft.VisualStudio.Text;
@@ -70,7 +71,7 @@ namespace VSLTK.Intellisense
         /// <summary>
         /// Determine if the mouse is hovering over a token. If so, highlight the token and display QuickInfo
         /// </summary>
-        private async void OnTextViewMouseHover(object sender, MouseHoverEventArgs e) {
+        private void OnTextViewMouseHover(object sender, MouseHoverEventArgs e) {
             if (_textView == null) {
                 return;
             }
@@ -104,12 +105,12 @@ namespace VSLTK.Intellisense
                 PointTrackingMode.Positive);
 
             if (!_componentContext.QuickInfoBroker.IsQuickInfoActive(_textView)) {
-                try {
-                    await _componentContext.QuickInfoBroker.TriggerQuickInfoAsync(_textView, triggerPoint).ConfigureAwait(false);
-                }
-                catch (Exception ex) {
-                    System.Diagnostics.Debug.WriteLine("TriggerQuickInfoAsync failed: " + ex.Message);
-                }
+                Task quickInfoTask = _componentContext.QuickInfoBroker.TriggerQuickInfoAsync(_textView, triggerPoint);
+                _ = quickInfoTask.ContinueWith(
+                    task => System.Diagnostics.Debug.WriteLine("TriggerQuickInfoAsync failed: " + task.Exception.GetBaseException().Message),
+                    CancellationToken.None,
+                    TaskContinuationOptions.OnlyOnFaulted,
+                    TaskScheduler.Default);
             }
         }
 

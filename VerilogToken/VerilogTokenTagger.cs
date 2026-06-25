@@ -400,11 +400,36 @@ namespace VerilogLanguage.VerilogToken
                 return false;
             }
 
-            if (VerilogGlobals.TryGetParseData(thisFile, _buffer, true, out parseData)) {
+            bool thisNeedReparse = VerilogGlobals.ParseStatusController.NeedReparse(thisFile);
+            bool thisIsReparsing = VerilogGlobals.ParseStatusController.IsReparsing(thisFile);
+
+            // Do not accept cached parse data while the file is marked dirty.
+            // The old order returned stale parse data before honoring NeedReparse.
+            if (thisNeedReparse) {
+                if (thisIsReparsing) {
+                    StartOrResetReparseCompletionWatcher(thisFile);
+                    return false;
+                }
+
+                VerilogGlobals.Reparse(_buffer, thisFile);
+                StartOrResetReparseCompletionWatcher(thisFile);
+
+                thisNeedReparse = VerilogGlobals.ParseStatusController.NeedReparse(thisFile);
+                thisIsReparsing = VerilogGlobals.ParseStatusController.IsReparsing(thisFile);
+
+                if (thisNeedReparse || thisIsReparsing) {
+                    return false;
+                }
+
+                return VerilogGlobals.TryGetParseData(thisFile, _buffer, false, out parseData);
+            }
+
+            if (VerilogGlobals.TryGetParseData(thisFile, _buffer, false, out parseData)) {
                 return true;
             }
 
-            if (VerilogGlobals.ParseStatusController.IsReparsing(thisFile)) {
+            thisIsReparsing = VerilogGlobals.ParseStatusController.IsReparsing(thisFile);
+            if (thisIsReparsing) {
                 StartOrResetReparseCompletionWatcher(thisFile);
                 return false;
             }
@@ -413,9 +438,15 @@ namespace VerilogLanguage.VerilogToken
             VerilogGlobals.Reparse(_buffer, thisFile);
             StartOrResetReparseCompletionWatcher(thisFile);
 
-            return VerilogGlobals.TryGetParseData(thisFile, _buffer, true, out parseData);
-        }
+            thisNeedReparse = VerilogGlobals.ParseStatusController.NeedReparse(thisFile);
+            thisIsReparsing = VerilogGlobals.ParseStatusController.IsReparsing(thisFile);
 
+            if (thisNeedReparse || thisIsReparsing) {
+                return false;
+            }
+
+            return VerilogGlobals.TryGetParseData(thisFile, _buffer, false, out parseData);
+        }
         /// <summary>
         ///   IEnumerable VerilogTokenTag GetTags
         /// </summary>

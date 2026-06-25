@@ -3376,5 +3376,12 @@
                         "TokenType":  "Verilog_Variable_duplicate",
                         "HoverText":  "duplicate? wire [7:0] rbit"
                     }
-                ]
+                ],
+    "ProcessingTime":  {
+                           "SchemaVersion":  2,
+                           "ElapsedBucket":  "10-14s",
+                           "Index":  8,
+                           "Count":  53,
+                           "Status":  "Completed"
+                       }
 }

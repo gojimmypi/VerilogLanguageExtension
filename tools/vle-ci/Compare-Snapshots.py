@@ -10,7 +10,6 @@ per-run Git commit references, and snapshot version numbers.
 from __future__ import annotations
 
 import argparse
-import difflib
 import json
 import re
 import shutil
@@ -303,15 +302,11 @@ def compare_snapshots(current_root: Path, baseline_root: Path, failures: Failure
         baseline_path, _, baseline_norm = baseline[key]
 
         if current_norm != baseline_norm:
-            current_text = json.dumps(current_norm, indent=4, sort_keys=True).splitlines()
-            baseline_text = json.dumps(baseline_norm, indent=4, sort_keys=True).splitlines()
-            diff = "\n".join(difflib.unified_diff(
-                baseline_text,
-                current_text,
-                fromfile=str(baseline_path),
-                tofile=str(current_path),
-                lineterm=""))
-            failures.append(f"Snapshot differs: {key}\n{diff}")
+            failures.append(
+                f"Snapshot differs: {key}\n"
+                f"  Baseline: {baseline_path}\n"
+                f"  Current:  {current_path}\n"
+                "  Diff output is intentionally not generated; review JSON changes in Git/Visual Studio.")
 
 
 def update_baseline(current_root: Path, baseline_root: Path) -> None:

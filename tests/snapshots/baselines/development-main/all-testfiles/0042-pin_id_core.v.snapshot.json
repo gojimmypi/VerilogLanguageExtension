@@ -2413,6 +2413,16 @@
                                           ]
                             },
                             {
+                                "Start":  2708,
+                                "Length":  12,
+                                "Line":  93,
+                                "Column":  20,
+                                "Text":  "to_hex_ascii",
+                                "Types":  [
+                                              "FunctionName"
+                                          ]
+                            },
+                            {
                                 "Start":  2730,
                                 "Length":  5,
                                 "Line":  94,
@@ -2543,6 +2553,16 @@
                                           ]
                             },
                             {
+                                "Start":  2812,
+                                "Length":  12,
+                                "Line":  97,
+                                "Column":  17,
+                                "Text":  "to_hex_ascii",
+                                "Types":  [
+                                              "FunctionName"
+                                          ]
+                            },
+                            {
                                 "Start":  2827,
                                 "Length":  1,
                                 "Line":  97,
@@ -2610,6 +2630,16 @@
                                 "Text":  "begin",
                                 "Types":  [
                                               "begin"
+                                          ]
+                            },
+                            {
+                                "Start":  2886,
+                                "Length":  12,
+                                "Line":  99,
+                                "Column":  17,
+                                "Text":  "to_hex_ascii",
+                                "Types":  [
+                                              "FunctionName"
                                           ]
                             },
                             {
@@ -5613,6 +5643,16 @@
                                           ]
                             },
                             {
+                                "Start":  6700,
+                                "Length":  3,
+                                "Line":  205,
+                                "Column":  45,
+                                "Text":  "\"P\"",
+                                "Types":  [
+                                              "StaticString"
+                                          ]
+                            },
+                            {
                                 "Start":  6729,
                                 "Length":  16,
                                 "Line":  206,
@@ -5693,6 +5733,16 @@
                                           ]
                             },
                             {
+                                "Start":  6906,
+                                "Length":  3,
+                                "Line":  211,
+                                "Column":  45,
+                                "Text":  "\"=\"",
+                                "Types":  [
+                                              "StaticString"
+                                          ]
+                            },
+                            {
                                 "Start":  6935,
                                 "Length":  16,
                                 "Line":  212,
@@ -5770,6 +5820,16 @@
                                 "Text":  "ascii_tx_byte_r",
                                 "Types":  [
                                               "Variable_reg"
+                                          ]
+                            },
+                            {
+                                "Start":  7112,
+                                "Length":  12,
+                                "Line":  217,
+                                "Column":  45,
+                                "Text":  "to_hex_ascii",
+                                "Types":  [
+                                              "FunctionName"
                                           ]
                             },
                             {
@@ -5940,6 +6000,16 @@
                                 "Text":  "ascii_tx_byte_r",
                                 "Types":  [
                                               "Variable_reg"
+                                          ]
+                            },
+                            {
+                                "Start":  7349,
+                                "Length":  12,
+                                "Line":  223,
+                                "Column":  45,
+                                "Text":  "to_hex_ascii",
+                                "Types":  [
+                                              "FunctionName"
                                           ]
                             },
                             {
@@ -13495,6 +13565,16 @@
                      "HoverText":  null
                  },
                  {
+                     "Start":  2708,
+                     "Length":  12,
+                     "Line":  93,
+                     "Column":  20,
+                     "Text":  "to_hex_ascii",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_FunctionName",
+                     "HoverText":  "function [7:0] to_hex_ascii"
+                 },
+                 {
                      "Start":  2730,
                      "Length":  5,
                      "Line":  94,
@@ -13625,6 +13705,16 @@
                      "HoverText":  "A begin-end block is a means of grouping two or more procedural assignments together so that they act like a single group of sequential statements."
                  },
                  {
+                     "Start":  2812,
+                     "Length":  12,
+                     "Line":  97,
+                     "Column":  17,
+                     "Text":  "to_hex_ascii",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_FunctionName",
+                     "HoverText":  "function [7:0] to_hex_ascii"
+                 },
+                 {
                      "Start":  2827,
                      "Length":  1,
                      "Line":  97,
@@ -13693,6 +13783,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_begin",
                      "HoverText":  "A begin-end block is a means of grouping two or more procedural assignments together so that they act like a single group of sequential statements."
+                 },
+                 {
+                     "Start":  2886,
+                     "Length":  12,
+                     "Line":  99,
+                     "Column":  17,
+                     "Text":  "to_hex_ascii",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_FunctionName",
+                     "HoverText":  "function [7:0] to_hex_ascii"
                  },
                  {
                      "Start":  2901,
@@ -16685,6 +16785,16 @@
                      "HoverText":  "reg [7:0] ascii_tx_byte_r"
                  },
                  {
+                     "Start":  6700,
+                     "Length":  3,
+                     "Line":  205,
+                     "Column":  45,
+                     "Text":  "\"P\"",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_StaticString",
+                     "HoverText":  null
+                 },
+                 {
                      "Start":  6729,
                      "Length":  16,
                      "Line":  206,
@@ -16765,6 +16875,16 @@
                      "HoverText":  "reg [7:0] ascii_tx_byte_r"
                  },
                  {
+                     "Start":  6906,
+                     "Length":  3,
+                     "Line":  211,
+                     "Column":  45,
+                     "Text":  "\"=\"",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_StaticString",
+                     "HoverText":  null
+                 },
+                 {
                      "Start":  6935,
                      "Length":  16,
                      "Line":  212,
@@ -16843,6 +16963,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
                      "HoverText":  "reg [7:0] ascii_tx_byte_r"
+                 },
+                 {
+                     "Start":  7112,
+                     "Length":  12,
+                     "Line":  217,
+                     "Column":  45,
+                     "Text":  "to_hex_ascii",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_FunctionName",
+                     "HoverText":  "function [7:0] to_hex_ascii"
                  },
                  {
                      "Start":  7124,
@@ -17013,6 +17143,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
                      "HoverText":  "reg [7:0] ascii_tx_byte_r"
+                 },
+                 {
+                     "Start":  7349,
+                     "Length":  12,
+                     "Line":  223,
+                     "Column":  45,
+                     "Text":  "to_hex_ascii",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_FunctionName",
+                     "HoverText":  "function [7:0] to_hex_ascii"
                  },
                  {
                      "Start":  7361,
@@ -35284,9 +35424,9 @@
                     },
                     {
                         "Scope":  "pin_id_core",
-                        "Name":  "nib",
-                        "TokenType":  "Verilog_Variable_input",
-                        "HoverText":  "input [3:0] nib"
+                        "Name":  "to_hex_ascii",
+                        "TokenType":  "Verilog_FunctionName",
+                        "HoverText":  "function [7:0] to_hex_ascii"
                     },
                     {
                         "Scope":  "pin_id_core",
@@ -35449,6 +35589,12 @@
                         "Name":  "8\u0027h01",
                         "TokenType":  "Verilog_Value",
                         "HoverText":  "8\u0027H01 = (8 bit Hex) 01; 00000001"
+                    },
+                    {
+                        "Scope":  "pin_id_core::__FUNCTION__::to_hex_ascii",
+                        "Name":  "nib",
+                        "TokenType":  "Verilog_Variable_input",
+                        "HoverText":  "input [3:0] nib"
                     }
                 ]
 }

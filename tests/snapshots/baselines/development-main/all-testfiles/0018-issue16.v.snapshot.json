@@ -402,7 +402,7 @@
                      "Text":  "a",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  null
+                     "HoverText":  "wire a = rf*4"
                  },
                  {
                      "Start":  102,
@@ -778,6 +778,12 @@
                    }
                ],
     "Symbols":  [
+                    {
+                        "Scope":  "global",
+                        "Name":  "a",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "wire a = rf*4"
+                    },
                     {
                         "Scope":  "picorv32",
                         "Name":  "ENABLE_IRQ",

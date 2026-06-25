@@ -34372,5 +34372,12 @@
                         "TokenType":  "Verilog_Value",
                         "HoverText":  "3\u0027D7 = (3 bit Decimal) 7; "
                     }
-                ]
+                ],
+    "ProcessingTime":  {
+                           "SchemaVersion":  2,
+                           "ElapsedBucket":  "10-14s",
+                           "Index":  51,
+                           "Count":  53,
+                           "Status":  "Completed"
+                       }
 }

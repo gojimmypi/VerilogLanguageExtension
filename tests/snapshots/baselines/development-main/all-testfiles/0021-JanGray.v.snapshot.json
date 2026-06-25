@@ -73,6 +73,26 @@
                                           ]
                             },
                             {
+                                "Start":  106,
+                                "Length":  1,
+                                "Line":  4,
+                                "Column":  26,
+                                "Text":  "q",
+                                "Types":  [
+                                              "Variable_reg"
+                                          ]
+                            },
+                            {
+                                "Start":  112,
+                                "Length":  1,
+                                "Line":  4,
+                                "Column":  32,
+                                "Text":  "q",
+                                "Types":  [
+                                              "Variable_reg"
+                                          ]
+                            },
+                            {
                                 "Start":  115,
                                 "Length":  18,
                                 "Line":  4,
@@ -103,6 +123,16 @@
                                           ]
                             },
                             {
+                                "Start":  148,
+                                "Length":  1,
+                                "Line":  5,
+                                "Column":  15,
+                                "Text":  "q",
+                                "Types":  [
+                                              "Variable_reg"
+                                          ]
+                            },
+                            {
                                 "Start":  151,
                                 "Length":  18,
                                 "Line":  5,
@@ -120,6 +150,16 @@
                                 "Text":  "oops",
                                 "Types":  [
                                               "Variable_duplicate"
+                                          ]
+                            },
+                            {
+                                "Start":  184,
+                                "Length":  1,
+                                "Line":  6,
+                                "Column":  15,
+                                "Text":  "q",
+                                "Types":  [
+                                              "Variable_reg"
                                           ]
                             },
                             {
@@ -168,6 +208,16 @@
                                 "Line":  14,
                                 "Column":  7,
                                 "Text":  "also_ok",
+                                "Types":  [
+                                              "Variable_reg"
+                                          ]
+                            },
+                            {
+                                "Start":  326,
+                                "Length":  2,
+                                "Line":  14,
+                                "Column":  18,
+                                "Text":  "ok",
                                 "Types":  [
                                               "Variable_reg"
                                           ]
@@ -223,6 +273,16 @@
                                           ]
                             },
                             {
+                                "Start":  393,
+                                "Length":  3,
+                                "Line":  17,
+                                "Column":  12,
+                                "Text":  "ok2",
+                                "Types":  [
+                                              "Variable_reg"
+                                          ]
+                            },
+                            {
                                 "Start":  404,
                                 "Length":  23,
                                 "Line":  17,
@@ -240,6 +300,16 @@
                                 "Text":  "oops",
                                 "Types":  [
                                               "Variable_duplicate"
+                                          ]
+                            },
+                            {
+                                "Start":  442,
+                                "Length":  3,
+                                "Line":  18,
+                                "Column":  15,
+                                "Text":  "ok2",
+                                "Types":  [
+                                              "Variable_reg"
                                           ]
                             },
                             {
@@ -422,7 +492,7 @@
                      "Text":  "q",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
-                     "HoverText":  null
+                     "HoverText":  "logic q = 0"
                  },
                  {
                      "Start":  78,
@@ -463,6 +533,26 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  106,
+                     "Length":  1,
+                     "Line":  4,
+                     "Column":  26,
+                     "Text":  "q",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  "logic q = 0"
+                 },
+                 {
+                     "Start":  112,
+                     "Length":  1,
+                     "Line":  4,
+                     "Column":  32,
+                     "Text":  "q",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  "logic q = 0"
                  },
                  {
                      "Start":  115,
@@ -515,6 +605,16 @@
                      "HoverText":  "wire inv_q = ~q"
                  },
                  {
+                     "Start":  148,
+                     "Length":  1,
+                     "Line":  5,
+                     "Column":  15,
+                     "Text":  "q",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  "logic q = 0"
+                 },
+                 {
                      "Start":  151,
                      "Length":  2,
                      "Line":  5,
@@ -555,6 +655,16 @@
                      "HoverText":  "duplicate? oops"
                  },
                  {
+                     "Start":  184,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  15,
+                     "Text":  "q",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  "logic q = 0"
+                 },
+                 {
                      "Start":  187,
                      "Length":  2,
                      "Line":  6,
@@ -592,7 +702,7 @@
                      "Text":  "ok",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
-                     "HoverText":  null
+                     "HoverText":  "logic ok = 0"
                  },
                  {
                      "Start":  289,
@@ -682,7 +792,17 @@
                      "Text":  "also_ok",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
-                     "HoverText":  null
+                     "HoverText":  "logic also_ok = ~ok"
+                 },
+                 {
+                     "Start":  326,
+                     "Length":  2,
+                     "Line":  14,
+                     "Column":  18,
+                     "Text":  "ok",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  "logic ok = 0"
                  },
                  {
                      "Start":  330,
@@ -762,7 +882,7 @@
                      "Text":  "ok2",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
-                     "HoverText":  null
+                     "HoverText":  "logic ok2 = 0"
                  },
                  {
                      "Start":  360,
@@ -865,6 +985,16 @@
                      "HoverText":  "An always represents a block of code in a design."
                  },
                  {
+                     "Start":  393,
+                     "Length":  3,
+                     "Line":  17,
+                     "Column":  12,
+                     "Text":  "ok2",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  "logic ok2 = 0"
+                 },
+                 {
                      "Start":  404,
                      "Length":  2,
                      "Line":  17,
@@ -923,6 +1053,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_duplicate",
                      "HoverText":  "duplicate? oops"
+                 },
+                 {
+                     "Start":  442,
+                     "Length":  3,
+                     "Line":  18,
+                     "Column":  15,
+                     "Text":  "ok2",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  "logic ok2 = 0"
                  },
                  {
                      "Start":  447,
@@ -2657,6 +2797,30 @@
                         "Name":  "oops",
                         "TokenType":  "Verilog_Variable_duplicate",
                         "HoverText":  "duplicate? oops"
+                    },
+                    {
+                        "Scope":  "global",
+                        "Name":  "q",
+                        "TokenType":  "Verilog_Variable_reg",
+                        "HoverText":  "logic q = 0"
+                    },
+                    {
+                        "Scope":  "global",
+                        "Name":  "ok",
+                        "TokenType":  "Verilog_Variable_reg",
+                        "HoverText":  "logic ok = 0"
+                    },
+                    {
+                        "Scope":  "global",
+                        "Name":  "also_ok",
+                        "TokenType":  "Verilog_Variable_reg",
+                        "HoverText":  "logic also_ok = ~ok"
+                    },
+                    {
+                        "Scope":  "global",
+                        "Name":  "ok2",
+                        "TokenType":  "Verilog_Variable_reg",
+                        "HoverText":  "logic ok2 = 0"
                     }
                 ]
 }

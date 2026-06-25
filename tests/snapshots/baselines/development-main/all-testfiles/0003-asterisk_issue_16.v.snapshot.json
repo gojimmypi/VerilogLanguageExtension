@@ -422,7 +422,7 @@
                      "Text":  "a",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  null
+                     "HoverText":  "wire a = rf*4"
                  },
                  {
                      "Start":  99,
@@ -1005,6 +1005,12 @@
                         "Name":  "rf",
                         "TokenType":  "Verilog_Variable_localparam",
                         "HoverText":  "localparam rf = 4/ENABLE_IRQ wire a = rf*4"
+                    },
+                    {
+                        "Scope":  "picorv32",
+                        "Name":  "a",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "wire a = rf*4"
                     }
                 ]
 }

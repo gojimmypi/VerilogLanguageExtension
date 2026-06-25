@@ -4200,5 +4200,12 @@
                         "TokenType":  "Verilog_Value",
                         "HoverText":  "3\u0027B010 = (3 bit Binary) 010; "
                     }
-                ]
+                ],
+    "ProcessingTime":  {
+                           "SchemaVersion":  2,
+                           "ElapsedBucket":  "10-14s",
+                           "Index":  19,
+                           "Count":  53,
+                           "Status":  "Completed"
+                       }
 }

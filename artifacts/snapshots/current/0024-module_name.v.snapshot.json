@@ -846,5 +846,12 @@
                         "TokenType":  "Verilog_Variable_reg",
                         "HoverText":  "module other2 myOther(clk)"
                     }
-                ]
+                ],
+    "ProcessingTime":  {
+                           "SchemaVersion":  2,
+                           "ElapsedBucket":  "10-14s",
+                           "Index":  24,
+                           "Count":  53,
+                           "Status":  "Completed"
+                       }
 }

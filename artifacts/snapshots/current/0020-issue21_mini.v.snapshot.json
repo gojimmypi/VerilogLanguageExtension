@@ -966,5 +966,12 @@
                         "TokenType":  "Verilog_Value",
                         "HoverText":  "8\u0027HF05 = (8 bit Hex) F05; 111100000101 Warning: Found 12 bits for 8 value!"
                     }
-                ]
+                ],
+    "ProcessingTime":  {
+                           "SchemaVersion":  2,
+                           "ElapsedBucket":  "10-14s",
+                           "Index":  20,
+                           "Count":  53,
+                           "Status":  "Completed"
+                       }
 }

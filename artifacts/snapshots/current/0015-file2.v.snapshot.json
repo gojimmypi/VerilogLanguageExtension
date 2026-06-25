@@ -910,5 +910,12 @@
                         "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "wire [5:5] var2"
                     }
-                ]
+                ],
+    "ProcessingTime":  {
+                           "SchemaVersion":  2,
+                           "ElapsedBucket":  "10-14s",
+                           "Index":  15,
+                           "Count":  53,
+                           "Status":  "Completed"
+                       }
 }

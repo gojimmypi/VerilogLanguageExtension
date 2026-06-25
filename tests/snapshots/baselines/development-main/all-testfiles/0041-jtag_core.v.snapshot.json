@@ -5423,6 +5423,16 @@
                                           ]
                             },
                             {
+                                "Start":  5253,
+                                "Length":  10,
+                                "Line":  163,
+                                "Column":  9,
+                                "Text":  "reg_addr_o",
+                                "Types":  [
+                                              "Variable_reg"
+                                          ]
+                            },
+                            {
                                 "Start":  5268,
                                 "Length":  1,
                                 "Line":  163,
@@ -5630,6 +5640,16 @@
                                 "Text":  "1\u0027b0",
                                 "Types":  [
                                               "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  5449,
+                                "Length":  10,
+                                "Line":  169,
+                                "Column":  9,
+                                "Text":  "reg_addr_o",
+                                "Types":  [
+                                              "Variable_reg"
                                           ]
                             },
                             {
@@ -6110,6 +6130,16 @@
                                 "Text":  "}",
                                 "Types":  [
                                               "Bracket2"
+                                          ]
+                            },
+                            {
+                                "Start":  5992,
+                                "Length":  10,
+                                "Line":  184,
+                                "Column":  73,
+                                "Text":  "reg_addr_o",
+                                "Types":  [
+                                              "Variable_reg"
                                           ]
                             },
                             {
@@ -6930,6 +6960,16 @@
                                 "Text":  "/* Variable length registers */",
                                 "Types":  [
                                               "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  7213,
+                                "Length":  10,
+                                "Line":  220,
+                                "Column":  25,
+                                "Text":  "reg_addr_o",
+                                "Types":  [
+                                              "Variable_reg"
                                           ]
                             },
                             {
@@ -10772,7 +10812,7 @@
                      "Text":  "reg_addr_o",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
-                     "HoverText":  null
+                     "HoverText":  "output reg [`JTAG_ADDR_MSB:0]  reg_addr_o"
                  },
                  {
                      "Start":  1132,
@@ -15485,6 +15525,16 @@
                      "HoverText":  "1\u0027B0 = (1 bit Binary) 0; "
                  },
                  {
+                     "Start":  5253,
+                     "Length":  10,
+                     "Line":  163,
+                     "Column":  9,
+                     "Text":  "reg_addr_o",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  "output reg [`JTAG_ADDR_MSB:0]  reg_addr_o"
+                 },
+                 {
                      "Start":  5268,
                      "Length":  1,
                      "Line":  163,
@@ -15693,6 +15743,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Value",
                      "HoverText":  "1\u0027B0 = (1 bit Binary) 0; "
+                 },
+                 {
+                     "Start":  5449,
+                     "Length":  10,
+                     "Line":  169,
+                     "Column":  9,
+                     "Text":  "reg_addr_o",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  "output reg [`JTAG_ADDR_MSB:0]  reg_addr_o"
                  },
                  {
                      "Start":  5463,
@@ -16182,7 +16242,7 @@
                      "Text":  "reg_addr_o",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
+                     "HoverText":  "output reg [`JTAG_ADDR_MSB:0]  reg_addr_o"
                  },
                  {
                      "Start":  5917,
@@ -16313,6 +16373,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket2",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  5992,
+                     "Length":  10,
+                     "Line":  184,
+                     "Column":  73,
+                     "Text":  "reg_addr_o",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  "output reg [`JTAG_ADDR_MSB:0]  reg_addr_o"
                  },
                  {
                      "Start":  6002,
@@ -17213,6 +17283,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  7213,
+                     "Length":  10,
+                     "Line":  220,
+                     "Column":  25,
+                     "Text":  "reg_addr_o",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  "output reg [`JTAG_ADDR_MSB:0]  reg_addr_o"
                  },
                  {
                      "Start":  7227,
@@ -35645,6 +35725,12 @@
                         "Name":  "tck_fall",
                         "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "wire tck_fall"
+                    },
+                    {
+                        "Scope":  "jtag_core",
+                        "Name":  "reg_addr_o",
+                        "TokenType":  "Verilog_Variable_reg",
+                        "HoverText":  "output reg [`JTAG_ADDR_MSB:0]  reg_addr_o"
                     },
                     {
                         "Scope":  "__CONST__",

@@ -487,6 +487,26 @@ function Write-SnapshotRunInfo {
     [System.IO.File]::WriteAllText($Path, ($text + [Environment]::NewLine), $utf8NoBom)
 }
 
+function Get-ElapsedTimeBucket {
+    param([double]$ElapsedSeconds)
+
+    if ($ElapsedSeconds -lt 10) { return "0-9s" }
+    if ($ElapsedSeconds -lt 15) { return "10-14s" }
+    if ($ElapsedSeconds -lt 20) { return "15-19s" }
+    if ($ElapsedSeconds -lt 25) { return "20-24s" }
+    if ($ElapsedSeconds -lt 30) { return "25-29s" }
+    if ($ElapsedSeconds -lt 35) { return "30-34s" }
+    if ($ElapsedSeconds -lt 40) { return "35-39s" }
+    if ($ElapsedSeconds -lt 45) { return "40-44s" }
+    if ($ElapsedSeconds -lt 50) { return "45-49s" }
+    if ($ElapsedSeconds -lt 60) { return "50-59s" }
+    if ($ElapsedSeconds -lt 120) { return "1-2m" }
+    if ($ElapsedSeconds -lt 300) { return "2-5m" }
+    if ($ElapsedSeconds -lt 600) { return "5-10m" }
+    if ($ElapsedSeconds -lt 1800) { return "10-30m" }
+    return "30m+"
+}
+
 function Add-SnapshotTimingRecord {
     param(
         [int]$Index,
@@ -506,28 +526,19 @@ function Add-SnapshotTimingRecord {
         $Stopwatch.Stop()
     }
 
-    $completedAt = Get-Date
-    $startedAtUtc = ""
-    if ($StartedAt -ne [datetime]::MinValue) {
-        $startedAtUtc = $StartedAt.ToUniversalTime().ToString("o")
-    }
-
-    $elapsedSeconds = [Math]::Round($Stopwatch.Elapsed.TotalSeconds, 3)
+    $elapsedBucket = Get-ElapsedTimeBucket -ElapsedSeconds $Stopwatch.Elapsed.TotalSeconds
     $record = [ordered]@{
         Index = $Index
         Count = $Count
         Path = $Path.Replace("\", "/")
         SnapshotFileName = $SnapshotFileName
         Status = $Status
-        StartedAtUtc = $startedAtUtc
-        CompletedAtUtc = $completedAt.ToUniversalTime().ToString("o")
-        ElapsedSeconds = $elapsedSeconds
-        Elapsed = $Stopwatch.Elapsed.ToString("c")
+        ElapsedBucket = $elapsedBucket
     }
 
     $recordObject = [pscustomobject]$record
     [void]$script:snapshotTimingRecords.Add($recordObject)
-    Write-Host ("Timing: snapshot [{0}/{1}] {2}: {3:N3}s ({4})" -f $Index, $Count, $Path, $elapsedSeconds, $Status)
+    Write-Host ("Timing: snapshot [{0}/{1}] {2}: {3} ({4})" -f $Index, $Count, $Path, $elapsedBucket, $Status)
     return $recordObject
 }
 
@@ -555,12 +566,8 @@ function Set-SnapshotProcessingTime {
         }
 
         $processingTime = [ordered]@{
-            SchemaVersion = 1
-            RunStartedAtUtc = $RunStartedAt.ToUniversalTime().ToString("o")
-            StartedAtUtc = [string]$TimingRecord.StartedAtUtc
-            CompletedAtUtc = [string]$TimingRecord.CompletedAtUtc
-            ElapsedSeconds = [double]$TimingRecord.ElapsedSeconds
-            Elapsed = [string]$TimingRecord.Elapsed
+            SchemaVersion = 2
+            ElapsedBucket = [string]$TimingRecord.ElapsedBucket
             Index = [int]$TimingRecord.Index
             Count = [int]$TimingRecord.Count
             Status = [string]$TimingRecord.Status

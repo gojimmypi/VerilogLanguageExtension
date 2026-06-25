@@ -22032,5 +22032,12 @@
                         "TokenType":  "Verilog_Value",
                         "HoverText":  "1\u0027B1 = (1 bit Binary) 1; "
                     }
-                ]
+                ],
+    "ProcessingTime":  {
+                           "SchemaVersion":  2,
+                           "ElapsedBucket":  "10-14s",
+                           "Index":  49,
+                           "Count":  53,
+                           "Status":  "Completed"
+                       }
 }

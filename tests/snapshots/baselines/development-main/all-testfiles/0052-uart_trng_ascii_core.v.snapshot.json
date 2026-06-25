@@ -3923,6 +3923,16 @@
                                           ]
                             },
                             {
+                                "Start":  5253,
+                                "Length":  6,
+                                "Line":  153,
+                                "Column":  15,
+                                "Text":  "\"true\"",
+                                "Types":  [
+                                              "StaticString"
+                                          ]
+                            },
+                            {
                                 "Start":  5261,
                                 "Length":  1,
                                 "Line":  153,
@@ -3960,6 +3970,16 @@
                                 "Text":  "(",
                                 "Types":  [
                                               "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  5298,
+                                "Length":  6,
+                                "Line":  154,
+                                "Column":  15,
+                                "Text":  "\"true\"",
+                                "Types":  [
+                                              "StaticString"
                                           ]
                             },
                             {
@@ -4003,6 +4023,16 @@
                                           ]
                             },
                             {
+                                "Start":  5343,
+                                "Length":  6,
+                                "Line":  155,
+                                "Column":  15,
+                                "Text":  "\"true\"",
+                                "Types":  [
+                                              "StaticString"
+                                          ]
+                            },
+                            {
                                 "Start":  5351,
                                 "Length":  1,
                                 "Line":  155,
@@ -4040,6 +4070,16 @@
                                 "Text":  "(",
                                 "Types":  [
                                               "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  5387,
+                                "Length":  6,
+                                "Line":  156,
+                                "Column":  15,
+                                "Text":  "\"true\"",
+                                "Types":  [
+                                              "StaticString"
                                           ]
                             },
                             {
@@ -4083,6 +4123,16 @@
                                           ]
                             },
                             {
+                                "Start":  5431,
+                                "Length":  6,
+                                "Line":  157,
+                                "Column":  15,
+                                "Text":  "\"true\"",
+                                "Types":  [
+                                              "StaticString"
+                                          ]
+                            },
+                            {
                                 "Start":  5439,
                                 "Length":  1,
                                 "Line":  157,
@@ -4120,6 +4170,16 @@
                                 "Text":  "(",
                                 "Types":  [
                                               "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  5476,
+                                "Length":  6,
+                                "Line":  158,
+                                "Column":  15,
+                                "Text":  "\"true\"",
+                                "Types":  [
+                                              "StaticString"
                                           ]
                             },
                             {
@@ -7808,6 +7868,16 @@
                                 "Line":  316,
                                 "Column":  35,
                                 "Text":  "spi_reg_wr_en",
+                                "Types":  [
+                                              "Variable_wire"
+                                          ]
+                            },
+                            {
+                                "Start":  9796,
+                                "Length":  12,
+                                "Line":  316,
+                                "Column":  50,
+                                "Text":  "spi_reg_addr",
                                 "Types":  [
                                               "Variable_wire"
                                           ]
@@ -12650,6 +12720,16 @@
                                 "Text":  "(",
                                 "Types":  [
                                               "Bracket2"
+                                          ]
+                            },
+                            {
+                                "Start":  15307,
+                                "Length":  12,
+                                "Line":  508,
+                                "Column":  23,
+                                "Text":  "spi_reg_addr",
+                                "Types":  [
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -21182,7 +21262,7 @@
                      "Text":  "spi_reg_addr",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  null
+                     "HoverText":  "input  wire [`SPI_ADDR_MSB:0] spi_reg_addr"
                  },
                  {
                      "Start":  2228,
@@ -25505,6 +25585,16 @@
                      "HoverText":  null
                  },
                  {
+                     "Start":  5253,
+                     "Length":  6,
+                     "Line":  153,
+                     "Column":  15,
+                     "Text":  "\"true\"",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_StaticString",
+                     "HoverText":  null
+                 },
+                 {
                      "Start":  5261,
                      "Length":  1,
                      "Line":  153,
@@ -25542,6 +25632,16 @@
                      "Text":  "(",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  5298,
+                     "Length":  6,
+                     "Line":  154,
+                     "Column":  15,
+                     "Text":  "\"true\"",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_StaticString",
                      "HoverText":  null
                  },
                  {
@@ -25585,6 +25685,16 @@
                      "HoverText":  null
                  },
                  {
+                     "Start":  5343,
+                     "Length":  6,
+                     "Line":  155,
+                     "Column":  15,
+                     "Text":  "\"true\"",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_StaticString",
+                     "HoverText":  null
+                 },
+                 {
                      "Start":  5351,
                      "Length":  1,
                      "Line":  155,
@@ -25622,6 +25732,16 @@
                      "Text":  "(",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  5387,
+                     "Length":  6,
+                     "Line":  156,
+                     "Column":  15,
+                     "Text":  "\"true\"",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_StaticString",
                      "HoverText":  null
                  },
                  {
@@ -25665,6 +25785,16 @@
                      "HoverText":  null
                  },
                  {
+                     "Start":  5431,
+                     "Length":  6,
+                     "Line":  157,
+                     "Column":  15,
+                     "Text":  "\"true\"",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_StaticString",
+                     "HoverText":  null
+                 },
+                 {
                      "Start":  5439,
                      "Length":  1,
                      "Line":  157,
@@ -25702,6 +25832,16 @@
                      "Text":  "(",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  5476,
+                     "Length":  6,
+                     "Line":  158,
+                     "Column":  15,
+                     "Text":  "\"true\"",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_StaticString",
                      "HoverText":  null
                  },
                  {
@@ -32653,6 +32793,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_wire",
                      "HoverText":  "input wire spi_reg_wr_en"
+                 },
+                 {
+                     "Start":  9796,
+                     "Length":  12,
+                     "Line":  316,
+                     "Column":  50,
+                     "Text":  "spi_reg_addr",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "input  wire [`SPI_ADDR_MSB:0] spi_reg_addr"
                  },
                  {
                      "Start":  9810,
@@ -40703,6 +40853,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket2",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  15307,
+                     "Length":  12,
+                     "Line":  508,
+                     "Column":  23,
+                     "Text":  "spi_reg_addr",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "input  wire [`SPI_ADDR_MSB:0] spi_reg_addr"
                  },
                  {
                      "Start":  15319,
@@ -81523,6 +81683,12 @@
                         "Name":  "unused_spi_reg_rdata_ok",
                         "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "wire unused_spi_reg_rdata_ok"
+                    },
+                    {
+                        "Scope":  "uart_trng_ascii_core",
+                        "Name":  "spi_reg_addr",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "input  wire [`SPI_ADDR_MSB:0] spi_reg_addr"
                     },
                     {
                         "Scope":  "__CONST__",

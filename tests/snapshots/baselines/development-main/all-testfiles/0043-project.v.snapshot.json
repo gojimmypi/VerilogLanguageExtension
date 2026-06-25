@@ -223,6 +223,16 @@
                                           ]
                             },
                             {
+                                "Start":  551,
+                                "Length":  14,
+                                "Line":  22,
+                                "Column":  10,
+                                "Text":  "\"target_pdk.v\"",
+                                "Types":  [
+                                              "StaticString"
+                                          ]
+                            },
+                            {
                                 "Start":  567,
                                 "Length":  32,
                                 "Line":  24,
@@ -270,6 +280,16 @@
                                 "Text":  "`include",
                                 "Types":  [
                                               "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  754,
+                                "Length":  18,
+                                "Line":  28,
+                                "Column":  10,
+                                "Text":  "\"project_config.v\"",
+                                "Types":  [
+                                              "StaticString"
                                           ]
                             },
                             {
@@ -1483,6 +1503,16 @@
                                           ]
                             },
                             {
+                                "Start":  5563,
+                                "Length":  14,
+                                "Line":  140,
+                                "Column":  14,
+                                "Text":  "\"tt_um_main.v\"",
+                                "Types":  [
+                                              "StaticString"
+                                          ]
+                            },
+                            {
                                 "Start":  5582,
                                 "Length":  8,
                                 "Line":  141,
@@ -1490,6 +1520,16 @@
                                 "Text":  "`include",
                                 "Types":  [
                                               "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  5591,
+                                "Length":  18,
+                                "Line":  141,
+                                "Column":  14,
+                                "Text":  "\"JTAG/jtag_core.v\"",
+                                "Types":  [
+                                              "StaticString"
                                           ]
                             },
                             {
@@ -1503,6 +1543,16 @@
                                           ]
                             },
                             {
+                                "Start":  5623,
+                                "Length":  17,
+                                "Line":  142,
+                                "Column":  14,
+                                "Text":  "\"SPI/spi_slave.v\"",
+                                "Types":  [
+                                              "StaticString"
+                                          ]
+                            },
+                            {
                                 "Start":  5645,
                                 "Length":  8,
                                 "Line":  143,
@@ -1510,6 +1560,16 @@
                                 "Text":  "`include",
                                 "Types":  [
                                               "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  5654,
+                                "Length":  20,
+                                "Line":  143,
+                                "Column":  14,
+                                "Text":  "\"UART/uart_rx_min.v\"",
+                                "Types":  [
+                                              "StaticString"
                                           ]
                             },
                             {
@@ -1523,6 +1583,16 @@
                                           ]
                             },
                             {
+                                "Start":  5688,
+                                "Length":  20,
+                                "Line":  144,
+                                "Column":  14,
+                                "Text":  "\"UART/uart_tx_min.v\"",
+                                "Types":  [
+                                              "StaticString"
+                                          ]
+                            },
+                            {
                                 "Start":  5713,
                                 "Length":  8,
                                 "Line":  145,
@@ -1533,6 +1603,16 @@
                                           ]
                             },
                             {
+                                "Start":  5722,
+                                "Length":  29,
+                                "Line":  145,
+                                "Column":  14,
+                                "Text":  "\"UART/uart_trng_ascii_core.v\"",
+                                "Types":  [
+                                              "StaticString"
+                                          ]
+                            },
+                            {
                                 "Start":  5756,
                                 "Length":  8,
                                 "Line":  146,
@@ -1540,6 +1620,16 @@
                                 "Text":  "`include",
                                 "Types":  [
                                               "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  5765,
+                                "Length":  28,
+                                "Line":  146,
+                                "Column":  14,
+                                "Text":  "\"TRNG/trng_cfg_ascii_core.v\"",
+                                "Types":  [
+                                              "StaticString"
                                           ]
                             },
                             {
@@ -1570,6 +1660,16 @@
                                 "Text":  "`include",
                                 "Types":  [
                                               "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  5831,
+                                "Length":  20,
+                                "Line":  148,
+                                "Column":  18,
+                                "Text":  "\"PINS/pin_id_core.v\"",
+                                "Types":  [
+                                              "StaticString"
                                           ]
                             },
                             {
@@ -1613,6 +1713,16 @@
                                           ]
                             },
                             {
+                                "Start":  5904,
+                                "Length":  22,
+                                "Line":  151,
+                                "Column":  18,
+                                "Text":  "\"TRNG/trng_lab_core.v\"",
+                                "Types":  [
+                                              "StaticString"
+                                          ]
+                            },
+                            {
                                 "Start":  5931,
                                 "Length":  5,
                                 "Line":  152,
@@ -1630,6 +1740,16 @@
                                 "Text":  "`include",
                                 "Types":  [
                                               "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  5954,
+                                "Length":  18,
+                                "Line":  153,
+                                "Column":  18,
+                                "Text":  "\"TRNG/trng_stub.v\"",
+                                "Types":  [
+                                              "StaticString"
                                           ]
                             },
                             {
@@ -4033,23 +4153,13 @@
                                           ]
                             },
                             {
-                                "Start":  10110,
-                                "Length":  6,
+                                "Start":  10094,
+                                "Length":  36,
                                 "Line":  276,
-                                "Column":  42,
-                                "Text":  "uio_in",
+                                "Column":  26,
+                                "Text":  "\"t=%0t ui_in=%h uio_in=%h uo_out=%h\"",
                                 "Types":  [
-                                              "Variable_wire"
-                                          ]
-                            },
-                            {
-                                "Start":  10120,
-                                "Length":  6,
-                                "Line":  276,
-                                "Column":  52,
-                                "Text":  "uo_out",
-                                "Types":  [
-                                              "Variable_wire"
+                                              "StaticString"
                                           ]
                             },
                             {
@@ -6085,6 +6195,16 @@
                      "HoverText":  "Verilog directive"
                  },
                  {
+                     "Start":  551,
+                     "Length":  14,
+                     "Line":  22,
+                     "Column":  10,
+                     "Text":  "\"target_pdk.v\"",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_StaticString",
+                     "HoverText":  null
+                 },
+                 {
                      "Start":  567,
                      "Length":  2,
                      "Line":  24,
@@ -6703,6 +6823,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Directive",
                      "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  754,
+                     "Length":  18,
+                     "Line":  28,
+                     "Column":  10,
+                     "Text":  "\"project_config.v\"",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_StaticString",
+                     "HoverText":  null
                  },
                  {
                      "Start":  774,
@@ -19515,6 +19645,16 @@
                      "HoverText":  "Verilog directive"
                  },
                  {
+                     "Start":  5563,
+                     "Length":  14,
+                     "Line":  140,
+                     "Column":  14,
+                     "Text":  "\"tt_um_main.v\"",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_StaticString",
+                     "HoverText":  null
+                 },
+                 {
                      "Start":  5582,
                      "Length":  8,
                      "Line":  141,
@@ -19523,6 +19663,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Directive",
                      "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  5591,
+                     "Length":  18,
+                     "Line":  141,
+                     "Column":  14,
+                     "Text":  "\"JTAG/jtag_core.v\"",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_StaticString",
+                     "HoverText":  null
                  },
                  {
                      "Start":  5614,
@@ -19535,6 +19685,16 @@
                      "HoverText":  "Verilog directive"
                  },
                  {
+                     "Start":  5623,
+                     "Length":  17,
+                     "Line":  142,
+                     "Column":  14,
+                     "Text":  "\"SPI/spi_slave.v\"",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_StaticString",
+                     "HoverText":  null
+                 },
+                 {
                      "Start":  5645,
                      "Length":  8,
                      "Line":  143,
@@ -19543,6 +19703,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Directive",
                      "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  5654,
+                     "Length":  20,
+                     "Line":  143,
+                     "Column":  14,
+                     "Text":  "\"UART/uart_rx_min.v\"",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_StaticString",
+                     "HoverText":  null
                  },
                  {
                      "Start":  5679,
@@ -19555,6 +19725,16 @@
                      "HoverText":  "Verilog directive"
                  },
                  {
+                     "Start":  5688,
+                     "Length":  20,
+                     "Line":  144,
+                     "Column":  14,
+                     "Text":  "\"UART/uart_tx_min.v\"",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_StaticString",
+                     "HoverText":  null
+                 },
+                 {
                      "Start":  5713,
                      "Length":  8,
                      "Line":  145,
@@ -19565,6 +19745,16 @@
                      "HoverText":  "Verilog directive"
                  },
                  {
+                     "Start":  5722,
+                     "Length":  29,
+                     "Line":  145,
+                     "Column":  14,
+                     "Text":  "\"UART/uart_trng_ascii_core.v\"",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_StaticString",
+                     "HoverText":  null
+                 },
+                 {
                      "Start":  5756,
                      "Length":  8,
                      "Line":  146,
@@ -19573,6 +19763,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Directive",
                      "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  5765,
+                     "Length":  28,
+                     "Line":  146,
+                     "Column":  14,
+                     "Text":  "\"TRNG/trng_cfg_ascii_core.v\"",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_StaticString",
+                     "HoverText":  null
                  },
                  {
                      "Start":  5798,
@@ -19603,6 +19803,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Directive",
                      "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  5831,
+                     "Length":  20,
+                     "Line":  148,
+                     "Column":  18,
+                     "Text":  "\"PINS/pin_id_core.v\"",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_StaticString",
+                     "HoverText":  null
                  },
                  {
                      "Start":  5856,
@@ -19645,6 +19855,16 @@
                      "HoverText":  "Verilog directive"
                  },
                  {
+                     "Start":  5904,
+                     "Length":  22,
+                     "Line":  151,
+                     "Column":  18,
+                     "Text":  "\"TRNG/trng_lab_core.v\"",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_StaticString",
+                     "HoverText":  null
+                 },
+                 {
                      "Start":  5931,
                      "Length":  5,
                      "Line":  152,
@@ -19663,6 +19883,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Directive",
                      "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  5954,
+                     "Length":  18,
+                     "Line":  153,
+                     "Column":  18,
+                     "Text":  "\"TRNG/trng_stub.v\"",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_StaticString",
+                     "HoverText":  null
                  },
                  {
                      "Start":  5977,
@@ -23462,7 +23692,7 @@
                      "Text":  "default",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
+                     "HoverText":  "parameter [31:0] CLOCK_HZ  = `PROJECT_CLOCK_HZ,    /* default clock is 25 MHz */"
                  },
                  {
                      "Start":  7499,
@@ -23482,7 +23712,7 @@
                      "Text":  "clock",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
+                     "HoverText":  "parameter [31:0] CLOCK_HZ  = `PROJECT_CLOCK_HZ,    /* default clock is 25 MHz */"
                  },
                  {
                      "Start":  7505,
@@ -23502,7 +23732,7 @@
                      "Text":  "is",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
+                     "HoverText":  "parameter [31:0] CLOCK_HZ  = `PROJECT_CLOCK_HZ,    /* default clock is 25 MHz */"
                  },
                  {
                      "Start":  7508,
@@ -23632,7 +23862,7 @@
                      "Text":  "default",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
+                     "HoverText":  "parameter [31:0] CLOCK_HZ  = `PROJECT_CLOCK_HZ,    /* default clock is 25 MHz */"
                  },
                  {
                      "Start":  7584,
@@ -23672,7 +23902,7 @@
                      "Text":  "is",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
+                     "HoverText":  "parameter [31:0] CLOCK_HZ  = `PROJECT_CLOCK_HZ,    /* default clock is 25 MHz */"
                  },
                  {
                      "Start":  7592,
@@ -25582,7 +25812,7 @@
                      "Text":  "clock",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
+                     "HoverText":  "parameter [31:0] CLOCK_HZ  = `PROJECT_CLOCK_HZ,    /* default clock is 25 MHz */"
                  },
                  {
                      "Start":  8329,
@@ -28075,24 +28305,14 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  10110,
-                     "Length":  6,
+                     "Start":  10094,
+                     "Length":  36,
                      "Line":  276,
-                     "Column":  42,
-                     "Text":  "uio_in",
+                     "Column":  26,
+                     "Text":  "\"t=%0t ui_in=%h uio_in=%h uo_out=%h\"",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  "input wire [7:0] uio_in"
-                 },
-                 {
-                     "Start":  10120,
-                     "Length":  6,
-                     "Line":  276,
-                     "Column":  52,
-                     "Text":  "uo_out",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  "output wire [7:0] uo_out"
+                     "TagDetail":  "Verilog_StaticString",
+                     "HoverText":  null
                  },
                  {
                      "Start":  10164,
@@ -53057,6 +53277,24 @@
                         "Name":  "unused_ok",
                         "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "wire unused_ok"
+                    },
+                    {
+                        "Scope":  "tt_um_gojimmypi_ttsky_UART_FSM_TRNG_Lab",
+                        "Name":  "default",
+                        "TokenType":  "Verilog_Variable_parameter",
+                        "HoverText":  "parameter [31:0] CLOCK_HZ  = `PROJECT_CLOCK_HZ,    /* default clock is 25 MHz */"
+                    },
+                    {
+                        "Scope":  "tt_um_gojimmypi_ttsky_UART_FSM_TRNG_Lab",
+                        "Name":  "clock",
+                        "TokenType":  "Verilog_Variable_parameter",
+                        "HoverText":  "parameter [31:0] CLOCK_HZ  = `PROJECT_CLOCK_HZ,    /* default clock is 25 MHz */"
+                    },
+                    {
+                        "Scope":  "tt_um_gojimmypi_ttsky_UART_FSM_TRNG_Lab",
+                        "Name":  "is",
+                        "TokenType":  "Verilog_Variable_parameter",
+                        "HoverText":  "parameter [31:0] CLOCK_HZ  = `PROJECT_CLOCK_HZ,    /* default clock is 25 MHz */"
                     },
                     {
                         "Scope":  "__CONST__",

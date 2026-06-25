@@ -373,13 +373,13 @@
                                           ]
                             },
                             {
-                                "Start":  945,
-                                "Length":  2,
+                                "Start":  928,
+                                "Length":  25,
                                 "Line":  30,
-                                "Column":  58,
-                                "Text":  "21",
+                                "Column":  41,
+                                "Text":  "\"Version 1.0.5 6/21/2026\"",
                                 "Types":  [
-                                              "Value"
+                                              "StaticString"
                                           ]
                             },
                             {
@@ -6235,13 +6235,13 @@
                      "HoverText":  "macro definition:\r\n`define VERSION_STRING          \"Version 1.0.5 6/21/2026\"\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifdef USE_LONG_STRINGS"
                  },
                  {
-                     "Start":  945,
-                     "Length":  2,
+                     "Start":  928,
+                     "Length":  25,
                      "Line":  30,
-                     "Column":  58,
-                     "Text":  "21",
+                     "Column":  41,
+                     "Text":  "\"Version 1.0.5 6/21/2026\"",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Value",
+                     "TagDetail":  "Verilog_StaticString",
                      "HoverText":  null
                  },
                  {

@@ -636,5 +636,12 @@
                         "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "wire signed xyzzy"
                     }
-                ]
+                ],
+    "ProcessingTime":  {
+                           "SchemaVersion":  2,
+                           "ElapsedBucket":  "10-14s",
+                           "Index":  17,
+                           "Count":  53,
+                           "Status":  "Completed"
+                       }
 }

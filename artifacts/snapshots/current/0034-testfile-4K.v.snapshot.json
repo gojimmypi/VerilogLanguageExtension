@@ -24146,5 +24146,12 @@
                         "TokenType":  "Verilog_Variable_duplicate",
                         "HoverText":  "duplicate? wire er3"
                     }
-                ]
+                ],
+    "ProcessingTime":  {
+                           "SchemaVersion":  2,
+                           "ElapsedBucket":  "10-14s",
+                           "Index":  34,
+                           "Count":  53,
+                           "Status":  "Completed"
+                       }
 }

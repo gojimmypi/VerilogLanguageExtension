@@ -1713,6 +1713,16 @@
                                           ]
                             },
                             {
+                                "Start":  2007,
+                                "Length":  19,
+                                "Line":  68,
+                                "Column":  13,
+                                "Text":  "stream_sample_count",
+                                "Types":  [
+                                              "Variable_reg"
+                                          ]
+                            },
+                            {
                                 "Start":  2030,
                                 "Length":  5,
                                 "Line":  68,
@@ -2510,6 +2520,26 @@
                                 "Text":  "TRNG_BINARY_STREAM",
                                 "Types":  [
                                               "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  2991,
+                                "Length":  19,
+                                "Line":  93,
+                                "Column":  21,
+                                "Text":  "stream_sample_count",
+                                "Types":  [
+                                              "Variable_reg"
+                                          ]
+                            },
+                            {
+                                "Start":  3014,
+                                "Length":  19,
+                                "Line":  93,
+                                "Column":  44,
+                                "Text":  "stream_sample_count",
+                                "Types":  [
+                                              "Variable_reg"
                                           ]
                             },
                             {
@@ -6122,7 +6152,7 @@
                      "Text":  "oscillator",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
+                     "HoverText":  "input  wire       reg_oscen, /* oscillator enable */"
                  },
                  {
                      "Start":  972,
@@ -6142,7 +6172,7 @@
                      "Text":  "enable",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
+                     "HoverText":  "input  wire       reg_oscen, /* oscillator enable */"
                  },
                  {
                      "Start":  979,
@@ -6462,7 +6492,7 @@
                      "Text":  "stream_sample_count",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
-                     "HoverText":  null
+                     "HoverText":  "output reg  [7:0] stream_sample_count"
                  },
                  {
                      "Start":  1152,
@@ -8535,6 +8565,16 @@
                      "HoverText":  "module trng_stub( .. output reg [7:0] stream_sample_count .. )"
                  },
                  {
+                     "Start":  2007,
+                     "Length":  19,
+                     "Line":  68,
+                     "Column":  13,
+                     "Text":  "stream_sample_count",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  "output reg  [7:0] stream_sample_count"
+                 },
+                 {
                      "Start":  2030,
                      "Length":  5,
                      "Line":  68,
@@ -10203,6 +10243,26 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
                      "HoverText":  "module trng_stub( .. output reg [7:0] stream_sample_count .. )"
+                 },
+                 {
+                     "Start":  2991,
+                     "Length":  19,
+                     "Line":  93,
+                     "Column":  21,
+                     "Text":  "stream_sample_count",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  "output reg  [7:0] stream_sample_count"
+                 },
+                 {
+                     "Start":  3014,
+                     "Length":  19,
+                     "Line":  93,
+                     "Column":  44,
+                     "Text":  "stream_sample_count",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  "output reg  [7:0] stream_sample_count"
                  },
                  {
                      "Start":  3036,
@@ -21923,6 +21983,24 @@
                         "Name":  "_unused_reg_mode",
                         "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "wire _unused_reg_mode = \u0026reg_mode[7:3]"
+                    },
+                    {
+                        "Scope":  "trng_stub",
+                        "Name":  "oscillator",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "input  wire       reg_oscen, /* oscillator enable */"
+                    },
+                    {
+                        "Scope":  "trng_stub",
+                        "Name":  "enable",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "input  wire       reg_oscen, /* oscillator enable */"
+                    },
+                    {
+                        "Scope":  "trng_stub",
+                        "Name":  "stream_sample_count",
+                        "TokenType":  "Verilog_Variable_reg",
+                        "HoverText":  "output reg  [7:0] stream_sample_count"
                     },
                     {
                         "Scope":  "__CONST__",

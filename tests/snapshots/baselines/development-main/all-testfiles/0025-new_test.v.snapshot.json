@@ -172,7 +172,7 @@
                      "Text":  "h1",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  null
+                     "HoverText":  "input wire [1:1] k1,   h1"
                  }
              ],
     "Tokens":  [
@@ -295,6 +295,12 @@
                         "Name":  "k1",
                         "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "input wire [1:1] k1"
+                    },
+                    {
+                        "Scope":  "global",
+                        "Name":  "h1",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "input wire [1:1] k1,   h1"
                     }
                 ]
 }

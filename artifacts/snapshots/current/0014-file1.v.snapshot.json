@@ -1024,5 +1024,12 @@
                         "TokenType":  "Verilog_Variable_parameter",
                         "HoverText":  "parameter [ 0:0] ENABLE_COUNTERS2 = 1"
                     }
-                ]
+                ],
+    "ProcessingTime":  {
+                           "SchemaVersion":  2,
+                           "ElapsedBucket":  "10-14s",
+                           "Index":  14,
+                           "Count":  53,
+                           "Status":  "Completed"
+                       }
 }

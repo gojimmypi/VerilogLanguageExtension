@@ -2590,5 +2590,12 @@
                         "TokenType":  "Verilog_Value",
                         "HoverText":  "32\u0027B0 = (32 bit Binary) 0; "
                     }
-                ]
+                ],
+    "ProcessingTime":  {
+                           "SchemaVersion":  2,
+                           "ElapsedBucket":  "10-14s",
+                           "Index":  12,
+                           "Count":  53,
+                           "Status":  "Completed"
+                       }
 }

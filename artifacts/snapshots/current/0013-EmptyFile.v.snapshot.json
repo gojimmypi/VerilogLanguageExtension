@@ -22,5 +22,12 @@
                ],
     "Symbols":  [
 
-                ]
+                ],
+    "ProcessingTime":  {
+                           "SchemaVersion":  2,
+                           "ElapsedBucket":  "10-14s",
+                           "Index":  13,
+                           "Count":  53,
+                           "Status":  "Completed"
+                       }
 }

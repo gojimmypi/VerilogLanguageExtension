@@ -367,24 +367,29 @@ namespace VerilogLanguage
             int thisLine = lineInfo.LineNumber;
             int thisPosition = tagSpan.Start.Position - lineInfo.Extent.Start.Position;
 
-            string thisScopeName = null;
-            Dictionary<string, Dictionary<string, string>> hoverDb = null;
-
             string thisFile = VerilogGlobals.GetDocumentPath(spanSnapshot);
-            VerilogGlobals.ParseDataSnapshot parseData;
-            if (VerilogGlobals.TryGetParseData(thisFile, spanSnapshot.Version.VersionNumber, true, out parseData)) {
-                thisScopeName = parseData.TextModuleName(thisLine, thisPosition);
-                hoverDb = parseData.VerilogVariableHoverText;
-            }
-            else {
-                thisScopeName = VerilogGlobals.TextModuleName(thisLine, thisPosition);
-                hoverDb = VerilogGlobals.VerilogVariableHoverText;
+            if (string.IsNullOrEmpty(thisFile)) {
+                return false;
             }
 
+            /* QuickInfo must not fall back to stale or active-global hover data. The active globals can
+             * belong to a different open file, and stale parse data can describe a previous snapshot. */
+            if (VerilogGlobals.ParseStatusController.NeedReparse(thisFile) ||
+                VerilogGlobals.ParseStatusController.IsReparsing(thisFile)) {
+                return false;
+            }
+
+            VerilogGlobals.ParseDataSnapshot parseData;
+            if (!VerilogGlobals.TryGetParseData(thisFile, spanSnapshot.Version.VersionNumber, false, out parseData)) {
+                return false;
+            }
+
+            string thisScopeName = parseData.TextModuleName(thisLine, thisPosition);
             if (string.IsNullOrWhiteSpace(thisScopeName)) {
                 thisScopeName = VerilogGlobals.SCOPE_CONST;
             }
 
+            Dictionary<string, Dictionary<string, string>> hoverDb = parseData.VerilogVariableHoverText;
             if (hoverDb == null) {
                 return false;
             }

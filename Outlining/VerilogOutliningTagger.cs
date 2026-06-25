@@ -85,7 +85,8 @@ namespace VerilogLanguage.CodeOutlining
 
         private static List<VerilogOutliningRegion> ParseRegions(ITextSnapshot snapshot) {
             List<VerilogOutliningRegion> regions = new List<VerilogOutliningRegion>();
-            List<VerilogOutlineStart> stack = new List<VerilogOutlineStart>();
+            List<VerilogOutlineStart> scopeStack = new List<VerilogOutlineStart>();
+            List<VerilogOutlineStart> directiveStack = new List<VerilogOutlineStart>();
             PendingBlock pendingBlock = null;
             bool inBlockComment = false;
 
@@ -104,54 +105,54 @@ namespace VerilogLanguage.CodeOutlining
                     switch (token) {
                         case "`ifdef":
                         case "`ifndef":
-                            stack.Add(CreateStart("directive", line, originalLineText));
+                            directiveStack.Add(CreateStart("directive", line, originalLineText));
                             pendingBlock = null;
                             break;
 
                         case "`endif":
-                            CloseScope(stack, regions, snapshot, lineNumber, IsDirectiveScope);
+                            CloseScope(directiveStack, regions, snapshot, lineNumber, IsDirectiveScope);
                             pendingBlock = null;
                             break;
 
                         case "module":
-                            stack.Add(CreateStart("module", line, originalLineText));
+                            scopeStack.Add(CreateStart("module", line, originalLineText));
                             pendingBlock = null;
                             break;
 
                         case "endmodule":
-                            CloseScope(stack, regions, snapshot, lineNumber, IsModuleScope);
+                            CloseScope(scopeStack, regions, snapshot, lineNumber, IsModuleScope);
                             pendingBlock = null;
                             break;
 
                         case "function":
-                            stack.Add(CreateStart("function", line, originalLineText));
+                            scopeStack.Add(CreateStart("function", line, originalLineText));
                             pendingBlock = null;
                             break;
 
                         case "endfunction":
-                            CloseScope(stack, regions, snapshot, lineNumber, IsFunctionScope);
+                            CloseScope(scopeStack, regions, snapshot, lineNumber, IsFunctionScope);
                             pendingBlock = null;
                             break;
 
                         case "task":
-                            stack.Add(CreateStart("task", line, originalLineText));
+                            scopeStack.Add(CreateStart("task", line, originalLineText));
                             pendingBlock = null;
                             break;
 
                         case "endtask":
-                            CloseScope(stack, regions, snapshot, lineNumber, IsTaskScope);
+                            CloseScope(scopeStack, regions, snapshot, lineNumber, IsTaskScope);
                             pendingBlock = null;
                             break;
 
                         case "case":
                         case "casex":
                         case "casez":
-                            stack.Add(CreateStart("case", line, originalLineText));
+                            scopeStack.Add(CreateStart("case", line, originalLineText));
                             pendingBlock = null;
                             break;
 
                         case "endcase":
-                            CloseScope(stack, regions, snapshot, lineNumber, IsCaseScope);
+                            CloseScope(scopeStack, regions, snapshot, lineNumber, IsCaseScope);
                             pendingBlock = null;
                             break;
 
@@ -174,7 +175,7 @@ namespace VerilogLanguage.CodeOutlining
 
                         case "begin":
                             if (pendingBlock != null) {
-                                stack.Add(new VerilogOutlineStart(
+                                scopeStack.Add(new VerilogOutlineStart(
                                     pendingBlock.Kind,
                                     pendingBlock.LineNumber,
                                     pendingBlock.Start,
@@ -182,12 +183,12 @@ namespace VerilogLanguage.CodeOutlining
                                 pendingBlock = null;
                             }
                             else {
-                                stack.Add(CreateStart("begin", line, originalLineText));
+                                scopeStack.Add(CreateStart("begin", line, originalLineText));
                             }
                             break;
 
                         case "end":
-                            CloseScope(stack, regions, snapshot, lineNumber, IsBeginScope);
+                            CloseScope(scopeStack, regions, snapshot, lineNumber, IsBeginScope);
                             pendingBlock = null;
                             break;
 

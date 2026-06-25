@@ -43,9 +43,11 @@ namespace VerilogLanguage
                     thisHint = VerilogGlobals.BufferAttribute_at_LineNumber[forLineNumber];
                 }
                 catch (Exception ex) {
-                    // System.Diagnostics.Debug.WriteLine("ERROR: TextIsComment hint exception AtLine = {0}, Length={1}; message={2}", forLineNumber, BufferAttribute_at_LineNumber.Length, ex.Message);
+                    System.Diagnostics.Debug.WriteLine("ERROR: TextIsComment hint exception AtLine = {0}, Length={1}; message={2}", forLineNumber, BufferAttribute_at_LineNumber.Length, ex.Message);
                     thisHint = 0;
+#if VLE_HARD_FAIL
                     throw new Exception(ex.Message, ex.InnerException);
+#endif
                 }
             }
             else {
@@ -425,7 +427,8 @@ namespace VerilogLanguage
                     newSnapshot = buffer.CurrentSnapshot;
                     thisBufferVersion = newSnapshot.Version.VersionNumber;
                 }
-                catch {
+                catch (Exception ex) {
+                    System.Diagnostics.Debug.WriteLine("ReparseWork could not read CurrentSnapshot: " + ex.Message);
                     thisBufferVersion = 0;
                 }
 
@@ -791,9 +794,11 @@ namespace VerilogLanguage
                         hint = VerilogGlobals.BufferAttribute_at_LineNumber[AtLine];
                     }
                     catch (Exception ex) {
-                        // System.Diagnostics.Debug.WriteLine("ERROR: TextIsComment hint exception AtLine = {0}, Length={1}; message={2}", AtLine, BufferAttribute_at_LineNumber.Length, ex.Message);
+                        System.Diagnostics.Debug.WriteLine("ERROR: TextIsComment hint exception AtLine = {0}, Length={1}; message={2}", AtLine, BufferAttribute_at_LineNumber.Length, ex.Message);
                         hint = 0;
+#if VLE_HARD_FAIL
                         throw new Exception(ex.Message, ex.InnerException);
+#endif
                     }
                 }
                 else {

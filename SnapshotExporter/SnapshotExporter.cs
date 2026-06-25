@@ -83,7 +83,7 @@ namespace VerilogLanguage.Testing
             ExportParserTokens(snapshot, export);
             ExportClassifierSpans(editBuffer, snapshot, export);
             ExportVerilogTokenTags(editBuffer, snapshot, export);
-            ExportSymbols(export);
+            ExportSymbols(filePath, snapshot, export);
 
             return export;
         }
@@ -255,9 +255,36 @@ namespace VerilogLanguage.Testing
             }
         }
 
-        private static void ExportSymbols(EditorSnapshotExport export) {
+        private static void ExportSymbols(string filePath, ITextSnapshot snapshot, EditorSnapshotExport export) {
+            if (snapshot == null) {
+                AddError(export, "Symbol export skipped: snapshot was not available.");
+                return;
+            }
+
+            string targetFile = VerilogLanguage.VerilogGlobals.GetDocumentPath(snapshot);
+            if (string.IsNullOrEmpty(targetFile)) {
+                targetFile = filePath;
+            }
+
+            if (string.IsNullOrEmpty(targetFile)) {
+                AddError(export, "Symbol export skipped: document path was not available.");
+                return;
+            }
+
             try {
-                foreach (KeyValuePair<string, Dictionary<string, VerilogLanguage.VerilogToken.VerilogTokenTypes>> scope in VerilogLanguage.VerilogGlobals.VerilogVariables) {
+                VerilogLanguage.VerilogGlobals.ParseDataSnapshot parseData;
+                if (!VerilogLanguage.VerilogGlobals.TryGetParseData(targetFile, snapshot.Version.VersionNumber, false, out parseData) ||
+                    parseData == null) {
+                    AddError(export,
+                        string.Format(
+                            CultureInfo.InvariantCulture,
+                            "Symbol export skipped: parse data was not available for {0} snapshot version {1}.",
+                            SnapshotExportSettings.MakeRelativePath(targetFile),
+                            snapshot.Version.VersionNumber));
+                    return;
+                }
+
+                foreach (KeyValuePair<string, Dictionary<string, VerilogLanguage.VerilogToken.VerilogTokenTypes>> scope in parseData.VerilogVariables) {
                     if (scope.Value == null) {
                         continue;
                     }
@@ -270,7 +297,7 @@ namespace VerilogLanguage.Testing
 
                         Dictionary<string, string> hoverScope;
                         string hoverText;
-                        if (VerilogLanguage.VerilogGlobals.VerilogVariableHoverText.TryGetValue(scope.Key, out hoverScope) &&
+                        if (parseData.VerilogVariableHoverText.TryGetValue(scope.Key, out hoverScope) &&
                             hoverScope != null &&
                             hoverScope.TryGetValue(symbol.Key, out hoverText)) {
                             run.HoverText = hoverText;

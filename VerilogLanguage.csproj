@@ -11,7 +11,7 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == '' And '$(VisualStudioVersion)' != ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <!-- VSSDK build integration comes from NuGet, not from Program Files 
+  <!-- VSSDK build integration comes from NuGet, not from Program Files
   <PropertyGroup>
     <VSSDKBuildToolsProps>$(NuGetPackageRoot)Microsoft.VSSDK.BuildTools\17.14.2120\build\Microsoft.VSSDK.BuildTools.props</VSSDKBuildToolsProps>
     <VSSDKBuildToolsTargets>$(NuGetPackageRoot)Microsoft.VSSDK.BuildTools\17.14.2120\build\Microsoft.VSSDK.BuildTools.targets</VSSDKBuildToolsTargets>
@@ -132,6 +132,8 @@
     <Compile Include="BraceMatching\BraceMatchingTaggerProvider.cs" />
     <Compile Include="Intellisense\QuickInfoController.cs" />
     <Compile Include="Intellisense\QuickInfoControllerProvider.cs" />
+    <Compile Include="Outlining\VerilogOutliningTagger.cs" />
+    <Compile Include="Outlining\VerilogOutliningTaggerProvider.cs" />
     <Compile Include="VerilogToken\VerilogTokenTag.cs" />
     <Compile Include="VerilogToken\VerilogTokenTypes.cs" />
     <Compile Include="VerilogToken\VerilogTokenTagger.cs" />
@@ -188,7 +190,7 @@
     <Error Condition="'$(VSToolsPath)' == '' Or !Exists('$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets')" Text="Missing Microsoft.VsSDK.targets. Build from a VS developer prompt or set VisualStudioVersion/VSToolsPath." />
   </Target>
   <Target Name="DiagnoseVSSDKImports" BeforeTargets="Build">
-    <!-- Sdk.props 
+    <!-- Sdk.props
       <Message
           Condition="!Exists('$(VSToolsPath)\VSSDK\Microsoft.VisualStudio.Sdk.props')"
           Importance="high"

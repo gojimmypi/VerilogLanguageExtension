@@ -232,7 +232,8 @@ namespace VerilogLanguage
             try {
                 snapshotVersion = buffer.CurrentSnapshot.Version.VersionNumber;
             }
-            catch {
+            catch (Exception ex) {
+                System.Diagnostics.Debug.WriteLine("TryGetParseData failed to get buffer.CurrentSnapshot.Version.VersionNumber", ex.Message);
                 return false;
             }
 

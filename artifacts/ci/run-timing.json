@@ -1,36 +1,36 @@
 {
     "SchemaVersion":  1,
     "Status":  "Completed",
-    "StartedAt":  "2026-06-24T21:29:57.6516811-07:00",
-    "CompletedAt":  "2026-06-24T21:43:22.0535539-07:00",
-    "StartedAtUtc":  "2026-06-25T04:29:57.6516811Z",
-    "CompletedAtUtc":  "2026-06-25T04:43:22.0535539Z",
-    "TotalSeconds":  804.402,
-    "Total":  "00:13:24.4016717",
+    "StartedAt":  "2026-06-25T14:29:05.1304261-07:00",
+    "CompletedAt":  "2026-06-25T14:42:06.3814256-07:00",
+    "StartedAtUtc":  "2026-06-25T21:29:05.1304261Z",
+    "CompletedAtUtc":  "2026-06-25T21:42:06.3814256Z",
+    "TotalSeconds":  781.259,
+    "Total":  "00:13:01.2591981",
     "Steps":  [
                   {
                       "Name":  "Build",
                       "Status":  "Completed",
-                      "ElapsedSeconds":  7.351,
-                      "Elapsed":  "00:00:07.3514916"
+                      "ElapsedSeconds":  6.025,
+                      "Elapsed":  "00:00:06.0253021"
                   },
                   {
                       "Name":  "Snapshot export",
                       "Status":  "Completed",
-                      "ElapsedSeconds":  766.868,
-                      "Elapsed":  "00:12:46.8679587"
+                      "ElapsedSeconds":  742.358,
+                      "Elapsed":  "00:12:22.3582788"
                   },
                   {
                       "Name":  "Snapshot comparison",
                       "Status":  "Completed",
-                      "ElapsedSeconds":  5.741,
-                      "Elapsed":  "00:00:05.7414539"
+                      "ElapsedSeconds":  4.168,
+                      "Elapsed":  "00:00:04.1680032"
                   },
                   {
                       "Name":  "Baseline formatting",
                       "Status":  "Completed",
-                      "ElapsedSeconds":  24.424,
-                      "Elapsed":  "00:00:24.4240020"
+                      "ElapsedSeconds":  28.691,
+                      "Elapsed":  "00:00:28.6912866"
                   }
               ]
 }

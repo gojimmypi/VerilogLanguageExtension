@@ -3,10 +3,10 @@
     "RunName":  "all-testfiles",
     "Manifest":  "tools/vle-ci/manifests/all-testfiles.json",
     "Status":  "Completed",
-    "StartedAt":  "2026-06-24T21:30:05.0793711-07:00",
-    "CompletedAt":  "2026-06-24T21:42:26.3208425-07:00",
-    "ElapsedSeconds":  741.241,
-    "Elapsed":  "00:12:21.2409952",
+    "StartedAt":  "2026-06-25T14:29:11.2190529-07:00",
+    "CompletedAt":  "2026-06-25T14:41:04.8401469-07:00",
+    "ElapsedSeconds":  713.622,
+    "Elapsed":  "00:11:53.6215514",
     "ExpectedSnapshots":  53,
     "ActualSnapshots":  53,
     "Timings":  [
@@ -16,7 +16,7 @@
                         "Path":  "TestFiles/anothertest - Copy.v",
                         "SnapshotFileName":  "0001-anothertest - Copy.v.snapshot.json",
                         "Status":  "Completed",
-                        "ElapsedBucket":  "25-29s"
+                        "ElapsedBucket":  "20-24s"
                     },
                     {
                         "Index":  2,
@@ -224,7 +224,7 @@
                         "Path":  "TestFiles/picorv32.v",
                         "SnapshotFileName":  "0027-picorv32.v.snapshot.json",
                         "Status":  "Completed",
-                        "ElapsedBucket":  "20-24s"
+                        "ElapsedBucket":  "30-34s"
                     },
                     {
                         "Index":  28,
@@ -248,7 +248,7 @@
                         "Path":  "TestFiles/test - bigfile.v",
                         "SnapshotFileName":  "0030-test - bigfile.v.snapshot.json",
                         "Status":  "Completed",
-                        "ElapsedBucket":  "20-24s"
+                        "ElapsedBucket":  "30-34s"
                     },
                     {
                         "Index":  31,

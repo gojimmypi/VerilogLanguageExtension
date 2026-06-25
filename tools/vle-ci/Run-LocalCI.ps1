@@ -173,6 +173,8 @@ function Write-CiTimingArtifact {
         Status = $Status
         StartedAt = $script:ciStartedAt.ToString("o")
         CompletedAt = $completedAt.ToString("o")
+        StartedAtUtc = $script:ciStartedAt.ToUniversalTime().ToString("o")
+        CompletedAtUtc = $completedAt.ToUniversalTime().ToString("o")
         TotalSeconds = [Math]::Round($script:ciStopwatch.Elapsed.TotalSeconds, 3)
         Total = $script:ciStopwatch.Elapsed.ToString("c")
         Steps = @($script:ciTimingRecords.ToArray())

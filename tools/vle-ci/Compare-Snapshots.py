@@ -165,9 +165,18 @@ def normalize_slashes(value: str) -> str:
     return value.replace("\\", "/")
 
 
+VOLATILE_SNAPSHOT_FIELDS = {
+    "GeneratedAtUtc",
+    "GitCommit",
+    "ProcessingTime",
+    "RunTiming",
+}
+
+
 def snapshot_for_baseline(snapshot: Snapshot) -> Snapshot:
     cleaned = dict(snapshot)
-    cleaned.pop("GitCommit", None)
+    for field in VOLATILE_SNAPSHOT_FIELDS:
+        cleaned.pop(field, None)
     return cleaned
 
 

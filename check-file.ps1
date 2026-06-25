@@ -51,6 +51,26 @@ function Write-Utf8TextFile {
     [System.IO.File]::WriteAllText($Path, $Text, $utf8NoBom)
 }
 
+function Copy-SnapshotForReviewDiff {
+    param(
+        [string]$SourcePath,
+        [string]$DestinationPath
+    )
+
+    $rawJson = [System.IO.File]::ReadAllText($SourcePath, [System.Text.Encoding]::UTF8)
+    $json = $rawJson | ConvertFrom-Json
+
+    foreach ($propertyName in @("GeneratedAtUtc", "GitCommit", "ProcessingTime", "RunTiming")) {
+        $property = $json.PSObject.Properties[$propertyName]
+        if ($null -ne $property) {
+            $json.PSObject.Properties.Remove($propertyName)
+        }
+    }
+
+    $text = $json | ConvertTo-Json -Depth 100
+    Write-Utf8TextFile -Path $DestinationPath -Text ($text + [Environment]::NewLine)
+}
+
 function ConvertTo-NormalizedSnapshotPath {
     param([string]$Path)
 

@@ -494,15 +494,22 @@ function Add-SnapshotTimingRecord {
         [string]$Path,
         [string]$SnapshotFileName,
         [System.Diagnostics.Stopwatch]$Stopwatch,
+        [datetime]$StartedAt = [datetime]::MinValue,
         [string]$Status = "Completed"
     )
 
     if ($null -eq $Stopwatch) {
-        return
+        return $null
     }
 
     if ($Stopwatch.IsRunning) {
         $Stopwatch.Stop()
+    }
+
+    $completedAt = Get-Date
+    $startedAtUtc = ""
+    if ($StartedAt -ne [datetime]::MinValue) {
+        $startedAtUtc = $StartedAt.ToUniversalTime().ToString("o")
     }
 
     $elapsedSeconds = [Math]::Round($Stopwatch.Elapsed.TotalSeconds, 3)
@@ -512,12 +519,60 @@ function Add-SnapshotTimingRecord {
         Path = $Path.Replace("\", "/")
         SnapshotFileName = $SnapshotFileName
         Status = $Status
+        StartedAtUtc = $startedAtUtc
+        CompletedAtUtc = $completedAt.ToUniversalTime().ToString("o")
         ElapsedSeconds = $elapsedSeconds
         Elapsed = $Stopwatch.Elapsed.ToString("c")
     }
 
-    [void]$script:snapshotTimingRecords.Add([pscustomobject]$record)
+    $recordObject = [pscustomobject]$record
+    [void]$script:snapshotTimingRecords.Add($recordObject)
     Write-Host ("Timing: snapshot [{0}/{1}] {2}: {3:N3}s ({4})" -f $Index, $Count, $Path, $elapsedSeconds, $Status)
+    return $recordObject
+}
+
+function Set-SnapshotProcessingTime {
+    param(
+        [string]$Path,
+        [object]$TimingRecord,
+        [datetime]$RunStartedAt
+    )
+
+    if ($null -eq $TimingRecord -or !(Test-Path -LiteralPath $Path)) {
+        return
+    }
+
+    try {
+        $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+        $rawJson = [System.IO.File]::ReadAllText($Path, [System.Text.Encoding]::UTF8)
+        $json = $rawJson | ConvertFrom-Json
+
+        foreach ($propertyName in @("ProcessingTime", "RunTiming")) {
+            $property = $json.PSObject.Properties[$propertyName]
+            if ($null -ne $property) {
+                $json.PSObject.Properties.Remove($propertyName)
+            }
+        }
+
+        $processingTime = [ordered]@{
+            SchemaVersion = 1
+            RunStartedAtUtc = $RunStartedAt.ToUniversalTime().ToString("o")
+            StartedAtUtc = [string]$TimingRecord.StartedAtUtc
+            CompletedAtUtc = [string]$TimingRecord.CompletedAtUtc
+            ElapsedSeconds = [double]$TimingRecord.ElapsedSeconds
+            Elapsed = [string]$TimingRecord.Elapsed
+            Index = [int]$TimingRecord.Index
+            Count = [int]$TimingRecord.Count
+            Status = [string]$TimingRecord.Status
+        }
+
+        $json | Add-Member -MemberType NoteProperty -Name "ProcessingTime" -Value ([pscustomobject]$processingTime)
+        $text = $json | ConvertTo-Json -Depth 100
+        [System.IO.File]::WriteAllText($Path, ($text + [Environment]::NewLine), $utf8NoBom)
+    }
+    catch {
+        Write-Warning "Could not write processing time to snapshot $Path`: $_"
+    }
 }
 
 function Format-GeneratedJsonFiles {
@@ -694,6 +749,7 @@ try {
     $fileCount = @($manifestJson.Files).Count
     foreach ($fileEntry in $manifestJson.Files) {
         $index++
+        $fileTimingStartedAt = Get-Date
         $fileStopwatch = [System.Diagnostics.Stopwatch]::StartNew()
         $file = Get-ManifestEntryPath -FileEntry $fileEntry
         $snapshotFileName = Get-ManifestEntrySnapshotFileName -FileEntry $fileEntry
@@ -759,6 +815,7 @@ try {
                 -Path $file `
                 -SnapshotFileName $snapshotFileName `
                 -Stopwatch $fileStopwatch `
+                -StartedAt $fileTimingStartedAt `
                 -Status "Failed"
 
             throw "No snapshot was written after opening $file. The file exists and VS was launched, but no export appeared within $deadlineSeconds seconds."
@@ -792,12 +849,18 @@ try {
             Start-Sleep -Seconds 1
         }
 
-        Add-SnapshotTimingRecord `
+        $timingRecord = Add-SnapshotTimingRecord `
             -Index $index `
             -Count $fileCount `
             -Path $file `
             -SnapshotFileName (Split-Path -Leaf $finalSnapshotPath) `
-            -Stopwatch $fileStopwatch
+            -Stopwatch $fileStopwatch `
+            -StartedAt $fileTimingStartedAt
+
+        Set-SnapshotProcessingTime `
+            -Path $finalSnapshotPath `
+            -TimingRecord $timingRecord `
+            -RunStartedAt $snapshotRunStartedAt
     }
 }
 finally {

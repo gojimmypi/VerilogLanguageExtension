@@ -1,0 +1,33 @@
+name: VLE Headless CI
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  build:
+    runs-on: windows-2022
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Locate MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Build solution
+        shell: pwsh
+        run: |
+          msbuild .\VerilogLanguageExtension.sln /m /restore /p:Configuration=Release
+
+      - name: Validate manifest
+        shell: pwsh
+        run: |
+          .\create-testfile-manifest.ps1
+
+      - name: Check snapshot JSON parses
+        shell: pwsh
+        run: |
+          Get-ChildItem .\tests\snapshots -Recurse -Filter *.json |
+              ForEach-Object {
+                  Get-Content $_.FullName -Raw | ConvertFrom-Json | Out-Null
+              }

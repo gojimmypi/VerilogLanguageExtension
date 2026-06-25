@@ -1,7 +1,10 @@
 using Microsoft.VisualStudio.Text;
+using StreamJsonRpc;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
+using System.Windows.Media.Media3D;
 using VerilogLanguage.VerilogToken;
 
 namespace VerilogLanguage
@@ -303,40 +306,56 @@ namespace VerilogLanguage
                 //lock(_synchronizationParseStatus) {
                 //    IsReparsing = ParseStatus[targetFile].IsReparsing;
                 //}
-                if (ParseStatusController.IsReparsing(targetFile)) {
-                    // TODO what is this for? does it help with threading? (probably not)
-                    System.Diagnostics.Debug.WriteLine("DoWork called while IsReparsing...");
 
-                    Thread.Sleep(50);
+                bool alreadyReparsing = false;
+
+                if (string.IsNullOrEmpty(targetFile)) {
+                    return;
                 }
-                else {
-                    lock (_synchronizationParseStatus) {
+
+                lock (_synchronizationParseStatus) {
+                    ParseStatusController.EnsureExists(targetFile);
+
+                    alreadyReparsing = ParseStatus[targetFile].IsReparsing;
+
+                    /* A parse is actively running for this file.
+                     * Do not start another parse for the same file right now.
+                     * If another request arrives, keep NeedReparse = true and let the current parse finish first. */
+                    if (!alreadyReparsing) {
                         ParseStatus[targetFile].IsReparsing = true;
                     }
-                    //if ( 1==1 || (DateTime.Now - LastRefresh).TotalSeconds > 10)
-                    //{
-                    //    System.Diagnostics.Debug.WriteLine("BufferAttributes calling ReparseWork");
-                    try {
-                        VerilogGlobals.ReparseWork(targetBuffer, targetFile);
-                    }
-                    catch (Exception ex) {
-                        System.Diagnostics.Debug.WriteLine("ReparseWork failed: " + ex.Message);
-                        lock (_synchronizationParseStatus) {
-                            ParseStatusController.EnsureExists(targetFile);
-                            ParseStatus[targetFile].IsReparsing = false;
-                            ParseStatus[targetFile].NeedReparse = false;
-                        }
-                    }
-                    //    LastRefresh = DateTime.Now;
-                    //}
-
-
-                    // TODO once reparsing is done in a thread, we need to tell the viewport to redraww the screen
-                    // does this redraw?
-                    // TheView.Selection.TextView.ViewScroller.ScrollViewportVerticallyByPixels(0);
-
-                    Thread.Sleep(10);
                 }
+
+                if (alreadyReparsing) {
+                    System.Diagnostics.Debug.WriteLine("DoWork called while IsReparsing; keeping reparse queued.");
+                    VerilogGlobals.ParseStatusController.NeedReparse_SetValue(targetFile, true);
+                    return;
+                }
+
+                //if ( 1==1 || (DateTime.Now - LastRefresh).TotalSeconds > 10)
+                //{
+                //    System.Diagnostics.Debug.WriteLine("BufferAttributes calling ReparseWork");
+
+                try {
+                    VerilogGlobals.ReparseWork(targetBuffer, targetFile);
+                }
+                catch (Exception ex) {
+                    System.Diagnostics.Debug.WriteLine("ReparseWork failed: " + ex.Message);
+                    lock (_synchronizationParseStatus) {
+                        ParseStatusController.EnsureExists(targetFile);
+                        ParseStatus[targetFile].IsReparsing = false;
+                        ParseStatus[targetFile].NeedReparse = false;
+                    }
+                }
+                //    LastRefresh = DateTime.Now;
+                //}
+
+
+                // TODO once reparsing is done in a thread, we need to tell the viewport to redraww the screen
+                // does this redraw?
+                // TheView.Selection.TextView.ViewScroller.ScrollViewportVerticallyByPixels(0);
+
+                Thread.Sleep(10);
             }
         }
 
@@ -418,7 +437,7 @@ namespace VerilogLanguage
 
                 if (buffer.EditInProgress) {
                     ParseStatus[targetFile].IsReparsing = false;
-                    VerilogGlobals.ParseStatusController.NeedReparse_SetValue(targetFile, false);
+                    VerilogGlobals.ParseStatusController.NeedReparse_SetValue(targetFile, true);
                     // IsReparsing = false;
                     return;
                 }
@@ -724,11 +743,7 @@ namespace VerilogLanguage
             // TODO - do we need a final, end-of-file bufferAttribute (probably not)
 
             lock (_synchronizationParseStatus) {
-                // in case we got here from someplace that set NeedReparse to true - reset to indicate completion:
-                VerilogGlobals.ParseStatus[targetFile].NeedReparse = true;
-                //VerilogGlobals.NeedReparse = false;
                 VerilogGlobals.ParseStatus[targetFile].LastParseTime = DateTime.Now;
-                //VerilogGlobals.LastParseTime = DateTime.Now;
                 VerilogGlobals.ParseStatus[targetFile].LastReparseVersion = thisBufferVersion;
             }
             double duration = (DateTime.Now - ProfileStart).TotalMilliseconds;
@@ -740,9 +755,28 @@ namespace VerilogLanguage
             VerilogGlobals.MarkDuplicateDeclarationsFromSnapshot(newSnapshot);
 
             VerilogGlobals.PublishParseData(targetFile, thisBufferVersion);
+
+            int currentBufferVersion = thisBufferVersion;
+            try {
+                if (buffer != null) {
+                    currentBufferVersion = buffer.CurrentSnapshot.Version.VersionNumber;
+                }
+            }
+            catch (Exception ex) {
+                System.Diagnostics.Debug.WriteLine("ReparseWork could not check final CurrentSnapshot: " + ex.Message);
+                currentBufferVersion = thisBufferVersion;
+            }
+
+            bool queueFollowUpReparse = currentBufferVersion != thisBufferVersion;
             lock (_synchronizationParseStatus) {
+                ParseStatusController.EnsureExists(targetFile);
                 ParseStatus[targetFile].IsReparsing = false;
-                VerilogGlobals.ParseStatusController.NeedReparse_SetValue(targetFile, false);
+                VerilogGlobals.ParseStatusController.NeedReparse_SetValue(targetFile, queueFollowUpReparse);
+            }
+
+            if (queueFollowUpReparse) {
+                System.Diagnostics.Debug.WriteLine("Reparse completed for an older snapshot; queueing follow-up reparse.");
+                VerilogGlobals.Reparse(buffer, targetFile);
             }
 
             //TagsChanged?.Invoke(this, new SnapshotSpanEventArgs(

@@ -108,52 +108,152 @@ function Format-GeneratedJsonFiles {
     }
 }
 
+
+function Add-CiTimingRecord {
+    param(
+        [string]$Name,
+        [System.Diagnostics.Stopwatch]$Stopwatch,
+        [string]$Status = "Completed"
+    )
+
+    if ($null -eq $Stopwatch) {
+        return
+    }
+
+    if ($Stopwatch.IsRunning) {
+        $Stopwatch.Stop()
+    }
+
+    $elapsedSeconds = [Math]::Round($Stopwatch.Elapsed.TotalSeconds, 3)
+    $record = [ordered]@{
+        Name = $Name
+        Status = $Status
+        ElapsedSeconds = $elapsedSeconds
+        Elapsed = $Stopwatch.Elapsed.ToString("c")
+    }
+
+    [void]$script:ciTimingRecords.Add([pscustomobject]$record)
+    Write-Host ("Timing: {0}: {1:N3}s ({2})" -f $Name, $elapsedSeconds, $Status)
+}
+
+function Invoke-TimedCiStep {
+    param(
+        [string]$Name,
+        [scriptblock]$Operation
+    )
+
+    $stepStopwatch = [System.Diagnostics.Stopwatch]::StartNew()
+    try {
+        & $Operation
+        Add-CiTimingRecord -Name $Name -Stopwatch $stepStopwatch -Status "Completed"
+    }
+    catch {
+        Add-CiTimingRecord -Name $Name -Stopwatch $stepStopwatch -Status "Failed"
+        throw
+    }
+}
+
+function Write-CiTimingArtifact {
+    param(
+        [string]$RepoRoot,
+        [string]$Status
+    )
+
+    if ($script:ciStopwatch.IsRunning) {
+        $script:ciStopwatch.Stop()
+    }
+
+    $completedAt = Get-Date
+    $artifactDir = Join-Path $RepoRoot "artifacts/ci"
+    New-Item -ItemType Directory -Force -Path $artifactDir | Out-Null
+
+    $artifactPath = Join-Path $artifactDir "run-timing.json"
+    $timing = [ordered]@{
+        SchemaVersion = 1
+        Status = $Status
+        StartedAt = $script:ciStartedAt.ToString("o")
+        CompletedAt = $completedAt.ToString("o")
+        TotalSeconds = [Math]::Round($script:ciStopwatch.Elapsed.TotalSeconds, 3)
+        Total = $script:ciStopwatch.Elapsed.ToString("c")
+        Steps = @($script:ciTimingRecords.ToArray())
+    }
+
+    $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+    $text = $timing | ConvertTo-Json -Depth 10
+    [System.IO.File]::WriteAllText($artifactPath, ($text + [Environment]::NewLine), $utf8NoBom)
+    Write-Host ("CI timing artifact: {0}" -f $artifactPath)
+    Write-Host ("Timing: total: {0:N3}s ({1})" -f $timing.TotalSeconds, $Status)
+}
+
 $repoRoot = Get-RepoRoot
 $solution = Join-Path $repoRoot "VerilogLanguageExtension.sln"
 $currentSnapshots = Join-Path $repoRoot "artifacts/snapshots/current"
 $expectations = Join-Path $repoRoot "tools/vle-ci/expectations"
 $compareTool = Join-Path $repoRoot "tools/vle-ci/Compare-Snapshots.py"
+$ciStartedAt = Get-Date
+$ciStopwatch = [System.Diagnostics.Stopwatch]::StartNew()
+$ciTimingRecords = New-Object System.Collections.Generic.List[object]
+$ciStatus = "Failed"
 
-if (!$SkipBuild) {
-    $msbuild = Get-MSBuildPath
-    Write-Host "MSBuild: $msbuild"
-    & $msbuild $solution /restore /m /p:Configuration=$Configuration
-    if ($LASTEXITCODE -ne 0) {
-        throw "MSBuild failed with exit code $LASTEXITCODE"
+try {
+    if (!$SkipBuild) {
+        Invoke-TimedCiStep -Name "Build" -Operation {
+            $msbuild = Get-MSBuildPath
+            Write-Host "MSBuild: $msbuild"
+            & $msbuild $solution /restore /m /p:Configuration=$Configuration
+            if ($LASTEXITCODE -ne 0) {
+                throw "MSBuild failed with exit code $LASTEXITCODE"
+            }
+        }
+    }
+
+    if (!$SkipSnapshots) {
+        Invoke-TimedCiStep -Name "Snapshot export" -Operation {
+            & (Join-Path $repoRoot "tools/vle-ci/Export-Snapshots.ps1") -Manifest $Manifest -OutputDir "artifacts/snapshots/current" -RootSuffix $RootSuffix
+            Format-GeneratedJsonFiles -Directory $currentSnapshots
+        }
+    }
+
+    $python = "python"
+    $compareArgs = @("$compareTool", "--current", "$currentSnapshots", "--expectations", "$expectations")
+    $baselinePath = ""
+
+    if (![string]::IsNullOrWhiteSpace($Baseline)) {
+        $baselinePath = Join-Path $repoRoot $Baseline
+        $compareArgs += @("--baseline", "$baselinePath")
+        if ($UpdateBaseline) {
+            $compareArgs += "--update-baseline"
+        }
+    }
+    elseif ($UpdateBaseline) {
+        throw "-UpdateBaseline requires -Baseline"
+    }
+
+    if ($AllowNewSnapshots) {
+        $compareArgs += "--allow-new-snapshots"
+    }
+
+    Invoke-TimedCiStep -Name "Snapshot comparison" -Operation {
+        & $python @compareArgs
+        if ($LASTEXITCODE -ne 0) {
+            throw "Snapshot comparison failed with exit code $LASTEXITCODE"
+        }
+    }
+
+    if ($UpdateBaseline -and ![string]::IsNullOrWhiteSpace($baselinePath)) {
+        Invoke-TimedCiStep -Name "Baseline formatting" -Operation {
+            Format-GeneratedJsonFiles -Directory $baselinePath
+        }
+    }
+
+    $ciStatus = "Completed"
+    Write-Host "Local CI completed successfully."
+}
+finally {
+    try {
+        Write-CiTimingArtifact -RepoRoot $repoRoot -Status $ciStatus
+    }
+    catch {
+        Write-Warning "Could not write CI timing artifact: $_"
     }
 }
-
-if (!$SkipSnapshots) {
-    & (Join-Path $repoRoot "tools/vle-ci/Export-Snapshots.ps1") -Manifest $Manifest -OutputDir "artifacts/snapshots/current" -RootSuffix $RootSuffix
-    Format-GeneratedJsonFiles -Directory $currentSnapshots
-}
-
-$python = "python"
-$compareArgs = @("$compareTool", "--current", "$currentSnapshots", "--expectations", "$expectations")
-$baselinePath = ""
-
-if (![string]::IsNullOrWhiteSpace($Baseline)) {
-    $baselinePath = Join-Path $repoRoot $Baseline
-    $compareArgs += @("--baseline", "$baselinePath")
-    if ($UpdateBaseline) {
-        $compareArgs += "--update-baseline"
-    }
-}
-elseif ($UpdateBaseline) {
-    throw "-UpdateBaseline requires -Baseline"
-}
-
-if ($AllowNewSnapshots) {
-    $compareArgs += "--allow-new-snapshots"
-}
-
-& $python @compareArgs
-if ($LASTEXITCODE -ne 0) {
-    throw "Snapshot comparison failed with exit code $LASTEXITCODE"
-}
-
-if ($UpdateBaseline -and ![string]::IsNullOrWhiteSpace($baselinePath)) {
-    Format-GeneratedJsonFiles -Directory $baselinePath
-}
-
-Write-Host "Local CI completed successfully."

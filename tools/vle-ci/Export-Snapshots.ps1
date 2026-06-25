@@ -452,13 +452,29 @@ function Write-SnapshotRunInfo {
     param(
         [string]$Path,
         [string]$RunName,
-        [string]$Manifest
+        [string]$Manifest,
+        [string]$Status = "Started",
+        [string]$StartedAt = "",
+        [string]$CompletedAt = "",
+        [double]$ElapsedSeconds = 0.0,
+        [string]$Elapsed = "",
+        [int]$ExpectedSnapshots = 0,
+        [int]$ActualSnapshots = 0,
+        [object[]]$Timings = @()
     )
 
     $runInfo = [ordered]@{
         SchemaVersion = 1
         RunName = $RunName
         Manifest = $Manifest.Replace("\", "/")
+        Status = $Status
+        StartedAt = $StartedAt
+        CompletedAt = $CompletedAt
+        ElapsedSeconds = $ElapsedSeconds
+        Elapsed = $Elapsed
+        ExpectedSnapshots = $ExpectedSnapshots
+        ActualSnapshots = $ActualSnapshots
+        Timings = @($Timings)
     }
 
     $parent = Split-Path -Parent $Path
@@ -467,8 +483,41 @@ function Write-SnapshotRunInfo {
     }
 
     $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
-    $text = $runInfo | ConvertTo-Json -Depth 5
+    $text = $runInfo | ConvertTo-Json -Depth 10
     [System.IO.File]::WriteAllText($Path, ($text + [Environment]::NewLine), $utf8NoBom)
+}
+
+function Add-SnapshotTimingRecord {
+    param(
+        [int]$Index,
+        [int]$Count,
+        [string]$Path,
+        [string]$SnapshotFileName,
+        [System.Diagnostics.Stopwatch]$Stopwatch,
+        [string]$Status = "Completed"
+    )
+
+    if ($null -eq $Stopwatch) {
+        return
+    }
+
+    if ($Stopwatch.IsRunning) {
+        $Stopwatch.Stop()
+    }
+
+    $elapsedSeconds = [Math]::Round($Stopwatch.Elapsed.TotalSeconds, 3)
+    $record = [ordered]@{
+        Index = $Index
+        Count = $Count
+        Path = $Path.Replace("\", "/")
+        SnapshotFileName = $SnapshotFileName
+        Status = $Status
+        ElapsedSeconds = $elapsedSeconds
+        Elapsed = $Stopwatch.Elapsed.ToString("c")
+    }
+
+    [void]$script:snapshotTimingRecords.Add([pscustomobject]$record)
+    Write-Host ("Timing: snapshot [{0}/{1}] {2}: {3:N3}s ({4})" -f $Index, $Count, $Path, $elapsedSeconds, $Status)
 }
 
 function Format-GeneratedJsonFiles {
@@ -605,6 +654,10 @@ if ($effectiveMaxWaitSeconds -lt 1) {
 $finalOutputDir = Get-NormalizedFullPath -Path (Resolve-RepoPath -RepoRoot $repoRoot -Path $OutputDir)
 $configFile = Join-Path ([System.IO.Path]::GetTempPath()) "VerilogLanguage.ExportSnapshots.config"
 $devenv = Get-DevenvPath -RequestedPath $VisualStudioPath
+$runInfoPath = Join-Path $finalOutputDir "run-info.json"
+$snapshotRunStartedAt = Get-Date
+$snapshotRunStopwatch = [System.Diagnostics.Stopwatch]::StartNew()
+$snapshotTimingRecords = New-Object System.Collections.Generic.List[object]
 
 Write-Host "Snapshot output: $finalOutputDir"
 Write-Host "Visual Studio: $devenv"
@@ -628,17 +681,20 @@ try {
     }
     New-Item -ItemType Directory -Force -Path $finalOutputDir | Out-Null
 
-    $runInfoPath = Join-Path $finalOutputDir "run-info.json"
     Write-SnapshotRunInfo `
         -Path $runInfoPath `
         -RunName ([string]$manifestJson.RunName) `
-        -Manifest $Manifest
+        -Manifest $Manifest `
+        -Status "Started" `
+        -StartedAt ($snapshotRunStartedAt.ToString("o")) `
+        -ExpectedSnapshots (@($manifestJson.Files).Count)
     Write-Host "Run info: $runInfoPath"
 
     $index = 0
     $fileCount = @($manifestJson.Files).Count
     foreach ($fileEntry in $manifestJson.Files) {
         $index++
+        $fileStopwatch = [System.Diagnostics.Stopwatch]::StartNew()
         $file = Get-ManifestEntryPath -FileEntry $fileEntry
         $snapshotFileName = Get-ManifestEntrySnapshotFileName -FileEntry $fileEntry
         $filePath = Resolve-RepoPath -RepoRoot $repoRoot -Path $file
@@ -697,6 +753,14 @@ try {
                 $latest | ForEach-Object { Write-Host $_ }
             }
 
+            Add-SnapshotTimingRecord `
+                -Index $index `
+                -Count $fileCount `
+                -Path $file `
+                -SnapshotFileName $snapshotFileName `
+                -Stopwatch $fileStopwatch `
+                -Status "Failed"
+
             throw "No snapshot was written after opening $file. The file exists and VS was launched, but no export appeared within $deadlineSeconds seconds."
         }
 
@@ -727,6 +791,13 @@ try {
             Start-Process -FilePath $devenv -ArgumentList $closeArguments -WindowStyle Minimized | Out-Null
             Start-Sleep -Seconds 1
         }
+
+        Add-SnapshotTimingRecord `
+            -Index $index `
+            -Count $fileCount `
+            -Path $file `
+            -SnapshotFileName (Split-Path -Leaf $finalSnapshotPath) `
+            -Stopwatch $fileStopwatch
     }
 }
 finally {
@@ -743,7 +814,26 @@ Format-GeneratedJsonFiles -Directory $finalOutputDir
 
 $expectedCount = @($manifestJson.Files).Count
 $actualCount = @(Get-ChildItem -Path $finalOutputDir -Filter "*.snapshot.json" -File -ErrorAction SilentlyContinue).Count
+if ($snapshotRunStopwatch.IsRunning) {
+    $snapshotRunStopwatch.Stop()
+}
+$snapshotCompletedAt = Get-Date
+
+Write-SnapshotRunInfo `
+    -Path $runInfoPath `
+    -RunName ([string]$manifestJson.RunName) `
+    -Manifest $Manifest `
+    -Status "Completed" `
+    -StartedAt ($snapshotRunStartedAt.ToString("o")) `
+    -CompletedAt ($snapshotCompletedAt.ToString("o")) `
+    -ElapsedSeconds ([Math]::Round($snapshotRunStopwatch.Elapsed.TotalSeconds, 3)) `
+    -Elapsed ($snapshotRunStopwatch.Elapsed.ToString("c")) `
+    -ExpectedSnapshots $expectedCount `
+    -ActualSnapshots $actualCount `
+    -Timings ($snapshotTimingRecords.ToArray())
+
 Write-Host "Snapshots written: $actualCount / expected $expectedCount"
+Write-Host ("Timing: snapshot export total: {0:N3}s" -f [Math]::Round($snapshotRunStopwatch.Elapsed.TotalSeconds, 3))
 
 if ($actualCount -lt $expectedCount) {
     throw "Not all snapshots were written. Close the Experimental Instance and rerun."

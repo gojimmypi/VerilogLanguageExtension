@@ -1,19 +1,19 @@
 # Verilog Language Extension
 
-This Visual Studio Extension adds syntax & keyword higlighting to Visual Studio versions 2022, and 2026. 
+This Visual Studio Extension adds syntax and keyword highlighting to Visual Studio versions 2022, and 2026. 
 
 There is no notion of a "Verilog Project" or any other capabilities such as compiling or uploading to a device at this time.
 
 ![KeywordHoverTextExample.png](./images/KeywordHoverTextExample.png)
 
-On a Windows 10 machine to create FPGA binaries, consider using the [yoysys](https://github.com/YosysHQ/yosys)/[nextpnr](https://github.com/YosysHQ/nextpnr) toolchain. I have a [gist for the ULX3S](https://gist.github.com/gojimmypi/f96cd86b2b8595b4cf3be4baf493c5a7) as well as [one for the TinyFPGA](https://gist.github.com/gojimmypi/243fc3a6eead72ae3db8fd32f2567c96) in [WSL](https://gojimmypi.blogspot.com/2019/02/ulx3s-ujprog-on-windows-wsl-or-minggw.html) that may be useful in installing these along with all the respective dependencies.
+On a Windows 10/11 machine to create FPGA binaries, consider using the [yoysys](https://github.com/YosysHQ/yosys)/[nextpnr](https://github.com/YosysHQ/nextpnr) toolchain. I have a [gist for the ULX3S](https://gist.github.com/gojimmypi/f96cd86b2b8595b4cf3be4baf493c5a7) as well as [one for the TinyFPGA](https://gist.github.com/gojimmypi/243fc3a6eead72ae3db8fd32f2567c96) in [WSL](https://gojimmypi.blogspot.com/2019/02/ulx3s-ujprog-on-windows-wsl-or-minggw.html) that may be useful in installing these along with all the respective dependencies.
 
 
 ## Features
 
 * Each keyword can be individually colorized. See `File - Options - Environment - Fonts and Colors`
 
-* Line and block comments are colorization.
+* Line and block comments are colorized.
 
 * Verilog keywords have hover text documentation.
 
@@ -24,23 +24,53 @@ On a Windows 10 machine to create FPGA binaries, consider using the [yoysys](htt
 * Multi-colored brackets, depending on nested depth. See Fonts and Colors - Display Items `Verilog - Bracket Depth [n]`
 
 
+## Version 0.4.0 Code Update Summary
+
+Compared with v0.3.5.4, v0.4.0 is a major editor-quality and release-polish update. The most important changes are:
+
+* Adds Visual Studio package/menu plumbing for a Snapshot Exporter command, enabling repeatable editor snapshot exports for regression testing.
+
+* Adds local snapshot CI tooling under `tools/vle-ci`, with manifests, expectations, baseline snapshots, and wrapper scripts such as `ci-pass.ps1`, `ci-baseline.ps1`, and `ci-check.ps1`.
+
+* Adds Verilog-specific outlining/folding for common language regions including modules, functions, tasks, case blocks, begin/end blocks, always/if/else blocks, and preprocessor conditionals.
+
+* Adds `.svh` SystemVerilog header support.
+
+* Adds colorization/classification support for static double-quoted strings, function names, macro references, conditional macro-controlled definitions, duplicate declarations, and additional SystemVerilog declaration keywords such as `bit`, `logic`, and `automatic`.
+
+* Improves variable and hover handling by caching parse data per file and snapshot version, avoiding stale cross-file or stale-snapshot hover results.
+
+* Improves function/task local-scope handling so local declarations are resolved before module/global symbols, and duplicate names in different functions/tasks are no longer treated as the same declaration.
+
+* Improves duplicate declaration detection so it is based on the same immutable snapshot used by the parse pass, reducing false or stale duplicate markers during edits.
+
+* Improves edit refresh behavior by invalidating changed spans immediately, then refreshing again when threaded reparsing completes. This helps avoid stale highlighting after paste, delete, or multi-change edits.
+
+* Improves performance and lifecycle behavior by making token taggers/classifiers singleton-per-buffer, preventing repeated tagger/aggregator instances and duplicate buffer-change subscriptions.
+
+* Adds explicit disposal paths for the token tagger's buffer event subscription and reparse timer, and bounds the reparse-completion watcher so a stuck parse state cannot keep a timer alive indefinitely.
+
+* Updates build and packaging metadata for v0.4.0.0, including VS package assets, VS2022/VS2026-oriented SDK references, Release VSIX debug-symbol exclusion, and manifest links that use the `main` branch.
+
+* Cleans up older sample/reference code and replaces the generic sample outlining implementation with Verilog-specific outlining code.
+
+
 ## File Extensions Supported:
 
 These file extensions should activate this extension:
 
 * `.sv`
+* `.svh`
 * `.v`
 * `.verilog`
 * `.vh`
 
-See the line in the [VerilogClassifer](./Classification/VerilogClassifier.cs) to add more file types:
-
-`[FileExtension(".v;.verilog;.vh")] // semi-colon delimited file extensions`
+See the exported `FileExtensionToContentTypeDefinition` entries in [VerilogClassifier](./Classification/VerilogClassifier.cs) to add more file types.
 
 
 ## Installation 
 
-The easiest way to install the release version is to use the Visual Studio `Extensions - Manages Extensions`. 
+The easiest way to install the release version is to use the Visual Studio `Extensions - Manage Extensions` dialog. 
 Type the search word `FPGA` or `VerilogLanguage` to find the extension in the Online downloads.
 
 Alternatively:
@@ -55,7 +85,7 @@ https://marketplace.visualstudio.com/items?itemName=gojimmypi.gojimmypi-verilog-
 ### Installation - Manual install with source code 
 
 _Note_: previously it was recommended to use `VSIXInstaller.exe`, typically in `.\Common7\IDE\`; *DON'T DO THIS*, Instead use
-the "Mcirosoft Visual Stuodio Version Selector": `VSLauncher.exe`
+the "Microsoft Visual Studio Version Selector": `VSLauncher.exe`
 
 
 ```
@@ -69,7 +99,7 @@ msbuild VerilogLanguage.csproj
 
 ### Installation - Manual install of VSIX file
 
-As noted above, use the "Mcirosoft Visual Stuodio Version Selector" and NOT the "VSIX Installer" (counter-intutiive, I know)
+As noted above, use the "Microsoft Visual Studio Version Selector" and NOT the "VSIX Installer" (counter-intuitive, I know)
 
 ![vsix_explorer_install.png](./images/vsix_explorer_install.png)
 
@@ -92,6 +122,16 @@ Use either Extensions - Manage Extensions, or this command-line:
 ## Testing
 
 Open the project and press `F5` to launch an experimental version of Visual Studio.
+
+For v0.4.0 development, the repository also includes local snapshot regression tooling. The short path is:
+
+```powershell
+.\ci-pass.ps1
+.\ci-baseline.ps1
+.\ci-check.ps1
+```
+
+The snapshot tools export classification, token, hover, and parser state from the Visual Studio Experimental Instance and compare the results against checked-in baselines. See `tools/vle-ci/README.md` for details.
 
 
 ## Customization
@@ -131,7 +171,7 @@ The error was not previously observed when developing and debugging this solutio
 
 ### Version Change
 
-Edit the version in two places: [source.extension.vsixmanifest](./source.extension.vsixmanifest) and [Properties - AssemblyInfo.cs](./Properties/AssemblyInfo.cs).
+Edit the version in [source.extension.vsixmanifest](./source.extension.vsixmanifest) and [Properties - AssemblyInfo.cs](./Properties/AssemblyInfo.cs). v0.4.0 also sets assembly file and informational versions.
 
 
 ### Single word highlight
@@ -444,6 +484,7 @@ From [VSIX Manifest Designer](https://docs.microsoft.com/en-us/visualstudio/exte
 
 ## Change History:
 
+* 2026-06-25  v0.4.0.0 major editor-quality and release-polish update: VS2022/VS2026 package updates, `.svh` support, Verilog-specific outlining, static string/function/macro colorization, function/task local-scope fixes, stale-parse and duplicate-detection fixes, singleton-per-buffer tagger/classifier lifecycle improvements, Snapshot Exporter, and local snapshot CI tooling.
 * 2019-06-22  [v0.1.5]() square bracket and content colorization; detect light/dark theme; colorize non-synthesizable keywords; hover text; new extensions `.vh` and `.verilog`
 * 2019-06-17  [v0.1.4](./releases/VerilogLanguage_v0.1.4.vsix) compiled in Visual Studio 2019 instead of 2017, needed to bump version as "updates" didn't seem to see the 4th segment version change
 * 2019-06-16  v0.1.3 disable code in HighlightWordFormatDefinition to use Visual Studio default selected word higlighting.

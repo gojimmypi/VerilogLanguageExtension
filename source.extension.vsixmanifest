@@ -16,7 +16,7 @@
 
     <Metadata>
         <Identity Id="CF0DCF14-5B8F-4B42-8386-9D37BB99F98E"
-                  Version="0.3.6.3"
+                  Version="0.4.0.0"
                   Language="en-US"
                   Publisher="gojimmypi" />
 
@@ -25,15 +25,15 @@
         <Description xml:space="preserve">
 Verilog Extension for Visual Studio. (classifier extension).
 Implements the Verilog Language Extension allowing user-definable
-keyword colorization. Useful for FPGA development.
+keyword colorization. Useful for FPGA, ASIC and other RTL development.
         </Description>
 
         <MoreInfo>https://github.com/gojimmypi/VerilogLanguageExtension</MoreInfo>
         <License>LICENSE.md</License>
         <GettingStartedGuide>https://github.com/gojimmypi/VerilogLanguageExtension/blob/main/README.md#installation</GettingStartedGuide>
         <ReleaseNotes>https://github.com/gojimmypi/VerilogLanguageExtension/blob/main/releases/README.md</ReleaseNotes>
-        <Tags>Verilog keyword syntax highlight extension FPGA HDL ULX3S iCEBreaker OrangeCrab TinyFPGA</Tags>
-        <Preview>true</Preview>
+        <Tags>Verilog keyword syntax highlight extension FPGA ASIC RTL Tiny Tapeout HDL ULX3S iCEBreaker OrangeCrab TinyFPGA</Tags>
+        <Preview>false</Preview>
     </Metadata>
 
     <Installation>

@@ -1,4 +1,4 @@
-﻿<Project>
+<Project>
 	<!-- All of the iCEBreaker Platform Specific Build  -->
 
 	<Target Name="Target_Project_iCEBreaker">
@@ -17,13 +17,13 @@
 	</PropertyGroup>
 
 
-	<!-- 
+	<!--
 	*******************************************************************************************************************************
 	iCEBeeaker
 	******************************************************************************************************************************* -->
 	<!--
 	Build iCEBeeaker
-	
+
 	Note different chips are specified in the BitstreamMakefile property setting
 	-->
 	<Target Name="Build_iCEBreaker" DependsOnTargets="InitFPGA" AfterTargets="InitFPGA" BeforeTargets="SwitchToAnyCpu;Upload_iCEBreaker" Condition=" '$(Platform)' == 'iCEBreaker' ">

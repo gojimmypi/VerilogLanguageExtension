@@ -1,4 +1,4 @@
-﻿//Before
+//Before
 assign[1:0];
 assign   ;;;assign   ;;; // assign
 // this is a sample test; [delim]	[tab] ;;// test

@@ -1,4 +1,4 @@
-﻿# Verilog Project Template for Visual Studio
+# Verilog Project Template for Visual Studio
 
 The Verilog Project Template for Visual Studio assumes that the [Windows Subsystem For Linux](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux) (aka "WSL") is
 already installed, as well as several key components such as [verilator](https://en.wikipedia.org/wiki/Verilator), 

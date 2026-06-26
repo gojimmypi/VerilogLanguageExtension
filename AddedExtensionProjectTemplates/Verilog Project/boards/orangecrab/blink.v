@@ -20,6 +20,6 @@ module top (
 	assign LED1 = ~counter[24];
     assign LED2 = ~counter[25];
     assign LED3 = 1;
-    
+
 
 endmodule

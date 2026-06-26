@@ -1,4 +1,4 @@
-﻿<Project>
+<Project>
 	<Target Name="Target_UserDefined">
 		<Message Text="Project_UserDefined import successful." />
 	</Target>

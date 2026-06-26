@@ -18,13 +18,16 @@ jobs:
         shell: pwsh
         run: |
           $excludePath = @(
-              'CODE_OF_CONDUCT.md',
-              'Lattice_securelyfitz.md',
-              'LICENSE.md',
+              'CODE_OF_CONDUCT.md'
+              'Lattice_securelyfitz.md'
+              'LICENSE.md'
           )
 
-          .\tools\check-text-hygiene.ps1 `
-              -RequireNoBom `
-              -RequireCrLf `
-              -RequireFinalNewline `
-              -ExcludePath $excludePath
+          $checkArgs = @{
+              RequireNoBom = $true
+              RequireCrLf = $true
+              RequireFinalNewline = $true
+              ExcludePath = $excludePath
+          }
+
+          .\tools\check-text-hygiene.ps1 @checkArgs

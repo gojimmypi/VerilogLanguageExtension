@@ -144,13 +144,41 @@ function Get-NormalizedRelativePathKey {
     return (($relativePath -replace '/', '\').Trim('\'))
 }
 
-$explicitExcludedPathKeys = New-Object 'System.Collections.Generic.HashSet[string]' ([System.StringComparer]::OrdinalIgnoreCase)
+function Get-NormalizedFullPathKey {
+    param([string]$Path)
+
+    $pathValue = $Path.Trim()
+
+    if ([string]::IsNullOrWhiteSpace($pathValue)) {
+        return ""
+    }
+
+    try {
+        if ([System.IO.Path]::IsPathRooted($pathValue)) {
+            $fullPath = [System.IO.Path]::GetFullPath($pathValue)
+        } else {
+            $fullPath = [System.IO.Path]::GetFullPath((Join-Path -Path $script:rootPath -ChildPath $pathValue))
+        }
+    } catch {
+        return ""
+    }
+
+    return $fullPath.TrimEnd([System.IO.Path]::DirectorySeparatorChar, [System.IO.Path]::AltDirectorySeparatorChar)
+}
+
+$script:explicitExcludedPathKeys = New-Object 'System.Collections.Generic.HashSet[string]' ([System.StringComparer]::OrdinalIgnoreCase)
+$script:explicitExcludedFullPathKeys = New-Object 'System.Collections.Generic.HashSet[string]' ([System.StringComparer]::OrdinalIgnoreCase)
 
 foreach ($path in $ExcludePath) {
     $pathKey = Get-NormalizedRelativePathKey -Path $path
+    $fullPathKey = Get-NormalizedFullPathKey -Path $path
 
     if ($pathKey.Length -gt 0) {
-        [void]$explicitExcludedPathKeys.Add($pathKey)
+        [void]$script:explicitExcludedPathKeys.Add($pathKey)
+    }
+
+    if ($fullPathKey.Length -gt 0) {
+        [void]$script:explicitExcludedFullPathKeys.Add($fullPathKey)
     }
 }
 
@@ -159,6 +187,7 @@ function Test-IsExcludedPath {
 
     $relativePath = Get-RelativePath -FullName $FullName
     $relativePathKey = Get-NormalizedRelativePathKey -Path $relativePath
+    $fullPathKey = Get-NormalizedFullPathKey -Path $FullName
     $parts = $relativePath -split "[\\/]"
 
     foreach ($part in $parts) {
@@ -171,8 +200,19 @@ function Test-IsExcludedPath {
         return $true
     }
 
+    if ($fullPathKey.Length -gt 0 -and $script:explicitExcludedFullPathKeys.Contains($fullPathKey)) {
+        return $true
+    }
+
     foreach ($excludedPathKey in $script:explicitExcludedPathKeys) {
         if ($relativePathKey.StartsWith(($excludedPathKey + '\'), [System.StringComparison]::OrdinalIgnoreCase)) {
+            return $true
+        }
+    }
+
+    foreach ($excludedFullPathKey in $script:explicitExcludedFullPathKeys) {
+        if ($fullPathKey.StartsWith(($excludedFullPathKey + [System.IO.Path]::DirectorySeparatorChar), [System.StringComparison]::OrdinalIgnoreCase) -or
+            $fullPathKey.StartsWith(($excludedFullPathKey + [System.IO.Path]::AltDirectorySeparatorChar), [System.StringComparison]::OrdinalIgnoreCase)) {
             return $true
         }
     }

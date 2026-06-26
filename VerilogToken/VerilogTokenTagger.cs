@@ -41,7 +41,7 @@ namespace VerilogLanguage.VerilogToken
     using Microsoft.VisualStudio.Threading;
     using System.Linq.Expressions;
 
-    internal sealed class VerilogTokenTagger : ITagger<VerilogTokenTag>
+    internal sealed class VerilogTokenTagger : ITagger<VerilogTokenTag>, IDisposable
     {
 
         private Timer _reparseCompletionTimer;
@@ -49,6 +49,7 @@ namespace VerilogLanguage.VerilogToken
         private string _lastReparseFile = string.Empty;
 
         private int _initialInvalidateAttempted;
+        private volatile bool _disposed;
 
         private const int ReparseCompletionTimerMaxTicks = 200;
         private int _reparseCompletionTimerTicks;
@@ -105,11 +106,15 @@ namespace VerilogLanguage.VerilogToken
         }
 
         private void StartOrResetReparseCompletionWatcher(string forFile) {
-            if (string.IsNullOrEmpty(forFile)) {
+            if (_disposed || string.IsNullOrEmpty(forFile)) {
                 return;
             }
 
             lock (_reparseCompletionTimerLock) {
+                if (_disposed) {
+                    return;
+                }
+
                 _lastReparseFile = forFile;
                 _reparseCompletionTimerTicks = 0;
 
@@ -130,6 +135,10 @@ namespace VerilogLanguage.VerilogToken
         }
 
         private void ReparseCompletionTimerCallback(object state) {
+            if (_disposed) {
+                return;
+            }
+
             string forFile = _lastReparseFile;
             if (string.IsNullOrEmpty(forFile)) {
                 return;
@@ -168,6 +177,10 @@ namespace VerilogLanguage.VerilogToken
         /// <param name="sender"></param>
         /// <param name="e"></param>
         void BufferChanged(object sender, TextContentChangedEventArgs e) {
+            if (_disposed) {
+                return;
+            }
+
             InvalidateBlockCommentStateCache();
 
             // If this isn't the most up-to-date version of the buffer, then ignore it for now (we'll eventually get another change event).
@@ -282,22 +295,46 @@ namespace VerilogLanguage.VerilogToken
         }
 
         private void StopReparseCompletionWatcher() {
+            Timer timerToDispose;
+
             lock (_reparseCompletionTimerLock) {
                 if (_reparseCompletionTimer == null) {
                     return;
                 }
 
-                try {
-                    _reparseCompletionTimer.Change(Timeout.Infinite, Timeout.Infinite);
-                }
-                catch (ObjectDisposedException) {
-                    _reparseCompletionTimer = null;
-                }
+                timerToDispose = _reparseCompletionTimer;
+                _reparseCompletionTimer = null;
+                _lastReparseFile = string.Empty;
+                _reparseCompletionTimerTicks = 0;
             }
+
+            try {
+                // disables the System.Threading.Timer before disposing it:
+                timerToDispose.Change(Timeout.Infinite, Timeout.Infinite);
+            }
+            catch (ObjectDisposedException) {
+                // Already disposed by a racing callback or cleanup path.
+            }
+
+            timerToDispose.Dispose();
         }
 
+        public void Dispose() {
+            if (_disposed) {
+                return;
+            }
+
+            _disposed = true;
+            _buffer.Changed -= BufferChanged;
+            StopReparseCompletionWatcher();
+            InvalidateBlockCommentStateCache();
+        }
 
         private void RaiseTagsChanged(SnapshotSpan span) {
+            if (_disposed) {
+                return;
+            }
+
             var handler = TagsChanged;
             if (handler == null) {
                 return;
@@ -453,6 +490,10 @@ namespace VerilogLanguage.VerilogToken
         /// <param name="spans"></param>
         /// <returns></returns>
         public IEnumerable<ITagSpan<VerilogTokenTag>> GetTags(NormalizedSnapshotSpanCollection spans) {
+            if (_disposed) {
+                yield break;
+            }
+
             //while (VerilogGlobals.IsReparsing)
             {
                 // do we really want to do this? (probably not)

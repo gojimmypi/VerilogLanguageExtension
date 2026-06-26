@@ -90,13 +90,27 @@ namespace VerilogLanguage.VerilogToken
         // ITextView View { get; set; }
         public ITagger<T> CreateTagger<T>(ITextBuffer buffer) where T : ITag
         {
+            if (buffer == null)
+            {
+                return null;
+            }
+
             // System.Diagnostics.Debugger.Break();
             // System.Diagnostics.Debug.WriteLine("VerilogClassifierProvider.CreateTagger: ContentType=" + buffer.ContentType.TypeName);
 
-            ITagAggregator<VerilogTokenTag> VerilogTagAggregator =
-                                            aggregatorFactory.CreateTagAggregator<VerilogTokenTag>(buffer);
+            // Return one classifier per text buffer. The token aggregator is
+            // created inside this singleton factory so repeated CreateTagger calls
+            // do not create extra aggregators or duplicate TagsChanged subscriptions.
+            VerilogClassifier classifier = buffer.Properties.GetOrCreateSingletonProperty<VerilogClassifier>(
+                () =>
+                {
+                    ITagAggregator<VerilogTokenTag> VerilogTagAggregator =
+                        aggregatorFactory.CreateTagAggregator<VerilogTokenTag>(buffer);
 
-            return new VerilogClassifier(buffer, VerilogTagAggregator, ClassificationTypeRegistry) as ITagger<T>;
+                    return new VerilogClassifier(buffer, VerilogTagAggregator, ClassificationTypeRegistry);
+                });
+
+            return classifier as ITagger<T>;
         }
     }
     internal sealed class VerilogClassifier : ITagger<ClassificationTag>

@@ -1,4 +1,4 @@
-﻿<Project>
+<Project>
 
 	<PropertyGroup Label="ProgrammerPath">
 		<BitstreamProgrammerPath>C:\workspace\ulx3s-toolchain\bin</BitstreamProgrammerPath>
@@ -6,8 +6,8 @@
 
 
 	<PropertyGroup Label="Programmer">
-		<!-- If the programmer is in your path, just enter the name, otherwise provide fully qualified name  
-		
+		<!-- If the programmer is in your path, just enter the name, otherwise provide fully qualified name
+
 		binaries are available at: https://github.com/gojimmypi/ulx3s-toolchain/tree/master/bin
 		-->
 		<BitstreamProgrammer_ULX3S>$(BitstreamProgrammerPath)\fujprog.exe</BitstreamProgrammer_ULX3S>
@@ -16,7 +16,7 @@
 		<BitstreamProgrammer_tinyFPGA_BX>$(BitstreamProgrammerPath)\tinyprog.exe</BitstreamProgrammer_tinyFPGA_BX>
 	</PropertyGroup>
 
-	
+
 	<!-- Bitstream Programmers in the path; NOT in a fixed locationse  -->
 	<PropertyGroup Condition="!Exists('$(BitstreamProgrammer_ULX3S)')">
 		<BitstreamProgrammer_ULX3S>fujprog.exe</BitstreamProgrammer_ULX3S>

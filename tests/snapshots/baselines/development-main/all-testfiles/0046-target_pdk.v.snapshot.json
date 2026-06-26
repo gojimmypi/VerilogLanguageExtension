@@ -1,0 +1,4954 @@
+{
+    "SchemaVersion":  3,
+    "RunName":  "all-testfiles",
+    "ExtensionVersion":  "0.4.0.0",
+    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\src\\target_pdk.v",
+    "FileRelativePath":  "TestFiles\\src\\target_pdk.v",
+    "ContentType":  "verilog",
+    "SnapshotLength":  895,
+    "SnapshotVersion":  2,
+    "TextSha256":  "0d3292e7bd5783cf98ecdf5890a907b89a927d0a1d74d2c174a2dc7a8a4d0048",
+    "Errors":  [
+
+               ],
+    "Classifications":  [
+                            {
+                                "Start":  0,
+                                "Length":  2,
+                                "Line":  1,
+                                "Column":  1,
+                                "Text":  "/*",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  3,
+                                "Length":  31,
+                                "Line":  2,
+                                "Column":  1,
+                                "Text":  " * Copyright (c) 2026 gojimmypi",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  35,
+                                "Length":  38,
+                                "Line":  3,
+                                "Column":  1,
+                                "Text":  " * SPDX-License-Identifier: Apache-2.0",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  74,
+                                "Length":  2,
+                                "Line":  4,
+                                "Column":  1,
+                                "Text":  " *",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  77,
+                                "Length":  58,
+                                "Line":  5,
+                                "Column":  1,
+                                "Text":  " * See ATTRIBUTION.md for third-party sources and credits.",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  136,
+                                "Length":  2,
+                                "Line":  6,
+                                "Column":  1,
+                                "Text":  " *",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  139,
+                                "Length":  21,
+                                "Line":  7,
+                                "Column":  1,
+                                "Text":  " * file: target_pdk.v",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  161,
+                                "Length":  2,
+                                "Line":  8,
+                                "Column":  1,
+                                "Text":  " *",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  164,
+                                "Length":  85,
+                                "Line":  9,
+                                "Column":  1,
+                                "Text":  " * This file is intended to be included by the top-level project wrapper (project.v) ",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  250,
+                                "Length":  54,
+                                "Line":  10,
+                                "Column":  1,
+                                "Text":  " * and used to select the target PDK for the project. ",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  305,
+                                "Length":  3,
+                                "Line":  11,
+                                "Column":  1,
+                                "Text":  " */",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  310,
+                                "Length":  16,
+                                "Line":  13,
+                                "Column":  1,
+                                "Text":  "`default_nettype",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  334,
+                                "Length":  6,
+                                "Line":  16,
+                                "Column":  1,
+                                "Text":  "`ifdef",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  341,
+                                "Length":  25,
+                                "Line":  16,
+                                "Column":  8,
+                                "Text":  "IS_MY_IVERILOG_SIMULATION",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  371,
+                                "Length":  43,
+                                "Line":  17,
+                                "Column":  5,
+                                "Text":  "/* Neither PDK for my local iverilog sim */",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  416,
+                                "Length":  5,
+                                "Line":  19,
+                                "Column":  1,
+                                "Text":  "`else",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  426,
+                                "Length":  166,
+                                "Line":  20,
+                                "Column":  5,
+                                "Text":  "// `if defined(SCL_sky130_fd_sc_hd) || defined(SCL_sky130_fd_sc_hs) || defined(SCL_sky130_fd_sc_ms) || defined(SCL_sky130_fd_sc_hdll) || defined(SCL_sky130_fd_sc_hvl)",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  597,
+                                "Length":  31,
+                                "Line":  21,
+                                "Column":  5,
+                                "Text":  "//    `define PDK_TARGET_SKY130",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  634,
+                                "Length":  68,
+                                "Line":  23,
+                                "Column":  5,
+                                "Text":  "/* Not a TT standard, but we will pick a PDK. Define exactly one: */",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  707,
+                                "Length":  28,
+                                "Line":  24,
+                                "Column":  5,
+                                "Text":  "// `define PDK_TARGET_SKY130",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  740,
+                                "Length":  7,
+                                "Line":  25,
+                                "Column":  5,
+                                "Text":  "`define",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  748,
+                                "Length":  16,
+                                "Line":  25,
+                                "Column":  13,
+                                "Text":  "PDK_TARGET_GF180",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  765,
+                                "Length":  6,
+                                "Line":  26,
+                                "Column":  1,
+                                "Text":  "`endif",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  773,
+                                "Length":  98,
+                                "Line":  28,
+                                "Column":  1,
+                                "Text":  "/* For this project, see TRNG/trng_lab_core.v for conditional include of code based on the PDK. */",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  873,
+                                "Length":  16,
+                                "Line":  30,
+                                "Column":  1,
+                                "Text":  "`default_nettype",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  890,
+                                "Length":  4,
+                                "Line":  30,
+                                "Column":  18,
+                                "Text":  "wire",
+                                "Types":  [
+                                              "wire"
+                                          ]
+                            }
+                        ],
+    "Tags":  [
+                 {
+                     "Start":  0,
+                     "Length":  2,
+                     "Line":  1,
+                     "Column":  1,
+                     "Text":  "/*",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  3,
+                     "Length":  1,
+                     "Line":  2,
+                     "Column":  1,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  4,
+                     "Length":  1,
+                     "Line":  2,
+                     "Column":  2,
+                     "Text":  "*",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  5,
+                     "Length":  1,
+                     "Line":  2,
+                     "Column":  3,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  6,
+                     "Length":  9,
+                     "Line":  2,
+                     "Column":  4,
+                     "Text":  "Copyright",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  15,
+                     "Length":  1,
+                     "Line":  2,
+                     "Column":  13,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  16,
+                     "Length":  1,
+                     "Line":  2,
+                     "Column":  14,
+                     "Text":  "(",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  17,
+                     "Length":  1,
+                     "Line":  2,
+                     "Column":  15,
+                     "Text":  "c",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  18,
+                     "Length":  1,
+                     "Line":  2,
+                     "Column":  16,
+                     "Text":  ")",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  19,
+                     "Length":  1,
+                     "Line":  2,
+                     "Column":  17,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  20,
+                     "Length":  14,
+                     "Line":  2,
+                     "Column":  18,
+                     "Text":  "2026 gojimmypi",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  35,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  1,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  36,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  2,
+                     "Text":  "*",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  37,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  3,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  38,
+                     "Length":  4,
+                     "Line":  3,
+                     "Column":  4,
+                     "Text":  "SPDX",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  42,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  8,
+                     "Text":  "-",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  43,
+                     "Length":  7,
+                     "Line":  3,
+                     "Column":  9,
+                     "Text":  "License",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  50,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  16,
+                     "Text":  "-",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  51,
+                     "Length":  10,
+                     "Line":  3,
+                     "Column":  17,
+                     "Text":  "Identifier",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  61,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  27,
+                     "Text":  ":",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  62,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  28,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  63,
+                     "Length":  6,
+                     "Line":  3,
+                     "Column":  29,
+                     "Text":  "Apache",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  69,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  35,
+                     "Text":  "-",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  70,
+                     "Length":  3,
+                     "Line":  3,
+                     "Column":  36,
+                     "Text":  "2.0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  74,
+                     "Length":  1,
+                     "Line":  4,
+                     "Column":  1,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  75,
+                     "Length":  1,
+                     "Line":  4,
+                     "Column":  2,
+                     "Text":  "*",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  77,
+                     "Length":  1,
+                     "Line":  5,
+                     "Column":  1,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  78,
+                     "Length":  1,
+                     "Line":  5,
+                     "Column":  2,
+                     "Text":  "*",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  79,
+                     "Length":  1,
+                     "Line":  5,
+                     "Column":  3,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  80,
+                     "Length":  3,
+                     "Line":  5,
+                     "Column":  4,
+                     "Text":  "See",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  83,
+                     "Length":  1,
+                     "Line":  5,
+                     "Column":  7,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  84,
+                     "Length":  14,
+                     "Line":  5,
+                     "Column":  8,
+                     "Text":  "ATTRIBUTION.md",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  98,
+                     "Length":  1,
+                     "Line":  5,
+                     "Column":  22,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  99,
+                     "Length":  3,
+                     "Line":  5,
+                     "Column":  23,
+                     "Text":  "for",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  102,
+                     "Length":  1,
+                     "Line":  5,
+                     "Column":  26,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  103,
+                     "Length":  5,
+                     "Line":  5,
+                     "Column":  27,
+                     "Text":  "third",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  108,
+                     "Length":  1,
+                     "Line":  5,
+                     "Column":  32,
+                     "Text":  "-",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  109,
+                     "Length":  5,
+                     "Line":  5,
+                     "Column":  33,
+                     "Text":  "party",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  114,
+                     "Length":  1,
+                     "Line":  5,
+                     "Column":  38,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  115,
+                     "Length":  7,
+                     "Line":  5,
+                     "Column":  39,
+                     "Text":  "sources",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  122,
+                     "Length":  1,
+                     "Line":  5,
+                     "Column":  46,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  123,
+                     "Length":  3,
+                     "Line":  5,
+                     "Column":  47,
+                     "Text":  "and",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  126,
+                     "Length":  1,
+                     "Line":  5,
+                     "Column":  50,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  127,
+                     "Length":  8,
+                     "Line":  5,
+                     "Column":  51,
+                     "Text":  "credits.",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  136,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  1,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  137,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  2,
+                     "Text":  "*",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  139,
+                     "Length":  1,
+                     "Line":  7,
+                     "Column":  1,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  140,
+                     "Length":  1,
+                     "Line":  7,
+                     "Column":  2,
+                     "Text":  "*",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  141,
+                     "Length":  1,
+                     "Line":  7,
+                     "Column":  3,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  142,
+                     "Length":  4,
+                     "Line":  7,
+                     "Column":  4,
+                     "Text":  "file",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  146,
+                     "Length":  1,
+                     "Line":  7,
+                     "Column":  8,
+                     "Text":  ":",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  147,
+                     "Length":  1,
+                     "Line":  7,
+                     "Column":  9,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  148,
+                     "Length":  12,
+                     "Line":  7,
+                     "Column":  10,
+                     "Text":  "target_pdk.v",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  161,
+                     "Length":  1,
+                     "Line":  8,
+                     "Column":  1,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  162,
+                     "Length":  1,
+                     "Line":  8,
+                     "Column":  2,
+                     "Text":  "*",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  164,
+                     "Length":  1,
+                     "Line":  9,
+                     "Column":  1,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  165,
+                     "Length":  1,
+                     "Line":  9,
+                     "Column":  2,
+                     "Text":  "*",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  166,
+                     "Length":  1,
+                     "Line":  9,
+                     "Column":  3,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  167,
+                     "Length":  4,
+                     "Line":  9,
+                     "Column":  4,
+                     "Text":  "This",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  171,
+                     "Length":  1,
+                     "Line":  9,
+                     "Column":  8,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  172,
+                     "Length":  4,
+                     "Line":  9,
+                     "Column":  9,
+                     "Text":  "file",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  176,
+                     "Length":  1,
+                     "Line":  9,
+                     "Column":  13,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  177,
+                     "Length":  2,
+                     "Line":  9,
+                     "Column":  14,
+                     "Text":  "is",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  179,
+                     "Length":  1,
+                     "Line":  9,
+                     "Column":  16,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  180,
+                     "Length":  8,
+                     "Line":  9,
+                     "Column":  17,
+                     "Text":  "intended",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  188,
+                     "Length":  1,
+                     "Line":  9,
+                     "Column":  25,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  189,
+                     "Length":  2,
+                     "Line":  9,
+                     "Column":  26,
+                     "Text":  "to",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  191,
+                     "Length":  1,
+                     "Line":  9,
+                     "Column":  28,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  192,
+                     "Length":  2,
+                     "Line":  9,
+                     "Column":  29,
+                     "Text":  "be",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  194,
+                     "Length":  1,
+                     "Line":  9,
+                     "Column":  31,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  195,
+                     "Length":  8,
+                     "Line":  9,
+                     "Column":  32,
+                     "Text":  "included",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  203,
+                     "Length":  1,
+                     "Line":  9,
+                     "Column":  40,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  204,
+                     "Length":  2,
+                     "Line":  9,
+                     "Column":  41,
+                     "Text":  "by",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  206,
+                     "Length":  1,
+                     "Line":  9,
+                     "Column":  43,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  207,
+                     "Length":  3,
+                     "Line":  9,
+                     "Column":  44,
+                     "Text":  "the",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  210,
+                     "Length":  1,
+                     "Line":  9,
+                     "Column":  47,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  211,
+                     "Length":  3,
+                     "Line":  9,
+                     "Column":  48,
+                     "Text":  "top",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  214,
+                     "Length":  1,
+                     "Line":  9,
+                     "Column":  51,
+                     "Text":  "-",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  215,
+                     "Length":  5,
+                     "Line":  9,
+                     "Column":  52,
+                     "Text":  "level",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  220,
+                     "Length":  1,
+                     "Line":  9,
+                     "Column":  57,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  221,
+                     "Length":  7,
+                     "Line":  9,
+                     "Column":  58,
+                     "Text":  "project",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  228,
+                     "Length":  1,
+                     "Line":  9,
+                     "Column":  65,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  229,
+                     "Length":  7,
+                     "Line":  9,
+                     "Column":  66,
+                     "Text":  "wrapper",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  236,
+                     "Length":  1,
+                     "Line":  9,
+                     "Column":  73,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  237,
+                     "Length":  1,
+                     "Line":  9,
+                     "Column":  74,
+                     "Text":  "(",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  238,
+                     "Length":  9,
+                     "Line":  9,
+                     "Column":  75,
+                     "Text":  "project.v",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  247,
+                     "Length":  1,
+                     "Line":  9,
+                     "Column":  84,
+                     "Text":  ")",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  248,
+                     "Length":  1,
+                     "Line":  9,
+                     "Column":  85,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  250,
+                     "Length":  1,
+                     "Line":  10,
+                     "Column":  1,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  251,
+                     "Length":  1,
+                     "Line":  10,
+                     "Column":  2,
+                     "Text":  "*",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  252,
+                     "Length":  1,
+                     "Line":  10,
+                     "Column":  3,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  253,
+                     "Length":  3,
+                     "Line":  10,
+                     "Column":  4,
+                     "Text":  "and",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  256,
+                     "Length":  1,
+                     "Line":  10,
+                     "Column":  7,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  257,
+                     "Length":  4,
+                     "Line":  10,
+                     "Column":  8,
+                     "Text":  "used",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  261,
+                     "Length":  1,
+                     "Line":  10,
+                     "Column":  12,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  262,
+                     "Length":  2,
+                     "Line":  10,
+                     "Column":  13,
+                     "Text":  "to",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  264,
+                     "Length":  1,
+                     "Line":  10,
+                     "Column":  15,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  265,
+                     "Length":  6,
+                     "Line":  10,
+                     "Column":  16,
+                     "Text":  "select",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  271,
+                     "Length":  1,
+                     "Line":  10,
+                     "Column":  22,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  272,
+                     "Length":  3,
+                     "Line":  10,
+                     "Column":  23,
+                     "Text":  "the",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  275,
+                     "Length":  1,
+                     "Line":  10,
+                     "Column":  26,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  276,
+                     "Length":  6,
+                     "Line":  10,
+                     "Column":  27,
+                     "Text":  "target",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  282,
+                     "Length":  1,
+                     "Line":  10,
+                     "Column":  33,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  283,
+                     "Length":  3,
+                     "Line":  10,
+                     "Column":  34,
+                     "Text":  "PDK",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  286,
+                     "Length":  1,
+                     "Line":  10,
+                     "Column":  37,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  287,
+                     "Length":  3,
+                     "Line":  10,
+                     "Column":  38,
+                     "Text":  "for",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  290,
+                     "Length":  1,
+                     "Line":  10,
+                     "Column":  41,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  291,
+                     "Length":  3,
+                     "Line":  10,
+                     "Column":  42,
+                     "Text":  "the",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  294,
+                     "Length":  1,
+                     "Line":  10,
+                     "Column":  45,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  295,
+                     "Length":  8,
+                     "Line":  10,
+                     "Column":  46,
+                     "Text":  "project.",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  303,
+                     "Length":  1,
+                     "Line":  10,
+                     "Column":  54,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  305,
+                     "Length":  1,
+                     "Line":  11,
+                     "Column":  1,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  306,
+                     "Length":  2,
+                     "Line":  11,
+                     "Column":  2,
+                     "Text":  "*/",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  310,
+                     "Length":  16,
+                     "Line":  13,
+                     "Column":  1,
+                     "Text":  "`default_nettype",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  334,
+                     "Length":  6,
+                     "Line":  16,
+                     "Column":  1,
+                     "Text":  "`ifdef",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  341,
+                     "Length":  25,
+                     "Line":  16,
+                     "Column":  8,
+                     "Text":  "IS_MY_IVERILOG_SIMULATION",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "macro condition:\r\n`ifdef IS_MY_IVERILOG_SIMULATION"
+                 },
+                 {
+                     "Start":  371,
+                     "Length":  2,
+                     "Line":  17,
+                     "Column":  5,
+                     "Text":  "/*",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  373,
+                     "Length":  1,
+                     "Line":  17,
+                     "Column":  7,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  374,
+                     "Length":  7,
+                     "Line":  17,
+                     "Column":  8,
+                     "Text":  "Neither",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  381,
+                     "Length":  1,
+                     "Line":  17,
+                     "Column":  15,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  382,
+                     "Length":  3,
+                     "Line":  17,
+                     "Column":  16,
+                     "Text":  "PDK",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  385,
+                     "Length":  1,
+                     "Line":  17,
+                     "Column":  19,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  386,
+                     "Length":  3,
+                     "Line":  17,
+                     "Column":  20,
+                     "Text":  "for",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  389,
+                     "Length":  1,
+                     "Line":  17,
+                     "Column":  23,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  390,
+                     "Length":  2,
+                     "Line":  17,
+                     "Column":  24,
+                     "Text":  "my",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  392,
+                     "Length":  1,
+                     "Line":  17,
+                     "Column":  26,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  393,
+                     "Length":  5,
+                     "Line":  17,
+                     "Column":  27,
+                     "Text":  "local",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  398,
+                     "Length":  1,
+                     "Line":  17,
+                     "Column":  32,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  399,
+                     "Length":  8,
+                     "Line":  17,
+                     "Column":  33,
+                     "Text":  "iverilog",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  407,
+                     "Length":  1,
+                     "Line":  17,
+                     "Column":  41,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  408,
+                     "Length":  3,
+                     "Line":  17,
+                     "Column":  42,
+                     "Text":  "sim",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  411,
+                     "Length":  1,
+                     "Line":  17,
+                     "Column":  45,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  412,
+                     "Length":  2,
+                     "Line":  17,
+                     "Column":  46,
+                     "Text":  "*/",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  416,
+                     "Length":  5,
+                     "Line":  19,
+                     "Column":  1,
+                     "Text":  "`else",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  426,
+                     "Length":  2,
+                     "Line":  20,
+                     "Column":  5,
+                     "Text":  "//",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  428,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  7,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  429,
+                     "Length":  3,
+                     "Line":  20,
+                     "Column":  8,
+                     "Text":  "`if",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  432,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  11,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  433,
+                     "Length":  7,
+                     "Line":  20,
+                     "Column":  12,
+                     "Text":  "defined",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  440,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  19,
+                     "Text":  "(",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  441,
+                     "Length":  19,
+                     "Line":  20,
+                     "Column":  20,
+                     "Text":  "SCL_sky130_fd_sc_hd",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  460,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  39,
+                     "Text":  ")",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  461,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  40,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  462,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  41,
+                     "Text":  "|",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  463,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  42,
+                     "Text":  "|",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  464,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  43,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  465,
+                     "Length":  7,
+                     "Line":  20,
+                     "Column":  44,
+                     "Text":  "defined",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  472,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  51,
+                     "Text":  "(",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  473,
+                     "Length":  19,
+                     "Line":  20,
+                     "Column":  52,
+                     "Text":  "SCL_sky130_fd_sc_hs",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  492,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  71,
+                     "Text":  ")",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  493,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  72,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  494,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  73,
+                     "Text":  "|",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  495,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  74,
+                     "Text":  "|",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  496,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  75,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  497,
+                     "Length":  7,
+                     "Line":  20,
+                     "Column":  76,
+                     "Text":  "defined",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  504,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  83,
+                     "Text":  "(",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  505,
+                     "Length":  19,
+                     "Line":  20,
+                     "Column":  84,
+                     "Text":  "SCL_sky130_fd_sc_ms",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  524,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  103,
+                     "Text":  ")",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  525,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  104,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  526,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  105,
+                     "Text":  "|",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  527,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  106,
+                     "Text":  "|",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  528,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  107,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  529,
+                     "Length":  7,
+                     "Line":  20,
+                     "Column":  108,
+                     "Text":  "defined",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  536,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  115,
+                     "Text":  "(",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  537,
+                     "Length":  21,
+                     "Line":  20,
+                     "Column":  116,
+                     "Text":  "SCL_sky130_fd_sc_hdll",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  558,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  137,
+                     "Text":  ")",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  559,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  138,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  560,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  139,
+                     "Text":  "|",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  561,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  140,
+                     "Text":  "|",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  562,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  141,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  563,
+                     "Length":  7,
+                     "Line":  20,
+                     "Column":  142,
+                     "Text":  "defined",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  570,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  149,
+                     "Text":  "(",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  571,
+                     "Length":  20,
+                     "Line":  20,
+                     "Column":  150,
+                     "Text":  "SCL_sky130_fd_sc_hvl",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  591,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  170,
+                     "Text":  ")",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  597,
+                     "Length":  2,
+                     "Line":  21,
+                     "Column":  5,
+                     "Text":  "//",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  599,
+                     "Length":  4,
+                     "Line":  21,
+                     "Column":  7,
+                     "Text":  "    ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  603,
+                     "Length":  7,
+                     "Line":  21,
+                     "Column":  11,
+                     "Text":  "`define",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  610,
+                     "Length":  1,
+                     "Line":  21,
+                     "Column":  18,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  611,
+                     "Length":  17,
+                     "Line":  21,
+                     "Column":  19,
+                     "Text":  "PDK_TARGET_SKY130",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  634,
+                     "Length":  2,
+                     "Line":  23,
+                     "Column":  5,
+                     "Text":  "/*",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  636,
+                     "Length":  1,
+                     "Line":  23,
+                     "Column":  7,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  637,
+                     "Length":  3,
+                     "Line":  23,
+                     "Column":  8,
+                     "Text":  "Not",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  640,
+                     "Length":  1,
+                     "Line":  23,
+                     "Column":  11,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  641,
+                     "Length":  1,
+                     "Line":  23,
+                     "Column":  12,
+                     "Text":  "a",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  642,
+                     "Length":  1,
+                     "Line":  23,
+                     "Column":  13,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  643,
+                     "Length":  2,
+                     "Line":  23,
+                     "Column":  14,
+                     "Text":  "TT",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  645,
+                     "Length":  1,
+                     "Line":  23,
+                     "Column":  16,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  646,
+                     "Length":  8,
+                     "Line":  23,
+                     "Column":  17,
+                     "Text":  "standard",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  654,
+                     "Length":  1,
+                     "Line":  23,
+                     "Column":  25,
+                     "Text":  ",",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  655,
+                     "Length":  1,
+                     "Line":  23,
+                     "Column":  26,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  656,
+                     "Length":  3,
+                     "Line":  23,
+                     "Column":  27,
+                     "Text":  "but",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  659,
+                     "Length":  1,
+                     "Line":  23,
+                     "Column":  30,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  660,
+                     "Length":  2,
+                     "Line":  23,
+                     "Column":  31,
+                     "Text":  "we",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  662,
+                     "Length":  1,
+                     "Line":  23,
+                     "Column":  33,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  663,
+                     "Length":  4,
+                     "Line":  23,
+                     "Column":  34,
+                     "Text":  "will",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  667,
+                     "Length":  1,
+                     "Line":  23,
+                     "Column":  38,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  668,
+                     "Length":  4,
+                     "Line":  23,
+                     "Column":  39,
+                     "Text":  "pick",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  672,
+                     "Length":  1,
+                     "Line":  23,
+                     "Column":  43,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  673,
+                     "Length":  1,
+                     "Line":  23,
+                     "Column":  44,
+                     "Text":  "a",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  674,
+                     "Length":  1,
+                     "Line":  23,
+                     "Column":  45,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  675,
+                     "Length":  4,
+                     "Line":  23,
+                     "Column":  46,
+                     "Text":  "PDK.",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  679,
+                     "Length":  1,
+                     "Line":  23,
+                     "Column":  50,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  680,
+                     "Length":  6,
+                     "Line":  23,
+                     "Column":  51,
+                     "Text":  "Define",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  686,
+                     "Length":  1,
+                     "Line":  23,
+                     "Column":  57,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  687,
+                     "Length":  7,
+                     "Line":  23,
+                     "Column":  58,
+                     "Text":  "exactly",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  694,
+                     "Length":  1,
+                     "Line":  23,
+                     "Column":  65,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  695,
+                     "Length":  3,
+                     "Line":  23,
+                     "Column":  66,
+                     "Text":  "one",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  698,
+                     "Length":  1,
+                     "Line":  23,
+                     "Column":  69,
+                     "Text":  ":",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  699,
+                     "Length":  1,
+                     "Line":  23,
+                     "Column":  70,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  700,
+                     "Length":  2,
+                     "Line":  23,
+                     "Column":  71,
+                     "Text":  "*/",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  707,
+                     "Length":  2,
+                     "Line":  24,
+                     "Column":  5,
+                     "Text":  "//",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  709,
+                     "Length":  1,
+                     "Line":  24,
+                     "Column":  7,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  710,
+                     "Length":  7,
+                     "Line":  24,
+                     "Column":  8,
+                     "Text":  "`define",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  717,
+                     "Length":  1,
+                     "Line":  24,
+                     "Column":  15,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  718,
+                     "Length":  17,
+                     "Line":  24,
+                     "Column":  16,
+                     "Text":  "PDK_TARGET_SKY130",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  740,
+                     "Length":  7,
+                     "Line":  25,
+                     "Column":  5,
+                     "Text":  "`define",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  748,
+                     "Length":  16,
+                     "Line":  25,
+                     "Column":  13,
+                     "Text":  "PDK_TARGET_GF180",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "macro definition:\r\n`define PDK_TARGET_GF180\r\n\r\ncondition:\r\n`else (from `ifdef IS_MY_IVERILOG_SIMULATION)"
+                 },
+                 {
+                     "Start":  765,
+                     "Length":  6,
+                     "Line":  26,
+                     "Column":  1,
+                     "Text":  "`endif",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  773,
+                     "Length":  2,
+                     "Line":  28,
+                     "Column":  1,
+                     "Text":  "/*",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  775,
+                     "Length":  1,
+                     "Line":  28,
+                     "Column":  3,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  776,
+                     "Length":  3,
+                     "Line":  28,
+                     "Column":  4,
+                     "Text":  "For",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  779,
+                     "Length":  1,
+                     "Line":  28,
+                     "Column":  7,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  780,
+                     "Length":  4,
+                     "Line":  28,
+                     "Column":  8,
+                     "Text":  "this",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  784,
+                     "Length":  1,
+                     "Line":  28,
+                     "Column":  12,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  785,
+                     "Length":  7,
+                     "Line":  28,
+                     "Column":  13,
+                     "Text":  "project",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  792,
+                     "Length":  1,
+                     "Line":  28,
+                     "Column":  20,
+                     "Text":  ",",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  793,
+                     "Length":  1,
+                     "Line":  28,
+                     "Column":  21,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  794,
+                     "Length":  3,
+                     "Line":  28,
+                     "Column":  22,
+                     "Text":  "see",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  797,
+                     "Length":  1,
+                     "Line":  28,
+                     "Column":  25,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  798,
+                     "Length":  4,
+                     "Line":  28,
+                     "Column":  26,
+                     "Text":  "TRNG",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  802,
+                     "Length":  1,
+                     "Line":  28,
+                     "Column":  30,
+                     "Text":  "/",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  803,
+                     "Length":  15,
+                     "Line":  28,
+                     "Column":  31,
+                     "Text":  "trng_lab_core.v",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  818,
+                     "Length":  1,
+                     "Line":  28,
+                     "Column":  46,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  819,
+                     "Length":  3,
+                     "Line":  28,
+                     "Column":  47,
+                     "Text":  "for",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  822,
+                     "Length":  1,
+                     "Line":  28,
+                     "Column":  50,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  823,
+                     "Length":  11,
+                     "Line":  28,
+                     "Column":  51,
+                     "Text":  "conditional",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  834,
+                     "Length":  1,
+                     "Line":  28,
+                     "Column":  62,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  835,
+                     "Length":  7,
+                     "Line":  28,
+                     "Column":  63,
+                     "Text":  "include",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  842,
+                     "Length":  1,
+                     "Line":  28,
+                     "Column":  70,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  843,
+                     "Length":  2,
+                     "Line":  28,
+                     "Column":  71,
+                     "Text":  "of",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  845,
+                     "Length":  1,
+                     "Line":  28,
+                     "Column":  73,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  846,
+                     "Length":  4,
+                     "Line":  28,
+                     "Column":  74,
+                     "Text":  "code",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  850,
+                     "Length":  1,
+                     "Line":  28,
+                     "Column":  78,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  851,
+                     "Length":  5,
+                     "Line":  28,
+                     "Column":  79,
+                     "Text":  "based",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  856,
+                     "Length":  1,
+                     "Line":  28,
+                     "Column":  84,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  857,
+                     "Length":  2,
+                     "Line":  28,
+                     "Column":  85,
+                     "Text":  "on",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  859,
+                     "Length":  1,
+                     "Line":  28,
+                     "Column":  87,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  860,
+                     "Length":  3,
+                     "Line":  28,
+                     "Column":  88,
+                     "Text":  "the",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  863,
+                     "Length":  1,
+                     "Line":  28,
+                     "Column":  91,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  864,
+                     "Length":  4,
+                     "Line":  28,
+                     "Column":  92,
+                     "Text":  "PDK.",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  868,
+                     "Length":  1,
+                     "Line":  28,
+                     "Column":  96,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  869,
+                     "Length":  2,
+                     "Line":  28,
+                     "Column":  97,
+                     "Text":  "*/",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  873,
+                     "Length":  16,
+                     "Line":  30,
+                     "Column":  1,
+                     "Text":  "`default_nettype",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  890,
+                     "Length":  4,
+                     "Line":  30,
+                     "Column":  18,
+                     "Text":  "wire",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_wire",
+                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
+                 }
+             ],
+    "Tokens":  [
+                   {
+                       "Start":  0,
+                       "Length":  2,
+                       "Line":  1,
+                       "Column":  1,
+                       "Text":  "/*",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  3,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  1,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  4,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  2,
+                       "Text":  "*",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  5,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  3,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  6,
+                       "Length":  9,
+                       "Line":  2,
+                       "Column":  4,
+                       "Text":  "Copyright",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  15,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  13,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  16,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  14,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  17,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  15,
+                       "Text":  "c",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  18,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  16,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  19,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  17,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  20,
+                       "Length":  14,
+                       "Line":  2,
+                       "Column":  18,
+                       "Text":  "2026 gojimmypi",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  35,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  1,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  36,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  2,
+                       "Text":  "*",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  37,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  3,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  38,
+                       "Length":  4,
+                       "Line":  3,
+                       "Column":  4,
+                       "Text":  "SPDX",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  42,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  8,
+                       "Text":  "-",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  43,
+                       "Length":  7,
+                       "Line":  3,
+                       "Column":  9,
+                       "Text":  "License",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  50,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  16,
+                       "Text":  "-",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  51,
+                       "Length":  10,
+                       "Line":  3,
+                       "Column":  17,
+                       "Text":  "Identifier",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  61,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  27,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  62,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  28,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  63,
+                       "Length":  6,
+                       "Line":  3,
+                       "Column":  29,
+                       "Text":  "Apache",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  69,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  35,
+                       "Text":  "-",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  70,
+                       "Length":  3,
+                       "Line":  3,
+                       "Column":  36,
+                       "Text":  "2.0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  74,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  1,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  75,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  2,
+                       "Text":  "*",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  77,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  1,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  78,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  2,
+                       "Text":  "*",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  79,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  3,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  80,
+                       "Length":  3,
+                       "Line":  5,
+                       "Column":  4,
+                       "Text":  "See",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  83,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  84,
+                       "Length":  14,
+                       "Line":  5,
+                       "Column":  8,
+                       "Text":  "ATTRIBUTION.md",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  98,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  22,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  99,
+                       "Length":  3,
+                       "Line":  5,
+                       "Column":  23,
+                       "Text":  "for",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  102,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  26,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  103,
+                       "Length":  5,
+                       "Line":  5,
+                       "Column":  27,
+                       "Text":  "third",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  108,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  32,
+                       "Text":  "-",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  109,
+                       "Length":  5,
+                       "Line":  5,
+                       "Column":  33,
+                       "Text":  "party",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  114,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  38,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  115,
+                       "Length":  7,
+                       "Line":  5,
+                       "Column":  39,
+                       "Text":  "sources",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  122,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  46,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  123,
+                       "Length":  3,
+                       "Line":  5,
+                       "Column":  47,
+                       "Text":  "and",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  126,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  50,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  127,
+                       "Length":  8,
+                       "Line":  5,
+                       "Column":  51,
+                       "Text":  "credits.",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  136,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  1,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  137,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  2,
+                       "Text":  "*",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  139,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  1,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  140,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  2,
+                       "Text":  "*",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  141,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  3,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  142,
+                       "Length":  4,
+                       "Line":  7,
+                       "Column":  4,
+                       "Text":  "file",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  146,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  8,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  147,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  9,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  148,
+                       "Length":  12,
+                       "Line":  7,
+                       "Column":  10,
+                       "Text":  "target_pdk.v",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  161,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  1,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  162,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  2,
+                       "Text":  "*",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  164,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  1,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  165,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  2,
+                       "Text":  "*",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  166,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  3,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  167,
+                       "Length":  4,
+                       "Line":  9,
+                       "Column":  4,
+                       "Text":  "This",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  171,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  172,
+                       "Length":  4,
+                       "Line":  9,
+                       "Column":  9,
+                       "Text":  "file",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  176,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  13,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  177,
+                       "Length":  2,
+                       "Line":  9,
+                       "Column":  14,
+                       "Text":  "is",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  179,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  16,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  180,
+                       "Length":  8,
+                       "Line":  9,
+                       "Column":  17,
+                       "Text":  "intended",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  188,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  25,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  189,
+                       "Length":  2,
+                       "Line":  9,
+                       "Column":  26,
+                       "Text":  "to",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  191,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  28,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  192,
+                       "Length":  2,
+                       "Line":  9,
+                       "Column":  29,
+                       "Text":  "be",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  194,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  31,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  195,
+                       "Length":  8,
+                       "Line":  9,
+                       "Column":  32,
+                       "Text":  "included",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  203,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  40,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  204,
+                       "Length":  2,
+                       "Line":  9,
+                       "Column":  41,
+                       "Text":  "by",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  206,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  43,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  207,
+                       "Length":  3,
+                       "Line":  9,
+                       "Column":  44,
+                       "Text":  "the",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  210,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  47,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  211,
+                       "Length":  3,
+                       "Line":  9,
+                       "Column":  48,
+                       "Text":  "top",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  214,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  51,
+                       "Text":  "-",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  215,
+                       "Length":  5,
+                       "Line":  9,
+                       "Column":  52,
+                       "Text":  "level",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  220,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  57,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  221,
+                       "Length":  7,
+                       "Line":  9,
+                       "Column":  58,
+                       "Text":  "project",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  228,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  65,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  229,
+                       "Length":  7,
+                       "Line":  9,
+                       "Column":  66,
+                       "Text":  "wrapper",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  236,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  73,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  237,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  74,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  238,
+                       "Length":  9,
+                       "Line":  9,
+                       "Column":  75,
+                       "Text":  "project.v",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  247,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  84,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  248,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  85,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  250,
+                       "Length":  1,
+                       "Line":  10,
+                       "Column":  1,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  251,
+                       "Length":  1,
+                       "Line":  10,
+                       "Column":  2,
+                       "Text":  "*",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  252,
+                       "Length":  1,
+                       "Line":  10,
+                       "Column":  3,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  253,
+                       "Length":  3,
+                       "Line":  10,
+                       "Column":  4,
+                       "Text":  "and",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  256,
+                       "Length":  1,
+                       "Line":  10,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  257,
+                       "Length":  4,
+                       "Line":  10,
+                       "Column":  8,
+                       "Text":  "used",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  261,
+                       "Length":  1,
+                       "Line":  10,
+                       "Column":  12,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  262,
+                       "Length":  2,
+                       "Line":  10,
+                       "Column":  13,
+                       "Text":  "to",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  264,
+                       "Length":  1,
+                       "Line":  10,
+                       "Column":  15,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  265,
+                       "Length":  6,
+                       "Line":  10,
+                       "Column":  16,
+                       "Text":  "select",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  271,
+                       "Length":  1,
+                       "Line":  10,
+                       "Column":  22,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  272,
+                       "Length":  3,
+                       "Line":  10,
+                       "Column":  23,
+                       "Text":  "the",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  275,
+                       "Length":  1,
+                       "Line":  10,
+                       "Column":  26,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  276,
+                       "Length":  6,
+                       "Line":  10,
+                       "Column":  27,
+                       "Text":  "target",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  282,
+                       "Length":  1,
+                       "Line":  10,
+                       "Column":  33,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  283,
+                       "Length":  3,
+                       "Line":  10,
+                       "Column":  34,
+                       "Text":  "PDK",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  286,
+                       "Length":  1,
+                       "Line":  10,
+                       "Column":  37,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  287,
+                       "Length":  3,
+                       "Line":  10,
+                       "Column":  38,
+                       "Text":  "for",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  290,
+                       "Length":  1,
+                       "Line":  10,
+                       "Column":  41,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  291,
+                       "Length":  3,
+                       "Line":  10,
+                       "Column":  42,
+                       "Text":  "the",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  294,
+                       "Length":  1,
+                       "Line":  10,
+                       "Column":  45,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  295,
+                       "Length":  8,
+                       "Line":  10,
+                       "Column":  46,
+                       "Text":  "project.",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  303,
+                       "Length":  1,
+                       "Line":  10,
+                       "Column":  54,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  305,
+                       "Length":  1,
+                       "Line":  11,
+                       "Column":  1,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  306,
+                       "Length":  2,
+                       "Line":  11,
+                       "Column":  2,
+                       "Text":  "*/",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  310,
+                       "Length":  16,
+                       "Line":  13,
+                       "Column":  1,
+                       "Text":  "`default_nettype",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  326,
+                       "Length":  1,
+                       "Line":  13,
+                       "Column":  17,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  327,
+                       "Length":  4,
+                       "Line":  13,
+                       "Column":  18,
+                       "Text":  "none",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  334,
+                       "Length":  6,
+                       "Line":  16,
+                       "Column":  1,
+                       "Text":  "`ifdef",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  340,
+                       "Length":  1,
+                       "Line":  16,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  341,
+                       "Length":  25,
+                       "Line":  16,
+                       "Column":  8,
+                       "Text":  "IS_MY_IVERILOG_SIMULATION",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  367,
+                       "Length":  4,
+                       "Line":  17,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  371,
+                       "Length":  2,
+                       "Line":  17,
+                       "Column":  5,
+                       "Text":  "/*",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  373,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  374,
+                       "Length":  7,
+                       "Line":  17,
+                       "Column":  8,
+                       "Text":  "Neither",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  381,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  15,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  382,
+                       "Length":  3,
+                       "Line":  17,
+                       "Column":  16,
+                       "Text":  "PDK",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  385,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  19,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  386,
+                       "Length":  3,
+                       "Line":  17,
+                       "Column":  20,
+                       "Text":  "for",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  389,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  23,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  390,
+                       "Length":  2,
+                       "Line":  17,
+                       "Column":  24,
+                       "Text":  "my",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  392,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  26,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  393,
+                       "Length":  5,
+                       "Line":  17,
+                       "Column":  27,
+                       "Text":  "local",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  398,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  32,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  399,
+                       "Length":  8,
+                       "Line":  17,
+                       "Column":  33,
+                       "Text":  "iverilog",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  407,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  41,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  408,
+                       "Length":  3,
+                       "Line":  17,
+                       "Column":  42,
+                       "Text":  "sim",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  411,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  45,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  412,
+                       "Length":  2,
+                       "Line":  17,
+                       "Column":  46,
+                       "Text":  "*/",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  416,
+                       "Length":  5,
+                       "Line":  19,
+                       "Column":  1,
+                       "Text":  "`else",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  422,
+                       "Length":  4,
+                       "Line":  20,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  426,
+                       "Length":  2,
+                       "Line":  20,
+                       "Column":  5,
+                       "Text":  "//",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  428,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  429,
+                       "Length":  3,
+                       "Line":  20,
+                       "Column":  8,
+                       "Text":  "`if",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  432,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  11,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  433,
+                       "Length":  7,
+                       "Line":  20,
+                       "Column":  12,
+                       "Text":  "defined",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  440,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  19,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  441,
+                       "Length":  19,
+                       "Line":  20,
+                       "Column":  20,
+                       "Text":  "SCL_sky130_fd_sc_hd",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  460,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  39,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  461,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  40,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  462,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  41,
+                       "Text":  "|",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  463,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  42,
+                       "Text":  "|",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  464,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  43,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  465,
+                       "Length":  7,
+                       "Line":  20,
+                       "Column":  44,
+                       "Text":  "defined",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  472,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  51,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  473,
+                       "Length":  19,
+                       "Line":  20,
+                       "Column":  52,
+                       "Text":  "SCL_sky130_fd_sc_hs",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  492,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  71,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  493,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  72,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  494,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  73,
+                       "Text":  "|",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  495,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  74,
+                       "Text":  "|",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  496,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  75,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  497,
+                       "Length":  7,
+                       "Line":  20,
+                       "Column":  76,
+                       "Text":  "defined",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  504,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  83,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  505,
+                       "Length":  19,
+                       "Line":  20,
+                       "Column":  84,
+                       "Text":  "SCL_sky130_fd_sc_ms",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  524,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  103,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  525,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  104,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  526,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  105,
+                       "Text":  "|",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  527,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  106,
+                       "Text":  "|",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  528,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  107,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  529,
+                       "Length":  7,
+                       "Line":  20,
+                       "Column":  108,
+                       "Text":  "defined",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  536,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  115,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  537,
+                       "Length":  21,
+                       "Line":  20,
+                       "Column":  116,
+                       "Text":  "SCL_sky130_fd_sc_hdll",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  558,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  137,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  559,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  138,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  560,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  139,
+                       "Text":  "|",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  561,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  140,
+                       "Text":  "|",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  562,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  141,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  563,
+                       "Length":  7,
+                       "Line":  20,
+                       "Column":  142,
+                       "Text":  "defined",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  570,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  149,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  571,
+                       "Length":  20,
+                       "Line":  20,
+                       "Column":  150,
+                       "Text":  "SCL_sky130_fd_sc_hvl",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  591,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  170,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  593,
+                       "Length":  4,
+                       "Line":  21,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  597,
+                       "Length":  2,
+                       "Line":  21,
+                       "Column":  5,
+                       "Text":  "//",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  599,
+                       "Length":  4,
+                       "Line":  21,
+                       "Column":  7,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  603,
+                       "Length":  7,
+                       "Line":  21,
+                       "Column":  11,
+                       "Text":  "`define",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  610,
+                       "Length":  1,
+                       "Line":  21,
+                       "Column":  18,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  611,
+                       "Length":  17,
+                       "Line":  21,
+                       "Column":  19,
+                       "Text":  "PDK_TARGET_SKY130",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  630,
+                       "Length":  4,
+                       "Line":  23,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  634,
+                       "Length":  2,
+                       "Line":  23,
+                       "Column":  5,
+                       "Text":  "/*",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  636,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  637,
+                       "Length":  3,
+                       "Line":  23,
+                       "Column":  8,
+                       "Text":  "Not",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  640,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  11,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  641,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  12,
+                       "Text":  "a",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  642,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  13,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  643,
+                       "Length":  2,
+                       "Line":  23,
+                       "Column":  14,
+                       "Text":  "TT",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  645,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  16,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  646,
+                       "Length":  8,
+                       "Line":  23,
+                       "Column":  17,
+                       "Text":  "standard",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  654,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  25,
+                       "Text":  ",",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  655,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  26,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  656,
+                       "Length":  3,
+                       "Line":  23,
+                       "Column":  27,
+                       "Text":  "but",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  659,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  30,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  660,
+                       "Length":  2,
+                       "Line":  23,
+                       "Column":  31,
+                       "Text":  "we",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  662,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  33,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  663,
+                       "Length":  4,
+                       "Line":  23,
+                       "Column":  34,
+                       "Text":  "will",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  667,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  38,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  668,
+                       "Length":  4,
+                       "Line":  23,
+                       "Column":  39,
+                       "Text":  "pick",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  672,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  43,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  673,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  44,
+                       "Text":  "a",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  674,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  45,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  675,
+                       "Length":  4,
+                       "Line":  23,
+                       "Column":  46,
+                       "Text":  "PDK.",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  679,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  50,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  680,
+                       "Length":  6,
+                       "Line":  23,
+                       "Column":  51,
+                       "Text":  "Define",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  686,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  57,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  687,
+                       "Length":  7,
+                       "Line":  23,
+                       "Column":  58,
+                       "Text":  "exactly",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  694,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  65,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  695,
+                       "Length":  3,
+                       "Line":  23,
+                       "Column":  66,
+                       "Text":  "one",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  698,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  69,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  699,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  70,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  700,
+                       "Length":  2,
+                       "Line":  23,
+                       "Column":  71,
+                       "Text":  "*/",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  703,
+                       "Length":  4,
+                       "Line":  24,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  707,
+                       "Length":  2,
+                       "Line":  24,
+                       "Column":  5,
+                       "Text":  "//",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  709,
+                       "Length":  1,
+                       "Line":  24,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  710,
+                       "Length":  7,
+                       "Line":  24,
+                       "Column":  8,
+                       "Text":  "`define",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  717,
+                       "Length":  1,
+                       "Line":  24,
+                       "Column":  15,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  718,
+                       "Length":  17,
+                       "Line":  24,
+                       "Column":  16,
+                       "Text":  "PDK_TARGET_SKY130",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  736,
+                       "Length":  4,
+                       "Line":  25,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  740,
+                       "Length":  7,
+                       "Line":  25,
+                       "Column":  5,
+                       "Text":  "`define",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  747,
+                       "Length":  1,
+                       "Line":  25,
+                       "Column":  12,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  748,
+                       "Length":  16,
+                       "Line":  25,
+                       "Column":  13,
+                       "Text":  "PDK_TARGET_GF180",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  765,
+                       "Length":  6,
+                       "Line":  26,
+                       "Column":  1,
+                       "Text":  "`endif",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  773,
+                       "Length":  2,
+                       "Line":  28,
+                       "Column":  1,
+                       "Text":  "/*",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  775,
+                       "Length":  1,
+                       "Line":  28,
+                       "Column":  3,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  776,
+                       "Length":  3,
+                       "Line":  28,
+                       "Column":  4,
+                       "Text":  "For",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  779,
+                       "Length":  1,
+                       "Line":  28,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  780,
+                       "Length":  4,
+                       "Line":  28,
+                       "Column":  8,
+                       "Text":  "this",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  784,
+                       "Length":  1,
+                       "Line":  28,
+                       "Column":  12,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  785,
+                       "Length":  7,
+                       "Line":  28,
+                       "Column":  13,
+                       "Text":  "project",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  792,
+                       "Length":  1,
+                       "Line":  28,
+                       "Column":  20,
+                       "Text":  ",",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  793,
+                       "Length":  1,
+                       "Line":  28,
+                       "Column":  21,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  794,
+                       "Length":  3,
+                       "Line":  28,
+                       "Column":  22,
+                       "Text":  "see",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  797,
+                       "Length":  1,
+                       "Line":  28,
+                       "Column":  25,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  798,
+                       "Length":  4,
+                       "Line":  28,
+                       "Column":  26,
+                       "Text":  "TRNG",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  802,
+                       "Length":  1,
+                       "Line":  28,
+                       "Column":  30,
+                       "Text":  "/",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  803,
+                       "Length":  15,
+                       "Line":  28,
+                       "Column":  31,
+                       "Text":  "trng_lab_core.v",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  818,
+                       "Length":  1,
+                       "Line":  28,
+                       "Column":  46,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  819,
+                       "Length":  3,
+                       "Line":  28,
+                       "Column":  47,
+                       "Text":  "for",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  822,
+                       "Length":  1,
+                       "Line":  28,
+                       "Column":  50,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  823,
+                       "Length":  11,
+                       "Line":  28,
+                       "Column":  51,
+                       "Text":  "conditional",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  834,
+                       "Length":  1,
+                       "Line":  28,
+                       "Column":  62,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  835,
+                       "Length":  7,
+                       "Line":  28,
+                       "Column":  63,
+                       "Text":  "include",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  842,
+                       "Length":  1,
+                       "Line":  28,
+                       "Column":  70,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  843,
+                       "Length":  2,
+                       "Line":  28,
+                       "Column":  71,
+                       "Text":  "of",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  845,
+                       "Length":  1,
+                       "Line":  28,
+                       "Column":  73,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  846,
+                       "Length":  4,
+                       "Line":  28,
+                       "Column":  74,
+                       "Text":  "code",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  850,
+                       "Length":  1,
+                       "Line":  28,
+                       "Column":  78,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  851,
+                       "Length":  5,
+                       "Line":  28,
+                       "Column":  79,
+                       "Text":  "based",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  856,
+                       "Length":  1,
+                       "Line":  28,
+                       "Column":  84,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  857,
+                       "Length":  2,
+                       "Line":  28,
+                       "Column":  85,
+                       "Text":  "on",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  859,
+                       "Length":  1,
+                       "Line":  28,
+                       "Column":  87,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  860,
+                       "Length":  3,
+                       "Line":  28,
+                       "Column":  88,
+                       "Text":  "the",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  863,
+                       "Length":  1,
+                       "Line":  28,
+                       "Column":  91,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  864,
+                       "Length":  4,
+                       "Line":  28,
+                       "Column":  92,
+                       "Text":  "PDK.",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  868,
+                       "Length":  1,
+                       "Line":  28,
+                       "Column":  96,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  869,
+                       "Length":  2,
+                       "Line":  28,
+                       "Column":  97,
+                       "Text":  "*/",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  873,
+                       "Length":  16,
+                       "Line":  30,
+                       "Column":  1,
+                       "Text":  "`default_nettype",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  889,
+                       "Length":  1,
+                       "Line":  30,
+                       "Column":  17,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  890,
+                       "Length":  4,
+                       "Line":  30,
+                       "Column":  18,
+                       "Text":  "wire",
+                       "Context":  "Text"
+                   }
+               ],
+    "Symbols":  [
+                    {
+                        "Scope":  "__MACRO__",
+                        "Name":  "IS_MY_IVERILOG_SIMULATION",
+                        "TokenType":  "Verilog_Macro",
+                        "HoverText":  "macro condition:\r\n`ifdef IS_MY_IVERILOG_SIMULATION"
+                    },
+                    {
+                        "Scope":  "__MACRO__",
+                        "Name":  "PDK_TARGET_GF180",
+                        "TokenType":  "Verilog_Macro",
+                        "HoverText":  "macro definition:\r\n`define PDK_TARGET_GF180\r\n\r\ncondition:\r\n`else (from `ifdef IS_MY_IVERILOG_SIMULATION)"
+                    }
+                ]
+}

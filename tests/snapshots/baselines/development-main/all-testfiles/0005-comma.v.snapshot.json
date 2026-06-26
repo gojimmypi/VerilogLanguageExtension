@@ -1,0 +1,3628 @@
+{
+    "SchemaVersion":  3,
+    "RunName":  "all-testfiles",
+    "ExtensionVersion":  "0.4.0.0",
+    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\comma.v",
+    "FileRelativePath":  "TestFiles\\comma.v",
+    "ContentType":  "verilog",
+    "SnapshotLength":  609,
+    "SnapshotVersion":  2,
+    "TextSha256":  "9cf6736f4c2d015d504c9220b8b453aeef622419daa0c2f3c3e1bf10a56543a2",
+    "Errors":  [
+
+               ],
+    "Classifications":  [
+                            {
+                                "Start":  0,
+                                "Length":  8,
+                                "Line":  1,
+                                "Column":  1,
+                                "Text":  "// after",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  10,
+                                "Length":  6,
+                                "Line":  3,
+                                "Column":  1,
+                                "Text":  "module",
+                                "Types":  [
+                                              "module"
+                                          ]
+                            },
+                            {
+                                "Start":  17,
+                                "Length":  6,
+                                "Line":  3,
+                                "Column":  8,
+                                "Text":  "my_din",
+                                "Types":  [
+                                              "Variable_module"
+                                          ]
+                            },
+                            {
+                                "Start":  24,
+                                "Length":  1,
+                                "Line":  3,
+                                "Column":  15,
+                                "Text":  "(",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  28,
+                                "Length":  5,
+                                "Line":  5,
+                                "Column":  2,
+                                "Text":  "input",
+                                "Types":  [
+                                              "input"
+                                          ]
+                            },
+                            {
+                                "Start":  34,
+                                "Length":  1,
+                                "Line":  5,
+                                "Column":  8,
+                                "Text":  "[",
+                                "Types":  [
+                                              "Bracket2"
+                                          ]
+                            },
+                            {
+                                "Start":  35,
+                                "Length":  1,
+                                "Line":  5,
+                                "Column":  9,
+                                "Text":  "7",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  37,
+                                "Length":  1,
+                                "Line":  5,
+                                "Column":  11,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  38,
+                                "Length":  1,
+                                "Line":  5,
+                                "Column":  12,
+                                "Text":  "]",
+                                "Types":  [
+                                              "Bracket2"
+                                          ]
+                            },
+                            {
+                                "Start":  40,
+                                "Length":  3,
+                                "Line":  5,
+                                "Column":  14,
+                                "Text":  "din",
+                                "Types":  [
+                                              "Variable_input"
+                                          ]
+                            },
+                            {
+                                "Start":  44,
+                                "Length":  1,
+                                "Line":  6,
+                                "Column":  1,
+                                "Text":  ")",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  51,
+                                "Length":  10,
+                                "Line":  7,
+                                "Column":  5,
+                                "Text":  "localparam",
+                                "Types":  [
+                                              "localparam"
+                                          ]
+                            },
+                            {
+                                "Start":  62,
+                                "Length":  1,
+                                "Line":  7,
+                                "Column":  16,
+                                "Text":  "[",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  63,
+                                "Length":  2,
+                                "Line":  7,
+                                "Column":  17,
+                                "Text":  "35",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  66,
+                                "Length":  1,
+                                "Line":  7,
+                                "Column":  20,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  67,
+                                "Length":  1,
+                                "Line":  7,
+                                "Column":  21,
+                                "Text":  "]",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  69,
+                                "Length":  12,
+                                "Line":  7,
+                                "Column":  23,
+                                "Text":  "TRACE_BRANCH",
+                                "Types":  [
+                                              "Variable_localparam"
+                                          ]
+                            },
+                            {
+                                "Start":  84,
+                                "Length":  1,
+                                "Line":  7,
+                                "Column":  38,
+                                "Text":  "{",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  85,
+                                "Length":  8,
+                                "Line":  7,
+                                "Column":  39,
+                                "Text":  "4\u0027b 0001",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  95,
+                                "Length":  6,
+                                "Line":  7,
+                                "Column":  49,
+                                "Text":  "32\u0027b 0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  101,
+                                "Length":  1,
+                                "Line":  7,
+                                "Column":  55,
+                                "Text":  "}",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  105,
+                                "Length":  5,
+                                "Line":  8,
+                                "Column":  2,
+                                "Text":  "input",
+                                "Types":  [
+                                              "input"
+                                          ]
+                            },
+                            {
+                                "Start":  111,
+                                "Length":  3,
+                                "Line":  8,
+                                "Column":  8,
+                                "Text":  "clk",
+                                "Types":  [
+                                              "Variable_input"
+                                          ]
+                            },
+                            {
+                                "Start":  131,
+                                "Length":  1,
+                                "Line":  9,
+                                "Column":  16,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  135,
+                                "Length":  6,
+                                "Line":  10,
+                                "Column":  2,
+                                "Text":  "output",
+                                "Types":  [
+                                              "output"
+                                          ]
+                            },
+                            {
+                                "Start":  142,
+                                "Length":  3,
+                                "Line":  10,
+                                "Column":  9,
+                                "Text":  "reg",
+                                "Types":  [
+                                              "reg"
+                                          ]
+                            },
+                            {
+                                "Start":  146,
+                                "Length":  4,
+                                "Line":  10,
+                                "Column":  13,
+                                "Text":  "trap",
+                                "Types":  [
+                                              "Variable_reg"
+                                          ]
+                            },
+                            {
+                                "Start":  154,
+                                "Length":  5,
+                                "Line":  12,
+                                "Column":  2,
+                                "Text":  "input",
+                                "Types":  [
+                                              "input"
+                                          ]
+                            },
+                            {
+                                "Start":  160,
+                                "Length":  4,
+                                "Line":  12,
+                                "Column":  8,
+                                "Text":  "clk2",
+                                "Types":  [
+                                              "Variable_input"
+                                          ]
+                            },
+                            {
+                                "Start":  166,
+                                "Length":  4,
+                                "Line":  12,
+                                "Column":  14,
+                                "Text":  "clk4",
+                                "Types":  [
+                                              "Variable_input"
+                                          ]
+                            },
+                            {
+                                "Start":  173,
+                                "Length":  6,
+                                "Line":  13,
+                                "Column":  2,
+                                "Text":  "output",
+                                "Types":  [
+                                              "output"
+                                          ]
+                            },
+                            {
+                                "Start":  180,
+                                "Length":  6,
+                                "Line":  13,
+                                "Column":  9,
+                                "Text":  "trapdd",
+                                "Types":  [
+                                              "Variable_output"
+                                          ]
+                            },
+                            {
+                                "Start":  188,
+                                "Length":  9,
+                                "Line":  14,
+                                "Column":  1,
+                                "Text":  "endmodule",
+                                "Types":  [
+                                              "endmodule"
+                                          ]
+                            },
+                            {
+                                "Start":  201,
+                                "Length":  53,
+                                "Line":  16,
+                                "Column":  3,
+                                "Text":  "// add32.v  verilog 32 bit adder (Verilog 2001 style)",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  255,
+                                "Length":  6,
+                                "Line":  17,
+                                "Column":  1,
+                                "Text":  "module",
+                                "Types":  [
+                                              "module"
+                                          ]
+                            },
+                            {
+                                "Start":  262,
+                                "Length":  5,
+                                "Line":  17,
+                                "Column":  8,
+                                "Text":  "adder",
+                                "Types":  [
+                                              "Variable_module"
+                                          ]
+                            },
+                            {
+                                "Start":  267,
+                                "Length":  1,
+                                "Line":  17,
+                                "Column":  13,
+                                "Text":  "(",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  268,
+                                "Length":  5,
+                                "Line":  17,
+                                "Column":  14,
+                                "Text":  "input",
+                                "Types":  [
+                                              "input"
+                                          ]
+                            },
+                            {
+                                "Start":  275,
+                                "Length":  1,
+                                "Line":  17,
+                                "Column":  21,
+                                "Text":  "[",
+                                "Types":  [
+                                              "Bracket2"
+                                          ]
+                            },
+                            {
+                                "Start":  276,
+                                "Length":  2,
+                                "Line":  17,
+                                "Column":  22,
+                                "Text":  "31",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  279,
+                                "Length":  1,
+                                "Line":  17,
+                                "Column":  25,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  280,
+                                "Length":  1,
+                                "Line":  17,
+                                "Column":  26,
+                                "Text":  "]",
+                                "Types":  [
+                                              "Bracket2"
+                                          ]
+                            },
+                            {
+                                "Start":  282,
+                                "Length":  1,
+                                "Line":  17,
+                                "Column":  28,
+                                "Text":  "a",
+                                "Types":  [
+                                              "Variable_input"
+                                          ]
+                            },
+                            {
+                                "Start":  283,
+                                "Length":  1,
+                                "Line":  17,
+                                "Column":  29,
+                                "Text":  ")",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  287,
+                                "Length":  12,
+                                "Line":  17,
+                                "Column":  33,
+                                "Text":  "// carry-out",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  304,
+                                "Length":  9,
+                                "Line":  18,
+                                "Column":  5,
+                                "Text":  "parameter",
+                                "Types":  [
+                                              "parameter"
+                                          ]
+                            },
+                            {
+                                "Start":  314,
+                                "Length":  1,
+                                "Line":  18,
+                                "Column":  15,
+                                "Text":  "d",
+                                "Types":  [
+                                              "Variable_parameter"
+                                          ]
+                            },
+                            {
+                                "Start":  316,
+                                "Length":  1,
+                                "Line":  18,
+                                "Column":  17,
+                                "Text":  "2",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  320,
+                                "Length":  10,
+                                "Line":  19,
+                                "Column":  2,
+                                "Text":  "localparam",
+                                "Types":  [
+                                              "localparam"
+                                          ]
+                            },
+                            {
+                                "Start":  331,
+                                "Length":  7,
+                                "Line":  19,
+                                "Column":  13,
+                                "Text":  "integer",
+                                "Types":  [
+                                              "Variable_localparam"
+                                          ]
+                            },
+                            {
+                                "Start":  339,
+                                "Length":  14,
+                                "Line":  19,
+                                "Column":  21,
+                                "Text":  "irqregs_offset",
+                                "Types":  [
+                                              "Variable_localparam"
+                                          ]
+                            },
+                            {
+                                "Start":  376,
+                                "Length":  2,
+                                "Line":  19,
+                                "Column":  58,
+                                "Text":  "32",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  381,
+                                "Length":  2,
+                                "Line":  19,
+                                "Column":  63,
+                                "Text":  "16",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  386,
+                                "Length":  10,
+                                "Line":  20,
+                                "Column":  2,
+                                "Text":  "localparam",
+                                "Types":  [
+                                              "localparam"
+                                          ]
+                            },
+                            {
+                                "Start":  397,
+                                "Length":  7,
+                                "Line":  20,
+                                "Column":  13,
+                                "Text":  "integer",
+                                "Types":  [
+                                              "Variable_localparam"
+                                          ]
+                            },
+                            {
+                                "Start":  405,
+                                "Length":  12,
+                                "Line":  20,
+                                "Column":  21,
+                                "Text":  "regfile_size",
+                                "Types":  [
+                                              "Variable_localparam"
+                                          ]
+                            },
+                            {
+                                "Start":  420,
+                                "Length":  1,
+                                "Line":  20,
+                                "Column":  36,
+                                "Text":  "(",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  441,
+                                "Length":  2,
+                                "Line":  20,
+                                "Column":  57,
+                                "Text":  "32",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  446,
+                                "Length":  2,
+                                "Line":  20,
+                                "Column":  62,
+                                "Text":  "16",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  448,
+                                "Length":  1,
+                                "Line":  20,
+                                "Column":  64,
+                                "Text":  ")",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  452,
+                                "Length":  1,
+                                "Line":  20,
+                                "Column":  68,
+                                "Text":  "4",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  485,
+                                "Length":  10,
+                                "Line":  22,
+                                "Column":  2,
+                                "Text":  "localparam",
+                                "Types":  [
+                                              "localparam"
+                                          ]
+                            },
+                            {
+                                "Start":  496,
+                                "Length":  1,
+                                "Line":  22,
+                                "Column":  13,
+                                "Text":  "[",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  497,
+                                "Length":  2,
+                                "Line":  22,
+                                "Column":  14,
+                                "Text":  "35",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  500,
+                                "Length":  1,
+                                "Line":  22,
+                                "Column":  17,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  501,
+                                "Length":  1,
+                                "Line":  22,
+                                "Column":  18,
+                                "Text":  "]",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  503,
+                                "Length":  9,
+                                "Line":  22,
+                                "Column":  20,
+                                "Text":  "TRACE_IRQ",
+                                "Types":  [
+                                              "Variable_localparam"
+                                          ]
+                            },
+                            {
+                                "Start":  518,
+                                "Length":  1,
+                                "Line":  22,
+                                "Column":  35,
+                                "Text":  "{",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  519,
+                                "Length":  8,
+                                "Line":  22,
+                                "Column":  36,
+                                "Text":  "4\u0027b 1000",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  529,
+                                "Length":  6,
+                                "Line":  22,
+                                "Column":  46,
+                                "Text":  "32\u0027b 0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  535,
+                                "Length":  1,
+                                "Line":  22,
+                                "Column":  52,
+                                "Text":  "}",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  539,
+                                "Length":  5,
+                                "Line":  23,
+                                "Column":  2,
+                                "Text":  "input",
+                                "Types":  [
+                                              "input"
+                                          ]
+                            },
+                            {
+                                "Start":  545,
+                                "Length":  1,
+                                "Line":  23,
+                                "Column":  8,
+                                "Text":  "[",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  546,
+                                "Length":  2,
+                                "Line":  23,
+                                "Column":  9,
+                                "Text":  "35",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  549,
+                                "Length":  1,
+                                "Line":  23,
+                                "Column":  12,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  550,
+                                "Length":  1,
+                                "Line":  23,
+                                "Column":  13,
+                                "Text":  "]",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  552,
+                                "Length":  10,
+                                "Line":  23,
+                                "Column":  15,
+                                "Text":  "TRACE_IRQ3",
+                                "Types":  [
+                                              "Variable_input"
+                                          ]
+                            },
+                            {
+                                "Start":  569,
+                                "Length":  1,
+                                "Line":  23,
+                                "Column":  32,
+                                "Text":  "{",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  570,
+                                "Length":  8,
+                                "Line":  23,
+                                "Column":  33,
+                                "Text":  "4\u0027b 1000",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  580,
+                                "Length":  6,
+                                "Line":  23,
+                                "Column":  43,
+                                "Text":  "32\u0027b 0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  586,
+                                "Length":  1,
+                                "Line":  23,
+                                "Column":  49,
+                                "Text":  "}",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  590,
+                                "Length":  9,
+                                "Line":  25,
+                                "Column":  1,
+                                "Text":  "endmodule",
+                                "Types":  [
+                                              "endmodule"
+                                          ]
+                            },
+                            {
+                                "Start":  600,
+                                "Length":  8,
+                                "Line":  25,
+                                "Column":  11,
+                                "Text":  "// adder",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            }
+                        ],
+    "Tags":  [
+                 {
+                     "Start":  0,
+                     "Length":  2,
+                     "Line":  1,
+                     "Column":  1,
+                     "Text":  "//",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  2,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  3,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  3,
+                     "Length":  5,
+                     "Line":  1,
+                     "Column":  4,
+                     "Text":  "after",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  10,
+                     "Length":  6,
+                     "Line":  3,
+                     "Column":  1,
+                     "Text":  "module",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_module",
+                     "HoverText":  "The module declaration is the only design unit in Verilog. It describes both a design\u0027s interface to other designs in the same environment, and its functional composition."
+                 },
+                 {
+                     "Start":  17,
+                     "Length":  6,
+                     "Line":  3,
+                     "Column":  8,
+                     "Text":  "my_din",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_module",
+                     "HoverText":  "module my_din (  [7:0] din)"
+                 },
+                 {
+                     "Start":  24,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  15,
+                     "Text":  "(",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  28,
+                     "Length":  5,
+                     "Line":  5,
+                     "Column":  2,
+                     "Text":  "input",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_input",
+                     "HoverText":  "The reserved word input is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
+                 },
+                 {
+                     "Start":  34,
+                     "Length":  1,
+                     "Line":  5,
+                     "Column":  8,
+                     "Text":  "[",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket2",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  35,
+                     "Length":  1,
+                     "Line":  5,
+                     "Column":  9,
+                     "Text":  "7",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  37,
+                     "Length":  1,
+                     "Line":  5,
+                     "Column":  11,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  38,
+                     "Length":  1,
+                     "Line":  5,
+                     "Column":  12,
+                     "Text":  "]",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket2",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  40,
+                     "Length":  3,
+                     "Line":  5,
+                     "Column":  14,
+                     "Text":  "din",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_input",
+                     "HoverText":  "module my_din( .. input [7:0] din .. )"
+                 },
+                 {
+                     "Start":  44,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  1,
+                     "Text":  ")",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  51,
+                     "Length":  10,
+                     "Line":  7,
+                     "Column":  5,
+                     "Text":  "localparam",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_localparam",
+                     "HoverText":  "Local parameters are identical to parameters, but cannot be directly modified with a defparam statement. A localparam can be assigned the value of parameter constants, and can be indirectly refined from outside the module. A localparam cannot be used within the module port parameter list."
+                 },
+                 {
+                     "Start":  62,
+                     "Length":  1,
+                     "Line":  7,
+                     "Column":  16,
+                     "Text":  "[",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  63,
+                     "Length":  2,
+                     "Line":  7,
+                     "Column":  17,
+                     "Text":  "35",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  66,
+                     "Length":  1,
+                     "Line":  7,
+                     "Column":  20,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  67,
+                     "Length":  1,
+                     "Line":  7,
+                     "Column":  21,
+                     "Text":  "]",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  69,
+                     "Length":  12,
+                     "Line":  7,
+                     "Column":  23,
+                     "Text":  "TRACE_BRANCH",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_localparam",
+                     "HoverText":  "localparam [35:0] TRACE_BRANCH = {4\u0027b 0001, 32\u0027b 0}"
+                 },
+                 {
+                     "Start":  84,
+                     "Length":  1,
+                     "Line":  7,
+                     "Column":  38,
+                     "Text":  "{",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  85,
+                     "Length":  8,
+                     "Line":  7,
+                     "Column":  39,
+                     "Text":  "4\u0027b 0001",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  "4\u0027B0001 = (4 bit Binary) 0001; "
+                 },
+                 {
+                     "Start":  95,
+                     "Length":  6,
+                     "Line":  7,
+                     "Column":  49,
+                     "Text":  "32\u0027b 0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  "32\u0027B0 = (32 bit Binary) 0; "
+                 },
+                 {
+                     "Start":  101,
+                     "Length":  1,
+                     "Line":  7,
+                     "Column":  55,
+                     "Text":  "}",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  105,
+                     "Length":  5,
+                     "Line":  8,
+                     "Column":  2,
+                     "Text":  "input",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_input",
+                     "HoverText":  "The reserved word input is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
+                 },
+                 {
+                     "Start":  111,
+                     "Length":  3,
+                     "Line":  8,
+                     "Column":  8,
+                     "Text":  "clk",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_input",
+                     "HoverText":  "input clk"
+                 },
+                 {
+                     "Start":  131,
+                     "Length":  1,
+                     "Line":  9,
+                     "Column":  16,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  135,
+                     "Length":  6,
+                     "Line":  10,
+                     "Column":  2,
+                     "Text":  "output",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_output",
+                     "HoverText":  "The reserved word output is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
+                 },
+                 {
+                     "Start":  142,
+                     "Length":  3,
+                     "Line":  10,
+                     "Column":  9,
+                     "Text":  "reg",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_reg",
+                     "HoverText":  "A reg is an abstraction of a data storage element. The reg stores a value from one assignment to the next. An assignment statement in a procedure acts as a trigger that changes the value in the data storage element. Reg data types can only be assigned inside of the procedural, initial, always blocks or when they are declared."
+                 },
+                 {
+                     "Start":  146,
+                     "Length":  4,
+                     "Line":  10,
+                     "Column":  13,
+                     "Text":  "trap",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  "output reg trap"
+                 },
+                 {
+                     "Start":  154,
+                     "Length":  5,
+                     "Line":  12,
+                     "Column":  2,
+                     "Text":  "input",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_input",
+                     "HoverText":  "The reserved word input is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
+                 },
+                 {
+                     "Start":  160,
+                     "Length":  4,
+                     "Line":  12,
+                     "Column":  8,
+                     "Text":  "clk2",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_input",
+                     "HoverText":  "input clk2"
+                 },
+                 {
+                     "Start":  166,
+                     "Length":  4,
+                     "Line":  12,
+                     "Column":  14,
+                     "Text":  "clk4",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_input",
+                     "HoverText":  "input clk4"
+                 },
+                 {
+                     "Start":  173,
+                     "Length":  6,
+                     "Line":  13,
+                     "Column":  2,
+                     "Text":  "output",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_output",
+                     "HoverText":  "The reserved word output is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
+                 },
+                 {
+                     "Start":  180,
+                     "Length":  6,
+                     "Line":  13,
+                     "Column":  9,
+                     "Text":  "trapdd",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_output",
+                     "HoverText":  "output trapdd"
+                 },
+                 {
+                     "Start":  188,
+                     "Length":  9,
+                     "Line":  14,
+                     "Column":  1,
+                     "Text":  "endmodule",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_endmodule",
+                     "HoverText":  "The endmodule reserved word is used to close a module statement."
+                 },
+                 {
+                     "Start":  201,
+                     "Length":  2,
+                     "Line":  16,
+                     "Column":  3,
+                     "Text":  "//",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  203,
+                     "Length":  1,
+                     "Line":  16,
+                     "Column":  5,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  204,
+                     "Length":  7,
+                     "Line":  16,
+                     "Column":  6,
+                     "Text":  "add32.v",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  211,
+                     "Length":  2,
+                     "Line":  16,
+                     "Column":  13,
+                     "Text":  "  ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  213,
+                     "Length":  7,
+                     "Line":  16,
+                     "Column":  15,
+                     "Text":  "verilog",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  220,
+                     "Length":  1,
+                     "Line":  16,
+                     "Column":  22,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  221,
+                     "Length":  13,
+                     "Line":  16,
+                     "Column":  23,
+                     "Text":  "32 bit adder ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  234,
+                     "Length":  1,
+                     "Line":  16,
+                     "Column":  36,
+                     "Text":  "(",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  235,
+                     "Length":  7,
+                     "Line":  16,
+                     "Column":  37,
+                     "Text":  "Verilog",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  242,
+                     "Length":  1,
+                     "Line":  16,
+                     "Column":  44,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  243,
+                     "Length":  10,
+                     "Line":  16,
+                     "Column":  45,
+                     "Text":  "2001 style",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  253,
+                     "Length":  1,
+                     "Line":  16,
+                     "Column":  55,
+                     "Text":  ")",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  255,
+                     "Length":  6,
+                     "Line":  17,
+                     "Column":  1,
+                     "Text":  "module",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_module",
+                     "HoverText":  "The module declaration is the only design unit in Verilog. It describes both a design\u0027s interface to other designs in the same environment, and its functional composition."
+                 },
+                 {
+                     "Start":  262,
+                     "Length":  5,
+                     "Line":  17,
+                     "Column":  8,
+                     "Text":  "adder",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_module",
+                     "HoverText":  "module adder( [31:0] a)"
+                 },
+                 {
+                     "Start":  267,
+                     "Length":  1,
+                     "Line":  17,
+                     "Column":  13,
+                     "Text":  "(",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  268,
+                     "Length":  5,
+                     "Line":  17,
+                     "Column":  14,
+                     "Text":  "input",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_input",
+                     "HoverText":  "The reserved word input is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
+                 },
+                 {
+                     "Start":  275,
+                     "Length":  1,
+                     "Line":  17,
+                     "Column":  21,
+                     "Text":  "[",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket2",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  276,
+                     "Length":  2,
+                     "Line":  17,
+                     "Column":  22,
+                     "Text":  "31",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  279,
+                     "Length":  1,
+                     "Line":  17,
+                     "Column":  25,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  280,
+                     "Length":  1,
+                     "Line":  17,
+                     "Column":  26,
+                     "Text":  "]",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket2",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  282,
+                     "Length":  1,
+                     "Line":  17,
+                     "Column":  28,
+                     "Text":  "a",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_input",
+                     "HoverText":  "module adder( .. input [31:0] a .. )"
+                 },
+                 {
+                     "Start":  283,
+                     "Length":  1,
+                     "Line":  17,
+                     "Column":  29,
+                     "Text":  ")",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  287,
+                     "Length":  2,
+                     "Line":  17,
+                     "Column":  33,
+                     "Text":  "//",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  289,
+                     "Length":  1,
+                     "Line":  17,
+                     "Column":  35,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  290,
+                     "Length":  5,
+                     "Line":  17,
+                     "Column":  36,
+                     "Text":  "carry",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  295,
+                     "Length":  1,
+                     "Line":  17,
+                     "Column":  41,
+                     "Text":  "-",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  296,
+                     "Length":  3,
+                     "Line":  17,
+                     "Column":  42,
+                     "Text":  "out",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  304,
+                     "Length":  9,
+                     "Line":  18,
+                     "Column":  5,
+                     "Text":  "parameter",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_parameter",
+                     "HoverText":  "Parameters are constants that can be modified with the defparam statement or through parameter passing in the module instance statement. Parameters are local to the module in which they have been declared."
+                 },
+                 {
+                     "Start":  314,
+                     "Length":  1,
+                     "Line":  18,
+                     "Column":  15,
+                     "Text":  "d",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_parameter",
+                     "HoverText":  "parameter d=2"
+                 },
+                 {
+                     "Start":  316,
+                     "Length":  1,
+                     "Line":  18,
+                     "Column":  17,
+                     "Text":  "2",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  320,
+                     "Length":  10,
+                     "Line":  19,
+                     "Column":  2,
+                     "Text":  "localparam",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_localparam",
+                     "HoverText":  "Local parameters are identical to parameters, but cannot be directly modified with a defparam statement. A localparam can be assigned the value of parameter constants, and can be indirectly refined from outside the module. A localparam cannot be used within the module port parameter list."
+                 },
+                 {
+                     "Start":  331,
+                     "Length":  7,
+                     "Line":  19,
+                     "Column":  13,
+                     "Text":  "integer",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_localparam",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  339,
+                     "Length":  14,
+                     "Line":  19,
+                     "Column":  21,
+                     "Text":  "irqregs_offset",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_localparam",
+                     "HoverText":  "localparam integer irqregs_offset = ENABLE_REGS_16_31 ? 32: 16"
+                 },
+                 {
+                     "Start":  376,
+                     "Length":  2,
+                     "Line":  19,
+                     "Column":  58,
+                     "Text":  "32",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  381,
+                     "Length":  2,
+                     "Line":  19,
+                     "Column":  63,
+                     "Text":  "16",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  386,
+                     "Length":  10,
+                     "Line":  20,
+                     "Column":  2,
+                     "Text":  "localparam",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_localparam",
+                     "HoverText":  "Local parameters are identical to parameters, but cannot be directly modified with a defparam statement. A localparam can be assigned the value of parameter constants, and can be indirectly refined from outside the module. A localparam cannot be used within the module port parameter list."
+                 },
+                 {
+                     "Start":  397,
+                     "Length":  7,
+                     "Line":  20,
+                     "Column":  13,
+                     "Text":  "integer",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_localparam",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  405,
+                     "Length":  12,
+                     "Line":  20,
+                     "Column":  21,
+                     "Text":  "regfile_size",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_localparam",
+                     "HoverText":  "localparam integer regfile_size = (ENABLE_REGS_16_31 ? 32: 16) + 4*ENABLE_IRQ*ENABLE_IRQ_QREGS"
+                 },
+                 {
+                     "Start":  420,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  36,
+                     "Text":  "(",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  441,
+                     "Length":  2,
+                     "Line":  20,
+                     "Column":  57,
+                     "Text":  "32",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  446,
+                     "Length":  2,
+                     "Line":  20,
+                     "Column":  62,
+                     "Text":  "16",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  448,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  64,
+                     "Text":  ")",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  452,
+                     "Length":  1,
+                     "Line":  20,
+                     "Column":  68,
+                     "Text":  "4",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  485,
+                     "Length":  10,
+                     "Line":  22,
+                     "Column":  2,
+                     "Text":  "localparam",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_localparam",
+                     "HoverText":  "Local parameters are identical to parameters, but cannot be directly modified with a defparam statement. A localparam can be assigned the value of parameter constants, and can be indirectly refined from outside the module. A localparam cannot be used within the module port parameter list."
+                 },
+                 {
+                     "Start":  496,
+                     "Length":  1,
+                     "Line":  22,
+                     "Column":  13,
+                     "Text":  "[",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  497,
+                     "Length":  2,
+                     "Line":  22,
+                     "Column":  14,
+                     "Text":  "35",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  500,
+                     "Length":  1,
+                     "Line":  22,
+                     "Column":  17,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  501,
+                     "Length":  1,
+                     "Line":  22,
+                     "Column":  18,
+                     "Text":  "]",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  503,
+                     "Length":  9,
+                     "Line":  22,
+                     "Column":  20,
+                     "Text":  "TRACE_IRQ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_localparam",
+                     "HoverText":  "localparam [35:0] TRACE_IRQ = {4\u0027b 1000, 32\u0027b 0}"
+                 },
+                 {
+                     "Start":  518,
+                     "Length":  1,
+                     "Line":  22,
+                     "Column":  35,
+                     "Text":  "{",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  519,
+                     "Length":  8,
+                     "Line":  22,
+                     "Column":  36,
+                     "Text":  "4\u0027b 1000",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  "4\u0027B1000 = (4 bit Binary) 1000; "
+                 },
+                 {
+                     "Start":  529,
+                     "Length":  6,
+                     "Line":  22,
+                     "Column":  46,
+                     "Text":  "32\u0027b 0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  "32\u0027B0 = (32 bit Binary) 0; "
+                 },
+                 {
+                     "Start":  535,
+                     "Length":  1,
+                     "Line":  22,
+                     "Column":  52,
+                     "Text":  "}",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  539,
+                     "Length":  5,
+                     "Line":  23,
+                     "Column":  2,
+                     "Text":  "input",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_input",
+                     "HoverText":  "The reserved word input is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
+                 },
+                 {
+                     "Start":  545,
+                     "Length":  1,
+                     "Line":  23,
+                     "Column":  8,
+                     "Text":  "[",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  546,
+                     "Length":  2,
+                     "Line":  23,
+                     "Column":  9,
+                     "Text":  "35",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  549,
+                     "Length":  1,
+                     "Line":  23,
+                     "Column":  12,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  550,
+                     "Length":  1,
+                     "Line":  23,
+                     "Column":  13,
+                     "Text":  "]",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  552,
+                     "Length":  10,
+                     "Line":  23,
+                     "Column":  15,
+                     "Text":  "TRACE_IRQ3",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_input",
+                     "HoverText":  "input [35:0] TRACE_IRQ3"
+                 },
+                 {
+                     "Start":  569,
+                     "Length":  1,
+                     "Line":  23,
+                     "Column":  32,
+                     "Text":  "{",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  570,
+                     "Length":  8,
+                     "Line":  23,
+                     "Column":  33,
+                     "Text":  "4\u0027b 1000",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  "4\u0027B1000 = (4 bit Binary) 1000; "
+                 },
+                 {
+                     "Start":  580,
+                     "Length":  6,
+                     "Line":  23,
+                     "Column":  43,
+                     "Text":  "32\u0027b 0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  "32\u0027B0 = (32 bit Binary) 0; "
+                 },
+                 {
+                     "Start":  586,
+                     "Length":  1,
+                     "Line":  23,
+                     "Column":  49,
+                     "Text":  "}",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  590,
+                     "Length":  9,
+                     "Line":  25,
+                     "Column":  1,
+                     "Text":  "endmodule",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_endmodule",
+                     "HoverText":  "The endmodule reserved word is used to close a module statement."
+                 },
+                 {
+                     "Start":  600,
+                     "Length":  2,
+                     "Line":  25,
+                     "Column":  11,
+                     "Text":  "//",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  602,
+                     "Length":  1,
+                     "Line":  25,
+                     "Column":  13,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  603,
+                     "Length":  5,
+                     "Line":  25,
+                     "Column":  14,
+                     "Text":  "adder",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  "module adder( [31:0] a)"
+                 }
+             ],
+    "Tokens":  [
+                   {
+                       "Start":  0,
+                       "Length":  2,
+                       "Line":  1,
+                       "Column":  1,
+                       "Text":  "//",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  2,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  3,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  3,
+                       "Length":  5,
+                       "Line":  1,
+                       "Column":  4,
+                       "Text":  "after",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  10,
+                       "Length":  6,
+                       "Line":  3,
+                       "Column":  1,
+                       "Text":  "module",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  16,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  17,
+                       "Length":  6,
+                       "Line":  3,
+                       "Column":  8,
+                       "Text":  "my_din",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  23,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  14,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  24,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  15,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  27,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  1,
+                       "Text":  "\t",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  28,
+                       "Length":  5,
+                       "Line":  5,
+                       "Column":  2,
+                       "Text":  "input",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  33,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  34,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  8,
+                       "Text":  "[",
+                       "Context":  "SquareBracketOpen"
+                   },
+                   {
+                       "Start":  35,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  9,
+                       "Text":  "7",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  36,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  10,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  37,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  11,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  38,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  12,
+                       "Text":  "]",
+                       "Context":  "SquareBracketClose"
+                   },
+                   {
+                       "Start":  39,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  13,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  40,
+                       "Length":  3,
+                       "Line":  5,
+                       "Column":  14,
+                       "Text":  "din",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  44,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  1,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  45,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  2,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  47,
+                       "Length":  4,
+                       "Line":  7,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  51,
+                       "Length":  10,
+                       "Line":  7,
+                       "Column":  5,
+                       "Text":  "localparam",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  61,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  15,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  62,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  16,
+                       "Text":  "[",
+                       "Context":  "SquareBracketOpen"
+                   },
+                   {
+                       "Start":  63,
+                       "Length":  2,
+                       "Line":  7,
+                       "Column":  17,
+                       "Text":  "35",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  65,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  19,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  66,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  20,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  67,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  21,
+                       "Text":  "]",
+                       "Context":  "SquareBracketClose"
+                   },
+                   {
+                       "Start":  68,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  22,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  69,
+                       "Length":  12,
+                       "Line":  7,
+                       "Column":  23,
+                       "Text":  "TRACE_BRANCH",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  81,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  35,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  82,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  36,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  83,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  37,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  84,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  38,
+                       "Text":  "{",
+                       "Context":  "SquigglyBracketOpen"
+                   },
+                   {
+                       "Start":  85,
+                       "Length":  8,
+                       "Line":  7,
+                       "Column":  39,
+                       "Text":  "4\u0027b 0001",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  93,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  47,
+                       "Text":  ",",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  94,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  48,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  95,
+                       "Length":  6,
+                       "Line":  7,
+                       "Column":  49,
+                       "Text":  "32\u0027b 0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  101,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  55,
+                       "Text":  "}",
+                       "Context":  "SquigglyBracketClose"
+                   },
+                   {
+                       "Start":  102,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  56,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  104,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  1,
+                       "Text":  "\t",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  105,
+                       "Length":  5,
+                       "Line":  8,
+                       "Column":  2,
+                       "Text":  "input",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  110,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  111,
+                       "Length":  3,
+                       "Line":  8,
+                       "Column":  8,
+                       "Text":  "clk",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  114,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  11,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  116,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  1,
+                       "Text":  "\t",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  117,
+                       "Length":  11,
+                       "Line":  9,
+                       "Column":  2,
+                       "Text":  "LATCHED_IRQ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  128,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  13,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  129,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  14,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  130,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  15,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  131,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  16,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  132,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  17,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  134,
+                       "Length":  1,
+                       "Line":  10,
+                       "Column":  1,
+                       "Text":  "\t",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  135,
+                       "Length":  6,
+                       "Line":  10,
+                       "Column":  2,
+                       "Text":  "output",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  141,
+                       "Length":  1,
+                       "Line":  10,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  142,
+                       "Length":  3,
+                       "Line":  10,
+                       "Column":  9,
+                       "Text":  "reg",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  145,
+                       "Length":  1,
+                       "Line":  10,
+                       "Column":  12,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  146,
+                       "Length":  4,
+                       "Line":  10,
+                       "Column":  13,
+                       "Text":  "trap",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  150,
+                       "Length":  1,
+                       "Line":  10,
+                       "Column":  17,
+                       "Text":  ",",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  153,
+                       "Length":  1,
+                       "Line":  12,
+                       "Column":  1,
+                       "Text":  "\t",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  154,
+                       "Length":  5,
+                       "Line":  12,
+                       "Column":  2,
+                       "Text":  "input",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  159,
+                       "Length":  1,
+                       "Line":  12,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  160,
+                       "Length":  4,
+                       "Line":  12,
+                       "Column":  8,
+                       "Text":  "clk2",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  164,
+                       "Length":  1,
+                       "Line":  12,
+                       "Column":  12,
+                       "Text":  ",",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  165,
+                       "Length":  1,
+                       "Line":  12,
+                       "Column":  13,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  166,
+                       "Length":  4,
+                       "Line":  12,
+                       "Column":  14,
+                       "Text":  "clk4",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  170,
+                       "Length":  1,
+                       "Line":  12,
+                       "Column":  18,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  172,
+                       "Length":  1,
+                       "Line":  13,
+                       "Column":  1,
+                       "Text":  "\t",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  173,
+                       "Length":  6,
+                       "Line":  13,
+                       "Column":  2,
+                       "Text":  "output",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  179,
+                       "Length":  1,
+                       "Line":  13,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  180,
+                       "Length":  6,
+                       "Line":  13,
+                       "Column":  9,
+                       "Text":  "trapdd",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  186,
+                       "Length":  1,
+                       "Line":  13,
+                       "Column":  15,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  188,
+                       "Length":  9,
+                       "Line":  14,
+                       "Column":  1,
+                       "Text":  "endmodule",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  199,
+                       "Length":  2,
+                       "Line":  16,
+                       "Column":  1,
+                       "Text":  "  ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  201,
+                       "Length":  2,
+                       "Line":  16,
+                       "Column":  3,
+                       "Text":  "//",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  203,
+                       "Length":  1,
+                       "Line":  16,
+                       "Column":  5,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  204,
+                       "Length":  7,
+                       "Line":  16,
+                       "Column":  6,
+                       "Text":  "add32.v",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  211,
+                       "Length":  2,
+                       "Line":  16,
+                       "Column":  13,
+                       "Text":  "  ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  213,
+                       "Length":  7,
+                       "Line":  16,
+                       "Column":  15,
+                       "Text":  "verilog",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  220,
+                       "Length":  1,
+                       "Line":  16,
+                       "Column":  22,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  221,
+                       "Length":  13,
+                       "Line":  16,
+                       "Column":  23,
+                       "Text":  "32 bit adder ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  234,
+                       "Length":  1,
+                       "Line":  16,
+                       "Column":  36,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  235,
+                       "Length":  7,
+                       "Line":  16,
+                       "Column":  37,
+                       "Text":  "Verilog",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  242,
+                       "Length":  1,
+                       "Line":  16,
+                       "Column":  44,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  243,
+                       "Length":  10,
+                       "Line":  16,
+                       "Column":  45,
+                       "Text":  "2001 style",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  253,
+                       "Length":  1,
+                       "Line":  16,
+                       "Column":  55,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  255,
+                       "Length":  6,
+                       "Line":  17,
+                       "Column":  1,
+                       "Text":  "module",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  261,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  262,
+                       "Length":  5,
+                       "Line":  17,
+                       "Column":  8,
+                       "Text":  "adder",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  267,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  13,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  268,
+                       "Length":  5,
+                       "Line":  17,
+                       "Column":  14,
+                       "Text":  "input",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  273,
+                       "Length":  2,
+                       "Line":  17,
+                       "Column":  19,
+                       "Text":  "  ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  275,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  21,
+                       "Text":  "[",
+                       "Context":  "SquareBracketOpen"
+                   },
+                   {
+                       "Start":  276,
+                       "Length":  2,
+                       "Line":  17,
+                       "Column":  22,
+                       "Text":  "31",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  278,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  24,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  279,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  25,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  280,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  26,
+                       "Text":  "]",
+                       "Context":  "SquareBracketClose"
+                   },
+                   {
+                       "Start":  281,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  27,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  282,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  28,
+                       "Text":  "a",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  283,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  29,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  284,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  30,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  285,
+                       "Length":  2,
+                       "Line":  17,
+                       "Column":  31,
+                       "Text":  "  ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  287,
+                       "Length":  2,
+                       "Line":  17,
+                       "Column":  33,
+                       "Text":  "//",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  289,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  35,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  290,
+                       "Length":  5,
+                       "Line":  17,
+                       "Column":  36,
+                       "Text":  "carry",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  295,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  41,
+                       "Text":  "-",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  296,
+                       "Length":  3,
+                       "Line":  17,
+                       "Column":  42,
+                       "Text":  "out",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  300,
+                       "Length":  4,
+                       "Line":  18,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  304,
+                       "Length":  9,
+                       "Line":  18,
+                       "Column":  5,
+                       "Text":  "parameter",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  313,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  14,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  314,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  15,
+                       "Text":  "d",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  315,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  16,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  316,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  17,
+                       "Text":  "2",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  317,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  18,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  319,
+                       "Length":  1,
+                       "Line":  19,
+                       "Column":  1,
+                       "Text":  "\t",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  320,
+                       "Length":  10,
+                       "Line":  19,
+                       "Column":  2,
+                       "Text":  "localparam",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  330,
+                       "Length":  1,
+                       "Line":  19,
+                       "Column":  12,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  331,
+                       "Length":  7,
+                       "Line":  19,
+                       "Column":  13,
+                       "Text":  "integer",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  338,
+                       "Length":  1,
+                       "Line":  19,
+                       "Column":  20,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  339,
+                       "Length":  14,
+                       "Line":  19,
+                       "Column":  21,
+                       "Text":  "irqregs_offset",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  353,
+                       "Length":  1,
+                       "Line":  19,
+                       "Column":  35,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  354,
+                       "Length":  1,
+                       "Line":  19,
+                       "Column":  36,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  355,
+                       "Length":  1,
+                       "Line":  19,
+                       "Column":  37,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  356,
+                       "Length":  17,
+                       "Line":  19,
+                       "Column":  38,
+                       "Text":  "ENABLE_REGS_16_31",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  373,
+                       "Length":  1,
+                       "Line":  19,
+                       "Column":  55,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  374,
+                       "Length":  1,
+                       "Line":  19,
+                       "Column":  56,
+                       "Text":  "?",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  375,
+                       "Length":  1,
+                       "Line":  19,
+                       "Column":  57,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  376,
+                       "Length":  3,
+                       "Line":  19,
+                       "Column":  58,
+                       "Text":  "32 ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  379,
+                       "Length":  1,
+                       "Line":  19,
+                       "Column":  61,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  380,
+                       "Length":  1,
+                       "Line":  19,
+                       "Column":  62,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  381,
+                       "Length":  2,
+                       "Line":  19,
+                       "Column":  63,
+                       "Text":  "16",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  383,
+                       "Length":  1,
+                       "Line":  19,
+                       "Column":  65,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  385,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  1,
+                       "Text":  "\t",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  386,
+                       "Length":  10,
+                       "Line":  20,
+                       "Column":  2,
+                       "Text":  "localparam",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  396,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  12,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  397,
+                       "Length":  7,
+                       "Line":  20,
+                       "Column":  13,
+                       "Text":  "integer",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  404,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  20,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  405,
+                       "Length":  12,
+                       "Line":  20,
+                       "Column":  21,
+                       "Text":  "regfile_size",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  417,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  33,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  418,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  34,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  419,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  35,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  420,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  36,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  421,
+                       "Length":  17,
+                       "Line":  20,
+                       "Column":  37,
+                       "Text":  "ENABLE_REGS_16_31",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  438,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  54,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  439,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  55,
+                       "Text":  "?",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  440,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  56,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  441,
+                       "Length":  3,
+                       "Line":  20,
+                       "Column":  57,
+                       "Text":  "32 ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  444,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  60,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  445,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  61,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  446,
+                       "Length":  2,
+                       "Line":  20,
+                       "Column":  62,
+                       "Text":  "16",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  448,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  64,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  449,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  65,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  450,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  66,
+                       "Text":  "+",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  451,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  67,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  452,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  68,
+                       "Text":  "4",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  453,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  69,
+                       "Text":  "*",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  454,
+                       "Length":  10,
+                       "Line":  20,
+                       "Column":  70,
+                       "Text":  "ENABLE_IRQ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  464,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  80,
+                       "Text":  "*",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  465,
+                       "Length":  16,
+                       "Line":  20,
+                       "Column":  81,
+                       "Text":  "ENABLE_IRQ_QREGS",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  481,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  97,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  484,
+                       "Length":  1,
+                       "Line":  22,
+                       "Column":  1,
+                       "Text":  "\t",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  485,
+                       "Length":  10,
+                       "Line":  22,
+                       "Column":  2,
+                       "Text":  "localparam",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  495,
+                       "Length":  1,
+                       "Line":  22,
+                       "Column":  12,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  496,
+                       "Length":  1,
+                       "Line":  22,
+                       "Column":  13,
+                       "Text":  "[",
+                       "Context":  "SquareBracketOpen"
+                   },
+                   {
+                       "Start":  497,
+                       "Length":  2,
+                       "Line":  22,
+                       "Column":  14,
+                       "Text":  "35",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  499,
+                       "Length":  1,
+                       "Line":  22,
+                       "Column":  16,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  500,
+                       "Length":  1,
+                       "Line":  22,
+                       "Column":  17,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  501,
+                       "Length":  1,
+                       "Line":  22,
+                       "Column":  18,
+                       "Text":  "]",
+                       "Context":  "SquareBracketClose"
+                   },
+                   {
+                       "Start":  502,
+                       "Length":  1,
+                       "Line":  22,
+                       "Column":  19,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  503,
+                       "Length":  9,
+                       "Line":  22,
+                       "Column":  20,
+                       "Text":  "TRACE_IRQ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  512,
+                       "Length":  4,
+                       "Line":  22,
+                       "Column":  29,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  516,
+                       "Length":  1,
+                       "Line":  22,
+                       "Column":  33,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  517,
+                       "Length":  1,
+                       "Line":  22,
+                       "Column":  34,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  518,
+                       "Length":  1,
+                       "Line":  22,
+                       "Column":  35,
+                       "Text":  "{",
+                       "Context":  "SquigglyBracketOpen"
+                   },
+                   {
+                       "Start":  519,
+                       "Length":  8,
+                       "Line":  22,
+                       "Column":  36,
+                       "Text":  "4\u0027b 1000",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  527,
+                       "Length":  1,
+                       "Line":  22,
+                       "Column":  44,
+                       "Text":  ",",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  528,
+                       "Length":  1,
+                       "Line":  22,
+                       "Column":  45,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  529,
+                       "Length":  6,
+                       "Line":  22,
+                       "Column":  46,
+                       "Text":  "32\u0027b 0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  535,
+                       "Length":  1,
+                       "Line":  22,
+                       "Column":  52,
+                       "Text":  "}",
+                       "Context":  "SquigglyBracketClose"
+                   },
+                   {
+                       "Start":  536,
+                       "Length":  1,
+                       "Line":  22,
+                       "Column":  53,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  538,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  1,
+                       "Text":  "\t",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  539,
+                       "Length":  5,
+                       "Line":  23,
+                       "Column":  2,
+                       "Text":  "input",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  544,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  545,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  8,
+                       "Text":  "[",
+                       "Context":  "SquareBracketOpen"
+                   },
+                   {
+                       "Start":  546,
+                       "Length":  2,
+                       "Line":  23,
+                       "Column":  9,
+                       "Text":  "35",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  548,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  11,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  549,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  12,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  550,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  13,
+                       "Text":  "]",
+                       "Context":  "SquareBracketClose"
+                   },
+                   {
+                       "Start":  551,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  14,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  552,
+                       "Length":  10,
+                       "Line":  23,
+                       "Column":  15,
+                       "Text":  "TRACE_IRQ3",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  562,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  25,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  563,
+                       "Length":  4,
+                       "Line":  23,
+                       "Column":  26,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  567,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  30,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  568,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  31,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  569,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  32,
+                       "Text":  "{",
+                       "Context":  "SquigglyBracketOpen"
+                   },
+                   {
+                       "Start":  570,
+                       "Length":  8,
+                       "Line":  23,
+                       "Column":  33,
+                       "Text":  "4\u0027b 1000",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  578,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  41,
+                       "Text":  ",",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  579,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  42,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  580,
+                       "Length":  6,
+                       "Line":  23,
+                       "Column":  43,
+                       "Text":  "32\u0027b 0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  586,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  49,
+                       "Text":  "}",
+                       "Context":  "SquigglyBracketClose"
+                   },
+                   {
+                       "Start":  587,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  50,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  590,
+                       "Length":  9,
+                       "Line":  25,
+                       "Column":  1,
+                       "Text":  "endmodule",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  599,
+                       "Length":  1,
+                       "Line":  25,
+                       "Column":  10,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  600,
+                       "Length":  2,
+                       "Line":  25,
+                       "Column":  11,
+                       "Text":  "//",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  602,
+                       "Length":  1,
+                       "Line":  25,
+                       "Column":  13,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  603,
+                       "Length":  5,
+                       "Line":  25,
+                       "Column":  14,
+                       "Text":  "adder",
+                       "Context":  "Text"
+                   }
+               ],
+    "Symbols":  [
+                    {
+                        "Scope":  "my_din",
+                        "Name":  "din",
+                        "TokenType":  "Verilog_Variable_input",
+                        "HoverText":  "module my_din( .. input [7:0] din .. )"
+                    },
+                    {
+                        "Scope":  "my_din",
+                        "Name":  "my_din",
+                        "TokenType":  "Verilog_Variable_module",
+                        "HoverText":  "module my_din (  [7:0] din)"
+                    },
+                    {
+                        "Scope":  "my_din",
+                        "Name":  "TRACE_BRANCH",
+                        "TokenType":  "Verilog_Variable_localparam",
+                        "HoverText":  "localparam [35:0] TRACE_BRANCH = {4\u0027b 0001, 32\u0027b 0}"
+                    },
+                    {
+                        "Scope":  "my_din",
+                        "Name":  "clk",
+                        "TokenType":  "Verilog_Variable_input",
+                        "HoverText":  "input clk"
+                    },
+                    {
+                        "Scope":  "my_din",
+                        "Name":  "trap",
+                        "TokenType":  "Verilog_Variable_reg",
+                        "HoverText":  "output reg trap"
+                    },
+                    {
+                        "Scope":  "my_din",
+                        "Name":  "clk2",
+                        "TokenType":  "Verilog_Variable_input",
+                        "HoverText":  "input clk2"
+                    },
+                    {
+                        "Scope":  "my_din",
+                        "Name":  "clk4",
+                        "TokenType":  "Verilog_Variable_input",
+                        "HoverText":  "input clk4"
+                    },
+                    {
+                        "Scope":  "my_din",
+                        "Name":  "trapdd",
+                        "TokenType":  "Verilog_Variable_output",
+                        "HoverText":  "output trapdd"
+                    },
+                    {
+                        "Scope":  "__CONST__",
+                        "Name":  "4\u0027b 0001",
+                        "TokenType":  "Verilog_Value",
+                        "HoverText":  "4\u0027B0001 = (4 bit Binary) 0001; "
+                    },
+                    {
+                        "Scope":  "__CONST__",
+                        "Name":  "32\u0027b 0",
+                        "TokenType":  "Verilog_Value",
+                        "HoverText":  "32\u0027B0 = (32 bit Binary) 0; "
+                    },
+                    {
+                        "Scope":  "__CONST__",
+                        "Name":  "4\u0027b 1000",
+                        "TokenType":  "Verilog_Value",
+                        "HoverText":  "4\u0027B1000 = (4 bit Binary) 1000; "
+                    },
+                    {
+                        "Scope":  "adder",
+                        "Name":  "a",
+                        "TokenType":  "Verilog_Variable_input",
+                        "HoverText":  "module adder( .. input [31:0] a .. )"
+                    },
+                    {
+                        "Scope":  "adder",
+                        "Name":  "adder",
+                        "TokenType":  "Verilog_Variable_module",
+                        "HoverText":  "module adder( [31:0] a)"
+                    },
+                    {
+                        "Scope":  "adder",
+                        "Name":  "d",
+                        "TokenType":  "Verilog_Variable_parameter",
+                        "HoverText":  "parameter d=2"
+                    },
+                    {
+                        "Scope":  "adder",
+                        "Name":  "irqregs_offset",
+                        "TokenType":  "Verilog_Variable_localparam",
+                        "HoverText":  "localparam integer irqregs_offset = ENABLE_REGS_16_31 ? 32: 16"
+                    },
+                    {
+                        "Scope":  "adder",
+                        "Name":  "regfile_size",
+                        "TokenType":  "Verilog_Variable_localparam",
+                        "HoverText":  "localparam integer regfile_size = (ENABLE_REGS_16_31 ? 32: 16) + 4*ENABLE_IRQ*ENABLE_IRQ_QREGS"
+                    },
+                    {
+                        "Scope":  "adder",
+                        "Name":  "TRACE_IRQ",
+                        "TokenType":  "Verilog_Variable_localparam",
+                        "HoverText":  "localparam [35:0] TRACE_IRQ = {4\u0027b 1000, 32\u0027b 0}"
+                    },
+                    {
+                        "Scope":  "adder",
+                        "Name":  "TRACE_IRQ3",
+                        "TokenType":  "Verilog_Variable_input",
+                        "HoverText":  "input [35:0] TRACE_IRQ3"
+                    }
+                ]
+}

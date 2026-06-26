@@ -1,12 +1,12 @@
 echo off
 
-if "%1" == "" ( 
+if "%1" == "" (
     SET VBUILDMAKE=Makefile
     ) else (
     SET VBUILDMAKE=%1
 )
 
-if "%2" == "" ( 
+if "%2" == "" (
     SET VBUILDTARGET=ULX3S
     ) else (
     SET VBUILDMAKE=%2
@@ -17,7 +17,7 @@ if "%2" == "" (
 :: from a 64bit command prompt, or a 32 bit Visual Studio process:
 IF EXIST "%windir%\Sysnative\wsl.exe" (
   SET VBUILDCMD="%windir%\Sysnative\wsl.exe"
-  ) ELSE ( 
+  ) ELSE (
     IF EXIST "%windir%\System32\wsl.exe" (
       SET VBUILDCMD="%windir%\System32\wsl.exe"
       ) ELSE (

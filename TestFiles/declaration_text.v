@@ -6,7 +6,7 @@ module wow();
  input  wire [7:0] x,
  input  wire [7:0] y
 
-// 1-bit wide by 8-bit deep wire arrays 
+// 1-bit wide by 8-bit deep wire arrays
  wire rbit    [7:0];
  wire onebit  [7:0];
  wire twocomp [7:0];
@@ -14,5 +14,5 @@ module wow();
 // wire declarations
 wire [7:0] rbit;
 wire [7:0] onebit;
-wire [7:0] twocomp; 
+wire [7:0] twocomp;
 endmodule

@@ -1,0 +1,5 @@
+{
+    "SchemaVersion":  1,
+    "RunName":  "all-testfiles",
+    "Manifest":  "C:/workspace/VerilogLanguageExtension/tools/vle-ci/manifests/single-testfile.json"
+}

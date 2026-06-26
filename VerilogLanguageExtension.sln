@@ -1,9 +1,85 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30011.22
+# Visual Studio Version 18
+VisualStudioVersion = 18.4.11626.88
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerilogLanguage", "VerilogLanguage.csproj", "{F091221E-FD10-41A7-AAC4-C9359178BDB1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample Test Files", "Sample Test Files", "{20D165A8-A0EA-4B8A-969F-573B2C03FF53}"
+	ProjectSection(SolutionItems) = preProject
+		TestFiles\anothertest - Copy.v = TestFiles\anothertest - Copy.v
+		TestFiles\anothertest.v = TestFiles\anothertest.v
+		TestFiles\asterisk_issue_16.v = TestFiles\asterisk_issue_16.v
+		TestFiles\bracketest.v = TestFiles\bracketest.v
+		TestFiles\comma.v = TestFiles\comma.v
+		TestFiles\const.v = TestFiles\const.v
+		TestFiles\current_bracket_issue.v = TestFiles\current_bracket_issue.v
+		TestFiles\declaration_text.v = TestFiles\declaration_text.v
+		TestFiles\din _test3.v = TestFiles\din _test3.v
+		TestFiles\din_test.v = TestFiles\din_test.v
+		TestFiles\din_test2.v = TestFiles\din_test2.v
+		TestFiles\din_test4.v = TestFiles\din_test4.v
+		TestFiles\EmptyFile.v = TestFiles\EmptyFile.v
+		TestFiles\file1.v = TestFiles\file1.v
+		TestFiles\file2.v = TestFiles\file2.v
+		TestFiles\issue10.v = TestFiles\issue10.v
+		TestFiles\issue12.v = TestFiles\issue12.v
+		TestFiles\issue16.v = TestFiles\issue16.v
+		TestFiles\issue21.v = TestFiles\issue21.v
+		TestFiles\issue21_mini.v = TestFiles\issue21_mini.v
+		TestFiles\JanGray.v = TestFiles\JanGray.v
+		TestFiles\mini_test - Copy.v = TestFiles\mini_test - Copy.v
+		TestFiles\mini_test.v = TestFiles\mini_test.v
+		TestFiles\module_name.v = TestFiles\module_name.v
+		TestFiles\new_test.v = TestFiles\new_test.v
+		TestFiles\otherfile.verilog = TestFiles\otherfile.verilog
+		TestFiles\picorv32.v = TestFiles\picorv32.v
+		TestFiles\picorv32.v.txt = TestFiles\picorv32.v.txt
+		TestFiles\primitives_test.v = TestFiles\primitives_test.v
+		TestFiles\StopWatch.v = TestFiles\StopWatch.v
+		TestFiles\test - bigfile.v = TestFiles\test - bigfile.v
+		TestFiles\test.v = TestFiles\test.v
+		TestFiles\test2.v = TestFiles\test2.v
+		TestFiles\testfile-1K.v = TestFiles\testfile-1K.v
+		TestFiles\testfile-4K.v = TestFiles\testfile-4K.v
+		TestFiles\testfile-5K.v = TestFiles\testfile-5K.v
+		TestFiles\vert_bar.v = TestFiles\vert_bar.v
+		TestFiles\wiretest.verilog = TestFiles\wiretest.verilog
+		TestFiles\wow.v = TestFiles\wow.v
+		TestFiles\wow2.sv = TestFiles\wow2.sv
+		TestFiles\wow3.svh = TestFiles\wow3.svh
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{58A6FBED-E8BC-45E2-8652-954E7BB5C8C9}"
+	ProjectSection(SolutionItems) = preProject
+		build_vsix.bat = build_vsix.bat
+		check-file.ps1 = check-file.ps1
+		ci-baseline.ps1 = ci-baseline.ps1
+		ci-check.ps1 = ci-check.ps1
+		ci-pass.ps1 = ci-pass.ps1
+		create-testfile-manifest.ps1 = create-testfile-manifest.ps1
+		refresh-tests.ps1 = refresh-tests.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{5A2EEC68-C81E-4FCE-A2CA-47E0E6F7A6F9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{9ACB96E2-FD3C-43A5-9815-8DF9C3C036DB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "vle-ci", "vle-ci", "{93C4636B-91E9-405B-93D8-70075FC51C98}"
+	ProjectSection(SolutionItems) = preProject
+		tools\vle-ci\Compare-Snapshots.py = tools\vle-ci\Compare-Snapshots.py
+		tools\vle-ci\Export-Snapshots.ps1 = tools\vle-ci\Export-Snapshots.ps1
+		tools\vle-ci\Run-LocalCI.ps1 = tools\vle-ci\Run-LocalCI.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution Files", "{1FB18B55-CB2A-4AE7-9913-F73550FA7911}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		CODE_OF_CONDUCT.md = CODE_OF_CONDUCT.md
+		LICENSE.md = LICENSE.md
+		README.md = README.md
+		RELEASE_NOTES.md = RELEASE_NOTES.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,6 +94,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5A2EEC68-C81E-4FCE-A2CA-47E0E6F7A6F9} = {58A6FBED-E8BC-45E2-8652-954E7BB5C8C9}
+		{9ACB96E2-FD3C-43A5-9815-8DF9C3C036DB} = {58A6FBED-E8BC-45E2-8652-954E7BB5C8C9}
+		{93C4636B-91E9-405B-93D8-70075FC51C98} = {9ACB96E2-FD3C-43A5-9815-8DF9C3C036DB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {63A107C7-D336-4F68-AA9B-67E8459AFFC0}

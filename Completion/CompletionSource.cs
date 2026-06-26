@@ -1,5 +1,5 @@
-﻿//***************************************************************************
-// 
+//***************************************************************************
+//
 //    Copyright (c) Microsoft Corporation. All rights reserved.
 //    This code is licensed under the Visual Studio SDK license terms.
 //    THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
@@ -27,8 +27,7 @@ namespace VerilogLanguage
     [Name("VerilogCompletion")]
     class VerilogCompletionSourceProvider : ICompletionSourceProvider
     {
-        public ICompletionSource TryCreateCompletionSource(ITextBuffer textBuffer)
-        {
+        public ICompletionSource TryCreateCompletionSource(ITextBuffer textBuffer) {
             return new VerilogCompletionSource(textBuffer);
         }
     }
@@ -37,14 +36,12 @@ namespace VerilogLanguage
     {
         private ITextBuffer _buffer;
         private bool _disposed = false;
-        
-        public VerilogCompletionSource(ITextBuffer buffer)
-        {
+
+        public VerilogCompletionSource(ITextBuffer buffer) {
             _buffer = buffer;
         }
 
-        public void AugmentCompletionSession(ICompletionSession session, IList<CompletionSet> completionSets)
-        {
+        public void AugmentCompletionSession(ICompletionSession session, IList<CompletionSet> completionSets) {
             if (_disposed)
                 throw new ObjectDisposedException("VerilogCompletionSource");
 
@@ -54,7 +51,7 @@ namespace VerilogLanguage
                 //new Completion("always"),
                 //new Completion("assign")
             };
-            
+
             ITextSnapshot snapshot = _buffer.CurrentSnapshot;
             var triggerPoint = (SnapshotPoint)session.GetTriggerPoint(snapshot);
 
@@ -64,8 +61,7 @@ namespace VerilogLanguage
             var line = triggerPoint.GetContainingLine();
             SnapshotPoint start = triggerPoint;
 
-            while (start > line.Start && !char.IsWhiteSpace((start - 1).GetChar()))
-            {
+            while (start > line.Start && !char.IsWhiteSpace((start - 1).GetChar())) {
                 start -= 1;
             }
 
@@ -74,8 +70,7 @@ namespace VerilogLanguage
             completionSets.Add(new CompletionSet("All", "All", applicableTo, completions, Enumerable.Empty<Completion>()));
         }
 
-        public void Dispose()
-        {
+        public void Dispose() {
             _disposed = true;
         }
     }

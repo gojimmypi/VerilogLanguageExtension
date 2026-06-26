@@ -1,0 +1,1219 @@
+{
+    "SchemaVersion":  3,
+    "RunName":  "all-testfiles",
+    "ExtensionVersion":  "0.4.0.0",
+    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\current_bracket_issue.v",
+    "FileRelativePath":  "TestFiles\\current_bracket_issue.v",
+    "ContentType":  "verilog",
+    "SnapshotLength":  150,
+    "SnapshotVersion":  2,
+    "TextSha256":  "610e2b55be879021e49ea5f429f38870a6ad9d19a27efb1e8a490581173e398f",
+    "Errors":  [
+
+               ],
+    "Classifications":  [
+                            {
+                                "Start":  0,
+                                "Length":  6,
+                                "Line":  1,
+                                "Column":  1,
+                                "Text":  "module",
+                                "Types":  [
+                                              "module"
+                                          ]
+                            },
+                            {
+                                "Start":  7,
+                                "Length":  19,
+                                "Line":  1,
+                                "Column":  8,
+                                "Text":  "ulx3s_passthru_wifi",
+                                "Types":  [
+                                              "Variable_module"
+                                          ]
+                            },
+                            {
+                                "Start":  26,
+                                "Length":  1,
+                                "Line":  1,
+                                "Column":  27,
+                                "Text":  "(",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  28,
+                                "Length":  5,
+                                "Line":  2,
+                                "Column":  1,
+                                "Text":  "input",
+                                "Types":  [
+                                              "input"
+                                          ]
+                            },
+                            {
+                                "Start":  34,
+                                "Length":  4,
+                                "Line":  2,
+                                "Column":  7,
+                                "Text":  "wire",
+                                "Types":  [
+                                              "wire"
+                                          ]
+                            },
+                            {
+                                "Start":  39,
+                                "Length":  1,
+                                "Line":  2,
+                                "Column":  12,
+                                "Text":  "[",
+                                "Types":  [
+                                              "Bracket2"
+                                          ]
+                            },
+                            {
+                                "Start":  40,
+                                "Length":  1,
+                                "Line":  2,
+                                "Column":  13,
+                                "Text":  "1",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  42,
+                                "Length":  1,
+                                "Line":  2,
+                                "Column":  15,
+                                "Text":  "1",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  43,
+                                "Length":  1,
+                                "Line":  2,
+                                "Column":  16,
+                                "Text":  "]",
+                                "Types":  [
+                                              "Bracket2"
+                                          ]
+                            },
+                            {
+                                "Start":  45,
+                                "Length":  2,
+                                "Line":  2,
+                                "Column":  18,
+                                "Text":  "k2",
+                                "Types":  [
+                                              "Variable_wire"
+                                          ]
+                            },
+                            {
+                                "Start":  49,
+                                "Length":  2,
+                                "Line":  2,
+                                "Column":  22,
+                                "Text":  "k3",
+                                "Types":  [
+                                              "Variable_wire"
+                                          ]
+                            },
+                            {
+                                "Start":  53,
+                                "Length":  5,
+                                "Line":  3,
+                                "Column":  1,
+                                "Text":  "input",
+                                "Types":  [
+                                              "input"
+                                          ]
+                            },
+                            {
+                                "Start":  59,
+                                "Length":  4,
+                                "Line":  3,
+                                "Column":  7,
+                                "Text":  "wire",
+                                "Types":  [
+                                              "wire"
+                                          ]
+                            },
+                            {
+                                "Start":  64,
+                                "Length":  1,
+                                "Line":  3,
+                                "Column":  12,
+                                "Text":  "[",
+                                "Types":  [
+                                              "Bracket2"
+                                          ]
+                            },
+                            {
+                                "Start":  65,
+                                "Length":  1,
+                                "Line":  3,
+                                "Column":  13,
+                                "Text":  "1",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  67,
+                                "Length":  1,
+                                "Line":  3,
+                                "Column":  15,
+                                "Text":  "1",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  68,
+                                "Length":  1,
+                                "Line":  3,
+                                "Column":  16,
+                                "Text":  "]",
+                                "Types":  [
+                                              "Bracket2"
+                                          ]
+                            },
+                            {
+                                "Start":  70,
+                                "Length":  3,
+                                "Line":  3,
+                                "Column":  18,
+                                "Text":  "kh1",
+                                "Types":  [
+                                              "Variable_wire"
+                                          ]
+                            },
+                            {
+                                "Start":  75,
+                                "Length":  4,
+                                "Line":  4,
+                                "Column":  1,
+                                "Text":  "wire",
+                                "Types":  [
+                                              "wire"
+                                          ]
+                            },
+                            {
+                                "Start":  80,
+                                "Length":  1,
+                                "Line":  4,
+                                "Column":  6,
+                                "Text":  "[",
+                                "Types":  [
+                                              "Bracket2"
+                                          ]
+                            },
+                            {
+                                "Start":  81,
+                                "Length":  1,
+                                "Line":  4,
+                                "Column":  7,
+                                "Text":  "1",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  83,
+                                "Length":  1,
+                                "Line":  4,
+                                "Column":  9,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  84,
+                                "Length":  1,
+                                "Line":  4,
+                                "Column":  10,
+                                "Text":  "]",
+                                "Types":  [
+                                              "Bracket2"
+                                          ]
+                            },
+                            {
+                                "Start":  86,
+                                "Length":  9,
+                                "Line":  4,
+                                "Column":  12,
+                                "Text":  "S_prog_in",
+                                "Types":  [
+                                              "Variable_wire"
+                                          ]
+                            },
+                            {
+                                "Start":  97,
+                                "Length":  1,
+                                "Line":  5,
+                                "Column":  1,
+                                "Text":  ")",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  99,
+                                "Length":  3,
+                                "Line":  6,
+                                "Column":  1,
+                                "Text":  "kh1",
+                                "Types":  [
+                                              "Variable_wire"
+                                          ]
+                            },
+                            {
+                                "Start":  104,
+                                "Length":  19,
+                                "Line":  7,
+                                "Column":  2,
+                                "Text":  "ulx3s_passthru_wifi",
+                                "Types":  [
+                                              "Variable_module"
+                                          ]
+                            },
+                            {
+                                "Start":  123,
+                                "Length":  2,
+                                "Line":  7,
+                                "Column":  21,
+                                "Text":  "()",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  127,
+                                "Length":  4,
+                                "Line":  8,
+                                "Column":  1,
+                                "Text":  "wire",
+                                "Types":  [
+                                              "wire"
+                                          ]
+                            },
+                            {
+                                "Start":  132,
+                                "Length":  1,
+                                "Line":  8,
+                                "Column":  6,
+                                "Text":  "[",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  133,
+                                "Length":  1,
+                                "Line":  8,
+                                "Column":  7,
+                                "Text":  "1",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  135,
+                                "Length":  1,
+                                "Line":  8,
+                                "Column":  9,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  136,
+                                "Length":  1,
+                                "Line":  8,
+                                "Column":  10,
+                                "Text":  "]",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  138,
+                                "Length":  10,
+                                "Line":  8,
+                                "Column":  12,
+                                "Text":  "S_prog_ins",
+                                "Types":  [
+                                              "Variable_wire"
+                                          ]
+                            }
+                        ],
+    "Tags":  [
+                 {
+                     "Start":  0,
+                     "Length":  6,
+                     "Line":  1,
+                     "Column":  1,
+                     "Text":  "module",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_module",
+                     "HoverText":  "The module declaration is the only design unit in Verilog. It describes both a design\u0027s interface to other designs in the same environment, and its functional composition."
+                 },
+                 {
+                     "Start":  7,
+                     "Length":  19,
+                     "Line":  1,
+                     "Column":  8,
+                     "Text":  "ulx3s_passthru_wifi",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_module",
+                     "HoverText":  "module ulx3s_passthru_wifi( wire [1:1] k2,\r\n k3;\r\ninput wire [1:1] kh1,\r\nwire [1:0] S_prog_in;\r\n)"
+                 },
+                 {
+                     "Start":  26,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  27,
+                     "Text":  "(",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  28,
+                     "Length":  5,
+                     "Line":  2,
+                     "Column":  1,
+                     "Text":  "input",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_input",
+                     "HoverText":  "The reserved word input is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
+                 },
+                 {
+                     "Start":  34,
+                     "Length":  4,
+                     "Line":  2,
+                     "Column":  7,
+                     "Text":  "wire",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_wire",
+                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
+                 },
+                 {
+                     "Start":  39,
+                     "Length":  1,
+                     "Line":  2,
+                     "Column":  12,
+                     "Text":  "[",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket2",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  40,
+                     "Length":  1,
+                     "Line":  2,
+                     "Column":  13,
+                     "Text":  "1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  42,
+                     "Length":  1,
+                     "Line":  2,
+                     "Column":  15,
+                     "Text":  "1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  43,
+                     "Length":  1,
+                     "Line":  2,
+                     "Column":  16,
+                     "Text":  "]",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket2",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  45,
+                     "Length":  2,
+                     "Line":  2,
+                     "Column":  18,
+                     "Text":  "k2",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "module ulx3s_passthru_wifi( .. input wire [1:1] k2 .. )"
+                 },
+                 {
+                     "Start":  49,
+                     "Length":  2,
+                     "Line":  2,
+                     "Column":  22,
+                     "Text":  "k3",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "module ulx3s_passthru_wifi( .. input wire [1:1] k3 .. )"
+                 },
+                 {
+                     "Start":  53,
+                     "Length":  5,
+                     "Line":  3,
+                     "Column":  1,
+                     "Text":  "input",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_input",
+                     "HoverText":  "The reserved word input is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
+                 },
+                 {
+                     "Start":  59,
+                     "Length":  4,
+                     "Line":  3,
+                     "Column":  7,
+                     "Text":  "wire",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_wire",
+                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
+                 },
+                 {
+                     "Start":  64,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  12,
+                     "Text":  "[",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket2",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  65,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  13,
+                     "Text":  "1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  67,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  15,
+                     "Text":  "1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  68,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  16,
+                     "Text":  "]",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket2",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  70,
+                     "Length":  3,
+                     "Line":  3,
+                     "Column":  18,
+                     "Text":  "kh1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "module ulx3s_passthru_wifi( .. input wire [1:1] kh1 .. )"
+                 },
+                 {
+                     "Start":  75,
+                     "Length":  4,
+                     "Line":  4,
+                     "Column":  1,
+                     "Text":  "wire",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_wire",
+                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
+                 },
+                 {
+                     "Start":  80,
+                     "Length":  1,
+                     "Line":  4,
+                     "Column":  6,
+                     "Text":  "[",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket2",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  81,
+                     "Length":  1,
+                     "Line":  4,
+                     "Column":  7,
+                     "Text":  "1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  83,
+                     "Length":  1,
+                     "Line":  4,
+                     "Column":  9,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  84,
+                     "Length":  1,
+                     "Line":  4,
+                     "Column":  10,
+                     "Text":  "]",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket2",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  86,
+                     "Length":  9,
+                     "Line":  4,
+                     "Column":  12,
+                     "Text":  "S_prog_in",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "module ulx3s_passthru_wifi( .. wire [1:0] S_prog_in .. )"
+                 },
+                 {
+                     "Start":  97,
+                     "Length":  1,
+                     "Line":  5,
+                     "Column":  1,
+                     "Text":  ")",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  99,
+                     "Length":  3,
+                     "Line":  6,
+                     "Column":  1,
+                     "Text":  "kh1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "module ulx3s_passthru_wifi( .. input wire [1:1] kh1 .. )"
+                 },
+                 {
+                     "Start":  104,
+                     "Length":  19,
+                     "Line":  7,
+                     "Column":  2,
+                     "Text":  "ulx3s_passthru_wifi",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_module",
+                     "HoverText":  "module ulx3s_passthru_wifi( wire [1:1] k2,\r\n k3;\r\ninput wire [1:1] kh1,\r\nwire [1:0] S_prog_in;\r\n)"
+                 },
+                 {
+                     "Start":  123,
+                     "Length":  1,
+                     "Line":  7,
+                     "Column":  21,
+                     "Text":  "(",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  124,
+                     "Length":  1,
+                     "Line":  7,
+                     "Column":  22,
+                     "Text":  ")",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  127,
+                     "Length":  4,
+                     "Line":  8,
+                     "Column":  1,
+                     "Text":  "wire",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_wire",
+                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
+                 },
+                 {
+                     "Start":  132,
+                     "Length":  1,
+                     "Line":  8,
+                     "Column":  6,
+                     "Text":  "[",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  133,
+                     "Length":  1,
+                     "Line":  8,
+                     "Column":  7,
+                     "Text":  "1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  135,
+                     "Length":  1,
+                     "Line":  8,
+                     "Column":  9,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  136,
+                     "Length":  1,
+                     "Line":  8,
+                     "Column":  10,
+                     "Text":  "]",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  138,
+                     "Length":  10,
+                     "Line":  8,
+                     "Column":  12,
+                     "Text":  "S_prog_ins",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "wire [1:0] S_prog_ins"
+                 }
+             ],
+    "Tokens":  [
+                   {
+                       "Start":  0,
+                       "Length":  6,
+                       "Line":  1,
+                       "Column":  1,
+                       "Text":  "module",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  6,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  7,
+                       "Length":  19,
+                       "Line":  1,
+                       "Column":  8,
+                       "Text":  "ulx3s_passthru_wifi",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  26,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  27,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  28,
+                       "Length":  5,
+                       "Line":  2,
+                       "Column":  1,
+                       "Text":  "input",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  33,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  6,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  34,
+                       "Length":  4,
+                       "Line":  2,
+                       "Column":  7,
+                       "Text":  "wire",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  38,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  11,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  39,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  12,
+                       "Text":  "[",
+                       "Context":  "SquareBracketOpen"
+                   },
+                   {
+                       "Start":  40,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  13,
+                       "Text":  "1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  41,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  14,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  42,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  15,
+                       "Text":  "1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  43,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  16,
+                       "Text":  "]",
+                       "Context":  "SquareBracketClose"
+                   },
+                   {
+                       "Start":  44,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  17,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  45,
+                       "Length":  2,
+                       "Line":  2,
+                       "Column":  18,
+                       "Text":  "k2",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  47,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  20,
+                       "Text":  ",",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  48,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  21,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  49,
+                       "Length":  2,
+                       "Line":  2,
+                       "Column":  22,
+                       "Text":  "k3",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  51,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  24,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  53,
+                       "Length":  5,
+                       "Line":  3,
+                       "Column":  1,
+                       "Text":  "input",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  58,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  6,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  59,
+                       "Length":  4,
+                       "Line":  3,
+                       "Column":  7,
+                       "Text":  "wire",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  63,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  11,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  64,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  12,
+                       "Text":  "[",
+                       "Context":  "SquareBracketOpen"
+                   },
+                   {
+                       "Start":  65,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  13,
+                       "Text":  "1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  66,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  14,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  67,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  15,
+                       "Text":  "1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  68,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  16,
+                       "Text":  "]",
+                       "Context":  "SquareBracketClose"
+                   },
+                   {
+                       "Start":  69,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  17,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  70,
+                       "Length":  3,
+                       "Line":  3,
+                       "Column":  18,
+                       "Text":  "kh1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  73,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  21,
+                       "Text":  ",",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  75,
+                       "Length":  4,
+                       "Line":  4,
+                       "Column":  1,
+                       "Text":  "wire",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  79,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  5,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  80,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  6,
+                       "Text":  "[",
+                       "Context":  "SquareBracketOpen"
+                   },
+                   {
+                       "Start":  81,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  7,
+                       "Text":  "1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  82,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  8,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  83,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  9,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  84,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  10,
+                       "Text":  "]",
+                       "Context":  "SquareBracketClose"
+                   },
+                   {
+                       "Start":  85,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  11,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  86,
+                       "Length":  9,
+                       "Line":  4,
+                       "Column":  12,
+                       "Text":  "S_prog_in",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  95,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  21,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  97,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  1,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  99,
+                       "Length":  3,
+                       "Line":  6,
+                       "Column":  1,
+                       "Text":  "kh1",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  103,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  1,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  104,
+                       "Length":  19,
+                       "Line":  7,
+                       "Column":  2,
+                       "Text":  "ulx3s_passthru_wifi",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  123,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  21,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  124,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  22,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  125,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  23,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  127,
+                       "Length":  4,
+                       "Line":  8,
+                       "Column":  1,
+                       "Text":  "wire",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  131,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  5,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  132,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  6,
+                       "Text":  "[",
+                       "Context":  "SquareBracketOpen"
+                   },
+                   {
+                       "Start":  133,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  7,
+                       "Text":  "1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  134,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  8,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  135,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  9,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  136,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  10,
+                       "Text":  "]",
+                       "Context":  "SquareBracketClose"
+                   },
+                   {
+                       "Start":  137,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  11,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  138,
+                       "Length":  10,
+                       "Line":  8,
+                       "Column":  12,
+                       "Text":  "S_prog_ins",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  148,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  22,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   }
+               ],
+    "Symbols":  [
+                    {
+                        "Scope":  "ulx3s_passthru_wifi",
+                        "Name":  "k2",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "module ulx3s_passthru_wifi( .. input wire [1:1] k2 .. )"
+                    },
+                    {
+                        "Scope":  "ulx3s_passthru_wifi",
+                        "Name":  "k3",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "module ulx3s_passthru_wifi( .. input wire [1:1] k3 .. )"
+                    },
+                    {
+                        "Scope":  "ulx3s_passthru_wifi",
+                        "Name":  "kh1",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "module ulx3s_passthru_wifi( .. input wire [1:1] kh1 .. )"
+                    },
+                    {
+                        "Scope":  "ulx3s_passthru_wifi",
+                        "Name":  "S_prog_in",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "module ulx3s_passthru_wifi( .. wire [1:0] S_prog_in .. )"
+                    },
+                    {
+                        "Scope":  "ulx3s_passthru_wifi",
+                        "Name":  "ulx3s_passthru_wifi",
+                        "TokenType":  "Verilog_Variable_module",
+                        "HoverText":  "module ulx3s_passthru_wifi( wire [1:1] k2,\r\n k3;\r\ninput wire [1:1] kh1,\r\nwire [1:0] S_prog_in;\r\n)"
+                    },
+                    {
+                        "Scope":  "ulx3s_passthru_wifi",
+                        "Name":  "S_prog_ins",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "wire [1:0] S_prog_ins"
+                    }
+                ],
+    "ProcessingTime":  {
+                           "SchemaVersion":  2,
+                           "ElapsedBucket":  "10-14s",
+                           "Index":  7,
+                           "Count":  53,
+                           "Status":  "Completed"
+                       }
+}

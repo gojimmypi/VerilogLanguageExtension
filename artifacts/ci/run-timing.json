@@ -1,0 +1,36 @@
+{
+    "SchemaVersion":  1,
+    "Status":  "Completed",
+    "StartedAt":  "2026-06-25T18:04:35.1117630-07:00",
+    "CompletedAt":  "2026-06-25T18:16:00.1953003-07:00",
+    "StartedAtUtc":  "2026-06-26T01:04:35.1117630Z",
+    "CompletedAtUtc":  "2026-06-26T01:16:00.1953003Z",
+    "TotalSeconds":  685.083,
+    "Total":  "00:11:25.0826120",
+    "Steps":  [
+                  {
+                      "Name":  "Build",
+                      "Status":  "Completed",
+                      "ElapsedSeconds":  5.98,
+                      "Elapsed":  "00:00:05.9803155"
+                  },
+                  {
+                      "Name":  "Snapshot export",
+                      "Status":  "Completed",
+                      "ElapsedSeconds":  663.832,
+                      "Elapsed":  "00:11:03.8315890"
+                  },
+                  {
+                      "Name":  "Snapshot comparison",
+                      "Status":  "Completed",
+                      "ElapsedSeconds":  3.536,
+                      "Elapsed":  "00:00:03.5364812"
+                  },
+                  {
+                      "Name":  "Baseline formatting",
+                      "Status":  "Completed",
+                      "ElapsedSeconds":  11.722,
+                      "Elapsed":  "00:00:11.7219873"
+                  }
+              ]
+}

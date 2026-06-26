@@ -1,3 +1,0 @@
-﻿Copyright © 2018 Transeric Solutions.  All rights reserved.
-Author: Eric David Lynch
-License: https://www.codeproject.com/info/cpol10.aspx

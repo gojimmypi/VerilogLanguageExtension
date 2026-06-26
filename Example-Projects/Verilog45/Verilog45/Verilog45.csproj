@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release' ">
     <OutputPath>bin\</OutputPath>
@@ -42,7 +42,7 @@
     <Task>
       <Code Type="Fragment" Language="cs">
         <![CDATA[
-  // https://stackoverflow.com/questions/2387456/msbuild-exec-task-without-blocking      
+  // https://stackoverflow.com/questions/2387456/msbuild-exec-task-without-blocking
 
      Log.LogMessage("0");
      Console.WriteLine("Hello World");
@@ -54,8 +54,8 @@ using (System.Diagnostics.Process compiler = new System.Diagnostics.Process())
     compiler.StartInfo.FileName = "ping.exe";
     compiler.StartInfo.Arguments = "192.168.1.1";
 
-string eOut = null;    
-compiler.ErrorDataReceived += new System.Diagnostics.DataReceivedEventHandler((sender, e) => 
+string eOut = null;
+compiler.ErrorDataReceived += new System.Diagnostics.DataReceivedEventHandler((sender, e) =>
                                  { eOut += e.Data; });
     compiler.StartInfo.UseShellExecute = false;
     compiler.StartInfo.RedirectStandardOutput = true;
@@ -72,7 +72,7 @@ compiler.BeginErrorReadLine();
                 // the file is reached.
                 while ((line = reader.ReadLine()) != null)
                 {
-                  Log.LogMessage("Starting {0}...", line);  
+                  Log.LogMessage("Starting {0}...", line);
                     Console.WriteLine(line);
                 }
     // Console.WriteLine(compiler.StandardOutput.ReadToEnd());
@@ -108,7 +108,7 @@ compiler.BeginErrorReadLine();
     <MakeDir Directories="$(OutputPath)" Condition="!Exists('$(OutputPath)')" />
     <Exec Command=".\build\vs-prog.bat" YieldDuringToolExecution="True" ConsoleToMSBuild="true" Condition="'$(Configuration)'=='Debug' ">
       <Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
-    </Exec> 
+    </Exec>
     <Exec Command="cmd /Q /D /C ping 192.168.1.1" Condition="'$(Configuration)'=='Release' ">
       <Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
     </Exec>
@@ -117,10 +117,10 @@ compiler.BeginErrorReadLine();
     <Exec Command=".\build\vs-prog.bat ULX3S boards\ulx3s\Makefile-ULX3S-45F.mk" Condition="'$(Configuration)'=='ULX3S 45F Deploy' " />
     <Exec Command=".\build\vs-prog.bat ULX3S boards\ulx3s\Makefile-ULX3S-85F.mk" Condition="'$(Configuration)'=='ULX3S 85F Deploy' " />
   </Target>
-  <!-- 
+  <!--
 
 %windir%\Sysnative\wsl.exe make ulx3s.bit
-c:\windows\system32\wsl.exe yosys Verilog.ys 
+c:\windows\system32\wsl.exe yosys Verilog.ys
 C:\workspace\ulx3s-examples\bin\ujprog.exe
 
 -->
@@ -133,7 +133,7 @@ C:\workspace\ulx3s-examples\bin\ujprog.exe
     <Exec Command=".\build\vs-clean.bat ULX3S boards\ulx3s\Makefile-ULX3S-12F.mk" />
   </Target>
   <!--
-  To modify your build process, add your task inside one of the targets below and uncomment it. 
+  To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

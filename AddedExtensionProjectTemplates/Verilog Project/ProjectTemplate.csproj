@@ -3,16 +3,16 @@
   For tips on editing this file, see https://docs.microsoft.com/en-us/visualstudio/msbuild/target-build-order?view=vs-2019
 
   see: https://docs.microsoft.com/en-us/visualstudio/msbuild/how-to-extend-the-visual-studio-build-process?view=vs-2019
-  "Be sure to use different names than the predefined targets listed in the table in the previous section 
-  (for example, we named the custom build target here CustomAfterBuild, not AfterBuild), since those predefined 
-  targets are overridden by the SDK import which also defines them. You don't see the import of the target file 
-  that overrides those targets, but it is implicitly added to the end of the project file when you use the Sdk 
+  "Be sure to use different names than the predefined targets listed in the table in the previous section
+  (for example, we named the custom build target here CustomAfterBuild, not AfterBuild), since those predefined
+  targets are overridden by the SDK import which also defines them. You don't see the import of the target file
+  that overrides those targets, but it is implicitly added to the end of the project file when you use the Sdk
   attribute method of referencing an SDK."
 -->
 
 	<PropertyGroup Label="Programmer">
-		<!-- If the programmer is in your path, just enter the name, otherwise provide fully qualified name  
-		
+		<!-- If the programmer is in your path, just enter the name, otherwise provide fully qualified name
+
 		binaries are available at: https://github.com/gojimmypi/ulx3s-toolchain/tree/master/bin
 		-->
 		<BitstreamProgrammer_ULX3S>C:\workspace-pr\fujprog\build\fujprog.exe</BitstreamProgrammer_ULX3S>
@@ -21,7 +21,7 @@
 		<BitstreamProgrammer_tinyFPGA_BX>C:\Users\gojimmypi\.icestudio\venv\Scripts\tinyprog.exe</BitstreamProgrammer_tinyFPGA_BX>
 	</PropertyGroup>
 
-	<!-- 
+	<!--
 	To avoid relentless background tasks, we look for:  Condition=" '$(_AvoidTargetStep)' == '' "
 	-->
 	<Target Name="AddAdditionalReferences" BeforeTargets="ResolveAssemblyReferences">
@@ -49,10 +49,10 @@
 		<Folder Include="boards\orangecrab\" />
 	</ItemGroup>
 
-	<!-- 
+	<!--
   <ItemGroup>
     <Folder Include="Properties\" />
-  </ItemGroup>  
+  </ItemGroup>
   -->
 
 
@@ -70,7 +70,7 @@
 		<Configurations>Debug;Release;Upload;Verify</Configurations>
 	</PropertyGroup>
 
-	<!-- 
+	<!--
   <Import Project="Custom.Before.Microsoft.Common.Targets"></Import>
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -83,7 +83,7 @@
 
 	<!--
 	Radiona ULX3S
-	
+
 	Edit with caution! See makefile when changing BitstreamFilename
 	-->
 
@@ -264,7 +264,7 @@
 
 
 
-	<!-- 
+	<!--
 <PropertyGroup>
    <PlatformTarget>iCE40;ULX3S</PlatformTarget>
    <PlatformTarget>ECP5-12K</PlatformTarget>
@@ -274,8 +274,8 @@
    <Platform>ECP5-12K</Platform>
 </PropertyGroup>
  -->
-	<!-- when manually editing this list, delete all items from solution 
-  
+	<!-- when manually editing this list, delete all items from solution
+
   GlobalSection(SolutionConfigurationPlatforms) = preSolution
     and
   GlobalSection(ProjectConfigurationPlatforms) = postSolution
@@ -349,10 +349,10 @@
 	<Target Name="Upload">
 		<Message Text="Doing UPLOAD for $(Platform)" />
 	</Target>
-	<!-- 
+	<!--
 
 :: %windir%\Sysnative\wsl.exe make ulx3s.bit
-:: c:\windows\system32\wsl.exe yosys Verilog.ys 
+:: c:\windows\system32\wsl.exe yosys Verilog.ys
 :: C:\workspace\ulx3s-examples\bin\ujprog.exe
 
 -->
@@ -370,7 +370,7 @@
 	</Target>
 
 	<!--
-  To modify your build process, add your task inside one of the targets below and uncomment it. 
+  To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
@@ -385,9 +385,9 @@
 
 
 	<PropertyGroup>
-		<!-- 
-      POST BUILD often does not run, runs only batch file code, can be overriden; use AfterTargets="Build" instead!      
-      see https://stackoverflow.com/questions/42389018/msbuild-post-build-events-not-running-in-windows-10 
+		<!--
+      POST BUILD often does not run, runs only batch file code, can be overriden; use AfterTargets="Build" instead!
+      see https://stackoverflow.com/questions/42389018/msbuild-post-build-events-not-running-in-windows-10
     -->
 		<PostBuildEvent>
 			echo PostBuildEvent!
@@ -425,7 +425,7 @@
 
 	<!--
 	Build ULX3S
-	
+
 	Note different chips are specified in the BitstreamMakefile property setting
 	-->
 	<Target Name="Build_ULX3S" DependsOnTargets="InitFPGA" AfterTargets="InitFPGA" BeforeTargets="SwitchToAnyCpu;Upload_ULX3S_85K" Condition=" '$(Platform)' == 'ULX3S ECP5-12K' Or '$(Platform)' == 'ULX3S ECP5-25K' Or '$(Platform)' == 'ULX3S ECP5-45K' Or '$(Platform)' == 'ULX3S ECP5-85K' ">
@@ -582,7 +582,7 @@
 		</Exec>
 	</Target>
 
-	<!-- 
+	<!--
 	**********************************************************************************************************************************
 	Clean
 	**********************************************************************************************************************************
@@ -602,13 +602,13 @@
 
 
 
-	<!-- 
+	<!--
 	*******************************************************************************************************************************
 	iCEBeeaker
 	******************************************************************************************************************************* -->
 	<!--
 	Build ULX3S
-	
+
 	Note different chips are specified in the BitstreamMakefile property setting
 	-->
 	<Target Name="Build_iCEBreaker" DependsOnTargets="InitFPGA" AfterTargets="InitFPGA" BeforeTargets="SwitchToAnyCpu;Upload_iCEBreaker" Condition=" '$(Platform)' == 'iCEBreaker' ">
@@ -668,10 +668,10 @@
 		</Exec>
 	</Target>
 
-	<!-- 
+	<!--
 	*******************************************************************************************************************************
 	Orange Crab
-	******************************************************************************************************************************* 
+	*******************************************************************************************************************************
 	-->
 
 	<!--  Build Orange Crab-->
@@ -727,10 +727,10 @@
 	</Target>
 
 
-	<!-- 
+	<!--
 	*******************************************************************************************************************************
 	Tiny FPGA BX
-	******************************************************************************************************************************* 
+	*******************************************************************************************************************************
 	-->
 
 	<!--  Build Tiny FPGA BX-->
@@ -838,10 +838,10 @@
 
 	<!-- make sure we have WSL installed! -->
 	<Target Name="VerifyWSL">
-		<!-- 
-		Depending on the calling environment, WSL may by in system32 or Sysnative 
+		<!--
+		Depending on the calling environment, WSL may by in system32 or Sysnative
 		Typically in 32bit Visual Studio on a 64bit OS, the value will be in Sysnative
-		
+
 		Upon success, FoundWSL=C:\WINDOWS\Sysnative\wsl.exe
 		-->
 		<PropertyGroup Condition="Exists('$(windir)\system32\wsl.exe')">

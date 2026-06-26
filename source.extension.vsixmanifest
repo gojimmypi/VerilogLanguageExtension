@@ -1,5 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--//***************************************************************************
+// file: source.extension.vsixmanifest
 //
 //    Copyright (c) Microsoft Corporation. All rights reserved.
 //    This code is licensed under the Visual Studio SDK license terms.
@@ -15,7 +16,7 @@
 
     <Metadata>
         <Identity Id="CF0DCF14-5B8F-4B42-8386-9D37BB99F98E"
-                  Version="0.3.5.4"
+                  Version="0.4.0.1"
                   Language="en-US"
                   Publisher="gojimmypi" />
 
@@ -24,15 +25,15 @@
         <Description xml:space="preserve">
 Verilog Extension for Visual Studio. (classifier extension).
 Implements the Verilog Language Extension allowing user-definable
-keyword colorization. Useful for FPGA development.
+keyword colorization. Useful for FPGA, ASIC and other RTL development.
         </Description>
 
         <MoreInfo>https://github.com/gojimmypi/VerilogLanguageExtension</MoreInfo>
         <License>LICENSE.md</License>
-        <GettingStartedGuide>https://github.com/gojimmypi/VerilogLanguageExtension/blob/master/README.md#installation</GettingStartedGuide>
-        <ReleaseNotes>https://github.com/gojimmypi/VerilogLanguageExtension/blob/master/releases/README.md</ReleaseNotes>
-        <Tags>Verilog keyword syntax highlight extension FPGA HDL ULX3S iCEBreaker OrangeCrab TinyFPGA</Tags>
-        <Preview>true</Preview>
+        <GettingStartedGuide>https://github.com/gojimmypi/VerilogLanguageExtension/blob/main/README.md#installation</GettingStartedGuide>
+        <ReleaseNotes>https://github.com/gojimmypi/VerilogLanguageExtension/blob/main/releases/README.md</ReleaseNotes>
+        <Tags>Verilog keyword syntax highlight extension FPGA ASIC RTL Tiny Tapeout HDL ULX3S iCEBreaker OrangeCrab TinyFPGA</Tags>
+        <Preview>false</Preview>
     </Metadata>
 
     <Installation>
@@ -65,6 +66,11 @@ keyword colorization. Useful for FPGA development.
                d:Source="File"
                Path="ProjectTemplates"
                d:TargetPath="ProjectTemplates\Verilog Project.zip" />
+
+        <Asset Type="Microsoft.VisualStudio.VsPackage"
+               d:Source="Project"
+               d:ProjectName="%CurrentProject%"
+               Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
     </Assets>
 
     <Prerequisites>

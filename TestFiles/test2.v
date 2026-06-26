@@ -2,37 +2,37 @@
 module global
    // I/O ports
    (
-    input wire k1, h1, i1, 
+    input wire k1, h1, i1,
     output wire eq
    );
 
    // signal declaration
-   wire p02, p1; 
+   wire p02, p1;
 
    // body
    // sum of two product terms
-   assign eq = p0 | p1; 
+   assign eq = p0 | p1;
    // product terms
-   assign p0 = ~ i0 & ~i1;  
-   assign p1 = i0 & i1; 
+   assign p0 = ~ i0 & ~i1;
+   assign p1 = i0 & i1;
 
 endmodule
 
 module global2
    // I/O ports
    (
-    input wire k1, h1, i1, 
+    input wire k1, h1, i1,
     output wire eq
    );
 
    // signal declaration
-   wire p02, p1; 
+   wire p02, p1;
 
    // body
    // sum of two product terms
-   assign eq = p0 | p1; 
+   assign eq = p0 | p1;
    // product terms
-   assign p0 = ~ i0 & ~i1;  
-   assign p1 = i0 & i1; 
+   assign p0 = ~ i0 & ~i1;
+   assign p1 = i0 & i1;
 
 endmodule

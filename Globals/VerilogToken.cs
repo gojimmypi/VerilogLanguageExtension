@@ -1,14 +1,9 @@
-﻿
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 namespace VerilogLanguage
 {
     public static partial class VerilogGlobals
     {
-
         /// <summary>
         ///   VerilogToken
         /// </summary>
@@ -18,59 +13,44 @@ namespace VerilogLanguage
             public string Part;
             public VerilogTokenContextType Context;
 
-            public void SetContext()
-            {
-                if (ParseState.hasOpenDoubleQuote)
-                {
+            public void SetContext() {
+                if (ParseState.hasOpenDoubleQuote) {
                     Context = VerilogTokenContextType.DoubleQuoteOpen;
                 }
-                else
-                {
-                    if (ParseState.hasOpenSquareBracket && !IsDelimiter(ParseState.thisChar))
-                    {
+                else {
+                    if (ParseState.hasOpenSquareBracket && !IsDelimiter(ParseState.thisChar)) {
                         Context = VerilogTokenContextType.SquareBracketContents;
                     }
-                    else
-                    {
-                        if (ParseState.hasOpenRoundBracket && !IsDelimiter(ParseState.thisChar))
-                        {
+                    else {
+                        if (ParseState.hasOpenRoundBracket && !IsDelimiter(ParseState.thisChar)) {
                             Context = VerilogTokenContextType.RoundBracketContents;
                         }
-                        else
-                        {
-                            if (ParseState.hasOpenSquigglyBracket && !IsDelimiter(ParseState.thisChar))
-                            {
+                        else {
+                            if (ParseState.hasOpenSquigglyBracket && !IsDelimiter(ParseState.thisChar)) {
                                 Context = VerilogTokenContextType.SquigglyBracketContents;
                             }
-                            else
-                            {
-                                Context = VerilogTokenContextFromString(ParseState.thisChar);
+                            else {
+                                Context = VerilogTokenContextFromString(ParseState.thisChar.ToString());
                             }
                         }
                     }
                 }
-
-
             }
-
 
             /// <summary>
             ///   Verilog Token Initializer
             /// </summary>
             /// <param name="p"></param>
             /// <param name="c"></param>
-            public VerilogToken(string p = "", VerilogTokenContextType c = VerilogTokenContextType.Undetermined)
-            {
+            public VerilogToken(string p = "", VerilogTokenContextType c = VerilogTokenContextType.Undetermined) {
                 ParseState = new VerilogParseState(0);
-                Part = p ?? ""; // ensure Part is never null (empty string if p is null)
+                Part = p ?? string.Empty;
 
-                if (c == VerilogTokenContextType.Undetermined && Part.Length > 0)
-                {
-                    Context = VerilogTokenContextFromString(p); // we'll figure out the context from the first character
+                if (c == VerilogTokenContextType.Undetermined && Part.Length > 0) {
+                    Context = VerilogTokenContextFromString(Part);
                 }
-                else
-                {
-                    Context = c; // unless otherwise specified
+                else {
+                    Context = c;
                 }
             }
         }
@@ -80,60 +60,73 @@ namespace VerilogLanguage
         /// </summary>
         /// <param name="theString"></param>
         /// <returns></returns>
-        public static VerilogToken[] VerilogKeywordSplit(string theString, VerilogToken priorToken)
-        {
+        public static VerilogToken[] VerilogKeywordSplit(string theString, VerilogToken priorToken) {
             List<VerilogToken> tokens = new List<VerilogToken>();
             VerilogToken thisToken = new VerilogToken();
             VerilogParseState thisContinuedParseState = new VerilogParseState(0);
 
-            // AddToken - appends the current token part to the array and create a new thisToken to build.
-            // reminder that here we are only splitting text into token items. 
-            // See VerilogTokenTagger for actually setting the context (e.g. color) of  each token item.
-            // 
-            void AddToken()
-            {
-                //string thisItem = thisToken.ParseState.thisItem;
-                //if (thisItem != "") // && thisItem != "")
-                //{
-                    thisToken.Part = thisToken.ParseState.thisItem;
-                    if (thisToken.Part != null)
-                    {
-                        // thisToken.Part = thisToken.Part.Trim();
-                        thisContinuedParseState = thisToken.ParseState;
-                        tokens.Add(thisToken);
+            VerilogParseState BeginLineParseState(VerilogParseState priorState) {
+                VerilogParseState state = priorState;
 
-                        thisToken = new VerilogToken(thisToken.ParseState.thisChar);
-                        thisToken.ParseState = thisContinuedParseState;
-                    }
-                    thisToken.ParseState.thisItem = thisToken.ParseState.thisChar; // start building a new token with the current, non-delimiter character, will be used to determine context in VerilogTokenContextFromString
-                //}
+                // Preserve prior-line parse context, but do not carry the prior token
+                // text or character/delimiter bookkeeping into this line. If thisItem
+                // is carried across, the first token on the new line is duplicated
+                // from the prior line, curLoc advances too far, and highlighted spans
+                // shift by one character.
+                state.thisItem = string.Empty;
+                state.thisIndex = 0;
+                state.IsNewDelimitedSegment = false;
+                state.priorChar = '\0';
+                state.priorValue = '\0';
+                state.priorDelimiter = '\0';
+                state.thisCharIsDelimiter = false;
+                state.priorCharIsDelimiter = false;
+                state.thisCharIsEndingDelimiter = false;
+                state.priorCharIsIsEndingDelimiter = false;
+                state.IsBuildingEmbeddedSpaceItem = false;
+                state.IsBuildingNumber = false;
+                state.HasRadix = false;
+                state.HasConstValue = false;
+                state.NumberStringValue = string.Empty;
+
+                return state;
             }
 
-            thisToken.ParseState = priorToken.ParseState; // when starting, use the priorToken parseState that wouldhave come from the prior line in the span
+            // AddToken - appends the current token part to the array and create a new thisToken to build.
+            // reminder that here we are only splitting text into token items.
+            // See VerilogTokenTagger for actually setting the context (e.g. color) of  each token item.
+            //
+            void AddToken() {
+                thisToken.Part = thisToken.ParseState.thisItem;
+                if (!string.IsNullOrEmpty(thisToken.Part)) {
+                    // thisToken.Part = thisToken.Part.Trim();
+                    thisContinuedParseState = thisToken.ParseState;
+                    tokens.Add(thisToken);
 
-            for (int i = 0; i < theString.Length; i++)
-            {
+                    thisToken = new VerilogToken(thisToken.ParseState.thisChar.ToString());
+                    thisToken.ParseState = thisContinuedParseState;
+                }
+                thisToken.ParseState.thisItem = (thisToken.ParseState.thisChar == '\0') ? string.Empty : thisToken.ParseState.thisChar.ToString(); // start building a new token with the current, non-delimiter character, will be used to determine context in VerilogTokenContextFromString
+            }
+
+            // Start this line with the prior-line context, but without stale
+            // token text/delimiter state from the previous line.
+            thisToken.ParseState = BeginLineParseState(priorToken.ParseState);
+
+            for (int i = 0; i < theString.Length; i++) {
                 thisToken.ParseState.thisIndex = i;
-                thisToken.ParseState.thisChar = theString.Substring(i, 1); // note setting this values triggers ParseState attribute assignments
+                thisToken.ParseState.thisChar = theString[i]; // note setting this values triggers ParseState attribute assignments
 
-                if (thisToken.ParseState.IsNewDelimitedSegment)
-                {
-                    // anytime a delimiter is encountered, we start a new text segment 
+                if (thisToken.ParseState.IsNewDelimitedSegment) {
+                    // anytime a delimiter is encountered, we start a new text segment
                     // note the delimiter itself is in a colorizable segment
 
                     // there's a new delimiter, so add the current item and prep for the next one
                     AddToken();
 
-                    //VerilogToken old = thisToken;
-
                     // once the ParseState is configured (above, when assigning thisChar), set the context of the item
                     thisToken.SetContext(); // TODO do we really need this? context is already set
                     // at the end of each loop, set the prior values
-
-                    //if (old.Context != thisToken.Context)
-                    //{
-                    //    old.Context = thisToken.Context;
-                    //}
                     thisToken.ParseState.SetPriorValues();
                 } // end of for loop look at each char
             }

@@ -1,0 +1,33 @@
+{
+    "SchemaVersion":  3,
+    "RunName":  "all-testfiles",
+    "ExtensionVersion":  "0.4.0.0",
+    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\EmptyFile.v",
+    "FileRelativePath":  "TestFiles\\EmptyFile.v",
+    "ContentType":  "verilog",
+    "SnapshotLength":  0,
+    "SnapshotVersion":  2,
+    "TextSha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "Errors":  [
+
+               ],
+    "Classifications":  [
+
+                        ],
+    "Tags":  [
+
+             ],
+    "Tokens":  [
+
+               ],
+    "Symbols":  [
+
+                ],
+    "ProcessingTime":  {
+                           "SchemaVersion":  2,
+                           "ElapsedBucket":  "10-14s",
+                           "Index":  13,
+                           "Count":  53,
+                           "Status":  "Completed"
+                       }
+}

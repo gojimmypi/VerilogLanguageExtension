@@ -1,4 +1,4 @@
-﻿//***************************************************************************
+//***************************************************************************
 //
 //    Copyright (c) Microsoft Corporation. All rights reserved.
 //    This code is licensed under the Visual Studio SDK license terms.
@@ -32,6 +32,14 @@ namespace VerilogLanguage
         private IBufferTagAggregatorFactoryService aggService = null;
 
         public IAsyncQuickInfoSource TryCreateQuickInfoSource(ITextBuffer textBuffer) {
+            if (textBuffer == null || aggService == null) {
+                return null;
+            }
+
+            // Return a fresh QuickInfo source. The source owns its tag aggregator and
+            // disposes it when VS disposes the source. The shared token tagger intentionally
+            // does not implement IDisposable, so disposing this temporary aggregator cannot
+            // poison the singleton token tagger used by classification and later hovers.
             return new VerilogAsyncQuickInfoSource(
                 textBuffer,
                 aggService.CreateTagAggregator<VerilogTokenTag>(textBuffer));
@@ -44,7 +52,7 @@ namespace VerilogLanguage
         private readonly ITextBuffer _buffer;
         private bool _disposed;
 
-        private static readonly IDictionary<VerilogToken.VerilogTokenTypes, string> VerilogKeywordHoverText = new Dictionary<VerilogToken.VerilogTokenTypes, string>
+        internal static readonly IDictionary<VerilogToken.VerilogTokenTypes, string> VerilogKeywordHoverText = new Dictionary<VerilogToken.VerilogTokenTypes, string>
         {
             // description text thanks: https://www.xilinx.com/support/documentation/sw_manuals/xilinx11/ite_r_verilog_reserved_words.htm
             [VerilogToken.VerilogTokenTypes.Verilog_always] = "An always represents a block of code in a design.",
@@ -52,8 +60,8 @@ namespace VerilogLanguage
             [VerilogToken.VerilogTokenTypes.Verilog_automatic] = "The Verilog reserved word automatic is used in task and function declarations to maximize memory space.",
             [VerilogToken.VerilogTokenTypes.Verilog_begin] = "A begin-end block is a means of grouping two or more procedural assignments together so that they act like a single group of sequential statements.",
             [VerilogToken.VerilogTokenTypes.Verilog_case] = "The case reserved word is used in case statements. The case statement is a multiway decision statement that tests whether an expression matches one of a number of other expressions and branches accordingly.",
-            [VerilogToken.VerilogTokenTypes.Verilog_casex] = "The casex reserved word is a type of case statement provided to allow handling of don’t-care conditions in the case comparisons. Casex treats both high-impedance (x and z) values as don’t-cares.",
-            [VerilogToken.VerilogTokenTypes.Verilog_casez] = "The casez reserved word is a type of case statement provided to allow handling of don’t-care conditions in the case comparisons. Casez treats high-impedance (z) values as don’t-cares.",
+            [VerilogToken.VerilogTokenTypes.Verilog_casex] = "The casex reserved word is a type of case statement provided to allow handling of don't-care conditions in the case comparisons. Casex treats both high-impedance (x and z) values as don't-cares.",
+            [VerilogToken.VerilogTokenTypes.Verilog_casez] = "The casez reserved word is a type of case statement provided to allow handling of don't-care conditions in the case comparisons. Casez treats high-impedance (z) values as don't-cares.",
             [VerilogToken.VerilogTokenTypes.Verilog_cell] = "The term cell indicates a specific library element to use and is used only inside of a configuration statement.",
             [VerilogToken.VerilogTokenTypes.Verilog_config] = "The term config defines a block of code that allows the use of a specific library element for a particular instantiation.",
             [VerilogToken.VerilogTokenTypes.Verilog_deassign] = "The deassign statement is used to end a procedural continuous assignment.",
@@ -94,9 +102,9 @@ namespace VerilogLanguage
             [VerilogToken.VerilogTokenTypes.Verilog_library] = "A logical collection of design elements. The term library is used only in the config block.",
             [VerilogToken.VerilogTokenTypes.Verilog_localparam] = "Local parameters are identical to parameters, but cannot be directly modified with a defparam statement. A localparam can be assigned the value of parameter constants, and can be indirectly refined from outside the module. A localparam cannot be used within the module port parameter list.",
             [VerilogToken.VerilogTokenTypes.Verilog_macromodule] = "The macromodule reserved word can be used interchangeably with the reserved word module. An implementation can choose to treat module definitions beginning with the macromodule reserved word differently.",
-            [VerilogToken.VerilogTokenTypes.Verilog_module] = "The module declaration is the only design unit in Verilog. It describes both a design’s interface to other designs in the same environment, and its functional composition.",
+            [VerilogToken.VerilogTokenTypes.Verilog_module] = "The module declaration is the only design unit in Verilog. It describes both a design's interface to other designs in the same environment, and its functional composition.",
             [VerilogToken.VerilogTokenTypes.Verilog_negedge] = "Value changes on nets and registers can be used as events to trigger the execution of a statement. This is known as detecting an implicit event. The event can be based on the direction of the change towards the value 1 (posedge) or towards the value 0 (negedge).",
-            [VerilogToken.VerilogTokenTypes.Verilog_noshowcancelled] = "Under certain simulation conditions the trailing edge of a pulse and be scheduled before the leading edge of the pulse. This discrepancy can be noted with the use of the showcanceled in which case the simulation would show an unknown (’X’) during the time. The term noshowcanceled puts the simulator in the default mode by ignoring the condition.",
+            [VerilogToken.VerilogTokenTypes.Verilog_noshowcancelled] = "Under certain simulation conditions the trailing edge of a pulse and be scheduled before the leading edge of the pulse. This discrepancy can be noted with the use of the showcanceled in which case the simulation would show an unknown (`X`) during the time. The term noshowcanceled puts the simulator in the default mode by ignoring the condition.",
             [VerilogToken.VerilogTokenTypes.Verilog_output] = "The reserved word output is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y.",
             [VerilogToken.VerilogTokenTypes.Verilog_parameter] = "Parameters are constants that can be modified with the defparam statement or through parameter passing in the module instance statement. Parameters are local to the module in which they have been declared.",
             [VerilogToken.VerilogTokenTypes.Verilog_posedge] = "Value changes on nets and registers can be used as events to trigger the execution of a statement. This is known as detecting an implicit event. The event can be based on the direction of the change towards the value 1 (posedge) or towards the value 0 (negedge).",
@@ -111,7 +119,7 @@ namespace VerilogLanguage
             [VerilogToken.VerilogTokenTypes.Verilog_signed] = "Declare reg variables and all net data types using the reserved word signed. The signed reserved word can also be placed on module port declarations. When either the date type or the port is declared signed, the other inherits the property of the signed data type or port. Note Signed operations can be performed with vectors of any size.",
             [VerilogToken.VerilogTokenTypes.Verilog_specify] = "The specify reserved word opens a specify block. Specify blocks can be used to describe various paths across the module, assign delays to those paths, and perform timing checks to ensure that events occurring at the module inputs satisfy the timing constraints of the device described by the module.",
             [VerilogToken.VerilogTokenTypes.Verilog_specparam] = "The reserved word specparam declares parameters within specify blocks called specify parameters (specparams), to distinguish them from module parameters.",
-            [VerilogToken.VerilogTokenTypes.Verilog_strength] = "The reserved word strength specifies drive strength for a gate instance. You can specify the output drive strengths for both 0 and 1 values when you instantiate a gate. When you declare drive strengths, you must specify both the 1 and 0 strengths unless the instance is a pulldown or pullup gate. When you don’t specify strengths, the defaults are strong1, and strong0.",
+            [VerilogToken.VerilogTokenTypes.Verilog_strength] = "The reserved word strength specifies drive strength for a gate instance. You can specify the output drive strengths for both 0 and 1 values when you instantiate a gate. When you declare drive strengths, you must specify both the 1 and 0 strengths unless the instance is a pulldown or pullup gate. When you don't specify strengths, the defaults are strong1, and strong0.",
             [VerilogToken.VerilogTokenTypes.Verilog_table] = "Not Supported in Synthesis: The reserved word table begins a state table. State tables define the behavior of a UDP.",
             [VerilogToken.VerilogTokenTypes.Verilog_task] = "The task reserved word opens a task statement. You may define procedures, or tasks that allow you to execute the same code from many different places in your description. Tasks are also useful in breaking up large procedures into smaller, more manageable blocks. Tasks may return more than one value and may contain timing controls. You can disable tasks in the same manner as named blocks.",
             [VerilogToken.VerilogTokenTypes.Verilog_tri] = "Tri nets connect elements. The net-type tri is identical in syntax and function to the net-type wire. A tri net-type can be used where multiple drivers drive a net.",
@@ -154,8 +162,8 @@ namespace VerilogLanguage
         public Task<QuickInfoItem> GetQuickInfoItemAsync(
             IAsyncQuickInfoSession session,
             CancellationToken cancellationToken) {
-            if (_disposed) {
-                throw new ObjectDisposedException(nameof(VerilogAsyncQuickInfoSource));
+            if (_disposed || cancellationToken.IsCancellationRequested || session == null) {
+                return Task.FromResult<QuickInfoItem>(null);
             }
 
             SnapshotPoint? triggerPoint = session.GetTriggerPoint(_buffer.CurrentSnapshot);
@@ -164,55 +172,47 @@ namespace VerilogLanguage
             }
 
             SnapshotPoint trigger = triggerPoint.Value;
-            SnapshotSpan probeSpan = new SnapshotSpan(trigger, 0);
+            ITextSnapshot snapshot = trigger.Snapshot;
+            if (snapshot == null || snapshot.Length == 0) {
+                return Task.FromResult<QuickInfoItem>(null);
+            }
 
-            foreach (IMappingTagSpan<VerilogTokenTag> curTag in _aggregator.GetTags(probeSpan)) {
+            int probePosition = trigger.Position;
+            if (probePosition >= snapshot.Length) {
+                probePosition = snapshot.Length - 1;
+            }
+            if (probePosition < 0) {
+                return Task.FromResult<QuickInfoItem>(null);
+            }
+
+            SnapshotSpan probeSpan = new SnapshotSpan(snapshot, probePosition, 1);
+            List<IMappingTagSpan<VerilogTokenTag>> tags;
+            try {
+                tags = _aggregator.GetTags(probeSpan).ToList();
+            }
+            catch (Exception ex) {
+                System.Diagnostics.Debug.WriteLine("VerilogAsyncQuickInfoSource.GetTags failed: " + ex.Message);
+                return Task.FromResult<QuickInfoItem>(null);
+            }
+
+            foreach (IMappingTagSpan<VerilogTokenTag> curTag in tags) {
                 cancellationToken.ThrowIfCancellationRequested();
 
-                SnapshotSpan tagSpan = curTag.Span.GetSpans(_buffer).FirstOrDefault();
-                if (tagSpan.Snapshot == null) {
+                // Normalize mapping span to the current snapshot for this buffer.
+                var spans = curTag.Span.GetSpans(_buffer.CurrentSnapshot);
+                if (spans == null || spans.Count == 0) {
                     continue;
                 }
+
+                SnapshotSpan tagSpan = spans[0];
 
                 ITrackingSpan applicableToSpan = _buffer.CurrentSnapshot.CreateTrackingSpan(
                     tagSpan,
                     SpanTrackingMode.EdgeExclusive);
 
-                if (_verilogKeywordHoverText.TryGetValue(curTag.Tag.type, out string hover)) {
+                string hover;
+                if (VerilogHoverInfo.TryGetHoverText(curTag.Tag.type, _buffer.CurrentSnapshot, tagSpan, out hover)) {
                     return Task.FromResult(new QuickInfoItem(applicableToSpan, hover));
-                }
-
-                // Variable and constant hover logic (ported from old AugmentQuickInfoSession)
-                string thisHoverKey = tagSpan.GetText();
-                if (!string.IsNullOrWhiteSpace(thisHoverKey)) {
-                    ITextSnapshotLine lineInfo = tagSpan.Snapshot.GetLineFromPosition(tagSpan.Start.Position);
-
-                    int thisLine = lineInfo.LineNumber;
-                    int thisPosition = tagSpan.Start.Position - lineInfo.Extent.Start.Position;
-
-                    string thisScopeName = VerilogGlobals.TextModuleName(thisLine, thisPosition);
-
-                    if (string.IsNullOrWhiteSpace(thisScopeName)) {
-                        thisScopeName = VerilogGlobals.SCOPE_CONST;
-                    }
-
-                    Dictionary<string, Dictionary<string, string>> hoverDb = VerilogGlobals.VerilogVariableHoverText;
-
-                    if (!hoverDb.ContainsKey(thisScopeName)) {
-                        hoverDb.Add(thisScopeName, new Dictionary<string, string>());
-                    }
-
-                    if (hoverDb[thisScopeName].TryGetValue(thisHoverKey, out string variableHover)) {
-                        return Task.FromResult(new QuickInfoItem(applicableToSpan, variableHover));
-                    }
-
-                    if (hoverDb.TryGetValue(VerilogGlobals.SCOPE_CONST, out Dictionary<string, string> constMap)) {
-                        if (constMap != null) {
-                            if (constMap.TryGetValue(thisHoverKey, out string constHover)) {
-                                return Task.FromResult(new QuickInfoItem(applicableToSpan, constHover));
-                            }
-                        }
-                    }
                 }
 
             }
@@ -221,9 +221,241 @@ namespace VerilogLanguage
         }
 
         public void Dispose() {
+            if (_disposed) {
+                return;
+            }
+
             _disposed = true;
+
+            IDisposable disposableAggregator = _aggregator as IDisposable;
+            if (disposableAggregator != null) {
+                disposableAggregator.Dispose();
+            }
+        }
+    }
+
+    internal static class VerilogHoverInfo
+    {
+        internal static bool TryGetHoverText(
+            VerilogToken.VerilogTokenTypes tokenType,
+            ITextSnapshot snapshot,
+            SnapshotSpan tagSpan,
+            out string hoverText) {
+
+            hoverText = null;
+
+            string keywordHover;
+            if (VerilogAsyncQuickInfoSource.VerilogKeywordHoverText.TryGetValue(tokenType, out keywordHover)) {
+                hoverText = keywordHover;
+                return true;
+            }
+
+            return TryGetVariableHoverText(snapshot, tagSpan, out hoverText);
+        }
+
+        private static bool IsVerilogIdentifierContinuation(char c) {
+            return char.IsLetterOrDigit(c) || c == '_' || c == '$';
+        }
+
+        private static bool IsVerilogIdentifierText(string text) {
+            if (string.IsNullOrEmpty(text)) {
+                return false;
+            }
+
+            if (!(char.IsLetter(text[0]) || text[0] == '_')) {
+                return false;
+            }
+
+            for (int i = 1; i < text.Length; i++) {
+                if (!IsVerilogIdentifierContinuation(text[i])) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private static bool IsPreprocessorMacroContext(ITextSnapshotLine lineInfo, int column, string lookupText) {
+            if (lineInfo == null || string.IsNullOrEmpty(lookupText)) {
+                return false;
+            }
+
+            string lineText = lineInfo.GetText();
+            if (column < 0 || column > lineText.Length) {
+                return false;
+            }
+
+            string prefixText = lineText.Substring(0, column);
+            string trimmedPrefix = prefixText.Trim();
+
+            if (trimmedPrefix.EndsWith("`define", StringComparison.Ordinal) ||
+                trimmedPrefix.EndsWith("`ifdef", StringComparison.Ordinal) ||
+                trimmedPrefix.EndsWith("`ifndef", StringComparison.Ordinal) ||
+                trimmedPrefix.EndsWith("`elsif", StringComparison.Ordinal) ||
+                trimmedPrefix.EndsWith("`undef", StringComparison.Ordinal)) {
+                return IsVerilogIdentifierText(lookupText);
+            }
+
+            return false;
+        }
+
+        private static bool TryFindActiveFunctionName(ITextSnapshot snapshot, int lineNumber, out string functionName) {
+            functionName = string.Empty;
+
+            if (snapshot == null || lineNumber < 0) {
+                return false;
+            }
+
+            int lastLine = Math.Min(lineNumber, snapshot.LineCount - 1);
+            for (int i = lastLine; i >= 0; i--) {
+                string lineText = snapshot.GetLineFromLineNumber(i).GetText();
+
+                if (VerilogGlobals.IsEndFunctionLineText(lineText)) {
+                    return false;
+                }
+
+                if (VerilogGlobals.TryGetFunctionNameFromLineText(lineText, out functionName)) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool TryFindActiveTaskName(ITextSnapshot snapshot, int lineNumber, out string taskName) {
+            taskName = string.Empty;
+
+            if (snapshot == null || lineNumber < 0) {
+                return false;
+            }
+
+            int lastLine = Math.Min(lineNumber, snapshot.LineCount - 1);
+            for (int i = lastLine; i >= 0; i--) {
+                string lineText = snapshot.GetLineFromLineNumber(i).GetText();
+
+                if (VerilogGlobals.IsEndTaskLineText(lineText)) {
+                    return false;
+                }
+
+                if (VerilogGlobals.TryGetTaskNameFromLineText(lineText, out taskName)) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        internal static bool TryGetVariableHoverText(
+            ITextSnapshot snapshot,
+            SnapshotSpan tagSpan,
+            out string hoverText) {
+
+            hoverText = null;
+
+            string thisHoverKey = tagSpan.GetText();
+            if (string.IsNullOrWhiteSpace(thisHoverKey)) {
+                return false;
+            }
+
+            ITextSnapshot spanSnapshot = snapshot ?? tagSpan.Snapshot;
+            if (spanSnapshot == null) {
+                return false;
+            }
+
+            ITextSnapshotLine lineInfo = spanSnapshot.GetLineFromPosition(tagSpan.Start.Position);
+
+            int thisLine = lineInfo.LineNumber;
+            int thisPosition = tagSpan.Start.Position - lineInfo.Extent.Start.Position;
+
+            string thisFile = VerilogGlobals.GetDocumentPath(spanSnapshot);
+            if (string.IsNullOrEmpty(thisFile)) {
+                return false;
+            }
+
+            /* QuickInfo must not fall back to stale or active-global hover data. The active globals can
+             * belong to a different open file, and stale parse data can describe a previous snapshot. */
+            if (VerilogGlobals.ParseStatusController.NeedReparse(thisFile) ||
+                VerilogGlobals.ParseStatusController.IsReparsing(thisFile)) {
+                return false;
+            }
+
+            VerilogGlobals.ParseDataSnapshot parseData;
+            if (!VerilogGlobals.TryGetParseData(thisFile, spanSnapshot.Version.VersionNumber, false, out parseData)) {
+                return false;
+            }
+
+            string thisScopeName = parseData.TextModuleName(thisLine, thisPosition);
+            if (string.IsNullOrWhiteSpace(thisScopeName)) {
+                thisScopeName = VerilogGlobals.SCOPE_CONST;
+            }
+
+            Dictionary<string, Dictionary<string, string>> hoverDb = parseData.VerilogVariableHoverText;
+            if (hoverDb == null) {
+                return false;
+            }
+
+            string activeFunctionName;
+            Dictionary<string, string> functionScopeMap;
+            string functionVariableHover;
+            if (IsVerilogIdentifierText(thisHoverKey) &&
+                TryFindActiveFunctionName(spanSnapshot, thisLine, out activeFunctionName) &&
+                hoverDb.TryGetValue(VerilogGlobals.FunctionLocalScopeName(thisScopeName, activeFunctionName), out functionScopeMap) &&
+                functionScopeMap != null &&
+                functionScopeMap.TryGetValue(thisHoverKey, out functionVariableHover)) {
+                hoverText = functionVariableHover;
+                return true;
+            }
+
+            string activeTaskName;
+            Dictionary<string, string> taskScopeMap;
+            string taskVariableHover;
+            if (IsVerilogIdentifierText(thisHoverKey) &&
+                TryFindActiveTaskName(spanSnapshot, thisLine, out activeTaskName) &&
+                hoverDb.TryGetValue(VerilogGlobals.TaskLocalScopeName(thisScopeName, activeTaskName), out taskScopeMap) &&
+                taskScopeMap != null &&
+                taskScopeMap.TryGetValue(thisHoverKey, out taskVariableHover)) {
+                hoverText = taskVariableHover;
+                return true;
+            }
+
+            Dictionary<string, string> scopeMap;
+            string variableHover;
+            if (hoverDb.TryGetValue(thisScopeName, out scopeMap) &&
+                scopeMap != null &&
+                scopeMap.TryGetValue(thisHoverKey, out variableHover)) {
+                hoverText = variableHover;
+                return true;
+            }
+
+            Dictionary<string, string> constMap;
+            string constHover;
+            if (hoverDb.TryGetValue(VerilogGlobals.SCOPE_CONST, out constMap) &&
+                constMap != null &&
+                constMap.TryGetValue(thisHoverKey, out constHover)) {
+                hoverText = constHover;
+                return true;
+            }
+
+            bool isBacktickMacroReference = thisHoverKey.StartsWith("`", StringComparison.Ordinal) && thisHoverKey.Length > 1;
+            bool isDirectiveMacroOperand = IsPreprocessorMacroContext(lineInfo, thisPosition, thisHoverKey);
+
+            if (isBacktickMacroReference || isDirectiveMacroOperand) {
+                string macroHoverKey = thisHoverKey;
+                if (macroHoverKey.StartsWith("`", StringComparison.Ordinal)) {
+                    macroHoverKey = macroHoverKey.Substring(1);
+                }
+
+                Dictionary<string, string> macroMap;
+                string macroHover;
+                if (hoverDb.TryGetValue(VerilogGlobals.SCOPE_MACRO, out macroMap) &&
+                    macroMap != null &&
+                    macroMap.TryGetValue(macroHoverKey, out macroHover)) {
+                    hoverText = macroHover;
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
-
-

@@ -1,7 +1,7 @@
 input wire d1;
 
-module wow( 
-           input wire a    
+module wow(
+           input wire a
          );
 
     parameter d1 = 24;
@@ -9,8 +9,8 @@ module wow(
 	a = a + 1;
 endmodule
 
-module wow2( 
-           input wire a2    
+module wow2(
+           input wire a2
          );
 
     parameter d1 = 24;
@@ -41,5 +41,4 @@ module bcd8_increment (
 	end
 	d = d + 1;
 	din = 5;
-endmodule 
- 
+endmodule

@@ -1,4 +1,4 @@
-﻿//***************************************************************************
+//***************************************************************************
 //
 //    Copyright (c) Microsoft Corporation. All rights reserved.
 //    This code is licensed under the Visual Studio SDK license terms.
@@ -12,6 +12,8 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Input;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.Language.Intellisense;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
@@ -48,18 +50,14 @@ namespace VSLTK.Intellisense
 
         #region IIntellisenseController Members
 
-        public void ConnectSubjectBuffer(ITextBuffer subjectBuffer)
-        {
+        public void ConnectSubjectBuffer(ITextBuffer subjectBuffer) {
         }
 
-        public void DisconnectSubjectBuffer(ITextBuffer subjectBuffer)
-        {
+        public void DisconnectSubjectBuffer(ITextBuffer subjectBuffer) {
         }
 
-        public void Detach(ITextView textView)
-        {
-            if (_textView == textView)
-            {
+        public void Detach(ITextView textView) {
+            if (_textView == textView) {
                 _textView.MouseHover -= OnTextViewMouseHover;
                 _textView = null;
             }
@@ -79,16 +77,21 @@ namespace VSLTK.Intellisense
             }
 
             string thisFile = VerilogLanguage.VerilogGlobals.GetDocumentPath(_textView.TextSnapshot);
-            if (VerilogGlobals.ParseStatusController.NeedReparse(thisFile)) // ensure the dictionary item exists for the ParseStatus of this file and check if it is time to reparse
-            {
-                if (_subjectBuffers.Count == 1)
+            if (!string.IsNullOrEmpty(thisFile)) {
+                try {
+                    if (VerilogGlobals.ParseStatusController.NeedReparse(thisFile)) // ensure the dictionary item exists for the ParseStatus of this file and check if it is time to reparse
                     {
-                    VerilogLanguage.VerilogGlobals.Reparse(_subjectBuffers[0], thisFile);
+                        if (_subjectBuffers != null && _subjectBuffers.Count == 1) {
+                            VerilogLanguage.VerilogGlobals.Reparse(_subjectBuffers[0], thisFile);
+                        }
+                        else {
+                            // how do we end up with multiple buffers?
+                            // TODO - handle this?
+                        }
+                    }
                 }
-                else
-                {
-                    // how do we end up with multiple buffers?
-                    // TODO - handle this?
+                catch (Exception ex) {
+                    System.Diagnostics.Debug.WriteLine("TemplateQuickInfoController reparse check failed: " + ex.Message);
                 }
             }
 
@@ -102,8 +105,12 @@ namespace VSLTK.Intellisense
                 PointTrackingMode.Positive);
 
             if (!_componentContext.QuickInfoBroker.IsQuickInfoActive(_textView)) {
-                // Fire-and-forget is OK here; VS manages the async session lifecycle.
-                _ = _componentContext.QuickInfoBroker.TriggerQuickInfoAsync(_textView, triggerPoint);
+                Task quickInfoTask = _componentContext.QuickInfoBroker.TriggerQuickInfoAsync(_textView, triggerPoint);
+                _ = quickInfoTask.ContinueWith(
+                    task => System.Diagnostics.Debug.WriteLine("TriggerQuickInfoAsync failed: " + task.Exception.GetBaseException().Message),
+                    CancellationToken.None,
+                    TaskContinuationOptions.OnlyOnFaulted,
+                    TaskScheduler.Default);
             }
         }
 
@@ -114,8 +121,7 @@ namespace VSLTK.Intellisense
         /// <summary>
         /// get mouse location onscreen. Used to determine what word the cursor is currently hovering over
         /// </summary>
-        private SnapshotPoint? GetMousePosition(SnapshotPoint topPosition)
-        {
+        private SnapshotPoint? GetMousePosition(SnapshotPoint topPosition) {
             // Map this point down to the appropriate subject buffer.
 
             return _textView.BufferGraph.MapDownToFirstMatch

@@ -1,4 +1,4 @@
-﻿//***************************************************************************
+//***************************************************************************
 //
 //    Copyright (c) Microsoft Corporation. All rights reserved.
 //    This code is licensed under the Visual Studio SDK license terms.
@@ -47,8 +47,7 @@ namespace VerilogLanguage
         [Import]
         ICompletionBroker CompletionBroker = null;
 
-        public void VsTextViewCreated(IVsTextView textViewAdapter)
-        {
+        public void VsTextViewCreated(IVsTextView textViewAdapter) {
             IWpfTextView view = AdaptersFactory.GetWpfTextView(textViewAdapter);
             Debug.Assert(view != null);
 
@@ -64,8 +63,7 @@ namespace VerilogLanguage
     {
         ICompletionSession _currentSession;
 
-        public CommandFilter(IWpfTextView textView, ICompletionBroker broker)
-        {
+        public CommandFilter(IWpfTextView textView, ICompletionBroker broker) {
             _currentSession = null;
 
             TextView = textView;
@@ -76,21 +74,38 @@ namespace VerilogLanguage
         public ICompletionBroker Broker { get; private set; }
         public IOleCommandTarget Next { get; set; }
 
-        private char GetTypeChar(IntPtr pvaIn)
-        {
+        private static bool CommandMayEditBuffer(VSConstants.VSStd2KCmdID commandId) {
+            switch (commandId) {
+                case VSConstants.VSStd2KCmdID.TYPECHAR:
+                case VSConstants.VSStd2KCmdID.BACKSPACE:
+                case VSConstants.VSStd2KCmdID.RETURN:
+                case VSConstants.VSStd2KCmdID.TAB:
+                    return true;
+            }
+
+            return false;
+        }
+
+        private void MarkCurrentFileForReparse() {
+            string thisFile = VerilogLanguage.VerilogGlobals.GetDocumentPath(TextView.TextSnapshot);
+            if (!string.IsNullOrEmpty(thisFile)) {
+                VerilogGlobals.ParseStatusController.NeedReparse_SetValue(thisFile, true);
+            }
+        }
+
+        private char GetTypeChar(IntPtr pvaIn) {
             return (char)(ushort)Marshal.GetObjectForNativeVariant(pvaIn);
         }
 
-        public int Exec(ref Guid pguidCmdGroup, uint nCmdID, uint nCmdexecopt, IntPtr pvaIn, IntPtr pvaOut)
-        {
+        public int Exec(ref Guid pguidCmdGroup, uint nCmdID, uint nCmdexecopt, IntPtr pvaIn, IntPtr pvaOut) {
             bool handled = false;
             int hresult = VSConstants.S_OK;
 
             /*
-             *  hack alert! this sets the global flag that the buffer needs to be reparsed.
-             * we typically get here when multiple files are opened, and the tab for a different
-             * file is clicked on. The global bufferAttributes does not know which file is
-             * being viewed. TODO - come up with something proper and more graceful.
+             *  Older versions marked the file as needing reparse for every VSStd2K command.
+             *  That kept parse state fresh, but it was noisy. BufferChanged now remains the
+             *  primary source of truth for real text edits; this command filter only marks
+             *  the file for the small set of editor commands it handles directly.
              *
              * we'll preparse the buffer upon OnTextViewMouseHover in the QuickInfoController
              *
@@ -105,19 +120,17 @@ namespace VerilogLanguage
 
             // For non-editor command groups, do not touch TextView; just pass through.
             // This avoids breaking commands coming from tool windows (e.g., Copy in GitHub/Git changes pane).
-            if (pguidCmdGroup != VSConstants.VSStd2K)
-            {
-                if (Next != null)
-                {
+            if (pguidCmdGroup != VSConstants.VSStd2K) {
+                if (Next != null) {
                     /* NOTICE: although the IDE will indicate:
                      *
                      *  warning VSTHRD010: Accessing "IOleCommandTarget" should only be done on the main thread.
                      *  Call Microsoft.VisualStudio.Shell.ThreadHelper.ThrowIfNotOnUIThread() first
                      *
                      *  here, we DO want to call this Exec, otherwise copy from left GitHub diff pane does nothing. */
-                    #pragma warning disable VSTHRD010
+#pragma warning disable VSTHRD010
                     return Next.Exec(pguidCmdGroup, nCmdID, nCmdexecopt, pvaIn, pvaOut);
-                    #pragma warning restore VSTHRD010
+#pragma warning restore VSTHRD010
                 }
 
                 return VSConstants.S_OK;
@@ -126,15 +139,10 @@ namespace VerilogLanguage
             // From here on we treat it as editor-related commands.
             Microsoft.VisualStudio.Shell.ThreadHelper.ThrowIfNotOnUIThread();
 
-            string thisFile = VerilogLanguage.VerilogGlobals.GetDocumentPath(TextView.TextSnapshot);
-            if (!string.IsNullOrEmpty(thisFile))
-            {
-                VerilogGlobals.ParseStatusController.NeedReparse_SetValue(thisFile, true);
-            }
+            VSConstants.VSStd2KCmdID commandId = (VSConstants.VSStd2KCmdID)nCmdID;
 
             // 1. Pre-process editor commands
-            switch ((VSConstants.VSStd2KCmdID)nCmdID)
-            {
+            switch (commandId) {
                 case VSConstants.VSStd2KCmdID.AUTOCOMPLETE:
                 case VSConstants.VSStd2KCmdID.COMPLETEWORD:
                     handled = StartSession();
@@ -154,33 +162,29 @@ namespace VerilogLanguage
             }
 
             // Pass through if we did not handle it
-            if (!handled)
-            {
-                if (Next != null)
-                {
+            if (!handled) {
+                if (Next != null) {
                     hresult = Next.Exec(pguidCmdGroup, nCmdID, nCmdexecopt, pvaIn, pvaOut);
                 }
-                else
-                {
+                else {
                     hresult = VSConstants.S_OK;
                 }
             }
 
             // Post-process only on success
-            if (ErrorHandler.Succeeded(hresult))
-            {
-                switch ((VSConstants.VSStd2KCmdID)nCmdID)
-                {
+            if (ErrorHandler.Succeeded(hresult)) {
+                if (CommandMayEditBuffer(commandId)) {
+                    MarkCurrentFileForReparse();
+                }
+
+                switch (commandId) {
                     // Keypress handler
-                    case VSConstants.VSStd2KCmdID.TYPECHAR:
-                        {
+                    case VSConstants.VSStd2KCmdID.TYPECHAR: {
                             char ch = GetTypeChar(pvaIn);
-                            if (ch == ' ')
-                            {
+                            if (ch == ' ') {
                                 StartSession();
                             }
-                            else if (_currentSession != null)
-                            {
+                            else if (_currentSession != null) {
                                 Filter();
                             }
 
@@ -199,8 +203,7 @@ namespace VerilogLanguage
         /// <summary>
         /// Narrow down the list of options as the user types input
         /// </summary>
-        private void Filter()
-        {
+        private void Filter() {
             if (_currentSession == null)
                 return;
 
@@ -211,8 +214,7 @@ namespace VerilogLanguage
         /// <summary>
         /// Cancel the auto-complete session, and leave the text unmodified
         /// </summary>
-        bool Cancel()
-        {
+        bool Cancel() {
             if (_currentSession == null)
                 return false;
 
@@ -224,18 +226,15 @@ namespace VerilogLanguage
         /// <summary>
         /// Auto-complete text using the specified token
         /// </summary>
-        bool Complete(bool force)
-        {
+        bool Complete(bool force) {
             if (_currentSession == null)
                 return false;
 
-            if (!_currentSession.SelectedCompletionSet.SelectionStatus.IsSelected && !force)
-            {
+            if (!_currentSession.SelectedCompletionSet.SelectionStatus.IsSelected && !force) {
                 _currentSession.Dismiss();
                 return false;
             }
-            else
-            {
+            else {
                 _currentSession.Commit();
                 return true;
             }
@@ -244,21 +243,18 @@ namespace VerilogLanguage
         /// <summary>
         /// Display list of potential tokens
         /// </summary>
-        bool StartSession()
-        {
+        bool StartSession() {
             if (_currentSession != null)
                 return false;
 
             SnapshotPoint caret = TextView.Caret.Position.BufferPosition;
             ITextSnapshot snapshot = caret.Snapshot;
 
-            if (!Broker.IsCompletionActive(TextView))
-            {
+            if (!Broker.IsCompletionActive(TextView)) {
                 // System.Diagnostics.Debug.WriteLine("OCompletion Controller NOT Broker.IsCompletionActive");
                 _currentSession = Broker.CreateCompletionSession(TextView, snapshot.CreateTrackingPoint(caret, PointTrackingMode.Positive), true);
             }
-            else
-            {
+            else {
                 // System.Diagnostics.Debug.WriteLine("OCompletion Controller Broker.IsCompletionActive");
                 _currentSession = Broker.GetSessions(TextView)[0];
             }
@@ -269,15 +265,12 @@ namespace VerilogLanguage
             return true;
         }
 
-        public int QueryStatus(ref Guid pguidCmdGroup, uint cCmds, OLECMD[] prgCmds, IntPtr pCmdText)
-        {
+        public int QueryStatus(ref Guid pguidCmdGroup, uint cCmds, OLECMD[] prgCmds, IntPtr pCmdText) {
             // this next line was suggested by the IDE, as relating to the next hresult = Next.Exec() call
             Microsoft.VisualStudio.Shell.ThreadHelper.ThrowIfNotOnUIThread();
             VerilogGlobals.PerfMon.CommandFilter_QueryStatus_Count++; // let's keep track of how many times we are here (a lot!)
-            if (pguidCmdGroup == VSConstants.VSStd2K)
-            {
-                switch ((VSConstants.VSStd2KCmdID)prgCmds[0].cmdID)
-                {
+            if (pguidCmdGroup == VSConstants.VSStd2K) {
+                switch ((VSConstants.VSStd2KCmdID)prgCmds[0].cmdID) {
                     case VSConstants.VSStd2KCmdID.AUTOCOMPLETE:
                     case VSConstants.VSStd2KCmdID.COMPLETEWORD:
                         prgCmds[0].cmdf = (uint)OLECMDF.OLECMDF_ENABLED | (uint)OLECMDF.OLECMDF_SUPPORTED;

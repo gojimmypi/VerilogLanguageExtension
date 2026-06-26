@@ -1,14 +1,26 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <MinimumVisualStudioVersion>17.0</MinimumVisualStudioVersion>
     <!-- IMPORTANT: tell VSSDK which manifest file to use (fixes VSSDK1039) -->
     <VsixManifest>source.extension.vsixmanifest</VsixManifest>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == '' And Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v18.0\VSSDK\Microsoft.VsSDK.targets')">18.0</VisualStudioVersion>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == '' And Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v17.0\VSSDK\Microsoft.VsSDK.targets')">17.0</VisualStudioVersion>
+    <!-- Design-time builds sometimes fail the Exists() checks above; give it a sane default for IntelliSense -->
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">17.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == '' And '$(VisualStudioVersion)' != ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <!-- VSSDK build integration comes from NuGet, not from Program Files
+  <PropertyGroup>
+    <VSSDKBuildToolsProps>$(NuGetPackageRoot)Microsoft.VSSDK.BuildTools\17.14.2120\build\Microsoft.VSSDK.BuildTools.props</VSSDKBuildToolsProps>
+    <VSSDKBuildToolsTargets>$(NuGetPackageRoot)Microsoft.VSSDK.BuildTools\17.14.2120\build\Microsoft.VSSDK.BuildTools.targets</VSSDKBuildToolsTargets>
+  </PropertyGroup>
+  <Import Project="$(VSSDKBuildToolsProps)" Condition="Exists('$(VSSDKBuildToolsProps)')" />
+  <Target Name="VSSDK_DIAG_NoBuildToolsProps" BeforeTargets="PrepareForBuild" Condition="!Exists('$(VSSDKBuildToolsProps)')">
+    <Message Importance="high" Text="VSSDK DIAGNOSTIC: Microsoft.VSSDK.BuildTools.props NOT FOUND at: $(VSSDKBuildToolsProps). VSCT/CTMENU will NOT build until NuGet restore succeeds." />
+  </Target>
+ -->
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -25,7 +37,10 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <FileAlignment>512</FileAlignment>
-    <GeneratePkgDefFile>false</GeneratePkgDefFile>
+    <GeneratePkgDefFile>true</GeneratePkgDefFile>
+    <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
+    <IncludeAssemblyInLocalVSIXDeployment>true</IncludeAssemblyInLocalVSIXDeployment>
+    <CopyBuildOutputToOutputDirectory>true</CopyBuildOutputToOutputDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,6 +50,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <IncludeDebugSymbolsInVSIXContainer>true</IncludeDebugSymbolsInVSIXContainer>
+    <IncludeDebugSymbolsInLocalVSIXDeployment>true</IncludeDebugSymbolsInLocalVSIXDeployment>
   </PropertyGroup>
   <PropertyGroup>
     <StartAction>Program</StartAction>
@@ -48,14 +65,18 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <IncludeDebugSymbolsInVSIXContainer>false</IncludeDebugSymbolsInVSIXContainer>
+    <IncludeDebugSymbolsInLocalVSIXDeployment>false</IncludeDebugSymbolsInLocalVSIXDeployment>
   </PropertyGroup>
-  <!-- PackageReference MUST be before imports/targets -->
   <ItemGroup>
-    <PackageReference Include="Microsoft.VisualStudio.SDK" Version="17.14.40265" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.VisualStudio.SDK.Analyzers" Version="17.7.79" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.14.15" PrivateAssets="all" />
-    <!-- Removing this like technically works, but extends build time from 5 seconds to 50 seconds! TODO : why? -->
-    <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.14.2120" PrivateAssets="all" />
+    <Compile Include="SnapshotExporter\ExportSnapshotCommand.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VerilogLanguagePackage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="source.extension.vsixmanifest">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
@@ -66,20 +87,32 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <!-- PackageReference MUST be before imports/targets -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.SDK" Version="17.14.40265" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.VisualStudio.SDK.Analyzers" Version="17.7.79" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.14.15" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.14.2120" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classification\ClassificationFormat.cs" />
     <Compile Include="Classification\ClassificationType.cs" />
     <Compile Include="Classification\VerilogClassifier.cs" />
     <Compile Include="CommentHelper\CommentHelper.cs" />
-    <Compile Include="EditorClassifier\EditorClassifier1.cs" />
-    <Compile Include="EditorClassifier\EditorClassifier1ClassificationDefinition.cs" />
-    <Compile Include="EditorClassifier\EditorClassifier1Format.cs" />
-    <Compile Include="EditorClassifier\EditorClassifier1Provider.cs" />
+    <Compile Include="SnapshotExporter\GuidList.cs" />
+    <Compile Include="SnapshotExporter\PkgCmdIDList.cs" />
+    <Compile Include="SnapshotExporter\SnapshotExporter.cs" />
+    <Compile Include="SnapshotExporter\SnapshotExportOnOpen.cs" />
+    <Compile Include="SnapshotExporter\SnapshotExportSettings.cs" />
+    <Compile Include="SnapshotExporter\SnapshotModel.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Globals\BufferAttributes.cs" />
     <Compile Include="Globals\OutputWindow.cs" />
@@ -97,13 +130,12 @@
     <Compile Include="Completion\CompletionController.cs" />
     <Compile Include="Completion\CompletionSource.cs" />
     <Compile Include="Intellisense\VerilogQuickInfoSource.cs" />
-    <Compile Include="Outlining\OutliningTagger.cs" />
-    <Compile Include="Outlining\OutliningTaggerProvider.cs" />
     <Compile Include="BraceMatching\BraceMatchingTagger.cs" />
     <Compile Include="BraceMatching\BraceMatchingTaggerProvider.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Intellisense\QuickInfoController.cs" />
     <Compile Include="Intellisense\QuickInfoControllerProvider.cs" />
+    <Compile Include="Outlining\VerilogOutliningTagger.cs" />
+    <Compile Include="Outlining\VerilogOutliningTaggerProvider.cs" />
     <Compile Include="VerilogToken\VerilogTokenTag.cs" />
     <Compile Include="VerilogToken\VerilogTokenTypes.cs" />
     <Compile Include="VerilogToken\VerilogTokenTagger.cs" />
@@ -111,11 +143,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".github\workflows\build-verilog-language-extension.yml" />
+    <None Include="tools\vle-ci\Compare-Snapshots.py" />
+    <None Include="tools\vle-ci\Export-Snapshots.ps1" />
+    <None Include="tools\vle-ci\Run-LocalCI.ps1" />
+    <None Include="tools\vle-ci\expectations\issue10.expect.json" />
+    <None Include="tools\vle-ci\expectations\issue21.expect.json" />
+    <None Include="tools\vle-ci\manifests\cold-open.json" />
+    <None Include="tools\vle-ci\manifests\multi-open-forward.json" />
     <None Include="CODE_OF_CONDUCT.md" />
     <None Include="README.md" />
     <None Include="RELEASE_NOTES.md" />
     <None Include="Lattice_securelyfitz.md" />
-    <None Include="source.extension.vsixmanifest" />
     <Content Include="LICENSE.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -127,16 +165,52 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="images\" />
-    <Folder Include="Tagger\" />
+  </ItemGroup>
+  <ItemGroup>
+    <VSCTCompile Include="VerilogLanguagePackage.vsct">
+      <ResourceName>Menus.ctmenu</ResourceName>
+    </VSCTCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\SnapshotExporter.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-
-  <!-- Ensure we are not doing DLL-only builds -->
-  <Target Name="FailIfVsSdkMissing" BeforeTargets="Build">
-    <Error Condition="'$(VSToolsPath)' == '' Or !Exists('$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets')"
-          Text="Missing Microsoft.VsSDK.targets. Build from a VS developer prompt or set VisualStudioVersion/VSToolsPath." />
+  <Target Name="VSSDK_DIAG_VsSDKTargetsMissing" BeforeTargets="Build" Condition="'$(DesignTimeBuild)' != 'true' And !Exists('$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets')">
+    <Message Importance="high" Text="VSSDK DIAGNOSTIC: Microsoft.VsSDK.targets NOT FOUND at: $(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets. Result will be DLL-only (no VSIX, no CTMENU embedding)." />
   </Target>
-
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="Exists('$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets')" />
+  <!--
+  <Import Project="$(VSSDKBuildToolsTargets)" Condition="Exists('$(VSSDKBuildToolsTargets)')" />
+  <Target Name="VSSDK_DIAG_NoBuildToolsTargets" AfterTargets="PrepareForBuild" Condition="!Exists('$(VSSDKBuildToolsTargets)')">
+    <Message Importance="high" Text="VSSDK DIAGNOSTIC: Microsoft.VSSDK.BuildTools.targets NOT FOUND at: $(VSSDKBuildToolsTargets). VSCT/CTMENU embedding will NOT run." />
+  </Target>
+-->
+  <!-- Ensure we are not doing DLL-only builds
+       IMPORTANT: do not hard-fail VSSDK imports during DesignTimeBuild, or IntelliSense loses Microsoft.VisualStudio.Text types -->
+  <Target Name="FailIfVsSdkMissing" BeforeTargets="Build" Condition="'$(DesignTimeBuild)' != 'true'">
+    <Error Condition="'$(VSToolsPath)' == '' Or !Exists('$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets')" Text="Missing Microsoft.VsSDK.targets. Build from a VS developer prompt or set VisualStudioVersion/VSToolsPath." />
+  </Target>
+  <Target Name="DiagnoseVSSDKImports" BeforeTargets="Build">
+    <!-- Sdk.props
+      <Message
+          Condition="!Exists('$(VSToolsPath)\VSSDK\Microsoft.VisualStudio.Sdk.props')"
+          Importance="high"
+          Text="VSSDK DIAGNOSTIC: Microsoft.VisualStudio.Sdk.props NOT FOUND - menu resources will NOT be embedded." />
+      -->
+    <!-- Sdk.targets
+      <Message
+          Condition="!Exists('$(VSToolsPath)\VSSDK\Microsoft.VisualStudio.Sdk.targets')"
+          Importance="high"
+          Text="VSSDK DIAGNOSTIC: Microsoft.VisualStudio.Sdk.targets NOT FOUND - VSCT will compile but CTMENU will NOT be embedded." />
+      -->
+    <!-- VsSDK.targets -->
+    <Message Condition="!Exists('$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets')" Importance="high" Text="VSSDK DIAGNOSTIC: Microsoft.VsSDK.targets NOT FOUND - package/menu registration will NOT work." />
+  </Target>
+  <!--
+<Import Project="$(NuGetPackageRoot)Microsoft.VSSDK.BuildTools\17.14.2120\build\Microsoft.VSSDK.BuildTools.props"
+        Condition="Exists('$(NuGetPackageRoot)Microsoft.VSSDK.BuildTools\17.14.2120\build\Microsoft.VSSDK.BuildTools.props')" />
 
+<Import Project="$(NuGetPackageRoot)Microsoft.VSSDK.BuildTools\17.14.2120\build\Microsoft.VSSDK.BuildTools.targets"
+        Condition="Exists('$(NuGetPackageRoot)Microsoft.VSSDK.BuildTools\17.14.2120\build\Microsoft.VSSDK.BuildTools.targets')" />
+-->
 </Project>

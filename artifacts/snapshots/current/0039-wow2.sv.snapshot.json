@@ -1,0 +1,1205 @@
+{
+    "SchemaVersion":  3,
+    "RunName":  "all-testfiles",
+    "ExtensionVersion":  "0.4.0.0",
+    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\wow2.sv",
+    "FileRelativePath":  "TestFiles\\wow2.sv",
+    "ContentType":  "verilog",
+    "SnapshotLength":  158,
+    "SnapshotVersion":  2,
+    "TextSha256":  "a9b0cc53a7a84417cccdf954ca0d96c836d041ab6bc0360aeed143da18a7c3ab",
+    "Errors":  [
+
+               ],
+    "Classifications":  [
+                            {
+                                "Start":  1,
+                                "Length":  6,
+                                "Line":  2,
+                                "Column":  1,
+                                "Text":  "module",
+                                "Types":  [
+                                              "module"
+                                          ]
+                            },
+                            {
+                                "Start":  8,
+                                "Length":  8,
+                                "Line":  2,
+                                "Column":  8,
+                                "Text":  "picorv32",
+                                "Types":  [
+                                              "Variable_module"
+                                          ]
+                            },
+                            {
+                                "Start":  17,
+                                "Length":  1,
+                                "Line":  2,
+                                "Column":  17,
+                                "Text":  "(",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  20,
+                                "Length":  9,
+                                "Line":  3,
+                                "Column":  2,
+                                "Text":  "parameter",
+                                "Types":  [
+                                              "parameter"
+                                          ]
+                            },
+                            {
+                                "Start":  30,
+                                "Length":  1,
+                                "Line":  3,
+                                "Column":  12,
+                                "Text":  "[",
+                                "Types":  [
+                                              "Bracket2"
+                                          ]
+                            },
+                            {
+                                "Start":  31,
+                                "Length":  2,
+                                "Line":  3,
+                                "Column":  13,
+                                "Text":  "31",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  34,
+                                "Length":  1,
+                                "Line":  3,
+                                "Column":  16,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  35,
+                                "Length":  1,
+                                "Line":  3,
+                                "Column":  17,
+                                "Text":  "]",
+                                "Types":  [
+                                              "Bracket2"
+                                          ]
+                            },
+                            {
+                                "Start":  37,
+                                "Length":  2,
+                                "Line":  3,
+                                "Column":  19,
+                                "Text":  "P1",
+                                "Types":  [
+                                              "Variable_parameter"
+                                          ]
+                            },
+                            {
+                                "Start":  42,
+                                "Length":  9,
+                                "Line":  3,
+                                "Column":  24,
+                                "Text":  "32\u0027h 0000",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  54,
+                                "Length":  9,
+                                "Line":  4,
+                                "Column":  2,
+                                "Text":  "parameter",
+                                "Types":  [
+                                              "parameter"
+                                          ]
+                            },
+                            {
+                                "Start":  64,
+                                "Length":  1,
+                                "Line":  4,
+                                "Column":  12,
+                                "Text":  "[",
+                                "Types":  [
+                                              "Bracket2"
+                                          ]
+                            },
+                            {
+                                "Start":  65,
+                                "Length":  2,
+                                "Line":  4,
+                                "Column":  13,
+                                "Text":  "31",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  68,
+                                "Length":  1,
+                                "Line":  4,
+                                "Column":  16,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  69,
+                                "Length":  1,
+                                "Line":  4,
+                                "Column":  17,
+                                "Text":  "]",
+                                "Types":  [
+                                              "Bracket2"
+                                          ]
+                            },
+                            {
+                                "Start":  71,
+                                "Length":  2,
+                                "Line":  4,
+                                "Column":  19,
+                                "Text":  "P2",
+                                "Types":  [
+                                              "Variable_parameter"
+                                          ]
+                            },
+                            {
+                                "Start":  76,
+                                "Length":  14,
+                                "Line":  4,
+                                "Column":  24,
+                                "Text":  "32\u0027h 0000_0000",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  91,
+                                "Length":  1,
+                                "Line":  5,
+                                "Column":  1,
+                                "Text":  ")",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  94,
+                                "Length":  3,
+                                "Line":  6,
+                                "Column":  2,
+                                "Text":  "reg",
+                                "Types":  [
+                                              "reg"
+                                          ]
+                            },
+                            {
+                                "Start":  98,
+                                "Length":  1,
+                                "Line":  6,
+                                "Column":  6,
+                                "Text":  "[",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  99,
+                                "Length":  1,
+                                "Line":  6,
+                                "Column":  7,
+                                "Text":  "1",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  101,
+                                "Length":  1,
+                                "Line":  6,
+                                "Column":  9,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  102,
+                                "Length":  1,
+                                "Line":  6,
+                                "Column":  10,
+                                "Text":  "]",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  104,
+                                "Length":  9,
+                                "Line":  6,
+                                "Column":  12,
+                                "Text":  "mem_state",
+                                "Types":  [
+                                              "Variable_reg"
+                                          ]
+                            },
+                            {
+                                "Start":  116,
+                                "Length":  2,
+                                "Line":  8,
+                                "Column":  1,
+                                "Text":  "if",
+                                "Types":  [
+                                              "if"
+                                          ]
+                            },
+                            {
+                                "Start":  119,
+                                "Length":  1,
+                                "Line":  8,
+                                "Column":  4,
+                                "Text":  "(",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  120,
+                                "Length":  9,
+                                "Line":  8,
+                                "Column":  5,
+                                "Text":  "mem_state",
+                                "Types":  [
+                                              "Variable_reg"
+                                          ]
+                            },
+                            {
+                                "Start":  133,
+                                "Length":  1,
+                                "Line":  8,
+                                "Column":  18,
+                                "Text":  "2",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  138,
+                                "Length":  9,
+                                "Line":  8,
+                                "Column":  23,
+                                "Text":  "mem_state",
+                                "Types":  [
+                                              "Variable_reg"
+                                          ]
+                            },
+                            {
+                                "Start":  151,
+                                "Length":  1,
+                                "Line":  8,
+                                "Column":  36,
+                                "Text":  "3",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  152,
+                                "Length":  1,
+                                "Line":  8,
+                                "Column":  37,
+                                "Text":  ")",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            }
+                        ],
+    "Tags":  [
+                 {
+                     "Start":  1,
+                     "Length":  6,
+                     "Line":  2,
+                     "Column":  1,
+                     "Text":  "module",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_module",
+                     "HoverText":  "The module declaration is the only design unit in Verilog. It describes both a design\u0027s interface to other designs in the same environment, and its functional composition."
+                 },
+                 {
+                     "Start":  8,
+                     "Length":  8,
+                     "Line":  2,
+                     "Column":  8,
+                     "Text":  "picorv32",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_module",
+                     "HoverText":  "module picorv32 (  [31:0] P1 = 32\u0027h 0000,\r\n parameter [31:0] P2 = 32\u0027h 0000_0000)"
+                 },
+                 {
+                     "Start":  17,
+                     "Length":  1,
+                     "Line":  2,
+                     "Column":  17,
+                     "Text":  "(",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  20,
+                     "Length":  9,
+                     "Line":  3,
+                     "Column":  2,
+                     "Text":  "parameter",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_parameter",
+                     "HoverText":  "Parameters are constants that can be modified with the defparam statement or through parameter passing in the module instance statement. Parameters are local to the module in which they have been declared."
+                 },
+                 {
+                     "Start":  30,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  12,
+                     "Text":  "[",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket2",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  31,
+                     "Length":  2,
+                     "Line":  3,
+                     "Column":  13,
+                     "Text":  "31",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  34,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  16,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  35,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  17,
+                     "Text":  "]",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket2",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  37,
+                     "Length":  2,
+                     "Line":  3,
+                     "Column":  19,
+                     "Text":  "P1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_parameter",
+                     "HoverText":  "module picorv32( .. parameter [31:0] P1 = 32\u0027h 0000 .. )"
+                 },
+                 {
+                     "Start":  42,
+                     "Length":  9,
+                     "Line":  3,
+                     "Column":  24,
+                     "Text":  "32\u0027h 0000",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  "32\u0027H0000 = (32 bit Hex) 0000; 0000000000000000"
+                 },
+                 {
+                     "Start":  54,
+                     "Length":  9,
+                     "Line":  4,
+                     "Column":  2,
+                     "Text":  "parameter",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_parameter",
+                     "HoverText":  "Parameters are constants that can be modified with the defparam statement or through parameter passing in the module instance statement. Parameters are local to the module in which they have been declared."
+                 },
+                 {
+                     "Start":  64,
+                     "Length":  1,
+                     "Line":  4,
+                     "Column":  12,
+                     "Text":  "[",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket2",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  65,
+                     "Length":  2,
+                     "Line":  4,
+                     "Column":  13,
+                     "Text":  "31",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  68,
+                     "Length":  1,
+                     "Line":  4,
+                     "Column":  16,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  69,
+                     "Length":  1,
+                     "Line":  4,
+                     "Column":  17,
+                     "Text":  "]",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket2",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  71,
+                     "Length":  2,
+                     "Line":  4,
+                     "Column":  19,
+                     "Text":  "P2",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_parameter",
+                     "HoverText":  "module picorv32( .. parameter [31:0] P2 = 32\u0027h 0000_0000 .. )"
+                 },
+                 {
+                     "Start":  76,
+                     "Length":  14,
+                     "Line":  4,
+                     "Column":  24,
+                     "Text":  "32\u0027h 0000_0000",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  "32\u0027H00000000 = (32 bit Hex) 00000000; 00000000000000000000000000000000"
+                 },
+                 {
+                     "Start":  91,
+                     "Length":  1,
+                     "Line":  5,
+                     "Column":  1,
+                     "Text":  ")",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  94,
+                     "Length":  3,
+                     "Line":  6,
+                     "Column":  2,
+                     "Text":  "reg",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_reg",
+                     "HoverText":  "A reg is an abstraction of a data storage element. The reg stores a value from one assignment to the next. An assignment statement in a procedure acts as a trigger that changes the value in the data storage element. Reg data types can only be assigned inside of the procedural, initial, always blocks or when they are declared."
+                 },
+                 {
+                     "Start":  98,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  6,
+                     "Text":  "[",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  99,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  7,
+                     "Text":  "1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  101,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  9,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  102,
+                     "Length":  1,
+                     "Line":  6,
+                     "Column":  10,
+                     "Text":  "]",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  104,
+                     "Length":  9,
+                     "Line":  6,
+                     "Column":  12,
+                     "Text":  "mem_state",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  "reg [1:0] mem_state"
+                 },
+                 {
+                     "Start":  116,
+                     "Length":  2,
+                     "Line":  8,
+                     "Column":  1,
+                     "Text":  "if",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_if",
+                     "HoverText":  "Conditional logic statement. Presents a condition to be evaluated as true or false."
+                 },
+                 {
+                     "Start":  119,
+                     "Length":  1,
+                     "Line":  8,
+                     "Column":  4,
+                     "Text":  "(",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  120,
+                     "Length":  9,
+                     "Line":  8,
+                     "Column":  5,
+                     "Text":  "mem_state",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  "reg [1:0] mem_state"
+                 },
+                 {
+                     "Start":  133,
+                     "Length":  1,
+                     "Line":  8,
+                     "Column":  18,
+                     "Text":  "2",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  138,
+                     "Length":  9,
+                     "Line":  8,
+                     "Column":  23,
+                     "Text":  "mem_state",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  "reg [1:0] mem_state"
+                 },
+                 {
+                     "Start":  151,
+                     "Length":  1,
+                     "Line":  8,
+                     "Column":  36,
+                     "Text":  "3",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  152,
+                     "Length":  1,
+                     "Line":  8,
+                     "Column":  37,
+                     "Text":  ")",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 }
+             ],
+    "Tokens":  [
+                   {
+                       "Start":  1,
+                       "Length":  6,
+                       "Line":  2,
+                       "Column":  1,
+                       "Text":  "module",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  7,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  8,
+                       "Length":  8,
+                       "Line":  2,
+                       "Column":  8,
+                       "Text":  "picorv32",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  16,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  16,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  17,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  17,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  19,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  1,
+                       "Text":  "\t",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  20,
+                       "Length":  9,
+                       "Line":  3,
+                       "Column":  2,
+                       "Text":  "parameter",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  29,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  11,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  30,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  12,
+                       "Text":  "[",
+                       "Context":  "SquareBracketOpen"
+                   },
+                   {
+                       "Start":  31,
+                       "Length":  2,
+                       "Line":  3,
+                       "Column":  13,
+                       "Text":  "31",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  33,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  15,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  34,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  16,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  35,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  17,
+                       "Text":  "]",
+                       "Context":  "SquareBracketClose"
+                   },
+                   {
+                       "Start":  36,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  18,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  37,
+                       "Length":  2,
+                       "Line":  3,
+                       "Column":  19,
+                       "Text":  "P1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  39,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  21,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  40,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  22,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  41,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  23,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  42,
+                       "Length":  9,
+                       "Line":  3,
+                       "Column":  24,
+                       "Text":  "32\u0027h 0000",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  51,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  33,
+                       "Text":  ",",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  53,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  1,
+                       "Text":  "\t",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  54,
+                       "Length":  9,
+                       "Line":  4,
+                       "Column":  2,
+                       "Text":  "parameter",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  63,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  11,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  64,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  12,
+                       "Text":  "[",
+                       "Context":  "SquareBracketOpen"
+                   },
+                   {
+                       "Start":  65,
+                       "Length":  2,
+                       "Line":  4,
+                       "Column":  13,
+                       "Text":  "31",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  67,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  15,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  68,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  16,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  69,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  17,
+                       "Text":  "]",
+                       "Context":  "SquareBracketClose"
+                   },
+                   {
+                       "Start":  70,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  18,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  71,
+                       "Length":  2,
+                       "Line":  4,
+                       "Column":  19,
+                       "Text":  "P2",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  73,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  21,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  74,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  22,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  75,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  23,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  76,
+                       "Length":  14,
+                       "Line":  4,
+                       "Column":  24,
+                       "Text":  "32\u0027h 0000_0000",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  91,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  1,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  93,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  1,
+                       "Text":  "\t",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  94,
+                       "Length":  3,
+                       "Line":  6,
+                       "Column":  2,
+                       "Text":  "reg",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  97,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  5,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  98,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  6,
+                       "Text":  "[",
+                       "Context":  "SquareBracketOpen"
+                   },
+                   {
+                       "Start":  99,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  7,
+                       "Text":  "1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  100,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  8,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  101,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  9,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  102,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  10,
+                       "Text":  "]",
+                       "Context":  "SquareBracketClose"
+                   },
+                   {
+                       "Start":  103,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  11,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  104,
+                       "Length":  9,
+                       "Line":  6,
+                       "Column":  12,
+                       "Text":  "mem_state",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  113,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  21,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  116,
+                       "Length":  2,
+                       "Line":  8,
+                       "Column":  1,
+                       "Text":  "if",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  118,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  3,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  119,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  4,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  120,
+                       "Length":  9,
+                       "Line":  8,
+                       "Column":  5,
+                       "Text":  "mem_state",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  129,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  14,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  130,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  15,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  131,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  16,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  132,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  17,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  133,
+                       "Length":  2,
+                       "Line":  8,
+                       "Column":  18,
+                       "Text":  "2 ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  135,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  20,
+                       "Text":  "|",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  136,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  21,
+                       "Text":  "|",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  137,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  22,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  138,
+                       "Length":  9,
+                       "Line":  8,
+                       "Column":  23,
+                       "Text":  "mem_state",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  147,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  32,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  148,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  33,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  149,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  34,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  150,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  35,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  151,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  36,
+                       "Text":  "3",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  152,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  37,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   }
+               ],
+    "Symbols":  [
+                    {
+                        "Scope":  "picorv32",
+                        "Name":  "P1",
+                        "TokenType":  "Verilog_Variable_parameter",
+                        "HoverText":  "module picorv32( .. parameter [31:0] P1 = 32\u0027h 0000 .. )"
+                    },
+                    {
+                        "Scope":  "picorv32",
+                        "Name":  "P2",
+                        "TokenType":  "Verilog_Variable_parameter",
+                        "HoverText":  "module picorv32( .. parameter [31:0] P2 = 32\u0027h 0000_0000 .. )"
+                    },
+                    {
+                        "Scope":  "picorv32",
+                        "Name":  "picorv32",
+                        "TokenType":  "Verilog_Variable_module",
+                        "HoverText":  "module picorv32 (  [31:0] P1 = 32\u0027h 0000,\r\n parameter [31:0] P2 = 32\u0027h 0000_0000)"
+                    },
+                    {
+                        "Scope":  "picorv32",
+                        "Name":  "mem_state",
+                        "TokenType":  "Verilog_Variable_reg",
+                        "HoverText":  "reg [1:0] mem_state"
+                    },
+                    {
+                        "Scope":  "__CONST__",
+                        "Name":  "32\u0027h 0000",
+                        "TokenType":  "Verilog_Value",
+                        "HoverText":  "32\u0027H0000 = (32 bit Hex) 0000; 0000000000000000"
+                    },
+                    {
+                        "Scope":  "__CONST__",
+                        "Name":  "32\u0027h 0000_0000",
+                        "TokenType":  "Verilog_Value",
+                        "HoverText":  "32\u0027H00000000 = (32 bit Hex) 00000000; 00000000000000000000000000000000"
+                    }
+                ],
+    "ProcessingTime":  {
+                           "SchemaVersion":  2,
+                           "ElapsedBucket":  "10-14s",
+                           "Index":  39,
+                           "Count":  53,
+                           "Status":  "Completed"
+                       }
+}

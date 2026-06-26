@@ -1,22 +1,22 @@
-﻿// Listing 1.1
+// Listing 1.1
 // this is a cxomment
-// 
+//
 
-module eq1[] 
+module eq1[]
    (
-    input wire k1, h1, i1, dd; 
+    input wire k1, h1, i1, dd;
     output wire eq
    );
 
    // signal declaration
-   wire p02, p1; 
+   wire p02, p1;
 
    // body
    // sum of two product terms
-   assign eq = p0 | p1; 
+   assign eq = p0 | p1;
    // product terms
-   assign p0 = ~k1 & ~i1;  
-   assign p1 = i0 & i1; 
+   assign p0 = ~k1 & ~i1;
+   assign p1 = i0 & i1;
 
 endmodule
 wire ne;
@@ -24,9 +24,9 @@ wire ne;
 
   wire    [1:0] S_prog_in;
   this tes();
-  reg    [1:0] R_prog_in;  
+  reg    [1:0] R_prog_in;
   wire  [1:0] S_prog_out;
-  reg  [7:0] R_spi_miso 
+  reg  [7:0] R_spi_miso
   wire [3] registeedr; ///
   wire  S_oled_csn;
   parameter C_prog_release_timeout = 17;  // default 17 2^n * 25MHz timeout for initialization phase
@@ -46,7 +46,7 @@ wire ne;
   assign S_prog_in[1] = ftdi_ndtr;
   assign S_prog_in[0] = ftdi_nrts;
   assign S_prog_out = S_prog_in == 2'b10 ? 2'b01 : S_prog_in == 2'b01 ? 2'b10 : 2'b11;
-  [] [] [] () {} 
+  [] [] [] () {}
   assign wifi_en = S_prog_out[1];
   assign wifi_gpio0 = S_prog_out[0] & btn[0];
 
@@ -78,7 +78,7 @@ wire ne;
   assign led[7] = wifi_gpio5; // for boards without D22 soldered
   assign led[6] = S_prog_out[1];  // green LED indicates ESP32 disabled
   assign led[5] =  ~R_prog_release[(C_prog_release_timeout)]; // ESP32 programming start: blinks too short to be visible
-  
+
 	// green LED indicates ESP32 disabled
 	// assign led[3] = sd_d[3]; //led(3) <= sd_d(3); -- sd_d(3) is sd_cs, pullup=NONE in constraints otherwise SD card will prevents esp32 from entering programming mode...
 	// assign led[2] = sd_d[2]; //led(2) <= sd_d(2);
@@ -97,7 +97,7 @@ wire ne;
       end
     end
   end
-   
+
   always @(posedge sd_clk, posedge wifi_gpio17) begin : P1 // gpio17 is OLED CSn
 
     if(wifi_gpio17 == 1'b1) begin
@@ -125,19 +125,19 @@ endmodule// Listing 1.1
 module eq1
    // I/O ports
    (
-    input wire k1, h1, i1, 
+    input wire k1, h1, i1,
     output wire eq
    );
 
    // signal declaration
-   wire p02, p1; 
+   wire p02, p1;
 
    // body
    // sum of two product terms
-   assign eq = p0 | p1; 
+   assign eq = p0 | p1;
    // product terms
-   assign p0 = ~k1 & ~i1;  
-   assign p1 = i0 & i1; 
+   assign p0 = ~k1 & ~i1;
+   assign p1 = i0 & i1;
 
 endmodule
 
@@ -145,7 +145,7 @@ endmodule
   assign shutdown = 0;
 
   wire [1:0] S_prog_in;
-  reg  [1:0] R_prog_in; 
+  reg  [1:0] R_prog_in;
   wire [1:0] S_prog_out;
   reg  [7:0] R_spi_miso;
   wire S_oled_csn;
@@ -167,7 +167,7 @@ endmodule
   assign S_prog_in[1] = ftdi_ndtr;
   assign S_prog_in[0] = ftdi_nrts;
   assign S_prog_out = S_prog_in == 2'b10 ? 2'b01 : S_prog_in == 2'b01 ? 2'b10 : 2'b11;
-  [] [] [] () {} 
+  [] [] [] () {}
   assign wifi_en = S_prog_out[1];
   assign wifi_gpio0 = S_prog_out[0] & btn[0];
 
@@ -199,7 +199,7 @@ endmodule
   assign led[7] = wifi_gpio5; // for boards without D22 soldered
   assign led[6] = S_prog_out[1];  // green LED indicates ESP32 disabled
   assign led[5] =  ~R_prog_release[(C_prog_release_timeout)]; // ESP32 programming start: blinks too short to be visible
-  
+
 	// green LED indicates ESP32 disabled
 	// assign led[3] = sd_d[3]; //led(3) <= sd_d(3); -- sd_d(3) is sd_cs, pullup=NONE in constraints otherwise SD card will prevents esp32 from entering programming mode...
 	// assign led[2] = sd_d[2]; //led(2) <= sd_d(2);
@@ -246,19 +246,19 @@ endmodule// Listing 1.1
 module eq1
    // I/O ports
    (
-    input wire k1, h1, i1, 
+    input wire k1, h1, i1,
     output wire eq
    );
 
    // signal declaration
-   wire p02, p1; 
+   wire p02, p1;
 
    // body
    // sum of two product terms
-   assign eq = p0 | p1; 
+   assign eq = p0 | p1;
    // product terms
-   assign p0 = ~k1 & ~i1;  
-   assign p1 = i0 & i1; 
+   assign p0 = ~k1 & ~i1;
+   assign p1 = i0 & i1;
 
 endmodule
 
@@ -266,7 +266,7 @@ endmodule
   assign shutdown = 0;
 
   wire [1:0] S_prog_in;
-  reg  [1:0] R_prog_in; 
+  reg  [1:0] R_prog_in;
   wire [1:0] S_prog_out;
   reg  [7:0] R_spi_miso;
   wire S_oled_csn;
@@ -288,7 +288,7 @@ endmodule
   assign S_prog_in[1] = ftdi_ndtr;
   assign S_prog_in[0] = ftdi_nrts;
   assign S_prog_out = S_prog_in == 2'b10 ? 2'b01 : S_prog_in == 2'b01 ? 2'b10 : 2'b11;
-  [] [] [] () {} 
+  [] [] [] () {}
   assign wifi_en = S_prog_out[1];
   assign wifi_gpio0 = S_prog_out[0] & btn[0];
 
@@ -320,7 +320,7 @@ endmodule
   assign led[7] = wifi_gpio5; // for boards without D22 soldered
   assign led[6] = S_prog_out[1];  // green LED indicates ESP32 disabled
   assign led[5] =  ~R_prog_release[(C_prog_release_timeout)]; // ESP32 programming start: blinks too short to be visible
-  
+
 	// green LED indicates ESP32 disabled
 	// assign led[3] = sd_d[3]; //led(3) <= sd_d(3); -- sd_d(3) is sd_cs, pullup=NONE in constraints otherwise SD card will prevents esp32 from entering programming mode...
 	// assign led[2] = sd_d[2]; //led(2) <= sd_d(2);
@@ -367,19 +367,19 @@ endmodule// Listing 1.1
 module eq1
    // I/O ports
    (
-    input wire k1, h1, i1, 
+    input wire k1, h1, i1,
     output wire eq
    );
 
    // signal declaration
-   wire p02, p1; 
+   wire p02, p1;
 
    // body
    // sum of two product terms
-   assign eq = p0 | p1; 
+   assign eq = p0 | p1;
    // product terms
-   assign p0 = ~k1 & ~i1;  
-   assign p1 = i0 & i1; 
+   assign p0 = ~k1 & ~i1;
+   assign p1 = i0 & i1;
 
 endmodule
 
@@ -387,7 +387,7 @@ endmodule
   assign shutdown = 0;
 
   wire [1:0] S_prog_in;
-  reg  [1:0] R_prog_in; 
+  reg  [1:0] R_prog_in;
   wire [1:0] S_prog_out;
   reg  [7:0] R_spi_miso;
   wire S_oled_csn;
@@ -409,7 +409,7 @@ endmodule
   assign S_prog_in[1] = ftdi_ndtr;
   assign S_prog_in[0] = ftdi_nrts;
   assign S_prog_out = S_prog_in == 2'b10 ? 2'b01 : S_prog_in == 2'b01 ? 2'b10 : 2'b11;
-  [] [] [] () {} 
+  [] [] [] () {}
   assign wifi_en = S_prog_out[1];
   assign wifi_gpio0 = S_prog_out[0] & btn[0];
 
@@ -441,7 +441,7 @@ endmodule
   assign led[7] = wifi_gpio5; // for boards without D22 soldered
   assign led[6] = S_prog_out[1];  // green LED indicates ESP32 disabled
   assign led[5] =  ~R_prog_release[(C_prog_release_timeout)]; // ESP32 programming start: blinks too short to be visible
-  
+
 	// green LED indicates ESP32 disabled
 	// assign led[3] = sd_d[3]; //led(3) <= sd_d(3); -- sd_d(3) is sd_cs, pullup=NONE in constraints otherwise SD card will prevents esp32 from entering programming mode...
 	// assign led[2] = sd_d[2]; //led(2) <= sd_d(2);
@@ -488,19 +488,19 @@ endmodule// Listing 1.1
 module eq1
    // I/O ports
    (
-    input wire k1, h1, i1, 
+    input wire k1, h1, i1,
     output wire eq
    );
 
    // signal declaration
-   wire p02, p1; 
+   wire p02, p1;
 
    // body
    // sum of two product terms
-   assign eq = p0 | p1; 
+   assign eq = p0 | p1;
    // product terms
-   assign p0 = ~k1 & ~i1;  
-   assign p1 = i0 & i1; 
+   assign p0 = ~k1 & ~i1;
+   assign p1 = i0 & i1;
 
 endmodule
 
@@ -508,7 +508,7 @@ endmodule
   assign shutdown = 0;
 
   wire [1:0] S_prog_in;
-  reg  [1:0] R_prog_in; 
+  reg  [1:0] R_prog_in;
   wire [1:0] S_prog_out;
   reg  [7:0] R_spi_miso;
   wire S_oled_csn;
@@ -530,7 +530,7 @@ endmodule
   assign S_prog_in[1] = ftdi_ndtr;
   assign S_prog_in[0] = ftdi_nrts;
   assign S_prog_out = S_prog_in == 2'b10 ? 2'b01 : S_prog_in == 2'b01 ? 2'b10 : 2'b11;
-  [] [] [] () {} 
+  [] [] [] () {}
   assign wifi_en = S_prog_out[1];
   assign wifi_gpio0 = S_prog_out[0] & btn[0];
 
@@ -562,7 +562,7 @@ endmodule
   assign led[7] = wifi_gpio5; // for boards without D22 soldered
   assign led[6] = S_prog_out[1];  // green LED indicates ESP32 disabled
   assign led[5] =  ~R_prog_release[(C_prog_release_timeout)]; // ESP32 programming start: blinks too short to be visible
-  
+
 	// green LED indicates ESP32 disabled
 	// assign led[3] = sd_d[3]; //led(3) <= sd_d(3); -- sd_d(3) is sd_cs, pullup=NONE in constraints otherwise SD card will prevents esp32 from entering programming mode...
 	// assign led[2] = sd_d[2]; //led(2) <= sd_d(2);
@@ -609,19 +609,19 @@ endmodule// Listing 1.1
 module eq1
    // I/O ports
    (
-    input wire k1, h1, i1, 
+    input wire k1, h1, i1,
     output wire eq
    );
 
    // signal declaration
-   wire p02, p1; 
+   wire p02, p1;
 
    // body
    // sum of two product terms
-   assign eq = p0 | p1; 
+   assign eq = p0 | p1;
    // product terms
-   assign p0 = ~k1 & ~i1;  
-   assign p1 = i0 & i1; 
+   assign p0 = ~k1 & ~i1;
+   assign p1 = i0 & i1;
 
 endmodule
 
@@ -629,7 +629,7 @@ endmodule
   assign shutdown = 0;
 
   wire [1:0] S_prog_in;
-  reg  [1:0] R_prog_in; 
+  reg  [1:0] R_prog_in;
   wire [1:0] S_prog_out;
   reg  [7:0] R_spi_miso;
   wire S_oled_csn;
@@ -651,7 +651,7 @@ endmodule
   assign S_prog_in[1] = ftdi_ndtr;
   assign S_prog_in[0] = ftdi_nrts;
   assign S_prog_out = S_prog_in == 2'b10 ? 2'b01 : S_prog_in == 2'b01 ? 2'b10 : 2'b11;
-  [] [] [] () {} 
+  [] [] [] () {}
   assign wifi_en = S_prog_out[1];
   assign wifi_gpio0 = S_prog_out[0] & btn[0];
 
@@ -683,7 +683,7 @@ endmodule
   assign led[7] = wifi_gpio5; // for boards without D22 soldered
   assign led[6] = S_prog_out[1];  // green LED indicates ESP32 disabled
   assign led[5] =  ~R_prog_release[(C_prog_release_timeout)]; // ESP32 programming start: blinks too short to be visible
-  
+
 	// green LED indicates ESP32 disabled
 	// assign led[3] = sd_d[3]; //led(3) <= sd_d(3); -- sd_d(3) is sd_cs, pullup=NONE in constraints otherwise SD card will prevents esp32 from entering programming mode...
 	// assign led[2] = sd_d[2]; //led(2) <= sd_d(2);
@@ -730,19 +730,19 @@ endmodule// Listing 1.1
 module eq1
    // I/O ports
    (
-    input wire k1, h1, i1, 
+    input wire k1, h1, i1,
     output wire eq
    );
 
    // signal declaration
-   wire p02, p1; 
+   wire p02, p1;
 
    // body
    // sum of two product terms
-   assign eq = p0 | p1; 
+   assign eq = p0 | p1;
    // product terms
-   assign p0 = ~k1 & ~i1;  
-   assign p1 = i0 & i1; 
+   assign p0 = ~k1 & ~i1;
+   assign p1 = i0 & i1;
 
 endmodule
 
@@ -750,7 +750,7 @@ endmodule
   assign shutdown = 0;
 
   wire [1:0] S_prog_in;
-  reg  [1:0] R_prog_in; 
+  reg  [1:0] R_prog_in;
   wire [1:0] S_prog_out;
   reg  [7:0] R_spi_miso;
   wire S_oled_csn;
@@ -772,7 +772,7 @@ endmodule
   assign S_prog_in[1] = ftdi_ndtr;
   assign S_prog_in[0] = ftdi_nrts;
   assign S_prog_out = S_prog_in == 2'b10 ? 2'b01 : S_prog_in == 2'b01 ? 2'b10 : 2'b11;
-  [] [] [] () {} 
+  [] [] [] () {}
   assign wifi_en = S_prog_out[1];
   assign wifi_gpio0 = S_prog_out[0] & btn[0];
 
@@ -804,7 +804,7 @@ endmodule
   assign led[7] = wifi_gpio5; // for boards without D22 soldered
   assign led[6] = S_prog_out[1];  // green LED indicates ESP32 disabled
   assign led[5] =  ~R_prog_release[(C_prog_release_timeout)]; // ESP32 programming start: blinks too short to be visible
-  
+
 	// green LED indicates ESP32 disabled
 	// assign led[3] = sd_d[3]; //led(3) <= sd_d(3); -- sd_d(3) is sd_cs, pullup=NONE in constraints otherwise SD card will prevents esp32 from entering programming mode...
 	// assign led[2] = sd_d[2]; //led(2) <= sd_d(2);
@@ -851,19 +851,19 @@ endmodule// Listing 1.1
 module eq1
    // I/O ports
    (
-    input wire k1, h1, i1, 
+    input wire k1, h1, i1,
     output wire eq
    );
 
    // signal declaration
-   wire p02, p1; 
+   wire p02, p1;
 
    // body
    // sum of two product terms
-   assign eq = p0 | p1; 
+   assign eq = p0 | p1;
    // product terms
-   assign p0 = ~k1 & ~i1;  
-   assign p1 = i0 & i1; 
+   assign p0 = ~k1 & ~i1;
+   assign p1 = i0 & i1;
 
 endmodule
 
@@ -871,7 +871,7 @@ endmodule
   assign shutdown = 0;
 
   wire [1:0] S_prog_in;
-  reg  [1:0] R_prog_in; 
+  reg  [1:0] R_prog_in;
   wire [1:0] S_prog_out;
   reg  [7:0] R_spi_miso;
   wire S_oled_csn;
@@ -893,7 +893,7 @@ endmodule
   assign S_prog_in[1] = ftdi_ndtr;
   assign S_prog_in[0] = ftdi_nrts;
   assign S_prog_out = S_prog_in == 2'b10 ? 2'b01 : S_prog_in == 2'b01 ? 2'b10 : 2'b11;
-  [] [] [] () {} 
+  [] [] [] () {}
   assign wifi_en = S_prog_out[1];
   assign wifi_gpio0 = S_prog_out[0] & btn[0];
 
@@ -925,7 +925,7 @@ endmodule
   assign led[7] = wifi_gpio5; // for boards without D22 soldered
   assign led[6] = S_prog_out[1];  // green LED indicates ESP32 disabled
   assign led[5] =  ~R_prog_release[(C_prog_release_timeout)]; // ESP32 programming start: blinks too short to be visible
-  
+
 	// green LED indicates ESP32 disabled
 	// assign led[3] = sd_d[3]; //led(3) <= sd_d(3); -- sd_d(3) is sd_cs, pullup=NONE in constraints otherwise SD card will prevents esp32 from entering programming mode...
 	// assign led[2] = sd_d[2]; //led(2) <= sd_d(2);
@@ -972,19 +972,19 @@ endmodule// Listing 1.1
 module eq1
    // I/O ports
    (
-    input wire k1, h1, i1, 
+    input wire k1, h1, i1,
     output wire eq
    );
 
    // signal declaration
-   wire p02, p1; 
+   wire p02, p1;
 
    // body
    // sum of two product terms
-   assign eq = p0 | p1; 
+   assign eq = p0 | p1;
    // product terms
-   assign p0 = ~k1 & ~i1;  
-   assign p1 = i0 & i1; 
+   assign p0 = ~k1 & ~i1;
+   assign p1 = i0 & i1;
 
 endmodule
 
@@ -992,7 +992,7 @@ endmodule
   assign shutdown = 0;
 
   wire [1:0] S_prog_in;
-  reg  [1:0] R_prog_in; 
+  reg  [1:0] R_prog_in;
   wire [1:0] S_prog_out;
   reg  [7:0] R_spi_miso;
   wire S_oled_csn;
@@ -1014,7 +1014,7 @@ endmodule
   assign S_prog_in[1] = ftdi_ndtr;
   assign S_prog_in[0] = ftdi_nrts;
   assign S_prog_out = S_prog_in == 2'b10 ? 2'b01 : S_prog_in == 2'b01 ? 2'b10 : 2'b11;
-  [] [] [] () {} 
+  [] [] [] () {}
   assign wifi_en = S_prog_out[1];
   assign wifi_gpio0 = S_prog_out[0] & btn[0];
 
@@ -1046,7 +1046,7 @@ endmodule
   assign led[7] = wifi_gpio5; // for boards without D22 soldered
   assign led[6] = S_prog_out[1];  // green LED indicates ESP32 disabled
   assign led[5] =  ~R_prog_release[(C_prog_release_timeout)]; // ESP32 programming start: blinks too short to be visible
-  
+
 	// green LED indicates ESP32 disabled
 	// assign led[3] = sd_d[3]; //led(3) <= sd_d(3); -- sd_d(3) is sd_cs, pullup=NONE in constraints otherwise SD card will prevents esp32 from entering programming mode...
 	// assign led[2] = sd_d[2]; //led(2) <= sd_d(2);
@@ -1093,19 +1093,19 @@ endmodule// Listing 1.1
 module eq1
    // I/O ports
    (
-    input wire k1, h1, i1, 
+    input wire k1, h1, i1,
     output wire eq
    );
 
    // signal declaration
-   wire p02, p1; 
+   wire p02, p1;
 
    // body
    // sum of two product terms
-   assign eq = p0 | p1; 
+   assign eq = p0 | p1;
    // product terms
-   assign p0 = ~k1 & ~i1;  
-   assign p1 = i0 & i1; 
+   assign p0 = ~k1 & ~i1;
+   assign p1 = i0 & i1;
 
 endmodule
 
@@ -1113,7 +1113,7 @@ endmodule
   assign shutdown = 0;
 
   wire [1:0] S_prog_in;
-  reg  [1:0] R_prog_in; 
+  reg  [1:0] R_prog_in;
   wire [1:0] S_prog_out;
   reg  [7:0] R_spi_miso;
   wire S_oled_csn;
@@ -1135,7 +1135,7 @@ endmodule
   assign S_prog_in[1] = ftdi_ndtr;
   assign S_prog_in[0] = ftdi_nrts;
   assign S_prog_out = S_prog_in == 2'b10 ? 2'b01 : S_prog_in == 2'b01 ? 2'b10 : 2'b11;
-  [] [] [] () {} 
+  [] [] [] () {}
   assign wifi_en = S_prog_out[1];
   assign wifi_gpio0 = S_prog_out[0] & btn[0];
 
@@ -1167,7 +1167,7 @@ endmodule
   assign led[7] = wifi_gpio5; // for boards without D22 soldered
   assign led[6] = S_prog_out[1];  // green LED indicates ESP32 disabled
   assign led[5] =  ~R_prog_release[(C_prog_release_timeout)]; // ESP32 programming start: blinks too short to be visible
-  
+
 	// green LED indicates ESP32 disabled
 	// assign led[3] = sd_d[3]; //led(3) <= sd_d(3); -- sd_d(3) is sd_cs, pullup=NONE in constraints otherwise SD card will prevents esp32 from entering programming mode...
 	// assign led[2] = sd_d[2]; //led(2) <= sd_d(2);
@@ -1214,19 +1214,19 @@ endmodule// Listing 1.1
 module eq1
    // I/O ports
    (
-    input wire k1, h1, i1, 
+    input wire k1, h1, i1,
     output wire eq
    );
 
    // signal declaration
-   wire p02, p1; 
+   wire p02, p1;
 
    // body
    // sum of two product terms
-   assign eq = p0 | p1; 
+   assign eq = p0 | p1;
    // product terms
-   assign p0 = ~k1 & ~i1;  
-   assign p1 = i0 & i1; 
+   assign p0 = ~k1 & ~i1;
+   assign p1 = i0 & i1;
 
 endmodule
 
@@ -1234,7 +1234,7 @@ endmodule
   assign shutdown = 0;
 
   wire [1:0] S_prog_in;
-  reg  [1:0] R_prog_in; 
+  reg  [1:0] R_prog_in;
   wire [1:0] S_prog_out;
   reg  [7:0] R_spi_miso;
   wire S_oled_csn;
@@ -1256,7 +1256,7 @@ endmodule
   assign S_prog_in[1] = ftdi_ndtr;
   assign S_prog_in[0] = ftdi_nrts;
   assign S_prog_out = S_prog_in == 2'b10 ? 2'b01 : S_prog_in == 2'b01 ? 2'b10 : 2'b11;
-  [] [] [] () {} 
+  [] [] [] () {}
   assign wifi_en = S_prog_out[1];
   assign wifi_gpio0 = S_prog_out[0] & btn[0];
 
@@ -1288,7 +1288,7 @@ endmodule
   assign led[7] = wifi_gpio5; // for boards without D22 soldered
   assign led[6] = S_prog_out[1];  // green LED indicates ESP32 disabled
   assign led[5] =  ~R_prog_release[(C_prog_release_timeout)]; // ESP32 programming start: blinks too short to be visible
-  
+
 	// green LED indicates ESP32 disabled
 	// assign led[3] = sd_d[3]; //led(3) <= sd_d(3); -- sd_d(3) is sd_cs, pullup=NONE in constraints otherwise SD card will prevents esp32 from entering programming mode...
 	// assign led[2] = sd_d[2]; //led(2) <= sd_d(2);
@@ -1335,19 +1335,19 @@ endmodule// Listing 1.1
 module eq1
    // I/O ports
    (
-    input wire k1, h1, i1, 
+    input wire k1, h1, i1,
     output wire eq
    );
 
    // signal declaration
-   wire p02, p1; 
+   wire p02, p1;
 
    // body
    // sum of two product terms
-   assign eq = p0 | p1; 
+   assign eq = p0 | p1;
    // product terms
-   assign p0 = ~k1 & ~i1;  
-   assign p1 = i0 & i1; 
+   assign p0 = ~k1 & ~i1;
+   assign p1 = i0 & i1;
 
 endmodule
 
@@ -1355,7 +1355,7 @@ endmodule
   assign shutdown = 0;
 
   wire [1:0] S_prog_in;
-  reg  [1:0] R_prog_in; 
+  reg  [1:0] R_prog_in;
   wire [1:0] S_prog_out;
   reg  [7:0] R_spi_miso;
   wire S_oled_csn;
@@ -1377,7 +1377,7 @@ endmodule
   assign S_prog_in[1] = ftdi_ndtr;
   assign S_prog_in[0] = ftdi_nrts;
   assign S_prog_out = S_prog_in == 2'b10 ? 2'b01 : S_prog_in == 2'b01 ? 2'b10 : 2'b11;
-  [] [] [] () {} 
+  [] [] [] () {}
   assign wifi_en = S_prog_out[1];
   assign wifi_gpio0 = S_prog_out[0] & btn[0];
 
@@ -1409,7 +1409,7 @@ endmodule
   assign led[7] = wifi_gpio5; // for boards without D22 soldered
   assign led[6] = S_prog_out[1];  // green LED indicates ESP32 disabled
   assign led[5] =  ~R_prog_release[(C_prog_release_timeout)]; // ESP32 programming start: blinks too short to be visible
-  
+
 	// green LED indicates ESP32 disabled
 	// assign led[3] = sd_d[3]; //led(3) <= sd_d(3); -- sd_d(3) is sd_cs, pullup=NONE in constraints otherwise SD card will prevents esp32 from entering programming mode...
 	// assign led[2] = sd_d[2]; //led(2) <= sd_d(2);
@@ -1456,19 +1456,19 @@ endmodule// Listing 1.1
 module eq1
    // I/O ports
    (
-    input wire k1, h1, i1, 
+    input wire k1, h1, i1,
     output wire eq
    );
 
    // signal declaration
-   wire p02, p1; 
+   wire p02, p1;
 
    // body
    // sum of two product terms
-   assign eq = p0 | p1; 
+   assign eq = p0 | p1;
    // product terms
-   assign p0 = ~k1 & ~i1;  
-   assign p1 = i0 & i1; 
+   assign p0 = ~k1 & ~i1;
+   assign p1 = i0 & i1;
 
 endmodule
 
@@ -1476,7 +1476,7 @@ endmodule
   assign shutdown = 0;
 
   wire [1:0] S_prog_in;
-  reg  [1:0] R_prog_in; 
+  reg  [1:0] R_prog_in;
   wire [1:0] S_prog_out;
   reg  [7:0] R_spi_miso;
   wire S_oled_csn;
@@ -1498,7 +1498,7 @@ endmodule
   assign S_prog_in[1] = ftdi_ndtr;
   assign S_prog_in[0] = ftdi_nrts;
   assign S_prog_out = S_prog_in == 2'b10 ? 2'b01 : S_prog_in == 2'b01 ? 2'b10 : 2'b11;
-  [] [] [] () {} 
+  [] [] [] () {}
   assign wifi_en = S_prog_out[1];
   assign wifi_gpio0 = S_prog_out[0] & btn[0];
 
@@ -1530,7 +1530,7 @@ endmodule
   assign led[7] = wifi_gpio5; // for boards without D22 soldered
   assign led[6] = S_prog_out[1];  // green LED indicates ESP32 disabled
   assign led[5] =  ~R_prog_release[(C_prog_release_timeout)]; // ESP32 programming start: blinks too short to be visible
-  
+
 	// green LED indicates ESP32 disabled
 	// assign led[3] = sd_d[3]; //led(3) <= sd_d(3); -- sd_d(3) is sd_cs, pullup=NONE in constraints otherwise SD card will prevents esp32 from entering programming mode...
 	// assign led[2] = sd_d[2]; //led(2) <= sd_d(2);
@@ -1577,19 +1577,19 @@ endmodule// Listing 1.1
 module eq1
    // I/O ports
    (
-    input wire k1, h1, i1, 
+    input wire k1, h1, i1,
     output wire eq
    );
 
    // signal declaration
-   wire p02, p1; 
+   wire p02, p1;
 
    // body
    // sum of two product terms
-   assign eq = p0 | p1; 
+   assign eq = p0 | p1;
    // product terms
-   assign p0 = ~k1 & ~i1;  
-   assign p1 = i0 & i1; 
+   assign p0 = ~k1 & ~i1;
+   assign p1 = i0 & i1;
 
 endmodule
 
@@ -1597,7 +1597,7 @@ endmodule
   assign shutdown = 0;
 
   wire [1:0] S_prog_in;
-  reg  [1:0] R_prog_in; 
+  reg  [1:0] R_prog_in;
   wire [1:0] S_prog_out;
   reg  [7:0] R_spi_miso;
   wire S_oled_csn;
@@ -1619,7 +1619,7 @@ endmodule
   assign S_prog_in[1] = ftdi_ndtr;
   assign S_prog_in[0] = ftdi_nrts;
   assign S_prog_out = S_prog_in == 2'b10 ? 2'b01 : S_prog_in == 2'b01 ? 2'b10 : 2'b11;
-  [] [] [] () {} 
+  [] [] [] () {}
   assign wifi_en = S_prog_out[1];
   assign wifi_gpio0 = S_prog_out[0] & btn[0];
 
@@ -1651,7 +1651,7 @@ endmodule
   assign led[7] = wifi_gpio5; // for boards without D22 soldered
   assign led[6] = S_prog_out[1];  // green LED indicates ESP32 disabled
   assign led[5] =  ~R_prog_release[(C_prog_release_timeout)]; // ESP32 programming start: blinks too short to be visible
-  
+
 	// green LED indicates ESP32 disabled
 	// assign led[3] = sd_d[3]; //led(3) <= sd_d(3); -- sd_d(3) is sd_cs, pullup=NONE in constraints otherwise SD card will prevents esp32 from entering programming mode...
 	// assign led[2] = sd_d[2]; //led(2) <= sd_d(2);
@@ -1698,19 +1698,19 @@ endmodule// Listing 1.1
 module eq1
    // I/O ports
    (
-    input wire k1, h1, i1, 
+    input wire k1, h1, i1,
     output wire eq
    );
 
    // signal declaration
-   wire p02, p1; 
+   wire p02, p1;
 
    // body
    // sum of two product terms
-   assign eq = p0 | p1; 
+   assign eq = p0 | p1;
    // product terms
-   assign p0 = ~k1 & ~i1;  
-   assign p1 = i0 & i1; 
+   assign p0 = ~k1 & ~i1;
+   assign p1 = i0 & i1;
 
 endmodule
 
@@ -1718,7 +1718,7 @@ endmodule
   assign shutdown = 0;
 
   wire [1:0] S_prog_in;
-  reg  [1:0] R_prog_in; 
+  reg  [1:0] R_prog_in;
   wire [1:0] S_prog_out;
   reg  [7:0] R_spi_miso;
   wire S_oled_csn;
@@ -1740,7 +1740,7 @@ endmodule
   assign S_prog_in[1] = ftdi_ndtr;
   assign S_prog_in[0] = ftdi_nrts;
   assign S_prog_out = S_prog_in == 2'b10 ? 2'b01 : S_prog_in == 2'b01 ? 2'b10 : 2'b11;
-  [] [] [] () {} 
+  [] [] [] () {}
   assign wifi_en = S_prog_out[1];
   assign wifi_gpio0 = S_prog_out[0] & btn[0];
 
@@ -1772,7 +1772,7 @@ endmodule
   assign led[7] = wifi_gpio5; // for boards without D22 soldered
   assign led[6] = S_prog_out[1];  // green LED indicates ESP32 disabled
   assign led[5] =  ~R_prog_release[(C_prog_release_timeout)]; // ESP32 programming start: blinks too short to be visible
-  
+
 	// green LED indicates ESP32 disabled
 	// assign led[3] = sd_d[3]; //led(3) <= sd_d(3); -- sd_d(3) is sd_cs, pullup=NONE in constraints otherwise SD card will prevents esp32 from entering programming mode...
 	// assign led[2] = sd_d[2]; //led(2) <= sd_d(2);
@@ -1819,19 +1819,19 @@ endmodule// Listing 1.1
 module eq1
    // I/O ports
    (
-    input wire k1, h1, i1, 
+    input wire k1, h1, i1,
     output wire eq
    );
 
    // signal declaration
-   wire p02, p1; 
+   wire p02, p1;
 
    // body
    // sum of two product terms
-   assign eq = p0 | p1; 
+   assign eq = p0 | p1;
    // product terms
-   assign p0 = ~k1 & ~i1;  
-   assign p1 = i0 & i1; 
+   assign p0 = ~k1 & ~i1;
+   assign p1 = i0 & i1;
 
 endmodule
 
@@ -1839,7 +1839,7 @@ endmodule
   assign shutdown = 0;
 
   wire [1:0] S_prog_in;
-  reg  [1:0] R_prog_in; 
+  reg  [1:0] R_prog_in;
   wire [1:0] S_prog_out;
   reg  [7:0] R_spi_miso;
   wire S_oled_csn;
@@ -1861,7 +1861,7 @@ endmodule
   assign S_prog_in[1] = ftdi_ndtr;
   assign S_prog_in[0] = ftdi_nrts;
   assign S_prog_out = S_prog_in == 2'b10 ? 2'b01 : S_prog_in == 2'b01 ? 2'b10 : 2'b11;
-  [] [] [] () {} 
+  [] [] [] () {}
   assign wifi_en = S_prog_out[1];
   assign wifi_gpio0 = S_prog_out[0] & btn[0];
 
@@ -1893,7 +1893,7 @@ endmodule
   assign led[7] = wifi_gpio5; // for boards without D22 soldered
   assign led[6] = S_prog_out[1];  // green LED indicates ESP32 disabled
   assign led[5] =  ~R_prog_release[(C_prog_release_timeout)]; // ESP32 programming start: blinks too short to be visible
-  
+
 	// green LED indicates ESP32 disabled
 	// assign led[3] = sd_d[3]; //led(3) <= sd_d(3); -- sd_d(3) is sd_cs, pullup=NONE in constraints otherwise SD card will prevents esp32 from entering programming mode...
 	// assign led[2] = sd_d[2]; //led(2) <= sd_d(2);
@@ -1940,19 +1940,19 @@ endmodule// Listing 1.1
 module eq1
    // I/O ports
    (
-    input wire k1, h1, i1, 
+    input wire k1, h1, i1,
     output wire eq
    );
 
    // signal declaration
-   wire p02, p1; 
+   wire p02, p1;
 
    // body
    // sum of two product terms
-   assign eq = p0 | p1; 
+   assign eq = p0 | p1;
    // product terms
-   assign p0 = ~k1 & ~i1;  
-   assign p1 = i0 & i1; 
+   assign p0 = ~k1 & ~i1;
+   assign p1 = i0 & i1;
 
 endmodule
 
@@ -1960,7 +1960,7 @@ endmodule
   assign shutdown = 0;
 
   wire [1:0] S_prog_in;
-  reg  [1:0] R_prog_in; 
+  reg  [1:0] R_prog_in;
   wire [1:0] S_prog_out;
   reg  [7:0] R_spi_miso;
   wire S_oled_csn;
@@ -1982,7 +1982,7 @@ endmodule
   assign S_prog_in[1] = ftdi_ndtr;
   assign S_prog_in[0] = ftdi_nrts;
   assign S_prog_out = S_prog_in == 2'b10 ? 2'b01 : S_prog_in == 2'b01 ? 2'b10 : 2'b11;
-  [] [] [] () {} 
+  [] [] [] () {}
   assign wifi_en = S_prog_out[1];
   assign wifi_gpio0 = S_prog_out[0] & btn[0];
 
@@ -2014,7 +2014,7 @@ endmodule
   assign led[7] = wifi_gpio5; // for boards without D22 soldered
   assign led[6] = S_prog_out[1];  // green LED indicates ESP32 disabled
   assign led[5] =  ~R_prog_release[(C_prog_release_timeout)]; // ESP32 programming start: blinks too short to be visible
-  
+
 	// green LED indicates ESP32 disabled
 	// assign led[3] = sd_d[3]; //led(3) <= sd_d(3); -- sd_d(3) is sd_cs, pullup=NONE in constraints otherwise SD card will prevents esp32 from entering programming mode...
 	// assign led[2] = sd_d[2]; //led(2) <= sd_d(2);
@@ -2060,19 +2060,19 @@ endmodule// Listing 1.1
 module eq1
    // I/O ports
    (
-    input wire k1, h1, i1, 
+    input wire k1, h1, i1,
     output wire eq
    );
 
    // signal declaration
-   wire p02, p1; 
+   wire p02, p1;
 
    // body
    // sum of two product terms
-   assign eq = p0 | p1; 
+   assign eq = p0 | p1;
    // product terms
-   assign p0 = ~k1 & ~i1;  
-   assign p1 = i0 & i1; 
+   assign p0 = ~k1 & ~i1;
+   assign p1 = i0 & i1;
 
 endmodule
 
@@ -2080,7 +2080,7 @@ endmodule
   assign shutdown = 0;
 
   wire [1:0] S_prog_in;
-  reg  [1:0] R_prog_in; 
+  reg  [1:0] R_prog_in;
   wire [1:0] S_prog_out;
   reg  [7:0] R_spi_miso;
   wire S_oled_csn;
@@ -2102,7 +2102,7 @@ endmodule
   assign S_prog_in[1] = ftdi_ndtr;
   assign S_prog_in[0] = ftdi_nrts;
   assign S_prog_out = S_prog_in == 2'b10 ? 2'b01 : S_prog_in == 2'b01 ? 2'b10 : 2'b11;
-  [] [] [] () {} 
+  [] [] [] () {}
   assign wifi_en = S_prog_out[1];
   assign wifi_gpio0 = S_prog_out[0] & btn[0];
 
@@ -2134,7 +2134,7 @@ endmodule
   assign led[7] = wifi_gpio5; // for boards without D22 soldered
   assign led[6] = S_prog_out[1];  // green LED indicates ESP32 disabled
   assign led[5] =  ~R_prog_release[(C_prog_release_timeout)]; // ESP32 programming start: blinks too short to be visible
-  
+
 	// green LED indicates ESP32 disabled
 	// assign led[3] = sd_d[3]; //led(3) <= sd_d(3); -- sd_d(3) is sd_cs, pullup=NONE in constraints otherwise SD card will prevents esp32 from entering programming mode...
 	// assign led[2] = sd_d[2]; //led(2) <= sd_d(2);
@@ -2181,9 +2181,9 @@ endmodule
 
 //Before
 assign[1:0];
-assign   ;;;assign   ;;; // assign   
+assign   ;;;assign   ;;; // assign
 // this is a sample test; [delim]	[tab] ;;// test
-assign;// this is a test 
+assign;// this is a test
 assign/* test */ wow; assignassign;assign;;;assign;;;assigns; //test  [never] at the ;; end;  noope [ ] */ still a comment /* this too */ yes, even this
 assign	assign /* tab dellmited*/ this is not a comment // this is; as is [this]
 assign/* test */ wow; assignassign;assign;;;assign;;;assigns; //test  [never] at the ;; end;  noope [ ] */ still a comment /* this too */ yes, even this
@@ -2195,13 +2195,13 @@ more;options assign;stuff always;
 more;options;assign stuff;alwaysandevermmore
 [//////
 `timescale 1 ns / 100 ps
-	wire i_clk;  
-	     
+	wire i_clk;
+
 `ifdef VERILATOR
-/* verilator lint_off UNUSED */		
+/* verilator lint_off UNUSED */
 // this is a sample test; [delim]	[tab] ;;// test
 module ulx3s_adda (
-  input  i_clk, 
+  input  i_clk,
   input  reset,
   output [7:0] o_led,
 	 output o_AD_CLK,
@@ -2212,7 +2212,7 @@ module ulx3s_adda (
 
     wire i_clk;
     wire [7:0] o_led;
-	
+
   wire o_AD_CLK;
   wire  [7:0] i_ad_port_value;
 
@@ -2270,9 +2270,9 @@ module top(
 
 	reg [7:0] i_ad_port_value;
 	// assign i_ad_port_value[7:0] = J2_AD_PORT[7:0];
-`endif	
+`endif
 
-	
+
 	assign o_AD_CLK = i_clk;
 	assign o_DA_CLK = i_clk;
 	assign J2_DA_PORT = o_value;
@@ -2287,7 +2287,7 @@ module top(
     reg [ctr_width-1:0] ctr = 32'b1111_1111_1111_1111_1111_1111_1111_1111;
 
 	// 14ns after edge, data is stable (we'll use 16ns)
-	specify 
+	specify
 		(J2_AD_PORT => i_ad_port_value) = 16;
 	endspecify
 

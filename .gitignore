@@ -1,4 +1,4 @@
-﻿################################################################################
+################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
@@ -35,3 +35,48 @@
 # misc
 /packages.old
 /releases/0.2
+/examples/ExtensibilityToolsOld
+/VerilogLanguage.csproj.user
+/VerilogTokenTag.cs.old
+/VerilogCallStackEvents.dgml
+/CodeMap1.dgml
+/EditorClassifier/EditorClassifier1.cs
+/EditorClassifier/EditorClassifier1ClassificationDefinition.cs
+/EditorClassifier/EditorClassifier1Format.cs
+/EditorClassifier/EditorClassifier1Provider.cs
+/Outlining/OutliningTagger.cs
+/Outlining/OutliningTaggerProvider.cs
+/Outline/CSharpOutliningTagger.cs.old
+/Outline/CSharpOutliningTaggerProvider.cs.old
+/Outline/SnapshotParser.cs.old
+/Outline/TextRegion.cs.old
+/EditorClassifier/EditorClassifier1.cs.old
+/EditorClassifier/EditorClassifier1ClassificationDefinition.cs.old
+/EditorClassifier/EditorClassifier1Format.cs.old
+/EditorClassifier/EditorClassifier1Provider.cs.old
+/Outlining/OutliningTagger.cs.old
+/Outlining/OutliningTaggerProvider.cs.old
+/Tagger/BraceMatchingTagger.cs.old
+/Tagger/BraceMatchingTaggerProvider.cs.old
+/Tagger/OutliningTagger.cs.old
+/Tagger/OutliningTaggerProvider.cs.old
+/Removed Reference_Services
+/vsix-contents
+/build.diag.txt
+/latest_output.txt
+/latest_output2.txt
+/msbuild_diag.log
+/UpgradeLog.htm
+/UpgradeLog2.htm
+/VerilogLanguage-ChatGPT-wip.csproj
+/VerilogLanguage.WIP.csproj
+/VerilogLanguage.zip
+/VerilogToken/VerilogTokenTagger.cs.WIP
+/UpgradeLog3.htm
+/ci_baseline.log
+/ci_baseline.log.old
+/ci_check.log
+/ci_check.log.old
+/ci_pass.log
+/ci_pass.log.old
+/code_review-TODO.md

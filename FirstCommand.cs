@@ -1,5 +1,5 @@
 #if 0
-// file: FirsrtCommand.cs
+// file: FirstCommand.cs
 //***************************************************************************
 //
 //  MIT License

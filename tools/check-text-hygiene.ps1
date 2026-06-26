@@ -4,6 +4,7 @@ Checks release-relevant text files for UTF-8 validity and common bad characters.
 Default behavior:
 - Scans common source, project, script, HDL, config, and documentation text files.
 - Excludes local/build/cache directories such as .git, .vs, bin, obj, and packages.
+- Optional -ExcludePath skips exact repo-relative paths or whole subtrees.
 - Fails on invalid UTF-8 byte sequences.
 - Fails on common smart punctuation and invisible/problem characters.
 
@@ -14,6 +15,7 @@ Recommended VLE release check:
 [CmdletBinding()]
 param(
     [string]$Root = ".",
+    [string[]]$ExcludePath = @(),
     [switch]$RequireNoBom,
     [switch]$RequireCrLf,
     [switch]$RequireFinalNewline,
@@ -118,14 +120,59 @@ function Get-RelativePath {
     return $FullName
 }
 
+function Get-NormalizedRelativePathKey {
+    param([string]$Path)
+
+    $pathValue = $Path.Trim()
+
+    if ([string]::IsNullOrWhiteSpace($pathValue)) {
+        return ""
+    }
+
+    try {
+        if ([System.IO.Path]::IsPathRooted($pathValue)) {
+            $fullPath = [System.IO.Path]::GetFullPath($pathValue)
+        } else {
+            $fullPath = [System.IO.Path]::GetFullPath((Join-Path -Path $script:rootPath -ChildPath $pathValue))
+        }
+
+        $relativePath = Get-RelativePath -FullName $fullPath
+    } catch {
+        $relativePath = $pathValue
+    }
+
+    return (($relativePath -replace '/', '\').Trim('\'))
+}
+
+$explicitExcludedPathKeys = New-Object 'System.Collections.Generic.HashSet[string]' ([System.StringComparer]::OrdinalIgnoreCase)
+
+foreach ($path in $ExcludePath) {
+    $pathKey = Get-NormalizedRelativePathKey -Path $path
+
+    if ($pathKey.Length -gt 0) {
+        [void]$explicitExcludedPathKeys.Add($pathKey)
+    }
+}
+
 function Test-IsExcludedPath {
     param([string]$FullName)
 
     $relativePath = Get-RelativePath -FullName $FullName
+    $relativePathKey = Get-NormalizedRelativePathKey -Path $relativePath
     $parts = $relativePath -split "[\\/]"
 
     foreach ($part in $parts) {
         if ($script:excludedDirectoryNames -contains $part) {
+            return $true
+        }
+    }
+
+    if ($script:explicitExcludedPathKeys.Contains($relativePathKey)) {
+        return $true
+    }
+
+    foreach ($excludedPathKey in $script:explicitExcludedPathKeys) {
+        if ($relativePathKey.StartsWith(($excludedPathKey + '\'), [System.StringComparison]::OrdinalIgnoreCase)) {
             return $true
         }
     }

@@ -2,11 +2,11 @@
 
 Because you never know, you might need that someday.
 
-Downloads available for prior versions of vsix exentions:
+Downloads available for prior versions of vsix extensions:
 
 [Version 0.4.0.1](./VerilogLanguage_v0.4.0.1.vsix) No changes, but marketplace text update was not previously in place
 
-[Version 0.4.0.0](./VerilogLanguage_v0.4.0.0.vsix) Signigican update with many improvements
+[Version 0.4.0.0](./VerilogLanguage_v0.4.0.0.vsix) Significant update with many improvements
 
 [Version 0.3.5.4](./VerilogLanguage_v0.3.5.4.vsix) fixed copy error during from two-pane git diff. resync development branch, cleanup.
 

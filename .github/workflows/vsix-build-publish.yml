@@ -1,0 +1,50 @@
+#
+# From https://devblogs.microsoft.com/visualstudio/automating-your-visual-studio-extension-builds-with-github-actions/
+#
+name: Build
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    env:
+      Configuration: Release
+      VsixManifestPath: src\source.extension.vsixmanifest
+      VsixSourcePath: src\source.extension.cs
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v3
+
+      - name: Restore
+        run: msbuild /t:Restore
+
+      - name: Version stamp
+        uses: madskristensen/vsix-version-stamp@v2
+        with:
+          manifest-file: ${{ env.VsixManifestPath }}
+          vsix-token-source-file: ${{ env.VsixSourcePath }}
+
+      - name: Build
+        run: msbuild /p:Configuration=$(Configuration)
+
+      - name: Publish to VSIX Gallery
+        if: ${{ false }}
+        uses: madskristensen/publish-vsixgallery@v1
+        with:
+          vsix-file: '**/*.vsix'
+
+      - name: Publish to Marketplace
+        if: ${{ false }}
+        uses: madskristensen/publish-marketplace@v2
+        with:
+          extension-file: '**/*.vsix'
+          publish-manifest-file: vs-publish.json
+          personal-access-code: ${{ secrets.VS_MARKETPLACE_TOKEN }}

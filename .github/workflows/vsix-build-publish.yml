@@ -14,8 +14,10 @@ jobs:
 
     env:
       Configuration: Release
-      VsixManifestPath: src\source.extension.vsixmanifest
-      VsixSourcePath: src\source.extension.cs
+      VsixManifestPath: source.extension.vsixmanifest
+
+      # optional manifest values available as C# constants (not currently implemented)
+      # VsixSourcePath: source.extension.cs
 
     steps:
       - uses: actions/checkout@v6

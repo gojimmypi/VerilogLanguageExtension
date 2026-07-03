@@ -269,6 +269,7 @@ namespace VerilogLanguage
                 foreach (CommentHelper.CommentHelper.CommentItem Item in commentHelper.CommentItems) {
                     // TODO - are we actually doing anything with TestComment, or is this just for testing VerilogGlobals.TextIsComment() ??
                     bool TestComment = VerilogGlobals.TextIsComment(theLineNumber, LinePosition);
+                    int itemLinePosition = LinePosition;
                     LinePosition += Item.ItemText.Length;
 
                     // is this item a comment? If so, color as appropriate. comments take highest priority: no other condition will change color of a comment
@@ -281,7 +282,7 @@ namespace VerilogLanguage
                         // first check to see if any new variables are being defined;
 
                         double duration10 = (DateTime.Now - ProfileStart).TotalMilliseconds;
-                        VerilogGlobals.BuildHoverItems(Item.ItemText);
+                        VerilogGlobals.BuildHoverItems(Item.ItemText, theLineNumber, itemLinePosition);
                         double duration11 = (DateTime.Now - ProfileStart).TotalMilliseconds;
                     }
                 } /* foreach  CommentItem Item in CommentItems */
@@ -698,7 +699,7 @@ namespace VerilogLanguage
                     thisLine = line.GetText();
                     thisLineNumber = line.LineNumber; // zero-based line numbers
 
-                    VerilogGlobals.ProcessPreprocessorLine(thisLine);
+                    VerilogGlobals.ProcessPreprocessorLine(thisLine, thisLineNumber);
 
                     if (thisLine == "") {
                         // TODO Count or Count - 1 ?

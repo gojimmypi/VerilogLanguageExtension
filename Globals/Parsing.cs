@@ -39,6 +39,39 @@ namespace VerilogLanguage
         private static string _activeParseFile = string.Empty;
         private static int _activeParseVersion = 0;
 
+        public sealed class VerilogDefinitionLocation
+        {
+            public string Scope { get; private set; }
+            public string Name { get; private set; }
+            public int LineNumber { get; private set; }
+            public int LinePosition { get; private set; }
+            public int Length { get; private set; }
+            public VerilogTokenTypes TokenType { get; private set; }
+            public string HoverText { get; private set; }
+
+            public VerilogDefinitionLocation(
+                string scope,
+                string name,
+                int lineNumber,
+                int linePosition,
+                int length,
+                VerilogTokenTypes tokenType,
+                string hoverText) {
+
+                Scope = scope ?? string.Empty;
+                Name = name ?? string.Empty;
+                LineNumber = lineNumber;
+                LinePosition = linePosition;
+                Length = length;
+                TokenType = tokenType;
+                HoverText = hoverText ?? string.Empty;
+            }
+
+            public VerilogDefinitionLocation Clone() {
+                return new VerilogDefinitionLocation(Scope, Name, LineNumber, LinePosition, Length, TokenType, HoverText);
+            }
+        }
+
         public sealed class ParseDataSnapshot
         {
             public string TargetFile { get; private set; }
@@ -49,6 +82,7 @@ namespace VerilogLanguage
             public int[] BufferAttributeAtLineNumber { get; private set; }
             public Dictionary<string, Dictionary<string, VerilogTokenTypes>> VerilogVariables { get; private set; }
             public Dictionary<string, Dictionary<string, string>> VerilogVariableHoverText { get; private set; }
+            public Dictionary<string, Dictionary<string, VerilogDefinitionLocation>> VerilogDefinitionLocations { get; private set; }
 
             public ParseDataSnapshot(
                 string targetFile,
@@ -58,7 +92,8 @@ namespace VerilogLanguage
                 List<BufferAttribute> bufferAttributes,
                 int[] bufferAttributeAtLineNumber,
                 Dictionary<string, Dictionary<string, VerilogTokenTypes>> verilogVariables,
-                Dictionary<string, Dictionary<string, string>> verilogVariableHoverText) {
+                Dictionary<string, Dictionary<string, string>> verilogVariableHoverText,
+                Dictionary<string, Dictionary<string, VerilogDefinitionLocation>> verilogDefinitionLocations) {
 
                 TargetFile = targetFile;
                 SnapshotVersion = snapshotVersion;
@@ -68,6 +103,7 @@ namespace VerilogLanguage
                 BufferAttributeAtLineNumber = bufferAttributeAtLineNumber ?? new int[0];
                 VerilogVariables = verilogVariables ?? new Dictionary<string, Dictionary<string, VerilogTokenTypes>>();
                 VerilogVariableHoverText = verilogVariableHoverText ?? new Dictionary<string, Dictionary<string, string>>();
+                VerilogDefinitionLocations = verilogDefinitionLocations ?? new Dictionary<string, Dictionary<string, VerilogDefinitionLocation>>();
             }
 
             private int GetBufferHint(int forLineNumber) {
@@ -170,6 +206,26 @@ namespace VerilogLanguage
             return result;
         }
 
+        private static Dictionary<string, Dictionary<string, VerilogDefinitionLocation>> CloneDefinitionMap(Dictionary<string, Dictionary<string, VerilogDefinitionLocation>> source) {
+            Dictionary<string, Dictionary<string, VerilogDefinitionLocation>> result = new Dictionary<string, Dictionary<string, VerilogDefinitionLocation>>();
+            if (source == null) {
+                return result;
+            }
+
+            foreach (KeyValuePair<string, Dictionary<string, VerilogDefinitionLocation>> scope in source) {
+                Dictionary<string, VerilogDefinitionLocation> clonedScope = new Dictionary<string, VerilogDefinitionLocation>();
+                if (scope.Value != null) {
+                    foreach (KeyValuePair<string, VerilogDefinitionLocation> item in scope.Value) {
+                        clonedScope[item.Key] = item.Value == null ? null : item.Value.Clone();
+                    }
+                }
+
+                result[scope.Key] = clonedScope;
+            }
+
+            return result;
+        }
+
         private static List<BufferAttribute> CloneBufferAttributes(List<BufferAttribute> source) {
             List<BufferAttribute> result = new List<BufferAttribute>();
             if (source == null) {
@@ -196,6 +252,7 @@ namespace VerilogLanguage
             BufferAttribute_at_LineNumber = parseData.BufferAttributeAtLineNumber;
             VerilogVariables = parseData.VerilogVariables;
             VerilogVariableHoverText = parseData.VerilogVariableHoverText;
+            VerilogDefinitionLocations = parseData.VerilogDefinitionLocations;
             BufferFirstParseComplete = true;
         }
 
@@ -212,7 +269,8 @@ namespace VerilogLanguage
                 CloneBufferAttributes(BufferAttributes),
                 BufferAttribute_at_LineNumber == null ? null : (int[])BufferAttribute_at_LineNumber.Clone(),
                 CloneVariableMap(VerilogVariables),
-                CloneHoverMap(VerilogVariableHoverText));
+                CloneHoverMap(VerilogVariableHoverText),
+                CloneDefinitionMap(VerilogDefinitionLocations));
 
             lock (_synchronizationActiveParseData) {
                 ParseDataByFile[targetFile] = parseData;

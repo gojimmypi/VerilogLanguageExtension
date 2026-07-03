@@ -39,6 +39,9 @@
       <Group guid="guidVerilogLanguagePackageCmdSet" id="MyMenuGroup" priority="0x0600">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS"/>
       </Group>
+      <Group guid="guidVerilogLanguagePackageCmdSet" id="CodeWindowMenuGroup" priority="0x0350">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN"/>
+      </Group>
     </Groups>
 
     <!--Buttons section. -->
@@ -58,6 +61,13 @@
         <Strings>
           <ButtonText>Snapshot Export</ButtonText>
           <CanonicalName>Verilog Snapshot Export</CanonicalName>
+        </Strings>
+      </Button>
+      <Button guid="guidVerilogLanguagePackageCmdSet" id="GoToDefinitionId" priority="0x0100" type="Button">
+        <Parent guid="guidVerilogLanguagePackageCmdSet" id="CodeWindowMenuGroup" />
+        <Strings>
+          <ButtonText>Go To Definition</ButtonText>
+          <CanonicalName>Verilog Go To Definition</CanonicalName>
         </Strings>
       </Button>
     </Buttons>
@@ -80,7 +90,9 @@
     <!-- This is the guid used to group the menu commands together -->
     <GuidSymbol name="guidVerilogLanguagePackageCmdSet" value="{C7F8B2F5-7A01-4A07-8E4B-4A29F77A0B9F}">
       <IDSymbol name="MyMenuGroup" value="0x1020" />
+      <IDSymbol name="CodeWindowMenuGroup" value="0x1021" />
       <IDSymbol name="SnapshotExporterId" value="0x0100" />
+      <IDSymbol name="GoToDefinitionId" value="0x0102" />
     </GuidSymbol>
 
     <GuidSymbol name="guidImages" value="{45cd5964-19f7-4072-904f-666ee40d9262}" >

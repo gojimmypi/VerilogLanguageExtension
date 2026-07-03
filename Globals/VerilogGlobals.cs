@@ -186,6 +186,18 @@ namespace VerilogLanguage
             // e.g. ["module name"]["led"] = VerilogTokenTypes.Verilog_Variable,
         };
 
+        public static Dictionary<string, Dictionary<string, VerilogDefinitionLocation>> VerilogDefinitionLocations = new Dictionary<string, Dictionary<string, VerilogDefinitionLocation>>
+        {
+            {
+               "global",
+               new Dictionary<string, VerilogDefinitionLocation>{ }
+            },
+            {
+               SCOPE_MACRO,
+               new Dictionary<string, VerilogDefinitionLocation>{ }
+            }
+        };
+
         /// <summary>
         ///   VerilogTypes
         /// </summary>
@@ -398,6 +410,13 @@ namespace VerilogLanguage
         private static string thisFunctionScope = string.Empty;
         private static string thisModuleDeclarationText = string.Empty;
         private static string thisModuleParameterText = string.Empty;
+        private static string thisItemText = string.Empty;
+        private static int thisItemLineNumber = -1;
+        private static int thisItemLinePosition = -1;
+        private static int thisHoverNameLineNumber = -1;
+        private static int thisHoverNameLinePosition = -1;
+        private static int thisModuleNameLineNumber = -1;
+        private static int thisModuleNameLinePosition = -1;
         private static bool IsInsideSquareBracket = false;
         private static bool IsInsideSquigglyBracket = false;
         private static VerilogTokenTypes thisVariableType = VerilogTokenTypes.Verilog_Variable;
@@ -462,6 +481,19 @@ namespace VerilogLanguage
                     }
                 };
             }
+
+            VerilogDefinitionLocations = new Dictionary<string, Dictionary<string, VerilogDefinitionLocation>>
+            {
+                {
+                    "global",
+                    new Dictionary<string, VerilogDefinitionLocation>{ }
+                },
+                {
+                    SCOPE_MACRO,
+                    new Dictionary<string, VerilogDefinitionLocation>{ }
+                }
+            };
+
             thisHoverName = string.Empty;
 
             thisVariableDeclarationText = string.Empty; // this is only variable declaration, even if inside a module declaration
@@ -471,6 +503,13 @@ namespace VerilogLanguage
             thisModuleName = string.Empty;
             thisFunctionName = string.Empty;
             thisFunctionScope = string.Empty;
+            thisItemText = string.Empty;
+            thisItemLineNumber = -1;
+            thisItemLinePosition = -1;
+            thisHoverNameLineNumber = -1;
+            thisHoverNameLinePosition = -1;
+            thisModuleNameLineNumber = -1;
+            thisModuleNameLinePosition = -1;
 
             lastHoverItem = string.Empty;
             lastNonblankHoverItem = string.Empty;
@@ -1188,15 +1227,76 @@ namespace VerilogLanguage
             if (!VerilogVariableHoverText.ContainsKey(scope)) {
                 VerilogVariableHoverText.Add(scope, new Dictionary<string, string>());
             }
+
+            if (!VerilogDefinitionLocations.ContainsKey(scope)) {
+                VerilogDefinitionLocations.Add(scope, new Dictionary<string, VerilogDefinitionLocation>());
+            }
         }
 
-        private static void AddOrAppendHoverItem(string scope, string itemName, VerilogTokenTypes tokenType, string hoverText) {
+        private static bool TryGetCurrentDefinitionLocation(string itemName, out int lineNumber, out int linePosition) {
+            lineNumber = -1;
+            linePosition = -1;
+
+            if (string.IsNullOrEmpty(itemName)) {
+                return false;
+            }
+
+            if (itemName == thisHoverName && thisHoverNameLineNumber >= 0 && thisHoverNameLinePosition >= 0) {
+                lineNumber = thisHoverNameLineNumber;
+                linePosition = thisHoverNameLinePosition;
+                return true;
+            }
+
+            if (itemName == thisModuleName && thisModuleNameLineNumber >= 0 && thisModuleNameLinePosition >= 0) {
+                lineNumber = thisModuleNameLineNumber;
+                linePosition = thisModuleNameLinePosition;
+                return true;
+            }
+
+            if (itemName == thisItemText && thisItemLineNumber >= 0 && thisItemLinePosition >= 0) {
+                lineNumber = thisItemLineNumber;
+                linePosition = thisItemLinePosition;
+                return true;
+            }
+
+            return false;
+        }
+
+        private static void AddDefinitionLocation(string scope, string itemName, VerilogTokenTypes tokenType, string hoverText) {
+            int lineNumber;
+            int linePosition;
+            if (!TryGetCurrentDefinitionLocation(itemName, out lineNumber, out linePosition)) {
+                return;
+            }
+
+            EnsureHoverScope(scope);
+
+            if (VerilogDefinitionLocations[scope].ContainsKey(itemName)) {
+                return;
+            }
+
+            VerilogDefinitionLocations[scope].Add(
+                itemName,
+                new VerilogDefinitionLocation(
+                    scope,
+                    itemName,
+                    lineNumber,
+                    linePosition,
+                    itemName.Length,
+                    tokenType,
+                    hoverText));
+        }
+
+        private static void AddOrAppendHoverItem(string scope, string itemName, VerilogTokenTypes tokenType, string hoverText, bool addDefinitionLocation = true) {
             if (string.IsNullOrEmpty(itemName) || string.IsNullOrEmpty(hoverText)) {
                 return;
             }
 
             EnsureHoverScope(scope);
             VerilogVariables[scope][itemName] = tokenType;
+            if (addDefinitionLocation) {
+                AddDefinitionLocation(scope, itemName, tokenType, hoverText);
+            }
 
             string existingHoverText;
             if (VerilogVariableHoverText[scope].TryGetValue(itemName, out existingHoverText)) {
@@ -1210,6 +1310,13 @@ namespace VerilogLanguage
         }
 
         private static void AddMacroHoverItem(string macroName, string hoverText) {
+            AddOrAppendHoverItem(SCOPE_MACRO, macroName, VerilogTokenTypes.Verilog_Macro, hoverText, false);
+        }
+
+        private static void AddMacroHoverItem(string macroName, string hoverText, int lineNumber, int linePosition) {
+            thisItemText = macroName;
+            thisItemLineNumber = lineNumber;
+            thisItemLinePosition = linePosition;
             AddOrAppendHoverItem(SCOPE_MACRO, macroName, VerilogTokenTypes.Verilog_Macro, hoverText);
         }
 
@@ -1218,7 +1325,7 @@ namespace VerilogLanguage
         }
 
         private static void AddConditionalDefinitionHoverItem(string scope, string itemName, string hoverText) {
-            AddOrAppendHoverItem(scope, itemName, VerilogTokenTypes.Verilog_MacroDefinition, hoverText);
+            AddOrAppendHoverItem(scope, itemName, VerilogTokenTypes.Verilog_MacroDefinition, hoverText, false);
         }
 
         private static void QueueConditionalDefinitionCandidate(
@@ -1246,7 +1353,26 @@ namespace VerilogLanguage
             });
         }
 
-        public static void ProcessPreprocessorLine(string lineText) {
+        private static int MacroNameLinePosition(string lineText, string macroItem, string macroName) {
+            if (string.IsNullOrEmpty(lineText)) {
+                return -1;
+            }
+
+            if (!string.IsNullOrEmpty(macroItem)) {
+                int itemPosition = lineText.IndexOf(macroItem, StringComparison.Ordinal);
+                if (itemPosition >= 0) {
+                    return itemPosition;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(macroName)) {
+                return lineText.IndexOf(macroName, StringComparison.Ordinal);
+            }
+
+            return -1;
+        }
+
+        public static void ProcessPreprocessorLine(string lineText, int lineNumber = -1) {
             string codeText = StripCommentsForPreprocessorLine(lineText);
             List<string> items = GetTrimmedLineItems(codeText);
             if (items.Count == 0) {
@@ -1321,7 +1447,7 @@ namespace VerilogLanguage
                         if (!string.IsNullOrEmpty(macroName)) {
                             string hoverText = "macro definition:" + Environment.NewLine + trimmedLine + Environment.NewLine + Environment.NewLine +
                                                "condition:" + Environment.NewLine + CurrentPreprocessorConditionText();
-                            AddMacroHoverItem(macroName, hoverText);
+                            AddMacroHoverItem(macroName, hoverText, lineNumber, MacroNameLinePosition(lineText, items[1], macroName));
                         }
                     }
                     return;
@@ -1608,6 +1734,10 @@ namespace VerilogLanguage
                     VerilogVariableHoverText.Add(thisScope, new Dictionary<string, string> { });
                 }
 
+                if (!VerilogDefinitionLocations.ContainsKey(thisScope)) {
+                    VerilogDefinitionLocations.Add(thisScope, new Dictionary<string, VerilogDefinitionLocation> { });
+                }
+
                 // first add the token type; hover text added below to separate collection
                 if (VerilogVariables[thisScope].Keys.Contains(ItemName)) {
                     // edit existing, TODO - new color for dupes?
@@ -1661,6 +1791,11 @@ namespace VerilogLanguage
                         default:
                             break;
                     }
+                }
+
+                VerilogTokenTypes thisTokenType;
+                if (VerilogGlobals.VerilogVariables[thisScope].TryGetValue(ItemName, out thisTokenType)) {
+                    AddDefinitionLocation(thisScope, ItemName, thisTokenType, thisHoverText);
                 }
 
                 if (VerilogGlobals.VerilogVariableHoverText[thisScope].ContainsKey(ItemName)) {
@@ -2452,8 +2587,17 @@ namespace VerilogLanguage
         };
 
 
+        public static void BuildHoverItems(string s, int lineNumber, int linePosition) {
+            thisItemLineNumber = lineNumber;
+            thisItemLinePosition = linePosition;
+            BuildHoverItems(s);
+        }
+
         public static void BuildHoverItems(string s) {
             string thisTrimmedItem = (s == null) ? "" : s.Trim();
+            string priorHoverName = thisHoverName;
+            string priorModuleName = thisModuleName;
+            thisItemText = thisTrimmedItem;
 
             switch (BuildHoverState) {
                 case BuildHoverStates.UndefinedState:
@@ -2511,6 +2655,16 @@ namespace VerilogLanguage
                 default:
                     break;
             }
+            if (thisHoverName != priorHoverName && thisHoverName == thisTrimmedItem) {
+                thisHoverNameLineNumber = thisItemLineNumber;
+                thisHoverNameLinePosition = thisItemLinePosition;
+            }
+
+            if (thisModuleName != priorModuleName && thisModuleName == thisTrimmedItem) {
+                thisModuleNameLineNumber = thisItemLineNumber;
+                thisModuleNameLinePosition = thisItemLinePosition;
+            }
+
             lastHoverItem = thisTrimmedItem;
             if (thisTrimmedItem == string.Empty) {
                 // not doing anything for whitespace

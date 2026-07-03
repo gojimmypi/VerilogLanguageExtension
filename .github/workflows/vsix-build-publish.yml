@@ -14,10 +14,12 @@ jobs:
 
     env:
       Configuration: Release
+      SolutionPath: VerilogLanguageExtension.sln
       VsixManifestPath: source.extension.vsixmanifest
 
       # optional manifest values available as C# constants (not currently implemented)
       # VsixSourcePath: source.extension.cs
+
 
     steps:
       - uses: actions/checkout@v6
@@ -26,16 +28,15 @@ jobs:
         uses: microsoft/setup-msbuild@v3
 
       - name: Restore
-        run: msbuild /t:Restore
+        run: msbuild "${{ env.SolutionPath }}" /t:Restore
 
       - name: Version stamp
         uses: madskristensen/vsix-version-stamp@v2
         with:
           manifest-file: ${{ env.VsixManifestPath }}
-          vsix-token-source-file: ${{ env.VsixSourcePath }}
 
       - name: Build
-        run: msbuild /p:Configuration=$(Configuration)
+        run: msbuild "${{ env.SolutionPath }}" /p:Configuration="${{ env.Configuration }}"
 
       - name: Publish to VSIX Gallery
         if: ${{ false }} # Check push branch when enabled

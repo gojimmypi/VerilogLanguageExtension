@@ -33,6 +33,7 @@ namespace VerilogLanguage
     internal static class PkgCmdIDList
     {
         public const int CmdIdExportVerilogSnapshot = 0x0100;
+        public const int CmdIdGoToDefinition = 0x0102;
         // public const int CmdIdFirstCommand = 0x0101;
 
     }

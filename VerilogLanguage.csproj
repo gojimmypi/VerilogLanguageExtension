@@ -74,6 +74,7 @@
     <Compile Include="VerilogLanguagePackage.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".github\workflows\vsix-build-publish.yml" />
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>

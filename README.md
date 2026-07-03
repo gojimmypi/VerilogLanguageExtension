@@ -1,3 +1,8 @@
+[![VLE Headless CI](https://github.com/gojimmypi/VerilogLanguageExtension/actions/workflows/validate-manifest-snapshots.yml/badge.svg)](https://github.com/gojimmypi/VerilogLanguageExtension/actions/workflows/validate-manifest-snapshots.yml)
+[![Build Verilog Language Extension](https://github.com/gojimmypi/VerilogLanguageExtension/actions/workflows/build-verilog-language-extension.yml/badge.svg)](https://github.com/gojimmypi/VerilogLanguageExtension/actions/workflows/build-verilog-language-extension.yml)
+[![Build and (no) Publish](https://github.com/gojimmypi/VerilogLanguageExtension/actions/workflows/vsix-build-publish.yml/badge.svg)](https://github.com/gojimmypi/VerilogLanguageExtension/actions/workflows/vsix-build-publish.yml)
+[![Text hygiene](https://github.com/gojimmypi/VerilogLanguageExtension/actions/workflows/text-hygiene.yml/badge.svg)](https://github.com/gojimmypi/VerilogLanguageExtension/actions/workflows/text-hygiene.yml)
+
 # Verilog Language Extension
 
 Release v0.4.1.0

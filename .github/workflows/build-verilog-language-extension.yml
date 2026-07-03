@@ -11,6 +11,12 @@ jobs:
   build:
     runs-on: windows-2022
 
+    env:
+      Configuration: Release
+      # There's both a solution and project file, so be sure to explicitly name:
+      SolutionPath: VerilogLanguageExtension.sln
+      VsixManifestPath: source.extension.vsixmanifest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5

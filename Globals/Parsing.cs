@@ -41,6 +41,7 @@ namespace VerilogLanguage
 
         public sealed class VerilogDefinitionLocation
         {
+            public string FilePath { get; private set; }
             public string Scope { get; private set; }
             public string Name { get; private set; }
             public int LineNumber { get; private set; }
@@ -56,8 +57,21 @@ namespace VerilogLanguage
                 int linePosition,
                 int length,
                 VerilogTokenTypes tokenType,
+                string hoverText)
+                : this(string.Empty, scope, name, lineNumber, linePosition, length, tokenType, hoverText) {
+            }
+
+            public VerilogDefinitionLocation(
+                string filePath,
+                string scope,
+                string name,
+                int lineNumber,
+                int linePosition,
+                int length,
+                VerilogTokenTypes tokenType,
                 string hoverText) {
 
+                FilePath = filePath ?? string.Empty;
                 Scope = scope ?? string.Empty;
                 Name = name ?? string.Empty;
                 LineNumber = lineNumber;
@@ -68,7 +82,11 @@ namespace VerilogLanguage
             }
 
             public VerilogDefinitionLocation Clone() {
-                return new VerilogDefinitionLocation(Scope, Name, LineNumber, LinePosition, Length, TokenType, HoverText);
+                return new VerilogDefinitionLocation(FilePath, Scope, Name, LineNumber, LinePosition, Length, TokenType, HoverText);
+            }
+
+            public VerilogDefinitionLocation CloneWithFilePath(string filePath) {
+                return new VerilogDefinitionLocation(filePath, Scope, Name, LineNumber, LinePosition, Length, TokenType, HoverText);
             }
         }
 
@@ -206,7 +224,7 @@ namespace VerilogLanguage
             return result;
         }
 
-        private static Dictionary<string, Dictionary<string, VerilogDefinitionLocation>> CloneDefinitionMap(Dictionary<string, Dictionary<string, VerilogDefinitionLocation>> source) {
+        private static Dictionary<string, Dictionary<string, VerilogDefinitionLocation>> CloneDefinitionMap(Dictionary<string, Dictionary<string, VerilogDefinitionLocation>> source, string filePath) {
             Dictionary<string, Dictionary<string, VerilogDefinitionLocation>> result = new Dictionary<string, Dictionary<string, VerilogDefinitionLocation>>();
             if (source == null) {
                 return result;
@@ -216,7 +234,7 @@ namespace VerilogLanguage
                 Dictionary<string, VerilogDefinitionLocation> clonedScope = new Dictionary<string, VerilogDefinitionLocation>();
                 if (scope.Value != null) {
                     foreach (KeyValuePair<string, VerilogDefinitionLocation> item in scope.Value) {
-                        clonedScope[item.Key] = item.Value == null ? null : item.Value.Clone();
+                        clonedScope[item.Key] = item.Value == null ? null : item.Value.CloneWithFilePath(filePath);
                     }
                 }
 
@@ -270,7 +288,7 @@ namespace VerilogLanguage
                 BufferAttribute_at_LineNumber == null ? null : (int[])BufferAttribute_at_LineNumber.Clone(),
                 CloneVariableMap(VerilogVariables),
                 CloneHoverMap(VerilogVariableHoverText),
-                CloneDefinitionMap(VerilogDefinitionLocations));
+                CloneDefinitionMap(VerilogDefinitionLocations, targetFile));
 
             lock (_synchronizationActiveParseData) {
                 ParseDataByFile[targetFile] = parseData;
@@ -317,6 +335,38 @@ namespace VerilogLanguage
                 return false;
             }
         }
+
+        public static bool TryGetModuleDefinitionFromParsedFiles(string moduleName, out VerilogDefinitionLocation definition) {
+            definition = null;
+
+            if (string.IsNullOrEmpty(moduleName)) {
+                return false;
+            }
+
+            lock (_synchronizationActiveParseData) {
+                foreach (ParseDataSnapshot parseData in ParseDataByFile.Values) {
+                    if (parseData == null || parseData.VerilogDefinitionLocations == null) {
+                        continue;
+                    }
+
+                    Dictionary<string, VerilogDefinitionLocation> moduleDefinitions;
+                    if (!parseData.VerilogDefinitionLocations.TryGetValue(moduleName, out moduleDefinitions) || moduleDefinitions == null) {
+                        continue;
+                    }
+
+                    VerilogDefinitionLocation candidate;
+                    if (moduleDefinitions.TryGetValue(moduleName, out candidate) && candidate != null) {
+                        definition = string.IsNullOrEmpty(candidate.FilePath)
+                            ? candidate.CloneWithFilePath(parseData.TargetFile)
+                            : candidate.Clone();
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
 
         public static bool IsActiveParseData(string targetFile, ITextBuffer buffer) {
             ParseDataSnapshot parseData;

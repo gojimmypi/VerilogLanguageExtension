@@ -233,9 +233,7 @@ namespace VerilogLanguage.Testing
             }
 
             command.Visible = true;
-
-            IWpfTextView textView = GetActiveWpfTextView();
-            command.Enabled = textView != null && IsVerilogTextView(textView);
+            command.Enabled = true;
         }
 
         private void ExecuteGoToDefinition(object sender, EventArgs e) {

@@ -43,6 +43,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using VerilogLanguage.Testing;
+using VerilogLanguage.Navigation;
 using Task = System.Threading.Tasks.Task;
 
 using Microsoft.VisualStudio.Utilities;
@@ -248,13 +249,13 @@ namespace VerilogLanguage.Testing
 
                 SnapshotSpan tokenSpan;
                 string lookupText;
-                if (!TryGetIdentifierSpanAtCaret(textView, out tokenSpan, out lookupText)) {
+                if (!VerilogDefinitionResolver.TryGetIdentifierSpanAtCaret(textView, out tokenSpan, out lookupText)) {
                     ShowGoToDefinitionMessage("Place the caret on a Verilog identifier first.", OLEMSGICON.OLEMSGICON_WARNING);
                     return;
                 }
 
                 VerilogGlobals.VerilogDefinitionLocation definition;
-                if (!TryFindDefinition(tokenSpan, lookupText, out definition)) {
+                if (!VerilogDefinitionResolver.TryFindDefinition(tokenSpan, lookupText, out definition)) {
                     ShowGoToDefinitionMessage(
                         string.Format(CultureInfo.CurrentCulture, "No definition was found for '{0}' in this file or any parsed Verilog file.", lookupText),
                         OLEMSGICON.OLEMSGICON_WARNING);

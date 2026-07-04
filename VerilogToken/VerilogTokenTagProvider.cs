@@ -40,9 +40,6 @@ namespace VerilogLanguage.VerilogToken
     [ContentType("verilog")] // see _buffer.ContentType (ITextBuffer.ContentType Property)
     internal sealed class VerilogTokenTagProvider : ITaggerProvider
     {
-        [Import]
-        internal ITextDocumentFactoryService TextDocumentFactoryService { get; set; }
-
         public ITagger<T> CreateTagger<T>(ITextBuffer buffer) where T : ITag {
             if (buffer == null) {
                 return null;
@@ -57,15 +54,14 @@ namespace VerilogLanguage.VerilogToken
             //   - multiple token scans
             //   - broken / partial classification
             //
-            // This MUST be a singleton per buffer. The tagger owns an event
-            // subscription on the buffer, so register a matching cleanup path
-            // when the backing text document is disposed.
+            // This MUST be a singleton per buffer.
+            // Do not dispose this singleton from ITextDocumentDisposed. Visual Studio Peek
+            // can create and close a temporary document view for the same file while the
+            // normal editor view is still alive. Disposing the shared tagger at that point
+            // leaves the existing classifier/aggregator connected to a dead tagger, which
+            // makes all Verilog syntax highlighting disappear until the file is reopened.
             VerilogTokenTagger tagger = buffer.Properties.GetOrCreateSingletonProperty<VerilogTokenTagger>(
-                () => {
-                    VerilogTokenTagger newTagger = new VerilogTokenTagger(buffer);
-                    RegisterDisposeOnTextDocumentDisposed(buffer, newTagger);
-                    return newTagger;
-                });
+                () => new VerilogTokenTagger(buffer));
 
             return tagger as ITagger<T>;
 
@@ -74,30 +70,6 @@ namespace VerilogLanguage.VerilogToken
 
             //Func<ITagger<T>> sc = delegate () { return new VerilogTokenTagger(buffer) as ITagger<T>; };
             //return buffer.Properties.GetOrCreateSingletonProperty<ITagger<T>>(sc);
-        }
-
-        private void RegisterDisposeOnTextDocumentDisposed(ITextBuffer buffer, VerilogTokenTagger tagger) {
-            if (TextDocumentFactoryService == null) {
-                return;
-            }
-
-            ITextDocument textDocument;
-            if (!TextDocumentFactoryService.TryGetTextDocument(buffer, out textDocument)) {
-                return;
-            }
-
-            EventHandler<TextDocumentEventArgs> disposedHandler = null;
-            disposedHandler = (sender, e) => {
-                if (e == null || !object.ReferenceEquals(e.TextDocument, textDocument)) {
-                    return;
-                }
-
-                TextDocumentFactoryService.TextDocumentDisposed -= disposedHandler;
-                tagger.Dispose();
-                buffer.Properties.RemoveProperty(typeof(VerilogTokenTagger));
-            };
-
-            TextDocumentFactoryService.TextDocumentDisposed += disposedHandler;
         }
 
         public event EventHandler<SnapshotSpanEventArgs> TagsChanged

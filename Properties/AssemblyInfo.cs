@@ -45,8 +45,8 @@ using System.Runtime.InteropServices;
 
 /* When editing assembly, increment number as needed in VerilogLanguagePackage.cs:
  *    [ProvideMenuResource("Menus.ctmenu", 2)] */
-[assembly: AssemblyFileVersion("0.4.1.4")]
-[assembly: AssemblyInformationalVersion("0.4.1.4")]
+[assembly: AssemblyFileVersion("0.4.1.5")]
+[assembly: AssemblyInformationalVersion("0.4.1.5")]
 // commented the next line per  https://stackoverflow.com/questions/356543/can-i-automatically-increment-the-file-build-version-when-using-visual-studio
 //[assembly: AssemblyFileVersion("0.3.3.*")]
 [assembly: Guid("8E6636E9-EDBC-432F-BA96-85A8AE62D178")]

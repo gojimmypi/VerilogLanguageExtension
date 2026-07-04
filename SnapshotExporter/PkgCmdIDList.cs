@@ -34,6 +34,7 @@ namespace VerilogLanguage
     {
         public const int CmdIdExportVerilogSnapshot = 0x0100;
         public const int CmdIdGoToDefinition = 0x0102;
+        public const int CmdIdPeekDefinition = 0x0103;
         // public const int CmdIdFirstCommand = 0x0101;
 
     }

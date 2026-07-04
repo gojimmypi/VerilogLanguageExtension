@@ -133,6 +133,8 @@ Open the project and press `F5` to launch an experimental version of Visual Stud
 For v0.4.0 development, the repository also includes local snapshot regression tooling. The short path is:
 
 ```powershell
+Get-ChildItem -Path . -Recurse -Include *.ps1,*.psm1,*.psd1 | Unblock-File
+
 .\ci-pass.ps1
 .\ci-baseline.ps1
 .\ci-check.ps1

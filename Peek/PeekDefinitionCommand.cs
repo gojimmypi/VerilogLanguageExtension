@@ -1,3 +1,4 @@
+using EnvDTE;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Editor;
@@ -9,6 +10,8 @@ using Microsoft.VisualStudio.TextManager.Interop;
 using Microsoft.VisualStudio.Utilities;
 using System;
 using System.ComponentModel.Design;
+using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
@@ -19,6 +22,9 @@ namespace VerilogLanguage.Peek
     {
         public const int CommandId = 0x0103;
         public static readonly Guid CommandSet = new Guid("C7F8B2F5-7A01-4A07-8E4B-4A29F77A0B9F");
+
+        private const string EmbeddedPeekTextViewRole = "EMBEDDED_PEEK_TEXT_VIEW";
+        private const string EditPeekDefinitionCommandName = "Edit.PeekDefinition";
 
         private readonly AsyncPackage package;
 
@@ -54,10 +60,10 @@ namespace VerilogLanguage.Peek
             }
 
             IWpfTextView textView = GetActiveWpfTextView();
-            bool isVerilogPrimaryDocumentView = textView != null && IsVerilogPrimaryDocumentView(textView);
+            bool isVerilogPeekCommandView = textView != null && IsVerilogPeekCommandView(textView);
 
-            command.Visible = isVerilogPrimaryDocumentView;
-            command.Enabled = isVerilogPrimaryDocumentView;
+            command.Visible = isVerilogPeekCommandView;
+            command.Enabled = isVerilogPeekCommandView;
         }
 
         private void Execute(object sender, EventArgs e) {
@@ -69,33 +75,81 @@ namespace VerilogLanguage.Peek
                     return;
                 }
 
-                if (!IsVerilogPrimaryDocumentView(textView)) {
-                    System.Diagnostics.Debug.WriteLine("VLE Peek Definition ignored for non-primary or Peek-hosted Verilog view.");
+                if (!IsVerilogPeekCommandView(textView)) {
+                    System.Diagnostics.Debug.WriteLine("VLE Peek Definition ignored for unsupported view. Roles=" + RoleText(textView));
                     return;
                 }
 
-                IComponentModel componentModel = Package.GetGlobalService(typeof(SComponentModel)) as IComponentModel;
-                if (componentModel == null) {
+                if (IsPeekHostedView(textView)) {
+                    System.Diagnostics.Debug.WriteLine("VLE Peek Definition delegating Peek-hosted view to " + EditPeekDefinitionCommandName + ". Roles=" + RoleText(textView));
+                    if (!TryExecuteBuiltInPeekDefinition(textView)) {
+                        System.Diagnostics.Debug.WriteLine("VLE Peek Definition could not delegate Peek-hosted view to " + EditPeekDefinitionCommandName + ". Roles=" + RoleText(textView));
+                    }
+
                     return;
                 }
 
-                IPeekBroker peekBroker = componentModel.GetService<IPeekBroker>();
-                if (peekBroker == null) {
-                    return;
-                }
-
-                SnapshotPoint caretPoint = textView.Caret.Position.BufferPosition;
-                ITrackingPoint trackingPoint = caretPoint.Snapshot.CreateTrackingPoint(
-                    caretPoint.Position,
-                    PointTrackingMode.Positive);
-
-                peekBroker.TriggerPeekSession(
-                    textView,
-                    trackingPoint,
-                    PredefinedPeekRelationships.Definitions.Name);
+                TriggerPrimaryPeekSession(textView);
             }
             catch (Exception ex) {
                 System.Diagnostics.Debug.WriteLine("Verilog Peek Definition command failed: " + ex);
+            }
+        }
+
+        private static void TriggerPrimaryPeekSession(IWpfTextView textView) {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            IComponentModel componentModel = Package.GetGlobalService(typeof(SComponentModel)) as IComponentModel;
+            if (componentModel == null) {
+                return;
+            }
+
+            IPeekBroker peekBroker = componentModel.GetService<IPeekBroker>();
+            if (peekBroker == null) {
+                return;
+            }
+
+            SnapshotPoint caretPoint = textView.Caret.Position.BufferPosition;
+            ITrackingPoint trackingPoint = caretPoint.Snapshot.CreateTrackingPoint(
+                caretPoint.Position,
+                PointTrackingMode.Positive);
+
+            System.Diagnostics.Debug.WriteLine("VLE Peek Definition starting Peek session. Roles=" + RoleText(textView));
+            peekBroker.TriggerPeekSession(
+                textView,
+                trackingPoint,
+                PredefinedPeekRelationships.Definitions.Name);
+        }
+
+        private static bool TryExecuteBuiltInPeekDefinition(IWpfTextView textView) {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            if (textView == null || textView.VisualElement == null) {
+                return false;
+            }
+
+            try {
+                textView.VisualElement.Focus();
+
+                DTE dte = Package.GetGlobalService(typeof(DTE)) as DTE;
+                if (dte == null) {
+                    return false;
+                }
+
+                dte.ExecuteCommand(EditPeekDefinitionCommandName);
+                return true;
+            }
+            catch (COMException ex) {
+                System.Diagnostics.Debug.WriteLine("VLE Peek Definition built-in command failed: " + ex.Message);
+                return false;
+            }
+            catch (InvalidOperationException ex) {
+                System.Diagnostics.Debug.WriteLine("VLE Peek Definition built-in command failed: " + ex.Message);
+                return false;
+            }
+            catch (ArgumentException ex) {
+                System.Diagnostics.Debug.WriteLine("VLE Peek Definition built-in command failed: " + ex.Message);
+                return false;
             }
         }
 
@@ -107,8 +161,11 @@ namespace VerilogLanguage.Peek
             return textView.TextBuffer.ContentType.IsOfType("verilog");
         }
 
-        /* We're only interested in Verilog text views that are the primary document view,
-         * not Peek-hosted views or other secondary views. No nested peeks.*/
+        private static bool IsVerilogPeekCommandView(IWpfTextView textView) {
+            return IsVerilogPrimaryDocumentView(textView) ||
+                (IsVerilogTextView(textView) && IsPeekHostedView(textView));
+        }
+
         private static bool IsVerilogPrimaryDocumentView(IWpfTextView textView) {
             if (!IsVerilogTextView(textView)) {
                 return false;
@@ -118,16 +175,21 @@ namespace VerilogLanguage.Peek
                 return false;
             }
 
-            if (!textView.Roles.Contains(PredefinedTextViewRoles.Document) ||
-                !textView.Roles.Contains(PredefinedTextViewRoles.PrimaryDocument)) {
-                return false;
-            }
-
-            return !IsPeekHostedView(textView);
+            return textView.Roles.Contains(PredefinedTextViewRoles.Document) &&
+                textView.Roles.Contains(PredefinedTextViewRoles.PrimaryDocument) &&
+                !IsPeekHostedView(textView);
         }
 
         private static bool IsPeekHostedView(IWpfTextView textView) {
-            if (textView == null || textView.VisualElement == null) {
+            if (textView == null) {
+                return false;
+            }
+
+            if (textView.Roles != null && textView.Roles.Contains(EmbeddedPeekTextViewRole)) {
+                return true;
+            }
+
+            if (textView.VisualElement == null) {
                 return false;
             }
 
@@ -148,6 +210,23 @@ namespace VerilogLanguage.Peek
             }
 
             return false;
+        }
+
+        private static string RoleText(IWpfTextView textView) {
+            if (textView == null || textView.Roles == null) {
+                return string.Empty;
+            }
+
+            StringBuilder builder = new StringBuilder();
+            foreach (string role in textView.Roles) {
+                if (builder.Length > 0) {
+                    builder.Append(",");
+                }
+
+                builder.Append(role);
+            }
+
+            return builder.ToString();
         }
 
         private static IWpfTextView GetActiveWpfTextView() {

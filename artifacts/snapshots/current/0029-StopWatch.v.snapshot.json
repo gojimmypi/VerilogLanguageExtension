@@ -1,7 +1,7 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.0.0",
+    "ExtensionVersion":  "0.4.1.5",
     "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\StopWatch.v",
     "FileRelativePath":  "TestFiles\\StopWatch.v",
     "ContentType":  "verilog",
@@ -31913,7 +31913,7 @@
                 ],
     "ProcessingTime":  {
                            "SchemaVersion":  2,
-                           "ElapsedBucket":  "10-14s",
+                           "ElapsedBucket":  "15-19s",
                            "Index":  29,
                            "Count":  53,
                            "Status":  "Completed"

@@ -1,13 +1,13 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.0.0",
+    "ExtensionVersion":  "0.4.1.5",
     "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\bracketest.v",
     "FileRelativePath":  "TestFiles\\bracketest.v",
     "ContentType":  "verilog",
-    "SnapshotLength":  104,
+    "SnapshotLength":  110,
     "SnapshotVersion":  2,
-    "TextSha256":  "cbd41db543f44bcf907bb43153aafe998c6b1baf639b8bf66fb29fa4fe5b1a3b",
+    "TextSha256":  "73e68b18f05876642f7db70f77aed2c430527de4f80fe21467d2796b55f870c7",
     "Errors":  [
 
                ],
@@ -33,7 +33,7 @@
                                           ]
                             },
                             {
-                                "Start":  5,
+                                "Start":  6,
                                 "Length":  6,
                                 "Line":  2,
                                 "Column":  1,
@@ -43,7 +43,7 @@
                                           ]
                             },
                             {
-                                "Start":  12,
+                                "Start":  13,
                                 "Length":  19,
                                 "Line":  2,
                                 "Column":  8,
@@ -53,7 +53,7 @@
                                           ]
                             },
                             {
-                                "Start":  33,
+                                "Start":  35,
                                 "Length":  6,
                                 "Line":  3,
                                 "Column":  2,
@@ -63,7 +63,7 @@
                                           ]
                             },
                             {
-                                "Start":  40,
+                                "Start":  42,
                                 "Length":  4,
                                 "Line":  3,
                                 "Column":  9,
@@ -73,7 +73,7 @@
                                           ]
                             },
                             {
-                                "Start":  45,
+                                "Start":  47,
                                 "Length":  1,
                                 "Line":  3,
                                 "Column":  14,
@@ -83,7 +83,7 @@
                                           ]
                             },
                             {
-                                "Start":  46,
+                                "Start":  48,
                                 "Length":  1,
                                 "Line":  3,
                                 "Column":  15,
@@ -93,7 +93,7 @@
                                           ]
                             },
                             {
-                                "Start":  48,
+                                "Start":  50,
                                 "Length":  1,
                                 "Line":  3,
                                 "Column":  17,
@@ -103,7 +103,7 @@
                                           ]
                             },
                             {
-                                "Start":  49,
+                                "Start":  51,
                                 "Length":  1,
                                 "Line":  3,
                                 "Column":  18,
@@ -113,7 +113,7 @@
                                           ]
                             },
                             {
-                                "Start":  51,
+                                "Start":  53,
                                 "Length":  3,
                                 "Line":  3,
                                 "Column":  20,
@@ -123,7 +123,7 @@
                                           ]
                             },
                             {
-                                "Start":  57,
+                                "Start":  60,
                                 "Length":  5,
                                 "Line":  4,
                                 "Column":  2,
@@ -133,7 +133,7 @@
                                           ]
                             },
                             {
-                                "Start":  64,
+                                "Start":  67,
                                 "Length":  4,
                                 "Line":  4,
                                 "Column":  9,
@@ -143,7 +143,7 @@
                                           ]
                             },
                             {
-                                "Start":  69,
+                                "Start":  72,
                                 "Length":  1,
                                 "Line":  4,
                                 "Column":  14,
@@ -153,7 +153,7 @@
                                           ]
                             },
                             {
-                                "Start":  70,
+                                "Start":  73,
                                 "Length":  1,
                                 "Line":  4,
                                 "Column":  15,
@@ -163,7 +163,7 @@
                                           ]
                             },
                             {
-                                "Start":  72,
+                                "Start":  75,
                                 "Length":  1,
                                 "Line":  4,
                                 "Column":  17,
@@ -173,7 +173,7 @@
                                           ]
                             },
                             {
-                                "Start":  73,
+                                "Start":  76,
                                 "Length":  1,
                                 "Line":  4,
                                 "Column":  18,
@@ -183,7 +183,7 @@
                                           ]
                             },
                             {
-                                "Start":  75,
+                                "Start":  78,
                                 "Length":  3,
                                 "Line":  4,
                                 "Column":  20,
@@ -193,7 +193,7 @@
                                           ]
                             },
                             {
-                                "Start":  81,
+                                "Start":  85,
                                 "Length":  5,
                                 "Line":  5,
                                 "Column":  2,
@@ -203,7 +203,7 @@
                                           ]
                             },
                             {
-                                "Start":  88,
+                                "Start":  92,
                                 "Length":  4,
                                 "Line":  5,
                                 "Column":  9,
@@ -213,7 +213,7 @@
                                           ]
                             },
                             {
-                                "Start":  93,
+                                "Start":  97,
                                 "Length":  1,
                                 "Line":  5,
                                 "Column":  14,
@@ -223,7 +223,7 @@
                                           ]
                             },
                             {
-                                "Start":  94,
+                                "Start":  98,
                                 "Length":  1,
                                 "Line":  5,
                                 "Column":  15,
@@ -233,7 +233,7 @@
                                           ]
                             },
                             {
-                                "Start":  96,
+                                "Start":  100,
                                 "Length":  1,
                                 "Line":  5,
                                 "Column":  17,
@@ -243,7 +243,7 @@
                                           ]
                             },
                             {
-                                "Start":  97,
+                                "Start":  101,
                                 "Length":  1,
                                 "Line":  5,
                                 "Column":  18,
@@ -253,7 +253,7 @@
                                           ]
                             },
                             {
-                                "Start":  99,
+                                "Start":  103,
                                 "Length":  2,
                                 "Line":  5,
                                 "Column":  20,
@@ -305,7 +305,7 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  5,
+                     "Start":  6,
                      "Length":  6,
                      "Line":  2,
                      "Column":  1,
@@ -315,7 +315,7 @@
                      "HoverText":  "The module declaration is the only design unit in Verilog. It describes both a design\u0027s interface to other designs in the same environment, and its functional composition."
                  },
                  {
-                     "Start":  12,
+                     "Start":  13,
                      "Length":  19,
                      "Line":  2,
                      "Column":  8,
@@ -325,7 +325,7 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  33,
+                     "Start":  35,
                      "Length":  6,
                      "Line":  3,
                      "Column":  2,
@@ -335,7 +335,7 @@
                      "HoverText":  "The reserved word output is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
                  },
                  {
-                     "Start":  40,
+                     "Start":  42,
                      "Length":  4,
                      "Line":  3,
                      "Column":  9,
@@ -345,7 +345,7 @@
                      "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
                  },
                  {
-                     "Start":  45,
+                     "Start":  47,
                      "Length":  1,
                      "Line":  3,
                      "Column":  14,
@@ -355,7 +355,7 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  46,
+                     "Start":  48,
                      "Length":  1,
                      "Line":  3,
                      "Column":  15,
@@ -365,7 +365,7 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  48,
+                     "Start":  50,
                      "Length":  1,
                      "Line":  3,
                      "Column":  17,
@@ -375,7 +375,7 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  49,
+                     "Start":  51,
                      "Length":  1,
                      "Line":  3,
                      "Column":  18,
@@ -385,7 +385,7 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  51,
+                     "Start":  53,
                      "Length":  3,
                      "Line":  3,
                      "Column":  20,
@@ -395,7 +395,7 @@
                      "HoverText":  "output wire [7:0] led"
                  },
                  {
-                     "Start":  57,
+                     "Start":  60,
                      "Length":  5,
                      "Line":  4,
                      "Column":  2,
@@ -405,7 +405,7 @@
                      "HoverText":  "The reserved word input is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
                  },
                  {
-                     "Start":  64,
+                     "Start":  67,
                      "Length":  4,
                      "Line":  4,
                      "Column":  9,
@@ -415,7 +415,7 @@
                      "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
                  },
                  {
-                     "Start":  69,
+                     "Start":  72,
                      "Length":  1,
                      "Line":  4,
                      "Column":  14,
@@ -425,7 +425,7 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  70,
+                     "Start":  73,
                      "Length":  1,
                      "Line":  4,
                      "Column":  15,
@@ -435,7 +435,7 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  72,
+                     "Start":  75,
                      "Length":  1,
                      "Line":  4,
                      "Column":  17,
@@ -445,7 +445,7 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  73,
+                     "Start":  76,
                      "Length":  1,
                      "Line":  4,
                      "Column":  18,
@@ -455,7 +455,7 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  75,
+                     "Start":  78,
                      "Length":  3,
                      "Line":  4,
                      "Column":  20,
@@ -465,7 +465,7 @@
                      "HoverText":  "input  wire [6:0] btn"
                  },
                  {
-                     "Start":  81,
+                     "Start":  85,
                      "Length":  5,
                      "Line":  5,
                      "Column":  2,
@@ -475,7 +475,7 @@
                      "HoverText":  "The reserved word input is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
                  },
                  {
-                     "Start":  88,
+                     "Start":  92,
                      "Length":  4,
                      "Line":  5,
                      "Column":  9,
@@ -485,7 +485,7 @@
                      "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
                  },
                  {
-                     "Start":  93,
+                     "Start":  97,
                      "Length":  1,
                      "Line":  5,
                      "Column":  14,
@@ -495,7 +495,7 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  94,
+                     "Start":  98,
                      "Length":  1,
                      "Line":  5,
                      "Column":  15,
@@ -505,7 +505,7 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  96,
+                     "Start":  100,
                      "Length":  1,
                      "Line":  5,
                      "Column":  17,
@@ -515,7 +515,7 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  97,
+                     "Start":  101,
                      "Length":  1,
                      "Line":  5,
                      "Column":  18,
@@ -525,7 +525,7 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  99,
+                     "Start":  103,
                      "Length":  2,
                      "Line":  5,
                      "Column":  20,
@@ -569,7 +569,7 @@
                        "Context":  "SquareBracketClose"
                    },
                    {
-                       "Start":  5,
+                       "Start":  6,
                        "Length":  6,
                        "Line":  2,
                        "Column":  1,
@@ -577,7 +577,7 @@
                        "Context":  "Undetermined"
                    },
                    {
-                       "Start":  11,
+                       "Start":  12,
                        "Length":  1,
                        "Line":  2,
                        "Column":  7,
@@ -585,7 +585,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  12,
+                       "Start":  13,
                        "Length":  19,
                        "Line":  2,
                        "Column":  8,
@@ -593,7 +593,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  32,
+                       "Start":  34,
                        "Length":  1,
                        "Line":  3,
                        "Column":  1,
@@ -601,7 +601,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  33,
+                       "Start":  35,
                        "Length":  6,
                        "Line":  3,
                        "Column":  2,
@@ -609,7 +609,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  39,
+                       "Start":  41,
                        "Length":  1,
                        "Line":  3,
                        "Column":  8,
@@ -617,7 +617,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  40,
+                       "Start":  42,
                        "Length":  4,
                        "Line":  3,
                        "Column":  9,
@@ -625,7 +625,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  44,
+                       "Start":  46,
                        "Length":  1,
                        "Line":  3,
                        "Column":  13,
@@ -633,7 +633,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  45,
+                       "Start":  47,
                        "Length":  1,
                        "Line":  3,
                        "Column":  14,
@@ -641,7 +641,7 @@
                        "Context":  "SquareBracketOpen"
                    },
                    {
-                       "Start":  46,
+                       "Start":  48,
                        "Length":  1,
                        "Line":  3,
                        "Column":  15,
@@ -649,7 +649,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  47,
+                       "Start":  49,
                        "Length":  1,
                        "Line":  3,
                        "Column":  16,
@@ -657,7 +657,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  48,
+                       "Start":  50,
                        "Length":  1,
                        "Line":  3,
                        "Column":  17,
@@ -665,7 +665,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  49,
+                       "Start":  51,
                        "Length":  1,
                        "Line":  3,
                        "Column":  18,
@@ -673,7 +673,7 @@
                        "Context":  "SquareBracketClose"
                    },
                    {
-                       "Start":  50,
+                       "Start":  52,
                        "Length":  1,
                        "Line":  3,
                        "Column":  19,
@@ -681,7 +681,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  51,
+                       "Start":  53,
                        "Length":  3,
                        "Line":  3,
                        "Column":  20,
@@ -689,7 +689,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  54,
+                       "Start":  56,
                        "Length":  1,
                        "Line":  3,
                        "Column":  23,
@@ -697,7 +697,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  56,
+                       "Start":  59,
                        "Length":  1,
                        "Line":  4,
                        "Column":  1,
@@ -705,7 +705,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  57,
+                       "Start":  60,
                        "Length":  5,
                        "Line":  4,
                        "Column":  2,
@@ -713,7 +713,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  62,
+                       "Start":  65,
                        "Length":  2,
                        "Line":  4,
                        "Column":  7,
@@ -721,7 +721,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  64,
+                       "Start":  67,
                        "Length":  4,
                        "Line":  4,
                        "Column":  9,
@@ -729,7 +729,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  68,
+                       "Start":  71,
                        "Length":  1,
                        "Line":  4,
                        "Column":  13,
@@ -737,7 +737,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  69,
+                       "Start":  72,
                        "Length":  1,
                        "Line":  4,
                        "Column":  14,
@@ -745,7 +745,7 @@
                        "Context":  "SquareBracketOpen"
                    },
                    {
-                       "Start":  70,
+                       "Start":  73,
                        "Length":  1,
                        "Line":  4,
                        "Column":  15,
@@ -753,7 +753,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  71,
+                       "Start":  74,
                        "Length":  1,
                        "Line":  4,
                        "Column":  16,
@@ -761,7 +761,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  72,
+                       "Start":  75,
                        "Length":  1,
                        "Line":  4,
                        "Column":  17,
@@ -769,7 +769,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  73,
+                       "Start":  76,
                        "Length":  1,
                        "Line":  4,
                        "Column":  18,
@@ -777,7 +777,7 @@
                        "Context":  "SquareBracketClose"
                    },
                    {
-                       "Start":  74,
+                       "Start":  77,
                        "Length":  1,
                        "Line":  4,
                        "Column":  19,
@@ -785,7 +785,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  75,
+                       "Start":  78,
                        "Length":  3,
                        "Line":  4,
                        "Column":  20,
@@ -793,7 +793,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  78,
+                       "Start":  81,
                        "Length":  1,
                        "Line":  4,
                        "Column":  23,
@@ -801,7 +801,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  80,
+                       "Start":  84,
                        "Length":  1,
                        "Line":  5,
                        "Column":  1,
@@ -809,7 +809,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  81,
+                       "Start":  85,
                        "Length":  5,
                        "Line":  5,
                        "Column":  2,
@@ -817,7 +817,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  86,
+                       "Start":  90,
                        "Length":  2,
                        "Line":  5,
                        "Column":  7,
@@ -825,7 +825,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  88,
+                       "Start":  92,
                        "Length":  4,
                        "Line":  5,
                        "Column":  9,
@@ -833,7 +833,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  92,
+                       "Start":  96,
                        "Length":  1,
                        "Line":  5,
                        "Column":  13,
@@ -841,7 +841,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  93,
+                       "Start":  97,
                        "Length":  1,
                        "Line":  5,
                        "Column":  14,
@@ -849,7 +849,7 @@
                        "Context":  "SquareBracketOpen"
                    },
                    {
-                       "Start":  94,
+                       "Start":  98,
                        "Length":  1,
                        "Line":  5,
                        "Column":  15,
@@ -857,7 +857,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  95,
+                       "Start":  99,
                        "Length":  1,
                        "Line":  5,
                        "Column":  16,
@@ -865,7 +865,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  96,
+                       "Start":  100,
                        "Length":  1,
                        "Line":  5,
                        "Column":  17,
@@ -873,7 +873,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  97,
+                       "Start":  101,
                        "Length":  1,
                        "Line":  5,
                        "Column":  18,
@@ -881,7 +881,7 @@
                        "Context":  "SquareBracketClose"
                    },
                    {
-                       "Start":  98,
+                       "Start":  102,
                        "Length":  1,
                        "Line":  5,
                        "Column":  19,
@@ -889,7 +889,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  99,
+                       "Start":  103,
                        "Length":  2,
                        "Line":  5,
                        "Column":  20,
@@ -897,7 +897,7 @@
                        "Context":  "Text"
                    },
                    {
-                       "Start":  101,
+                       "Start":  105,
                        "Length":  1,
                        "Line":  5,
                        "Column":  22,

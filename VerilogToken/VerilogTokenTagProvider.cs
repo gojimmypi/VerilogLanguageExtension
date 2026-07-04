@@ -26,6 +26,7 @@
 //***************************************************************************
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Tagging;
@@ -33,8 +34,7 @@ using Microsoft.VisualStudio.Utilities;
 
 namespace VerilogLanguage.VerilogToken
 {
-    // You must export a tagger provider for your tagger.
-    // IMPORTANT: Only ONE tagger instance per buffer.
+    // One shared tokenizing core per text buffer, but one disposable lease per VS tag aggregator.
     [Export(typeof(ITaggerProvider))]
     [TagType(typeof(VerilogTokenTag))]
     [ContentType("verilog")] // see _buffer.ContentType (ITextBuffer.ContentType Property)
@@ -48,35 +48,76 @@ namespace VerilogLanguage.VerilogToken
             System.Diagnostics.Debug.WriteLine(
                 "VerilogTokenTagProvider.CreateTagger: ContentType=" + buffer.ContentType.TypeName);
 
-            // CRITICAL:
-            // Returning a new tagger each time causes:
-            //   - multiple buffer.Changed handlers
-            //   - multiple token scans
-            //   - broken / partial classification
-            //
-            // This MUST be a singleton per buffer.
-            // Do not dispose this singleton from ITextDocumentDisposed. Visual Studio Peek
-            // can create and close a temporary document view for the same file while the
-            // normal editor view is still alive. Disposing the shared tagger at that point
-            // leaves the existing classifier/aggregator connected to a dead tagger, which
-            // makes all Verilog syntax highlighting disappear until the file is reopened.
             VerilogTokenTagger tagger = buffer.Properties.GetOrCreateSingletonProperty<VerilogTokenTagger>(
                 () => new VerilogTokenTagger(buffer));
 
-            return tagger as ITagger<T>;
+            return new VerilogTokenTaggerLease(tagger) as ITagger<T>;
+        }
+    }
 
-            // return new VerilogTokenTagger(buffer) as ITagger<T>;
-            // TODO which is better? above or below?
+    internal sealed class VerilogTokenTaggerLease : ITagger<VerilogTokenTag>, IDisposable
+    {
+        private readonly object eventLock = new object();
+        private VerilogTokenTagger tagger;
+        private EventHandler<SnapshotSpanEventArgs> tagsChanged;
 
-            //Func<ITagger<T>> sc = delegate () { return new VerilogTokenTagger(buffer) as ITagger<T>; };
-            //return buffer.Properties.GetOrCreateSingletonProperty<ITagger<T>>(sc);
+        internal VerilogTokenTaggerLease(VerilogTokenTagger tagger) {
+            this.tagger = tagger ?? throw new ArgumentNullException(nameof(tagger));
+            this.tagger.TagsChanged += CoreTagsChanged;
         }
 
         public event EventHandler<SnapshotSpanEventArgs> TagsChanged
         {
-            add { }
-            remove { }
+            add
+            {
+                lock (eventLock) {
+                    tagsChanged += value;
+                }
+            }
+
+            remove
+            {
+                lock (eventLock) {
+                    tagsChanged -= value;
+                }
+            }
+        }
+
+        public IEnumerable<ITagSpan<VerilogTokenTag>> GetTags(NormalizedSnapshotSpanCollection spans) {
+            VerilogTokenTagger currentTagger = tagger;
+            if (currentTagger == null) {
+                yield break;
+            }
+
+            foreach (ITagSpan<VerilogTokenTag> tag in currentTagger.GetTags(spans)) {
+                yield return tag;
+            }
+        }
+
+        public void Dispose() {
+            VerilogTokenTagger currentTagger = tagger;
+            if (currentTagger == null) {
+                return;
+            }
+
+            tagger = null;
+            currentTagger.TagsChanged -= CoreTagsChanged;
+
+            lock (eventLock) {
+                tagsChanged = null;
+            }
+        }
+
+        private void CoreTagsChanged(object sender, SnapshotSpanEventArgs e) {
+            EventHandler<SnapshotSpanEventArgs> handler;
+
+            lock (eventLock) {
+                handler = tagsChanged;
+            }
+
+            if (handler != null) {
+                handler(this, e);
+            }
         }
     }
-
 }

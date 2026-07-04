@@ -44,7 +44,10 @@ namespace VerilogLanguage
     [TextViewRole(PredefinedTextViewRoles.Document)]
     internal sealed class SnapshotExportOnOpen : IWpfTextViewCreationListener
     {
+#if DEBUG
+        /* See ExportAfterDelayAsync */
         private static int _snapshotSequence;
+#endif
 
         [Import]
         internal ITextDocumentFactoryService TextDocumentFactoryService = null;

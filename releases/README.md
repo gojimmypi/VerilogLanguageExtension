@@ -4,6 +4,8 @@ Because you never know, you might need that someday.
 
 Downloads available for prior versions of vsix extensions:
 
+0.4.1.1
+
 [Version 0.4.1.0](./VerilogLanguage_v0.4.1.0.vsix) Add "Goto definition" feature.
 
 [Version 0.4.0.1](./VerilogLanguage_v0.4.0.1.vsix) No changes, but marketplace text update was not previously in place

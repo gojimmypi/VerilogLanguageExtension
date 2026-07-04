@@ -232,11 +232,10 @@ namespace VerilogLanguage.Testing
                 return;
             }
 
-            IWpfTextView textView = GetActiveWpfTextView();
-            bool isVerilogTextView = textView != null && IsVerilogTextView(textView);
+            command.Visible = true;
 
-            command.Visible = isVerilogTextView;
-            command.Enabled = isVerilogTextView;
+            IWpfTextView textView = GetActiveWpfTextView();
+            command.Enabled = textView != null && IsVerilogTextView(textView);
         }
 
         private void ExecuteGoToDefinition(object sender, EventArgs e) {
@@ -618,7 +617,7 @@ namespace VerilogLanguage.Testing
             }
 
             IVsTextView vsTextView;
-            int hr = textManager.GetActiveView(1, null, out vsTextView);
+            int hr = textManager.GetActiveView(0, null, out vsTextView);
             if (hr != VSConstants.S_OK || vsTextView == null) {
                 return null;
             }

@@ -79,6 +79,7 @@ namespace VerilogLanguage.VerilogToken
 #endif
 
             this._buffer.Changed += BufferChanged;
+            VerilogGlobals.ParseDataPublished += ParseDataPublished;
 
             // Initial parse is required so module/variable tables exist before the first classification pass.
             TriggerReparseAndRefreshAll();
@@ -131,6 +132,24 @@ namespace VerilogLanguage.VerilogToken
                     // Recreate the watcher instead of letting a disposed Timer break classification.
                     _reparseCompletionTimer = new Timer(ReparseCompletionTimerCallback, null, 50, 50);
                 }
+            }
+        }
+
+        private void ParseDataPublished(object sender, EventArgs e) {
+            if (_disposed) {
+                return;
+            }
+
+            ITextSnapshot snapshot = null;
+            try {
+                snapshot = _buffer.CurrentSnapshot;
+            }
+            catch {
+                snapshot = null;
+            }
+
+            if (snapshot != null) {
+                InvalidateAll(snapshot);
             }
         }
 
@@ -326,6 +345,7 @@ namespace VerilogLanguage.VerilogToken
 
             _disposed = true;
             _buffer.Changed -= BufferChanged;
+            VerilogGlobals.ParseDataPublished -= ParseDataPublished;
             StopReparseCompletionWatcher();
             InvalidateBlockCommentStateCache();
         }
@@ -1215,6 +1235,19 @@ namespace VerilogLanguage.VerilogToken
             return true;
         }
 
+        private static bool IsKnownModuleName(string lookupText, VerilogGlobals.ParseDataSnapshot parseData) {
+            if (string.IsNullOrEmpty(lookupText)) {
+                return false;
+            }
+
+            if (parseData != null && parseData.VerilogVariables.ContainsKey(lookupText)) {
+                return true;
+            }
+
+            VerilogGlobals.VerilogDefinitionLocation definition;
+            return VerilogGlobals.TryGetModuleDefinitionFromParsedFiles(lookupText, out definition);
+        }
+
         private static bool TryGetMacroNameFromLookupText(string lookupText, out string macroName) {
             macroName = string.Empty;
             if (string.IsNullOrEmpty(lookupText) || lookupText[0] != '`') {
@@ -1497,7 +1530,7 @@ namespace VerilogLanguage.VerilogToken
                 yield break;
             }
 
-            if (parseData != null && lookupTextIsIdentifier && parseData.VerilogVariables.ContainsKey(lookupText)) {
+            if (lookupTextIsIdentifier && IsKnownModuleName(lookupText, parseData)) {
                 // we are instantiation a module; recall VerilogVariables is first a dictionary of scope (aka module), then a dictionary of variables in each module scope
                 // TODO do we need: if (tokenSpan.IntersectsWith(curSpan))
 #if TAG_DEBUG

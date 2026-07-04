@@ -39,6 +39,8 @@ namespace VerilogLanguage
         private static string _activeParseFile = string.Empty;
         private static int _activeParseVersion = 0;
 
+        public static event EventHandler ParseDataPublished;
+
         public sealed class VerilogDefinitionLocation
         {
             public string FilePath { get; private set; }
@@ -295,6 +297,11 @@ namespace VerilogLanguage
                 ApplyParseDataSnapshot(parseData);
                 _activeParseFile = targetFile;
                 _activeParseVersion = snapshotVersion;
+            }
+
+            EventHandler handler = ParseDataPublished;
+            if (handler != null) {
+                handler(null, EventArgs.Empty);
             }
         }
 

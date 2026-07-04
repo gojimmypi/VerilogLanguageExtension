@@ -74,6 +74,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VerilogLanguagePackage.cs" />
     <Compile Include="Navigation\VerilogDefinitionResolver.cs" />
+    <Compile Include="Navigation\VerilogReferenceFinder.cs" />
+    <Compile Include="Navigation\FindAllReferencesCommand.cs" />
     <Compile Include="Peek\PeekDefinitionCommand.cs" />
     <Compile Include="Peek\VerilogPeekDefinitionSource.cs" />
   </ItemGroup>

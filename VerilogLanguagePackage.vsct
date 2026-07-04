@@ -77,6 +77,13 @@
           <CanonicalName>Verilog Peek Definition</CanonicalName>
         </Strings>
       </Button>
+      <Button guid="guidVerilogLanguagePackageCmdSet" id="FindAllReferencesId" priority="0x0102" type="Button">
+        <Parent guid="guidVerilogLanguagePackageCmdSet" id="CodeWindowMenuGroup" />
+        <Strings>
+          <ButtonText>Find All References</ButtonText>
+          <CanonicalName>Verilog Find All References</CanonicalName>
+        </Strings>
+      </Button>
     </Buttons>
 
     <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
@@ -101,6 +108,7 @@
       <IDSymbol name="SnapshotExporterId" value="0x0100" />
       <IDSymbol name="GoToDefinitionId" value="0x0102" />
       <IDSymbol name="PeekDefinitionId" value="0x0103" />
+      <IDSymbol name="FindAllReferencesId" value="0x0104" />
     </GuidSymbol>
 
     <GuidSymbol name="guidImages" value="{45cd5964-19f7-4072-904f-666ee40d9262}" >

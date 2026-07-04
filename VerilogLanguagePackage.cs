@@ -30,6 +30,7 @@ using Microsoft.VisualStudio.Shell;
 using System;
 using System.Runtime.InteropServices;
 using System.Threading;
+using VerilogLanguage.Navigation;
 using VerilogLanguage.Peek;
 using VerilogLanguage.Testing;
 using Task = System.Threading.Tasks.Task;
@@ -60,7 +61,7 @@ namespace VerilogLanguagePackage
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [ProvideBindingPath]
     [Guid(VerilogLanguagePackage.PackageGuidString)]
-    [ProvideMenuResource("Menus.ctmenu", 4)] /* bump the number to force a refresh of the menus when command table changes */
+    [ProvideMenuResource("Menus.ctmenu", 5)] /* bump the number to force a refresh of the menus when command table changes */
     [ProvideAutoLoad(VSConstants.UICONTEXT.ShellInitialized_string, PackageAutoLoadFlags.BackgroundLoad)]
     public sealed class VerilogLanguagePackage : AsyncPackage
     {
@@ -89,6 +90,7 @@ namespace VerilogLanguagePackage
              * itself still needs an OleMenuCommandService handler registered so clicking Peek Definition
              * calls our code. */
             await PeekDefinitionCommand.InitializeAsync(this);
+            await FindAllReferencesCommand.InitializeAsync(this);
         }
 
         #endregion

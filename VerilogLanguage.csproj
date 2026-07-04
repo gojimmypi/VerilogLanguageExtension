@@ -47,7 +47,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;VLE_DEBUG_EXCEPTIONS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <IncludeDebugSymbolsInVSIXContainer>true</IncludeDebugSymbolsInVSIXContainer>
@@ -69,6 +69,7 @@
     <IncludeDebugSymbolsInLocalVSIXDeployment>false</IncludeDebugSymbolsInLocalVSIXDeployment>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Diagnostics\VerilogDiagnostics.cs" />
     <Compile Include="SnapshotExporter\ExportSnapshotCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VerilogLanguagePackage.cs" />
@@ -168,7 +169,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="images" />
+    <Folder Include="images\" />
   </ItemGroup>
   <ItemGroup>
     <VSCTCompile Include="VerilogLanguagePackage.vsct">

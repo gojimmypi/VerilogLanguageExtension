@@ -232,11 +232,8 @@ namespace VerilogLanguage.Testing
                 return;
             }
 
-            IWpfTextView textView = GetActiveWpfTextView();
-            bool isVerilogTextView = textView != null && IsVerilogTextView(textView);
-
-            command.Visible = isVerilogTextView;
-            command.Enabled = isVerilogTextView;
+            command.Visible = true;
+            command.Enabled = true;
         }
 
         private void ExecuteGoToDefinition(object sender, EventArgs e) {
@@ -259,7 +256,7 @@ namespace VerilogLanguage.Testing
                 VerilogGlobals.VerilogDefinitionLocation definition;
                 if (!TryFindDefinition(tokenSpan, lookupText, out definition)) {
                     ShowGoToDefinitionMessage(
-                        string.Format(CultureInfo.CurrentCulture, "No definition was found for '{0}' in this file.", lookupText),
+                        string.Format(CultureInfo.CurrentCulture, "No definition was found for '{0}' in this file or any parsed Verilog file.", lookupText),
                         OLEMSGICON.OLEMSGICON_WARNING);
                     return;
                 }
@@ -446,6 +443,10 @@ namespace VerilogLanguage.Testing
                 return true;
             }
 
+            if (VerilogGlobals.TryGetModuleDefinitionFromParsedFiles(lookupText, out definition)) {
+                return true;
+            }
+
             return false;
         }
 
@@ -509,7 +510,29 @@ namespace VerilogLanguage.Testing
             return false;
         }
 
-        private static void MoveCaretToDefinition(IWpfTextView textView, VerilogGlobals.VerilogDefinitionLocation definition) {
+        private void MoveCaretToDefinition(IWpfTextView textView, VerilogGlobals.VerilogDefinitionLocation definition) {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            if (textView == null || definition == null || textView.TextBuffer == null) {
+                return;
+            }
+
+            IWpfTextView targetView = textView;
+            string currentFile = VerilogGlobals.GetDocumentPath(textView.TextBuffer.CurrentSnapshot);
+            if (!string.IsNullOrEmpty(definition.FilePath) && !IsSameFilePath(currentFile, definition.FilePath)) {
+                targetView = OpenDocumentTextView(definition.FilePath);
+                if (targetView == null) {
+                    ShowGoToDefinitionMessage(
+                        string.Format(CultureInfo.CurrentCulture, "Definition was found in '{0}', but the file could not be opened.", definition.FilePath),
+                        OLEMSGICON.OLEMSGICON_WARNING);
+                    return;
+                }
+            }
+
+            MoveCaretToDefinitionInView(targetView, definition);
+        }
+
+        private static void MoveCaretToDefinitionInView(IWpfTextView textView, VerilogGlobals.VerilogDefinitionLocation definition) {
             ThreadHelper.ThrowIfNotOnUIThread();
 
             if (textView == null || definition == null || textView.TextBuffer == null) {
@@ -538,6 +561,51 @@ namespace VerilogLanguage.Testing
             textView.VisualElement.Focus();
         }
 
+        private IWpfTextView OpenDocumentTextView(string filePath) {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            if (string.IsNullOrEmpty(filePath) || !File.Exists(filePath)) {
+                return null;
+            }
+
+            IVsUIShellOpenDocument openDocument = Package.GetGlobalService(typeof(SVsUIShellOpenDocument)) as IVsUIShellOpenDocument;
+            if (openDocument == null) {
+                return null;
+            }
+
+            Guid logicalView = VSConstants.LOGVIEWID_Primary;
+            Microsoft.VisualStudio.OLE.Interop.IServiceProvider serviceProvider;
+            IVsUIHierarchy hierarchy;
+            uint itemId;
+            IVsWindowFrame frame;
+            int hr = openDocument.OpenDocumentViaProject(filePath, ref logicalView, out serviceProvider, out hierarchy, out itemId, out frame);
+            if (ErrorHandler.Failed(hr) || frame == null) {
+                return null;
+            }
+
+            ErrorHandler.ThrowOnFailure(frame.Show());
+            return GetActiveWpfTextView();
+        }
+
+        private static bool IsSameFilePath(string firstPath, string secondPath) {
+            if (string.IsNullOrEmpty(firstPath) || string.IsNullOrEmpty(secondPath)) {
+                return false;
+            }
+
+            try {
+                firstPath = Path.GetFullPath(firstPath);
+                secondPath = Path.GetFullPath(secondPath);
+            }
+            catch (ArgumentException) {
+            }
+            catch (NotSupportedException) {
+            }
+            catch (PathTooLongException) {
+            }
+
+            return string.Equals(firstPath, secondPath, StringComparison.OrdinalIgnoreCase);
+        }
+
         private IWpfTextView GetActiveWpfTextView() {
             ThreadHelper.ThrowIfNotOnUIThread();
 
@@ -547,7 +615,7 @@ namespace VerilogLanguage.Testing
             }
 
             IVsTextView vsTextView;
-            int hr = textManager.GetActiveView(1, null, out vsTextView);
+            int hr = textManager.GetActiveView(0, null, out vsTextView);
             if (hr != VSConstants.S_OK || vsTextView == null) {
                 return null;
             }

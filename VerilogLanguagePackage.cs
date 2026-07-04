@@ -53,8 +53,10 @@ namespace VerilogLanguagePackage
     /// </para>
     /// </remarks>
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
+    [ProvideBindingPath]
     [Guid(VerilogLanguagePackage.PackageGuidString)]
-    [ProvideMenuResource("Menus.ctmenu", 1)]
+    [ProvideMenuResource("Menus.ctmenu", 3)] /* bump the number to force a refresh of the menus when command table changes */
+    [ProvideAutoLoad(VSConstants.UICONTEXT.ShellInitialized_string, PackageAutoLoadFlags.BackgroundLoad)]
     public sealed class VerilogLanguagePackage : AsyncPackage
     {
         /// <summary>

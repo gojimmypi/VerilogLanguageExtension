@@ -55,6 +55,7 @@ namespace VerilogLanguagePackage
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [Guid(VerilogLanguagePackage.PackageGuidString)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
+    [ProvideAutoLoad(VSConstants.UICONTEXT.ShellInitialized_string, PackageAutoLoadFlags.BackgroundLoad)]
     public sealed class VerilogLanguagePackage : AsyncPackage
     {
         /// <summary>

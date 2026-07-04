@@ -18,7 +18,7 @@ using System.Runtime.InteropServices;
 // Ensure VS can load the package assembly from the extension install folder.
 [assembly: ProvideCodeBase(
     AssemblyName = "VerilogLanguage",
-    Version = "0.4.1.1",
+    Version = "0.4.1.2",
     CodeBase = "$PackageFolder$\\VerilogLanguage.dll")]
 
 // General Information about an assembly is controlled through the following
@@ -48,9 +48,9 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.4.1.1")] // next release will be "0.4.0.*"
-[assembly: AssemblyFileVersion("0.4.1.1")]
-[assembly: AssemblyInformationalVersion("0.4.1.1")]
+[assembly: AssemblyVersion("0.4.1.2")] // next release will be "0.4.0.*"
+[assembly: AssemblyFileVersion("0.4.1.2")]
+[assembly: AssemblyInformationalVersion("0.4.1.2")]
 // commented the next line per  https://stackoverflow.com/questions/356543/can-i-automatically-increment-the-file-build-version-when-using-visual-studio
 //[assembly: AssemblyFileVersion("0.3.3.*")]
 [assembly: Guid("8E6636E9-EDBC-432F-BA96-85A8AE62D178")]

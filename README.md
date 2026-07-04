@@ -5,7 +5,7 @@
 
 # Verilog Language Extension
 
-Release v0.4.1.1
+Release v0.4.1.2
 
 This Visual Studio Extension adds syntax and keyword highlighting to Visual Studio versions 2022, and 2026. 
 

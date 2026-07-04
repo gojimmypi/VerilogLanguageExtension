@@ -110,7 +110,6 @@ namespace VerilogLanguage.Navigation
             }
 
             pane.Clear();
-            pane.Activate();
 
             string definitionText = definition == null
                 ? string.Empty
@@ -157,6 +156,25 @@ namespace VerilogLanguage.Navigation
             }
 
             pane.OutputString(builder.ToString());
+            ShowOutputWindow();
+            pane.Activate();
+        }
+
+        private static void ShowOutputWindow() {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            dynamic dte = Package.GetGlobalService(typeof(SDTE));
+            if (dte == null) {
+                return;
+            }
+
+            try {
+                dte.ExecuteCommand("View.Output");
+            }
+            catch {
+                // If the Output window cannot be opened automatically, the results
+                // still remain available from View -> Output.
+            }
         }
 
         private static IVsOutputWindowPane GetOutputPane() {

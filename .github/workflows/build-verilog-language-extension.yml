@@ -101,3 +101,18 @@ jobs:
           name: VerilogLanguage.vsix
           path: |
             **\bin\Release\*.vsix
+
+      # Publish for reference, currently disabled.
+      - name: Publish to VSIX Gallery
+        if: ${{ false }} # Check push branch when enabled
+        uses: madskristensen/publish-vsixgallery@v1
+        with:
+          vsix-file: '**/*.vsix'
+
+      - name: Publish to Marketplace
+        if: ${{ false }}  # Check push branch when enabled
+        uses: madskristensen/publish-marketplace@v2
+        with:
+          extension-file: '**/*.vsix'
+          publish-manifest-file: vs-publish.json
+          personal-access-code: ${{ secrets.VS_MARKETPLACE_TOKEN }}

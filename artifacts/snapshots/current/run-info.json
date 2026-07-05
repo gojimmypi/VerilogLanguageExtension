@@ -3,10 +3,10 @@
     "RunName":  "all-testfiles",
     "Manifest":  "tools/vle-ci/manifests/all-testfiles.json",
     "Status":  "Completed",
-    "StartedAt":  "2026-07-05T13:06:03.7468842-07:00",
-    "CompletedAt":  "2026-07-05T13:19:40.6793796-07:00",
-    "ElapsedSeconds":  816.932,
-    "Elapsed":  "00:13:36.9320485",
+    "StartedAt":  "2026-07-05T13:52:07.4084625-07:00",
+    "CompletedAt":  "2026-07-05T14:05:13.0449413-07:00",
+    "ElapsedSeconds":  785.636,
+    "Elapsed":  "00:13:05.6364675",
     "ExpectedSnapshots":  53,
     "ActualSnapshots":  53,
     "Timings":  [
@@ -442,46 +442,40 @@
     "ProvideMenuResourceName":  "Menus.ctmenu",
     "ProvideMenuResourceVersion":  5,
     "SnapshotCount":  53,
-    "GitCommit":  "44faa3d",
-    "GitCommitFull":  "44faa3d9afda68ed974dc63940aa92b71e244f9a",
+    "GitCommit":  "1067616",
+    "GitCommitFull":  "1067616fa2cb62cb642aef1973229fc8e20c2a88",
     "RunTiming":  [
                       {
                           "Name":  "Build",
                           "Status":  "Completed",
-                          "ElapsedSeconds":  5.16,
+                          "ElapsedSeconds":  8.315,
                           "ElapsedBucket":  "0-9s"
                       },
                       {
                           "Name":  "Snapshot export",
                           "Status":  "Completed",
-                          "ElapsedSeconds":  817.014,
+                          "ElapsedSeconds":  785.706,
                           "ElapsedBucket":  "10-30m"
                       },
                       {
                           "Name":  "Format current JSON",
                           "Status":  "Completed",
-                          "ElapsedSeconds":  15.921,
+                          "ElapsedSeconds":  15.15,
                           "ElapsedBucket":  "10-29s"
                       },
                       {
                           "Name":  "Snapshot compare",
                           "Status":  "Completed",
-                          "ElapsedSeconds":  5.224,
+                          "ElapsedSeconds":  4.051,
                           "ElapsedBucket":  "0-9s"
-                      },
-                      {
-                          "Name":  "Format baseline JSON",
-                          "Status":  "Completed",
-                          "ElapsedSeconds":  16.095,
-                          "ElapsedBucket":  "10-29s"
                       },
                       {
                           "Name":  "Total",
                           "Status":  "Completed",
-                          "ElapsedSeconds":  859.743,
+                          "ElapsedSeconds":  813.386,
                           "ElapsedBucket":  "10-30m"
                       }
                   ],
     "CiProcessingTime":  "10-30m",
-    "CiElapsedSeconds":  859.743
+    "CiElapsedSeconds":  813.386
 }

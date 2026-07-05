@@ -16,10 +16,11 @@ $ErrorActionPreference = "Stop"
 
 function Get-RepoRoot {
     if (![string]::IsNullOrWhiteSpace($PSScriptRoot)) {
-        return (Resolve-Path -LiteralPath $PSScriptRoot).Path
+        return (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "..")).Path
     }
 
-    return (Resolve-Path -LiteralPath (Split-Path -Parent $MyInvocation.MyCommand.Path)).Path
+    $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+    return (Resolve-Path -LiteralPath (Join-Path $scriptDir "..")).Path
 }
 
 function Join-RepoPath {

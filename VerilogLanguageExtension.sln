@@ -51,23 +51,31 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample Test Files", "Sample
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{58A6FBED-E8BC-45E2-8652-954E7BB5C8C9}"
 	ProjectSection(SolutionItems) = preProject
-		build_vsix.bat = build_vsix.bat
-		check-file.ps1 = check-file.ps1
-		ci-baseline.ps1 = ci-baseline.ps1
-		ci-check.ps1 = ci-check.ps1
-		ci-pass.ps1 = ci-pass.ps1
-		create-testfile-manifest.ps1 = create-testfile-manifest.ps1
-		refresh-tests.ps1 = refresh-tests.ps1
+		scripts\build_vsix.bat = scripts\build_vsix.bat
+		scripts\check-file.ps1 = scripts\check-file.ps1
+		scripts\ci-baseline.ps1 = scripts\ci-baseline.ps1
+		scripts\ci-check.ps1 = scripts\ci-check.ps1
+		scripts\ci-pass.ps1 = scripts\ci-pass.ps1
+		scripts\create-testfile-manifest.ps1 = scripts\create-testfile-manifest.ps1
+		scripts\README.md = scripts\README.md
+		scripts\refresh-ci-check.ps1 = scripts\refresh-ci-check.ps1
+		scripts\refresh-tests.ps1 = scripts\refresh-tests.ps1
+		scripts\text-clean.ps1 = scripts\text-clean.ps1
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{5A2EEC68-C81E-4FCE-A2CA-47E0E6F7A6F9}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{9ACB96E2-FD3C-43A5-9815-8DF9C3C036DB}"
+	ProjectSection(SolutionItems) = preProject
+		tools\check-text-hygiene.ps1 = tools\check-text-hygiene.ps1
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "vle-ci", "vle-ci", "{93C4636B-91E9-405B-93D8-70075FC51C98}"
 	ProjectSection(SolutionItems) = preProject
+		tools\vle-ci\Assert-SnapshotBaselineVersion.ps1 = tools\vle-ci\Assert-SnapshotBaselineVersion.ps1
+		tools\vle-ci\Assert-VleReleaseInfo.ps1 = tools\vle-ci\Assert-VleReleaseInfo.ps1
 		tools\vle-ci\Compare-Snapshots.py = tools\vle-ci\Compare-Snapshots.py
 		tools\vle-ci\Export-Snapshots.ps1 = tools\vle-ci\Export-Snapshots.ps1
+		tools\vle-ci\Get-VleVersionInfo.ps1 = tools\vle-ci\Get-VleVersionInfo.ps1
+		tools\vle-ci\README.md = tools\vle-ci\README.md
 		tools\vle-ci\Run-LocalCI.ps1 = tools\vle-ci\Run-LocalCI.ps1
 	EndProjectSection
 EndProject
@@ -98,7 +106,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{5A2EEC68-C81E-4FCE-A2CA-47E0E6F7A6F9} = {58A6FBED-E8BC-45E2-8652-954E7BB5C8C9}
 		{9ACB96E2-FD3C-43A5-9815-8DF9C3C036DB} = {58A6FBED-E8BC-45E2-8652-954E7BB5C8C9}
 		{93C4636B-91E9-405B-93D8-70075FC51C98} = {9ACB96E2-FD3C-43A5-9815-8DF9C3C036DB}
 	EndGlobalSection

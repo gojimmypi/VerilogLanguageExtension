@@ -80,7 +80,7 @@
     <Compile Include="Peek\VerilogPeekDefinitionSource.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include=".github\workflows\vsix-build-publish.yml" />
+    <None Include="ATTRIBUTION.md" />
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>

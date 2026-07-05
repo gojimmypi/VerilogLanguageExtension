@@ -78,6 +78,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution 
 		CODE_OF_CONDUCT.md = CODE_OF_CONDUCT.md
 		code_review-TODO.md = code_review-TODO.md
 		LICENSE.md = LICENSE.md
+		MARKETPLACE_TEXT.md = MARKETPLACE_TEXT.md
 		README.md = README.md
 		RELEASE_NOTES.md = RELEASE_NOTES.md
 	EndProjectSection

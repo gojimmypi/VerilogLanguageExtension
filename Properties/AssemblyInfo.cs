@@ -22,7 +22,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("gojimmypi")]
 [assembly: AssemblyProduct("VerilogLanguage")]
-[assembly: AssemblyCopyright("Copyright (c) gojimmypi")]
+[assembly: AssemblyCopyright("Copyright (c) 2019-2026 gojimmypi")]
 [assembly: AssemblyTrademark("gojimmypi")]
 [assembly: AssemblyCulture("")]
 

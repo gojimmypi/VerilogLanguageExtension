@@ -20,13 +20,9 @@
                   Language="en-US"
                   Publisher="gojimmypi" />
 
-        <DisplayName>VerilogLanguage</DisplayName>
+        <DisplayName>Verilog Language Extension</DisplayName>
 
-        <Description xml:space="preserve">
-Verilog Extension for Visual Studio. (classifier extension).
-Implements the Verilog Language Extension allowing user-definable
-keyword colorization. Useful for FPGA, ASIC and other RTL development.
-        </Description>
+        <Description>Verilog language support for Visual Studio with syntax highlighting, user-definable keyword colorization, and FPGA/ASIC/RTL editor features.</Description>
 
         <MoreInfo>https://github.com/gojimmypi/VerilogLanguageExtension</MoreInfo>
         <License>LICENSE.md</License>

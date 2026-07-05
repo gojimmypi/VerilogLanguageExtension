@@ -3,10 +3,10 @@
     "RunName":  "all-testfiles",
     "Manifest":  "tools/vle-ci/manifests/all-testfiles.json",
     "Status":  "Completed",
-    "StartedAt":  "2026-07-04T12:37:59.3775293-07:00",
-    "CompletedAt":  "2026-07-04T12:53:24.9712451-07:00",
-    "ElapsedSeconds":  925.593,
-    "Elapsed":  "00:15:25.5934615",
+    "StartedAt":  "2026-07-04T20:33:47.9603901-07:00",
+    "CompletedAt":  "2026-07-04T20:46:23.6879232-07:00",
+    "ElapsedSeconds":  755.727,
+    "Elapsed":  "00:12:35.7271933",
     "ExpectedSnapshots":  53,
     "ActualSnapshots":  53,
     "Timings":  [
@@ -24,7 +24,7 @@
                         "Path":  "TestFiles/anothertest.v",
                         "SnapshotFileName":  "0002-anothertest.v.snapshot.json",
                         "Status":  "Completed",
-                        "ElapsedBucket":  "15-19s"
+                        "ElapsedBucket":  "10-14s"
                     },
                     {
                         "Index":  3,
@@ -224,7 +224,7 @@
                         "Path":  "TestFiles/picorv32.v",
                         "SnapshotFileName":  "0027-picorv32.v.snapshot.json",
                         "Status":  "Completed",
-                        "ElapsedBucket":  "45-49s"
+                        "ElapsedBucket":  "25-29s"
                     },
                     {
                         "Index":  28,
@@ -240,7 +240,7 @@
                         "Path":  "TestFiles/StopWatch.v",
                         "SnapshotFileName":  "0029-StopWatch.v.snapshot.json",
                         "Status":  "Completed",
-                        "ElapsedBucket":  "15-19s"
+                        "ElapsedBucket":  "10-14s"
                     },
                     {
                         "Index":  30,
@@ -248,7 +248,7 @@
                         "Path":  "TestFiles/test - bigfile.v",
                         "SnapshotFileName":  "0030-test - bigfile.v.snapshot.json",
                         "Status":  "Completed",
-                        "ElapsedBucket":  "50-59s"
+                        "ElapsedBucket":  "25-29s"
                     },
                     {
                         "Index":  31,
@@ -336,7 +336,7 @@
                         "Path":  "TestFiles/src/JTAG/jtag_core.v",
                         "SnapshotFileName":  "0041-jtag_core.v.snapshot.json",
                         "Status":  "Completed",
-                        "ElapsedBucket":  "15-19s"
+                        "ElapsedBucket":  "10-14s"
                     },
                     {
                         "Index":  42,
@@ -352,7 +352,7 @@
                         "Path":  "TestFiles/src/project.v",
                         "SnapshotFileName":  "0043-project.v.snapshot.json",
                         "Status":  "Completed",
-                        "ElapsedBucket":  "15-19s"
+                        "ElapsedBucket":  "10-14s"
                     },
                     {
                         "Index":  44,
@@ -368,7 +368,7 @@
                         "Path":  "TestFiles/src/SPI/spi_slave.v",
                         "SnapshotFileName":  "0045-spi_slave.v.snapshot.json",
                         "Status":  "Completed",
-                        "ElapsedBucket":  "15-19s"
+                        "ElapsedBucket":  "10-14s"
                     },
                     {
                         "Index":  46,
@@ -384,7 +384,7 @@
                         "Path":  "TestFiles/src/TRNG/trng_cfg_ascii_core.v",
                         "SnapshotFileName":  "0047-trng_cfg_ascii_core.v.snapshot.json",
                         "Status":  "Completed",
-                        "ElapsedBucket":  "15-19s"
+                        "ElapsedBucket":  "10-14s"
                     },
                     {
                         "Index":  48,
@@ -392,7 +392,7 @@
                         "Path":  "TestFiles/src/TRNG/trng_lab_core.v",
                         "SnapshotFileName":  "0048-trng_lab_core.v.snapshot.json",
                         "Status":  "Completed",
-                        "ElapsedBucket":  "20-24s"
+                        "ElapsedBucket":  "15-19s"
                     },
                     {
                         "Index":  49,
@@ -408,7 +408,7 @@
                         "Path":  "TestFiles/src/tt_um_main.v",
                         "SnapshotFileName":  "0050-tt_um_main.v.snapshot.json",
                         "Status":  "Completed",
-                        "ElapsedBucket":  "15-19s"
+                        "ElapsedBucket":  "10-14s"
                     },
                     {
                         "Index":  51,
@@ -416,7 +416,7 @@
                         "Path":  "TestFiles/src/UART/uart_rx_min.v",
                         "SnapshotFileName":  "0051-uart_rx_min.v.snapshot.json",
                         "Status":  "Completed",
-                        "ElapsedBucket":  "15-19s"
+                        "ElapsedBucket":  "10-14s"
                     },
                     {
                         "Index":  52,

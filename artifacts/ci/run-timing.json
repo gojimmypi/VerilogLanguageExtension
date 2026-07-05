@@ -1,30 +1,36 @@
 {
     "SchemaVersion":  1,
     "Status":  "Completed",
-    "StartedAt":  "2026-07-04T12:37:54.3670922-07:00",
-    "CompletedAt":  "2026-07-04T12:54:16.6587219-07:00",
-    "StartedAtUtc":  "2026-07-04T19:37:54.3670922Z",
-    "CompletedAtUtc":  "2026-07-04T19:54:16.6587219Z",
-    "TotalSeconds":  982.292,
-    "Total":  "00:16:22.2915475",
+    "StartedAt":  "2026-07-04T20:33:43.0179167-07:00",
+    "CompletedAt":  "2026-07-04T20:47:00.0443667-07:00",
+    "StartedAtUtc":  "2026-07-05T03:33:43.0179167Z",
+    "CompletedAtUtc":  "2026-07-05T03:47:00.0443667Z",
+    "TotalSeconds":  797.026,
+    "Total":  "00:13:17.0263314",
     "Steps":  [
                   {
                       "Name":  "Build",
                       "Status":  "Completed",
-                      "ElapsedSeconds":  4.927,
-                      "Elapsed":  "00:00:04.9268553"
+                      "ElapsedSeconds":  4.865,
+                      "Elapsed":  "00:00:04.8653972"
                   },
                   {
                       "Name":  "Snapshot export",
                       "Status":  "Completed",
-                      "ElapsedSeconds":  971.985,
-                      "Elapsed":  "00:16:11.9851182"
+                      "ElapsedSeconds":  771.284,
+                      "Elapsed":  "00:12:51.2839374"
                   },
                   {
                       "Name":  "Snapshot comparison",
                       "Status":  "Completed",
-                      "ElapsedSeconds":  5.364,
-                      "Elapsed":  "00:00:05.3636532"
+                      "ElapsedSeconds":  4.711,
+                      "Elapsed":  "00:00:04.7106147"
+                  },
+                  {
+                      "Name":  "Baseline formatting",
+                      "Status":  "Completed",
+                      "ElapsedSeconds":  16.152,
+                      "Elapsed":  "00:00:16.1518698"
                   }
               ]
 }

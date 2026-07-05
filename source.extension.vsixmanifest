@@ -31,9 +31,10 @@ keyword colorization. Useful for FPGA, ASIC and other RTL development.
         <MoreInfo>https://github.com/gojimmypi/VerilogLanguageExtension</MoreInfo>
         <License>LICENSE.md</License>
         <GettingStartedGuide>https://github.com/gojimmypi/VerilogLanguageExtension/blob/main/README.md#installation</GettingStartedGuide>
-        <ReleaseNotes>https://github.com/gojimmypi/VerilogLanguageExtension/blob/main/releases/README.md</ReleaseNotes>
+        <ReleaseNotes>https://github.com/gojimmypi/VerilogLanguageExtension/blob/main/RELEASE_NOTES.md</ReleaseNotes>
         <Icon>Resources\VleIcon.png</Icon>
-        <Tags>Verilog keyword syntax highlight extension FPGA ASIC RTL Tiny Tapeout HDL ULX3S iCEBreaker OrangeCrab TinyFPGA</Tags>
+        <!-- Limit tags to 100 chars, semicolon delimited -->
+        <Tags>Verilog;HDL;RTL;FPGA;ASIC;Visual Studio;keyword;extension;Tiny Tapeout;ULX3S;iCEBreaker;TinyFPGA</Tags>
         <Preview>false</Preview>
     </Metadata>
 

@@ -16,31 +16,27 @@ Probably don't want to edit these without looking like an entirely new extension
 ## Overview
 
 ```text
-Verilog Extension for Visual Studio. Basic keyword highlighting for Verilog editing in Visual Studio (files with ".v" or ".verilog" extension). Free and Open Source. This is an initial version and my first experience at developing extensions for Visual Studio.  Supported items include individual colorization for each Verilog keyword, Directive keywords are all currently highlighted the same color. Comment text in green, plus some code outlining with round, square, and squiggly brackets. Autocomplete still needs work. Install in Visual Studio via Tools - Extensions and Updates.
+Verilog Language Extension adds Verilog/SystemVerilog editor support to Visual Studio 2022 and later.
 
-This latest release includes colorization for keywords, variables, and bracket depth, along with hover text.
+What it does:
 
+- Adds syntax highlighting for Verilog/SystemVerilog source and header files.
+- Supports `.v`, `.vh`, `.verilog`, `.sv`, and `.svh` files.
+- Provides individually configurable colors for Verilog keywords and extension-specific display items.
+- Highlights line comments, block comments, static strings, macros, variables, functions, duplicate declarations, and nested bracket depth.
+- Shows QuickInfo hover text for Verilog keywords, modules, declarations, variables, and missing/unknown symbols.
+- Adds code outlining/folding for modules, functions, tasks, begin/end blocks, case blocks, always blocks, if/else blocks, and preprocessor conditional regions.
+- Handles paste, delete, multi-change edits, and larger Verilog files with background parsing and refresh support.
+- Includes a Snapshot Exporter and local snapshot-regression tooling for extension development and validation.
+- Includes a Verilog Project template preview for FPGA-oriented starter projects using external tools such as WSL, yosys, nextpnr, ecppack, and board-specific programmers.
 
-
-Project PREVIEW: Synthesis directly in Visual Studio for iCEBreaker, Orange Crab, tinyFPGA and ULX3S (requires WSL and FPGA toolchain)
-
-Fixed in 0.3.5.4 Fixed Ctrl-C in a multiple pane Window such as the Git Diff, this "value cannot be null" error would occur.
-
-CHANGED in 0.3.5.3 Added support for ONLY VS 2022 and VS 2026. See GitHub for older versions of Visual Studio.
-
-Fixed in 0.3.3 is more syntax highlighting, particularly variable, write initialization hover text, initial load, etc.
-
-Fixed in 0.3.1 is syntax highlighting for VS2015 that stopped working when multiple different file extensions were added.
-
-Fixed in 0.2.1 is processing for large files. Files larger than 8K are now processed in the background. Upon completion of background processing, the viewport is _not_ refreshed at this time. Mouse hovers and key presses can help nudge updates. Stay tuned for future releases coming soon.
+Set custom keyword colors in `Tools - Options - Environment - Fonts and Colors`.
 
 ![image.png](image.png)
 
-Set custom keyword colors in `Tools - Options - Colors`:
-
 ![Verilog-Tools-Options-Colors.png](Verilog-Tools-Options-Colors.png)
 
-Suggestions and comments welcome; see GitHub issues, Pull Requests appreciated.
+Suggestions and comments welcome; see GitHub issues. Pull Requests are appreciated.
 ```
 
 ## Supported Visual Studio versions

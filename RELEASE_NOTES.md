@@ -147,3 +147,28 @@ v0.4.0.0 is a major editor-quality, parser reliability, and release-polish updat
 * `VerilogLanguage.csproj`
 * `source.extension.vsixmanifest`
 * `Properties/AssemblyInfo.cs`
+
+# Earlier release notes moved from Marketplace text
+
+These notes were previously embedded in the Marketplace overview. Keep version-specific release history here so the Marketplace text can stay focused on the current feature summary.
+
+## v0.3.5.4
+
+* Fixed Ctrl-C in a multiple-pane window such as Git Diff, where a `value cannot be null` error could occur.
+
+## v0.3.5.3
+
+* Changed supported Visual Studio versions to only Visual Studio 2022 and Visual Studio 2026. See GitHub for older Visual Studio versions.
+
+## v0.3.3
+
+* Improved syntax highlighting, particularly variable handling, initialization hover text, and initial load behavior.
+
+## v0.3.1
+
+* Fixed syntax highlighting for Visual Studio 2015 after support for multiple file extensions was added.
+
+## v0.2.1
+
+* Improved processing for large files. Files larger than 8K are processed in the background.
+* At that time, the viewport was not refreshed automatically after background processing completed. Mouse hovers and key presses could help nudge updates.

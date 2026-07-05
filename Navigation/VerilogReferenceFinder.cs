@@ -102,6 +102,9 @@ namespace VerilogLanguage.Navigation
                 return false;
             }
 
+            string[] currentLines = SnapshotLines(snapshot);
+            definition = ResolveDefinitionScope(definition, currentFile, currentLines, currentParseData);
+
             HashSet<string> seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             bool globalSearch = IsGlobalSearch(definition, lookupText);
 
@@ -112,7 +115,7 @@ namespace VerilogLanguage.Navigation
 
                 string[] lines;
                 if (IsSameFilePath(filePath, currentFile)) {
-                    lines = SnapshotLines(snapshot);
+                    lines = currentLines;
                 }
                 else if (!TryReadSmallTextFile(filePath, out lines)) {
                     continue;
@@ -165,6 +168,44 @@ namespace VerilogLanguage.Navigation
             }
 
             return lines;
+        }
+
+        private static VerilogGlobals.VerilogDefinitionLocation ResolveDefinitionScope(
+            VerilogGlobals.VerilogDefinitionLocation definition,
+            string currentFile,
+            string[] currentLines,
+            VerilogGlobals.ParseDataSnapshot currentParseData) {
+
+            if (definition == null || !string.IsNullOrEmpty(definition.Scope)) {
+                return definition;
+            }
+
+            string[] definitionLines = null;
+            VerilogGlobals.ParseDataSnapshot definitionParseData = null;
+
+            if (IsSameFilePath(definition.FilePath, currentFile)) {
+                definitionLines = currentLines;
+                definitionParseData = currentParseData;
+            }
+            else if (!TryReadSmallTextFile(definition.FilePath, out definitionLines)) {
+                return definition;
+            }
+
+            string effectiveScope;
+            if (!TryGetEffectiveModuleScope(definitionParseData, definitionLines, definition.LineNumber, definition.LinePosition, out effectiveScope) ||
+                string.IsNullOrEmpty(effectiveScope)) {
+                return definition;
+            }
+
+            return new VerilogGlobals.VerilogDefinitionLocation(
+                definition.FilePath,
+                effectiveScope,
+                definition.Name,
+                definition.LineNumber,
+                definition.LinePosition,
+                definition.Length,
+                definition.TokenType,
+                definition.HoverText);
         }
 
         private static void FindReferencesInLines(
@@ -367,14 +408,25 @@ namespace VerilogLanguage.Navigation
                 return true;
             }
 
-            if (IsLocalScope(definition.Scope)) {
-                string activeLocalScope;
-                return TryFindActiveLocalScope(parseData, lines, lineNumber, out activeLocalScope) &&
-                    string.Equals(activeLocalScope, definition.Scope, StringComparison.Ordinal);
+            string definitionScope = definition.Scope;
+            if (string.IsNullOrEmpty(definitionScope)) {
+                TryGetEffectiveModuleScope(parseData, lines, definition.LineNumber, definition.LinePosition, out definitionScope);
             }
 
-            string moduleScope = parseData.TextModuleName(lineNumber, linePosition);
-            return string.Equals(moduleScope, definition.Scope, StringComparison.Ordinal);
+            if (IsLocalScope(definitionScope)) {
+                string activeLocalScope;
+                return TryFindActiveLocalScope(parseData, lines, lineNumber, out activeLocalScope) &&
+                    string.Equals(activeLocalScope, definitionScope, StringComparison.Ordinal);
+            }
+
+            string moduleScope;
+            TryGetEffectiveModuleScope(parseData, lines, lineNumber, linePosition, out moduleScope);
+
+            if (string.IsNullOrEmpty(definitionScope)) {
+                return true;
+            }
+
+            return string.Equals(moduleScope, definitionScope, StringComparison.Ordinal);
         }
 
         private static bool TryFindActiveLocalScope(
@@ -426,17 +478,118 @@ namespace VerilogLanguage.Navigation
             containingMember = string.Empty;
 
             if (parseData == null) {
+                TryFindModuleScopeFromText(lines, lineNumber, out containingType);
                 return;
             }
 
             string activeLocalScope;
             if (TryFindActiveLocalScope(parseData, lines, lineNumber, out activeLocalScope) && !string.IsNullOrEmpty(activeLocalScope)) {
-                containingType = parseData.TextModuleName(lineNumber, linePosition);
+                TryGetEffectiveModuleScope(parseData, lines, lineNumber, linePosition, out containingType);
                 containingMember = LocalScopeDisplayName(activeLocalScope);
                 return;
             }
 
-            containingType = parseData.TextModuleName(lineNumber, linePosition);
+            TryGetEffectiveModuleScope(parseData, lines, lineNumber, linePosition, out containingType);
+        }
+
+        private static bool TryGetEffectiveModuleScope(
+            VerilogGlobals.ParseDataSnapshot parseData,
+            string[] lines,
+            int lineNumber,
+            int linePosition,
+            out string moduleScope) {
+
+            moduleScope = string.Empty;
+
+            if (parseData != null && lineNumber >= 0) {
+                moduleScope = parseData.TextModuleName(lineNumber, linePosition);
+                if (!string.IsNullOrEmpty(moduleScope)) {
+                    return true;
+                }
+            }
+
+            return TryFindModuleScopeFromText(lines, lineNumber, out moduleScope);
+        }
+
+        private static bool TryFindModuleScopeFromText(string[] lines, int lineNumber, out string moduleScope) {
+            moduleScope = string.Empty;
+            if (lines == null || lineNumber < 0) {
+                return false;
+            }
+
+            int startLine = Math.Min(lineNumber, lines.Length - 1);
+            for (int i = startLine; i >= 0; i--) {
+                string lineText = RemoveLineComment(lines[i] ?? string.Empty).TrimStart();
+
+                if (StartsWithIdentifierAt(lineText, 0, "endmodule")) {
+                    return false;
+                }
+
+                if (TryGetModuleNameFromLineText(lineText, out moduleScope)) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool TryGetModuleNameFromLineText(string lineText, out string moduleName) {
+            moduleName = string.Empty;
+            if (string.IsNullOrEmpty(lineText) || !StartsWithIdentifierAt(lineText, 0, "module")) {
+                return false;
+            }
+
+            int index = "module".Length;
+            if (!TryReadIdentifier(lineText, ref index, out moduleName)) {
+                return false;
+            }
+
+            if (string.Equals(moduleName, "automatic", StringComparison.Ordinal) ||
+                string.Equals(moduleName, "static", StringComparison.Ordinal)) {
+                return TryReadIdentifier(lineText, ref index, out moduleName);
+            }
+
+            return true;
+        }
+
+        private static bool TryReadIdentifier(string lineText, ref int index, out string identifier) {
+            identifier = string.Empty;
+            if (string.IsNullOrEmpty(lineText)) {
+                return false;
+            }
+
+            while (index < lineText.Length && char.IsWhiteSpace(lineText[index])) {
+                index++;
+            }
+
+            if (index >= lineText.Length) {
+                return false;
+            }
+
+            int start = index;
+            if (lineText[index] == '\\') {
+                index++;
+                while (index < lineText.Length && !char.IsWhiteSpace(lineText[index])) {
+                    index++;
+                }
+            }
+            else {
+                while (index < lineText.Length && IsIdentifierCharacter(lineText[index])) {
+                    index++;
+                }
+            }
+
+            if (index <= start) {
+                return false;
+            }
+
+            identifier = lineText.Substring(start, index - start);
+            return true;
+        }
+
+        private static string RemoveLineComment(string lineText) {
+            int index = lineText.IndexOf("//", StringComparison.Ordinal);
+            return index < 0 ? lineText : lineText.Substring(0, index);
         }
 
         private static string LocalScopeDisplayName(string scope) {

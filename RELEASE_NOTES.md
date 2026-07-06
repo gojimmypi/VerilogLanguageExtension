@@ -1,4 +1,4 @@
-# Verilog Language Extension Release Notes
+# Verilog Language Extension v0.4.1.5 Release Notes
 
 This is the VS2022 and VS2026 release.
 
@@ -6,7 +6,130 @@ For prior versions, see:
 
 https://github.com/gojimmypi/VerilogLanguageExtension/blob/main/releases/README.md
 
-# Verilog Language Extension v0.4.0.0 Release Notes
+Release date: 2026-07-05
+
+## Overview
+
+v0.4.1.5 is a navigation, release-polish, and CI-health update. The main user-visible improvement is expanded Verilog navigation support, including Peek Definition and Find All References, along with improved definition lookup across parsed files. This release also tightens VSIX metadata, release version checks, snapshot baseline validation, and local script organization.
+
+## User-visible editor improvements
+
+* Added a Verilog `Peek Definition` command for supported Verilog editor views.
+
+* Added a Verilog `Find All References` command that writes navigable results to a dedicated `VLE Find All References` output pane.
+
+* Improved definition lookup used by navigation features, including support for module, macro, constant, local-scope, module-scope, and cross-file parsed definitions.
+
+* Added fallback text-based definition lookup for cases where parser metadata is unavailable or incomplete.
+
+* Added reference classification for found symbols, including declaration, read, write, and general reference results.
+
+* Improved context reporting for reference results by including containing module/type and local member scope when available.
+
+## Navigation and command integration
+
+* Added shared Verilog definition-resolution logic under `Navigation/VerilogDefinitionResolver.cs`.
+
+* Added Verilog reference search logic under `Navigation/VerilogReferenceFinder.cs`.
+
+* Added new package initialization for Peek Definition and Find All References commands.
+
+* Added VSCT menu entries for `Peek Definition` and `Find All References` in the Verilog editor context menu.
+
+* Bumped the Visual Studio menu resource version so updated command-table changes are refreshed in installed VSIX builds.
+
+## Parser and symbol lookup improvements
+
+* Added cross-file parsed-definition lookup for already-open or already-parsed Verilog files.
+
+* Added candidate-file search fallback for definition lookup.
+
+* Added safer cloning of definition-location candidates so returned locations carry the correct source file path.
+
+* Added helper logic to avoid broad cross-file lookup for ordinary lowercase/local-style identifiers unless the lookup looks like a likely global Verilog symbol.
+
+## Lifecycle, diagnostics, and debug support
+
+* Added conditional diagnostics helpers for exception/debug logging.
+
+* Added `VLE_DEBUG_EXCEPTIONS` to Debug builds.
+
+* Reworked token tagger lifetime handling so Visual Studio can receive disposable tagger leases while the shared tokenizing core remains singleton-per-buffer.
+
+* Added classifier disposal support and cleanup for aggregator event subscriptions.
+
+## Build, VSIX metadata, and Marketplace polish
+
+* Bumped VSIX, assembly file, and informational versions to `0.4.1.5`.
+
+* Updated the VSIX display name to `Verilog Language Extension`.
+
+* Replaced the multi-line VSIX manifest description with a concise Marketplace-friendly description.
+
+* Added a VSIX icon asset.
+
+* Updated VSIX tags to use semicolon-delimited Marketplace-style tags.
+
+* Updated the VSIX release-notes link to point to `RELEASE_NOTES.md`.
+
+* Added `ATTRIBUTION.md`.
+
+* Added `MARKETPLACE_TEXT.md` to track Marketplace listing text in source control.
+
+* Moved older version-specific release notes out of Marketplace text and into `RELEASE_NOTES.md`.
+
+## Local scripts and repository workflow
+
+* Moved root-level local CI wrapper scripts under the `scripts/` directory.
+
+* Added `scripts/README.md` documenting the local snapshot CI workflow, refresh scripts, text cleanup, and VSIX build helper.
+
+* Added script wrappers for `ci-pass`, `ci-baseline`, `ci-check`, manifest refresh, single-file checks, and refresh-log workflows.
+
+* Added `scripts/text-clean.ps1` for normalizing known text files.
+
+* Updated local workflow documentation to include unblocking PowerShell scripts after download/clone when needed.
+
+## CI and release validation
+
+* Added `Get-VleVersionInfo.ps1` to report VSIX, assembly, and menu-resource version metadata.
+
+* Added `Assert-VleReleaseInfo.ps1` to verify VSIX manifest version, assembly file version, informational version, stable assembly version, and menu-resource metadata.
+
+* Added `Assert-SnapshotBaselineVersion.ps1` to verify approved snapshot baseline metadata against the current source version information.
+
+* Updated the build workflow to support an optional expected release version input.
+
+* Added CI checks for release metadata and approved snapshot baseline metadata.
+
+* Added upload of a `vle-version-info` artifact.
+
+* Enabled VSIX artifact upload from the build workflow.
+
+* Removed the older separate `vsix-build-publish.yml` workflow and consolidated disabled publish placeholders into the main VSIX build workflow.
+
+## Snapshot CI and baseline updates
+
+* Regenerated current snapshot artifacts and approved all-testfiles baselines.
+
+* Added release/version metadata to snapshot `run-info.json`.
+
+* Added CI timing metadata using coarse elapsed-time buckets to reduce noisy diffs while still tracking meaningful performance changes.
+
+* Added safety checks so baseline updates can only target approved baseline directories under `tests/snapshots/baselines`.
+
+## Known limitations
+
+* Navigation and reference search are parser-assisted and text-search-assisted, not a full SystemVerilog language server.
+
+* Cross-file lookup depends on already parsed files and bounded candidate-file search.
+
+* Include-file discovery and full project-wide semantic analysis are still limited.
+
+* The extension still does not compile, synthesize, lint, or upload designs to hardware.
+
+
+## Verilog Language Extension v0.4.0.0 Release Notes
 
 Release date: 2026-06-25
 

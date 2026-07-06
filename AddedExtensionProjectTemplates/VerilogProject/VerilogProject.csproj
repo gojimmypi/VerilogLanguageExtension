@@ -13,6 +13,8 @@
 	<Import Project=".\ProjectPlatform\Project_ULX3S.csproj" />
 	<Import Project=".\ProjectPlatform\Project_iCEBreaker.csproj" />
 	<Import Project=".\ProjectPlatform\Config.csproj" />
+	<!-- Import user overrides last so locally edited programmer paths and custom platforms can override defaults. -->
+	<Import Project=".\ProjectPlatform\UserDefined.csproj" Condition="Exists('.\ProjectPlatform\UserDefined.csproj')" />
 
 	<!-- project include files -->
 	<ItemGroup>
@@ -71,7 +73,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<TargetFramework>net45</TargetFramework>
+		<TargetFramework>net472</TargetFramework>
 		<RootNamespace>VerilogLanguage</RootNamespace>
 		<Platforms>ULX3S ECP5-12K;ULX3S ECP5-45K;ULX3S ECP5-85K;iCEBreaker;Orange Crab;tinyFPGA BX;Other iceprog</Platforms>
 		<Configurations>Debug;Release;Upload;Verify</Configurations>

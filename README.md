@@ -5,7 +5,7 @@
 
 # Verilog Language Extension
 
-VLE Release v0.4.1.4 update WIP again
+VLE Release v0.4.1.5
 
 This Visual Studio Extension adds syntax and keyword highlighting to Visual Studio versions 2022, and 2026. 
 

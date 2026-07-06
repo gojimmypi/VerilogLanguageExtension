@@ -6,6 +6,8 @@ For prior versions, see:
 
 https://github.com/gojimmypi/VerilogLanguageExtension/blob/main/releases/README.md
 
+New v0.4.1.6 WIP
+
 Release date: 2026-07-05
 
 ## Overview

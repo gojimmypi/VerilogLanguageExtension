@@ -16,7 +16,9 @@ Probably don't want to edit these without looking like an entirely new extension
 ## Overview
 
 ```text
-Verilog Language Extension adds Verilog/SystemVerilog editor support to Visual Studio 2022 and later.
+# Verilog Language Extension 
+
+Adds Verilog/SystemVerilog editor support to Visual Studio 2022 and later.
 
 What it does:
 
@@ -35,6 +37,12 @@ Set custom keyword colors in `Tools - Options - Environment - Fonts and Colors`.
 ![image.png](image.png)
 
 ![Verilog-Tools-Options-Colors.png](Verilog-Tools-Options-Colors.png)
+
+## Release Notes
+
+See [RELEASE_NOTES.md](https://github.com/gojimmypi/VerilogLanguageExtension/blob/main/RELEASE_NOTES.md) for the full version history.
+
+## Feedback and Contributions
 
 Suggestions and comments welcome; see GitHub issues. Pull Requests are appreciated.
 ```

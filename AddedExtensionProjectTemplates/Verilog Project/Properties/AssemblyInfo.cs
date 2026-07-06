@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Verilog.Properties")]
-[assembly: AssemblyCopyright("Copyright Â©  2020")]
+[assembly: AssemblyCopyright("Copyright (c) 2020-2026 gojimmypi")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

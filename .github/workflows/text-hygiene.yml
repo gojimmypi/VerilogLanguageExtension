@@ -27,6 +27,7 @@ jobs:
               RequireNoBom = $true
               RequireCrLf = $true
               RequireFinalNewline = $true
+              MaxFailures = 0
               ExcludePath = $excludePath
           }
 

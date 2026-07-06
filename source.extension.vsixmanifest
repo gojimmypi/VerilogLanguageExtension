@@ -16,23 +16,21 @@
 
     <Metadata>
         <Identity Id="CF0DCF14-5B8F-4B42-8386-9D37BB99F98E"
-                  Version="0.4.1.4"
+                  Version="0.4.1.5"
                   Language="en-US"
                   Publisher="gojimmypi" />
 
-        <DisplayName>VerilogLanguage</DisplayName>
+        <DisplayName>Verilog Language Extension</DisplayName>
 
-        <Description xml:space="preserve">
-Verilog Extension for Visual Studio. (classifier extension).
-Implements the Verilog Language Extension allowing user-definable
-keyword colorization. Useful for FPGA, ASIC and other RTL development.
-        </Description>
+        <Description>Verilog language support for Visual Studio with syntax highlighting, user-definable keyword colorization, and FPGA/ASIC/RTL editor features.</Description>
 
         <MoreInfo>https://github.com/gojimmypi/VerilogLanguageExtension</MoreInfo>
         <License>LICENSE.md</License>
         <GettingStartedGuide>https://github.com/gojimmypi/VerilogLanguageExtension/blob/main/README.md#installation</GettingStartedGuide>
-        <ReleaseNotes>https://github.com/gojimmypi/VerilogLanguageExtension/blob/main/releases/README.md</ReleaseNotes>
-        <Tags>Verilog keyword syntax highlight extension FPGA ASIC RTL Tiny Tapeout HDL ULX3S iCEBreaker OrangeCrab TinyFPGA</Tags>
+        <ReleaseNotes>https://github.com/gojimmypi/VerilogLanguageExtension/blob/main/RELEASE_NOTES.md</ReleaseNotes>
+        <Icon>Resources\VleIcon.png</Icon>
+        <!-- Limit tags to 100 chars, semicolon delimited -->
+        <Tags>Verilog;HDL;RTL;FPGA;ASIC;Visual Studio;keyword;extension;Tiny Tapeout;ULX3S;iCEBreaker;TinyFPGA</Tags>
         <Preview>false</Preview>
     </Metadata>
 

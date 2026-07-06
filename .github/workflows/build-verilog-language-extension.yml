@@ -1,11 +1,18 @@
 name: Build Verilog Language Extension
 
 on:
-  push:
-    branches: [ main, development ]
-  pull_request:
-    branches: [ main, development ]
+#  push:
+#    branches: [ main ]
+#
+#  pull_request:
+#    branches: [ main ]
+
   workflow_dispatch:
+    inputs:
+      expected_version:
+        description: Expected VLE release version, for example 0.4.1.4
+        required: false
+        type: string
 
 jobs:
   build:
@@ -13,19 +20,20 @@ jobs:
 
     env:
       Configuration: Release
-      # There's both a solution and project file, so be sure to explicitly name:
+      # There is both a solution and project file, so explicitly name the solution.
       SolutionPath: VerilogLanguageExtension.sln
       VsixManifestPath: source.extension.vsixmanifest
+      BaselinePath: tests/snapshots/baselines/development-main/all-testfiles
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           submodules: false
           fetch-depth: 0
 
       - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v2
+        uses: microsoft/setup-msbuild@v3
         with:
           vs-version: '[17.0,18.0)'
           msbuild-architecture: x64
@@ -42,21 +50,69 @@ jobs:
         run: |
           dotnet list .\VerilogLanguage.csproj package --include-transitive
 
+      - name: Report VLE version metadata
+        shell: pwsh
+        run: |
+          .\tools\vle-ci\Get-VleVersionInfo.ps1 -AsJson | Tee-Object -FilePath vle-version-info.json
+
+      - name: Check VLE release metadata
+        shell: pwsh
+        run: |
+          $expected = "${{ github.event.inputs.expected_version }}"
+
+          # Tags named like v0.4.1.4 are treated as release version gates.
+          if ([string]::IsNullOrWhiteSpace($expected) -and $env:GITHUB_REF_TYPE -eq "tag" -and $env:GITHUB_REF_NAME -match '^v(.+)$') {
+              $expected = $Matches[1]
+          }
+
+          if ([string]::IsNullOrWhiteSpace($expected)) {
+              .\tools\vle-ci\Assert-VleReleaseInfo.ps1
+          }
+          else {
+              .\tools\vle-ci\Assert-VleReleaseInfo.ps1 -ExpectedVersion $expected
+          }
+
+      - name: Check approved baseline release metadata
+        shell: pwsh
+        run: |
+          .\tools\vle-ci\Assert-SnapshotBaselineVersion.ps1 -BaselineDir $env:BaselinePath
+
       - name: Build solution
         shell: cmd
         run: |
           echo Build...
-          msbuild VerilogLanguageExtension.sln ^
+          msbuild %SolutionPath% ^
             /restore ^
             /t:Rebuild ^
-            /p:Configuration=Release ^
+            /p:Configuration=%Configuration% ^
             /p:Platform="Any CPU" ^
             /p:VisualStudioVersion=17.0
 
+      - name: Upload VLE version report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: vle-version-info
+          path: vle-version-info.json
+
       - name: Upload VSIX
-        if: false
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: VerilogLanguage.vsix
           path: |
             **\bin\Release\*.vsix
+
+      # Publish for reference, currently disabled.
+      - name: Publish to VSIX Gallery
+        if: ${{ false }} # Check push branch when enabled
+        uses: madskristensen/publish-vsixgallery@v1
+        with:
+          vsix-file: '**/*.vsix'
+
+      - name: Publish to Marketplace
+        if: ${{ false }}  # Check push branch when enabled
+        uses: madskristensen/publish-marketplace@v2
+        with:
+          extension-file: '**/*.vsix'
+          publish-manifest-file: vs-publish.json
+          personal-access-code: ${{ secrets.VS_MARKETPLACE_TOKEN }}

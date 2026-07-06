@@ -1,3 +1,30 @@
+// file: Globals/BufferAttributes.cs
+//***************************************************************************
+//
+//  MIT License
+//
+//  Copyright (c) 2025-2026 gojimmypi
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in all
+//  copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//  SOFTWARE.
+//
+//***************************************************************************
+
 using Microsoft.VisualStudio.Text;
 using StreamJsonRpc;
 using System;
@@ -5,6 +32,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using System.Windows.Media.Media3D;
+using VerilogLanguage.Diagnostics;
 using VerilogLanguage.VerilogToken;
 
 namespace VerilogLanguage
@@ -46,7 +74,7 @@ namespace VerilogLanguage
                     thisHint = VerilogGlobals.BufferAttribute_at_LineNumber[forLineNumber];
                 }
                 catch (Exception ex) {
-                    System.Diagnostics.Debug.WriteLine("ERROR: TextIsComment hint exception AtLine = {0}, Length={1}; message={2}", forLineNumber, BufferAttribute_at_LineNumber.Length, ex.Message);
+                    ExceptionDebug.WriteLine("ERROR: TextIsComment hint exception AtLine = {0}, Length={1}; message={2}", forLineNumber, BufferAttribute_at_LineNumber.Length, ex.Message);
                     thisHint = 0;
 #if VLE_HARD_FAIL
                     throw new Exception(ex.Message, ex.InnerException);
@@ -54,7 +82,7 @@ namespace VerilogLanguage
                 }
             }
             else {
-                // System.Diagnostics.Debug.WriteLine("TextIsComment hint not available in BufferAttribute_at_LineNumber");
+                // BufferAttributesDebug.WriteLine("TextIsComment hint not available in BufferAttribute_at_LineNumber");
             }
             return thisHint;
         }
@@ -328,14 +356,14 @@ namespace VerilogLanguage
                 }
 
                 if (alreadyReparsing) {
-                    System.Diagnostics.Debug.WriteLine("DoWork called while IsReparsing; keeping reparse queued.");
+                    BufferAttributesDebug.WriteLine("DoWork called while IsReparsing; keeping reparse queued.");
                     VerilogGlobals.ParseStatusController.NeedReparse_SetValue(targetFile, true);
                     return;
                 }
 
                 //if ( 1==1 || (DateTime.Now - LastRefresh).TotalSeconds > 10)
                 //{
-                //    System.Diagnostics.Debug.WriteLine("BufferAttributes calling ReparseWork");
+                //    BufferAttributesDebug.WriteLine("BufferAttributes calling ReparseWork");
 
                 try {
                     VerilogGlobals.ReparseWork(targetBuffer, targetFile);
@@ -386,7 +414,7 @@ namespace VerilogLanguage
                     //
                     // for lambda expressions on threads with parameters, see https://stackoverflow.com/questions/1195896/threadstart-with-parameters/1195915
                     //LongRunningTaskEvent += LongRunningTaskIsDone;
-                    System.Diagnostics.Debug.WriteLine("Reparse (threaded)...");
+                    BufferAttributesDebug.WriteLine("Reparse (threaded)...");
                     Thread thread1 = new Thread(() =>
                     {
                         ThreadReparse.DoWork(targetBuffer, targetFile);
@@ -394,11 +422,11 @@ namespace VerilogLanguage
                     })
                     { IsBackground = true }; ;
                     thread1.Start();
-                    System.Diagnostics.Debug.WriteLine("Reparse (thread started)...");
+                    BufferAttributesDebug.WriteLine("Reparse (thread started)...");
                 }
                 else {
                     // Do blocking reparse work when the files are relatively small
-                    System.Diagnostics.Debug.WriteLine("Reparse (non-threaded)...");
+                    BufferAttributesDebug.WriteLine("Reparse (non-threaded)...");
                     ThreadReparse.DoWork(targetBuffer, targetFile);
                 }
             }
@@ -414,7 +442,7 @@ namespace VerilogLanguage
             int thisBufferVersion = 0;
             ITextSnapshot newSnapshot = null;
 
-            System.Diagnostics.Debug.WriteLine("Starting ReparseWork...");
+            BufferAttributesDebug.WriteLine("Starting ReparseWork...");
 
             // ensure our ParseStatus dictionary of ParseAttribute items has an item for our current file
             //if (!ParseStatus.ContainsKey(targetFile))
@@ -448,7 +476,7 @@ namespace VerilogLanguage
                     thisBufferVersion = newSnapshot.Version.VersionNumber;
                 }
                 catch (Exception ex) {
-                    System.Diagnostics.Debug.WriteLine("ReparseWork could not read CurrentSnapshot: " + ex.Message);
+                    ExceptionDebug.WriteLine("ReparseWork could not read CurrentSnapshot: " + ex.Message);
                     thisBufferVersion = 0;
                 }
 
@@ -764,7 +792,7 @@ namespace VerilogLanguage
                 }
             }
             catch (Exception ex) {
-                System.Diagnostics.Debug.WriteLine("ReparseWork could not check final CurrentSnapshot: " + ex.Message);
+                ExceptionDebug.WriteLine("ReparseWork could not check final CurrentSnapshot: " + ex.Message);
                 currentBufferVersion = thisBufferVersion;
             }
 
@@ -776,7 +804,7 @@ namespace VerilogLanguage
             }
 
             if (queueFollowUpReparse) {
-                System.Diagnostics.Debug.WriteLine("Reparse completed for an older snapshot; queueing follow-up reparse.");
+                BufferAttributesDebug.WriteLine("Reparse completed for an older snapshot; queueing follow-up reparse.");
                 VerilogGlobals.Reparse(buffer, targetFile);
             }
 
@@ -832,7 +860,7 @@ namespace VerilogLanguage
                         hint = VerilogGlobals.BufferAttribute_at_LineNumber[AtLine];
                     }
                     catch (Exception ex) {
-                        System.Diagnostics.Debug.WriteLine("ERROR: TextIsComment hint exception AtLine = {0}, Length={1}; message={2}", AtLine, BufferAttribute_at_LineNumber.Length, ex.Message);
+                        ExceptionDebug.WriteLine("ERROR: TextIsComment hint exception AtLine = {0}, Length={1}; message={2}", AtLine, BufferAttribute_at_LineNumber.Length, ex.Message);
                         hint = 0;
 #if VLE_HARD_FAIL
                         throw new Exception(ex.Message, ex.InnerException);
@@ -840,7 +868,7 @@ namespace VerilogLanguage
                     }
                 }
                 else {
-                    // System.Diagnostics.Debug.WriteLine("TextIsComment hint not available in BufferAttribute_at_LineNumber");
+                    // BufferAttributesDebug.WriteLine("TextIsComment hint not available in BufferAttribute_at_LineNumber");
                 }
 
                 // now using hint for starting point, instead of: foreach (var thisBufferAttribute in BufferAttributes)
@@ -881,7 +909,7 @@ namespace VerilogLanguage
                 }
             }
             else {
-                System.Diagnostics.Debug.WriteLine("BracketDepth line" + AtLine.ToString() + " not in range of BufferAttribute_at_LineNumber hints.");
+                BufferAttributesDebug.WriteLine("BracketDepth line" + AtLine.ToString() + " not in range of BufferAttribute_at_LineNumber hints.");
             }
 
             if (BufferAttributes != null && BufferAttributes.Count > 0) {

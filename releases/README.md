@@ -4,6 +4,8 @@ Because you never know, you might need that someday.
 
 Downloads available for prior versions of vsix extensions:
 
+[Version 0.4.1.5](./VerilogLanguage_v0.4.1.5.vsix) Added Peek Definition and Find All References for Verilog symbols, with improved cross-file definition lookup, reference reporting, and release/CI metadata validation.
+
 [Version 0.4.1.4](./VerilogLanguage_v0.4.1.4.vsix) Improved "Goto definition" feature: some multi-file support. Fixed missing operational functionality for vsix.
 
 Version 0.4.1.1 to 0.4.1.3  - development versions only

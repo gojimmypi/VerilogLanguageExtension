@@ -3,10 +3,10 @@
     "RunName":  "all-testfiles",
     "Manifest":  "tools/vle-ci/manifests/all-testfiles.json",
     "Status":  "Completed",
-    "StartedAt":  "2026-06-25T18:04:41.1603235-07:00",
-    "CompletedAt":  "2026-06-25T18:15:32.9762962-07:00",
-    "ElapsedSeconds":  651.817,
-    "Elapsed":  "00:10:51.8166127",
+    "StartedAt":  "2026-07-05T13:06:03.7468842-07:00",
+    "CompletedAt":  "2026-07-05T13:19:40.6793796-07:00",
+    "ElapsedSeconds":  816.932,
+    "Elapsed":  "00:13:36.9320485",
     "ExpectedSnapshots":  53,
     "ActualSnapshots":  53,
     "Timings":  [
@@ -16,7 +16,7 @@
                         "Path":  "TestFiles/anothertest - Copy.v",
                         "SnapshotFileName":  "0001-anothertest - Copy.v.snapshot.json",
                         "Status":  "Completed",
-                        "ElapsedBucket":  "20-24s"
+                        "ElapsedBucket":  "25-29s"
                     },
                     {
                         "Index":  2,
@@ -224,7 +224,7 @@
                         "Path":  "TestFiles/picorv32.v",
                         "SnapshotFileName":  "0027-picorv32.v.snapshot.json",
                         "Status":  "Completed",
-                        "ElapsedBucket":  "20-24s"
+                        "ElapsedBucket":  "25-29s"
                     },
                     {
                         "Index":  28,
@@ -248,7 +248,7 @@
                         "Path":  "TestFiles/test - bigfile.v",
                         "SnapshotFileName":  "0030-test - bigfile.v.snapshot.json",
                         "Status":  "Completed",
-                        "ElapsedBucket":  "20-24s"
+                        "ElapsedBucket":  "25-29s"
                     },
                     {
                         "Index":  31,
@@ -392,7 +392,7 @@
                         "Path":  "TestFiles/src/TRNG/trng_lab_core.v",
                         "SnapshotFileName":  "0048-trng_lab_core.v.snapshot.json",
                         "Status":  "Completed",
-                        "ElapsedBucket":  "10-14s"
+                        "ElapsedBucket":  "15-19s"
                     },
                     {
                         "Index":  49,
@@ -434,5 +434,54 @@
                         "Status":  "Completed",
                         "ElapsedBucket":  "10-14s"
                     }
-                ]
+                ],
+    "VsixManifestVersion":  "0.4.1.5",
+    "AssemblyVersion":  "1.0.*",
+    "AssemblyFileVersion":  "0.4.1.5",
+    "AssemblyInformationalVersion":  "0.4.1.5",
+    "ProvideMenuResourceName":  "Menus.ctmenu",
+    "ProvideMenuResourceVersion":  5,
+    "SnapshotCount":  53,
+    "GitCommit":  "44faa3d",
+    "GitCommitFull":  "44faa3d9afda68ed974dc63940aa92b71e244f9a",
+    "RunTiming":  [
+                      {
+                          "Name":  "Build",
+                          "Status":  "Completed",
+                          "ElapsedSeconds":  5.16,
+                          "ElapsedBucket":  "0-9s"
+                      },
+                      {
+                          "Name":  "Snapshot export",
+                          "Status":  "Completed",
+                          "ElapsedSeconds":  817.014,
+                          "ElapsedBucket":  "10-30m"
+                      },
+                      {
+                          "Name":  "Format current JSON",
+                          "Status":  "Completed",
+                          "ElapsedSeconds":  15.921,
+                          "ElapsedBucket":  "10-29s"
+                      },
+                      {
+                          "Name":  "Snapshot compare",
+                          "Status":  "Completed",
+                          "ElapsedSeconds":  5.224,
+                          "ElapsedBucket":  "0-9s"
+                      },
+                      {
+                          "Name":  "Format baseline JSON",
+                          "Status":  "Completed",
+                          "ElapsedSeconds":  16.095,
+                          "ElapsedBucket":  "10-29s"
+                      },
+                      {
+                          "Name":  "Total",
+                          "Status":  "Completed",
+                          "ElapsedSeconds":  859.743,
+                          "ElapsedBucket":  "10-30m"
+                      }
+                  ],
+    "CiProcessingTime":  "10-30m",
+    "CiElapsedSeconds":  859.743
 }

@@ -1,8 +1,9 @@
+// file: Classification/ClassificationType.cs
 //***************************************************************************
 //
 //  MIT License
 //
-//  Copyright(c) 2019 gojimmypi
+//  Copyright (c) 2019-2026 gojimmypi
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +24,6 @@
 //  SOFTWARE.
 //
 //***************************************************************************
-
 
 using System.ComponentModel.Composition;
 using Microsoft.VisualStudio.Text.Classification;

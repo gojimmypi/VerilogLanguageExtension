@@ -1,3 +1,30 @@
+// file: Globals/Parsing.cs
+//***************************************************************************
+//
+//  MIT License
+//
+//  Copyright (c) 2025-2026 gojimmypi
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in all
+//  copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//  SOFTWARE.
+//
+//***************************************************************************
+
 using Microsoft.VisualStudio.Text;
 using System;
 using System.Collections.Generic;
@@ -363,15 +390,187 @@ namespace VerilogLanguage
 
                     VerilogDefinitionLocation candidate;
                     if (moduleDefinitions.TryGetValue(moduleName, out candidate) && candidate != null) {
-                        definition = string.IsNullOrEmpty(candidate.FilePath)
-                            ? candidate.CloneWithFilePath(parseData.TargetFile)
-                            : candidate.Clone();
+                        definition = CloneDefinitionCandidate(parseData, candidate);
                         return true;
                     }
                 }
             }
 
             return false;
+        }
+
+        public static bool TryGetDefinitionFromParsedFiles(
+            string lookupText,
+            string currentFile,
+            out VerilogDefinitionLocation definition) {
+
+            definition = null;
+
+            if (string.IsNullOrEmpty(lookupText)) {
+                return false;
+            }
+
+            string macroName = lookupText.StartsWith("`", StringComparison.Ordinal)
+                ? lookupText.Substring(1)
+                : string.Empty;
+
+            lock (_synchronizationActiveParseData) {
+                foreach (ParseDataSnapshot parseData in ParseDataByFile.Values) {
+                    if (parseData == null || parseData.VerilogDefinitionLocations == null ||
+                        IsSameParsedFile(parseData.TargetFile, currentFile)) {
+                        continue;
+                    }
+
+                    if (!string.IsNullOrEmpty(macroName) &&
+                        TryGetDefinitionFromParsedScope(parseData, SCOPE_MACRO, macroName, out definition)) {
+                        return true;
+                    }
+
+                    if (TryGetDefinitionFromParsedScope(parseData, SCOPE_MACRO, lookupText, out definition)) {
+                        return true;
+                    }
+
+                    if (TryGetDefinitionFromParsedScope(parseData, SCOPE_CONST, lookupText, out definition)) {
+                        return true;
+                    }
+                }
+
+                if (!IsCrossFileDefinitionLookupCandidate(lookupText)) {
+                    return false;
+                }
+
+                foreach (ParseDataSnapshot parseData in ParseDataByFile.Values) {
+                    if (parseData == null || parseData.VerilogDefinitionLocations == null ||
+                        IsSameParsedFile(parseData.TargetFile, currentFile)) {
+                        continue;
+                    }
+
+                    if (TryGetAnyDefinitionFromParsedFile(parseData, lookupText, out definition)) {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private static bool TryGetDefinitionFromParsedScope(
+            ParseDataSnapshot parseData,
+            string scope,
+            string lookupText,
+            out VerilogDefinitionLocation definition) {
+
+            definition = null;
+
+            if (parseData == null || parseData.VerilogDefinitionLocations == null ||
+                string.IsNullOrEmpty(scope) || string.IsNullOrEmpty(lookupText)) {
+                return false;
+            }
+
+            Dictionary<string, VerilogDefinitionLocation> scopeDefinitions;
+            if (!parseData.VerilogDefinitionLocations.TryGetValue(scope, out scopeDefinitions) || scopeDefinitions == null) {
+                return false;
+            }
+
+            VerilogDefinitionLocation candidate;
+            if (!scopeDefinitions.TryGetValue(lookupText, out candidate) || candidate == null) {
+                return false;
+            }
+
+            definition = CloneDefinitionCandidate(parseData, candidate);
+            return true;
+        }
+
+        private static bool TryGetAnyDefinitionFromParsedFile(
+            ParseDataSnapshot parseData,
+            string lookupText,
+            out VerilogDefinitionLocation definition) {
+
+            definition = null;
+
+            if (parseData == null || parseData.VerilogDefinitionLocations == null || string.IsNullOrEmpty(lookupText)) {
+                return false;
+            }
+
+            foreach (Dictionary<string, VerilogDefinitionLocation> scopeDefinitions in parseData.VerilogDefinitionLocations.Values) {
+                if (scopeDefinitions == null) {
+                    continue;
+                }
+
+                VerilogDefinitionLocation candidate;
+                if (scopeDefinitions.TryGetValue(lookupText, out candidate) && candidate != null) {
+                    definition = CloneDefinitionCandidate(parseData, candidate);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static VerilogDefinitionLocation CloneDefinitionCandidate(ParseDataSnapshot parseData, VerilogDefinitionLocation candidate) {
+            if (candidate == null) {
+                return null;
+            }
+
+            if (string.IsNullOrEmpty(candidate.FilePath) && parseData != null) {
+                return candidate.CloneWithFilePath(parseData.TargetFile);
+            }
+
+            return candidate.Clone();
+        }
+
+        private static bool IsCrossFileDefinitionLookupCandidate(string lookupText) {
+            if (string.IsNullOrEmpty(lookupText)) {
+                return false;
+            }
+
+            string identifier = lookupText.StartsWith("`", StringComparison.Ordinal)
+                ? lookupText.Substring(1)
+                : lookupText;
+
+            if (identifier.Length == 0) {
+                return false;
+            }
+
+            bool hasLetter = false;
+            for (int i = 0; i < identifier.Length; i++) {
+                char c = identifier[i];
+                if (c >= 'a' && c <= 'z') {
+                    return false;
+                }
+
+                if (c >= 'A' && c <= 'Z') {
+                    hasLetter = true;
+                    continue;
+                }
+
+                if ((c >= '0' && c <= '9') || c == '_' || c == '$') {
+                    continue;
+                }
+
+                return false;
+            }
+
+            return hasLetter;
+        }
+
+        private static bool IsSameParsedFile(string firstPath, string secondPath) {
+            if (string.IsNullOrEmpty(firstPath) || string.IsNullOrEmpty(secondPath)) {
+                return false;
+            }
+
+            try {
+                firstPath = System.IO.Path.GetFullPath(firstPath);
+                secondPath = System.IO.Path.GetFullPath(secondPath);
+            }
+            catch (ArgumentException) {
+            }
+            catch (NotSupportedException) {
+            }
+            catch (System.IO.PathTooLongException) {
+            }
+
+            return string.Equals(firstPath, secondPath, StringComparison.OrdinalIgnoreCase);
         }
 
 

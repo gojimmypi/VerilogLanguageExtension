@@ -1,8 +1,9 @@
+// file: Classification/VerilogClassifier.cs
 //***************************************************************************
 //
 //  MIT License
 //
-//  Copyright(c) 2019 gojimmypi
+//  Copyright (c) 2019-2026 gojimmypi
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +39,6 @@ namespace VerilogLanguage.VerilogToken
     [Export(typeof(ITaggerProvider))]
     [ContentType("verilog")]
     [TagType(typeof(ClassificationTag))]
-    [TextViewRole(PredefinedTextViewRoles.Document)]
     internal sealed class VerilogClassifierProvider : ITaggerProvider
     {
 
@@ -95,29 +95,20 @@ namespace VerilogLanguage.VerilogToken
                 return null;
             }
 
-            // System.Diagnostics.Debugger.Break();
-            // System.Diagnostics.Debug.WriteLine("VerilogClassifierProvider.CreateTagger: ContentType=" + buffer.ContentType.TypeName);
+            System.Diagnostics.Debug.WriteLine("VerilogClassifierProvider.CreateTagger: ContentType=" + buffer.ContentType.TypeName);
 
-            // Return one classifier per text buffer. The token aggregator is
-            // created inside this singleton factory so repeated CreateTagger calls
-            // do not create extra aggregators or duplicate TagsChanged subscriptions.
-            VerilogClassifier classifier = buffer.Properties.GetOrCreateSingletonProperty<VerilogClassifier>(
-                () =>
-                {
-                    ITagAggregator<VerilogTokenTag> VerilogTagAggregator =
-                        aggregatorFactory.CreateTagAggregator<VerilogTokenTag>(buffer);
+            ITagAggregator<VerilogTokenTag> VerilogTagAggregator =
+                aggregatorFactory.CreateTagAggregator<VerilogTokenTag>(buffer);
 
-                    return new VerilogClassifier(buffer, VerilogTagAggregator, ClassificationTypeRegistry);
-                });
-
-            return classifier as ITagger<T>;
+            return new VerilogClassifier(buffer, VerilogTagAggregator, ClassificationTypeRegistry) as ITagger<T>;
         }
     }
-    internal sealed class VerilogClassifier : ITagger<ClassificationTag>
+    internal sealed class VerilogClassifier : ITagger<ClassificationTag>, IDisposable
     {
         ITextBuffer _buffer;
         ITagAggregator<VerilogTokenTag> _aggregator;
         IDictionary<VerilogTokenTypes, IClassificationType> _VerilogTypeClassifications;
+        private bool _disposed;
         /// <summary>
         /// Construct the classifier and define search tokens
         /// </summary>
@@ -266,7 +257,7 @@ namespace VerilogLanguage.VerilogToken
         private void VerilogTagAggregatorTagsChanged(object sender, TagsChangedEventArgs e)
         {
             EventHandler<SnapshotSpanEventArgs> handler = TagsChanged;
-            if (handler == null || e == null || e.Span == null || _buffer == null)
+            if (_disposed || handler == null || e == null || e.Span == null || _buffer == null)
             {
                 return;
             }
@@ -285,12 +276,37 @@ namespace VerilogLanguage.VerilogToken
             }
         }
 
+
+        public void Dispose()
+        {
+            if (_disposed)
+            {
+                return;
+            }
+
+            _disposed = true;
+            TagsChanged = null;
+
+            if (_aggregator != null)
+            {
+                _aggregator.TagsChanged -= VerilogTagAggregatorTagsChanged;
+
+                IDisposable disposableAggregator = _aggregator as IDisposable;
+                if (disposableAggregator != null)
+                {
+                    disposableAggregator.Dispose();
+                }
+
+                _aggregator = null;
+            }
+        }
+
         /// <summary>
         /// Search the given span for any instances of classified tags
         /// </summary>
         public IEnumerable<ITagSpan<ClassificationTag>> GetTags(NormalizedSnapshotSpanCollection spans)
         {
-            if (spans == null || spans.Count == 0 || _aggregator == null || _VerilogTypeClassifications == null)
+            if (_disposed || spans == null || spans.Count == 0 || _aggregator == null || _VerilogTypeClassifications == null)
             {
                 yield break;
             }

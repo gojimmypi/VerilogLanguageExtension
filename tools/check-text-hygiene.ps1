@@ -20,7 +20,7 @@ param(
     [switch]$RequireCrLf,
     [switch]$RequireFinalNewline,
     [switch]$AsciiOnly,
-    [int]$MaxFailures = 200
+    [int]$MaxFailures = 0
 )
 
 Set-StrictMode -Version Latest
@@ -347,7 +347,7 @@ foreach ($file in $files) {
 if ($failures.Count -gt 0) {
     Write-Host "Text hygiene check failed."
     Write-Host "Files checked: $checkedCount"
-    Write-Host "Failures shown: $($failures.Count)"
+    Write-Host "Failures found: $($failures.Count)"
 
     foreach ($failure in $failures) {
         Write-Host "::error::$failure"

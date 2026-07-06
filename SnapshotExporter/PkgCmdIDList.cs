@@ -3,7 +3,7 @@
 //
 //  MIT License
 //
-//  Copyright(c) 2025 gojimmypi
+//  Copyright (c) 2025-2026 gojimmypi
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,6 @@
 //
 //***************************************************************************
 
-
 using System;
 
 namespace VerilogLanguage
@@ -34,6 +33,8 @@ namespace VerilogLanguage
     {
         public const int CmdIdExportVerilogSnapshot = 0x0100;
         public const int CmdIdGoToDefinition = 0x0102;
+        public const int CmdIdPeekDefinition = 0x0103;
+        public const int CmdIdFindAllReferences = 0x0104;
         // public const int CmdIdFirstCommand = 0x0101;
 
     }

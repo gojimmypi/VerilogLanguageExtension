@@ -1,9 +1,9 @@
-// File: VerilogTokenTagProvider.cs
+// file: VerilogToken/VerilogTokenTagProvider.cs
 //***************************************************************************
 //
 //  MIT License
 //
-//  Copyright(c) 2019 gojimmypi
+//  Copyright (c) 2019-2026 gojimmypi
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,6 +26,7 @@
 //***************************************************************************
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Tagging;
@@ -33,16 +34,12 @@ using Microsoft.VisualStudio.Utilities;
 
 namespace VerilogLanguage.VerilogToken
 {
-    // You must export a tagger provider for your tagger.
-    // IMPORTANT: Only ONE tagger instance per buffer.
+    // One shared tokenizing core per text buffer, but one disposable lease per VS tag aggregator.
     [Export(typeof(ITaggerProvider))]
     [TagType(typeof(VerilogTokenTag))]
     [ContentType("verilog")] // see _buffer.ContentType (ITextBuffer.ContentType Property)
     internal sealed class VerilogTokenTagProvider : ITaggerProvider
     {
-        [Import]
-        internal ITextDocumentFactoryService TextDocumentFactoryService { get; set; }
-
         public ITagger<T> CreateTagger<T>(ITextBuffer buffer) where T : ITag {
             if (buffer == null) {
                 return null;
@@ -51,60 +48,76 @@ namespace VerilogLanguage.VerilogToken
             System.Diagnostics.Debug.WriteLine(
                 "VerilogTokenTagProvider.CreateTagger: ContentType=" + buffer.ContentType.TypeName);
 
-            // CRITICAL:
-            // Returning a new tagger each time causes:
-            //   - multiple buffer.Changed handlers
-            //   - multiple token scans
-            //   - broken / partial classification
-            //
-            // This MUST be a singleton per buffer. The tagger owns an event
-            // subscription on the buffer, so register a matching cleanup path
-            // when the backing text document is disposed.
             VerilogTokenTagger tagger = buffer.Properties.GetOrCreateSingletonProperty<VerilogTokenTagger>(
-                () => {
-                    VerilogTokenTagger newTagger = new VerilogTokenTagger(buffer);
-                    RegisterDisposeOnTextDocumentDisposed(buffer, newTagger);
-                    return newTagger;
-                });
+                () => new VerilogTokenTagger(buffer));
 
-            return tagger as ITagger<T>;
-
-            // return new VerilogTokenTagger(buffer) as ITagger<T>;
-            // TODO which is better? above or below?
-
-            //Func<ITagger<T>> sc = delegate () { return new VerilogTokenTagger(buffer) as ITagger<T>; };
-            //return buffer.Properties.GetOrCreateSingletonProperty<ITagger<T>>(sc);
+            return new VerilogTokenTaggerLease(tagger) as ITagger<T>;
         }
+    }
 
-        private void RegisterDisposeOnTextDocumentDisposed(ITextBuffer buffer, VerilogTokenTagger tagger) {
-            if (TextDocumentFactoryService == null) {
-                return;
-            }
+    internal sealed class VerilogTokenTaggerLease : ITagger<VerilogTokenTag>, IDisposable
+    {
+        private readonly object eventLock = new object();
+        private VerilogTokenTagger tagger;
+        private EventHandler<SnapshotSpanEventArgs> tagsChanged;
 
-            ITextDocument textDocument;
-            if (!TextDocumentFactoryService.TryGetTextDocument(buffer, out textDocument)) {
-                return;
-            }
-
-            EventHandler<TextDocumentEventArgs> disposedHandler = null;
-            disposedHandler = (sender, e) => {
-                if (e == null || !object.ReferenceEquals(e.TextDocument, textDocument)) {
-                    return;
-                }
-
-                TextDocumentFactoryService.TextDocumentDisposed -= disposedHandler;
-                tagger.Dispose();
-                buffer.Properties.RemoveProperty(typeof(VerilogTokenTagger));
-            };
-
-            TextDocumentFactoryService.TextDocumentDisposed += disposedHandler;
+        internal VerilogTokenTaggerLease(VerilogTokenTagger tagger) {
+            this.tagger = tagger ?? throw new ArgumentNullException(nameof(tagger));
+            this.tagger.TagsChanged += CoreTagsChanged;
         }
 
         public event EventHandler<SnapshotSpanEventArgs> TagsChanged
         {
-            add { }
-            remove { }
+            add
+            {
+                lock (eventLock) {
+                    tagsChanged += value;
+                }
+            }
+
+            remove
+            {
+                lock (eventLock) {
+                    tagsChanged -= value;
+                }
+            }
+        }
+
+        public IEnumerable<ITagSpan<VerilogTokenTag>> GetTags(NormalizedSnapshotSpanCollection spans) {
+            VerilogTokenTagger currentTagger = tagger;
+            if (currentTagger == null) {
+                yield break;
+            }
+
+            foreach (ITagSpan<VerilogTokenTag> tag in currentTagger.GetTags(spans)) {
+                yield return tag;
+            }
+        }
+
+        public void Dispose() {
+            VerilogTokenTagger currentTagger = tagger;
+            if (currentTagger == null) {
+                return;
+            }
+
+            tagger = null;
+            currentTagger.TagsChanged -= CoreTagsChanged;
+
+            lock (eventLock) {
+                tagsChanged = null;
+            }
+        }
+
+        private void CoreTagsChanged(object sender, SnapshotSpanEventArgs e) {
+            EventHandler<SnapshotSpanEventArgs> handler;
+
+            lock (eventLock) {
+                handler = tagsChanged;
+            }
+
+            if (handler != null) {
+                handler(this, e);
+            }
         }
     }
-
 }

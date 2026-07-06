@@ -3,6 +3,16 @@
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
+$scriptDir = if (![string]::IsNullOrWhiteSpace($PSScriptRoot)) {
+    $PSScriptRoot
+}
+else {
+    Split-Path -Parent $MyInvocation.MyCommand.Path
+}
+
+$repoRoot = (Resolve-Path -LiteralPath (Join-Path $scriptDir "..")).Path
+Set-Location -LiteralPath $repoRoot
+
 $baselineDir = "tests\snapshots\baselines\development-main\all-testfiles"
 
 function Remove-SnapshotGitCommit {
@@ -56,13 +66,13 @@ function Format-GeneratedJsonFiles {
 
 # Refresh the all-testfiles manifest first. Existing baseline snapshot names are
 # preserved, and new files are placed first in the run order.
-.\create-testfile-manifest.ps1 -BaselineDir $baselineDir
+& (Join-Path $scriptDir "create-testfile-manifest.ps1") -BaselineDir $baselineDir
 
 # Run the baseline update for the all-testfiles manifest.
 # -Manifest selects the generated manifest that opens all Verilog test files.
 # -Baseline selects the approved baseline directory to replace.
 # -UpdateBaseline tells Run-LocalCI.ps1 to write current snapshots into that baseline.
-.\tools\vle-ci\Run-LocalCI.ps1 `
+& (Join-Path $repoRoot "tools\vle-ci\Run-LocalCI.ps1") `
     -Manifest tools\vle-ci\manifests\all-testfiles.json `
     -Baseline $baselineDir `
     -UpdateBaseline
@@ -74,4 +84,4 @@ Format-GeneratedJsonFiles -Directory $baselineDir
 
 # The baseline refresh completed successfully. Clear the temporary "new file"
 # priority markers so the next run treats these files as normal baseline files.
-.\create-testfile-manifest.ps1 -BaselineDir $baselineDir -AcceptCurrentManifest
+& (Join-Path $scriptDir "create-testfile-manifest.ps1") -BaselineDir $baselineDir -AcceptCurrentManifest

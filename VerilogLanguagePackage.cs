@@ -1,8 +1,9 @@
+// file: VerilogLanguagePackage.cs
 //***************************************************************************
 //
 //  MIT License
 //
-//  Copyright(c) 2025 gojimmypi
+//  Copyright (c) 2025-2026 gojimmypi
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,12 +25,13 @@
 //
 //***************************************************************************
 
-
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using System;
 using System.Runtime.InteropServices;
 using System.Threading;
+using VerilogLanguage.Navigation;
+using VerilogLanguage.Peek;
 using VerilogLanguage.Testing;
 using Task = System.Threading.Tasks.Task;
 
@@ -52,10 +54,14 @@ namespace VerilogLanguagePackage
     /// To get loaded into VS, the package must be referred by &lt;Asset Type="Microsoft.VisualStudio.VsPackage" ...&gt; in .vsixmanifest file.
     /// </para>
     /// </remarks>
+    ///
+    /// CAUTION: Edit this section with care. Features that work when debugging (e.g. "Go to definition")
+    /// has been observed to work in debug mode but NOT when installed via VSIC / Marketplace! See code history.
+    ///
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [ProvideBindingPath]
     [Guid(VerilogLanguagePackage.PackageGuidString)]
-    [ProvideMenuResource("Menus.ctmenu", 3)] /* bump the number to force a refresh of the menus when command table changes */
+    [ProvideMenuResource("Menus.ctmenu", 5)] /* bump the number to force a refresh of the menus when command table changes */
     [ProvideAutoLoad(VSConstants.UICONTEXT.ShellInitialized_string, PackageAutoLoadFlags.BackgroundLoad)]
     public sealed class VerilogLanguagePackage : AsyncPackage
     {
@@ -78,6 +84,13 @@ namespace VerilogLanguagePackage
             // Do any initialization that requires the UI thread after switching to the UI thread.
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
             await VerilogLanguage.Testing.ExportSnapshotCommand.InitializeAsync(this);
+
+            /* Peek needs its own init only because we added it as a new separate command class.
+             * The MEF Peek provider can be discovered by Visual Studio, but the right-click menu command
+             * itself still needs an OleMenuCommandService handler registered so clicking Peek Definition
+             * calls our code. */
+            await PeekDefinitionCommand.InitializeAsync(this);
+            await FindAllReferencesCommand.InitializeAsync(this);
         }
 
         #endregion

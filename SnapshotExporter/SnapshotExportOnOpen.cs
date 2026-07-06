@@ -3,7 +3,7 @@
 //
 //  MIT License
 //
-//  Copyright(c) 2025 gojimmypi
+//  Copyright (c) 2025-2026 gojimmypi
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -44,7 +44,10 @@ namespace VerilogLanguage
     [TextViewRole(PredefinedTextViewRoles.Document)]
     internal sealed class SnapshotExportOnOpen : IWpfTextViewCreationListener
     {
+#if DEBUG
+        /* See ExportAfterDelayAsync */
         private static int _snapshotSequence;
+#endif
 
         [Import]
         internal ITextDocumentFactoryService TextDocumentFactoryService = null;

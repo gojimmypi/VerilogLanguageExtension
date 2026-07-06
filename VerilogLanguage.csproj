@@ -47,7 +47,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;VLE_DEBUG_EXCEPTIONS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <IncludeDebugSymbolsInVSIXContainer>true</IncludeDebugSymbolsInVSIXContainer>
@@ -69,12 +69,18 @@
     <IncludeDebugSymbolsInLocalVSIXDeployment>false</IncludeDebugSymbolsInLocalVSIXDeployment>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Diagnostics\VerilogDiagnostics.cs" />
     <Compile Include="SnapshotExporter\ExportSnapshotCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VerilogLanguagePackage.cs" />
+    <Compile Include="Navigation\VerilogDefinitionResolver.cs" />
+    <Compile Include="Navigation\VerilogReferenceFinder.cs" />
+    <Compile Include="Navigation\FindAllReferencesCommand.cs" />
+    <Compile Include="Peek\PeekDefinitionCommand.cs" />
+    <Compile Include="Peek\VerilogPeekDefinitionSource.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include=".github\workflows\vsix-build-publish.yml" />
+    <None Include="ATTRIBUTION.md" />
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
@@ -174,6 +180,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\SnapshotExporter.png" />
+    <Content Include="Resources\VleIcon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="VSSDK_DIAG_VsSDKTargetsMissing" BeforeTargets="Build" Condition="'$(DesignTimeBuild)' != 'true' And !Exists('$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets')">

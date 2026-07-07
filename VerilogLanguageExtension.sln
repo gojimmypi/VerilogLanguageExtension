@@ -4,6 +4,8 @@ VisualStudioVersion = 18.4.11626.88
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerilogLanguage", "VerilogLanguage.csproj", "{F091221E-FD10-41A7-AAC4-C9359178BDB1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerilogProjectTemplate", "AddedExtensionProjectTemplates\VerilogProject\VerilogProjectTemplate.csproj", "{8E669251-2F2E-4F2C-8627-0365D35B8A8B}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample Test Files", "Sample Test Files", "{20D165A8-A0EA-4B8A-969F-573B2C03FF53}"
 	ProjectSection(SolutionItems) = preProject
 		TestFiles\anothertest - Copy.v = TestFiles\anothertest - Copy.v
@@ -101,6 +103,10 @@ Global
 		{F091221E-FD10-41A7-AAC4-C9359178BDB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F091221E-FD10-41A7-AAC4-C9359178BDB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F091221E-FD10-41A7-AAC4-C9359178BDB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E669251-2F2E-4F2C-8627-0365D35B8A8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E669251-2F2E-4F2C-8627-0365D35B8A8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E669251-2F2E-4F2C-8627-0365D35B8A8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E669251-2F2E-4F2C-8627-0365D35B8A8B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -165,7 +165,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="ProjectTemplates\Verilog Project.zip">
+    <Content Include="ProjectTemplates\CSharp\1033\VerilogProject.zip">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -173,6 +173,16 @@
   <ItemGroup>
     <Folder Include="images\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="AddedExtensionProjectTemplates\VerilogProject\VerilogProjectTemplate.csproj">
+      <Project>{8E669251-2F2E-4F2C-8627-0365D35B8A8B}</Project>
+      <Name>VerilogProjectTemplate</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <Private>false</Private>
+    </ProjectReference>
+  </ItemGroup>
+
   <ItemGroup>
     <VSCTCompile Include="VerilogLanguagePackage.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
@@ -188,6 +198,9 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="VSSDK_DIAG_VsSDKTargetsMissing" BeforeTargets="Build" Condition="'$(DesignTimeBuild)' != 'true' And !Exists('$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets')">
     <Message Importance="high" Text="VSSDK DIAGNOSTIC: Microsoft.VsSDK.targets NOT FOUND at: $(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets. Result will be DLL-only (no VSIX, no CTMENU embedding)." />
+  </Target>
+  <Target Name="BuildProjectTemplateZip" BeforeTargets="PrepareForBuild" Condition="'$(DesignTimeBuild)' != 'true'">
+    <Exec Command="powershell.exe -NoProfile -ExecutionPolicy Bypass -File &quot;$(MSBuildProjectDirectory)\tools\templates\Build-ProjectTemplates.ps1&quot; -RepoRoot &quot;$(MSBuildProjectDirectory)&quot;" />
   </Target>
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="Exists('$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets')" />
   <!--

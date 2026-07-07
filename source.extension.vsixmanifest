@@ -16,7 +16,7 @@
 
     <Metadata>
         <Identity Id="CF0DCF14-5B8F-4B42-8386-9D37BB99F98E"
-                  Version="0.4.1.6"
+                  Version="0.4.1.8"
                   Language="en-US"
                   Publisher="gojimmypi" />
 
@@ -62,7 +62,7 @@
 
         <Asset Type="Microsoft.VisualStudio.ProjectTemplate"
                d:Source="File"
-               Path="ProjectTemplates\Verilog Project.zip" />
+               Path="ProjectTemplates" />
 
         <Asset Type="Microsoft.VisualStudio.VsPackage"
                d:Source="Project"

@@ -43,7 +43,7 @@ endif
 	vvp -N $< +vcd=$@
 
 prog: $(PROJ).bin
-	iceprog.exe $<
+	/mnt/c/workspace/ulx3s-toolchain/bin/iceprog.exe $<
 
 sudo-prog: $(PROJ).bin
 	@echo 'Executing prog as root!!!'

@@ -1,28 +1,40 @@
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
-    <TemplateData>
-        <Name>Verilog Project</Name>
-        <Description>Verilog Project Template for iCEBreaker, iCEStick, Orange Crab, tinyFPGA, and ULX3S</Description>
-        <ProjectType>CSharp</ProjectType>
-        <ProjectSubType>
-        </ProjectSubType>
-        <SortOrder>1000</SortOrder>
-        <CreateNewFolder>true</CreateNewFolder>
-        <DefaultName>VerilogProject</DefaultName>
-        <ProvideDefaultName>true</ProvideDefaultName>
-        <LocationField>Enabled</LocationField>
-        <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
-        <CreateInPlace>true</CreateInPlace>
-        <Icon>Verilog.ico</Icon>
-        <PreviewImage>__PreviewImage.png</PreviewImage>
-    </TemplateData>
-        <!-- File is the project file stored inside this zip. TargetFileName is the generated project file name. -->
-        <!-- Keep the source project filename space-free because VSIX template packaging can percent-encode spaces. -->
-    <TemplateContent>
-		<Project TargetFileName="Verilog Project.csproj" File="Verilog Project.csproj" ReplaceParameters="true">
+	<TemplateData>
+		<Name>Verilog Project</Name>
+		<Description>Verilog Project Template for iCEBreaker, iCEStick, Orange Crab, tinyFPGA, and ULX3S</Description>
+		<ProjectType>CSharp</ProjectType>
+		<ProjectSubType>
+		</ProjectSubType>
+		<SortOrder>1000</SortOrder>
+		<!-- These identifiers and tags help the VS2022/VS2026 New Project dialog index and filter this template. -->
+		<TemplateID>gojimmypi.VerilogLanguageExtension.VerilogProject</TemplateID>
+		<TemplateGroupID>gojimmypi.VerilogLanguageExtension</TemplateGroupID>
+		<ShowByDefault>true</ShowByDefault>
+		<LanguageTag>C#</LanguageTag>
+		<PlatformTag>Windows</PlatformTag>
+		<ProjectTypeTag>FPGA</ProjectTypeTag>
+		<CreateNewFolder>true</CreateNewFolder>
+		<DefaultName>VerilogProject</DefaultName>
+		<ProvideDefaultName>true</ProvideDefaultName>
+		<LocationField>Enabled</LocationField>
+		<EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+		<CreateInPlace>true</CreateInPlace>
+		<Icon>Verilog.ico</Icon>
+		<PreviewImage>__PreviewImage.png</PreviewImage>
+	</TemplateData>
+	<TemplateContent>
+		<!-- File is the project file stored inside this zip. TargetFileName is the generated project file name. -->
+		<!-- Keep the source project filename space-free because VSIX template packaging can percent-encode spaces. -->
+		<Project File="VerilogProject.csproj" TargetFileName="$safeprojectname$.csproj" ReplaceParameters="true">
 			<Folder Name="Properties" TargetFolderName="Properties">
 				<ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
 			</Folder>
-			<Folder Name=".vs" TargetFolderName=".vs" />
+			<Folder Name="ProjectPlatform" TargetFolderName="ProjectPlatform">
+				<ProjectItem ReplaceParameters="true" TargetFileName="Config.csproj">Config.csproj</ProjectItem>
+				<ProjectItem ReplaceParameters="true" TargetFileName="Project_iCEBreaker.csproj">Project_iCEBreaker.csproj</ProjectItem>
+				<ProjectItem ReplaceParameters="true" TargetFileName="Project_ULX3S.csproj">Project_ULX3S.csproj</ProjectItem>
+				<ProjectItem ReplaceParameters="true" TargetFileName="UserDefined.csproj">UserDefined.csproj</ProjectItem>
+			</Folder>
 			<Folder Name="boards" TargetFolderName="boards">
 				<Folder Name="icebreaker" TargetFolderName="icebreaker">
 					<ProjectItem ReplaceParameters="false" TargetFileName="icebreaker.pcf">icebreaker.pcf</ProjectItem>
@@ -60,7 +72,6 @@
 			<Folder Name="images" TargetFolderName="images">
 				<ProjectItem ReplaceParameters="false" TargetFileName="export_template.png">export_template.png</ProjectItem>
 			</Folder>
-			<ProjectItem ReplaceParameters="true" TargetFileName="_not_used_Makefile-ULX3S-12F.mk">_not_used_Makefile-ULX3S-12F.mk</ProjectItem>
 			<ProjectItem ReplaceParameters="true" TargetFileName="App.config">App.config</ProjectItem>
 			<ProjectItem ReplaceParameters="true" TargetFileName="blinky.json">blinky.json</ProjectItem>
 			<ProjectItem ReplaceParameters="false" TargetFileName="dtest.bat">dtest.bat</ProjectItem>
@@ -68,7 +79,6 @@
 			<ProjectItem ReplaceParameters="true" TargetFileName="Makefile-iCEBreaker.mk">Makefile-iCEBreaker.mk</ProjectItem>
 			<ProjectItem ReplaceParameters="true" TargetFileName="Program.cs">Program.cs</ProjectItem>
 			<ProjectItem ReplaceParameters="false" TargetFileName="README.md">README.md</ProjectItem>
-			<ProjectItem ReplaceParameters="false" TargetFileName="relentless.log">relentless.log</ProjectItem>
 			<ProjectItem ReplaceParameters="false" TargetFileName="top.v">top.v</ProjectItem>
 			<ProjectItem ReplaceParameters="false" TargetFileName="top.ys">top.ys</ProjectItem>
 			<ProjectItem ReplaceParameters="false" TargetFileName="top_icebreaker.v">top_icebreaker.v</ProjectItem>
@@ -76,8 +86,6 @@
 			<ProjectItem ReplaceParameters="true" TargetFileName="ulx3s_empty.config">ulx3s_empty.config</ProjectItem>
 			<ProjectItem ReplaceParameters="false" TargetFileName="ulx3s_v20.lpf">ulx3s_v20.lpf</ProjectItem>
 			<ProjectItem ReplaceParameters="false" TargetFileName="Verilog.ico">Verilog.ico</ProjectItem>
-			<ProjectItem ReplaceParameters="true" TargetFileName="Verilog.vstemplate">Verilog.vstemplate</ProjectItem>
-			<ProjectItem ReplaceParameters="false" TargetFileName="VerilogProjectTemplate.csproj.new">VerilogProjectTemplate.csproj.new</ProjectItem>
 		</Project>
 	</TemplateContent>
 </VSTemplate>

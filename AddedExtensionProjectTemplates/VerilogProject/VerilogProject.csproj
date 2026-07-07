@@ -943,7 +943,7 @@
 	</Target>
 
 	<!-- make sure we have WSL installed! -->
-	<Target Name="VerifyWSL">
+	<Target Name="VerifyWSL" Condition=" '$(_AvoidTargetStep)' == '' ">
 		<!--
 		Depending on the calling environment, WSL may by in system32 or Sysnative
 		Typically in 32bit Visual Studio on a 64bit OS, the value will be in Sysnative
@@ -960,7 +960,7 @@
 		<Error Text="WSL Not found!" Condition=" $(FoundWSL) == '' "></Error>
 	</Target>
 
-	<Target Name="VerifyToolchain" DependsOnTargets="VerifyWSL">
+	<Target Name="VerifyToolchain" DependsOnTargets="VerifyWSL" Condition=" '$(_AvoidTargetStep)' == '' ">
 		<Exec Command="$(FoundWSL) yosys --version" />
 		<Exec Command="$(FoundWSL) nextpnr-ecp5 --version" />
 		<Exec Command="$(FoundWSL) ecppack --version" />
@@ -977,8 +977,10 @@
 		<Exec Command="echo wow &gt; ProgrammerParameters.log" />
 	</Target>
 
-	<Target Name="InitFPGA" DependsOnTargets="VerifyWSL;VerifyToolchain" BeforeTargets="CoreCompile">
-		<Exec Command="echo _AvoidTargetStep='$(_AvoidTargetStep)' &gt; relentless.log"></Exec>
+	<Target Name="InitFPGA"
+	        DependsOnTargets="VerifyWSL;VerifyToolchain"
+			BeforeTargets="CoreCompile"
+			Condition=" '$(_AvoidTargetStep)' == '' ">
 		<Error Text="WSL not found. (is it installed?)" Condition=" '$(FoundWSL)' == '' "></Error>
 		<Error Text="BitstreamFilename cannot be blank for Upload or Verify Configuration." Condition=" '$(BitstreamFilename)'=='' And ( '$(Configuration)'=='Upload' or '$(Configuration)'=='Verify' )  "></Error>
 		<Error Text="BitstreamMakefile cannot be blank for $(Platform)" Condition=" '$(BitstreamMakefile)'=='' "></Error>

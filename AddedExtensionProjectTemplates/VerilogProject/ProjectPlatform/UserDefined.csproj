@@ -1,4 +1,6 @@
 <Project>
+	<!-- Optional local overrides can be placed here. This file is imported after Config.csproj. -->
+	<!-- Example: set BitstreamProgrammer_ULX3S to a fully qualified local fujprog.exe path. -->
 	<Target Name="Target_UserDefined">
 		<Message Text="Project_UserDefined import successful." />
 	</Target>

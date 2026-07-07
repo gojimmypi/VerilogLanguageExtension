@@ -19,6 +19,17 @@ that checks for which directory WSL needs to be used. Target Deploys are found i
 of the [ProjectTemplate.csproj](./ProjectTemplate.csproj) file. (yes, it is a bit wonky to have this be a C# app, if anyone
 knows how to change that to something better, please submit a PR) Once the batch file figures out which WSL directory to use, the Linux `make` is called using the local project [Makefile](./Makefile)
 
+## Excluded files
+
+These files are for development and not intended to be published in the VSIX:
+
+- `Verilog.vstemplate`
+- `_PreviewImage.png`
+- `ProjectTemplate.csproj`
+- `VerilogProjectTemplate.csproj`
+- `VerilogProjectTemplate.csproj.new`
+- `VerilogProject.csproj.user`
+- `VerilogProject.sln`
 
 ## Installing WSL
 

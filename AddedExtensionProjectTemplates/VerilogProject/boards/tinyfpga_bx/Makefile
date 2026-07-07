@@ -15,48 +15,65 @@
 #  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 PROJ = TinyFPGA_B
+BOARD_DIR := boards/tinyfpga_bx
+BUILD_DIR ?= build
+TINYFPGA_BUILD_DIR := $(BUILD_DIR)/tinyfpga-bx
 
-PIN_DEF = pins.pcf
-DEVICE = lp8k
+PIN_DEF := $(BOARD_DIR)/pins.pcf
+VLOG_SRC := $(BOARD_DIR)/$(PROJ).v
+DEVICE := lp8k
+PACKAGE := cm81
+FREQ ?= 12
 
-all: $(PROJ).rpt $(PROJ).bin
+TINYFPGA_JSON := $(TINYFPGA_BUILD_DIR)/$(PROJ).json
+TINYFPGA_ASC := $(TINYFPGA_BUILD_DIR)/$(PROJ).asc
+TINYFPGA_BIN := $(TINYFPGA_BUILD_DIR)/$(PROJ).bin
+TINYFPGA_RPT := $(TINYFPGA_BUILD_DIR)/$(PROJ).rpt
+TINYFPGA_YSLOG := $(TINYFPGA_BUILD_DIR)/$(PROJ).yslog
+TINYFPGA_NPLOG := $(TINYFPGA_BUILD_DIR)/$(PROJ).nplog
 
-%.blif: %.v
-	yosys -p 'synth_ice40 -top $(PROJ) -blif $@' $<
+all: $(TINYFPGA_RPT) $(TINYFPGA_BIN)
 
-%.asc: $(PIN_DEF) %.blif
-	arachne-pnr -d 8k -P cm81 -o $@ -p $^
+$(TINYFPGA_BUILD_DIR):
+	mkdir -p $(TINYFPGA_BUILD_DIR)
 
-%.bin: %.asc
+$(TINYFPGA_JSON): $(VLOG_SRC) | $(TINYFPGA_BUILD_DIR)
+	yosys -ql $(TINYFPGA_YSLOG) -p 'synth_ice40 -top $(PROJ) -json $@' $<
+
+$(TINYFPGA_ASC): $(PIN_DEF) $(TINYFPGA_JSON) | $(TINYFPGA_BUILD_DIR)
+	nextpnr-ice40 -ql $(TINYFPGA_NPLOG) --lp8k --package $(PACKAGE) --freq $(FREQ) --asc $@ --pcf $(PIN_DEF) --json $(TINYFPGA_JSON)
+
+$(TINYFPGA_BIN): $(TINYFPGA_ASC) | $(TINYFPGA_BUILD_DIR)
 	icepack $< $@
 
-%.rpt: %.asc
-	icetime -d $(DEVICE) -mtr $@ $<
+$(TINYFPGA_RPT): $(TINYFPGA_ASC) | $(TINYFPGA_BUILD_DIR)
+	icetime -d $(DEVICE) -c $(FREQ) -mtr $@ $<
 
-%_tb: %_tb.v %.v
+$(PROJ)_tb: $(BOARD_DIR)/$(PROJ)_tb.v $(VLOG_SRC)
 	iverilog -o $@ $^
 
-%_tb.vcd: %_tb
+$(PROJ)_tb.vcd: $(PROJ)_tb
 	vvp -N $< +vcd=$@
 
-%_syn.v: %.blif
-	yosys -p 'read_blif -wideports $^; write_verilog $@'
+$(PROJ)_syn.v: $(TINYFPGA_JSON)
+	yosys -p 'read_json $^; write_verilog $@'
 
-%_syntb: %_tb.v %_syn.v
+$(PROJ)_syntb: $(BOARD_DIR)/$(PROJ)_tb.v $(PROJ)_syn.v
 	iverilog -o $@ $^ `yosys-config --datdir/ice40/cells_sim.v`
 
-%_syntb.vcd: %_syntb
+$(PROJ)_syntb.vcd: $(PROJ)_syntb
 	vvp -N $< +vcd=$@
 
-prog: $(PROJ).bin
-	iceprog $<
+prog: $(TINYFPGA_BIN)
+	tinyprog -p $<
 
-sudo-prog: $(PROJ).bin
+sudo-prog: $(TINYFPGA_BIN)
 	@echo 'Executing prog as root!!!'
-	sudo iceprog $<
+	sudo tinyprog -p $<
 
 clean:
-	rm -f $(PROJ).blif $(PROJ).asc $(PROJ).rpt $(PROJ).bin
+	rm -rf $(TINYFPGA_BUILD_DIR)
+	rm -f $(PROJ)_tb $(PROJ)_tb.vcd $(PROJ)_syn.v $(PROJ)_syntb $(PROJ)_syntb.vcd
 
 .SECONDARY:
-.PHONY: all prog clean
+.PHONY: all prog sudo-prog clean

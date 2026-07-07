@@ -1,11 +1,11 @@
 # Verilog Project Template for Visual Studio
 
 The Verilog Project Template for Visual Studio assumes that the [Windows Subsystem For Linux](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux) (aka "WSL") is
-already installed, as well as several key components such as [verilator](https://en.wikipedia.org/wiki/Verilator), 
+already installed, as well as several key components such as [verilator](https://en.wikipedia.org/wiki/Verilator),
 [yosys](http://www.clifford.at/yosys/), [nextpnr](https://github.com/YosysHQ/nextpnr) and the [ecppack](https://github.com/SymbiFlow/prjtrellis/blob/master/libtrellis/tools/ecppack.cpp)
-utility in [Project Trellis](https://github.com/SymbiFlow/prjtrellis). 
+utility in [Project Trellis](https://github.com/SymbiFlow/prjtrellis).
 
-To actually upload the synthesized bitstream onto the FPGA a Windows executable is needed, the 
+To actually upload the synthesized bitstream onto the FPGA a Windows executable is needed, the
 [fujprog](https://github.com/kost/fujprog/issues) is should be used for the ULX3S.
 
 One option is to install everything for the complete [ULX3S Toolchain](https://github.com/ulx3s/ulx3s-toolchain).
@@ -14,10 +14,18 @@ ULX3S with ESP32 development, this toolchain is easily adapted to other FPGA dev
 
 Builds ("synthesis" in FPGA lingo) are accomplished by selecting a configuration and platform, then right-clicking and selecting `build` in the project.
 
-For reference: A custom FPGA "build" was previously called from a DOS batch file in the [build](./build/) directory. There's a bit of logic there
-that checks for which directory WSL needs to be used. Target Deploys are found in the `<Target Name="Build"  >` section
-of the [ProjectTemplate.csproj](./ProjectTemplate.csproj) file. (yes, it is a bit wonky to have this be a C# app, if anyone
-knows how to change that to something better, please submit a PR) Once the batch file figures out which WSL directory to use, the Linux `make` is called using the local project [Makefile](./Makefile)
+For reference: Visual Studio invokes the custom FPGA "build", "upload", and "verify" steps from MSBuild targets in the C#-style project file.
+In the template source, those targets are in [ProjectTemplate.csproj](./ProjectTemplate.csproj), the generated
+project file, and the imported [ProjectPlatform](./ProjectPlatform/) files. Yes, it is a bit wonky to have this be a C# app; if anyone
+knows how to change that to something better, please submit a PR.
+
+The Windows helper scripts live in the [scripts](./scripts/) directory. Those scripts figure out which WSL path to use, then call Linux `make`
+with a board-local makefile, for example [boards/ulx3s/Makefile-ULX3S-85F.mk](./boards/ulx3s/Makefile-ULX3S-85F.mk)
+or [boards/icebreaker/main.mk](./boards/icebreaker/main.mk).
+
+Generated synthesis artifacts are written under `build/`, for example
+`build/ulx3s-85k/ulx3s.bit` and `build/icebreaker/top_icebreaker.bin`,
+instead of the project root.
 
 ## Excluded files
 
@@ -42,9 +50,9 @@ sudo apt dist-upgrade -y
 sudo do-release-upgrade
 ```
 
-## Installing Verilator:
+## Installing Verilator
 
-```
+```text
 sudo apt-get install verilator
 ```
 
@@ -56,13 +64,14 @@ Recommended (but perhaps challenging): see each repo and follow the instructions
 
 These individual scripts are also available:
 
-* [verilator](https://github.com/ulx3s/ulx3s-toolchain/blob/master/install_verilator.sh)
-* [yoysys](https://github.com/ulx3s/ulx3s-toolchain/blob/master/install_yosys.sh)
-* [nextpnr](https://github.com/ulx3s/ulx3s-toolchain/blob/master/install_nextpnr.sh)
-* [ecppack - Project Trellis](https://github.com/ulx3s/ulx3s-toolchain/blob/master/install_prjtrellis.sh)
+- [verilator](https://github.com/ulx3s/ulx3s-toolchain/blob/master/install_verilator.sh)
+- [yoysys](https://github.com/ulx3s/ulx3s-toolchain/blob/master/install_yosys.sh)
+- [nextpnr](https://github.com/ulx3s/ulx3s-toolchain/blob/master/install_nextpnr.sh)
+- [ecppack - Project Trellis](https://github.com/ulx3s/ulx3s-toolchain/blob/master/install_prjtrellis.sh)
 
 Just fetch the repo and run each individual script:
-```
+
+```bash
 export WORKSPACE=/mnt/s/workspace
 export THIS_ULX3S_DEVICE=LFE5U-85F
 export ULX3S_COM=/dev/ttyS8
@@ -85,11 +94,8 @@ chmod +x install_set_permissions.sh
 ./install_nextpnr.sh
 ```
 
-
 Kost has prompiled binary [releases](https://github.com/alpin3/ulx3s/releases).
 
 For information on updating these project files, see the [README](../README.md).
 
 Readme version 1.1
-
- 

@@ -13,7 +13,7 @@
 		<BitstreamMakefile>boards/icebreaker/main.mk</BitstreamMakefile>
 		<BitstreamProgrammer>$(BitstreamProgrammer_iCEBreaker)</BitstreamProgrammer>
 		<BitstreamProgrammerType>iCEBreaker</BitstreamProgrammerType>
-		<BitstreamFilename>top_icebreaker.bin</BitstreamFilename>
+		<BitstreamFilename>build/icebreaker/top_icebreaker.bin</BitstreamFilename>
 	</PropertyGroup>
 
 
@@ -42,7 +42,7 @@
 	</Target>
 
 	<!-- Debug iCEBreaker-->
-	<Target Name="Debug_iCEBreaker" Inputs="top_icebreaker.v" Outputs="top_icebreaker.bin" BeforeTargets="CoreCompile" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Debug|iCEBreaker|' ">
+	<Target Name="Debug_iCEBreaker" Inputs="top_icebreaker.v" Outputs="$(BitstreamFilename)" BeforeTargets="CoreCompile" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Debug|iCEBreaker|' ">
 		<Message Text="Build_iCEBreaker $(Configuration)|$(Platform)" />
 		<Exec Command="$(FoundWSL) (make -f boards/icebreaker/main.mk)" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
 			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
@@ -50,7 +50,7 @@
 	</Target>
 
 	<!-- Release iCEBreaker-->
-	<Target Name="Release_iCEBreaker" Inputs="top_icebreaker.v" Outputs="top_icebreaker.bin" BeforeTargets="CoreCompile" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Release|iCEBreaker|' ">
+	<Target Name="Release_iCEBreaker" Inputs="top_icebreaker.v" Outputs="$(BitstreamFilename)" BeforeTargets="CoreCompile" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Release|iCEBreaker|' ">
 		<Message Text="Build_iCEBreaker $(Configuration)|$(Platform)" />
 		<Exec Command="$(FoundWSL) (make -f boards/icebreaker/main.mk)" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
 			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
@@ -58,7 +58,7 @@
 	</Target>
 
 	<!-- Upload iCEBreaker-->
-	<Target Name="Upload_iCEBreaker" Outputs="top_icebreaker.bin" AfterTargets="CoreBuild" DependsOnTargets="Build_iCEBreaker" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Upload|iCEBreaker|' ">
+	<Target Name="Upload_iCEBreaker" Outputs="$(BitstreamFilename)" AfterTargets="CoreBuild" DependsOnTargets="Build_iCEBreaker" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Upload|iCEBreaker|' ">
 		<Message Text="Upload_iCEBreaker $(Configuration)|$(Platform)" />
 		<CallTarget Targets="Build_iCEBreaker"></CallTarget>
 		<Error Text="$(BitstreamFilename) file not found!" Condition="!Exists('$(BitstreamFilename)')"></Error>
@@ -86,7 +86,7 @@
 
 
 	<!-- Verify iCEBreaker-->
-	<Target Name="Verify_iCEBreaker" Outputs="top_icebreaker.bin" AfterTargets="CoreBuild" DependsOnTargets="Build_iCEBreaker" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Verify|iCEBreaker|' ">
+	<Target Name="Verify_iCEBreaker" Outputs="$(BitstreamFilename)" AfterTargets="CoreBuild" DependsOnTargets="Build_iCEBreaker" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Verify|iCEBreaker|' ">
 		<Message Text="Verify_iCEBreaker $(Configuration)|$(Platform)" />
 		<Error Text="Verify Not implemented"></Error>
 		<Exec Command="$(FoundWSL) (echo not implemented )" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">

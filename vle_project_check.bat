@@ -27,10 +27,10 @@ if errorlevel 1 exit /b 1
 "%VSINSTALLDIR%Common7\IDE\devenv.exe" /rootsuffix Exp /updateconfiguration
 "%VSINSTALLDIR%Common7\IDE\devenv.exe" /rootsuffix Exp /installvstemplates
 
-echo "There should be only ONE installed instance:
+echo There should be only ONE installed instance:
 where /r "%LOCALAPPDATA%\Microsoft\VisualStudio\18.0_0767a518Exp\Extensions" templateManifest*.vstman
 
-echo "There should be only ONE installed instance:
+echo There should be only ONE installed instance:
 where /r "%LOCALAPPDATA%\Microsoft\VisualStudio\18.0_0767a518Exp\Extensions" Verilog.vstemplate
 
 "%VSINSTALLDIR%Common7\IDE\devenv.exe" /rootsuffix Exp /log "%TEMP%\vle-activity.xml"

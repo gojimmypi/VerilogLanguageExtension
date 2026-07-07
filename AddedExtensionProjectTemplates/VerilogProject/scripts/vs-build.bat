@@ -1,19 +1,19 @@
 echo off
 :: vs-build.bat  [target] [Makefile]
 :: 
-:: example: vs-build.bat ULX3S Makefile-ULX3S-12F.mk
+:: example: vs-build.bat build/ulx3s-85k/ulx3s.bit boards/ulx3s/Makefile-ULX3S-85F.mk
 
 echo Param1=%1
 echo Param2=%2
 
 if "%1" == "" ( 
-    SET VBUILDTARGET=ULX3S
+    SET VBUILDTARGET=build/ulx3s-85k/ulx3s.bit
     ) else (
     SET VBUILDTARGET=%1
 )
 
 if "%2" == "" ( 
-    SET VBUILDMAKE=Makefile
+    SET VBUILDMAKE=boards/ulx3s/Makefile-ULX3S-85F.mk
     ) else (
     SET VBUILDMAKE=%2
 )
@@ -35,6 +35,6 @@ IF EXIST "%windir%\Sysnative\wsl.exe" (
                 )
         )   
 
-echo Calling %VBUILDCMD% make ulx3s.bit ...
+echo Calling %VBUILDCMD% make %VBUILDTARGET% ...
 %comspec% /k %VBUILDCMD% $(make -f %VBUILDMAKE% %VBUILDTARGET%)
 echo Done!

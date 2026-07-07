@@ -44,14 +44,17 @@
 		<None Remove="ExportedTemplates\**" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<Compile Remove="build\**" />
+		<EmbeddedResource Remove="build\**" />
+		<None Remove="build\**" />
+	</ItemGroup>
+
 
 	<ItemGroup>
 		<Compile Remove="Properties\AssemblyInfo.cs" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<None Remove="ulx3s.bit" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<Folder Include="boards\tinyfpga_bx\" />
@@ -109,7 +112,7 @@
 		<BitstreamMakefile>boards/icebreaker/main.mk</BitstreamMakefile>
 		<BitstreamProgrammer>$(BitstreamProgrammer_iCEBreaker)</BitstreamProgrammer>
 		<BitstreamProgrammerType>iCEBreaker</BitstreamProgrammerType>
-		<BitstreamFilename>top_icebreaker.bin</BitstreamFilename>
+		<BitstreamFilename>build/icebreaker/top_icebreaker.bin</BitstreamFilename>
 	</PropertyGroup>
 
 	<!--
@@ -131,7 +134,7 @@
 		<BitstreamMakefile>boards/tinyfpga_bx/Makefile</BitstreamMakefile>
 		<BitstreamProgrammer>$(BitstreamProgrammer_tinyFPGA_BX)</BitstreamProgrammer>
 		<BitstreamProgrammerType>tinyFPGA</BitstreamProgrammerType>
-		<BitstreamFilename>TinyFPGA_B.bin</BitstreamFilename>
+		<BitstreamFilename>build/tinyfpga-bx/TinyFPGA_B.bin</BitstreamFilename>
 	</PropertyGroup>
 
 	<!--
@@ -148,7 +151,7 @@
 		<!--search for this text in the output of programmer inspection, e.g. fujprog.exe -i -->
 		<BitstreamProgrammerText>ULX3S FPGA 12K</BitstreamProgrammerText>
 
-		<BitstreamFilename>ulx3s.bit</BitstreamFilename>
+		<BitstreamFilename>build/ulx3s-12k/ulx3s.bit</BitstreamFilename>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Platform)' == 'ULX3S ECP5-25K' ">
@@ -160,7 +163,7 @@
 		<!--search for this text in the output of programmer inspection, e.g. fujprog.exe -i -->
 		<BitstreamProgrammerText>ULX3S FPGA 25K</BitstreamProgrammerText>
 
-		<BitstreamFilename>ulx3s.bit</BitstreamFilename>
+		<BitstreamFilename>build/ulx3s-25k/ulx3s.bit</BitstreamFilename>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Platform)' == 'ULX3S ECP5-45K' ">
 		<PlatformTarget>ECP5-45K</PlatformTarget>
@@ -171,7 +174,7 @@
 		<!--search for this text in the output of programmer inspection, e.g. fujprog.exe -i -->
 		<BitstreamProgrammerText>ULX3S FPGA 45K</BitstreamProgrammerText>
 
-		<BitstreamFilename>ulx3s.bit</BitstreamFilename>
+		<BitstreamFilename>build/ulx3s-45k/ulx3s.bit</BitstreamFilename>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Platform)' == 'ULX3S ECP5-85K' ">
@@ -183,7 +186,7 @@
 		<!--search for this text in the output of programmer inspection, e.g. fujprog.exe -i -->
 		<BitstreamProgrammerText>ULX3S FPGA 85K</BitstreamProgrammerText>
 
-		<BitstreamFilename>ulx3s.bit</BitstreamFilename>
+		<BitstreamFilename>build/ulx3s-85k/ulx3s.bit</BitstreamFilename>
 	</PropertyGroup>
 
 
@@ -385,7 +388,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<InstallBuildDependenciesCmd>.\build\vs-prog.bat</InstallBuildDependenciesCmd>
+		<InstallBuildDependenciesCmd>.\scripts\vs-prog.bat</InstallBuildDependenciesCmd>
 		<PipelineDependsOn>
 			InstallBuildDependencies;
 		</PipelineDependsOn>
@@ -405,7 +408,7 @@
 	</Target>
 	<!--
 
-:: %windir%\Sysnative\wsl.exe make ulx3s.bit
+:: %windir%\Sysnative\wsl.exe make build/ulx3s-85k/ulx3s.bit -f boards/ulx3s/Makefile-ULX3S-85F.mk
 :: c:\windows\system32\wsl.exe yosys Verilog.ys
 :: C:\workspace\ulx3s-examples\bin\ujprog.exe
 
@@ -420,7 +423,7 @@
 	<Target Name="CustomClean">
 		<Message Text="Cleaning Verilog Files" />
 		<RemoveDir Directories="$(OutputPath)" />
-		<Delete Files="top.json"></Delete>
+		<RemoveDir Directories="build" />
 	</Target>
 
 	<!--
@@ -432,7 +435,7 @@
 	<Target Name="AfterBuild">
 		<Message Text="AfterBuild running..." />
 		<!--
-    <ExecAsync FilePath="$(InstallBuildDependenciesCmd)" Arguments="iCEBreaker Makefile-iCEBreaker.mk 4">
+    <ExecAsync FilePath="$(InstallBuildDependenciesCmd)" Arguments="build/icebreaker/top_icebreaker.bin boards/icebreaker/main.mk 4">
     </ExecAsync>
     -->
 	</Target>
@@ -757,8 +760,8 @@
 	Clean
 	**********************************************************************************************************************************
 	-->
-	<Target Name="Clean_ULX3S" AfterTargets="Clean" Condition=" '$(Platform)'=='ULX3S ECP5-12K' Or '$(Platform)'=='ULX3S ECP5-45K' Or '$(Platform)'=='ULX3S ECP5-85K' ">
-		<Exec Command="$(FoundWSL) (make clean )" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
+	<Target Name="Clean_ULX3S" AfterTargets="Clean" Condition=" '$(Platform)'=='ULX3S ECP5-12K' Or '$(Platform)'=='ULX3S ECP5-25K' Or '$(Platform)'=='ULX3S ECP5-45K' Or '$(Platform)'=='ULX3S ECP5-85K' ">
+		<Exec Command="$(FoundWSL) (make clean -f $(BitstreamMakefile) )" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
 			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
 		</Exec>
 	</Target>
@@ -845,7 +848,7 @@
 		<Message Text="Conditional Build_TinyFPGA_BX running...$(Configuration)|$(Platform)" />
 		<Message Text="Using Makefile=$(BitstreamMakefile)" />
 		<Message Text="Skipping tinyFPGA BX background build..." Condition=" '$(_AvoidTargetStep)' != ''"></Message>
-		<Exec Command="$(FoundWSL)  (cd boards/tinyfpga_bx/; make -f Makefile)" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high" Condition=" '$(_AvoidTargetStep)' == ''">
+		<Exec Command="$(FoundWSL)  (make $(BitstreamFilename) -f $(BitstreamMakefile) )" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high" Condition=" '$(_AvoidTargetStep)' == ''">
 			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
 		</Exec>
 		<PropertyGroup>
@@ -854,28 +857,28 @@
 	</Target>
 
 	<!-- Debug TinyFPGA_BX-->
-	<Target Name="Debug_TinyFPGA_BX" Inputs="top_TinyFPGA_BX.v" Outputs="top_TinyFPGA_BX.bin" BeforeTargets="CoreCompile" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Debug|tinyFPGA BX|' ">
+	<Target Name="Debug_TinyFPGA_BX" Inputs="boards\tinyfpga_bx\TinyFPGA_B.v" Outputs="$(BitstreamFilename)" BeforeTargets="CoreCompile" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Debug|tinyFPGA BX|' ">
 		<Message Text="Build_TinyFPGA_BX $(Configuration)|$(Platform)" />
 		<CallTarget Targets="Build_TinyFPGA_BX"></CallTarget>
 	</Target>
 
 	<!-- Release TinyFPGA_BX-->
-	<Target Name="Release_TinyFPGA_BX" Inputs="top_TinyFPGA_BX.v" Outputs="top_TinyFPGA_BX.bin" BeforeTargets="CoreCompile" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Release|tinyFPGA BX|' ">
+	<Target Name="Release_TinyFPGA_BX" Inputs="boards\tinyfpga_bx\TinyFPGA_B.v" Outputs="$(BitstreamFilename)" BeforeTargets="CoreCompile" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Release|tinyFPGA BX|' ">
 		<Message Text="Build_TinyFPGA_BX $(Configuration)|$(Platform)" />
 		<CallTarget Targets="Build_TinyFPGA_BX"></CallTarget>
 	</Target>
 
 	<!-- Upload TinyFPGA_BX-->
-	<Target Name="Upload_TinyFPGA_BX" Outputs="top_TinyFPGA_BX.bin" AfterTargets="CoreBuild" BeforeTargets="CoreCompile" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Upload|tinyFPGA BX|' ">
+	<Target Name="Upload_TinyFPGA_BX" Outputs="$(BitstreamFilename)" AfterTargets="CoreBuild" BeforeTargets="CoreCompile" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Upload|tinyFPGA BX|' ">
 		<Message Text="Upload_TinyFPGA_BX $(Configuration)|$(Platform)" />
 		<CallTarget Targets="Build_TinyFPGA_BX"></CallTarget>
-		<Exec Command="$(BitstreamProgrammer) -p boards\tinyfpga_bx\$(BitstreamFilename)" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
+		<Exec Command="$(BitstreamProgrammer) -p $(BitstreamFilename)" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
 			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
 		</Exec>
 	</Target>
 
 	<!-- Verify TinyFPGA_BX-->
-	<Target Name="Verify_TinyFPGA_BX" Outputs="top_TinyFPGA_BX.bin" AfterTargets="CoreBuild" BeforeTargets="CoreCompile" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Verify|tinyFPGA BX|' ">
+	<Target Name="Verify_TinyFPGA_BX" Outputs="$(BitstreamFilename)" AfterTargets="CoreBuild" BeforeTargets="CoreCompile" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Verify|tinyFPGA BX|' ">
 		<Message Text="Upload_TinyFPGA_BX $(Configuration)|$(Platform)" />
 		<Error Text="Verify Not implemented"></Error>
 		<Exec Command="$(FoundWSL) (echo not implemented )" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
@@ -886,7 +889,7 @@
 
 	<!-- Clean TinyFPGA_BX-->
 	<Target Name="Clean_TinyFPGA_BX" BeforeTargets="Clean" Condition=" '$(Platform)'=='tinyFPGA BX' ">
-		<Exec Command="$(FoundWSL) (cd boards/tinyfpga_bx/; make -f Makefile clean )" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
+		<Exec Command="$(FoundWSL) (make -f $(BitstreamMakefile) clean )" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
 			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
 		</Exec>
 	</Target>

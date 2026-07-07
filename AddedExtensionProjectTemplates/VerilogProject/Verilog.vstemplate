@@ -63,7 +63,8 @@
 					<ProjectItem ReplaceParameters="false" TargetFileName="ulx3s_v20.lpf">ulx3s_v20.lpf</ProjectItem>
 				</Folder>
 			</Folder>
-			<Folder Name="build" TargetFolderName="build">
+			<Folder Name="scripts" TargetFolderName="scripts">
+				<ProjectItem ReplaceParameters="false" TargetFileName="README.md">README.md</ProjectItem>
 				<ProjectItem ReplaceParameters="false" TargetFileName="pstool.ps1">pstool.ps1</ProjectItem>
 				<ProjectItem ReplaceParameters="false" TargetFileName="vs-build.bat">vs-build.bat</ProjectItem>
 				<ProjectItem ReplaceParameters="false" TargetFileName="vs-clean.bat">vs-clean.bat</ProjectItem>
@@ -75,8 +76,6 @@
 			<ProjectItem ReplaceParameters="true" TargetFileName="App.config">App.config</ProjectItem>
 			<ProjectItem ReplaceParameters="true" TargetFileName="blinky.json">blinky.json</ProjectItem>
 			<ProjectItem ReplaceParameters="false" TargetFileName="dtest.bat">dtest.bat</ProjectItem>
-			<ProjectItem ReplaceParameters="false" TargetFileName="Makefile">Makefile</ProjectItem>
-			<ProjectItem ReplaceParameters="true" TargetFileName="Makefile-iCEBreaker.mk">Makefile-iCEBreaker.mk</ProjectItem>
 			<ProjectItem ReplaceParameters="true" TargetFileName="Program.cs">Program.cs</ProjectItem>
 			<ProjectItem ReplaceParameters="false" TargetFileName="README.md">README.md</ProjectItem>
 			<ProjectItem ReplaceParameters="false" TargetFileName="top.v">top.v</ProjectItem>
@@ -84,7 +83,6 @@
 			<ProjectItem ReplaceParameters="false" TargetFileName="top_icebreaker.v">top_icebreaker.v</ProjectItem>
 			<ProjectItem ReplaceParameters="false" TargetFileName="ulx3s.ys">ulx3s.ys</ProjectItem>
 			<ProjectItem ReplaceParameters="true" TargetFileName="ulx3s_empty.config">ulx3s_empty.config</ProjectItem>
-			<ProjectItem ReplaceParameters="false" TargetFileName="ulx3s_v20.lpf">ulx3s_v20.lpf</ProjectItem>
 			<ProjectItem ReplaceParameters="false" TargetFileName="Verilog.ico">Verilog.ico</ProjectItem>
 		</Project>
 	</TemplateContent>

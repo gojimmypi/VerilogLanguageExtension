@@ -8,8 +8,15 @@ RPTFILE := $(TOPMOD).rpt
 BINFILE := $(TOPMOD).bin
 SIMFILE := $(SIMPROG).cpp
 VDIRFB  := ./obj_dir
+BUILD_DIR ?= build
+ULX3S_BUILD_DIR := $(BUILD_DIR)/ulx3s-12k
+ULX3S_JSON := $(ULX3S_BUILD_DIR)/top.json
+ULX3S_CONFIG := $(ULX3S_BUILD_DIR)/ulx3s_out.config
+ULX3S_BIT := $(ULX3S_BUILD_DIR)/ulx3s.bit
+ULX3S_LOG := $(ULX3S_BUILD_DIR)/ulx3s.yslog
+ULX3S_LPF := boards/ulx3s/ulx3s_v20.lpf
 #COSIMS  := uartsim.cpp
-all: $(VCDFILE)
+all: $(ULX3S_BIT)
 
 GCC := g++
 CFLAGS = -g -Wall -I$(VINC) -I $(VDIRFB)
@@ -45,11 +52,11 @@ test: $(VCDFILE)
 $(VCDFILE): $(SIMPROG)
 	./$(SIMPROG)
 
-## 
+##
 .PHONY: clean
 clean:
 	rm -rf $(VDIRFB)/ $(SIMPROG) $(VCDFILE) top/ $(BINFILE) $(RPTFILE)
-	rm -rf top.json ulx3s_out.config ulx3s.bit
+	rm -rf $(ULX3S_BUILD_DIR)
 
 ##
 ## Find all of the Verilog dependencies and submodules
@@ -67,14 +74,17 @@ endif
 endif
 
 
-ulx3s.bit: ulx3s_out.config
-	ecppack ulx3s_out.config ulx3s.bit
+$(ULX3S_BUILD_DIR):
+	mkdir -p $(ULX3S_BUILD_DIR)
 
-ulx3s_out.config: top.json
-	nextpnr-ecp5 --12k --json top.json --lpf ulx3s_v20.lpf --textcfg ulx3s_out.config
+$(ULX3S_BIT): $(ULX3S_CONFIG) | $(ULX3S_BUILD_DIR)
+	ecppack $(ULX3S_CONFIG) $(ULX3S_BIT)
 
-top.json: top.ys top.v
-	yosys top.ys
+$(ULX3S_CONFIG): $(ULX3S_JSON) $(ULX3S_LPF) | $(ULX3S_BUILD_DIR)
+	nextpnr-ecp5 --12k --json $(ULX3S_JSON) --lpf $(ULX3S_LPF) --textcfg $(ULX3S_CONFIG)
 
-prog: ulx3s.bit
-	/mnt/c/workspace/ulx3s-examples/bin/ujprog.exe ulx3s.bit
+$(ULX3S_JSON): top.v | $(ULX3S_BUILD_DIR)
+	yosys -ql $(ULX3S_LOG) -p 'read_verilog top.v; synth_ecp5 -json $(ULX3S_JSON)'
+
+prog: $(ULX3S_BIT)
+	/mnt/c/workspace/ulx3s-examples/bin/ujprog.exe $(ULX3S_BIT)

@@ -1,7 +1,7 @@
 echo off
 
 if "%1" == "" (
-    SET VBUILDMAKE=Makefile
+    SET VBUILDMAKE=boards/ulx3s/Makefile-ULX3S-85F.mk
     ) else (
     SET VBUILDMAKE=%1
 )

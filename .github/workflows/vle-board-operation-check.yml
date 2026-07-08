@@ -7,17 +7,28 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "Check mode: Static, Build, Hardware, or All"
+        description: "Check mode"
         required: false
         default: "Static"
+        type: choice
+        options:
+          - Static
+          - Build
+          - Hardware
+          - All
       project_path:
         description: "Project file to test"
         required: false
         default: "AddedExtensionProjectTemplates/VerilogProject/VerilogProject.csproj"
+        type: string
+
+permissions:
+  contents: read
 
 jobs:
   board-operation-check:
     runs-on: windows-latest
+    timeout-minutes: 120
 
     steps:
       - name: Checkout
@@ -25,13 +36,16 @@ jobs:
 
       - name: Run board operation check
         shell: pwsh
+        env:
+          INPUT_MODE: ${{ github.event.inputs.mode }}
+          INPUT_PROJECT_PATH: ${{ github.event.inputs.project_path }}
         run: |
-          $mode = '${{ github.event.inputs.mode }}'
+          $mode = $env:INPUT_MODE
           if ([string]::IsNullOrWhiteSpace($mode)) {
               $mode = 'Static'
           }
 
-          $projectPath = '${{ github.event.inputs.project_path }}'
+          $projectPath = $env:INPUT_PROJECT_PATH
           if ([string]::IsNullOrWhiteSpace($projectPath)) {
               $projectPath = 'AddedExtensionProjectTemplates/VerilogProject/VerilogProject.csproj'
           }

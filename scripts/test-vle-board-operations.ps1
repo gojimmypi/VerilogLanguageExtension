@@ -18,6 +18,8 @@ param(
 
     [switch]$SkipMsBuild,
 
+    [switch]$AllowToolSkips,
+
     [switch]$List
 )
 
@@ -52,6 +54,22 @@ function Add-Result {
     }
     else {
         Write-Host $prefix
+    }
+}
+
+
+function Add-ToolUnavailableResult {
+    param(
+        [string]$BoardName,
+        [string]$Operation,
+        [string]$Message
+    )
+
+    if ($AllowToolSkips) {
+        Add-Result -BoardName $BoardName -Operation $Operation -Status 'SKIP' -Message $Message
+    }
+    else {
+        Add-Result -BoardName $BoardName -Operation $Operation -Status 'FAIL' -Message ($Message + ' Use -AllowToolSkips to treat this as SKIP.')
     }
 }
 
@@ -96,11 +114,6 @@ function Test-TextMentionsOutput {
     if ((Test-TextContains -Haystack $Haystack -Needle $dir) -and (Test-TextContains -Haystack $Haystack -Needle $leaf)) {
         return $true
     }
-
-    if ((Test-TextContains -Haystack $Haystack -Needle 'build/') -and (Test-TextContains -Haystack $Haystack -Needle $leaf)) {
-        return $true
-    }
-
     return $false
 }
 
@@ -291,32 +304,83 @@ function Resolve-ProjectFile {
     throw 'Unable to find VerilogProject.csproj. Pass -ProjectPath explicitly.'
 }
 
-function Get-ImportedProjectFiles {
-    param([string]$ProjectFile)
+function Expand-ProjectPathText {
+    param(
+        [string]$PathText,
+        [string]$ProjectFile,
+        [string]$ImportingFile
+    )
 
-    $files = New-Object System.Collections.Generic.List[string]
-    $files.Add($ProjectFile) | Out-Null
-
-    [xml]$projectXml = Get-Content -LiteralPath $ProjectFile -Raw
     $projectDir = Split-Path -Parent $ProjectFile
-    $imports = Select-Xml -Xml $projectXml -XPath '//*[local-name()="Import"]'
+    $importingDir = Split-Path -Parent $ImportingFile
+    $expanded = $PathText
+
+    $expanded = $expanded.Replace('$(MSBuildThisFileDirectory)', $importingDir + [System.IO.Path]::DirectorySeparatorChar)
+    $expanded = $expanded.Replace('$(MSBuildProjectDirectory)', $projectDir)
+    $expanded = $expanded.Replace('$(MSBuildProjectFullPath)', $ProjectFile)
+
+    $expanded = $expanded -replace '^\.\\', ''
+    $expanded = $expanded -replace '^\./', ''
+
+    if ([System.IO.Path]::IsPathRooted($expanded)) {
+        return $expanded
+    }
+
+    return (Join-Path $importingDir $expanded)
+}
+
+function Add-ImportedProjectFile {
+    param(
+        [string]$File,
+        [string]$ProjectFile,
+        [System.Collections.Generic.List[string]]$Files,
+        [hashtable]$Seen
+    )
+
+    if (-not (Test-Path -LiteralPath $File -PathType Leaf)) {
+        return
+    }
+
+    $resolved = (Resolve-Path -LiteralPath $File).Path
+    $key = $resolved.ToLowerInvariant()
+    if ($Seen.ContainsKey($key)) {
+        return
+    }
+
+    $Seen[$key] = $true
+    $Files.Add($resolved) | Out-Null
+
+    [xml]$xml = Get-Content -LiteralPath $resolved -Raw
+    $imports = Select-Xml -Xml $xml -XPath '//*[local-name()="Import"]'
     foreach ($import in $imports) {
         $importPath = $import.Node.Project
         if (-not $importPath) {
             continue
         }
 
-        $expanded = $importPath -replace '^\.\\', ''
-        $expanded = $expanded -replace '^\./', ''
-        $fullPath = Join-Path $projectDir $expanded
-        if (Test-Path -LiteralPath $fullPath -PathType Leaf) {
-            $resolved = (Resolve-Path -LiteralPath $fullPath).Path
-            if (-not $files.Contains($resolved)) {
-                $files.Add($resolved) | Out-Null
+        if ($importPath -match '\$\([^)]*\)') {
+            # Only expand the few MSBuild properties this script understands.
+            # Other property-based imports are ignored so Static mode remains safe.
+            $knownImportPath = $importPath
+            $knownImportPath = $knownImportPath -replace '\$\(MSBuildThisFileDirectory\)', ''
+            $knownImportPath = $knownImportPath -replace '\$\(MSBuildProjectDirectory\)', ''
+            $knownImportPath = $knownImportPath -replace '\$\(MSBuildProjectFullPath\)', ''
+            if ($knownImportPath -match '\$\([^)]*\)') {
+                continue
             }
         }
-    }
 
+        $fullPath = Expand-ProjectPathText -PathText $importPath -ProjectFile $ProjectFile -ImportingFile $resolved
+        Add-ImportedProjectFile -File $fullPath -ProjectFile $ProjectFile -Files $Files -Seen $Seen
+    }
+}
+
+function Get-ImportedProjectFiles {
+    param([string]$ProjectFile)
+
+    $files = New-Object System.Collections.Generic.List[string]
+    $seen = @{}
+    Add-ImportedProjectFile -File $ProjectFile -ProjectFile $ProjectFile -Files $files -Seen $seen
     return $files.ToArray()
 }
 
@@ -436,6 +500,29 @@ function Join-CommandLine {
     return ($quoted -join ' ')
 }
 
+
+function Stop-ProcessTree {
+    param([System.Diagnostics.Process]$Process)
+
+    if ($null -eq $Process -or $Process.HasExited) {
+        return
+    }
+
+    if ($env:OS -eq 'Windows_NT') {
+        $taskkill = Join-Path $env:windir 'system32/taskkill.exe'
+        if (Test-Path -LiteralPath $taskkill) {
+            & $taskkill /PID $Process.Id /T /F 1>$null 2>$null
+            return
+        }
+    }
+
+    try {
+        $Process.Kill()
+    }
+    catch {
+    }
+}
+
 function Invoke-ExternalCommand {
     param(
         [string]$BoardName,
@@ -472,11 +559,31 @@ function Invoke-ExternalCommand {
 
     $finished = $process.WaitForExit($Timeout * 1000)
     if (-not $finished) {
-        try {
-            $process.Kill()
+        Stop-ProcessTree -Process $process
+        [void]$process.WaitForExit(5000)
+
+        $stdout = ''
+        $stderr = ''
+        if ($stdoutTask.Wait(5000)) {
+            $stdout = $stdoutTask.Result
         }
-        catch {
+        if ($stderrTask.Wait(5000)) {
+            $stderr = $stderrTask.Result
         }
+
+        $combined = @()
+        $combined += ('Command: {0} {1}' -f $FileName, $psi.Arguments)
+        $combined += ('WorkingDirectory: {0}' -f $WorkingDirectory)
+        $combined += ('ExitCode: TIMEOUT')
+        $combined += ('TimeoutSeconds: {0}' -f $Timeout)
+        $combined += ''
+        $combined += 'STDOUT before timeout:'
+        $combined += $stdout
+        $combined += ''
+        $combined += 'STDERR before timeout:'
+        $combined += $stderr
+        Set-Content -LiteralPath $combinedFile -Value $combined -Encoding UTF8
+
         Add-Result -BoardName $BoardName -Operation $Operation -Status 'FAIL' -Message "Timed out after $Timeout seconds" -LogPath $combinedFile
         return $false
     }
@@ -600,7 +707,7 @@ function Invoke-MakeDryRun {
     if ($env:OS -eq 'Windows_NT') {
         $wsl = Find-WSL
         if (-not $wsl) {
-            Add-Result -BoardName $Spec.Name -Operation 'make dry-run' -Status 'SKIP' -Message 'wsl.exe not found'
+            Add-ToolUnavailableResult -BoardName $Spec.Name -Operation 'make dry-run' -Message 'wsl.exe not found'
             return
         }
 
@@ -618,11 +725,12 @@ function Invoke-MakeDryRun {
     else {
         $make = Get-Command 'make' -ErrorAction SilentlyContinue
         if (-not $make) {
-            Add-Result -BoardName $Spec.Name -Operation 'make dry-run' -Status 'SKIP' -Message 'make not found'
+            Add-ToolUnavailableResult -BoardName $Spec.Name -Operation 'make dry-run' -Message 'make not found'
             return
         }
 
         Invoke-ExternalCommand -BoardName $Spec.Name -Operation 'make dry-run' -FileName $make.Source -Arguments @('-n', $Spec.MakeTarget, '-f', $Spec.Makefile) -WorkingDirectory $ProjectDir -LogFile $logFile -Timeout 120 | Out-Null
+        Invoke-ExternalCommand -BoardName $Spec.Name -Operation 'make clean dry-run' -FileName $make.Source -Arguments @('-n', 'clean', '-f', $Spec.Makefile) -WorkingDirectory $ProjectDir -LogFile ($LogFile -replace '\.log$', '-clean.log') -Timeout 120 | Out-Null
     }
 }
 
@@ -640,13 +748,14 @@ function Invoke-MSBuildOperation {
 
     $msbuild = Find-MSBuild
     if (-not $msbuild) {
-        Add-Result -BoardName $Spec.Name -Operation $OperationName -Status 'SKIP' -Message 'MSBuild not found'
+        Add-ToolUnavailableResult -BoardName $Spec.Name -Operation $OperationName -Message 'MSBuild not found'
         return
     }
 
     $safeName = ($Spec.Name -replace '[^A-Za-z0-9_.-]', '_')
     $safeConfig = ($Configuration -replace '[^A-Za-z0-9_.-]', '_')
-    $logFile = Join-Path $LogDir ("msbuild-$safeName-$safeConfig.log")
+    $safeOperation = ($OperationName -replace '[^A-Za-z0-9_.-]', '_')
+    $logFile = Join-Path $LogDir ("msbuild-$safeName-$safeConfig-$safeOperation.log")
 
     $args = @(
         $ProjectFile,
@@ -679,16 +788,6 @@ function Assert-NoRootArtifactsAfterBuild {
     }
 }
 
-$projectFile = Resolve-ProjectFile -PathText $ProjectPath
-$projectDir = Split-Path -Parent $projectFile
-
-if (-not $LogDirectory) {
-    $LogDirectory = Join-Path $projectDir 'build/vle-board-operation-check'
-}
-New-Item -ItemType Directory -Force -Path $LogDirectory | Out-Null
-
-Load-ProjectData -ProjectFile $projectFile
-
 $specs = Get-BoardSpecs
 if ($Board.Count -gt 0) {
     $selected = @()
@@ -706,6 +805,16 @@ if ($List) {
     $specs | Select-Object Name, Platform, Makefile, MakeTarget, ExpectedOutput | Format-Table -AutoSize
     exit 0
 }
+
+$projectFile = Resolve-ProjectFile -PathText $ProjectPath
+$projectDir = Split-Path -Parent $projectFile
+
+if (-not $LogDirectory) {
+    $LogDirectory = Join-Path $projectDir 'build/vle-board-operation-check'
+}
+New-Item -ItemType Directory -Force -Path $LogDirectory | Out-Null
+
+Load-ProjectData -ProjectFile $projectFile
 
 Write-Host "Project: $projectFile"
 Write-Host "Mode: $Mode"
@@ -750,7 +859,7 @@ Write-Host "Summary JSON: $summaryPath"
 
 $failCount = ($script:Results | Where-Object { $_.Status -eq 'FAIL' }).Count
 if ($failCount -gt 0) {
-    Write-Error "Board operation check failed with $failCount failure(s)."
+    Write-Error "Board operation check failed with $failCount failure(s)." -ErrorAction Continue
     exit 1
 }
 

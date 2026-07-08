@@ -71,7 +71,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up OSS CAD Suite
         uses: YosysHQ/setup-oss-cad-suite@v4
@@ -143,7 +143,7 @@ jobs:
 
       - name: Upload board build artifacts
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: vle-${{ matrix.board }}-fpga-build
           path: AddedExtensionProjectTemplates/VerilogProject/${{ matrix.artifact_path }}/

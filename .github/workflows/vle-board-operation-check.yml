@@ -1,0 +1,53 @@
+name: VLE board operation check
+
+on:
+  push:
+    branches: [ main, master, development-main, code_polish ]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Check mode: Static, Build, Hardware, or All"
+        required: false
+        default: "Static"
+      project_path:
+        description: "Project file to test"
+        required: false
+        default: "AddedExtensionProjectTemplates/VerilogProject/VerilogProject.csproj"
+
+jobs:
+  board-operation-check:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run board operation check
+        shell: pwsh
+        run: |
+          $mode = '${{ github.event.inputs.mode }}'
+          if ([string]::IsNullOrWhiteSpace($mode)) {
+              $mode = 'Static'
+          }
+
+          $projectPath = '${{ github.event.inputs.project_path }}'
+          if ([string]::IsNullOrWhiteSpace($projectPath)) {
+              $projectPath = 'AddedExtensionProjectTemplates/VerilogProject/VerilogProject.csproj'
+          }
+
+          New-Item -ItemType Directory -Force artifacts/vle-board-operation-check | Out-Null
+
+          pwsh -NoProfile `
+              -ExecutionPolicy Bypass `
+              -File scripts/test-vle-board-operations.ps1 `
+              -ProjectPath $projectPath `
+              -Mode $mode `
+              -LogDirectory artifacts/vle-board-operation-check
+
+      - name: Upload check logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vle-board-operation-check
+          path: artifacts/vle-board-operation-check

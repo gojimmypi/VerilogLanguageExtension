@@ -1,5 +1,6 @@
 [![VLE Headless CI](https://github.com/gojimmypi/VerilogLanguageExtension/actions/workflows/validate-manifest-snapshots.yml/badge.svg)](https://github.com/gojimmypi/VerilogLanguageExtension/actions/workflows/validate-manifest-snapshots.yml)
 [![Build Verilog Language Extension](https://github.com/gojimmypi/VerilogLanguageExtension/actions/workflows/build-verilog-language-extension.yml/badge.svg)](https://github.com/gojimmypi/VerilogLanguageExtension/actions/workflows/build-verilog-language-extension.yml)
+[![VLE board FPGA build](https://github.com/gojimmypi/VerilogLanguageExtension/actions/workflows/vle-board-fpga-build.yml/badge.svg)](https://github.com/gojimmypi/VerilogLanguageExtension/actions/workflows/vle-board-fpga-build.yml)
 [![Text hygiene](https://github.com/gojimmypi/VerilogLanguageExtension/actions/workflows/text-hygiene.yml/badge.svg)](https://github.com/gojimmypi/VerilogLanguageExtension/actions/workflows/text-hygiene.yml)
 
 # Verilog Language Extension

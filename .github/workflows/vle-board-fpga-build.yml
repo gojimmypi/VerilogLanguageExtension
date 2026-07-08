@@ -48,6 +48,16 @@ jobs:
             target: build/ulx3s-85k/ulx3s.bit
             artifact_path: build/ulx3s-85k
             forbidden_root_artifacts: top.json ulx3s_out.config ulx3s.bit
+          - board: ulx4m-ls-12k
+            makefile: boards/ulx4m/Makefile-ULX4M-LS-12F.mk
+            target: build/ulx4m-ls-12k/ulx4m.bit
+            artifact_path: build/ulx4m-ls-12k
+            forbidden_root_artifacts: ulx4m.json ulx4m_out.config ulx4m.bit
+          - board: ulx4m-ld-85k
+            makefile: boards/ulx4m/Makefile-ULX4M-LD-85F.mk
+            target: build/ulx4m-ld-85k/ulx4m.bit
+            artifact_path: build/ulx4m-ld-85k
+            forbidden_root_artifacts: ulx4m.json ulx4m_out.config ulx4m.bit
           - board: icebreaker
             makefile: boards/icebreaker/main.mk
             target: build/icebreaker/top_icebreaker.bin

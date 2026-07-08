@@ -551,6 +551,63 @@ function Get-ImportedProjectFiles {
     return $files.ToArray()
 }
 
+function Add-VSTemplateProjectItems {
+    param(
+        [System.Xml.XmlNode]$Node,
+        [string]$Prefix,
+        [System.Collections.Generic.List[string]]$Items
+    )
+
+    foreach ($child in $Node.ChildNodes) {
+        if ($child.LocalName -eq 'Folder') {
+            $folderName = $child.TargetFolderName
+            if (-not $folderName) {
+                $folderName = $child.Name
+            }
+
+            $nextPrefix = $folderName
+            if ($Prefix) {
+                $nextPrefix = $Prefix + '/' + $folderName
+            }
+
+            Add-VSTemplateProjectItems -Node $child -Prefix $nextPrefix -Items $Items
+            continue
+        }
+
+        if ($child.LocalName -eq 'ProjectItem') {
+            $targetName = $child.TargetFileName
+            if (-not $targetName) {
+                $targetName = $child.InnerText.Trim()
+            }
+
+            $itemPath = $targetName
+            if ($Prefix) {
+                $itemPath = $Prefix + '/' + $targetName
+            }
+
+            $Items.Add((Normalize-PathText $itemPath)) | Out-Null
+        }
+    }
+}
+
+function Get-VSTemplateProjectItems {
+    param([string]$TemplatePath)
+
+    $items = New-Object System.Collections.Generic.List[string]
+    if (-not (Test-Path -LiteralPath $TemplatePath -PathType Leaf)) {
+        return $items.ToArray()
+    }
+
+    [xml]$xml = Get-Content -LiteralPath $TemplatePath -Raw
+    $projectNode = Select-Xml -Xml $xml -XPath '//*[local-name()="TemplateContent"]/*[local-name()="Project"]' | Select-Object -First 1
+    if (-not $projectNode) {
+        return $items.ToArray()
+    }
+
+    Add-VSTemplateProjectItems -Node $projectNode.Node -Prefix '' -Items $items
+    return $items.ToArray()
+}
+
 function Load-ProjectData {
     param([string]$ProjectFile)
 
@@ -868,6 +925,28 @@ function Test-StaticContract {
         }
     }
 
+    $vstemplatePath = Join-Path $ProjectDir 'Verilog.vstemplate'
+    if (Test-Path -LiteralPath $vstemplatePath -PathType Leaf) {
+        $vstemplateItems = Get-VSTemplateProjectItems -TemplatePath $vstemplatePath
+        $vstemplateItemMap = @{}
+        foreach ($item in $vstemplateItems) {
+            $vstemplateItemMap[(Normalize-PathText $item).ToLowerInvariant()] = $true
+        }
+
+        foreach ($file in $Spec.RequiredFiles) {
+            $normalizedFile = (Normalize-PathText $file).ToLowerInvariant()
+            if ($vstemplateItemMap.ContainsKey($normalizedFile)) {
+                Add-Result -BoardName $Spec.Name -Operation "VSTemplate file $file" -Status 'PASS' -Message 'File is included'
+            }
+            else {
+                Add-Result -BoardName $Spec.Name -Operation "VSTemplate file $file" -Status 'FAIL' -Message 'File is not included in Verilog.vstemplate'
+            }
+        }
+    }
+    else {
+        Add-Result -BoardName $Spec.Name -Operation 'VSTemplate' -Status 'FAIL' -Message 'Verilog.vstemplate is missing'
+    }
+
     $makefilePath = Join-Path $ProjectDir $Spec.Makefile
     if (Test-Path -LiteralPath $makefilePath -PathType Leaf) {
         $makeText = Get-Content -LiteralPath $makefilePath -Raw
@@ -888,42 +967,6 @@ function Test-StaticContract {
         else {
             Add-Result -BoardName $Spec.Name -Operation "root artifact $artifact" -Status 'PASS' -Message 'Not present in project root'
         }
-    }
-}
-
-
-function Test-CompatibilityProjectTemplate {
-    param(
-        [object]$Spec,
-        [string]$ProjectDir
-    )
-
-    $templateProjectPath = Join-Path $ProjectDir 'ProjectTemplate.csproj'
-    if (-not (Test-Path -LiteralPath $templateProjectPath -PathType Leaf)) {
-        return
-    }
-
-    $templateProjectText = Get-Content -LiteralPath $templateProjectPath -Raw
-
-    if (Test-TextContains -Haystack $templateProjectText -Needle $Spec.Platform) {
-        Add-Result -BoardName $Spec.Name -Operation 'ProjectTemplate platform' -Status 'PASS' -Message $Spec.Platform
-    }
-    else {
-        Add-Result -BoardName $Spec.Name -Operation 'ProjectTemplate platform' -Status 'FAIL' -Message "ProjectTemplate.csproj is missing platform text: $($Spec.Platform)"
-    }
-
-    if (Test-TextContains -Haystack $templateProjectText -Needle $Spec.Makefile) {
-        Add-Result -BoardName $Spec.Name -Operation 'ProjectTemplate makefile' -Status 'PASS' -Message $Spec.Makefile
-    }
-    else {
-        Add-Result -BoardName $Spec.Name -Operation 'ProjectTemplate makefile' -Status 'FAIL' -Message "ProjectTemplate.csproj does not reference $($Spec.Makefile)"
-    }
-
-    if (Test-TextMentionsOutput -Haystack $templateProjectText -ExpectedOutput $Spec.ExpectedOutput) {
-        Add-Result -BoardName $Spec.Name -Operation 'ProjectTemplate bitstream path' -Status 'PASS' -Message $Spec.ExpectedOutput
-    }
-    else {
-        Add-Result -BoardName $Spec.Name -Operation 'ProjectTemplate bitstream path' -Status 'FAIL' -Message "ProjectTemplate.csproj should reference $($Spec.ExpectedOutput)"
     }
 }
 
@@ -1056,7 +1099,6 @@ Write-Host ''
 
 foreach ($spec in $specs) {
     Test-StaticContract -Spec $spec -ProjectDir $projectDir
-    Test-CompatibilityProjectTemplate -Spec $spec -ProjectDir $projectDir
 }
 
 if (($Mode -eq 'Build' -or $Mode -eq 'All') -and -not $SkipMakeDryRun) {

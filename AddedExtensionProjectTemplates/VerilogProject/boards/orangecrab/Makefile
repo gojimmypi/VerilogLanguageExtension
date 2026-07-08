@@ -1,28 +1,40 @@
-PROJ=blink
+PROJ := blink
+BOARD_DIR := boards/orangecrab
+BUILD_DIR ?= build
+ORANGECRAB_BUILD_DIR := $(BUILD_DIR)/orangecrab
 
-# `r0.1` or `r0.2`
-VERSION:=r0.2
+# r0.1 or r0.2
+VERSION := r0.2
 
-all: ${PROJ}.dfu
+ORANGECRAB_JSON := $(ORANGECRAB_BUILD_DIR)/$(PROJ).json
+ORANGECRAB_CONFIG := $(ORANGECRAB_BUILD_DIR)/$(PROJ)_out.config
+ORANGECRAB_BIT := $(ORANGECRAB_BUILD_DIR)/$(PROJ).bit
+ORANGECRAB_DFU := $(ORANGECRAB_BUILD_DIR)/$(PROJ).dfu
+ORANGECRAB_PCF := $(BOARD_DIR)/orangecrab_$(VERSION).pcf
+ORANGECRAB_SRC := $(BOARD_DIR)/$(PROJ).v
 
-dfu: ${PROJ}.dfu
+all: $(ORANGECRAB_DFU)
+
+dfu: $(ORANGECRAB_DFU)
 	dfu-util -D $<
 
+$(ORANGECRAB_BUILD_DIR):
+	mkdir -p $(ORANGECRAB_BUILD_DIR)
 
-%.json: %.v
+$(ORANGECRAB_JSON): $(ORANGECRAB_SRC) | $(ORANGECRAB_BUILD_DIR)
 	yosys -p "synth_ecp5 -json $@" $<
 
-%_out.config: %.json
-	nextpnr-ecp5 --json $< --textcfg $@ --25k --package CSFBGA285 --lpf orangecrab_${VERSION}.pcf
+$(ORANGECRAB_CONFIG): $(ORANGECRAB_JSON) $(ORANGECRAB_PCF) | $(ORANGECRAB_BUILD_DIR)
+	nextpnr-ecp5 --json $< --textcfg $@ --25k --package CSFBGA285 --lpf $(ORANGECRAB_PCF)
 
-%.bit: %_out.config
+$(ORANGECRAB_BIT): $(ORANGECRAB_CONFIG) | $(ORANGECRAB_BUILD_DIR)
 	ecppack --compress --freq 38.8 --input $< --bit $@
 
-%.dfu : %.bit
+$(ORANGECRAB_DFU): $(ORANGECRAB_BIT) | $(ORANGECRAB_BUILD_DIR)
 	cp $< $@
 	dfu-suffix -v 1209 -p 5af0 -a $@
 
 clean:
-	rm -f ${PROJ}.svf ${PROJ}.bit ${PROJ}.config ${PROJ}.json ${PROJ}.dfu 
+	rm -rf $(ORANGECRAB_BUILD_DIR)
 
-.PHONY: prog clean
+.PHONY: all dfu clean

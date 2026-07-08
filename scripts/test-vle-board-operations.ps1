@@ -891,6 +891,42 @@ function Test-StaticContract {
     }
 }
 
+
+function Test-CompatibilityProjectTemplate {
+    param(
+        [object]$Spec,
+        [string]$ProjectDir
+    )
+
+    $templateProjectPath = Join-Path $ProjectDir 'ProjectTemplate.csproj'
+    if (-not (Test-Path -LiteralPath $templateProjectPath -PathType Leaf)) {
+        return
+    }
+
+    $templateProjectText = Get-Content -LiteralPath $templateProjectPath -Raw
+
+    if (Test-TextContains -Haystack $templateProjectText -Needle $Spec.Platform) {
+        Add-Result -BoardName $Spec.Name -Operation 'ProjectTemplate platform' -Status 'PASS' -Message $Spec.Platform
+    }
+    else {
+        Add-Result -BoardName $Spec.Name -Operation 'ProjectTemplate platform' -Status 'FAIL' -Message "ProjectTemplate.csproj is missing platform text: $($Spec.Platform)"
+    }
+
+    if (Test-TextContains -Haystack $templateProjectText -Needle $Spec.Makefile) {
+        Add-Result -BoardName $Spec.Name -Operation 'ProjectTemplate makefile' -Status 'PASS' -Message $Spec.Makefile
+    }
+    else {
+        Add-Result -BoardName $Spec.Name -Operation 'ProjectTemplate makefile' -Status 'FAIL' -Message "ProjectTemplate.csproj does not reference $($Spec.Makefile)"
+    }
+
+    if (Test-TextMentionsOutput -Haystack $templateProjectText -ExpectedOutput $Spec.ExpectedOutput) {
+        Add-Result -BoardName $Spec.Name -Operation 'ProjectTemplate bitstream path' -Status 'PASS' -Message $Spec.ExpectedOutput
+    }
+    else {
+        Add-Result -BoardName $Spec.Name -Operation 'ProjectTemplate bitstream path' -Status 'FAIL' -Message "ProjectTemplate.csproj should reference $($Spec.ExpectedOutput)"
+    }
+}
+
 function Invoke-MakeDryRun {
     param(
         [object]$Spec,
@@ -1020,6 +1056,7 @@ Write-Host ''
 
 foreach ($spec in $specs) {
     Test-StaticContract -Spec $spec -ProjectDir $projectDir
+    Test-CompatibilityProjectTemplate -Spec $spec -ProjectDir $projectDir
 }
 
 if (($Mode -eq 'Build' -or $Mode -eq 'All') -and -not $SkipMakeDryRun) {

@@ -78,7 +78,7 @@ function Normalize-PathText {
     if ($null -eq $Text) {
         return ''
     }
-    return ($Text -replace '\\', '/')
+    return $Text.Replace('\', '/')
 }
 
 function Test-TextContains {
@@ -115,6 +115,132 @@ function Test-TextMentionsOutput {
         return $true
     }
     return $false
+}
+
+
+function Expand-MakefileText {
+    param([string]$Text)
+
+    if ($null -eq $Text) {
+        return ''
+    }
+
+    $variables = @{}
+
+    # Split the Makefile text into lines. This regex matches either LF line
+    # endings or CRLF line endings by making a carriage return before the
+    # newline optional.
+    $MakefileLineEndingPattern = '\r?\n'
+    $lines = $Text -split $MakefileLineEndingPattern
+
+    # Match a simple Makefile variable assignment.
+    # Supported forms are:
+    #   NAME = value
+    #   NAME := value
+    #   NAME ?= value
+    # Capture group 1 is the variable name. It must start with a letter or
+    # underscore and may then contain letters, digits, or underscores.
+    # The assignment operator is matched but not captured.
+    # Capture group 2 is the assigned value, with leading/trailing whitespace
+    # outside the value ignored.
+    # This intentionally does not implement a full Makefile parser; it does not
+    # handle +=, define/endef blocks, multiline continuations, export/override
+    # prefixes, conditional syntax, inline comments, or target-specific variables.
+    $MakeVariableAssignmentPattern = '^\s*([A-Za-z_][A-Za-z0-9_]*)\s*(?::=|\?=|=)\s*(.*?)\s*$'
+
+    foreach ($line in $lines) {
+        $trimmed = $line.Trim()
+        if ($trimmed -eq '' -or $trimmed.StartsWith('#')) {
+            continue
+        }
+
+        if ($line -match $MakeVariableAssignmentPattern) {
+            $name = $matches[1]
+            $value = $matches[2].Trim()
+            $variables[$name] = $value
+        }
+    }
+
+    # Match a Makefile-style variable reference inside an already-parsed value.
+    # Supported forms are:
+    #   $(NAME)
+    #   ${NAME}
+    # The leading '$' and the surrounding parentheses/braces are matched.
+    # Capture group 1 contains the variable name from the $(NAME) form.
+    # Capture group 2 contains the variable name from the ${NAME} form.
+    # Replacement code should use group 1 when it is present, otherwise group 2.
+    # This intentionally handles only simple variable references. It does not
+    # parse nested references, Make functions such as $(shell ...), pattern
+    # substitutions, automatic variables such as $@ or $<, or escaped dollar
+    # signs such as $$.
+    $MakeVariableReferencePattern = '\$\(([^)]+)\)|\$\{([^}]+)\}'
+
+    function Expand-OneMakeValue {
+        param(
+            [string]$Value,
+            [hashtable]$Variables
+        )
+
+        $expanded = $Value
+
+        # Expand variable references repeatedly so chained assignments resolve,
+        # for example BUILD_DIR -> BOARD_DIR -> BIT_FILE. The hard limit
+        # prevents an infinite loop if variables reference each other.
+        for ($i = 0; $i -lt 20; $i++) {
+            $prior = $expanded
+            $expanded = [regex]::Replace($expanded, $MakeVariableReferencePattern, {
+                param($match)
+                $key = $match.Groups[1].Value
+                if ([string]::IsNullOrEmpty($key)) {
+                    $key = $match.Groups[2].Value
+                }
+
+                if ($Variables.ContainsKey($key)) {
+                    return [string]$Variables[$key]
+                }
+                return $match.Value
+            })
+
+            if ($expanded -eq $prior) {
+                break
+            }
+        }
+
+        return $expanded
+    }
+
+    $names = @($variables.Keys)
+    foreach ($name in $names) {
+        $variables[$name] = Expand-OneMakeValue -Value ([string]$variables[$name]) -Variables $variables
+    }
+
+    $expandedText = $Text
+
+    # Expand variable references in the full Makefile text so later static
+    # checks can find generated paths after simple Makefile variables resolve.
+    # The hard limit prevents an infinite loop if variables reference each other.
+    for ($i = 0; $i -lt 20; $i++) {
+        $prior = $expandedText
+        $expandedText = [regex]::Replace($expandedText, $MakeVariableReferencePattern, {
+            param($match)
+            $key = $match.Groups[1].Value
+            if ([string]::IsNullOrEmpty($key)) {
+                $key = $match.Groups[2].Value
+            }
+
+            if ($variables.ContainsKey($key)) {
+                return [string]$variables[$key]
+            }
+            return $match.Value
+        })
+
+        if ($expandedText -eq $prior) {
+            break
+        }
+    }
+
+    $variableValues = ($variables.GetEnumerator() | ForEach-Object { $_.Value }) -join "`n"
+    return ($Text + "`n" + $expandedText + "`n" + $variableValues)
 }
 
 function New-BoardSpec {
@@ -319,8 +445,12 @@ function Expand-ProjectPathText {
     $expanded = $expanded.Replace('$(MSBuildProjectDirectory)', $projectDir)
     $expanded = $expanded.Replace('$(MSBuildProjectFullPath)', $ProjectFile)
 
-    $expanded = $expanded -replace '^\.\\', ''
-    $expanded = $expanded -replace '^\./', ''
+    if ($expanded.StartsWith('.\')) {
+        $expanded = $expanded.Substring(2)
+    }
+    if ($expanded.StartsWith('./')) {
+        $expanded = $expanded.Substring(2)
+    }
 
     if ([System.IO.Path]::IsPathRooted($expanded)) {
         return $expanded
@@ -352,20 +482,27 @@ function Add-ImportedProjectFile {
 
     [xml]$xml = Get-Content -LiteralPath $resolved -Raw
     $imports = Select-Xml -Xml $xml -XPath '//*[local-name()="Import"]'
+
+    # Match any unresolved MSBuild-style property reference in an import path.
+    # Supported form is $(NAME). The whole property reference is matched; no
+    # capture groups are used. This is used only to decide whether the path
+    # still contains properties after the small known-property substitution below.
+    $MsBuildPropertyReferencePattern = '\$\([^)]*\)'
+
     foreach ($import in $imports) {
         $importPath = $import.Node.Project
         if (-not $importPath) {
             continue
         }
 
-        if ($importPath -match '\$\([^)]*\)') {
+        if ($importPath -match $MsBuildPropertyReferencePattern) {
             # Only expand the few MSBuild properties this script understands.
             # Other property-based imports are ignored so Static mode remains safe.
             $knownImportPath = $importPath
-            $knownImportPath = $knownImportPath -replace '\$\(MSBuildThisFileDirectory\)', ''
-            $knownImportPath = $knownImportPath -replace '\$\(MSBuildProjectDirectory\)', ''
-            $knownImportPath = $knownImportPath -replace '\$\(MSBuildProjectFullPath\)', ''
-            if ($knownImportPath -match '\$\([^)]*\)') {
+            $knownImportPath = $knownImportPath.Replace('$(MSBuildThisFileDirectory)', '')
+            $knownImportPath = $knownImportPath.Replace('$(MSBuildProjectDirectory)', '')
+            $knownImportPath = $knownImportPath.Replace('$(MSBuildProjectFullPath)', '')
+            if ($knownImportPath -match $MsBuildPropertyReferencePattern) {
                 continue
             }
         }
@@ -477,20 +614,49 @@ function ConvertTo-WslPath {
     return $converted.Trim()
 }
 
+function ConvertTo-SafeLogName {
+    param([string]$Text)
+
+    # Match any character that is not safe for the generated diagnostic log
+    # file names used by this script. Allowed characters are ASCII letters,
+    # digits, underscore, period, and hyphen. Each unsafe character is replaced
+    # with an underscore. No capture groups are used.
+    $UnsafeLogNameCharacterPattern = '[^A-Za-z0-9_.-]'
+
+    return ($Text -replace $UnsafeLogNameCharacterPattern, '_')
+}
+
 function Quote-Shell {
     param([string]$Text)
-    return "'" + ($Text -replace "'", "'\''") + "'"
+
+    # Match a literal single quote inside text that will be wrapped in single
+    # quotes for a POSIX shell command. Each matched quote is replaced with the
+    # standard close-quote, escaped-quote, reopen-quote sequence. No capture
+    # groups are used.
+    $ShellSingleQuotePattern = "'"
+
+    return "'" + ($Text -replace $ShellSingleQuotePattern, "'\''") + "'"
 }
 
 function Join-CommandLine {
     param([string[]]$Arguments)
 
+    # Match any whitespace character or a double quote. Arguments matching
+    # this regex need double-quote wrapping for the displayed command line.
+    # No capture groups are used.
+    $CommandLineNeedsQuotingPattern = '[\s"]'
+
+    # Match each literal double quote inside an argument so it can be
+    # backslash-escaped within the displayed double-quoted argument.
+    # No capture groups are used.
+    $CommandLineDoubleQuotePattern = '"'
+
     $quoted = foreach ($arg in $Arguments) {
         if ($null -eq $arg) {
             '""'
         }
-        elseif ($arg -match '[\s"]') {
-            '"' + ($arg -replace '"', '\"') + '"'
+        elseif ($arg -match $CommandLineNeedsQuotingPattern) {
+            '"' + ($arg -replace $CommandLineDoubleQuotePattern, '\"') + '"'
         }
         else {
             $arg
@@ -675,7 +841,8 @@ function Test-StaticContract {
     $makefilePath = Join-Path $ProjectDir $Spec.Makefile
     if (Test-Path -LiteralPath $makefilePath -PathType Leaf) {
         $makeText = Get-Content -LiteralPath $makefilePath -Raw
-        if (Test-TextMentionsOutput -Haystack $makeText -ExpectedOutput $Spec.MakeTarget) {
+        $expandedMakeText = Expand-MakefileText -Text $makeText
+        if (Test-TextMentionsOutput -Haystack $expandedMakeText -ExpectedOutput $Spec.MakeTarget) {
             Add-Result -BoardName $Spec.Name -Operation 'make output target' -Status 'PASS' -Message $Spec.MakeTarget
         }
         else {
@@ -701,7 +868,7 @@ function Invoke-MakeDryRun {
         [string]$LogDir
     )
 
-    $safeName = ($Spec.Name -replace '[^A-Za-z0-9_.-]', '_')
+    $safeName = ConvertTo-SafeLogName $Spec.Name
     $logFile = Join-Path $LogDir ("make-dryrun-$safeName.log")
 
     if ($env:OS -eq 'Windows_NT') {
@@ -730,7 +897,7 @@ function Invoke-MakeDryRun {
         }
 
         Invoke-ExternalCommand -BoardName $Spec.Name -Operation 'make dry-run' -FileName $make.Source -Arguments @('-n', $Spec.MakeTarget, '-f', $Spec.Makefile) -WorkingDirectory $ProjectDir -LogFile $logFile -Timeout 120 | Out-Null
-        Invoke-ExternalCommand -BoardName $Spec.Name -Operation 'make clean dry-run' -FileName $make.Source -Arguments @('-n', 'clean', '-f', $Spec.Makefile) -WorkingDirectory $ProjectDir -LogFile ($LogFile -replace '\.log$', '-clean.log') -Timeout 120 | Out-Null
+        Invoke-ExternalCommand -BoardName $Spec.Name -Operation 'make clean dry-run' -FileName $make.Source -Arguments @('-n', 'clean', '-f', $Spec.Makefile) -WorkingDirectory $ProjectDir -LogFile (Join-Path $LogDir ("make-dryrun-$safeName-clean.log")) -Timeout 120 | Out-Null
     }
 }
 
@@ -752,9 +919,9 @@ function Invoke-MSBuildOperation {
         return
     }
 
-    $safeName = ($Spec.Name -replace '[^A-Za-z0-9_.-]', '_')
-    $safeConfig = ($Configuration -replace '[^A-Za-z0-9_.-]', '_')
-    $safeOperation = ($OperationName -replace '[^A-Za-z0-9_.-]', '_')
+    $safeName = ConvertTo-SafeLogName $Spec.Name
+    $safeConfig = ConvertTo-SafeLogName $Configuration
+    $safeOperation = ConvertTo-SafeLogName $OperationName
     $logFile = Join-Path $LogDir ("msbuild-$safeName-$safeConfig-$safeOperation.log")
 
     $args = @(

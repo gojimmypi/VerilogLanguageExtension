@@ -123,7 +123,7 @@
 		<BitstreamMakefile>boards/orangecrab/Makefile</BitstreamMakefile>
 		<BitstreamProgrammer>$(BitstreamProgrammer_OrangeCrab)</BitstreamProgrammer>
 		<BitstreamProgrammerType>OrangeCrab</BitstreamProgrammerType>
-		<BitstreamFilename>blink.dfu</BitstreamFilename>
+		<BitstreamFilename>build/orangecrab/blink.dfu</BitstreamFilename>
 	</PropertyGroup>
 
 	<!--
@@ -789,7 +789,7 @@
 		<Message Text="Conditional Build_Orange_Crab running...$(Configuration)|$(Platform)" />
 		<Message Text="Using Makefile=$(BitstreamMakefile)" />
 		<Message Text="Skipping Orange Crab background build..." Condition=" '$(_AvoidTargetStep)' != ''"></Message>
-		<Exec Command="$(FoundWSL)  (cd boards/orangecrab/; make -f Makefile)" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high" Condition=" '$(_AvoidTargetStep)' == ''">
+		<Exec Command="$(FoundWSL)  (make $(BitstreamFilename) -f $(BitstreamMakefile) )" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high" Condition=" '$(_AvoidTargetStep)' == ''">
 			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
 		</Exec>
 		<PropertyGroup>
@@ -798,28 +798,28 @@
 	</Target>
 
 	<!-- Debug Orange_Crab-->
-	<Target Name="Debug_Orange_Crab" Inputs="top_Orange_Crab.v" Outputs="top_Orange_Crab.bin" BeforeTargets="CoreCompile" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Debug|Orange Crab|' ">
+	<Target Name="Debug_Orange_Crab" Inputs="boards\orangecrab\blink.v" Outputs="$(BitstreamFilename)" BeforeTargets="CoreCompile" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Debug|Orange Crab|' ">
 		<Message Text="Build_Orange_Crab $(Configuration)|$(Platform)" />
 		<CallTarget Targets="Build_Orange_Crab"></CallTarget>
 	</Target>
 
 	<!-- Release Orange_Crab-->
-	<Target Name="Release_Orange_Crab" Inputs="top_Orange_Crab.v" Outputs="top_Orange_Crab.bin" BeforeTargets="CoreCompile" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Release|Orange Crab|' ">
+	<Target Name="Release_Orange_Crab" Inputs="boards\orangecrab\blink.v" Outputs="$(BitstreamFilename)" BeforeTargets="CoreCompile" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Release|Orange Crab|' ">
 		<Message Text="Build_Orange_Crab $(Configuration)|$(Platform)" />
 		<CallTarget Targets="Build_Orange_Crab"></CallTarget>
 	</Target>
 
 	<!-- Upload Orange_Crab-->
-	<Target Name="Upload_Orange_Crab" Outputs="top_Orange_Crab.bin" AfterTargets="CoreBuild" BeforeTargets="CoreCompile" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Upload|Orange Crab|' ">
+	<Target Name="Upload_Orange_Crab" Outputs="$(BitstreamFilename)" AfterTargets="CoreBuild" BeforeTargets="CoreCompile" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Upload|Orange Crab|' ">
 		<Message Text="Upload_Orange_Crab $(Configuration)|$(Platform)" />
 		<CallTarget Targets="Build_Orange_Crab"></CallTarget>
-		<Exec Command="$(BitstreamProgrammer) -D boards\orangecrab\$(BitstreamFilename) " YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
+		<Exec Command="$(BitstreamProgrammer) -D $(BitstreamFilename) " YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
 			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
 		</Exec>
 	</Target>
 
 	<!-- Verify Orange_Crab-->
-	<Target Name="Verify_Orange_Crab" Outputs="top_Orange_Crab.bin" AfterTargets="CoreBuild" BeforeTargets="CoreCompile" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Verify|Orange Crab|' ">
+	<Target Name="Verify_Orange_Crab" Outputs="$(BitstreamFilename)" AfterTargets="CoreBuild" BeforeTargets="CoreCompile" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Verify|Orange Crab|' ">
 		<Message Text="Upload_Orange_Crab $(Configuration)|$(Platform)" />
 		<Error Text="Verify Not implemented"></Error>
 		<Exec Command="$(FoundWSL) (echo not implemented )" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
@@ -830,7 +830,7 @@
 
 	<!-- Clean Orange_Crab-->
 	<Target Name="Clean_Orange_Crab" BeforeTargets="Clean" Condition=" '$(Platform)'=='Orange Crab' ">
-		<Exec Command="$(FoundWSL) (cd boards/orangecrab/; make -f Makefile clean )" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
+		<Exec Command="$(FoundWSL) (make -f $(BitstreamMakefile) clean )" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
 			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
 		</Exec>
 	</Target>

@@ -8,6 +8,7 @@
 		Override these defaults in ProjectPlatform\UserDefined.csproj for local tool paths.
 		-->
 		<BitstreamProgrammer_ULX3S>fujprog.exe</BitstreamProgrammer_ULX3S>
+		<BitstreamProgrammer_ULX4M>fujprog.exe</BitstreamProgrammer_ULX4M>
 		<BitstreamProgrammer_iCEBreaker>iceprog.exe</BitstreamProgrammer_iCEBreaker>
 		<BitstreamProgrammer_OrangeCrab>dfu-util.exe</BitstreamProgrammer_OrangeCrab>
 		<BitstreamProgrammer_tinyFPGA_BX>tinyprog.exe</BitstreamProgrammer_tinyFPGA_BX>

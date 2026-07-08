@@ -340,6 +340,36 @@ function Get-BoardSpecs {
             -ForbiddenRootArtifacts @('top.json', 'ulx3s_out.config', 'ulx3s.bit')),
 
         (New-BoardSpec `
+            -Name 'ULX4M-LS 12K' `
+            -Platform 'ULX4M-LS ECP5-12K' `
+            -Makefile 'boards/ulx4m/Makefile-ULX4M-LS-12F.mk' `
+            -MakeTarget 'build/ulx4m-ls-12k/ulx4m.bit' `
+            -ExpectedOutput 'build/ulx4m-ls-12k/ulx4m.bit' `
+            -BuildTarget 'Build_ULX4M' `
+            -DebugTarget 'Debug_ULX4M_LS_12K' `
+            -ReleaseTarget 'Release_ULX4M_LS_12K' `
+            -UploadTarget 'Upload_ULX4M_LS_12K' `
+            -VerifyTarget 'Verify_ULX4M_LS_12K' `
+            -CleanTarget 'Clean_ULX4M' `
+            -RequiredFiles @('boards/ulx4m/top_ulx4m.v', 'boards/ulx4m/ulx4m_minimal.lpf', 'boards/ulx4m/Makefile-ULX4M-LS-12F.mk') `
+            -ForbiddenRootArtifacts @('ulx4m.json', 'ulx4m_out.config', 'ulx4m.bit')),
+
+        (New-BoardSpec `
+            -Name 'ULX4M-LD 85K' `
+            -Platform 'ULX4M-LD ECP5-85K' `
+            -Makefile 'boards/ulx4m/Makefile-ULX4M-LD-85F.mk' `
+            -MakeTarget 'build/ulx4m-ld-85k/ulx4m.bit' `
+            -ExpectedOutput 'build/ulx4m-ld-85k/ulx4m.bit' `
+            -BuildTarget 'Build_ULX4M' `
+            -DebugTarget 'Debug_ULX4M_LD_85K' `
+            -ReleaseTarget 'Release_ULX4M_LD_85K' `
+            -UploadTarget 'Upload_ULX4M_LD_85K' `
+            -VerifyTarget 'Verify_ULX4M_LD_85K' `
+            -CleanTarget 'Clean_ULX4M' `
+            -RequiredFiles @('boards/ulx4m/top_ulx4m.v', 'boards/ulx4m/ulx4m_minimal.lpf', 'boards/ulx4m/Makefile-ULX4M-LD-85F.mk') `
+            -ForbiddenRootArtifacts @('ulx4m.json', 'ulx4m_out.config', 'ulx4m.bit')),
+
+        (New-BoardSpec `
             -Name 'iCEBreaker' `
             -Platform 'iCEBreaker' `
             -Makefile 'boards/icebreaker/main.mk' `

@@ -81,6 +81,10 @@
     <None Include="boards\ulx3s\Makefile-ULX3S-45F.mk" />
     <None Include="boards\ulx3s\Makefile-ULX3S-85F.mk" />
     <None Include="boards\ulx3s\ulx3s_v20.lpf" />
+    <None Include="boards\ulx4m\Makefile-ULX4M-LS-12F.mk" />
+    <None Include="boards\ulx4m\Makefile-ULX4M-LD-85F.mk" />
+    <None Include="boards\ulx4m\top_ulx4m.v" />
+    <None Include="boards\ulx4m\ulx4m_minimal.lpf" />
     <None Include="scripts\README.md" />
     <None Include="scripts\pstool.ps1" />
     <None Include="scripts\vs-build.bat" />

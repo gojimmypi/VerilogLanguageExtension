@@ -1,7 +1,7 @@
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
 	<TemplateData>
 		<Name>Verilog Project</Name>
-		<Description>Verilog Project Template for iCEBreaker, iCEStick, Orange Crab, tinyFPGA, and ULX3S</Description>
+		<Description>Verilog Project Template for iCEBreaker, iCEStick, Orange Crab, tinyFPGA, ULX3S, and ULX4M</Description>
 		<ProjectType>CSharp</ProjectType>
 		<ProjectSubType>
 		</ProjectSubType>
@@ -61,6 +61,12 @@
 					<ProjectItem ReplaceParameters="true" TargetFileName="Makefile-ULX3S-45F.mk">Makefile-ULX3S-45F.mk</ProjectItem>
 					<ProjectItem ReplaceParameters="true" TargetFileName="Makefile-ULX3S-85F.mk">Makefile-ULX3S-85F.mk</ProjectItem>
 					<ProjectItem ReplaceParameters="false" TargetFileName="ulx3s_v20.lpf">ulx3s_v20.lpf</ProjectItem>
+				</Folder>
+				<Folder Name="ulx4m" TargetFolderName="ulx4m">
+					<ProjectItem ReplaceParameters="false" TargetFileName="Makefile-ULX4M-LS-12F.mk">Makefile-ULX4M-LS-12F.mk</ProjectItem>
+					<ProjectItem ReplaceParameters="false" TargetFileName="Makefile-ULX4M-LD-85F.mk">Makefile-ULX4M-LD-85F.mk</ProjectItem>
+					<ProjectItem ReplaceParameters="false" TargetFileName="top_ulx4m.v">top_ulx4m.v</ProjectItem>
+					<ProjectItem ReplaceParameters="false" TargetFileName="ulx4m_minimal.lpf">ulx4m_minimal.lpf</ProjectItem>
 				</Folder>
 			</Folder>
 			<Folder Name="scripts" TargetFolderName="scripts">

@@ -59,6 +59,7 @@
 	<ItemGroup>
 		<Folder Include="boards\tinyfpga_bx\" />
 		<Folder Include="boards\orangecrab\" />
+		<Folder Include="boards\ulx4m\" />
 	</ItemGroup>
 
 	<!--
@@ -78,7 +79,7 @@
 	<PropertyGroup>
 		<TargetFramework>net472</TargetFramework>
 		<RootNamespace>VerilogLanguage</RootNamespace>
-		<Platforms>ULX3S ECP5-12K;ULX3S ECP5-45K;ULX3S ECP5-85K;iCEBreaker;Orange Crab;tinyFPGA BX;Other iceprog</Platforms>
+		<Platforms>ULX3S ECP5-12K;ULX3S ECP5-25K;ULX3S ECP5-45K;ULX3S ECP5-85K;ULX4M-LS ECP5-12K;ULX4M-LD ECP5-85K;iCEBreaker;Orange Crab;tinyFPGA BX;Other iceprog</Platforms>
 		<Configurations>Debug;Release;Upload;Verify</Configurations>
 	</PropertyGroup>
 
@@ -187,6 +188,29 @@
 		<BitstreamProgrammerText>ULX3S FPGA 85K</BitstreamProgrammerText>
 
 		<BitstreamFilename>build/ulx3s-85k/ulx3s.bit</BitstreamFilename>
+	</PropertyGroup>
+
+
+	<!--
+	Radiona ULX4M
+
+	Edit with caution! See makefile when changing BitstreamFilename.
+	ULX4M-LS is the SDRAM / 12K target; ULX4M-LD is the DDR3 / 85K target.
+	-->
+	<PropertyGroup Condition=" '$(Platform)' == 'ULX4M-LS ECP5-12K' ">
+		<PlatformTarget>ECP5-12K</PlatformTarget>
+		<BitstreamMakefile>boards/ulx4m/Makefile-ULX4M-LS-12F.mk</BitstreamMakefile>
+		<BitstreamProgrammer>$(BitstreamProgrammer_ULX4M)</BitstreamProgrammer>
+		<BitstreamProgrammerType>ULX4M</BitstreamProgrammerType>
+		<BitstreamFilename>build/ulx4m-ls-12k/ulx4m.bit</BitstreamFilename>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Platform)' == 'ULX4M-LD ECP5-85K' ">
+		<PlatformTarget>ECP5-85K</PlatformTarget>
+		<BitstreamMakefile>boards/ulx4m/Makefile-ULX4M-LD-85F.mk</BitstreamMakefile>
+		<BitstreamProgrammer>$(BitstreamProgrammer_ULX4M)</BitstreamProgrammer>
+		<BitstreamProgrammerType>ULX4M</BitstreamProgrammerType>
+		<BitstreamFilename>build/ulx4m-ld-85k/ulx4m.bit</BitstreamFilename>
 	</PropertyGroup>
 
 
@@ -315,6 +339,42 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Verify|ULX3S ECP5-85K'">
+		<OutputPath>bin\</OutputPath>
+	</PropertyGroup>
+
+
+	<!-- ULX4M-LS ECP5-12K -->
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ULX4M-LS ECP5-12K'">
+		<OutputPath>bin\</OutputPath>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ULX4M-LS ECP5-12K'">
+		<OutputPath>bin\</OutputPath>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Upload|ULX4M-LS ECP5-12K'">
+		<OutputPath>bin\</OutputPath>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Verify|ULX4M-LS ECP5-12K'">
+		<OutputPath>bin\</OutputPath>
+	</PropertyGroup>
+
+
+	<!-- ULX4M-LD ECP5-85K -->
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ULX4M-LD ECP5-85K'">
+		<OutputPath>bin\</OutputPath>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ULX4M-LD ECP5-85K'">
+		<OutputPath>bin\</OutputPath>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Upload|ULX4M-LD ECP5-85K'">
+		<OutputPath>bin\</OutputPath>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Verify|ULX4M-LD ECP5-85K'">
 		<OutputPath>bin\</OutputPath>
 	</PropertyGroup>
 
@@ -487,6 +547,20 @@
 		<TargetsTriggeredByCompilation Condition=" '$(Platform)'=='ULX3S ECP5-85K' ">
 			$(TargetsTriggeredByCompilation);
 			Build_ULX3S
+		</TargetsTriggeredByCompilation>
+		<Description>Verilog Project</Description>
+	</PropertyGroup>
+
+
+	<PropertyGroup Label="ULX4M">
+		<!-- without this, result is: Task "CallTarget" skipped, due to false condition; ('$(TargetsTriggeredByCompilation)' != '') was evaluated as ('' != ''). -->
+		<TargetsTriggeredByCompilation Condition=" '$(Platform)'=='ULX4M-LS ECP5-12K' ">
+			$(TargetsTriggeredByCompilation);
+			Build_ULX4M
+		</TargetsTriggeredByCompilation>
+		<TargetsTriggeredByCompilation Condition=" '$(Platform)'=='ULX4M-LD ECP5-85K' ">
+			$(TargetsTriggeredByCompilation);
+			Build_ULX4M
 		</TargetsTriggeredByCompilation>
 		<Description>Verilog Project</Description>
 	</PropertyGroup>
@@ -766,6 +840,96 @@
 		</Exec>
 	</Target>
 
+
+	<!--
+	**********************************************************************************************************************************
+	ULX4M
+	**********************************************************************************************************************************
+	-->
+	<Target Name="Build_ULX4M" DependsOnTargets="InitFPGA" AfterTargets="InitFPGA" BeforeTargets="SwitchToAnyCpu" Condition=" '$(Platform)' == 'ULX4M-LS ECP5-12K' Or '$(Platform)' == 'ULX4M-LD ECP5-85K' ">
+		<Message Text="Conditional Build_ULX4M running...$(Configuration)|$(Platform)" />
+		<Message Text="Using Makefile=$(BitstreamMakefile)" />
+		<Message Text="Skipping ULX4M background build..." Condition=" '$(_AvoidTargetStep)' != ''"></Message>
+		<Exec Command="$(FoundWSL) (make $(BitstreamFilename) -f $(BitstreamMakefile) )" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high" Condition=" '$(_AvoidTargetStep)' == ''">
+			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
+		</Exec>
+		<PropertyGroup>
+			<SynthesisComplete>true</SynthesisComplete>
+		</PropertyGroup>
+	</Target>
+
+	<Target Name="Debug_ULX4M_LS_12K" DependsOnTargets="Build_ULX4M" AfterTargets="InitFPGA" BeforeTargets="SwitchToAnyCpu" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Debug|ULX4M-LS ECP5-12K|' ">
+		<Message Text="Conditional Debug_ULX4M_LS_12K running...$(Configuration)|$(Platform)" />
+		<CallTarget Targets="Build_ULX4M"></CallTarget>
+		<Error Text="$(BitstreamFilename) file not found!" Condition="!Exists('$(BitstreamFilename)')"></Error>
+	</Target>
+
+	<Target Name="Release_ULX4M_LS_12K" DependsOnTargets="Build_ULX4M" AfterTargets="InitFPGA" BeforeTargets="SwitchToAnyCpu" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Release|ULX4M-LS ECP5-12K|' ">
+		<Message Text="Conditional Release_ULX4M_LS_12K running...$(Configuration)|$(Platform)" />
+		<CallTarget Targets="Build_ULX4M"></CallTarget>
+		<Error Text="$(BitstreamFilename) file not found!" Condition="!Exists('$(BitstreamFilename)')"></Error>
+	</Target>
+
+	<Target Name="Upload_ULX4M_LS_12K" DependsOnTargets="Build_ULX4M" AfterTargets="InitFPGA" BeforeTargets="SwitchToAnyCpu" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Upload|ULX4M-LS ECP5-12K|' ">
+		<Message Text="Conditional Upload_ULX4M_LS_12K running...$(Configuration)|$(Platform)" />
+		<CallTarget Targets="Upload_ULX4M"></CallTarget>
+	</Target>
+
+	<Target Name="Verify_ULX4M_LS_12K" DependsOnTargets="Build_ULX4M" AfterTargets="InitFPGA" BeforeTargets="SwitchToAnyCpu" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Verify|ULX4M-LS ECP5-12K|' ">
+		<Message Text="Conditional Verify_ULX4M_LS_12K running...$(Configuration)|$(Platform)" />
+		<CallTarget Targets="Release_ULX4M_LS_12K"></CallTarget>
+		<Error Text="Verify Not implemented"></Error>
+		<Exec Command="$(FoundWSL) (echo not implemented )" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
+			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
+		</Exec>
+	</Target>
+
+	<Target Name="Debug_ULX4M_LD_85K" DependsOnTargets="Build_ULX4M" AfterTargets="InitFPGA" BeforeTargets="SwitchToAnyCpu" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Debug|ULX4M-LD ECP5-85K|' ">
+		<Message Text="Conditional Debug_ULX4M_LD_85K running...$(Configuration)|$(Platform)" />
+		<CallTarget Targets="Build_ULX4M"></CallTarget>
+		<Error Text="$(BitstreamFilename) file not found!" Condition="!Exists('$(BitstreamFilename)')"></Error>
+	</Target>
+
+	<Target Name="Release_ULX4M_LD_85K" DependsOnTargets="Build_ULX4M" AfterTargets="InitFPGA" BeforeTargets="SwitchToAnyCpu" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Release|ULX4M-LD ECP5-85K|' ">
+		<Message Text="Conditional Release_ULX4M_LD_85K running...$(Configuration)|$(Platform)" />
+		<CallTarget Targets="Build_ULX4M"></CallTarget>
+		<Error Text="$(BitstreamFilename) file not found!" Condition="!Exists('$(BitstreamFilename)')"></Error>
+	</Target>
+
+	<Target Name="Upload_ULX4M_LD_85K" DependsOnTargets="Build_ULX4M" AfterTargets="InitFPGA" BeforeTargets="SwitchToAnyCpu" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Upload|ULX4M-LD ECP5-85K|' ">
+		<Message Text="Conditional Upload_ULX4M_LD_85K running...$(Configuration)|$(Platform)" />
+		<CallTarget Targets="Upload_ULX4M"></CallTarget>
+	</Target>
+
+	<Target Name="Verify_ULX4M_LD_85K" DependsOnTargets="Build_ULX4M" AfterTargets="InitFPGA" BeforeTargets="SwitchToAnyCpu" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Verify|ULX4M-LD ECP5-85K|' ">
+		<Message Text="Conditional Verify_ULX4M_LD_85K running...$(Configuration)|$(Platform)" />
+		<CallTarget Targets="Release_ULX4M_LD_85K"></CallTarget>
+		<Error Text="Verify Not implemented"></Error>
+		<Exec Command="$(FoundWSL) (echo not implemented )" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
+			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
+		</Exec>
+	</Target>
+
+	<Target Name="Upload_ULX4M">
+		<Message Text="Upload_ULX4M..."></Message>
+		<Error Text="BitstreamFilename $(BitstreamFilename) cannot contain the text 'Failed.'" Condition="$(BitstreamFilename.Contains('Failed.'))"></Error>
+		<Error Text="$(BitstreamFilename) file not found!" Condition="!Exists('$(BitstreamFilename)')"></Error>
+		<Exec Command="$(BitstreamProgrammer) $(BitstreamFilename) " YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high" Condition=" '$(_AvoidTargetStep)' == ''">
+			<Output TaskParameter="ConsoleOutput" PropertyName="OutputOfExec" />
+		</Exec>
+		<Message Text="OutputOfExec=$(OutputOfExec)"></Message>
+		<PropertyGroup Condition="$(OutputOfExec.Contains('Failed.'))">
+			<UploadFailed>True</UploadFailed>
+		</PropertyGroup>
+		<Error Text="Upload Failed; $(OutputOfExec)" Condition=" '$(UploadFailed)'=='True' "></Error>
+	</Target>
+
+	<Target Name="Clean_ULX4M" AfterTargets="Clean" Condition=" '$(Platform)'=='ULX4M-LS ECP5-12K' Or '$(Platform)'=='ULX4M-LD ECP5-85K' ">
+		<Exec Command="$(FoundWSL) (make clean -f $(BitstreamMakefile) )" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
+			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
+		</Exec>
+	</Target>
+
 	<Target Name="LogStuffInRealTime" BeforeTargets="CoreCompile" Condition=" 1==2 ">
 		<Exec Command="ping 127.0.0.1 -n 6" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
 			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
@@ -1003,6 +1167,9 @@
 
 		<Error Text="BitstreamProgrammer_ULX3S cannot be blank" Condition=" ('$(BitstreamProgrammer_ULX3S)' == '')       And ('$(Configuration)|$(BitstreamProgrammerType)' == 'Upload|ULX3S') "></Error>
 		<Error Text="BitstreamProgrammer_ULX3S '$(BitstreamProgrammer_ULX3S)' not found" Condition=" !Exists('$(BitstreamProgrammer_ULX3S)')      And ('$(Configuration)|$(BitstreamProgrammerType)' == 'Upload|ULX3S') "></Error>
+
+		<Error Text="BitstreamProgrammer_ULX4M cannot be blank" Condition=" ('$(BitstreamProgrammer_ULX4M)' == '')       And ('$(Configuration)|$(BitstreamProgrammerType)' == 'Upload|ULX4M') "></Error>
+		<Error Text="BitstreamProgrammer_ULX4M '$(BitstreamProgrammer_ULX4M)' not found" Condition=" !Exists('$(BitstreamProgrammer_ULX4M)')      And ('$(Configuration)|$(BitstreamProgrammerType)' == 'Upload|ULX4M') "></Error>
 
 
 

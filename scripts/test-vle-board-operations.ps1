@@ -1024,7 +1024,7 @@ $script:Results | Group-Object Status | Sort-Object Name | ForEach-Object {
 }
 Write-Host "Summary JSON: $summaryPath"
 
-$failCount = ($script:Results | Where-Object { $_.Status -eq 'FAIL' }).Count
+$failCount = @($script:Results | Where-Object { $_.Status -eq 'FAIL' }).Count
 if ($failCount -gt 0) {
     Write-Error "Board operation check failed with $failCount failure(s)." -ErrorAction Continue
     exit 1

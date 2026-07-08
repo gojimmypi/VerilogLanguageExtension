@@ -1,4 +1,37 @@
-name: Text hygiene
+# file: .github/workflows/text-hygiene.yml
+#***************************************************************************
+#
+#  MIT License
+#
+#  Copyright (c) 2025-2026 gojimmypi
+#
+#  Permission is hereby granted, free of charge, to any person obtaining a copy
+#  of this software and associated documentation files (the "Software"), to deal
+#  in the Software without restriction, including without limitation the rights
+#  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+#  copies of the Software, and to permit persons to whom the Software is
+#  furnished to do so, subject to the following conditions:
+#
+#  The above copyright notice and this permission notice shall be included in all
+#  copies or substantial portions of the Software.
+#
+#  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+#  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+#  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+#  SOFTWARE.
+#
+#***************************************************************************
+#
+# Description:
+#   Checks repository text hygiene rules, including UTF-8 without BOM, CRLF line
+#   endings, final newlines, and disallowed characters. Some upstream/reference
+#   files are intentionally excluded because they do not follow repository text
+#   hygiene conventions.
+
+name: Check Repository Text Hygiene
 
 on:
   push:
@@ -7,11 +40,11 @@ on:
 
 jobs:
   text-hygiene:
-    name: Text hygiene
+    name: Check Repository Text Hygiene
     runs-on: windows-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout Repository
         uses: actions/checkout@v7
 
       - name: Check UTF-8, line endings, and bad characters

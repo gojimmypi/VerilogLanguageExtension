@@ -1,0 +1,151 @@
+name: VLE board FPGA build
+
+on:
+  push:
+    branches: [ main, master, development-main, code_polish ]
+    paths:
+      - "AddedExtensionProjectTemplates/VerilogProject/**"
+      - ".github/workflows/vle-board-fpga-build.yml"
+  pull_request:
+    paths:
+      - "AddedExtensionProjectTemplates/VerilogProject/**"
+      - ".github/workflows/vle-board-fpga-build.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  fpga-board-build:
+    name: ${{ matrix.board }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - board: ulx3s-12k
+            makefile: boards/ulx3s/Makefile-ULX3S-12F.mk
+            target: build/ulx3s-12k/ulx3s.bit
+            artifact_path: build/ulx3s-12k
+            forbidden_root_artifacts: top.json ulx3s_out.config ulx3s.bit
+          - board: ulx3s-25k
+            makefile: boards/ulx3s/Makefile-ULX3S-25F.mk
+            target: build/ulx3s-25k/ulx3s.bit
+            artifact_path: build/ulx3s-25k
+            forbidden_root_artifacts: top.json ulx3s_out.config ulx3s.bit
+          - board: ulx3s-45k
+            makefile: boards/ulx3s/Makefile-ULX3S-45F.mk
+            target: build/ulx3s-45k/ulx3s.bit
+            artifact_path: build/ulx3s-45k
+            forbidden_root_artifacts: top.json ulx3s_out.config ulx3s.bit
+          - board: ulx3s-85k
+            makefile: boards/ulx3s/Makefile-ULX3S-85F.mk
+            target: build/ulx3s-85k/ulx3s.bit
+            artifact_path: build/ulx3s-85k
+            forbidden_root_artifacts: top.json ulx3s_out.config ulx3s.bit
+          - board: icebreaker
+            makefile: boards/icebreaker/main.mk
+            target: build/icebreaker/top_icebreaker.bin
+            artifact_path: build/icebreaker
+            forbidden_root_artifacts: top_icebreaker.json top_icebreaker.asc top_icebreaker.bin top_icebreaker.rpt top_icebreaker.yslog top_icebreaker.nplog
+          - board: orangecrab
+            makefile: boards/orangecrab/Makefile
+            target: build/orangecrab/blink.dfu
+            artifact_path: build/orangecrab
+            forbidden_root_artifacts: blink.json blink_out.config blink.bit blink.dfu
+          - board: tinyfpga-bx
+            makefile: boards/tinyfpga_bx/Makefile
+            target: build/tinyfpga-bx/TinyFPGA_B.bin
+            artifact_path: build/tinyfpga-bx
+            forbidden_root_artifacts: TinyFPGA_B.blif TinyFPGA_B.json TinyFPGA_B.asc TinyFPGA_B.bin TinyFPGA_B.rpt TinyFPGA_B.yslog TinyFPGA_B.nplog
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: AddedExtensionProjectTemplates/VerilogProject
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up OSS CAD Suite
+        uses: YosysHQ/setup-oss-cad-suite@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install host utilities
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y dfu-util make
+
+      - name: Show tool versions
+        run: |
+          set -euo pipefail
+
+          for tool in yosys nextpnr-ecp5 nextpnr-ice40 ecppack icepack icetime dfu-suffix make; do
+              command -v "$tool"
+          done
+
+          yosys --version
+          nextpnr-ecp5 --version
+          nextpnr-ice40 --version
+          ecppack --version
+          make --version | head -n 1
+
+      - name: Dry-run board make target
+        env:
+          MAKEFILE: ${{ matrix.makefile }}
+          TARGET: ${{ matrix.target }}
+        run: |
+          set -euo pipefail
+          make -n "$TARGET" -f "$MAKEFILE"
+
+      - name: Clean board build directory
+        env:
+          MAKEFILE: ${{ matrix.makefile }}
+        run: |
+          set -euo pipefail
+          make clean -f "$MAKEFILE"
+
+      - name: Build board bitstream
+        env:
+          MAKEFILE: ${{ matrix.makefile }}
+          TARGET: ${{ matrix.target }}
+        run: |
+          set -euo pipefail
+          make "$TARGET" -f "$MAKEFILE"
+
+      - name: Verify build outputs
+        env:
+          TARGET: ${{ matrix.target }}
+          FORBIDDEN_ROOT_ARTIFACTS: ${{ matrix.forbidden_root_artifacts }}
+        run: |
+          set -euo pipefail
+
+          if [ ! -f "$TARGET" ]; then
+              echo "::error::Expected output was not created: $TARGET"
+              exit 1
+          fi
+
+          for artifact in $FORBIDDEN_ROOT_ARTIFACTS; do
+              if [ -e "$artifact" ]; then
+                  echo "::error::Generated artifact exists in project root: $artifact"
+                  exit 1
+              fi
+          done
+
+          find build -maxdepth 3 -type f | sort
+
+      - name: Upload board build artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vle-${{ matrix.board }}-fpga-build
+          path: AddedExtensionProjectTemplates/VerilogProject/${{ matrix.artifact_path }}/
+          if-no-files-found: error
+          retention-days: 7

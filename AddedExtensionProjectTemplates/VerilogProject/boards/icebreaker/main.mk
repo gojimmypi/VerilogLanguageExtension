@@ -8,13 +8,15 @@ ICEBREAKER_RPT := $(ICEBREAKER_BUILD_DIR)/$(PROJ).rpt
 ICEBREAKER_YSLOG := $(ICEBREAKER_BUILD_DIR)/$(PROJ).yslog
 ICEBREAKER_NPLOG := $(ICEBREAKER_BUILD_DIR)/$(PROJ).nplog
 ICEBREAKER_PCF := boards/icebreaker/icebreaker.pcf
+ICEBREAKER_VERILOG := boards/icebreaker/$(PROJ).v
+ICEBREAKER_TESTBENCH := boards/icebreaker/$(PROJ)_tb.v
 
 all: $(ICEBREAKER_RPT) $(ICEBREAKER_BIN)
 
 $(ICEBREAKER_BUILD_DIR):
 	mkdir -p $(ICEBREAKER_BUILD_DIR)
 
-$(ICEBREAKER_JSON): $(PROJ).v | $(ICEBREAKER_BUILD_DIR)
+$(ICEBREAKER_JSON): $(ICEBREAKER_VERILOG) | $(ICEBREAKER_BUILD_DIR)
 	yosys -ql $(ICEBREAKER_YSLOG) -p 'synth_ice40 -top top_icebreaker -json $@' $<
 
 $(ICEBREAKER_ASC): $(ICEBREAKER_JSON) $(ICEBREAKER_PCF) | $(ICEBREAKER_BUILD_DIR)
@@ -26,7 +28,7 @@ $(ICEBREAKER_BIN): $(ICEBREAKER_ASC) | $(ICEBREAKER_BUILD_DIR)
 $(ICEBREAKER_RPT): $(ICEBREAKER_ASC) | $(ICEBREAKER_BUILD_DIR)
 	icetime -d up5k -c 12 -mtr $@ $<
 
-$(PROJ)_tb: $(PROJ)_tb.v $(PROJ).v
+$(PROJ)_tb: $(ICEBREAKER_TESTBENCH) $(ICEBREAKER_VERILOG)
 	iverilog -o $@ $^
 
 $(PROJ)_tb.vcd: $(PROJ)_tb
@@ -35,7 +37,7 @@ $(PROJ)_tb.vcd: $(PROJ)_tb
 $(PROJ)_syn.v: $(ICEBREAKER_JSON)
 	yosys -p 'read_json $^; write_verilog $@'
 
-$(PROJ)_syntb: $(PROJ)_tb.v $(PROJ)_syn.v
+$(PROJ)_syntb: $(ICEBREAKER_TESTBENCH) $(PROJ)_syn.v
 	iverilog -o $@ $^ `yosys-config --datdir/ice40/cells_sim.v`
 
 $(PROJ)_syntb.vcd: $(PROJ)_syntb

@@ -1,6 +1,8 @@
 
 echo This will close all running Visual Studio instances before reinstalling the VLE VSIX.
+REM *************************************************************************
 choice /C YN /N /M "Continue and close all Visual Studio instances? [Y/N] "
+REM *************************************************************************
 if errorlevel 2 (
     echo Aborted. No Visual Studio instances were closed.
     exit /b 1
@@ -12,8 +14,28 @@ cd /d C:\workspace\VerilogLanguageExtension
 @echo Stop tasks: %TIME%
 taskkill /f /im devenv.exe 2>nul
 
+REM *************************************************************************
+choice /C YN /N /M "Update and overwrite Project Template Zip? [Y/N] "
+REM *************************************************************************
+if errorlevel 2 (
+    echo Skipping Project Template Zip refresh and test.
+    goto AfterProjectTemplateZipUpdate
+)
+
+@echo Refresh Project Template Zip (Build-ProjectTemplates.ps1): %TIME%
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\templates\Build-ProjectTemplates.ps1 -RepoRoot "%CD%"
+if errorlevel 1 exit /b 1
+
+REM  @echo Test Project Template Zip (Test-ProjectTemplate.ps1): %TIME%
+REM  powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\templates\Test-ProjectTemplate.ps1 -RepoRoot "%CD%"
+REM  if errorlevel 1 exit /b 1
+
+REM *************************************************************************
+:AfterProjectTemplateZipUpdate
+REM *************************************************************************
+
 @echo Restore, rebuild: %TIME%
-msbuild VerilogLanguageExtension.sln /restore /t:Rebuild /p:Configuration=Debug /p:Platform="Any CPU" /v:minimal
+msbuild VerilogLanguageExtension.sln /restore /t:Rebuild /p:Configuration=Debug /p:Platform="Any CPU" /p:DeployExtension=false /v:minimal
 if errorlevel 1 exit /b 1
 
 @echo Confirm templateManifest Verilog.vstemplate: %TIME%

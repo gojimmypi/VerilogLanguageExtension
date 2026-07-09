@@ -1,3 +1,0 @@
-shell mkdir -p build/ulx3s
-read_verilog top.v
-synth_ecp5 -noccu2 -nomux -nodram -json build/ulx3s/ulx3s.json

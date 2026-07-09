@@ -1,3 +1,0 @@
-shell mkdir -p build/ulx3s
-read_verilog top.v
-synth_ecp5 -json build/ulx3s/top.json

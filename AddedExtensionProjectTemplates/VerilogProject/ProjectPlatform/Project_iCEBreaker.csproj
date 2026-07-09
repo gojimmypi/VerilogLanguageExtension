@@ -42,7 +42,7 @@
 	</Target>
 
 	<!-- Debug iCEBreaker-->
-	<Target Name="Debug_iCEBreaker" Inputs="top_icebreaker.v" Outputs="$(BitstreamFilename)" BeforeTargets="CoreCompile" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Debug|iCEBreaker|' ">
+	<Target Name="Debug_iCEBreaker" Inputs="boards/icebreaker/top_icebreaker.v" Outputs="$(BitstreamFilename)" BeforeTargets="CoreCompile" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Debug|iCEBreaker|' ">
 		<Message Text="Build_iCEBreaker $(Configuration)|$(Platform)" />
 		<Exec Command="$(FoundWSL) (make -f boards/icebreaker/main.mk)" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
 			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />
@@ -50,7 +50,7 @@
 	</Target>
 
 	<!-- Release iCEBreaker-->
-	<Target Name="Release_iCEBreaker" Inputs="top_icebreaker.v" Outputs="$(BitstreamFilename)" BeforeTargets="CoreCompile" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Release|iCEBreaker|' ">
+	<Target Name="Release_iCEBreaker" Inputs="boards/icebreaker/top_icebreaker.v" Outputs="$(BitstreamFilename)" BeforeTargets="CoreCompile" Condition=" '$(Configuration)|$(Platform)|$(_AvoidTargetStep)'=='Release|iCEBreaker|' ">
 		<Message Text="Build_iCEBreaker $(Configuration)|$(Platform)" />
 		<Exec Command="$(FoundWSL) (make -f boards/icebreaker/main.mk)" YieldDuringToolExecution="True" ConsoleToMSBuild="true" StandardOutputImportance="high">
 			<Output TaskParameter="ConsoleOutput" ItemName="OutputOfExec" />

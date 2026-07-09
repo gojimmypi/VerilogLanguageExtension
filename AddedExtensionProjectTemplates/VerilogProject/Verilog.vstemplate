@@ -40,6 +40,7 @@
 					<ProjectItem ReplaceParameters="false" TargetFileName="icebreaker.pcf">icebreaker.pcf</ProjectItem>
 					<ProjectItem ReplaceParameters="true" TargetFileName="main.mk">main.mk</ProjectItem>
 					<ProjectItem ReplaceParameters="false" TargetFileName="README.md">README.md</ProjectItem>
+					<ProjectItem ReplaceParameters="false" TargetFileName="top_icebreaker.v">top_icebreaker.v</ProjectItem>
 				</Folder>
 				<Folder Name="icestick" TargetFolderName="icestick">
 					<ProjectItem ReplaceParameters="false" TargetFileName="README.md">README.md</ProjectItem>
@@ -60,6 +61,10 @@
 					<ProjectItem ReplaceParameters="true" TargetFileName="Makefile-ULX3S-25F.mk">Makefile-ULX3S-25F.mk</ProjectItem>
 					<ProjectItem ReplaceParameters="true" TargetFileName="Makefile-ULX3S-45F.mk">Makefile-ULX3S-45F.mk</ProjectItem>
 					<ProjectItem ReplaceParameters="true" TargetFileName="Makefile-ULX3S-85F.mk">Makefile-ULX3S-85F.mk</ProjectItem>
+					<ProjectItem ReplaceParameters="false" TargetFileName="top.v">top.v</ProjectItem>
+					<ProjectItem ReplaceParameters="false" TargetFileName="top.ys">top.ys</ProjectItem>
+					<ProjectItem ReplaceParameters="false" TargetFileName="ulx3s.ys">ulx3s.ys</ProjectItem>
+					<ProjectItem ReplaceParameters="true" TargetFileName="ulx3s_empty.config">ulx3s_empty.config</ProjectItem>
 					<ProjectItem ReplaceParameters="false" TargetFileName="ulx3s_v20.lpf">ulx3s_v20.lpf</ProjectItem>
 				</Folder>
 				<Folder Name="ulx4m" TargetFolderName="ulx4m">
@@ -80,15 +85,9 @@
 				<ProjectItem ReplaceParameters="false" TargetFileName="export_template.png">export_template.png</ProjectItem>
 			</Folder>
 			<ProjectItem ReplaceParameters="true" TargetFileName="App.config">App.config</ProjectItem>
-			<ProjectItem ReplaceParameters="true" TargetFileName="blinky.json">blinky.json</ProjectItem>
 			<ProjectItem ReplaceParameters="false" TargetFileName="dtest.bat">dtest.bat</ProjectItem>
 			<ProjectItem ReplaceParameters="true" TargetFileName="Program.cs">Program.cs</ProjectItem>
 			<ProjectItem ReplaceParameters="false" TargetFileName="README.md">README.md</ProjectItem>
-			<ProjectItem ReplaceParameters="false" TargetFileName="top.v">top.v</ProjectItem>
-			<ProjectItem ReplaceParameters="false" TargetFileName="top.ys">top.ys</ProjectItem>
-			<ProjectItem ReplaceParameters="false" TargetFileName="top_icebreaker.v">top_icebreaker.v</ProjectItem>
-			<ProjectItem ReplaceParameters="false" TargetFileName="ulx3s.ys">ulx3s.ys</ProjectItem>
-			<ProjectItem ReplaceParameters="true" TargetFileName="ulx3s_empty.config">ulx3s_empty.config</ProjectItem>
 			<ProjectItem ReplaceParameters="false" TargetFileName="Verilog.ico">Verilog.ico</ProjectItem>
 		</Project>
 	</TemplateContent>

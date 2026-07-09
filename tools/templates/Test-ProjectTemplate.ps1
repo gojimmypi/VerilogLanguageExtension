@@ -4,7 +4,7 @@
 
 [CmdletBinding()]
 param(
-    [string]$RepoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..\..")).Path,
+    [string]$RepoRoot,
     [string]$TemplateName = "VerilogProject",
     [string]$TemplateLanguage = "CSharp",
     [string]$TemplateLocale = "1033"
@@ -12,6 +12,15 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ([string]::IsNullOrWhiteSpace($RepoRoot)) {
+    $scriptRoot = $PSScriptRoot
+    if ([string]::IsNullOrWhiteSpace($scriptRoot)) {
+        $scriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
+    }
+
+    $RepoRoot = (Resolve-Path (Join-Path $scriptRoot "..\..")).Path
+}
 
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 
@@ -216,7 +225,7 @@ try {
         }
         $text = Read-ZipEntryText $archive $entryName
         foreach ($pattern in $badLocalPatterns) {
-            Assert-True ($text -notlike "*$pattern*") "Local machine path found in $entryName: $pattern"
+            Assert-True ($text -notlike "*$pattern*") "Local machine path found in ${entryName}: $pattern"
         }
     }
 

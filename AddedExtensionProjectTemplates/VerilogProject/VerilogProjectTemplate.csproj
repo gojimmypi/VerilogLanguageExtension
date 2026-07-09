@@ -68,6 +68,7 @@
     <None Include="boards\icebreaker\icebreaker.pcf" />
     <None Include="boards\icebreaker\main.mk" />
     <None Include="boards\icebreaker\README.md" />
+    <None Include="boards\icebreaker\top_icebreaker.v" />
     <None Include="boards\icestick\README.md" />
     <None Include="boards\orangecrab\blink.v" />
     <None Include="boards\orangecrab\Makefile" />
@@ -80,6 +81,10 @@
     <None Include="boards\ulx3s\Makefile-ULX3S-25F.mk" />
     <None Include="boards\ulx3s\Makefile-ULX3S-45F.mk" />
     <None Include="boards\ulx3s\Makefile-ULX3S-85F.mk" />
+    <None Include="boards\ulx3s\top.v" />
+    <None Include="boards\ulx3s\top.ys" />
+    <None Include="boards\ulx3s\ulx3s.ys" />
+    <None Include="boards\ulx3s\ulx3s_empty.config" />
     <None Include="boards\ulx3s\ulx3s_v20.lpf" />
     <None Include="boards\ulx4m\Makefile-ULX4M-LS-12F.mk" />
     <None Include="boards\ulx4m\Makefile-ULX4M-LD-85F.mk" />
@@ -92,15 +97,9 @@
     <None Include="scripts\vs-prog.bat" />
     <None Include="images\export_template.png" />
     <None Include="App.config" />
-    <None Include="blinky.json" />
     <None Include="dtest.bat" />
     <None Include="Program.cs" />
     <None Include="README.md" />
-    <None Include="top.v" />
-    <None Include="top.ys" />
-    <None Include="top_icebreaker.v" />
-    <None Include="ulx3s.ys" />
-    <None Include="ulx3s_empty.config" />
     <None Include="Verilog.ico" />
     <None Include="__PreviewImage.png" />
   </ItemGroup>

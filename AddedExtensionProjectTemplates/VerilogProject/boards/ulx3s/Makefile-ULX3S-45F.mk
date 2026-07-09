@@ -1,7 +1,7 @@
 .PHONY: all
 .DELETE_ON_ERROR:
 TOPMOD  := top
-VLOGFIL := $(TOPMOD).v
+VLOGFIL := boards/ulx3s/$(TOPMOD).v
 VCDFILE := $(TOPMOD).vcd
 SIMPROG := $(TOPMOD)_tb
 RPTFILE := $(TOPMOD).rpt
@@ -36,7 +36,7 @@ VERILATOR_ROOT ?= $(shell bash -c '$(VERILATOR) -V|grep VERILATOR_ROOT | head -1
 ## The directory containing the verilator includes
 VINC := $(VERILATOR_ROOT)/include
 
-$(VDIRFB)/V$(TOPMOD).cpp: $(TOPMOD).v
+$(VDIRFB)/V$(TOPMOD).cpp: $(VLOGFIL)
 	$(VERILATOR) $(VFLAGS) -cc $(VLOGFIL)
 
 $(VDIRFB)/V$(TOPMOD)__ALL.a: $(VDIRFB)/V$(TOPMOD).cpp
@@ -83,8 +83,8 @@ $(ULX3S_BIT): $(ULX3S_CONFIG) | $(ULX3S_BUILD_DIR)
 $(ULX3S_CONFIG): $(ULX3S_JSON) $(ULX3S_LPF) | $(ULX3S_BUILD_DIR)
 	nextpnr-ecp5 --45k --json $(ULX3S_JSON) --lpf $(ULX3S_LPF) --textcfg $(ULX3S_CONFIG)
 
-$(ULX3S_JSON): top.v | $(ULX3S_BUILD_DIR)
-	yosys -ql $(ULX3S_LOG) -p 'read_verilog top.v; synth_ecp5 -json $(ULX3S_JSON)'
+$(ULX3S_JSON): $(VLOGFIL) | $(ULX3S_BUILD_DIR)
+	yosys -ql $(ULX3S_LOG) -p 'read_verilog $(VLOGFIL); synth_ecp5 -json $(ULX3S_JSON)'
 
 prog: $(ULX3S_BIT)
 	/mnt/c/workspace/ulx3s-examples/bin/ujprog.exe $(ULX3S_BIT)

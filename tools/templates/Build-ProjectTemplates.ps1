@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param(
-    [string]$RepoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..\..")).Path,
+    [string]$RepoRoot,
     [string]$TemplateName = "VerilogProject",
     [string]$TemplateLanguage = "CSharp",
     [string]$TemplateLocale = "1033"
@@ -8,6 +8,15 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ([string]::IsNullOrWhiteSpace($RepoRoot)) {
+    $scriptRoot = $PSScriptRoot
+    if ([string]::IsNullOrWhiteSpace($scriptRoot)) {
+        $scriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
+    }
+
+    $RepoRoot = (Resolve-Path (Join-Path $scriptRoot "..\..")).Path
+}
 
 function Join-TemplatePath {
     param(

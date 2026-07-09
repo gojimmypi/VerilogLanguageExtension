@@ -24,7 +24,7 @@ $files = @(
     'AddedExtensionProjectTemplates\Verilog Project\ProjectPlatform\Project_iCEBreaker.csproj',
     'AddedExtensionProjectTemplates\Verilog Project\ProjectPlatform\Project_ULX3S.csproj',
     'AddedExtensionProjectTemplates\Verilog Project\ProjectPlatform\UserDefined.csproj',
-    'AddedExtensionProjectTemplates\Verilog Project\ProjectTemplate.csproj',
+#   'AddedExtensionProjectTemplates\Verilog Project\ProjectTemplate.csproj',
     'AddedExtensionProjectTemplates\Verilog Project\Properties\AssemblyInfo.cs',
     'AddedExtensionProjectTemplates\Verilog Project\README.md',
     'AddedExtensionProjectTemplates\Verilog Project\top_icebreaker.v',

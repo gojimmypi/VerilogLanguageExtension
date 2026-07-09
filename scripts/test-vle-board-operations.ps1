@@ -291,7 +291,7 @@ function Get-BoardSpecs {
             -UploadTarget 'Upload_ULX3S_12K' `
             -VerifyTarget 'Verify_ULX3S_12K' `
             -CleanTarget 'Clean_ULX3S' `
-            -RequiredFiles @('top.v', 'boards/ulx3s/ulx3s_v20.lpf', 'boards/ulx3s/Makefile-ULX3S-12F.mk') `
+            -RequiredFiles @('boards/ulx3s/top.v', 'boards/ulx3s/top.ys', 'boards/ulx3s/ulx3s.ys', 'boards/ulx3s/ulx3s_empty.config', 'boards/ulx3s/ulx3s_v20.lpf', 'boards/ulx3s/Makefile-ULX3S-12F.mk') `
             -ForbiddenRootArtifacts @('top.json', 'ulx3s_out.config', 'ulx3s.bit')),
 
         (New-BoardSpec `
@@ -306,7 +306,7 @@ function Get-BoardSpecs {
             -UploadTarget 'Upload_ULX3S_25K' `
             -VerifyTarget 'Verify_ULX3S_25K' `
             -CleanTarget 'Clean_ULX3S' `
-            -RequiredFiles @('top.v', 'boards/ulx3s/ulx3s_v20.lpf', 'boards/ulx3s/Makefile-ULX3S-25F.mk') `
+            -RequiredFiles @('boards/ulx3s/top.v', 'boards/ulx3s/top.ys', 'boards/ulx3s/ulx3s.ys', 'boards/ulx3s/ulx3s_empty.config', 'boards/ulx3s/ulx3s_v20.lpf', 'boards/ulx3s/Makefile-ULX3S-25F.mk') `
             -ForbiddenRootArtifacts @('top.json', 'ulx3s_out.config', 'ulx3s.bit')),
 
         (New-BoardSpec `
@@ -321,7 +321,7 @@ function Get-BoardSpecs {
             -UploadTarget 'Upload_ULX3S_45K' `
             -VerifyTarget 'Verify_ULX3S_45K' `
             -CleanTarget 'Clean_ULX3S' `
-            -RequiredFiles @('top.v', 'boards/ulx3s/ulx3s_v20.lpf', 'boards/ulx3s/Makefile-ULX3S-45F.mk') `
+            -RequiredFiles @('boards/ulx3s/top.v', 'boards/ulx3s/top.ys', 'boards/ulx3s/ulx3s.ys', 'boards/ulx3s/ulx3s_empty.config', 'boards/ulx3s/ulx3s_v20.lpf', 'boards/ulx3s/Makefile-ULX3S-45F.mk') `
             -ForbiddenRootArtifacts @('top.json', 'ulx3s_out.config', 'ulx3s.bit')),
 
         (New-BoardSpec `
@@ -336,7 +336,7 @@ function Get-BoardSpecs {
             -UploadTarget 'Upload_ULX3S_85K' `
             -VerifyTarget 'Verify_ULX3S_85K' `
             -CleanTarget 'Clean_ULX3S' `
-            -RequiredFiles @('top.v', 'boards/ulx3s/ulx3s_v20.lpf', 'boards/ulx3s/Makefile-ULX3S-85F.mk') `
+            -RequiredFiles @('boards/ulx3s/top.v', 'boards/ulx3s/top.ys', 'boards/ulx3s/ulx3s.ys', 'boards/ulx3s/ulx3s_empty.config', 'boards/ulx3s/ulx3s_v20.lpf', 'boards/ulx3s/Makefile-ULX3S-85F.mk') `
             -ForbiddenRootArtifacts @('top.json', 'ulx3s_out.config', 'ulx3s.bit')),
 
         (New-BoardSpec `
@@ -381,7 +381,7 @@ function Get-BoardSpecs {
             -UploadTarget 'Upload_iCEBreaker' `
             -VerifyTarget 'Verify_iCEBreaker' `
             -CleanTarget 'Clean_iCEBreaker' `
-            -RequiredFiles @('top_icebreaker.v', 'boards/icebreaker/icebreaker.pcf', 'boards/icebreaker/main.mk') `
+            -RequiredFiles @('boards/icebreaker/top_icebreaker.v', 'boards/icebreaker/icebreaker.pcf', 'boards/icebreaker/main.mk') `
             -ForbiddenRootArtifacts @('top_icebreaker.json', 'top_icebreaker.asc', 'top_icebreaker.bin', 'top_icebreaker.rpt', 'top_icebreaker.yslog', 'top_icebreaker.nplog')),
 
         (New-BoardSpec `

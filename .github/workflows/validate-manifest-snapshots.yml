@@ -51,14 +51,14 @@ jobs:
       - name: Build Solution (Release)
         shell: pwsh
         run: |
-          @echo Calling msbuild Configuration=Release
+          Write-Host "Calling msbuild Configuration=Release"
 
           msbuild .\VerilogLanguageExtension.sln /m /restore /p:Configuration=Release
 
       - name: Validate Manifest
         shell: pwsh
         run: |
-          @echo Calling .\scripts\create-testfile-manifest.ps1
+          Write-Host "Calling .\scripts\create-testfile-manifest.ps1"
 
           .\scripts\create-testfile-manifest.ps1
 

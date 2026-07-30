@@ -2,7 +2,10 @@
     "DelayMs":  3000,
     "RunName":  "all-testfiles",
     "Files":  [
-                  "TestFiles/z386.sv"
+                  {
+                      "Path":  "TestFiles\\z386.sv",
+                      "SnapshotFileName":  "0054-z386.sv.snapshot.json"
+                  }
               ],
-    "FreshInstancePerFile":  false
+    "FreshInstancePerFile":  true
 }

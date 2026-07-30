@@ -8,7 +8,9 @@ param(
     [string]$SourceFile,
 
     [ValidateRange(1, 3600)]
-    [int]$MaxWaitSeconds = 180
+    [int]$MaxWaitSeconds = 180,
+
+    [switch]$UpdateExisting
 )
 
 Set-StrictMode -Version Latest
@@ -165,28 +167,39 @@ $baselinePath = ""
 $baselineTempPath = ""
 $manifestTempPath = "$manifestPath.$PID.tmp"
 $baselineInstalled = $false
+$originalBaseline = $null
 $completed = $false
 
 try {
-    Write-Host "Adding baseline for $relativeSource"
+    $operationName = if ($UpdateExisting.IsPresent) { "Updating" } else { "Adding" }
+    Write-Host "$operationName baseline for $relativeSource"
 
-    # This updates the filename manifest only. It does not export all test files.
-    $manifestArgs = @{
-        ManifestPath = $manifestRelative
-        BaselineDir = $baselineDirRelative
-    }
-    if ($null -ne $originalManifestJson) {
-        if ($null -ne $originalManifestJson.PSObject.Properties["DelayMs"]) {
-            $manifestArgs["DelayMs"] = [int]$originalManifestJson.DelayMs
+    if ($UpdateExisting.IsPresent) {
+        if (!$manifestExisted) {
+            throw "Cannot update a baseline without the existing manifest: $manifestPath"
         }
-        if ($null -ne $originalManifestJson.PSObject.Properties["MaxWaitSeconds"]) {
-            $manifestArgs["MaxWaitSeconds"] = [int]$originalManifestJson.MaxWaitSeconds
-        }
+
+        # An existing-file update must not regenerate or reformat the manifest.
+        $manifest = Read-JsonFile -Path $manifestPath
     }
+    else {
+        # This updates the filename manifest only. It does not export all test files.
+        $manifestArgs = @{
+            ManifestPath = $manifestRelative
+            BaselineDir = $baselineDirRelative
+        }
+        if ($null -ne $originalManifestJson) {
+            if ($null -ne $originalManifestJson.PSObject.Properties["DelayMs"]) {
+                $manifestArgs["DelayMs"] = [int]$originalManifestJson.DelayMs
+            }
+            if ($null -ne $originalManifestJson.PSObject.Properties["MaxWaitSeconds"]) {
+                $manifestArgs["MaxWaitSeconds"] = [int]$originalManifestJson.MaxWaitSeconds
+            }
+        }
 
-    & $createManifestScript @manifestArgs
-
-    $manifest = Read-JsonFile -Path $manifestPath
+        & $createManifestScript @manifestArgs
+        $manifest = Read-JsonFile -Path $manifestPath
+    }
     $matches = @($manifest.Files | Where-Object {
             (Get-NormalizedPath -Path ([string]$_.Path)) -eq $normalizedSource
         })
@@ -199,15 +212,25 @@ try {
     if ([string]::IsNullOrWhiteSpace([string]$entry.SnapshotFileName)) {
         throw "Manifest entry has no stable SnapshotFileName: $relativeSource"
     }
-    if (![bool]$entry.IsNew) {
-        throw "File is not marked new; refusing to replace an existing baseline: $relativeSource"
+    $entryIsNew = [bool]$entry.IsNew
+    if ($UpdateExisting.IsPresent -and $entryIsNew) {
+        throw "File is still marked new; omit -UpdateExisting to add its first baseline: $relativeSource"
+    }
+    if (!$UpdateExisting.IsPresent -and !$entryIsNew) {
+        throw "File already has an approved baseline. Use -UpdateExisting after reviewing the semantic diff: $relativeSource"
     }
 
     New-Item -ItemType Directory -Force -Path $baselineDir | Out-Null
     $baselinePath = Join-Path $baselineDir ([string]$entry.SnapshotFileName)
     $baselineTempPath = "$baselinePath.$PID.tmp"
 
-    if (Test-Path -LiteralPath $baselinePath) {
+    if ($UpdateExisting.IsPresent) {
+        if (!(Test-Path -LiteralPath $baselinePath -PathType Leaf)) {
+            throw "Approved baseline not found for update: $baselinePath"
+        }
+        $originalBaseline = [System.IO.File]::ReadAllBytes($baselinePath)
+    }
+    elseif (Test-Path -LiteralPath $baselinePath) {
         throw "Baseline already exists; refusing to overwrite it: $baselinePath"
     }
 
@@ -218,15 +241,23 @@ try {
             -ErrorAction SilentlyContinue)) {
         $candidateSnapshot = Read-JsonFile -Path $candidate.FullName
         $candidateSource = Get-SnapshotSourcePath -Snapshot $candidateSnapshot -RepoRoot $repoRoot
-        if ((Get-NormalizedPath -Path $candidateSource) -eq $normalizedSource) {
-            throw "A baseline for this source already exists: $($candidate.FullName)"
+        if ((Get-NormalizedPath -Path $candidateSource) -eq $normalizedSource -and
+                ![string]::Equals($candidate.FullName, $baselinePath, [System.StringComparison]::OrdinalIgnoreCase)) {
+            throw "A second baseline for this source already exists: $($candidate.FullName)"
         }
     }
 
     # check-file.ps1 recreates the single-testfile output and opens only this file.
-    & $checkFileScript `
-        -SourceFile $relativeSource `
-        -MaxWaitSeconds $MaxWaitSeconds
+    $checkArgs = @{
+        SourceFile = $relativeSource
+        MaxWaitSeconds = $MaxWaitSeconds
+        CloseVisualStudioWhenDone = $true
+    }
+    if ($UpdateExisting.IsPresent) {
+        $checkArgs["AllowBaselineDifference"] = $true
+    }
+
+    & $checkFileScript @checkArgs
 
     $currentSnapshots = @(Get-ChildItem `
             -LiteralPath $outputDir `
@@ -256,13 +287,18 @@ try {
         throw "Staged baseline verification failed."
     }
 
-    # Accept only the requested entry. Other IsNew entries remain unchanged.
-    $entry.IsNew = $false
-    Write-JsonFile -Path $manifestTempPath -Value $manifest
+    # Accept only the requested new entry. Existing-file updates leave the
+    # manifest byte-for-byte unchanged.
+    if ($entryIsNew) {
+        $entry.IsNew = $false
+        Write-JsonFile -Path $manifestTempPath -Value $manifest
+    }
 
-    Move-Item -LiteralPath $baselineTempPath -Destination $baselinePath
+    Move-Item -LiteralPath $baselineTempPath -Destination $baselinePath -Force
     $baselineInstalled = $true
-    Move-Item -LiteralPath $manifestTempPath -Destination $manifestPath -Force
+    if ($entryIsNew) {
+        Move-Item -LiteralPath $manifestTempPath -Destination $manifestPath -Force
+    }
 
     $installedManifest = Read-JsonFile -Path $manifestPath
     $installedMatches = @($installedManifest.Files | Where-Object {
@@ -285,7 +321,12 @@ finally {
 
     if (!$completed) {
         if ($baselineInstalled -and (Test-Path -LiteralPath $baselinePath)) {
-            Remove-Item -LiteralPath $baselinePath -Force
+            if ($null -ne $originalBaseline) {
+                [System.IO.File]::WriteAllBytes($baselinePath, $originalBaseline)
+            }
+            else {
+                Remove-Item -LiteralPath $baselinePath -Force
+            }
         }
 
         if ($manifestExisted) {
@@ -298,7 +339,8 @@ finally {
 }
 
 Write-Host ""
-Write-Host "Baseline added successfully:"
+$completedVerb = if ($UpdateExisting.IsPresent) { "updated" } else { "added" }
+Write-Host "Baseline $completedVerb successfully:"
 Write-Host "  Source:   $relativeSource"
 Write-Host "  Snapshot: $baselineDirRelative\$($entry.SnapshotFileName)"
 Write-Host "  Full baseline refresh: not run"

@@ -23,6 +23,16 @@
                                           ]
                             },
                             {
+                                "Start":  68,
+                                "Length":  5,
+                                "Line":  3,
+                                "Column":  1,
+                                "Text":  "logic",
+                                "Types":  [
+                                              "SystemVerilogYosysSupported"
+                                          ]
+                            },
+                            {
                                 "Start":  74,
                                 "Length":  1,
                                 "Line":  3,
@@ -40,6 +50,16 @@
                                 "Text":  "0",
                                 "Types":  [
                                               "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  81,
+                                "Length":  9,
+                                "Line":  4,
+                                "Column":  1,
+                                "Text":  "always_ff",
+                                "Types":  [
+                                              "SystemVerilogYosysSupported"
                                           ]
                             },
                             {
@@ -143,6 +163,16 @@
                                           ]
                             },
                             {
+                                "Start":  170,
+                                "Length":  5,
+                                "Line":  6,
+                                "Column":  1,
+                                "Text":  "logic",
+                                "Types":  [
+                                              "SystemVerilogYosysSupported"
+                                          ]
+                            },
+                            {
                                 "Start":  176,
                                 "Length":  4,
                                 "Line":  6,
@@ -170,6 +200,26 @@
                                 "Text":  "// 1 1 1 1 1 1 ...",
                                 "Types":  [
                                               "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  212,
+                                "Length":  3,
+                                "Line":  8,
+                                "Column":  6,
+                                "Text":  "new",
+                                "Types":  [
+                                              "SystemVerilogYosysUnsupported"
+                                          ]
+                            },
+                            {
+                                "Start":  278,
+                                "Length":  5,
+                                "Line":  13,
+                                "Column":  1,
+                                "Text":  "logic",
+                                "Types":  [
+                                              "SystemVerilogYosysSupported"
                                           ]
                             },
                             {
@@ -203,6 +253,16 @@
                                           ]
                             },
                             {
+                                "Start":  309,
+                                "Length":  5,
+                                "Line":  14,
+                                "Column":  1,
+                                "Text":  "logic",
+                                "Types":  [
+                                              "SystemVerilogYosysSupported"
+                                          ]
+                            },
+                            {
                                 "Start":  315,
                                 "Length":  7,
                                 "Line":  14,
@@ -230,6 +290,16 @@
                                 "Text":  "// OK constant 1",
                                 "Types":  [
                                               "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  348,
+                                "Length":  5,
+                                "Line":  16,
+                                "Column":  1,
+                                "Text":  "logic",
+                                "Types":  [
+                                              "SystemVerilogYosysSupported"
                                           ]
                             },
                             {
@@ -290,6 +360,16 @@
                                 "Text":  "// subsequently changes",
                                 "Types":  [
                                               "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  428,
+                                "Length":  5,
+                                "Line":  18,
+                                "Column":  1,
+                                "Text":  "logic",
+                                "Types":  [
+                                              "SystemVerilogYosysSupported"
                                           ]
                             },
                             {
@@ -485,6 +565,16 @@
                      "HoverText":  null
                  },
                  {
+                     "Start":  68,
+                     "Length":  5,
+                     "Line":  3,
+                     "Column":  1,
+                     "Text":  "logic",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemVerilogYosysSupported",
+                     "HoverText":  null
+                 },
+                 {
                      "Start":  74,
                      "Length":  1,
                      "Line":  3,
@@ -502,6 +592,16 @@
                      "Text":  "0",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  81,
+                     "Length":  9,
+                     "Line":  4,
+                     "Column":  1,
+                     "Text":  "always_ff",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemVerilogYosysSupported",
                      "HoverText":  null
                  },
                  {
@@ -645,6 +745,16 @@
                      "HoverText":  null
                  },
                  {
+                     "Start":  170,
+                     "Length":  5,
+                     "Line":  6,
+                     "Column":  1,
+                     "Text":  "logic",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemVerilogYosysSupported",
+                     "HoverText":  null
+                 },
+                 {
                      "Start":  176,
                      "Length":  4,
                      "Line":  6,
@@ -692,6 +802,26 @@
                      "Text":  "1 1 1 1 1 1 ...",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  212,
+                     "Length":  3,
+                     "Line":  8,
+                     "Column":  6,
+                     "Text":  "new",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemVerilogYosysUnsupported",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  278,
+                     "Length":  5,
+                     "Line":  13,
+                     "Column":  1,
+                     "Text":  "logic",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemVerilogYosysSupported",
                      "HoverText":  null
                  },
                  {
@@ -785,6 +915,16 @@
                      "HoverText":  null
                  },
                  {
+                     "Start":  309,
+                     "Length":  5,
+                     "Line":  14,
+                     "Column":  1,
+                     "Text":  "logic",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemVerilogYosysSupported",
+                     "HoverText":  null
+                 },
+                 {
                      "Start":  315,
                      "Length":  7,
                      "Line":  14,
@@ -872,6 +1012,16 @@
                      "Text":  "1",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  348,
+                     "Length":  5,
+                     "Line":  16,
+                     "Column":  1,
+                     "Text":  "logic",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemVerilogYosysSupported",
                      "HoverText":  null
                  },
                  {
@@ -1042,6 +1192,16 @@
                      "Text":  "changes",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  428,
+                     "Length":  5,
+                     "Line":  18,
+                     "Column":  1,
+                     "Text":  "logic",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemVerilogYosysSupported",
                      "HoverText":  null
                  },
                  {
@@ -2827,7 +2987,7 @@
                            "SchemaVersion":  2,
                            "ElapsedBucket":  "10-14s",
                            "Index":  21,
-                           "Count":  53,
+                           "Count":  54,
                            "Status":  "Completed"
                        }
 }

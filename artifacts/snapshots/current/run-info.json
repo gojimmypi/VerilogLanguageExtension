@@ -3,24 +3,24 @@
     "RunName":  "all-testfiles",
     "Manifest":  "tools/vle-ci/manifests/all-testfiles.json",
     "Status":  "Completed",
-    "StartedAt":  "2026-07-08T22:10:25.6401268-07:00",
-    "CompletedAt":  "2026-07-08T22:23:14.2401036-07:00",
-    "ElapsedSeconds":  768.6,
-    "Elapsed":  "00:12:48.5995684",
-    "ExpectedSnapshots":  53,
-    "ActualSnapshots":  53,
+    "StartedAt":  "2026-07-30T10:28:26.8286504-07:00",
+    "CompletedAt":  "2026-07-30T10:43:47.3511291-07:00",
+    "ElapsedSeconds":  920.522,
+    "Elapsed":  "00:15:20.5221962",
+    "ExpectedSnapshots":  54,
+    "ActualSnapshots":  54,
     "Timings":  [
                     {
                         "Index":  1,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/anothertest - Copy.v",
                         "SnapshotFileName":  "0001-anothertest - Copy.v.snapshot.json",
                         "Status":  "Completed",
-                        "ElapsedBucket":  "25-29s"
+                        "ElapsedBucket":  "30-34s"
                     },
                     {
                         "Index":  2,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/anothertest.v",
                         "SnapshotFileName":  "0002-anothertest.v.snapshot.json",
                         "Status":  "Completed",
@@ -28,7 +28,7 @@
                     },
                     {
                         "Index":  3,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/asterisk_issue_16.v",
                         "SnapshotFileName":  "0003-asterisk_issue_16.v.snapshot.json",
                         "Status":  "Completed",
@@ -36,7 +36,7 @@
                     },
                     {
                         "Index":  4,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/bracketest.v",
                         "SnapshotFileName":  "0004-bracketest.v.snapshot.json",
                         "Status":  "Completed",
@@ -44,7 +44,7 @@
                     },
                     {
                         "Index":  5,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/comma.v",
                         "SnapshotFileName":  "0005-comma.v.snapshot.json",
                         "Status":  "Completed",
@@ -52,7 +52,7 @@
                     },
                     {
                         "Index":  6,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/const.v",
                         "SnapshotFileName":  "0006-const.v.snapshot.json",
                         "Status":  "Completed",
@@ -60,7 +60,7 @@
                     },
                     {
                         "Index":  7,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/current_bracket_issue.v",
                         "SnapshotFileName":  "0007-current_bracket_issue.v.snapshot.json",
                         "Status":  "Completed",
@@ -68,7 +68,7 @@
                     },
                     {
                         "Index":  8,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/declaration_text.v",
                         "SnapshotFileName":  "0008-declaration_text.v.snapshot.json",
                         "Status":  "Completed",
@@ -76,7 +76,7 @@
                     },
                     {
                         "Index":  9,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/din _test3.v",
                         "SnapshotFileName":  "0009-din _test3.v.snapshot.json",
                         "Status":  "Completed",
@@ -84,7 +84,7 @@
                     },
                     {
                         "Index":  10,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/din_test.v",
                         "SnapshotFileName":  "0010-din_test.v.snapshot.json",
                         "Status":  "Completed",
@@ -92,7 +92,7 @@
                     },
                     {
                         "Index":  11,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/din_test2.v",
                         "SnapshotFileName":  "0011-din_test2.v.snapshot.json",
                         "Status":  "Completed",
@@ -100,7 +100,7 @@
                     },
                     {
                         "Index":  12,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/din_test4.v",
                         "SnapshotFileName":  "0012-din_test4.v.snapshot.json",
                         "Status":  "Completed",
@@ -108,7 +108,7 @@
                     },
                     {
                         "Index":  13,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/EmptyFile.v",
                         "SnapshotFileName":  "0013-EmptyFile.v.snapshot.json",
                         "Status":  "Completed",
@@ -116,7 +116,7 @@
                     },
                     {
                         "Index":  14,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/file1.v",
                         "SnapshotFileName":  "0014-file1.v.snapshot.json",
                         "Status":  "Completed",
@@ -124,7 +124,7 @@
                     },
                     {
                         "Index":  15,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/file2.v",
                         "SnapshotFileName":  "0015-file2.v.snapshot.json",
                         "Status":  "Completed",
@@ -132,7 +132,7 @@
                     },
                     {
                         "Index":  16,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/issue10.v",
                         "SnapshotFileName":  "0016-issue10.v.snapshot.json",
                         "Status":  "Completed",
@@ -140,7 +140,7 @@
                     },
                     {
                         "Index":  17,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/issue12.v",
                         "SnapshotFileName":  "0017-issue12.v.snapshot.json",
                         "Status":  "Completed",
@@ -148,7 +148,7 @@
                     },
                     {
                         "Index":  18,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/issue16.v",
                         "SnapshotFileName":  "0018-issue16.v.snapshot.json",
                         "Status":  "Completed",
@@ -156,7 +156,7 @@
                     },
                     {
                         "Index":  19,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/issue21.v",
                         "SnapshotFileName":  "0019-issue21.v.snapshot.json",
                         "Status":  "Completed",
@@ -164,7 +164,7 @@
                     },
                     {
                         "Index":  20,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/issue21_mini.v",
                         "SnapshotFileName":  "0020-issue21_mini.v.snapshot.json",
                         "Status":  "Completed",
@@ -172,7 +172,7 @@
                     },
                     {
                         "Index":  21,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/JanGray.v",
                         "SnapshotFileName":  "0021-JanGray.v.snapshot.json",
                         "Status":  "Completed",
@@ -180,7 +180,7 @@
                     },
                     {
                         "Index":  22,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/mini_test - Copy.v",
                         "SnapshotFileName":  "0022-mini_test - Copy.v.snapshot.json",
                         "Status":  "Completed",
@@ -188,7 +188,7 @@
                     },
                     {
                         "Index":  23,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/mini_test.v",
                         "SnapshotFileName":  "0023-mini_test.v.snapshot.json",
                         "Status":  "Completed",
@@ -196,7 +196,7 @@
                     },
                     {
                         "Index":  24,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/module_name.v",
                         "SnapshotFileName":  "0024-module_name.v.snapshot.json",
                         "Status":  "Completed",
@@ -204,7 +204,7 @@
                     },
                     {
                         "Index":  25,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/new_test.v",
                         "SnapshotFileName":  "0025-new_test.v.snapshot.json",
                         "Status":  "Completed",
@@ -212,7 +212,7 @@
                     },
                     {
                         "Index":  26,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/otherfile.verilog",
                         "SnapshotFileName":  "0026-otherfile.verilog.snapshot.json",
                         "Status":  "Completed",
@@ -220,7 +220,7 @@
                     },
                     {
                         "Index":  27,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/picorv32.v",
                         "SnapshotFileName":  "0027-picorv32.v.snapshot.json",
                         "Status":  "Completed",
@@ -228,7 +228,7 @@
                     },
                     {
                         "Index":  28,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/primitives_test.v",
                         "SnapshotFileName":  "0028-primitives_test.v.snapshot.json",
                         "Status":  "Completed",
@@ -236,7 +236,7 @@
                     },
                     {
                         "Index":  29,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/StopWatch.v",
                         "SnapshotFileName":  "0029-StopWatch.v.snapshot.json",
                         "Status":  "Completed",
@@ -244,7 +244,7 @@
                     },
                     {
                         "Index":  30,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/test - bigfile.v",
                         "SnapshotFileName":  "0030-test - bigfile.v.snapshot.json",
                         "Status":  "Completed",
@@ -252,7 +252,7 @@
                     },
                     {
                         "Index":  31,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/test.v",
                         "SnapshotFileName":  "0031-test.v.snapshot.json",
                         "Status":  "Completed",
@@ -260,7 +260,7 @@
                     },
                     {
                         "Index":  32,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/test2.v",
                         "SnapshotFileName":  "0032-test2.v.snapshot.json",
                         "Status":  "Completed",
@@ -268,7 +268,7 @@
                     },
                     {
                         "Index":  33,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/testfile-1K.v",
                         "SnapshotFileName":  "0033-testfile-1K.v.snapshot.json",
                         "Status":  "Completed",
@@ -276,7 +276,7 @@
                     },
                     {
                         "Index":  34,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/testfile-4K.v",
                         "SnapshotFileName":  "0034-testfile-4K.v.snapshot.json",
                         "Status":  "Completed",
@@ -284,7 +284,7 @@
                     },
                     {
                         "Index":  35,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/testfile-5K.v",
                         "SnapshotFileName":  "0035-testfile-5K.v.snapshot.json",
                         "Status":  "Completed",
@@ -292,7 +292,7 @@
                     },
                     {
                         "Index":  36,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/vert_bar.v",
                         "SnapshotFileName":  "0036-vert_bar.v.snapshot.json",
                         "Status":  "Completed",
@@ -300,7 +300,7 @@
                     },
                     {
                         "Index":  37,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/wiretest.verilog",
                         "SnapshotFileName":  "0037-wiretest.verilog.snapshot.json",
                         "Status":  "Completed",
@@ -308,7 +308,7 @@
                     },
                     {
                         "Index":  38,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/wow.v",
                         "SnapshotFileName":  "0038-wow.v.snapshot.json",
                         "Status":  "Completed",
@@ -316,7 +316,7 @@
                     },
                     {
                         "Index":  39,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/wow2.sv",
                         "SnapshotFileName":  "0039-wow2.sv.snapshot.json",
                         "Status":  "Completed",
@@ -324,7 +324,7 @@
                     },
                     {
                         "Index":  40,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/wow3.svh",
                         "SnapshotFileName":  "0040-wow3.svh.snapshot.json",
                         "Status":  "Completed",
@@ -332,7 +332,7 @@
                     },
                     {
                         "Index":  41,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/src/JTAG/jtag_core.v",
                         "SnapshotFileName":  "0041-jtag_core.v.snapshot.json",
                         "Status":  "Completed",
@@ -340,7 +340,7 @@
                     },
                     {
                         "Index":  42,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/src/PINS/pin_id_core.v",
                         "SnapshotFileName":  "0042-pin_id_core.v.snapshot.json",
                         "Status":  "Completed",
@@ -348,7 +348,7 @@
                     },
                     {
                         "Index":  43,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/src/project.v",
                         "SnapshotFileName":  "0043-project.v.snapshot.json",
                         "Status":  "Completed",
@@ -356,7 +356,7 @@
                     },
                     {
                         "Index":  44,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/src/project_config.v",
                         "SnapshotFileName":  "0044-project_config.v.snapshot.json",
                         "Status":  "Completed",
@@ -364,7 +364,7 @@
                     },
                     {
                         "Index":  45,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/src/SPI/spi_slave.v",
                         "SnapshotFileName":  "0045-spi_slave.v.snapshot.json",
                         "Status":  "Completed",
@@ -372,7 +372,7 @@
                     },
                     {
                         "Index":  46,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/src/target_pdk.v",
                         "SnapshotFileName":  "0046-target_pdk.v.snapshot.json",
                         "Status":  "Completed",
@@ -380,7 +380,7 @@
                     },
                     {
                         "Index":  47,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/src/TRNG/trng_cfg_ascii_core.v",
                         "SnapshotFileName":  "0047-trng_cfg_ascii_core.v.snapshot.json",
                         "Status":  "Completed",
@@ -388,7 +388,7 @@
                     },
                     {
                         "Index":  48,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/src/TRNG/trng_lab_core.v",
                         "SnapshotFileName":  "0048-trng_lab_core.v.snapshot.json",
                         "Status":  "Completed",
@@ -396,7 +396,7 @@
                     },
                     {
                         "Index":  49,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/src/TRNG/trng_stub.v",
                         "SnapshotFileName":  "0049-trng_stub.v.snapshot.json",
                         "Status":  "Completed",
@@ -404,7 +404,7 @@
                     },
                     {
                         "Index":  50,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/src/tt_um_main.v",
                         "SnapshotFileName":  "0050-tt_um_main.v.snapshot.json",
                         "Status":  "Completed",
@@ -412,7 +412,7 @@
                     },
                     {
                         "Index":  51,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/src/UART/uart_rx_min.v",
                         "SnapshotFileName":  "0051-uart_rx_min.v.snapshot.json",
                         "Status":  "Completed",
@@ -420,7 +420,7 @@
                     },
                     {
                         "Index":  52,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/src/UART/uart_trng_ascii_core.v",
                         "SnapshotFileName":  "0052-uart_trng_ascii_core.v.snapshot.json",
                         "Status":  "Completed",
@@ -428,11 +428,19 @@
                     },
                     {
                         "Index":  53,
-                        "Count":  53,
+                        "Count":  54,
                         "Path":  "TestFiles/src/UART/uart_tx_min.v",
                         "SnapshotFileName":  "0053-uart_tx_min.v.snapshot.json",
                         "Status":  "Completed",
                         "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  54,
+                        "Count":  54,
+                        "Path":  "TestFiles/z386.sv",
+                        "SnapshotFileName":  "0054-z386.sv.snapshot.json",
+                        "Status":  "Completed",
+                        "ElapsedBucket":  "50-59s"
                     }
                 ],
     "VsixManifestVersion":  "0.4.1.10",
@@ -441,41 +449,33 @@
     "AssemblyInformationalVersion":  "0.4.1.10",
     "ProvideMenuResourceName":  "Menus.ctmenu",
     "ProvideMenuResourceVersion":  5,
-    "SnapshotCount":  53,
-    "GitCommit":  "4ba0bcc",
-    "GitCommitFull":  "4ba0bcc92c8ffb7e6288929bcee8e43b1d3b9bbc",
+    "SnapshotCount":  54,
+    "GitCommit":  "63fbf49",
+    "GitCommitFull":  "63fbf49572d836b169674b7968204c5e8c7e1ba1",
     "RunTiming":  [
                       {
                           "Name":  "Build",
                           "Status":  "Completed",
-                          "ElapsedSeconds":  13.799,
+                          "ElapsedSeconds":  12.162,
                           "ElapsedBucket":  "10-29s"
                       },
                       {
                           "Name":  "Snapshot export",
                           "Status":  "Completed",
-                          "ElapsedSeconds":  768.692,
+                          "ElapsedSeconds":  920.66,
                           "ElapsedBucket":  "10-30m"
                       },
                       {
                           "Name":  "Format current JSON",
                           "Status":  "Completed",
-                          "ElapsedSeconds":  26.757,
+                          "ElapsedSeconds":  22.496,
                           "ElapsedBucket":  "10-29s"
                       },
                       {
                           "Name":  "Snapshot compare",
-                          "Status":  "Completed",
-                          "ElapsedSeconds":  1.921,
+                          "Status":  "Failed",
+                          "ElapsedSeconds":  6.143,
                           "ElapsedBucket":  "0-9s"
-                      },
-                      {
-                          "Name":  "Total",
-                          "Status":  "Completed",
-                          "ElapsedSeconds":  811.466,
-                          "ElapsedBucket":  "10-30m"
                       }
-                  ],
-    "CiProcessingTime":  "10-30m",
-    "CiElapsedSeconds":  811.466
+                  ]
 }

@@ -123,6 +123,16 @@
                                           ]
                             },
                             {
+                                "Start":  71,
+                                "Length":  4,
+                                "Line":  5,
+                                "Column":  5,
+                                "Text":  "this",
+                                "Types":  [
+                                              "SystemVerilogYosysUnsupported"
+                                          ]
+                            },
+                            {
                                 "Start":  85,
                                 "Length":  1,
                                 "Line":  6,
@@ -402,6 +412,16 @@
                      "Text":  ")",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  71,
+                     "Length":  4,
+                     "Line":  5,
+                     "Column":  5,
+                     "Text":  "this",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemVerilogYosysUnsupported",
                      "HoverText":  null
                  },
                  {
@@ -915,7 +935,7 @@
                            "SchemaVersion":  2,
                            "ElapsedBucket":  "10-14s",
                            "Index":  15,
-                           "Count":  53,
+                           "Count":  54,
                            "Status":  "Completed"
                        }
 }

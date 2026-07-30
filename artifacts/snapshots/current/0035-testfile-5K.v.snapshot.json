@@ -1443,6 +1443,16 @@
                                           ]
                             },
                             {
+                                "Start":  1303,
+                                "Length":  4,
+                                "Line":  90,
+                                "Column":  4,
+                                "Text":  "this",
+                                "Types":  [
+                                              "SystemVerilogYosysUnsupported"
+                                          ]
+                            },
+                            {
                                 "Start":  1322,
                                 "Length":  17,
                                 "Line":  91,
@@ -1450,6 +1460,16 @@
                                 "Text":  "// this is a test",
                                 "Types":  [
                                               "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  1347,
+                                "Length":  4,
+                                "Line":  92,
+                                "Column":  8,
+                                "Text":  "this",
+                                "Types":  [
+                                              "SystemVerilogYosysUnsupported"
                                           ]
                             },
                             {
@@ -5015,6 +5035,16 @@
                      "HoverText":  "duplicate? wire p1"
                  },
                  {
+                     "Start":  1303,
+                     "Length":  4,
+                     "Line":  90,
+                     "Column":  4,
+                     "Text":  "this",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemVerilogYosysUnsupported",
+                     "HoverText":  null
+                 },
+                 {
                      "Start":  1322,
                      "Length":  2,
                      "Line":  91,
@@ -5102,6 +5132,16 @@
                      "Text":  "test",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  1347,
+                     "Length":  4,
+                     "Line":  92,
+                     "Column":  8,
+                     "Text":  "this",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemVerilogYosysUnsupported",
                      "HoverText":  null
                  },
                  {
@@ -12743,7 +12783,7 @@
                            "SchemaVersion":  2,
                            "ElapsedBucket":  "10-14s",
                            "Index":  35,
-                           "Count":  53,
+                           "Count":  54,
                            "Status":  "Completed"
                        }
 }

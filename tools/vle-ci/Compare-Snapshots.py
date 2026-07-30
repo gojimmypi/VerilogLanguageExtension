@@ -140,6 +140,163 @@ KEYWORD_TAG_TEXT = {
 IDENTIFIER_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_$]*$")
 ESCAPED_IDENTIFIER_RE = re.compile(r"^\\\S+$")
 
+SYSTEMVERILOG_EXTENSIONS = {".sv", ".svh"}
+SYSTEMVERILOG_CLASSIFICATION_TYPES = {
+    "SystemVerilogYosysSupported",
+    "SystemVerilogYosysUnsupported",
+}
+LEGACY_SYSTEMVERILOG_CLASSIFICATION_TYPES = {
+    "bit",
+}
+
+
+
+MAX_DIFF_ITEMS_PER_SIDE = 12
+
+
+def stable_item_key(value: Any) -> str:
+    """Return a deterministic, compact representation for multiset comparison."""
+    return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=True)
+
+
+def describe_snapshot_item(category: str, item: Any) -> str:
+    """Format one normalized snapshot item as a short, reviewable line."""
+    if not isinstance(item, dict):
+        return repr(item)
+
+    if category == "Classifications":
+        return (
+            f"line {item.get('Line')}:{item.get('Column')} "
+            f"text={item.get('Text', '')!r} types={item.get('Types') or []}"
+        )
+
+    if category == "Tags":
+        detail = item.get("TagDetail", "")
+        hover = item.get("HoverText", "")
+        suffix = f" hover={hover!r}" if hover else ""
+        return (
+            f"line {item.get('Line')}:{item.get('Column')} "
+            f"text={item.get('Text', '')!r} tag={detail!r}{suffix}"
+        )
+
+    if category == "Tokens":
+        return (
+            f"line {item.get('Line')}:{item.get('Column')} "
+            f"text={item.get('Text', '')!r} context={item.get('Context', '')!r}"
+        )
+
+    if category == "Symbols":
+        hover = item.get("HoverText", "")
+        suffix = f" hover={hover!r}" if hover else ""
+        return (
+            f"scope={item.get('Scope', '')!r} name={item.get('Name', '')!r} "
+            f"token={item.get('TokenType', '')!r}{suffix}"
+        )
+
+    return stable_item_key(item)
+
+
+def summarize_sequence_difference(
+        category: str,
+        baseline_items: List[Any],
+        current_items: List[Any]) -> List[str]:
+    """Build a bounded O(n) summary without diffing the full JSON document."""
+    if baseline_items == current_items:
+        return []
+
+    baseline_counts: Dict[str, int] = {}
+    current_counts: Dict[str, int] = {}
+
+    for item in baseline_items:
+        key = stable_item_key(item)
+        baseline_counts[key] = baseline_counts.get(key, 0) + 1
+
+    for item in current_items:
+        key = stable_item_key(item)
+        current_counts[key] = current_counts.get(key, 0) + 1
+
+    removed_needed = {
+        key: count - current_counts.get(key, 0)
+        for key, count in baseline_counts.items()
+        if count > current_counts.get(key, 0)
+    }
+    added_needed = {
+        key: count - baseline_counts.get(key, 0)
+        for key, count in current_counts.items()
+        if count > baseline_counts.get(key, 0)
+    }
+
+    # Preserve the normalized source order in diagnostics. This keeps the first
+    # reported changes near the beginning of the source file instead of sorting
+    # JSON strings lexicographically.
+    removed: List[Any] = []
+    for item in baseline_items:
+        key = stable_item_key(item)
+        if removed_needed.get(key, 0) > 0:
+            removed.append(item)
+            removed_needed[key] -= 1
+
+    added: List[Any] = []
+    for item in current_items:
+        key = stable_item_key(item)
+        if added_needed.get(key, 0) > 0:
+            added.append(item)
+            added_needed[key] -= 1
+
+    lines = [
+        f"  {category}: baseline={len(baseline_items)} current={len(current_items)} "
+        f"removed={len(removed)} added={len(added)}"
+    ]
+
+    for label, items in (("removed", removed), ("added", added)):
+        for item in items[:MAX_DIFF_ITEMS_PER_SIDE]:
+            lines.append(f"    {label}: {describe_snapshot_item(category, item)}")
+        omitted = len(items) - MAX_DIFF_ITEMS_PER_SIDE
+        if omitted > 0:
+            lines.append(f"    ... {omitted} more {label} item(s) omitted")
+
+    return lines
+
+
+def summarize_snapshot_difference(
+        baseline_norm: Dict[str, Any],
+        current_norm: Dict[str, Any]) -> str:
+    """Return a bounded structural summary for two unequal snapshots."""
+    lines: List[str] = []
+    sequence_fields = {"Errors", "Classifications", "Tags", "Tokens", "Symbols"}
+
+    for field in (
+            "SchemaVersion",
+            "RunName",
+            "FileRelativePath",
+            "ContentType",
+            "TextSha256"):
+        baseline_value = baseline_norm.get(field)
+        current_value = current_norm.get(field)
+        if baseline_value != current_value:
+            lines.append(
+                f"  {field}: baseline={baseline_value!r} current={current_value!r}")
+
+    for field in ("Errors", "Classifications", "Tags", "Tokens", "Symbols"):
+        baseline_items = list(baseline_norm.get(field) or [])
+        current_items = list(current_norm.get(field) or [])
+        lines.extend(summarize_sequence_difference(field, baseline_items, current_items))
+
+    unexpected_fields = sorted(
+        (set(baseline_norm) | set(current_norm))
+        - sequence_fields
+        - {"SchemaVersion", "RunName", "FileRelativePath", "ContentType", "TextSha256"})
+    for field in unexpected_fields:
+        baseline_value = baseline_norm.get(field)
+        current_value = current_norm.get(field)
+        if baseline_value != current_value:
+            lines.append(
+                f"  {field}: baseline={baseline_value!r} current={current_value!r}")
+
+    if not lines:
+        lines.append("  Snapshots differ, but no structural summary was produced.")
+
+    return "\n".join(lines)
 
 
 def load_json(path: Path) -> Any:
@@ -302,11 +459,12 @@ def compare_snapshots(current_root: Path, baseline_root: Path, failures: Failure
         baseline_path, _, baseline_norm = baseline[key]
 
         if current_norm != baseline_norm:
+            summary = summarize_snapshot_difference(baseline_norm, current_norm)
             failures.append(
                 f"Snapshot differs: {key}\n"
                 f"  Baseline: {baseline_path}\n"
                 f"  Current:  {current_path}\n"
-                "  Diff output is intentionally not generated; review JSON changes in Git/Visual Studio.")
+                f"{summary}")
 
 
 def update_baseline(current_root: Path, baseline_root: Path) -> None:
@@ -509,6 +667,32 @@ def check_snapshot_sanity(path: Path, normalized: Dict[str, Any], failures: Fail
         if tag_detail.startswith("Verilog_Variable_") and not is_verilog_identifier(text):
             failures.append(
                 f"{path}: variable tag {tag_detail} covered non-identifier text {text!r}")
+
+    relative_path = normalize_slashes(str(normalized.get("FileRelativePath", "")))
+    extension = Path(relative_path).suffix.lower()
+    is_systemverilog = extension in SYSTEMVERILOG_EXTENSIONS
+
+    for item in normalized.get("Classifications") or []:
+        text = str(item.get("Text", ""))
+        types = set(item.get("Types") or [])
+        systemverilog_types = sorted(types & SYSTEMVERILOG_CLASSIFICATION_TYPES)
+        legacy_types = sorted(types & LEGACY_SYSTEMVERILOG_CLASSIFICATION_TYPES)
+
+        if systemverilog_types and not is_systemverilog:
+            failures.append(
+                f"{path}: SystemVerilog classification {systemverilog_types} "
+                f"applied to {text!r} in non-SystemVerilog file {relative_path}")
+
+        if legacy_types:
+            failures.append(
+                f"{path}: obsolete dedicated SystemVerilog classification {legacy_types} "
+                f"applied to {text!r}; use SystemVerilogYosysSupported or "
+                "SystemVerilogYosysUnsupported")
+
+        if text == "bit" and is_systemverilog and "SystemVerilogYosysSupported" not in types:
+            failures.append(
+                f"{path}: SystemVerilog keyword 'bit' must use "
+                "SystemVerilogYosysSupported classification")
 
 
 def check_all_snapshot_sanity(current_root: Path, failures: FailureList) -> None:

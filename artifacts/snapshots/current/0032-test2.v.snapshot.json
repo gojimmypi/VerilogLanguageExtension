@@ -39,7 +39,7 @@
                                 "Column":  8,
                                 "Text":  "global",
                                 "Types":  [
-                                              "Variable_module"
+                                              "SystemVerilogYosysUnsupported"
                                           ]
                             },
                             {
@@ -671,7 +671,7 @@
                      "Column":  8,
                      "Text":  "global",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_module",
+                     "TagDetail":  "Verilog_SystemVerilogYosysUnsupported",
                      "HoverText":  "module global  (  wire k1,\r\n h1,\r\n i1,\r\n output wire eq )"
                  },
                  {
@@ -3711,7 +3711,7 @@
                            "SchemaVersion":  2,
                            "ElapsedBucket":  "10-14s",
                            "Index":  32,
-                           "Count":  53,
+                           "Count":  54,
                            "Status":  "Completed"
                        }
 }

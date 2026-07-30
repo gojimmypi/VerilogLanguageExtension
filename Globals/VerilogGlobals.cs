@@ -133,6 +133,13 @@ namespace VerilogLanguage
         }
 
         public static bool TryGetDeclarationVariableTypeFromText(string text, out VerilogTokenTypes variableType) {
+            return TryGetDeclarationVariableTypeFromText(text, true, out variableType);
+        }
+
+        public static bool TryGetDeclarationVariableTypeFromText(
+            string text,
+            bool allowSystemVerilog,
+            out VerilogTokenTypes variableType) {
             variableType = VerilogTokenTypes.Verilog_Variable;
 
             if (string.IsNullOrEmpty(text)) {
@@ -151,8 +158,8 @@ namespace VerilogLanguage
 
             if (ContainsDeclarationKeyword(text, "reg")
                     || ContainsDeclarationKeyword(text, "integer")
-                    || ContainsDeclarationKeyword(text, "logic")
-                    || ContainsDeclarationKeyword(text, "bit")) {
+                    || (allowSystemVerilog && ContainsDeclarationKeyword(text, "logic"))
+                    || (allowSystemVerilog && ContainsDeclarationKeyword(text, "bit"))) {
                 variableType = VerilogTokenTypes.Verilog_Variable_reg;
                 return true;
             }
@@ -313,8 +320,139 @@ namespace VerilogLanguage
             ["while"] = VerilogTokenTypes.Verilog_while,
             ["wire"] = VerilogTokenTypes.Verilog_wire,
 
-            // Some System Verilog Specific keywords
-            ["bit"] = VerilogTokenTypes.Verilog_bit,
+            // SystemVerilog-only keywords. This is keyword-level guidance for the
+            // Yosys 0.67+ read_slang / sv-elab frontend, not a complete semantic
+            // validator. Support can still depend on context and feature details.
+            //
+            // Supported includes normal synthesizable RTL constructs and the plain
+            // assert/assume/cover statements that Yosys lowers to formal cells.
+            ["always_comb"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["always_ff"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["always_latch"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["assert"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["assume"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["bit"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["break"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["byte"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["continue"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["cover"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["do"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["endinterface"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["endpackage"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["enum"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["extern"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["foreach"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["import"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["inside"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["int"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["interface"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["let"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["logic"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["longint"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["modport"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["package"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["packed"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["priority"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["ref"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["return"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["shortint"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["static"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["struct"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["type"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["typedef"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["unique"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["unique0"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["var"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["void"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+
+            // Non-synthesizable, SVA/coverage/OOP-oriented, explicitly unsupported,
+            // or not reliably lowered by read_slang. Slang may still parse these.
+            ["accept_on"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["alias"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["before"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["bind"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["bins"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["binsof"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["chandle"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["checker"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["class"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["clocking"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["const"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["constraint"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["context"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["covergroup"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["coverpoint"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["cross"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["dist"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["endchecker"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["endclass"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["endclocking"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["endgroup"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["endprogram"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["endproperty"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["endsequence"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["eventually"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["expect"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["export"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["extends"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["final"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["first_match"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["forkjoin"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["global"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["iff"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["ignore_bins"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["illegal_bins"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["implements"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["implies"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["interconnect"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["intersect"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["join_any"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["join_none"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["local"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["matches"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["nettype"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["new"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["nexttime"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["null"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["program"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["property"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["protected"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["pure"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["rand"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["randc"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["randcase"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["randsequence"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["reject_on"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["restrict"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["s_always"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["s_eventually"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["s_nexttime"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["s_until"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["s_until_with"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["sequence"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["shortreal"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["soft"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["solve"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["string"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["strong"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["super"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["sync_accept_on"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["sync_reject_on"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["tagged"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["this"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["throughout"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["timeprecision"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["timeunit"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["union"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["until"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["until_with"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["untyped"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["virtual"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["wait_order"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["weak"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["wildcard"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["with"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["within"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
 
 
             // all of the Verilog directives are the same color

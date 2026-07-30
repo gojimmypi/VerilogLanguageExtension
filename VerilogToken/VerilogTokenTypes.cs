@@ -149,7 +149,8 @@ namespace VerilogLanguage.VerilogToken
 
         Verilog_Value,
 
-        /* System Verilog */
-        Verilog_bit
+        /* SystemVerilog-only keywords */
+        Verilog_SystemVerilogYosysSupported,
+        Verilog_SystemVerilogYosysUnsupported
     }
 }

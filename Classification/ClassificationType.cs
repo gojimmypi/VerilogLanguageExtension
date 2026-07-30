@@ -685,14 +685,21 @@ namespace VerilogLanguage
 
         #endregion
 
-        #region System Verilog Type Definition
+        #region SystemVerilog Type Definition
 
         /// <summary>
-        /// Defines the "Verilog_bit" classification type.
+        /// Defines SystemVerilog-only keywords supported by Yosys read_slang.
         /// </summary>
         [Export(typeof(ClassificationTypeDefinition))]
-        [Name("bit")]
-        internal static ClassificationTypeDefinition Verilog_bit = null;
+        [Name("SystemVerilogYosysSupported")]
+        internal static ClassificationTypeDefinition Verilog_SystemVerilogYosysSupported = null;
+
+        /// <summary>
+        /// Defines SystemVerilog-only keywords not supported for Yosys synthesis.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("SystemVerilogYosysUnsupported")]
+        internal static ClassificationTypeDefinition Verilog_SystemVerilogYosysUnsupported = null;
 
         #endregion
 

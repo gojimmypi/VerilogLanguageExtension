@@ -2618,36 +2618,53 @@ namespace VerilogLanguage
 
     #endregion //Format definition
 
-    #region System Verilog Format Definition
+    #region SystemVerilog Format Definition
 
-    #region Keyword bit
     /// <summary>
-    /// Defines the editor format for the Verilog_bit classification type. Text is colored CornflowerBlue
+    /// Defines the editor format for SystemVerilog-only keywords supported by
+    /// Yosys 0.67+ read_slang / sv-elab.
     /// </summary>
     [Export(typeof(EditorFormatDefinition))]
-    [ClassificationType(ClassificationTypeNames = "bit")]
-    [Name("bit")]
-    //this should be visible to the end user
-    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
-    //set the priority to be after the default classifiers
+    [ClassificationType(ClassificationTypeNames = "SystemVerilogYosysSupported")]
+    [Name("SystemVerilogYosysSupported")]
+    [UserVisible(true)]
     [Order(Before = Priority.Default)]
-    internal sealed class Verilog_bit : ClassificationFormatDefinition
+    internal sealed class Verilog_SystemVerilogYosysSupported : ClassificationFormatDefinition
     {
-        /// <summary>
-        /// Defines the visual format for the "bit" classification type
-        /// </summary>
-        public Verilog_bit() {
-            DisplayName = "Verilog - bit"; //human readable version of the name
+        public Verilog_SystemVerilogYosysSupported() {
+            DisplayName = "SystemVerilog - Yosys read_slang supported";
+            IsBold = true;
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
+                ForegroundColor = Colors.Gold;
             }
             else {
-                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
+                ForegroundColor = Colors.DarkOrange;
             }
         }
     }
 
-    #endregion // Keyword bit
+    /// <summary>
+    /// Defines the editor format for SystemVerilog-only keywords that are
+    /// non-synthesizable or not reliably lowered by Yosys read_slang / sv-elab.
+    /// </summary>
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "SystemVerilogYosysUnsupported")]
+    [Name("SystemVerilogYosysUnsupported")]
+    [UserVisible(true)]
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_SystemVerilogYosysUnsupported : ClassificationFormatDefinition
+    {
+        public Verilog_SystemVerilogYosysUnsupported() {
+            DisplayName = "SystemVerilog - Yosys synthesis unsupported";
+            IsBold = true;
+            if (ColorThemeAttribute.IsDarkTheme()) {
+                ForegroundColor = Colors.HotPink;
+            }
+            else {
+                ForegroundColor = Colors.Crimson;
+            }
+        }
+    }
 
     #endregion
 

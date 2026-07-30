@@ -3,7 +3,39 @@
 This directory contains the repository-level helper scripts that used to live in the repository root.
 Run them from the repository root with `./scripts/<name>` unless a note below says otherwise. The PowerShell wrappers also resolve the repository root from their own location, so they can be launched from another current directory.
 
+## Download Block
+
+If files are blocked, (e.g. scripts won't run) use this command from the repo root to unblock them:
+
+```powershell
+Get-ChildItem -Recurse -File | Unblock-File
+```
+
+## Add New Test Files
+
+When adding additional test files, run the manifest generator to ensure that the new files are included in the snapshot baseline.
+
+```powershell
+.\scripts\create-testfile-manifest.ps1
+```
+
+## Add a single baseline file
+
+When adding a single baseline file, run the manifest generator to ensure that the new file is included in the snapshot baseline.
+
+For example when adding `z386.sv` to the baseline, run:
+
+```powershell
+.\scripts\add-baseline-file.ps1 z386.sv -MaxWaitSeconds 300
+```
+
 ## Snapshot CI wrappers
+
+To run PowerShell scripts, the `Set-ExecutionPolicy` may be needed.
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+```
 
 ### `ci-pass.ps1`
 

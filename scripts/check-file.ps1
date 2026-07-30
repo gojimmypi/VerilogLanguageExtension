@@ -8,7 +8,9 @@ param(
     [switch]$ResetVisualStudioBeforeRun,
     [switch]$ReuseExistingVisualStudio,
     [switch]$SkipExtensionPrep,
-    [switch]$SkipBuildAndDeploy
+    [switch]$SkipBuildAndDeploy,
+    [ValidateRange(1, 3600)]
+    [int]$MaxWaitSeconds = 45
 )
 
 Set-StrictMode -Version Latest
@@ -480,6 +482,7 @@ Write-Host "  Close Visual Studio when done:     $effectiveCloseVisualStudioWhen
 Write-Host "  Visual Studio:                     $resolvedVisualStudioPath"
 Write-Host "  Root suffix:                       $RootSuffix"
 Write-Host "  Hive pattern:                      $visualStudioMajor.0*$RootSuffix"
+Write-Host "  Maximum snapshot wait:             $MaxWaitSeconds seconds"
 
 if ($effectiveResetVisualStudioBeforeRun) {
     Stop-ExperimentalVisualStudio -ResolvedVisualStudioPath $resolvedVisualStudioPath -RootSuffix $RootSuffix
@@ -542,7 +545,7 @@ $exportArgs = @{
     Manifest = $manifestPath
     OutputDir = $outputDir
     RootSuffix = $RootSuffix
-    MaxWaitSeconds = 45
+    MaxWaitSeconds = $MaxWaitSeconds
     SkipBackgroundProcessCleanup = $true
 }
 

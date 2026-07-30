@@ -2,7 +2,7 @@
     "DelayMs":  3000,
     "RunName":  "all-testfiles",
     "Files":  [
-                  "TestFiles/comma.v"
+                  "TestFiles/z386.sv"
               ],
     "FreshInstancePerFile":  false
 }

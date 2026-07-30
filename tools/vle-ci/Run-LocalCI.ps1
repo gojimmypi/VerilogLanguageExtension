@@ -59,6 +59,81 @@ function Get-MSBuildPath {
     throw "Could not find MSBuild.exe. Run from a Visual Studio Developer PowerShell or install VS Build Tools."
 }
 
+
+function Get-VisualStudioMajorFromPath {
+    param([string]$Path)
+
+    if ([string]::IsNullOrWhiteSpace($Path)) {
+        return ""
+    }
+
+    $match = [regex]::Match($Path, "(?i)\\Microsoft Visual Studio\\(?<Major>\d+)\\")
+    if ($match.Success) {
+        return $match.Groups["Major"].Value
+    }
+
+    return ""
+}
+
+function Stop-ExperimentalDevenvForLocalCi {
+    param([string]$RequestedRootSuffix)
+
+    $processes = @(Get-CimInstance Win32_Process -Filter "Name = 'devenv.exe'" -ErrorAction SilentlyContinue)
+    foreach ($process in $processes) {
+        $commandLine = [string]$process.CommandLine
+        if ([string]::IsNullOrWhiteSpace($commandLine)) {
+            continue
+        }
+
+        if ($commandLine -match "(?i)/RootSuffix\s+`"?$([regex]::Escape($RequestedRootSuffix))`"?") {
+            try {
+                Stop-Process -Id ([int]$process.ProcessId) -Force -ErrorAction SilentlyContinue
+            }
+            catch {
+                Write-Warning "Could not stop Experimental Instance process $($process.ProcessId): $_"
+            }
+        }
+    }
+}
+
+function Clear-ExperimentalMefStateForLocalCi {
+    param(
+        [string]$VisualStudioMajor,
+        [string]$RootSuffix
+    )
+
+    if ([string]::IsNullOrWhiteSpace($VisualStudioMajor)) {
+        Write-Warning "Could not determine Visual Studio major version; skipping Experimental Instance MEF cleanup."
+        return
+    }
+
+    Stop-ExperimentalDevenvForLocalCi -RequestedRootSuffix $RootSuffix
+
+    $hivePattern = "{0}.0*{1}" -f $VisualStudioMajor, $RootSuffix
+    $baseDirs = @(
+        (Join-Path $env:APPDATA "Microsoft\VisualStudio"),
+        (Join-Path $env:LOCALAPPDATA "Microsoft\VisualStudio")
+    )
+
+    foreach ($baseDir in $baseDirs) {
+        if (!(Test-Path -LiteralPath $baseDir)) {
+            continue
+        }
+
+        foreach ($hive in @(Get-ChildItem -LiteralPath $baseDir -Directory -Filter $hivePattern -ErrorAction SilentlyContinue)) {
+            $componentModelCache = Join-Path $hive.FullName "ComponentModelCache"
+            if (Test-Path -LiteralPath $componentModelCache) {
+                Remove-Item -LiteralPath $componentModelCache -Recurse -Force -ErrorAction SilentlyContinue
+            }
+
+            $extensionRoot = Join-Path $hive.FullName "Extensions\gojimmypi\Verilog Language Extension"
+            if (Test-Path -LiteralPath $extensionRoot) {
+                Remove-Item -LiteralPath $extensionRoot -Recurse -Force -ErrorAction SilentlyContinue
+            }
+        }
+    }
+}
+
 function Format-JsonFile {
     param([string]$Path)
 
@@ -281,6 +356,12 @@ if (!$SkipBuild) {
     try {
         $msbuild = Get-MSBuildPath
         Write-Host "MSBuild: $msbuild"
+
+        # Local CI depends on DEBUG-only MEF exports being discovered by the
+        # selected Experimental Instance. Clear stale MEF and local-deployment
+        # state before MSBuild deploys the freshly built VSIX.
+        $visualStudioMajor = Get-VisualStudioMajorFromPath -Path $msbuild
+        Clear-ExperimentalMefStateForLocalCi -VisualStudioMajor $visualStudioMajor -RootSuffix $RootSuffix
 
         # Build the solution explicitly because this repo has both solution and project files.
         & $msbuild $solution /restore /m /p:Configuration=$Configuration

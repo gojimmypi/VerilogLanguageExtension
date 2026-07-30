@@ -5,6 +5,11 @@
     "FreshInstancePerFile":  true,
     "Files":  [
                   {
+                      "Path":  "TestFiles/z386.sv",
+                      "SnapshotFileName":  "0054-z386.sv.snapshot.json",
+                      "IsNew":  false
+                  },
+                  {
                       "Path":  "TestFiles/anothertest - Copy.v",
                       "SnapshotFileName":  "0001-anothertest - Copy.v.snapshot.json",
                       "IsNew":  false

@@ -1,0 +1,313 @@
+# Adds one Verilog/SystemVerilog test file to the approved snapshot baseline.
+# It does not run the full ci-baseline.ps1 refresh.
+
+[CmdletBinding()]
+param(
+    [Parameter(Mandatory = $true, Position = 0)]
+    [ValidateNotNullOrEmpty()]
+    [string]$SourceFile,
+
+    [ValidateRange(1, 3600)]
+    [int]$MaxWaitSeconds = 180
+)
+
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+
+function Get-RepoRoot {
+    return (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "..")).Path
+}
+
+function Get-RepoRelativePath {
+    param(
+        [string]$RepoRoot,
+        [string]$Path
+    )
+
+    $rootPath = [System.IO.Path]::GetFullPath($RepoRoot)
+    if (!$rootPath.EndsWith([System.IO.Path]::DirectorySeparatorChar.ToString())) {
+        $rootPath += [System.IO.Path]::DirectorySeparatorChar
+    }
+
+    $fullPath = [System.IO.Path]::GetFullPath($Path)
+    $relativeUri = (New-Object System.Uri($rootPath)).MakeRelativeUri(
+        (New-Object System.Uri($fullPath)))
+    $relativePath = [System.Uri]::UnescapeDataString($relativeUri.ToString())
+
+    if ($relativePath -eq ".." -or $relativePath.StartsWith("../")) {
+        throw "Path is outside the repository: $fullPath"
+    }
+
+    return $relativePath.Replace("\", "/")
+}
+
+function Get-NormalizedPath {
+    param([string]$Path)
+
+    return $Path.Replace("\", "/").ToLowerInvariant()
+}
+
+function Read-JsonFile {
+    param([string]$Path)
+
+    return ([System.IO.File]::ReadAllText(
+            $Path,
+            [System.Text.Encoding]::UTF8) | ConvertFrom-Json)
+}
+
+function Write-JsonFile {
+    param(
+        [string]$Path,
+        [object]$Value
+    )
+
+    $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+    $text = $Value | ConvertTo-Json -Depth 100
+    [System.IO.File]::WriteAllText(
+        $Path,
+        ($text + [Environment]::NewLine),
+        $utf8NoBom)
+}
+
+function Remove-GitCommit {
+    param([object]$Snapshot)
+
+    $property = $Snapshot.PSObject.Properties["GitCommit"]
+    if ($null -ne $property) {
+        $Snapshot.PSObject.Properties.Remove("GitCommit")
+    }
+}
+
+function Get-SnapshotSourcePath {
+    param(
+        [object]$Snapshot,
+        [string]$RepoRoot
+    )
+
+    $property = $Snapshot.PSObject.Properties["FileRelativePath"]
+    if ($null -ne $property) {
+        if (![string]::IsNullOrWhiteSpace([string]$property.Value)) {
+            return [string]$property.Value
+        }
+    }
+
+    $property = $Snapshot.PSObject.Properties["FilePath"]
+    if ($null -ne $property -and $null -ne $property.Value) {
+        $filePath = [string]$property.Value
+        if ([System.IO.Path]::IsPathRooted($filePath)) {
+            return Get-RepoRelativePath -RepoRoot $RepoRoot -Path $filePath
+        }
+
+        return $filePath
+    }
+
+    return ""
+}
+
+$repoRoot = Get-RepoRoot
+Set-Location -LiteralPath $repoRoot
+[System.IO.Directory]::SetCurrentDirectory($repoRoot)
+
+$manifestRelative = "tools\vle-ci\manifests\all-testfiles.json"
+$baselineDirRelative = "tests\snapshots\baselines\development-main\all-testfiles"
+$outputDirRelative = "artifacts\snapshots\single-testfile"
+
+$manifestPath = Join-Path $repoRoot $manifestRelative
+$baselineDir = Join-Path $repoRoot $baselineDirRelative
+$outputDir = Join-Path $repoRoot $outputDirRelative
+$createManifestScript = Join-Path $PSScriptRoot "create-testfile-manifest.ps1"
+$checkFileScript = Join-Path $PSScriptRoot "check-file.ps1"
+
+$requestedPath = $SourceFile.Trim()
+$normalizedRequestedPath = $requestedPath.Replace("\", "/")
+while ($normalizedRequestedPath.StartsWith("./")) {
+    $normalizedRequestedPath = $normalizedRequestedPath.Substring(2)
+}
+
+if ([System.IO.Path]::IsPathRooted($requestedPath)) {
+    $sourcePath = [System.IO.Path]::GetFullPath($requestedPath)
+}
+elseif ($normalizedRequestedPath.StartsWith(
+        "TestFiles/",
+        [System.StringComparison]::OrdinalIgnoreCase)) {
+    $sourcePath = [System.IO.Path]::GetFullPath(
+        (Join-Path $repoRoot $normalizedRequestedPath))
+}
+else {
+    $sourcePath = [System.IO.Path]::GetFullPath(
+        (Join-Path (Join-Path $repoRoot "TestFiles") $normalizedRequestedPath))
+}
+
+if (!(Test-Path -LiteralPath $sourcePath -PathType Leaf)) {
+    throw "Test file not found: $sourcePath"
+}
+
+$extension = [System.IO.Path]::GetExtension($sourcePath).ToLowerInvariant()
+if ($extension -notin @(".v", ".sv", ".svh", ".vh", ".verilog")) {
+    throw "Unsupported test-file extension '$extension': $sourcePath"
+}
+
+$relativeSource = Get-RepoRelativePath -RepoRoot $repoRoot -Path $sourcePath
+$normalizedSource = Get-NormalizedPath -Path $relativeSource
+if (!$normalizedSource.StartsWith("testfiles/")) {
+    throw "The source file must be under TestFiles: $sourcePath"
+}
+
+$manifestExisted = Test-Path -LiteralPath $manifestPath -PathType Leaf
+$originalManifest = $null
+$originalManifestJson = $null
+if ($manifestExisted) {
+    $originalManifest = [System.IO.File]::ReadAllBytes($manifestPath)
+    $originalManifestJson = Read-JsonFile -Path $manifestPath
+}
+
+$baselinePath = ""
+$baselineTempPath = ""
+$manifestTempPath = "$manifestPath.$PID.tmp"
+$baselineInstalled = $false
+$completed = $false
+
+try {
+    Write-Host "Adding baseline for $relativeSource"
+
+    # This updates the filename manifest only. It does not export all test files.
+    $manifestArgs = @{
+        ManifestPath = $manifestRelative
+        BaselineDir = $baselineDirRelative
+    }
+    if ($null -ne $originalManifestJson) {
+        if ($null -ne $originalManifestJson.PSObject.Properties["DelayMs"]) {
+            $manifestArgs["DelayMs"] = [int]$originalManifestJson.DelayMs
+        }
+        if ($null -ne $originalManifestJson.PSObject.Properties["MaxWaitSeconds"]) {
+            $manifestArgs["MaxWaitSeconds"] = [int]$originalManifestJson.MaxWaitSeconds
+        }
+    }
+
+    & $createManifestScript @manifestArgs
+
+    $manifest = Read-JsonFile -Path $manifestPath
+    $matches = @($manifest.Files | Where-Object {
+            (Get-NormalizedPath -Path ([string]$_.Path)) -eq $normalizedSource
+        })
+
+    if ($matches.Count -ne 1) {
+        throw "Expected one manifest entry for $relativeSource; found $($matches.Count)."
+    }
+
+    $entry = $matches[0]
+    if ([string]::IsNullOrWhiteSpace([string]$entry.SnapshotFileName)) {
+        throw "Manifest entry has no stable SnapshotFileName: $relativeSource"
+    }
+    if (![bool]$entry.IsNew) {
+        throw "File is not marked new; refusing to replace an existing baseline: $relativeSource"
+    }
+
+    New-Item -ItemType Directory -Force -Path $baselineDir | Out-Null
+    $baselinePath = Join-Path $baselineDir ([string]$entry.SnapshotFileName)
+    $baselineTempPath = "$baselinePath.$PID.tmp"
+
+    if (Test-Path -LiteralPath $baselinePath) {
+        throw "Baseline already exists; refusing to overwrite it: $baselinePath"
+    }
+
+    foreach ($candidate in @(Get-ChildItem `
+            -LiteralPath $baselineDir `
+            -Filter "*.snapshot.json" `
+            -File `
+            -ErrorAction SilentlyContinue)) {
+        $candidateSnapshot = Read-JsonFile -Path $candidate.FullName
+        $candidateSource = Get-SnapshotSourcePath -Snapshot $candidateSnapshot -RepoRoot $repoRoot
+        if ((Get-NormalizedPath -Path $candidateSource) -eq $normalizedSource) {
+            throw "A baseline for this source already exists: $($candidate.FullName)"
+        }
+    }
+
+    # check-file.ps1 recreates the single-testfile output and opens only this file.
+    & $checkFileScript `
+        -SourceFile $relativeSource `
+        -MaxWaitSeconds $MaxWaitSeconds
+
+    $currentSnapshots = @(Get-ChildItem `
+            -LiteralPath $outputDir `
+            -Filter "*.snapshot.json" `
+            -File `
+            -ErrorAction SilentlyContinue)
+
+    if ($currentSnapshots.Count -ne 1) {
+        throw "Expected one generated snapshot; found $($currentSnapshots.Count)."
+    }
+
+    $currentSnapshot = Read-JsonFile -Path $currentSnapshots[0].FullName
+    $currentSource = Get-SnapshotSourcePath -Snapshot $currentSnapshot -RepoRoot $repoRoot
+    if ((Get-NormalizedPath -Path $currentSource) -ne $normalizedSource) {
+        throw "Generated snapshot is for '$currentSource', not '$relativeSource'."
+    }
+
+    # Match ci-baseline.ps1: remove GitCommit only and use UTF-8 without BOM.
+    Remove-GitCommit -Snapshot $currentSnapshot
+    Write-JsonFile -Path $baselineTempPath -Value $currentSnapshot
+
+    $writtenSnapshot = Read-JsonFile -Path $baselineTempPath
+    Remove-GitCommit -Snapshot $writtenSnapshot
+    $expectedJson = $currentSnapshot | ConvertTo-Json -Depth 100
+    $writtenJson = $writtenSnapshot | ConvertTo-Json -Depth 100
+    if ($expectedJson -cne $writtenJson) {
+        throw "Staged baseline verification failed."
+    }
+
+    # Accept only the requested entry. Other IsNew entries remain unchanged.
+    $entry.IsNew = $false
+    Write-JsonFile -Path $manifestTempPath -Value $manifest
+
+    Move-Item -LiteralPath $baselineTempPath -Destination $baselinePath
+    $baselineInstalled = $true
+    Move-Item -LiteralPath $manifestTempPath -Destination $manifestPath -Force
+
+    $installedManifest = Read-JsonFile -Path $manifestPath
+    $installedMatches = @($installedManifest.Files | Where-Object {
+            (Get-NormalizedPath -Path ([string]$_.Path)) -eq $normalizedSource
+        })
+    if ($installedMatches.Count -ne 1 -or [bool]$installedMatches[0].IsNew) {
+        throw "Installed manifest verification failed for $relativeSource."
+    }
+    if (!(Test-Path -LiteralPath $baselinePath -PathType Leaf)) {
+        throw "Installed baseline verification failed: $baselinePath"
+    }
+
+    $completed = $true
+}
+finally {
+    if (![string]::IsNullOrWhiteSpace($baselineTempPath)) {
+        Remove-Item -LiteralPath $baselineTempPath -Force -ErrorAction SilentlyContinue
+    }
+    Remove-Item -LiteralPath $manifestTempPath -Force -ErrorAction SilentlyContinue
+
+    if (!$completed) {
+        if ($baselineInstalled -and (Test-Path -LiteralPath $baselinePath)) {
+            Remove-Item -LiteralPath $baselinePath -Force
+        }
+
+        if ($manifestExisted) {
+            [System.IO.File]::WriteAllBytes($manifestPath, $originalManifest)
+        }
+        else {
+            Remove-Item -LiteralPath $manifestPath -Force -ErrorAction SilentlyContinue
+        }
+    }
+}
+
+Write-Host ""
+Write-Host "Baseline added successfully:"
+Write-Host "  Source:   $relativeSource"
+Write-Host "  Snapshot: $baselineDirRelative\$($entry.SnapshotFileName)"
+Write-Host "  Full baseline refresh: not run"
+Write-Host ""
+
+if ($null -ne (Get-Command git -ErrorAction SilentlyContinue)) {
+    & git -C $repoRoot status --short -- `
+        $relativeSource `
+        $manifestRelative `
+        (Join-Path $baselineDirRelative ([string]$entry.SnapshotFileName))
+    $global:LASTEXITCODE = 0
+}

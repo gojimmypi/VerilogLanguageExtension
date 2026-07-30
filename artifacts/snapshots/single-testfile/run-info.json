@@ -1,5 +1,22 @@
 {
     "SchemaVersion":  1,
     "RunName":  "all-testfiles",
-    "Manifest":  "C:/workspace/VerilogLanguageExtension/tools/vle-ci/manifests/single-testfile.json"
+    "Manifest":  "C:/workspace/VerilogLanguageExtension/tools/vle-ci/manifests/single-testfile.json",
+    "Status":  "Completed",
+    "StartedAt":  "2026-07-30T10:15:02.3787049-07:00",
+    "CompletedAt":  "2026-07-30T10:16:30.0800474-07:00",
+    "ElapsedSeconds":  87.701,
+    "Elapsed":  "00:01:27.7013629",
+    "ExpectedSnapshots":  1,
+    "ActualSnapshots":  1,
+    "Timings":  [
+                    {
+                        "Index":  1,
+                        "Count":  1,
+                        "Path":  "TestFiles/z386.sv",
+                        "SnapshotFileName":  "0001-z386.sv.snapshot.json",
+                        "Status":  "Completed",
+                        "ElapsedBucket":  "1-2m"
+                    }
+                ]
 }

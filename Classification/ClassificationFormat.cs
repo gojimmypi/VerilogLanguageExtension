@@ -2655,7 +2655,7 @@ namespace VerilogLanguage
     internal sealed class Verilog_SystemVerilogYosysUnsupported : ClassificationFormatDefinition
     {
         public Verilog_SystemVerilogYosysUnsupported() {
-            DisplayName = "SystemVerilog - Yosys synthesis unsupported";
+            DisplayName = "SystemVerilog - not synthesized / unsupported by Yosys";
             IsBold = true;
             if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.HotPink;

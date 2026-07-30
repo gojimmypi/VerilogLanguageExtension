@@ -2,10 +2,7 @@
     "DelayMs":  3000,
     "RunName":  "all-testfiles",
     "Files":  [
-                  {
-                      "Path":  "TestFiles\\z386.sv",
-                      "SnapshotFileName":  "0054-z386.sv.snapshot.json"
-                  }
+                  "TestFiles/systemverilog_keywords.sv"
               ],
     "FreshInstancePerFile":  true
 }

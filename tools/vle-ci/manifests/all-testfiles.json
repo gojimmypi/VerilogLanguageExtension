@@ -5,6 +5,11 @@
     "FreshInstancePerFile":  true,
     "Files":  [
                   {
+                      "Path":  "TestFiles/systemverilog_keywords.sv",
+                      "SnapshotFileName":  "0055-systemverilog_keywords.sv.snapshot.json",
+                      "IsNew":  false
+                  },
+                  {
                       "Path":  "TestFiles/anothertest - Copy.v",
                       "SnapshotFileName":  "0001-anothertest - Copy.v.snapshot.json",
                       "IsNew":  false

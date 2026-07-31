@@ -535,6 +535,22 @@ def text_contains_all(haystack: str, needles: Any) -> bool:
     return all(str(needle).lower() in haystack_lower for needle in needles)
 
 
+def text_contains_none(haystack: str, needles: Any) -> bool:
+    if isinstance(needles, str):
+        needles = [needles]
+    if needles is None:
+        needles = []
+    haystack_lower = (haystack or "").lower()
+    return all(str(needle).lower() not in haystack_lower for needle in needles)
+
+
+def hover_matches_requirement(hover_text: str, requirement: Dict[str, Any]) -> bool:
+    return (
+        text_contains_all(hover_text, requirement.get("HoverContains")) and
+        text_contains_none(hover_text, requirement.get("HoverNotContains"))
+    )
+
+
 def all_text_candidates(normalized: Dict[str, Any]) -> List[Dict[str, Any]]:
     candidates: List[Dict[str, Any]] = []
 
@@ -600,7 +616,10 @@ def check_required_text(path: Path, normalized: Dict[str, Any], required: Dict[s
         return
 
     hover_contains = required.get("HoverContains")
-    if hover_contains is not None and not any(text_contains_all(item.get("HoverText", ""), hover_contains) for item in candidates):
+    hover_not_contains = required.get("HoverNotContains")
+    if (hover_contains is not None or hover_not_contains is not None) and not any(
+            hover_matches_requirement(item.get("HoverText", ""), required)
+            for item in candidates):
         hover_values = [
             {
                 "Source": item.get("Source", ""),
@@ -609,23 +628,39 @@ def check_required_text(path: Path, normalized: Dict[str, Any], required: Dict[s
             }
             for item in candidates
         ]
-        failures.append(f"{path}: text {text} hover did not contain {hover_contains}; actual={hover_values}")
+        failures.append(
+            f"{path}: text {text} hover did not match "
+            f"contains={hover_contains} not_contains={hover_not_contains}; "
+            f"actual={hover_values}")
 
 
-def check_forbidden_text(path: Path, normalized: Dict[str, Any], forbidden: Dict[str, Any], failures: FailureList) -> None:
+def check_forbidden_text(
+        path: Path,
+        normalized: Dict[str, Any],
+        forbidden: Dict[str, Any],
+        failures: FailureList) -> None:
     text = forbidden.get("Text")
     if not text:
         return
 
-    candidates = [item for item in all_text_candidates(normalized) if item.get("Text") == text]
+    candidates = [
+        item for item in all_text_candidates(normalized)
+        if item.get("Text") == text
+    ]
 
     expected_source = forbidden.get("Source")
     if expected_source is not None:
-        candidates = [item for item in candidates if item.get("Source") == expected_source]
+        candidates = [
+            item for item in candidates
+            if item.get("Source") == expected_source
+        ]
 
     expected_tag_detail = forbidden.get("TagDetail")
     if expected_tag_detail is not None:
-        candidates = [item for item in candidates if item.get("TagDetail") == expected_tag_detail]
+        candidates = [
+            item for item in candidates
+            if item.get("TagDetail") == expected_tag_detail
+        ]
 
     expected_types = forbidden.get("Types")
     if expected_types is not None:
@@ -644,6 +679,25 @@ def check_forbidden_text(path: Path, normalized: Dict[str, Any], forbidden: Dict
             if forbidden.get(key) is not None
         }
         failures.append(f"{path}: forbidden text {text} matched {filters}")
+
+
+def symbol_matches_requirement(
+        symbol: Dict[str, Any],
+        requirement: Dict[str, Any]) -> bool:
+    for key in ("Name", "Scope", "TokenType"):
+        expected = requirement.get(key)
+        if expected is not None and symbol.get(key) != expected:
+            return False
+    return True
+
+
+def describe_symbol_requirement(requirement: Dict[str, Any]) -> str:
+    filters = {
+        key: requirement.get(key)
+        for key in ("Name", "Scope", "TokenType")
+        if requirement.get(key) is not None
+    }
+    return repr(filters)
 
 
 def check_expectation(expectation_path: Path, current: Dict[str, Tuple[Path, Snapshot, Dict[str, Any]]], failures: FailureList) -> None:
@@ -670,20 +724,44 @@ def check_expectation(expectation_path: Path, current: Dict[str, Tuple[Path, Sna
             if not name:
                 continue
 
-            candidates = [item for item in symbols if item.get("Name") == name]
+            candidates = [
+                item for item in symbols
+                if symbol_matches_requirement(item, required)
+            ]
             if not candidates:
-                failures.append(f"{path}: missing symbol {name}")
+                failures.append(
+                    f"{path}: missing symbol matching "
+                    f"{describe_symbol_requirement(required)}")
                 continue
 
             hover_contains = required.get("HoverContains")
-            if hover_contains is not None and not any(text_contains_all(item.get("HoverText", ""), hover_contains) for item in candidates):
+            hover_not_contains = required.get("HoverNotContains")
+            if (hover_contains is not None or hover_not_contains is not None) and not any(
+                    hover_matches_requirement(item.get("HoverText", ""), required)
+                    for item in candidates):
                 hover_values = [item.get("HoverText", "") for item in candidates]
-                failures.append(f"{path}: symbol {name} hover did not contain {hover_contains}; actual={hover_values}")
+                failures.append(
+                    f"{path}: symbol {name} hover did not match "
+                    f"contains={hover_contains} not_contains={hover_not_contains}; "
+                    f"actual={hover_values}")
 
         for forbidden in expectation.get("MustNotHaveSymbols") or []:
-            found = [item for item in symbols if item.get("Name") == forbidden]
+            requirement = (
+                {"Name": forbidden}
+                if isinstance(forbidden, str)
+                else forbidden
+            )
+            if not isinstance(requirement, dict) or not requirement.get("Name"):
+                continue
+
+            found = [
+                item for item in symbols
+                if symbol_matches_requirement(item, requirement)
+            ]
             if found:
-                failures.append(f"{path}: forbidden symbol exists: {forbidden}")
+                failures.append(
+                    f"{path}: forbidden symbol exists matching "
+                    f"{describe_symbol_requirement(requirement)}")
 
         # Backward-compatible name: this now means "the expected text must be
         # visible in exported editor data". The text may come from tags,

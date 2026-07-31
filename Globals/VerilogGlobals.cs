@@ -948,6 +948,130 @@ namespace VerilogLanguage
             return -1;
         }
 
+        private static string StripCommentsAndStringsForModuleScope(
+            string lineText,
+            ref bool insideBlockComment) {
+            if (string.IsNullOrEmpty(lineText)) {
+                return string.Empty;
+            }
+
+            StringBuilder codeText = new StringBuilder(lineText.Length);
+            bool insideString = false;
+            bool escaped = false;
+
+            for (int index = 0; index < lineText.Length; index++) {
+                char current = lineText[index];
+                char next = index + 1 < lineText.Length ? lineText[index + 1] : '\0';
+
+                if (insideBlockComment) {
+                    if (current == '*' && next == '/') {
+                        insideBlockComment = false;
+                        codeText.Append(' ');
+                        codeText.Append(' ');
+                        index++;
+                    }
+                    else {
+                        codeText.Append(' ');
+                    }
+                    continue;
+                }
+
+                if (insideString) {
+                    codeText.Append(' ');
+                    if (escaped) {
+                        escaped = false;
+                    }
+                    else if (current == '\\') {
+                        escaped = true;
+                    }
+                    else if (current == '"') {
+                        insideString = false;
+                    }
+                    continue;
+                }
+
+                if (current == '/' && next == '/') {
+                    while (codeText.Length < lineText.Length) {
+                        codeText.Append(' ');
+                    }
+                    break;
+                }
+
+                if (current == '/' && next == '*') {
+                    insideBlockComment = true;
+                    codeText.Append(' ');
+                    codeText.Append(' ');
+                    index++;
+                    continue;
+                }
+
+                if (current == '"') {
+                    insideString = true;
+                    codeText.Append(' ');
+                    continue;
+                }
+
+                codeText.Append(current);
+            }
+
+            return codeText.ToString();
+        }
+
+        private static bool IsSnapshotModuleNameToken(string itemText) {
+            if (IsIdentifier(itemText)) {
+                return true;
+            }
+
+            return !string.IsNullOrEmpty(itemText) &&
+                itemText.Length > 1 &&
+                itemText[0] == '\\';
+        }
+
+        private static void UpdateSnapshotModuleScope(
+            string lineText,
+            ref bool awaitingModuleName,
+            ref bool insideBlockComment,
+            ref string activeModuleScope) {
+            string codeText = StripCommentsAndStringsForModuleScope(
+                lineText,
+                ref insideBlockComment);
+            VerilogToken[] lineTokens = VerilogKeywordSplit(codeText, new VerilogToken());
+
+            foreach (VerilogToken token in lineTokens) {
+                string itemText = (token.Part ?? string.Empty).Trim();
+                if (string.IsNullOrEmpty(itemText)) {
+                    continue;
+                }
+
+                if (itemText == "endmodule") {
+                    activeModuleScope = string.Empty;
+                    awaitingModuleName = false;
+                    continue;
+                }
+
+                if (awaitingModuleName) {
+                    if (itemText == "automatic" || itemText == "static") {
+                        continue;
+                    }
+
+                    if (IsSnapshotModuleNameToken(itemText)) {
+                        activeModuleScope = NormalizeDeclarationDuplicateScope(itemText);
+                        awaitingModuleName = false;
+                        continue;
+                    }
+
+                    if (itemText == ";") {
+                        awaitingModuleName = false;
+                    }
+                    continue;
+                }
+
+                if (itemText == "module" || itemText == "macromodule") {
+                    awaitingModuleName = true;
+                }
+            }
+        }
+
         private static bool CodeLineStartsWithDeclarationKeyword(string lineText) {
             string codeText = StripLineCommentForDuplicateScan(lineText);
             if (string.IsNullOrWhiteSpace(codeText)) {
@@ -1896,11 +2020,19 @@ namespace VerilogLanguage
             int squigglyDepth = 0;
             string typedefScope = string.Empty;
             string activeLocalScope = string.Empty;
+            string activeModuleScope = string.Empty;
+            bool awaitingModuleName = false;
+            bool insideBlockComment = false;
             List<string> topLevelIdentifiers = new List<string>();
 
             foreach (ITextSnapshotLine line in snapshot.Lines) {
                 string lineText = line.GetText();
-                string moduleScope = NormalizeDeclarationDuplicateScope(TextModuleName(line.LineNumber, 0));
+                UpdateSnapshotModuleScope(
+                    lineText,
+                    ref awaitingModuleName,
+                    ref insideBlockComment,
+                    ref activeModuleScope);
+                string moduleScope = NormalizeDeclarationDuplicateScope(activeModuleScope);
                 string functionName;
                 string taskName;
 
@@ -2172,9 +2304,17 @@ namespace VerilogLanguage
             HashSet<string> invalidFunctionScopes = new HashSet<string>(StringComparer.Ordinal);
 
             string activeLocalScope = string.Empty;
+            string activeModuleScope = string.Empty;
+            bool awaitingModuleName = false;
+            bool insideBlockComment = false;
 
             foreach (ITextSnapshotLine line in snapshot.Lines) {
                 string lineText = line.GetText();
+                UpdateSnapshotModuleScope(
+                    lineText,
+                    ref awaitingModuleName,
+                    ref insideBlockComment,
+                    ref activeModuleScope);
                 bool mayContainFunction = lineText.IndexOf("function", StringComparison.Ordinal) >= 0;
                 bool mayContainTask = lineText.IndexOf("task", StringComparison.Ordinal) >= 0;
                 bool mayContainDeclaration = CodeLineStartsWithDeclarationKeyword(lineText);
@@ -2191,7 +2331,7 @@ namespace VerilogLanguage
                 string taskName;
 
                 if (mayContainFunction && TryGetFunctionNameFromLineText(lineText, out functionName)) {
-                    moduleScope = NormalizeDeclarationDuplicateScope(TextModuleName(line.LineNumber, 0));
+                    moduleScope = NormalizeDeclarationDuplicateScope(activeModuleScope);
                     activeLocalScope = FunctionLocalScopeName(moduleScope, functionName);
 
                     string returnTypeIdentifier;
@@ -2221,7 +2361,7 @@ namespace VerilogLanguage
                     }
                 }
                 else if (mayContainTask && TryGetTaskNameFromLineText(lineText, out taskName)) {
-                    moduleScope = NormalizeDeclarationDuplicateScope(TextModuleName(line.LineNumber, 0));
+                    moduleScope = NormalizeDeclarationDuplicateScope(activeModuleScope);
                     activeLocalScope = TaskLocalScopeName(moduleScope, taskName);
 
                     string argumentDeclarationText = RoutineArgumentDeclarationText(lineText, "task");
@@ -2238,7 +2378,7 @@ namespace VerilogLanguage
                     string scope = activeLocalScope;
                     if (string.IsNullOrEmpty(scope)) {
                         if (string.IsNullOrEmpty(moduleScope)) {
-                            moduleScope = NormalizeDeclarationDuplicateScope(TextModuleName(line.LineNumber, 0));
+                            moduleScope = NormalizeDeclarationDuplicateScope(activeModuleScope);
                         }
                         scope = moduleScope;
                     }
@@ -2296,6 +2436,32 @@ namespace VerilogLanguage
             }
 
             RemoveMisclassifiedUserDefinedTypeSymbols(inferredTypeNamesByScope, invalidFunctionScopes);
+        }
+
+        private static bool HasNewDeclarationModifierBeforeName(string declarationText, string itemName) {
+            if (string.IsNullOrEmpty(declarationText) || string.IsNullOrEmpty(itemName)) {
+                return false;
+            }
+
+            VerilogToken[] declarationTokens = VerilogKeywordSplit(declarationText, new VerilogToken());
+            foreach (VerilogToken token in declarationTokens) {
+                string itemText = (token.Part ?? string.Empty).Trim();
+                if (string.IsNullOrEmpty(itemText)) {
+                    continue;
+                }
+
+                if (itemText == itemName) {
+                    break;
+                }
+
+                if (IsDeclarationModifierKeyword(itemText) &&
+                    !IsVerilogNamerKeyword(itemText) &&
+                    !IsVerilogVariableSigner(itemText)) {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private static void AddHoverItem(string thisScope, string ItemName, string HoverText) {
@@ -2367,7 +2533,14 @@ namespace VerilogLanguage
                         // e.g. "module myModule( thisHoverText )"
                         case BuildHoverStates.ModuleParameterNaming:
                         case BuildHoverStates.ModuleParameterMimicNaming:
-                            thisHoverText = "module " + thisModuleName + "( .. " + thisHoverText + " .. )";
+                            // Preserve the concise declaration hover when the identifier was
+                            // reached only because a declaration type/modifier is now skipped.
+                            // This avoids changing existing ANSI-port and typed-parameter hovers
+                            // while still preventing type keywords such as logic or integer from
+                            // becoming symbols.
+                            if (!HasNewDeclarationModifierBeforeName(thisHoverText, ItemName)) {
+                                thisHoverText = "module " + thisModuleName + "( .. " + thisHoverText + " .. )";
+                            }
                             // there may be more parameters, so we're not adding it how
                             break;
 
@@ -2440,6 +2613,7 @@ namespace VerilogLanguage
                     break;
 
                 case "module":
+                case "macromodule":
                     // we're naming a module
                     BuildHoverState = BuildHoverStates.ModuleStart;
                     thisModuleDeclarationText = ItemText;
@@ -2564,6 +2738,13 @@ namespace VerilogLanguage
                 case "(":
                     thisModuleDeclarationText += ItemText;
                     BuildHoverState = BuildHoverStates.ModuleOpenParen;
+                    break;
+
+                case ";":
+                    thisModuleDeclarationText += ItemText;
+                    AddHoverItem(thisModuleName, thisModuleName, thisModuleDeclarationText);
+                    thisHoverName = string.Empty;
+                    BuildHoverState = BuildHoverStates.UndefinedState;
                     break;
 
                 default:
@@ -2697,11 +2878,11 @@ namespace VerilogLanguage
                     thisModuleDeclarationText += ItemText;
                     UpdateCurrentDeclarationVariableType(thisModuleParameterText);
 
-                    if (thisHoverName == string.Empty && IsIdentifier(ItemText) && !IsVerilogNamerKeyword(ItemText) && !IsVerilogVariableSigner(ItemText)) {
+                    if (thisHoverName == string.Empty && IsIdentifier(ItemText) && !IsVerilogNamerKeyword(ItemText) && !IsDeclarationModifierKeyword(ItemText)) {
                         thisHoverName = ItemText;
                     }
 
-                    if (IsVerilogNamerKeyword(ItemText) || IsVerilogVariableSigner(ItemText) || IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || IsDelimiter(ItemText)) {
+                    if (IsVerilogNamerKeyword(ItemText) || IsDeclarationModifierKeyword(ItemText) || IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || IsDelimiter(ItemText)) {
                         SetBracketContentStatus_For(ItemText);
                         // nothing at this time; we are still bulding the declaration part
                         // thisModuleParameterText += ItemText;
@@ -2788,7 +2969,7 @@ namespace VerilogLanguage
                     // thisModuleParameterText += ItemText;
                     thisModuleDeclarationText += ItemText;
 
-                    if (IsVerilogNamerKeyword(ItemText) || IsVerilogVariableSigner(ItemText) || IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || IsDelimiter(ItemText)) {
+                    if (IsVerilogNamerKeyword(ItemText) || IsDeclarationModifierKeyword(ItemText) || IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || IsDelimiter(ItemText)) {
                         SetBracketContentStatus_For(ItemText);
 
                         // no longer mimic naming
@@ -2800,7 +2981,7 @@ namespace VerilogLanguage
                         UpdateCurrentDeclarationVariableType(thisModuleParameterText);
                     }
                     else {
-                        if (thisHoverName == string.Empty && IsIdentifier(ItemText) && !IsVerilogNamerKeyword(ItemText) && !IsVerilogVariableSigner(ItemText)) {
+                        if (thisHoverName == string.Empty && IsIdentifier(ItemText) && !IsVerilogNamerKeyword(ItemText) && !IsDeclarationModifierKeyword(ItemText)) {
                             thisHoverName = ItemText;
                         }
                         thisModuleParameterText += ItemText;

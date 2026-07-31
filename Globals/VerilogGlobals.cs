@@ -156,10 +156,33 @@ namespace VerilogLanguage
                 return true;
             }
 
+            bool hasSystemVerilogVariableType = allowSystemVerilog &&
+                (ContainsDeclarationKeyword(text, "logic") ||
+                 ContainsDeclarationKeyword(text, "bit"));
+
+            // In an ANSI-style SystemVerilog port declaration, logic/bit is the
+            // data type and input/output/inout is still the symbol's direction.
+            // Preserve that direction instead of reducing every typed port to reg.
+            if (hasSystemVerilogVariableType) {
+                if (ContainsDeclarationKeyword(text, "inout")) {
+                    variableType = VerilogTokenTypes.Verilog_Variable_inout;
+                    return true;
+                }
+
+                if (ContainsDeclarationKeyword(text, "output")) {
+                    variableType = VerilogTokenTypes.Verilog_Variable_output;
+                    return true;
+                }
+
+                if (ContainsDeclarationKeyword(text, "input")) {
+                    variableType = VerilogTokenTypes.Verilog_Variable_input;
+                    return true;
+                }
+            }
+
             if (ContainsDeclarationKeyword(text, "reg")
                     || ContainsDeclarationKeyword(text, "integer")
-                    || (allowSystemVerilog && ContainsDeclarationKeyword(text, "logic"))
-                    || (allowSystemVerilog && ContainsDeclarationKeyword(text, "bit"))) {
+                    || hasSystemVerilogVariableType) {
                 variableType = VerilogTokenTypes.Verilog_Variable_reg;
                 return true;
             }
@@ -573,6 +596,9 @@ namespace VerilogLanguage
         private static string thisModuleName = string.Empty;
         private static string thisFunctionName = string.Empty;
         private static string thisFunctionScope = string.Empty;
+        private static string pendingFunctionName = string.Empty;
+        private static int pendingFunctionNameLineNumber = -1;
+        private static int pendingFunctionNameLinePosition = -1;
         private static string thisModuleDeclarationText = string.Empty;
         private static string thisModuleParameterText = string.Empty;
         private static string thisItemText = string.Empty;
@@ -668,6 +694,9 @@ namespace VerilogLanguage
             thisModuleName = string.Empty;
             thisFunctionName = string.Empty;
             thisFunctionScope = string.Empty;
+            pendingFunctionName = string.Empty;
+            pendingFunctionNameLineNumber = -1;
+            pendingFunctionNameLinePosition = -1;
             thisItemText = string.Empty;
             thisItemLineNumber = -1;
             thisItemLinePosition = -1;
@@ -952,12 +981,13 @@ namespace VerilogLanguage
             string codeText = StripLineCommentForDuplicateScan(lineText);
             int index = keywordIndex + keyword.Length;
             int squareDepth = 0;
+            string candidateName = string.Empty;
 
             while (index < codeText.Length) {
                 char c = codeText[index];
 
-                if (c == ';') {
-                    return false;
+                if (squareDepth == 0 && (c == '(' || c == ';')) {
+                    break;
                 }
 
                 if (c == '[') {
@@ -990,12 +1020,15 @@ namespace VerilogLanguage
                 }
 
                 if (IsIdentifier(candidate)) {
-                    routineName = candidate;
-                    return true;
+                    // The final identifier before the argument list or semicolon is
+                    // the routine name. Earlier identifiers may be package-qualified
+                    // or user-defined return data types.
+                    candidateName = candidate;
                 }
             }
 
-            return false;
+            routineName = candidateName;
+            return !string.IsNullOrEmpty(routineName);
         }
 
         public static bool TryGetFunctionNameFromLineText(string lineText, out string functionName) {
@@ -1044,10 +1077,21 @@ namespace VerilogLanguage
             countsByScope[scope][name]++;
         }
 
-        private static List<string> CollectDeclarationNamesInLine(string lineText) {
-            List<string> names = new List<string>();
+        private static void AddDeclarationIdentifierSegment(
+            List<List<string>> segments,
+            List<string> segmentIdentifiers) {
+            if (segmentIdentifiers.Count == 0) {
+                return;
+            }
+
+            segments.Add(new List<string>(segmentIdentifiers));
+            segmentIdentifiers.Clear();
+        }
+
+        private static List<List<string>> CollectDeclarationIdentifierSegments(string lineText) {
+            List<List<string>> segments = new List<List<string>>();
             if (!CodeLineStartsWithDeclarationKeyword(lineText)) {
-                return names;
+                return segments;
             }
 
             string codeText = StripLineCommentForDuplicateScan(lineText);
@@ -1062,13 +1106,14 @@ namespace VerilogLanguage
             }
 
             if (items.Count == 0 || !IsDeclarationStartKeyword(items[0])) {
-                return names;
+                return segments;
             }
 
             int squareDepth = 0;
             int roundDepth = 0;
             int squigglyDepth = 0;
             bool skippingInitializer = false;
+            List<string> segmentIdentifiers = new List<string>();
 
             for (int i = 0; i < items.Count; i++) {
                 string itemText = items[i];
@@ -1114,10 +1159,12 @@ namespace VerilogLanguage
                 }
 
                 if (itemText == ";") {
+                    AddDeclarationIdentifierSegment(segments, segmentIdentifiers);
                     break;
                 }
 
                 if (itemText == ",") {
+                    AddDeclarationIdentifierSegment(segments, segmentIdentifiers);
                     skippingInitializer = false;
                     continue;
                 }
@@ -1136,7 +1183,7 @@ namespace VerilogLanguage
                 }
 
                 if (IsIdentifier(itemText)) {
-                    names.Add(itemText);
+                    segmentIdentifiers.Add(itemText);
 
                     // A name can be followed by an unpacked dimension, as in:
                     //     wire rbit [7:0];
@@ -1145,7 +1192,33 @@ namespace VerilogLanguage
                 }
             }
 
+            AddDeclarationIdentifierSegment(segments, segmentIdentifiers);
+            return segments;
+        }
+
+        private static List<string> CollectDeclarationNamesInLine(string lineText) {
+            List<string> names = new List<string>();
+
+            foreach (List<string> segmentIdentifiers in CollectDeclarationIdentifierSegments(lineText)) {
+                names.Add(segmentIdentifiers[segmentIdentifiers.Count - 1]);
+            }
+
             return names;
+        }
+
+        private static List<string> CollectDeclarationTypeIdentifiersInLine(string lineText) {
+            List<string> typeIdentifiers = new List<string>();
+
+            foreach (List<string> segmentIdentifiers in CollectDeclarationIdentifierSegments(lineText)) {
+                if (segmentIdentifiers.Count > 1) {
+                    // The identifier immediately before the declared name is the
+                    // user-defined type in declarations such as:
+                    //     input package_name::sample_t value
+                    typeIdentifiers.Add(segmentIdentifiers[segmentIdentifiers.Count - 2]);
+                }
+            }
+
+            return typeIdentifiers;
         }
 
         private static void CountDeclarationNamesInLine(
@@ -1489,6 +1562,26 @@ namespace VerilogLanguage
             AddOrAppendHoverItem(NormalizeDeclarationDuplicateScope(scope), functionName, VerilogTokenTypes.Verilog_FunctionName, hoverText);
         }
 
+        private static void AddFunctionHoverItem(
+            string scope,
+            string functionName,
+            string hoverText,
+            int lineNumber,
+            int linePosition) {
+            string savedItemText = thisItemText;
+            int savedLineNumber = thisItemLineNumber;
+            int savedLinePosition = thisItemLinePosition;
+
+            thisItemText = functionName;
+            thisItemLineNumber = lineNumber;
+            thisItemLinePosition = linePosition;
+            AddFunctionHoverItem(scope, functionName, hoverText);
+
+            thisItemText = savedItemText;
+            thisItemLineNumber = savedLineNumber;
+            thisItemLinePosition = savedLinePosition;
+        }
+
         private static void AddConditionalDefinitionHoverItem(string scope, string itemName, string hoverText) {
             AddOrAppendHoverItem(scope, itemName, VerilogTokenTypes.Verilog_MacroDefinition, hoverText, false);
         }
@@ -1775,12 +1868,256 @@ namespace VerilogLanguage
             }
         }
 
+        private static HashSet<string> CollectTypedefNamesFromSnapshot(ITextSnapshot snapshot) {
+            HashSet<string> typeNames = new HashSet<string>(StringComparer.Ordinal);
+            bool insideTypedef = false;
+            int squareDepth = 0;
+            int roundDepth = 0;
+            int squigglyDepth = 0;
+            List<string> topLevelIdentifiers = new List<string>();
+
+            foreach (ITextSnapshotLine line in snapshot.Lines) {
+                string codeText = StripLineCommentForDuplicateScan(line.GetText());
+                VerilogToken[] lineTokens = VerilogKeywordSplit(codeText, new VerilogToken());
+
+                foreach (VerilogToken token in lineTokens) {
+                    string itemText = (token.Part ?? string.Empty).Trim();
+                    if (string.IsNullOrEmpty(itemText)) {
+                        continue;
+                    }
+
+                    if (!insideTypedef) {
+                        if (itemText == "typedef") {
+                            insideTypedef = true;
+                            squareDepth = 0;
+                            roundDepth = 0;
+                            squigglyDepth = 0;
+                            topLevelIdentifiers.Clear();
+                        }
+                        continue;
+                    }
+
+                    if (itemText == "[") {
+                        squareDepth++;
+                        continue;
+                    }
+
+                    if (itemText == "]") {
+                        if (squareDepth > 0) {
+                            squareDepth--;
+                        }
+                        continue;
+                    }
+
+                    if (itemText == "(") {
+                        roundDepth++;
+                        continue;
+                    }
+
+                    if (itemText == ")") {
+                        if (roundDepth > 0) {
+                            roundDepth--;
+                        }
+                        continue;
+                    }
+
+                    if (itemText == "{") {
+                        squigglyDepth++;
+                        continue;
+                    }
+
+                    if (itemText == "}") {
+                        if (squigglyDepth > 0) {
+                            squigglyDepth--;
+                        }
+                        continue;
+                    }
+
+                    if (squareDepth != 0 || roundDepth != 0 || squigglyDepth != 0) {
+                        continue;
+                    }
+
+                    if (itemText == ";") {
+                        if (topLevelIdentifiers.Count > 0) {
+                            typeNames.Add(topLevelIdentifiers[topLevelIdentifiers.Count - 1]);
+                        }
+
+                        insideTypedef = false;
+                        topLevelIdentifiers.Clear();
+                        continue;
+                    }
+
+                    if (IsIdentifier(itemText)) {
+                        topLevelIdentifiers.Add(itemText);
+                    }
+                }
+            }
+
+            return typeNames;
+        }
+
+        private static bool TryGetRoutineReturnTypeIdentifier(
+            string lineText,
+            string keyword,
+            string routineName,
+            out string typeIdentifier) {
+            typeIdentifier = string.Empty;
+
+            int keywordIndex = FindStandaloneCodeKeyword(lineText, keyword);
+            if (keywordIndex < 0 || string.IsNullOrEmpty(routineName)) {
+                return false;
+            }
+
+            string codeText = StripLineCommentForDuplicateScan(lineText);
+            int openParenIndex = codeText.IndexOf('(', keywordIndex + keyword.Length);
+            if (openParenIndex < 0) {
+                openParenIndex = codeText.IndexOf(';', keywordIndex + keyword.Length);
+            }
+            if (openParenIndex < 0) {
+                openParenIndex = codeText.Length;
+            }
+
+            string declarationPrefix = codeText.Substring(
+                keywordIndex + keyword.Length,
+                openParenIndex - keywordIndex - keyword.Length);
+            VerilogToken[] prefixTokens = VerilogKeywordSplit(declarationPrefix, new VerilogToken());
+            List<string> identifiers = new List<string>();
+            int squareDepth = 0;
+
+            foreach (VerilogToken token in prefixTokens) {
+                string itemText = (token.Part ?? string.Empty).Trim();
+                if (string.IsNullOrEmpty(itemText)) {
+                    continue;
+                }
+
+                if (itemText == "[") {
+                    squareDepth++;
+                    continue;
+                }
+
+                if (itemText == "]") {
+                    if (squareDepth > 0) {
+                        squareDepth--;
+                    }
+                    continue;
+                }
+
+                if (squareDepth != 0 || IsFunctionReturnTypeToken(itemText)) {
+                    continue;
+                }
+
+                if (IsIdentifier(itemText)) {
+                    identifiers.Add(itemText);
+                }
+            }
+
+            int routineIndex = identifiers.LastIndexOf(routineName);
+            if (routineIndex <= 0) {
+                return false;
+            }
+
+            typeIdentifier = identifiers[routineIndex - 1];
+            return !string.IsNullOrEmpty(typeIdentifier);
+        }
+
+        private static string RoutineArgumentDeclarationText(string lineText, string keyword) {
+            int keywordIndex = FindStandaloneCodeKeyword(lineText, keyword);
+            if (keywordIndex < 0) {
+                return string.Empty;
+            }
+
+            string codeText = StripLineCommentForDuplicateScan(lineText);
+            int openParenIndex = codeText.IndexOf('(', keywordIndex + keyword.Length);
+            if (openParenIndex < 0 || openParenIndex + 1 >= codeText.Length) {
+                return string.Empty;
+            }
+
+            return codeText.Substring(openParenIndex + 1);
+        }
+
+        private static void ProcessSnapshotDeclarationLine(
+            Dictionary<string, Dictionary<string, int>> countsByScope,
+            HashSet<string> inferredTypeNames,
+            string scope,
+            string declarationText) {
+            List<string> declarationNames = CollectDeclarationNamesInLine(declarationText);
+            foreach (string name in declarationNames) {
+                AddDuplicateScanName(countsByScope, scope, name);
+            }
+
+            foreach (string typeIdentifier in CollectDeclarationTypeIdentifiersInLine(declarationText)) {
+                inferredTypeNames.Add(typeIdentifier);
+            }
+
+            VerilogTokenTypes variableType;
+            if (TryGetDeclarationVariableTypeFromText(declarationText, out variableType)) {
+                string hoverText = BackfillDeclarationHoverText(declarationText);
+                foreach (string name in declarationNames) {
+                    AddMissingDeclarationSymbol(scope, name, hoverText, variableType);
+                }
+            }
+        }
+
+        private static bool IsMisclassifiedUserDefinedTypeToken(VerilogTokenTypes tokenType) {
+            switch (tokenType) {
+                case VerilogTokenTypes.Verilog_FunctionName:
+                case VerilogTokenTypes.Verilog_Variable:
+                case VerilogTokenTypes.Verilog_Variable_input:
+                case VerilogTokenTypes.Verilog_Variable_output:
+                case VerilogTokenTypes.Verilog_Variable_inout:
+                case VerilogTokenTypes.Verilog_Variable_wire:
+                case VerilogTokenTypes.Verilog_Variable_reg:
+                case VerilogTokenTypes.Verilog_Variable_localparam:
+                case VerilogTokenTypes.Verilog_Variable_parameter:
+                case VerilogTokenTypes.Verilog_Variable_duplicate:
+                case VerilogTokenTypes.Verilog_Variable_module:
+                    return true;
+
+                default:
+                    return false;
+            }
+        }
+
+        private static void RemoveHoverScope(string scope) {
+            VerilogVariables.Remove(scope);
+            VerilogVariableHoverText.Remove(scope);
+            VerilogDefinitionLocations.Remove(scope);
+        }
+
+        private static void RemoveMisclassifiedUserDefinedTypeSymbols(
+            HashSet<string> inferredTypeNames,
+            HashSet<string> invalidFunctionScopes) {
+            foreach (string scope in invalidFunctionScopes) {
+                RemoveHoverScope(scope);
+            }
+
+            foreach (string scope in VerilogVariables.Keys.ToList()) {
+                foreach (string typeName in inferredTypeNames) {
+                    VerilogTokenTypes tokenType;
+                    if (!VerilogVariables[scope].TryGetValue(typeName, out tokenType) ||
+                        !IsMisclassifiedUserDefinedTypeToken(tokenType)) {
+                        continue;
+                    }
+
+                    VerilogVariables[scope].Remove(typeName);
+                    if (VerilogVariableHoverText.ContainsKey(scope)) {
+                        VerilogVariableHoverText[scope].Remove(typeName);
+                    }
+                    if (VerilogDefinitionLocations.ContainsKey(scope)) {
+                        VerilogDefinitionLocations[scope].Remove(typeName);
+                    }
+                }
+            }
+        }
+
         private static void MarkDuplicateDeclarationsFromSnapshot(ITextSnapshot snapshot) {
             if (snapshot == null || snapshot.Length == 0) {
                 return;
             }
 
             Dictionary<string, Dictionary<string, int>> countsByScope = new Dictionary<string, Dictionary<string, int>>();
+            HashSet<string> inferredTypeNames = CollectTypedefNamesFromSnapshot(snapshot);
+            HashSet<string> invalidFunctionScopes = new HashSet<string>(StringComparer.Ordinal);
 
             string activeLocalScope = string.Empty;
 
@@ -1804,10 +2141,42 @@ namespace VerilogLanguage
                 if (mayContainFunction && TryGetFunctionNameFromLineText(lineText, out functionName)) {
                     moduleScope = NormalizeDeclarationDuplicateScope(TextModuleName(line.LineNumber, 0));
                     activeLocalScope = FunctionLocalScopeName(moduleScope, functionName);
+
+                    string returnTypeIdentifier;
+                    if (TryGetRoutineReturnTypeIdentifier(
+                            lineText,
+                            "function",
+                            functionName,
+                            out returnTypeIdentifier)) {
+                        inferredTypeNames.Add(returnTypeIdentifier);
+
+                        string invalidFunctionScope = FunctionLocalScopeName(moduleScope, returnTypeIdentifier);
+                        if (invalidFunctionScope != activeLocalScope) {
+                            invalidFunctionScopes.Add(invalidFunctionScope);
+                        }
+                    }
+
+                    string argumentDeclarationText = RoutineArgumentDeclarationText(lineText, "function");
+                    if (CodeLineStartsWithDeclarationKeyword(argumentDeclarationText)) {
+                        ProcessSnapshotDeclarationLine(
+                            countsByScope,
+                            inferredTypeNames,
+                            activeLocalScope,
+                            argumentDeclarationText);
+                    }
                 }
                 else if (mayContainTask && TryGetTaskNameFromLineText(lineText, out taskName)) {
                     moduleScope = NormalizeDeclarationDuplicateScope(TextModuleName(line.LineNumber, 0));
                     activeLocalScope = TaskLocalScopeName(moduleScope, taskName);
+
+                    string argumentDeclarationText = RoutineArgumentDeclarationText(lineText, "task");
+                    if (CodeLineStartsWithDeclarationKeyword(argumentDeclarationText)) {
+                        ProcessSnapshotDeclarationLine(
+                            countsByScope,
+                            inferredTypeNames,
+                            activeLocalScope,
+                            argumentDeclarationText);
+                    }
                 }
 
                 if (mayContainDeclaration) {
@@ -1819,18 +2188,11 @@ namespace VerilogLanguage
                         scope = moduleScope;
                     }
 
-                    List<string> declarationNames = CollectDeclarationNamesInLine(lineText);
-                    foreach (string name in declarationNames) {
-                        AddDuplicateScanName(countsByScope, scope, name);
-                    }
-
-                    VerilogTokenTypes variableType;
-                    if (TryGetDeclarationVariableTypeFromText(lineText, out variableType)) {
-                        string hoverText = BackfillDeclarationHoverText(lineText);
-                        foreach (string name in declarationNames) {
-                            AddMissingDeclarationSymbol(scope, name, hoverText, variableType);
-                        }
-                    }
+                    ProcessSnapshotDeclarationLine(
+                        countsByScope,
+                        inferredTypeNames,
+                        scope,
+                        lineText);
                 }
 
                 if (mayEndLocalScope && (IsEndFunctionLineText(lineText) || IsEndTaskLineText(lineText))) {
@@ -1877,6 +2239,8 @@ namespace VerilogLanguage
                     }
                 }
             }
+
+            RemoveMisclassifiedUserDefinedTypeSymbols(inferredTypeNames, invalidFunctionScopes);
         }
 
         private static void AddHoverItem(string thisScope, string ItemName, string HoverText) {
@@ -2029,6 +2393,9 @@ namespace VerilogLanguage
                 case "function":
                     BuildHoverState = BuildHoverStates.FunctionNaming;
                     thisVariableDeclarationText = ItemText;
+                    pendingFunctionName = string.Empty;
+                    pendingFunctionNameLineNumber = -1;
+                    pendingFunctionNameLinePosition = -1;
                     break;
 
                 case "task":
@@ -2076,6 +2443,9 @@ namespace VerilogLanguage
                     BuildHoverState = BuildHoverStates.UndefinedState;
                     thisFunctionName = string.Empty;
                     thisFunctionScope = string.Empty;
+                    pendingFunctionName = string.Empty;
+                    pendingFunctionNameLineNumber = -1;
+                    pendingFunctionNameLinePosition = -1;
                     break;
 
                 case "endtask":
@@ -2400,20 +2770,54 @@ namespace VerilogLanguage
         private static bool IsFunctionReturnTypeToken(string itemText) {
             switch (itemText) {
                 case "automatic":
+                case "static":
+                case "virtual":
+                case "local":
+                case "protected":
+                case "extern":
+                case "pure":
                 case "signed":
                 case "unsigned":
                 case "reg":
                 case "logic":
                 case "bit":
+                case "byte":
+                case "shortint":
+                case "int":
+                case "longint":
                 case "integer":
                 case "time":
+                case "shortreal":
                 case "real":
                 case "realtime":
+                case "string":
+                case "chandle":
+                case "void":
                     return true;
 
                 default:
                     return false;
             }
+        }
+
+        private static bool FinalizePendingFunctionName() {
+            if (string.IsNullOrEmpty(pendingFunctionName)) {
+                return false;
+            }
+
+            string hoverText = thisVariableDeclarationText.TrimEnd();
+            AddFunctionHoverItem(
+                thisModuleName,
+                pendingFunctionName,
+                hoverText,
+                pendingFunctionNameLineNumber,
+                pendingFunctionNameLinePosition);
+            thisFunctionName = pendingFunctionName;
+            thisFunctionScope = FunctionLocalScopeName(thisModuleName, thisFunctionName);
+            pendingFunctionName = string.Empty;
+            pendingFunctionNameLineNumber = -1;
+            pendingFunctionNameLinePosition = -1;
+            return true;
         }
 
         /// <summary>
@@ -2429,7 +2833,22 @@ namespace VerilogLanguage
                     }
                     break;
 
+                case "(":
+                    FinalizePendingFunctionName();
+                    thisVariableDeclarationText = string.Empty;
+                    BuildHoverState = BuildHoverStates.FunctionDeclarationRemainder;
+                    break;
+
                 case ";":
+                    FinalizePendingFunctionName();
+                    thisVariableDeclarationText = string.Empty;
+                    BuildHoverState = BuildHoverStates.UndefinedState;
+                    break;
+
+                case "endfunction":
+                    pendingFunctionName = string.Empty;
+                    pendingFunctionNameLineNumber = -1;
+                    pendingFunctionNameLinePosition = -1;
                     thisVariableDeclarationText = string.Empty;
                     BuildHoverState = BuildHoverStates.UndefinedState;
                     break;
@@ -2447,11 +2866,9 @@ namespace VerilogLanguage
 
                     if (IsIdentifier(ItemText)) {
                         thisVariableDeclarationText += ItemText;
-                        AddFunctionHoverItem(thisModuleName, ItemText, thisVariableDeclarationText);
-                        thisFunctionName = ItemText;
-                        thisFunctionScope = FunctionLocalScopeName(thisModuleName, thisFunctionName);
-                        thisVariableDeclarationText = string.Empty;
-                        BuildHoverState = BuildHoverStates.FunctionDeclarationRemainder;
+                        pendingFunctionName = ItemText;
+                        pendingFunctionNameLineNumber = thisItemLineNumber;
+                        pendingFunctionNameLinePosition = thisItemLinePosition;
                         break;
                     }
 

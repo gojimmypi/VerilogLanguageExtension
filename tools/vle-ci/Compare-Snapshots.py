@@ -571,8 +571,32 @@ def check_required_text(path: Path, normalized: Dict[str, Any], required: Dict[s
         return
 
     candidates = [item for item in all_text_candidates(normalized) if item.get("Text") == text]
+
+    expected_source = required.get("Source")
+    if expected_source is not None:
+        candidates = [item for item in candidates if item.get("Source") == expected_source]
+
+    expected_tag_detail = required.get("TagDetail")
+    if expected_tag_detail is not None:
+        candidates = [item for item in candidates if item.get("TagDetail") == expected_tag_detail]
+
+    expected_types = required.get("Types")
+    if expected_types is not None:
+        if isinstance(expected_types, str):
+            expected_types = [expected_types]
+        expected_type_set = set(expected_types)
+        candidates = [
+            item for item in candidates
+            if expected_type_set.issubset(set(item.get("Types") or []))
+        ]
+
     if not candidates:
-        failures.append(f"{path}: missing text {text}")
+        filters = {
+            key: required.get(key)
+            for key in ("Source", "TagDetail", "Types")
+            if required.get(key) is not None
+        }
+        failures.append(f"{path}: missing text {text} matching {filters}")
         return
 
     hover_contains = required.get("HoverContains")
@@ -586,6 +610,40 @@ def check_required_text(path: Path, normalized: Dict[str, Any], required: Dict[s
             for item in candidates
         ]
         failures.append(f"{path}: text {text} hover did not contain {hover_contains}; actual={hover_values}")
+
+
+def check_forbidden_text(path: Path, normalized: Dict[str, Any], forbidden: Dict[str, Any], failures: FailureList) -> None:
+    text = forbidden.get("Text")
+    if not text:
+        return
+
+    candidates = [item for item in all_text_candidates(normalized) if item.get("Text") == text]
+
+    expected_source = forbidden.get("Source")
+    if expected_source is not None:
+        candidates = [item for item in candidates if item.get("Source") == expected_source]
+
+    expected_tag_detail = forbidden.get("TagDetail")
+    if expected_tag_detail is not None:
+        candidates = [item for item in candidates if item.get("TagDetail") == expected_tag_detail]
+
+    expected_types = forbidden.get("Types")
+    if expected_types is not None:
+        if isinstance(expected_types, str):
+            expected_types = [expected_types]
+        expected_type_set = set(expected_types)
+        candidates = [
+            item for item in candidates
+            if expected_type_set.issubset(set(item.get("Types") or []))
+        ]
+
+    if candidates:
+        filters = {
+            key: forbidden.get(key)
+            for key in ("Source", "TagDetail", "Types")
+            if forbidden.get(key) is not None
+        }
+        failures.append(f"{path}: forbidden text {text} matched {filters}")
 
 
 def check_expectation(expectation_path: Path, current: Dict[str, Tuple[Path, Snapshot, Dict[str, Any]]], failures: FailureList) -> None:
@@ -636,6 +694,12 @@ def check_expectation(expectation_path: Path, current: Dict[str, Tuple[Path, Sna
 
         for required in expectation.get("MustHaveText") or []:
             check_required_text(path, normalized, required, failures)
+
+        for forbidden in expectation.get("MustNotHaveTaggedText") or []:
+            check_forbidden_text(path, normalized, forbidden, failures)
+
+        for forbidden in expectation.get("MustNotHaveText") or []:
+            check_forbidden_text(path, normalized, forbidden, failures)
 
 
 def check_expectations(current_root: Path, expectations_root: Path, failures: FailureList) -> None:

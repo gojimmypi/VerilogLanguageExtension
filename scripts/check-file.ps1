@@ -603,7 +603,7 @@ $matchedExpectations = New-FilteredExpectationDirectory `
     -FilteredExpectationsRoot $filteredExpectations
 
 if ($matchedExpectations -gt 0) {
-    Write-Host "Targeted expectations matched: $matchedExpectations"
+    Write-Host "Targeted expectation files found: $matchedExpectations"
     $expectationExitCode = Invoke-CompareSnapshots `
         -CompareScript $compareScript `
         -CurrentDir $outputDir `
@@ -611,6 +611,7 @@ if ($matchedExpectations -gt 0) {
     if ($expectationExitCode -ne 0) {
         throw "Compare-Snapshots.py targeted expectation check failed with exit code $expectationExitCode"
     }
+    Write-Host "Targeted expectations passed: $matchedExpectations"
 }
 else {
     Write-Host "No targeted expectations matched $SourceFile; skipping expectation checks."

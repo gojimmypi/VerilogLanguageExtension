@@ -1,0 +1,131 @@
+{
+    "File": "TestFiles/systemverilog_keywords.sv",
+    "MustHaveTaggedText": [
+        {
+            "Text": "logic",
+            "Source": "Tags",
+            "TagDetail": "Verilog_SystemVerilogYosysSupported",
+            "HoverContains": [
+                "SystemVerilog",
+                "4-state",
+                "Yosys"
+            ]
+        },
+        {
+            "Text": "bit",
+            "Source": "Tags",
+            "TagDetail": "Verilog_SystemVerilogYosysSupported",
+            "HoverContains": [
+                "SystemVerilog",
+                "2-state",
+                "Yosys"
+            ]
+        },
+        {
+            "Text": "always_ff",
+            "Source": "Tags",
+            "TagDetail": "Verilog_SystemVerilogYosysSupported",
+            "HoverContains": [
+                "SystemVerilog",
+                "sequential",
+                "Yosys"
+            ]
+        },
+        {
+            "Text": "always_comb",
+            "Source": "Tags",
+            "TagDetail": "Verilog_SystemVerilogYosysSupported",
+            "HoverContains": [
+                "SystemVerilog",
+                "combinational",
+                "Yosys"
+            ]
+        },
+        {
+            "Text": "final",
+            "Source": "Tags",
+            "TagDetail": "Verilog_SystemVerilogYosysUnsupported",
+            "HoverContains": [
+                "SystemVerilog",
+                "end of simulation",
+                "not synthesized"
+            ]
+        },
+        {
+            "Text": "clk",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_input",
+            "HoverContains": [
+                "input",
+                "logic",
+                "clk"
+            ]
+        },
+        {
+            "Text": "d",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_input",
+            "HoverContains": [
+                "input",
+                "logic",
+                "d"
+            ]
+        },
+        {
+            "Text": "q",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_output",
+            "HoverContains": [
+                "output",
+                "logic",
+                "q"
+            ]
+        },
+        {
+            "Text": "enabled",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_reg",
+            "HoverContains": [
+                "bit",
+                "enabled"
+            ]
+        },
+        {
+            "Text": "value",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_input",
+            "HoverContains": [
+                "input",
+                "sample_t",
+                "value"
+            ]
+        },
+        {
+            "Text": "sample_identity",
+            "Source": "Tags",
+            "TagDetail": "Verilog_FunctionName",
+            "HoverContains": [
+                "function",
+                "sample_t",
+                "sample_identity"
+            ]
+        }
+    ],
+    "MustNotHaveTaggedText": [
+        {
+            "Text": "sample_t",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_input"
+        },
+        {
+            "Text": "sample_t",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_reg"
+        },
+        {
+            "Text": "sample_t",
+            "Source": "Tags",
+            "TagDetail": "Verilog_FunctionName"
+        }
+    ]
+}

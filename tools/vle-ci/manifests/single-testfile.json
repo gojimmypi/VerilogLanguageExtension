@@ -2,7 +2,10 @@
     "DelayMs":  3000,
     "RunName":  "all-testfiles",
     "Files":  [
-                  "TestFiles/systemverilog_keywords.sv"
+                  {
+                      "Path":  "TestFiles/systemverilog_keywords.sv",
+                      "SnapshotFileName":  "0055-systemverilog_keywords.sv.snapshot.json"
+                  }
               ],
     "FreshInstancePerFile":  true
 }

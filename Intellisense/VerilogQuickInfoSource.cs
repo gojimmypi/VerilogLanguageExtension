@@ -164,6 +164,17 @@ namespace VerilogLanguage
             [VerilogToken.VerilogTokenTypes.Verilog_Directive] = "Verilog directive"
         };
 
+        internal static readonly IDictionary<string, string> SystemVerilogKeywordHoverText =
+            new Dictionary<string, string>(StringComparer.Ordinal)
+            {
+                ["logic"] = "SystemVerilog 4-state variable data type. VLE classifies this keyword as supported by the Yosys read_slang frontend.",
+                ["bit"] = "SystemVerilog 2-state variable data type. VLE classifies this keyword as supported by the Yosys read_slang frontend.",
+                ["always_ff"] = "SystemVerilog sequential procedure for flip-flop behavior. VLE classifies this keyword as supported by the Yosys read_slang frontend.",
+                ["always_comb"] = "SystemVerilog combinational procedure. VLE classifies this keyword as supported by the Yosys read_slang frontend.",
+                ["always_latch"] = "SystemVerilog procedure for latch behavior. VLE classifies this keyword as supported by the Yosys read_slang frontend.",
+                ["final"] = "SystemVerilog final procedure, executed once at the end of simulation. It is not synthesized; VLE classifies it as not synthesized or unsupported by Yosys."
+            };
+
         private readonly IDictionary<VerilogToken.VerilogTokenTypes, string> _verilogKeywordHoverText;
 
         public VerilogAsyncQuickInfoSource(
@@ -264,6 +275,27 @@ namespace VerilogLanguage
             if (VerilogAsyncQuickInfoSource.VerilogKeywordHoverText.TryGetValue(tokenType, out keywordHover)) {
                 hoverText = keywordHover;
                 return true;
+            }
+
+            if (tokenType == VerilogToken.VerilogTokenTypes.Verilog_SystemVerilogYosysSupported ||
+                tokenType == VerilogToken.VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported) {
+                string keyword = tagSpan.GetText();
+                if (VerilogAsyncQuickInfoSource.SystemVerilogKeywordHoverText.TryGetValue(keyword, out keywordHover)) {
+                    hoverText = keywordHover;
+                    return true;
+                }
+
+                if (!string.IsNullOrWhiteSpace(keyword)) {
+                    if (tokenType == VerilogToken.VerilogTokenTypes.Verilog_SystemVerilogYosysSupported) {
+                        hoverText = "SystemVerilog keyword '" + keyword + "'. VLE classifies this use as supported by the Yosys read_slang frontend.";
+                    }
+                    else {
+                        hoverText = "SystemVerilog keyword '" + keyword + "'. VLE classifies it as not synthesized, unsupported, or not reliably lowered by Yosys.";
+                    }
+                    return true;
+                }
+
+                return false;
             }
 
             return TryGetVariableHoverText(snapshot, tagSpan, out hoverText);

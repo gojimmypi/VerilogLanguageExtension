@@ -962,116 +962,84 @@ namespace VerilogLanguage.VerilogToken
             return !string.IsNullOrEmpty(lineText) && lineText.IndexOf(itemText, StringComparison.Ordinal) >= 0;
         }
 
-        private static bool IsFunctionDeclarationNameContext(ITextSnapshotLine containingLine, int lookupColumn, string lookupText) {
+        private static int FindStandaloneCodeItem(string lineText, string itemText) {
+            if (string.IsNullOrEmpty(lineText) || string.IsNullOrEmpty(itemText)) {
+                return -1;
+            }
+
+            int searchStart = 0;
+            while (searchStart < lineText.Length) {
+                int index = lineText.IndexOf(itemText, searchStart, StringComparison.Ordinal);
+                if (index < 0) {
+                    return -1;
+                }
+
+                bool validPrefix = index == 0 || IsVerilogIdentifierBoundary(lineText[index - 1]);
+                int afterIndex = index + itemText.Length;
+                bool validSuffix = afterIndex >= lineText.Length || IsVerilogIdentifierBoundary(lineText[afterIndex]);
+                if (validPrefix && validSuffix) {
+                    return index;
+                }
+
+                searchStart = index + itemText.Length;
+            }
+
+            return -1;
+        }
+
+        private static bool IsRoutineDeclarationNameContext(
+            ITextSnapshotLine containingLine,
+            int lookupColumn,
+            string lookupText,
+            string routineKeyword) {
             if (containingLine == null || !IsVerilogIdentifierText(lookupText)) {
                 return false;
             }
 
             string lineText = containingLine.GetText();
-            if (!LineTextMayContainItem(lineText, "function")) {
+            if (lookupColumn < 0 || lookupColumn + lookupText.Length > lineText.Length) {
                 return false;
             }
 
-            if (lookupColumn < 0 || lookupColumn > lineText.Length) {
+            string routineName;
+            bool foundRoutine = routineKeyword == "function"
+                ? VerilogGlobals.TryGetFunctionNameFromLineText(lineText, out routineName)
+                : VerilogGlobals.TryGetTaskNameFromLineText(lineText, out routineName);
+            if (!foundRoutine || !string.Equals(routineName, lookupText, StringComparison.Ordinal)) {
                 return false;
             }
 
-            List<string> prefixItems = GetSimpleCodeItems(lineText.Substring(0, lookupColumn));
-            int functionIndex = -1;
-            for (int i = 0; i < prefixItems.Count; i++) {
-                if (prefixItems[i] == "function") {
-                    functionIndex = i;
-                }
-            }
-
-            if (functionIndex < 0) {
+            int keywordIndex = FindStandaloneCodeItem(lineText, routineKeyword);
+            if (keywordIndex < 0 || lookupColumn <= keywordIndex) {
                 return false;
             }
 
-            int squareDepth = 0;
-            for (int i = functionIndex + 1; i < prefixItems.Count; i++) {
-                string item = prefixItems[i];
+            int declarationEnd = lineText.IndexOf('(', keywordIndex + routineKeyword.Length);
+            if (declarationEnd < 0) {
+                declarationEnd = lineText.IndexOf(';', keywordIndex + routineKeyword.Length);
+            }
+            if (declarationEnd < 0) {
+                declarationEnd = lineText.Length;
+            }
 
-                if (item == "[") {
-                    squareDepth++;
-                    continue;
-                }
-
-                if (item == "]") {
-                    if (squareDepth > 0) {
-                        squareDepth--;
-                    }
-                    continue;
-                }
-
-                if (squareDepth > 0) {
-                    continue;
-                }
-
-                if (item == ":" || item == "," || IsFunctionReturnTypeText(item) || IsVerilogValueText(item)) {
-                    continue;
-                }
-
+            if (lookupColumn >= declarationEnd) {
                 return false;
             }
 
-            return true;
+            int lastNameIndex = lineText.LastIndexOf(
+                routineName,
+                declarationEnd - 1,
+                declarationEnd - keywordIndex,
+                StringComparison.Ordinal);
+            return lastNameIndex == lookupColumn;
+        }
+
+        private static bool IsFunctionDeclarationNameContext(ITextSnapshotLine containingLine, int lookupColumn, string lookupText) {
+            return IsRoutineDeclarationNameContext(containingLine, lookupColumn, lookupText, "function");
         }
 
         private static bool IsTaskDeclarationNameContext(ITextSnapshotLine containingLine, int lookupColumn, string lookupText) {
-            if (containingLine == null || !IsVerilogIdentifierText(lookupText)) {
-                return false;
-            }
-
-            string lineText = containingLine.GetText();
-            if (!LineTextMayContainItem(lineText, "task")) {
-                return false;
-            }
-
-            if (lookupColumn < 0 || lookupColumn > lineText.Length) {
-                return false;
-            }
-
-            List<string> prefixItems = GetSimpleCodeItems(lineText.Substring(0, lookupColumn));
-            int taskIndex = -1;
-            for (int i = 0; i < prefixItems.Count; i++) {
-                if (prefixItems[i] == "task") {
-                    taskIndex = i;
-                }
-            }
-
-            if (taskIndex < 0) {
-                return false;
-            }
-
-            int squareDepth = 0;
-            for (int i = taskIndex + 1; i < prefixItems.Count; i++) {
-                string item = prefixItems[i];
-
-                if (item == "[") {
-                    squareDepth++;
-                    continue;
-                }
-
-                if (item == "]") {
-                    if (squareDepth > 0) {
-                        squareDepth--;
-                    }
-                    continue;
-                }
-
-                if (squareDepth > 0) {
-                    continue;
-                }
-
-                if (item == ":" || item == "," || IsFunctionReturnTypeText(item) || IsVerilogValueText(item)) {
-                    continue;
-                }
-
-                return false;
-            }
-
-            return true;
+            return IsRoutineDeclarationNameContext(containingLine, lookupColumn, lookupText, "task");
         }
 
         private static string ResolveVariableScope(
@@ -1432,6 +1400,133 @@ namespace VerilogLanguage.VerilogToken
             return hasAssignment;
         }
 
+        private static string CodeBeforeLineComment(string lineText) {
+            if (string.IsNullOrEmpty(lineText)) {
+                return string.Empty;
+            }
+
+            int commentIndex = lineText.IndexOf("//", StringComparison.Ordinal);
+            return commentIndex >= 0 ? lineText.Substring(0, commentIndex) : lineText;
+        }
+
+        private static bool IsTypedefAliasIdentifierContext(
+            ITextSnapshotLine containingLine,
+            int lookupColumn,
+            string lookupText) {
+            if (containingLine == null || !IsVerilogIdentifierText(lookupText)) {
+                return false;
+            }
+
+            string lineText = CodeBeforeLineComment(containingLine.GetText());
+            int typedefIndex = FindStandaloneCodeItem(lineText, "typedef");
+            int semicolonIndex = lineText.LastIndexOf(';');
+            if (typedefIndex < 0 || semicolonIndex <= typedefIndex || lookupColumn >= semicolonIndex) {
+                return false;
+            }
+
+            int aliasEnd = semicolonIndex;
+            while (aliasEnd > typedefIndex && char.IsWhiteSpace(lineText[aliasEnd - 1])) {
+                aliasEnd--;
+            }
+
+            int aliasStart = aliasEnd;
+            while (aliasStart > typedefIndex && IsVerilogIdentifierContinuation(lineText[aliasStart - 1])) {
+                aliasStart--;
+            }
+
+            return aliasStart == lookupColumn &&
+                   aliasEnd - aliasStart == lookupText.Length &&
+                   string.CompareOrdinal(lineText, aliasStart, lookupText, 0, lookupText.Length) == 0;
+        }
+
+        private static bool HasLaterDeclaratorIdentifier(
+            ITextSnapshotLine containingLine,
+            int lookupColumn,
+            string lookupText) {
+            if (containingLine == null || !IsVerilogIdentifierText(lookupText)) {
+                return false;
+            }
+
+            string lineText = CodeBeforeLineComment(containingLine.GetText());
+            int tokenEnd = lookupColumn + lookupText.Length;
+            if (lookupColumn < 0 || tokenEnd > lineText.Length) {
+                return false;
+            }
+
+            int squareDepth = 0;
+            foreach (string item in GetSimpleCodeItems(lineText.Substring(0, lookupColumn))) {
+                if (item == "[") {
+                    squareDepth++;
+                }
+                else if (item == "]" && squareDepth > 0) {
+                    squareDepth--;
+                }
+            }
+
+            if (squareDepth > 0) {
+                return true;
+            }
+
+            squareDepth = 0;
+            int roundDepth = 0;
+            int squigglyDepth = 0;
+            foreach (string item in GetSimpleCodeItems(lineText.Substring(tokenEnd))) {
+                bool atTopLevel = squareDepth == 0 && roundDepth == 0 && squigglyDepth == 0;
+                if (atTopLevel && (item == "," || item == ";" || item == "=" || item == ")")) {
+                    break;
+                }
+
+                switch (item) {
+                    case "[":
+                        squareDepth++;
+                        continue;
+                    case "]":
+                        if (squareDepth > 0) {
+                            squareDepth--;
+                        }
+                        continue;
+                    case "(":
+                        roundDepth++;
+                        continue;
+                    case ")":
+                        if (roundDepth > 0) {
+                            roundDepth--;
+                        }
+                        continue;
+                    case "{":
+                        squigglyDepth++;
+                        continue;
+                    case "}":
+                        if (squigglyDepth > 0) {
+                            squigglyDepth--;
+                        }
+                        continue;
+                }
+
+                if (squareDepth == 0 && roundDepth == 0 && squigglyDepth == 0 &&
+                    IsVerilogIdentifierText(item)) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private bool TryGetDeclarationVariableTypeForLookup(
+            ITextSnapshotLine containingLine,
+            int column,
+            string lookupText,
+            out VerilogTokenTypes variableType) {
+            variableType = VerilogTokenTypes.Verilog_Variable;
+
+            if (IsTypedefAliasIdentifierContext(containingLine, column, lookupText) ||
+                HasLaterDeclaratorIdentifier(containingLine, column, lookupText)) {
+                return false;
+            }
+
+            return TryGetDeclarationVariableType(containingLine, column, out variableType);
+        }
+
         private bool TryGetDeclarationVariableType(
             ITextSnapshotLine containingLine,
             int column,
@@ -1597,9 +1692,10 @@ namespace VerilogLanguage.VerilogToken
             if (parseData == null) {
                 VerilogTokenTypes declarationVariableType;
                 if (lookupTextIsIdentifier &&
-                    TryGetDeclarationVariableType(
+                    TryGetDeclarationVariableTypeForLookup(
                         containingLine,
                         (curLoc + leadingWhitespace) - containingLine.Start.Position,
+                        lookupText,
                         out declarationVariableType)) {
 
                     yield return new TagSpan<VerilogTokenTag>(
@@ -1655,9 +1751,10 @@ namespace VerilogLanguage.VerilogToken
 
                 VerilogTokenTypes declarationVariableType;
                 if (lookupTextIsIdentifier &&
-                    TryGetDeclarationVariableType(
+                    TryGetDeclarationVariableTypeForLookup(
                         containingLine,
                         (curLoc + leadingWhitespace) - containingLine.Start.Position,
+                        lookupText,
                         out declarationVariableType)) {
 
                     yield return new TagSpan<VerilogTokenTag>(
@@ -1686,9 +1783,10 @@ namespace VerilogLanguage.VerilogToken
 
             VerilogTokenTypes fallbackDeclarationVariableType;
             if (lookupTextIsIdentifier &&
-                TryGetDeclarationVariableType(
+                TryGetDeclarationVariableTypeForLookup(
                     containingLine,
                     (curLoc + leadingWhitespace) - containingLine.Start.Position,
+                    lookupText,
                     out fallbackDeclarationVariableType)) {
 
                 yield return new TagSpan<VerilogTokenTag>(

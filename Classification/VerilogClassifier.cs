@@ -170,6 +170,7 @@ namespace VerilogLanguage.VerilogToken
                 [VerilogTokenTypes.Verilog_initial] = typeService.GetClassificationType("initial"),
                 [VerilogTokenTypes.Verilog_inout] = typeService.GetClassificationType("inout"),
                 [VerilogTokenTypes.Verilog_input] = typeService.GetClassificationType("input"),
+                [VerilogTokenTypes.Verilog_integer] = typeService.GetClassificationType("integer"),
                 [VerilogTokenTypes.Verilog_instance] = typeService.GetClassificationType("instance"),
                 [VerilogTokenTypes.Verilog_join] = typeService.GetClassificationType("join"),
                 [VerilogTokenTypes.Verilog_liblist] = typeService.GetClassificationType("liblist"),

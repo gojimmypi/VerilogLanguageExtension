@@ -364,6 +364,14 @@ namespace VerilogLanguage
 
 
         /// <summary>
+        /// Defines the "Verilog_integer" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("integer")]
+        internal static ClassificationTypeDefinition Verilog_integer = null;
+
+
+        /// <summary>
         /// Defines the "Verilog_instance" classification type.
         /// </summary>
         [Export(typeof(ClassificationTypeDefinition))]

@@ -1,7 +1,7 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.5",
+    "ExtensionVersion":  "0.4.1.10",
     "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\src\\UART\\uart_tx_min.v",
     "FileRelativePath":  "TestFiles\\src\\UART\\uart_tx_min.v",
     "ContentType":  "verilog",
@@ -1449,7 +1449,7 @@
                                 "Column":  16,
                                 "Text":  "integer",
                                 "Types":  [
-                                              "Variable_localparam"
+                                              "integer"
                                           ]
                             },
                             {
@@ -1499,7 +1499,7 @@
                                 "Column":  16,
                                 "Text":  "integer",
                                 "Types":  [
-                                              "Variable_localparam"
+                                              "integer"
                                           ]
                             },
                             {
@@ -11111,8 +11111,8 @@
                      "Column":  16,
                      "Text":  "integer",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_localparam",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_integer",
+                     "HoverText":  "The integer reserved word declares a 32-bit signed, four-state integral variable type."
                  },
                  {
                      "Start":  2599,
@@ -11161,8 +11161,8 @@
                      "Column":  16,
                      "Text":  "integer",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_localparam",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_integer",
+                     "HoverText":  "The integer reserved word declares a 32-bit signed, four-state integral variable type."
                  },
                  {
                      "Start":  2663,
@@ -30436,5 +30436,12 @@
                         "TokenType":  "Verilog_Value",
                         "HoverText":  "4\u0027D8 = (4 bit Decimal) 8; "
                     }
-                ]
+                ],
+    "ProcessingTime":  {
+                           "SchemaVersion":  2,
+                           "ElapsedBucket":  "30-34s",
+                           "Index":  1,
+                           "Count":  1,
+                           "Status":  "Completed"
+                       }
 }

@@ -1,7 +1,7 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.5",
+    "ExtensionVersion":  "0.4.1.10",
     "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\src\\TRNG\\trng_lab_core.v",
     "FileRelativePath":  "TestFiles\\src\\TRNG\\trng_lab_core.v",
     "ContentType":  "verilog",
@@ -35699,7 +35699,7 @@
                                 "Column":  15,
                                 "Text":  "integer",
                                 "Types":  [
-                                              "Variable_parameter"
+                                              "integer"
                                           ]
                             },
                             {
@@ -110992,7 +110992,7 @@
                      "Text":  "Preserves",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "output wire [7:3] health_status_o /*  Preserves legacy R5[2:0] */"
+                     "HoverText":  null
                  },
                  {
                      "Start":  32333,
@@ -111012,7 +111012,7 @@
                      "Text":  "legacy",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "output wire [7:3] health_status_o /*  Preserves legacy R5[2:0] */"
+                     "HoverText":  null
                  },
                  {
                      "Start":  32340,
@@ -140811,8 +140811,8 @@
                      "Column":  15,
                      "Text":  "integer",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_parameter",
-                     "HoverText":  "module trng_ro( .. parameter integer STAGES = 3 .. )"
+                     "TagDetail":  "Verilog_integer",
+                     "HoverText":  "The integer reserved word declares a 32-bit signed, four-state integral variable type."
                  },
                  {
                      "Start":  43812,
@@ -273540,18 +273540,6 @@
                     },
                     {
                         "Scope":  "trng_health_core",
-                        "Name":  "Preserves",
-                        "TokenType":  "Verilog_Variable_wire",
-                        "HoverText":  "output wire [7:3] health_status_o /*  Preserves legacy R5[2:0] */"
-                    },
-                    {
-                        "Scope":  "trng_health_core",
-                        "Name":  "legacy",
-                        "TokenType":  "Verilog_Variable_wire",
-                        "HoverText":  "output wire [7:3] health_status_o /*  Preserves legacy R5[2:0] */"
-                    },
-                    {
-                        "Scope":  "trng_health_core",
                         "Name":  "R5",
                         "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "output wire [7:3] health_status_o /*  Preserves legacy R5[2:0] */"
@@ -273622,5 +273610,12 @@
                         "TokenType":  "Verilog_Variable_parameter",
                         "HoverText":  "parameter integer STAGES = 3"
                     }
-                ]
+                ],
+    "ProcessingTime":  {
+                           "SchemaVersion":  2,
+                           "ElapsedBucket":  "30-34s",
+                           "Index":  1,
+                           "Count":  1,
+                           "Status":  "Completed"
+                       }
 }

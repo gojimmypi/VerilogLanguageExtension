@@ -1,7 +1,7 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.5",
+    "ExtensionVersion":  "0.4.1.10",
     "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\src\\project.v",
     "FileRelativePath":  "TestFiles\\src\\project.v",
     "ContentType":  "verilog",
@@ -23692,7 +23692,7 @@
                      "Text":  "default",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "parameter [31:0] CLOCK_HZ  = `PROJECT_CLOCK_HZ,    /* default clock is 25 MHz */"
+                     "HoverText":  null
                  },
                  {
                      "Start":  7499,
@@ -23712,7 +23712,7 @@
                      "Text":  "clock",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "parameter [31:0] CLOCK_HZ  = `PROJECT_CLOCK_HZ,    /* default clock is 25 MHz */"
+                     "HoverText":  null
                  },
                  {
                      "Start":  7505,
@@ -23862,7 +23862,7 @@
                      "Text":  "default",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "parameter [31:0] CLOCK_HZ  = `PROJECT_CLOCK_HZ,    /* default clock is 25 MHz */"
+                     "HoverText":  null
                  },
                  {
                      "Start":  7584,
@@ -25812,7 +25812,7 @@
                      "Text":  "clock",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "parameter [31:0] CLOCK_HZ  = `PROJECT_CLOCK_HZ,    /* default clock is 25 MHz */"
+                     "HoverText":  null
                  },
                  {
                      "Start":  8329,
@@ -53280,18 +53280,6 @@
                     },
                     {
                         "Scope":  "tt_um_gojimmypi_ttsky_UART_FSM_TRNG_Lab",
-                        "Name":  "default",
-                        "TokenType":  "Verilog_Variable_parameter",
-                        "HoverText":  "parameter [31:0] CLOCK_HZ  = `PROJECT_CLOCK_HZ,    /* default clock is 25 MHz */"
-                    },
-                    {
-                        "Scope":  "tt_um_gojimmypi_ttsky_UART_FSM_TRNG_Lab",
-                        "Name":  "clock",
-                        "TokenType":  "Verilog_Variable_parameter",
-                        "HoverText":  "parameter [31:0] CLOCK_HZ  = `PROJECT_CLOCK_HZ,    /* default clock is 25 MHz */"
-                    },
-                    {
-                        "Scope":  "tt_um_gojimmypi_ttsky_UART_FSM_TRNG_Lab",
                         "Name":  "is",
                         "TokenType":  "Verilog_Variable_parameter",
                         "HoverText":  "parameter [31:0] CLOCK_HZ  = `PROJECT_CLOCK_HZ,    /* default clock is 25 MHz */"
@@ -53302,5 +53290,12 @@
                         "TokenType":  "Verilog_Value",
                         "HoverText":  "32\u0027D0 = (32 bit Decimal) 0; "
                     }
-                ]
+                ],
+    "ProcessingTime":  {
+                           "SchemaVersion":  2,
+                           "ElapsedBucket":  "30-34s",
+                           "Index":  1,
+                           "Count":  1,
+                           "Status":  "Completed"
+                       }
 }

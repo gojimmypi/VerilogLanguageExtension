@@ -302,6 +302,7 @@ namespace VerilogLanguage
             ["initial"] = VerilogTokenTypes.Verilog_initial,
             ["inout"] = VerilogTokenTypes.Verilog_inout,
             ["input"] = VerilogTokenTypes.Verilog_input,
+            ["integer"] = VerilogTokenTypes.Verilog_integer,
             ["instance"] = VerilogTokenTypes.Verilog_instance,
             ["join"] = VerilogTokenTypes.Verilog_join,
             ["liblist"] = VerilogTokenTypes.Verilog_liblist,

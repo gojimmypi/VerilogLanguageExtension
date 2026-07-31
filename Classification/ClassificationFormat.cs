@@ -1372,6 +1372,35 @@ namespace VerilogLanguage
 
 
 
+    #region Keyword integer
+    /// <summary>
+    /// Defines the editor format for the Verilog_integer classification type.
+    /// </summary>
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "integer")]
+    [Name("integer")]
+    [UserVisible(true)]
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_integer : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "integer" classification type.
+        /// </summary>
+        public Verilog_integer() {
+            DisplayName = "Verilog - integer";
+            if (ColorThemeAttribute.IsDarkTheme()) {
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault;
+            }
+            else {
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault;
+            }
+        }
+    }
+
+    #endregion // Keyword integer
+
+
+
     #region Keyword instance
     /// <summary>
     /// Defines the editor format for the Verilog_instance classification type. Text is colored CornflowerBlue
@@ -2655,7 +2684,7 @@ namespace VerilogLanguage
     internal sealed class Verilog_SystemVerilogYosysUnsupported : ClassificationFormatDefinition
     {
         public Verilog_SystemVerilogYosysUnsupported() {
-            DisplayName = "SystemVerilog - not synthesized / unsupported by Yosys";
+            DisplayName = "SystemVerilog - Yosys synthesis unsupported";
             IsBold = true;
             if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.HotPink;

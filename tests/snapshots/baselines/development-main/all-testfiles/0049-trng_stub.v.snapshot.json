@@ -1,7 +1,7 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.5",
+    "ExtensionVersion":  "0.4.1.10",
     "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\src\\TRNG\\trng_stub.v",
     "FileRelativePath":  "TestFiles\\src\\TRNG\\trng_stub.v",
     "ContentType":  "verilog",
@@ -6152,7 +6152,7 @@
                      "Text":  "oscillator",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input  wire       reg_oscen, /* oscillator enable */"
+                     "HoverText":  null
                  },
                  {
                      "Start":  972,
@@ -21986,12 +21986,6 @@
                     },
                     {
                         "Scope":  "trng_stub",
-                        "Name":  "oscillator",
-                        "TokenType":  "Verilog_Variable_wire",
-                        "HoverText":  "input  wire       reg_oscen, /* oscillator enable */"
-                    },
-                    {
-                        "Scope":  "trng_stub",
                         "Name":  "enable",
                         "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "input  wire       reg_oscen, /* oscillator enable */"
@@ -22032,5 +22026,12 @@
                         "TokenType":  "Verilog_Value",
                         "HoverText":  "1\u0027B1 = (1 bit Binary) 1; "
                     }
-                ]
+                ],
+    "ProcessingTime":  {
+                           "SchemaVersion":  2,
+                           "ElapsedBucket":  "25-29s",
+                           "Index":  1,
+                           "Count":  1,
+                           "Status":  "Completed"
+                       }
 }

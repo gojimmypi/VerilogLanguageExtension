@@ -70,6 +70,7 @@ namespace VerilogLanguage.VerilogToken
         Verilog_initial, // Used only in test benches.
         Verilog_inout,
         Verilog_input,
+        Verilog_integer,
         Verilog_instance,
         Verilog_join,  // Not Supported in Synthesis; Use nonblocking assignments to get same effect.
         Verilog_liblist,

@@ -20,3 +20,6 @@
 # WIP notes
 
 /code_review-TODO.md
+
+# Generated snapshot test artifacts
+artifacts/snapshots/

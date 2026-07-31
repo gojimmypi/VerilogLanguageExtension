@@ -1,7 +1,7 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.5",
+    "ExtensionVersion":  "0.4.1.10",
     "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\src\\UART\\uart_trng_ascii_core.v",
     "FileRelativePath":  "TestFiles\\src\\UART\\uart_trng_ascii_core.v",
     "ContentType":  "verilog",
@@ -2609,7 +2609,7 @@
                                 "Column":  16,
                                 "Text":  "integer",
                                 "Types":  [
-                                              "Variable_localparam"
+                                              "integer"
                                           ]
                             },
                             {
@@ -2659,7 +2659,7 @@
                                 "Column":  16,
                                 "Text":  "integer",
                                 "Types":  [
-                                              "Variable_localparam"
+                                              "integer"
                                           ]
                             },
                             {
@@ -2709,7 +2709,7 @@
                                 "Column":  16,
                                 "Text":  "integer",
                                 "Types":  [
-                                              "Variable_localparam"
+                                              "integer"
                                           ]
                             },
                             {
@@ -2759,7 +2759,7 @@
                                 "Column":  16,
                                 "Text":  "integer",
                                 "Types":  [
-                                              "Variable_localparam"
+                                              "integer"
                                           ]
                             },
                             {
@@ -23111,8 +23111,8 @@
                      "Column":  16,
                      "Text":  "integer",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_localparam",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_integer",
+                     "HoverText":  "The integer reserved word declares a 32-bit signed, four-state integral variable type."
                  },
                  {
                      "Start":  3375,
@@ -23161,8 +23161,8 @@
                      "Column":  16,
                      "Text":  "integer",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_localparam",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_integer",
+                     "HoverText":  "The integer reserved word declares a 32-bit signed, four-state integral variable type."
                  },
                  {
                      "Start":  3440,
@@ -23211,8 +23211,8 @@
                      "Column":  16,
                      "Text":  "integer",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_localparam",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_integer",
+                     "HoverText":  "The integer reserved word declares a 32-bit signed, four-state integral variable type."
                  },
                  {
                      "Start":  3505,
@@ -23261,8 +23261,8 @@
                      "Column":  16,
                      "Text":  "integer",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_localparam",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_integer",
+                     "HoverText":  "The integer reserved word declares a 32-bit signed, four-state integral variable type."
                  },
                  {
                      "Start":  3570,
@@ -81780,5 +81780,12 @@
                         "TokenType":  "Verilog_Value",
                         "HoverText":  "2\u0027B00 = (2 bit Binary) 00; "
                     }
-                ]
+                ],
+    "ProcessingTime":  {
+                           "SchemaVersion":  2,
+                           "ElapsedBucket":  "30-34s",
+                           "Index":  1,
+                           "Count":  1,
+                           "Status":  "Completed"
+                       }
 }

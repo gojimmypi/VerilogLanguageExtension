@@ -696,14 +696,14 @@ namespace VerilogLanguage
         #region SystemVerilog Type Definition
 
         /// <summary>
-        /// Defines SystemVerilog-only keywords supported by Yosys read_slang.
+        /// Defines SystemVerilog-only keywords marked as synthesis-oriented Yosys/sv-elab guidance.
         /// </summary>
         [Export(typeof(ClassificationTypeDefinition))]
         [Name("SystemVerilogYosysSupported")]
         internal static ClassificationTypeDefinition Verilog_SystemVerilogYosysSupported = null;
 
         /// <summary>
-        /// Defines SystemVerilog-only keywords not supported for Yosys synthesis.
+        /// Defines SystemVerilog-only keywords marked as unsupported, non-synthesizable, or unverified.
         /// </summary>
         [Export(typeof(ClassificationTypeDefinition))]
         [Name("SystemVerilogYosysUnsupported")]

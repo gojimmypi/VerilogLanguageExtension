@@ -78,6 +78,13 @@ function Get-VisualStudioMajorFromPath {
 function Stop-ExperimentalDevenvForLocalCi {
     param([string]$RequestedRootSuffix)
 
+    if ([string]::IsNullOrWhiteSpace($RequestedRootSuffix)) {
+        return
+    }
+
+    $escapedRootSuffix = [regex]::Escape($RequestedRootSuffix)
+    $rootSuffixPattern = '(?i)(?:^|\s)/RootSuffix(?:\s+|[:=])(?:"{0}"|{0})(?=\s|$)' -f $escapedRootSuffix
+
     $processes = @(Get-CimInstance Win32_Process -Filter "Name = 'devenv.exe'" -ErrorAction SilentlyContinue)
     foreach ($process in $processes) {
         $commandLine = [string]$process.CommandLine
@@ -85,7 +92,7 @@ function Stop-ExperimentalDevenvForLocalCi {
             continue
         }
 
-        if ($commandLine -match "(?i)/RootSuffix\s+`"?$([regex]::Escape($RequestedRootSuffix))`"?") {
+        if ($commandLine -match $rootSuffixPattern) {
             try {
                 Stop-Process -Id ([int]$process.ProcessId) -Force -ErrorAction SilentlyContinue
             }

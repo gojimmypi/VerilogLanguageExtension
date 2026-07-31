@@ -1,5 +1,14 @@
 {
     "File": "TestFiles/systemverilog_keywords.sv",
+    "MustHaveSymbols": [
+        {
+            "Name": "shared_scope_name",
+            "HoverContains": [
+                "wire",
+                "shared_scope_name"
+            ]
+        }
+    ],
     "MustHaveTaggedText": [
         {
             "Text": "logic",
@@ -109,6 +118,15 @@
                 "sample_t",
                 "sample_identity"
             ]
+        },
+        {
+            "Text": "shared_scope_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_wire",
+            "HoverContains": [
+                "wire",
+                "shared_scope_name"
+            ]
         }
     ],
     "MustNotHaveTaggedText": [
@@ -126,6 +144,26 @@
             "Text": "sample_t",
             "Source": "Tags",
             "TagDetail": "Verilog_FunctionName"
+        },
+        {
+            "Text": "shared_scope_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_FunctionName"
+        },
+        {
+            "Text": "shared_scope_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_input"
+        },
+        {
+            "Text": "shared_scope_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_output"
+        },
+        {
+            "Text": "shared_scope_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_inout"
         }
     ]
 }

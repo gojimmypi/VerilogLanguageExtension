@@ -168,12 +168,12 @@ namespace VerilogLanguage
         internal static readonly IDictionary<string, string> SystemVerilogKeywordHoverText =
             new Dictionary<string, string>(StringComparer.Ordinal)
             {
-                ["logic"] = "SystemVerilog 4-state variable data type. VLE classifies this keyword as supported by the Yosys read_slang frontend.",
-                ["bit"] = "SystemVerilog 2-state variable data type. VLE classifies this keyword as supported by the Yosys read_slang frontend.",
-                ["always_ff"] = "SystemVerilog sequential procedure for flip-flop behavior. VLE classifies this keyword as supported by the Yosys read_slang frontend.",
-                ["always_comb"] = "SystemVerilog combinational procedure. VLE classifies this keyword as supported by the Yosys read_slang frontend.",
-                ["always_latch"] = "SystemVerilog procedure for latch behavior. VLE classifies this keyword as supported by the Yosys read_slang frontend.",
-                ["final"] = "SystemVerilog final procedure, executed once at the end of simulation. It is not synthesized; VLE classifies it as not synthesized or unsupported by Yosys."
+                ["logic"] = "SystemVerilog 4-state variable data type. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version.",
+                ["bit"] = "SystemVerilog 2-state variable data type. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version.",
+                ["always_ff"] = "SystemVerilog sequential procedure for flip-flop behavior. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version.",
+                ["always_comb"] = "SystemVerilog combinational procedure. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version.",
+                ["always_latch"] = "SystemVerilog procedure for latch behavior. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version.",
+                ["final"] = "SystemVerilog final procedure, executed once at the end of simulation. It is not synthesized; VLE marks it as unsupported, non-synthesizable, or unverified for Yosys/sv-elab."
             };
 
         private readonly IDictionary<VerilogToken.VerilogTokenTypes, string> _verilogKeywordHoverText;
@@ -288,10 +288,10 @@ namespace VerilogLanguage
 
                 if (!string.IsNullOrWhiteSpace(keyword)) {
                     if (tokenType == VerilogToken.VerilogTokenTypes.Verilog_SystemVerilogYosysSupported) {
-                        hoverText = "SystemVerilog keyword '" + keyword + "'. VLE classifies this use as supported by the Yosys read_slang frontend.";
+                        hoverText = "SystemVerilog keyword '" + keyword + "'. VLE marks this use as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version.";
                     }
                     else {
-                        hoverText = "SystemVerilog keyword '" + keyword + "'. VLE classifies it as not synthesized, unsupported, or not reliably lowered by Yosys.";
+                        hoverText = "SystemVerilog keyword '" + keyword + "'. VLE marks it as unsupported, non-synthesizable, or unverified for Yosys/sv-elab; actual handling depends on context and tool version.";
                     }
                     return true;
                 }

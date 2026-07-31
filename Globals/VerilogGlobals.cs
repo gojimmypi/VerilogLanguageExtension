@@ -1869,16 +1869,52 @@ namespace VerilogLanguage
             }
         }
 
-        private static HashSet<string> CollectTypedefNamesFromSnapshot(ITextSnapshot snapshot) {
-            HashSet<string> typeNames = new HashSet<string>(StringComparer.Ordinal);
+        private static void AddInferredTypeName(
+            Dictionary<string, HashSet<string>> inferredTypeNamesByScope,
+            string scope,
+            string typeName) {
+            if (inferredTypeNamesByScope == null || string.IsNullOrEmpty(typeName)) {
+                return;
+            }
+
+            scope = NormalizeDeclarationDuplicateScope(scope);
+            HashSet<string> typeNames;
+            if (!inferredTypeNamesByScope.TryGetValue(scope, out typeNames)) {
+                typeNames = new HashSet<string>(StringComparer.Ordinal);
+                inferredTypeNamesByScope.Add(scope, typeNames);
+            }
+
+            typeNames.Add(typeName);
+        }
+
+        private static Dictionary<string, HashSet<string>> CollectTypedefNamesFromSnapshot(ITextSnapshot snapshot) {
+            Dictionary<string, HashSet<string>> typeNamesByScope =
+                new Dictionary<string, HashSet<string>>(StringComparer.Ordinal);
             bool insideTypedef = false;
             int squareDepth = 0;
             int roundDepth = 0;
             int squigglyDepth = 0;
+            string typedefScope = string.Empty;
+            string activeLocalScope = string.Empty;
             List<string> topLevelIdentifiers = new List<string>();
 
             foreach (ITextSnapshotLine line in snapshot.Lines) {
-                string codeText = StripLineCommentForDuplicateScan(line.GetText());
+                string lineText = line.GetText();
+                string moduleScope = NormalizeDeclarationDuplicateScope(TextModuleName(line.LineNumber, 0));
+                string functionName;
+                string taskName;
+
+                if (TryGetFunctionNameFromLineText(lineText, out functionName)) {
+                    activeLocalScope = FunctionLocalScopeName(moduleScope, functionName);
+                }
+                else if (TryGetTaskNameFromLineText(lineText, out taskName)) {
+                    activeLocalScope = TaskLocalScopeName(moduleScope, taskName);
+                }
+
+                string lineScope = string.IsNullOrEmpty(activeLocalScope)
+                    ? moduleScope
+                    : activeLocalScope;
+                string codeText = StripLineCommentForDuplicateScan(lineText);
                 VerilogToken[] lineTokens = VerilogKeywordSplit(codeText, new VerilogToken());
 
                 foreach (VerilogToken token in lineTokens) {
@@ -1893,6 +1929,7 @@ namespace VerilogLanguage
                             squareDepth = 0;
                             roundDepth = 0;
                             squigglyDepth = 0;
+                            typedefScope = lineScope;
                             topLevelIdentifiers.Clear();
                         }
                         continue;
@@ -1940,10 +1977,14 @@ namespace VerilogLanguage
 
                     if (itemText == ";") {
                         if (topLevelIdentifiers.Count > 0) {
-                            typeNames.Add(topLevelIdentifiers[topLevelIdentifiers.Count - 1]);
+                            AddInferredTypeName(
+                                typeNamesByScope,
+                                typedefScope,
+                                topLevelIdentifiers[topLevelIdentifiers.Count - 1]);
                         }
 
                         insideTypedef = false;
+                        typedefScope = string.Empty;
                         topLevelIdentifiers.Clear();
                         continue;
                     }
@@ -1952,9 +1993,13 @@ namespace VerilogLanguage
                         topLevelIdentifiers.Add(itemText);
                     }
                 }
+
+                if (IsEndFunctionLineText(lineText) || IsEndTaskLineText(lineText)) {
+                    activeLocalScope = string.Empty;
+                }
             }
 
-            return typeNames;
+            return typeNamesByScope;
         }
 
         private static bool TryGetRoutineReturnTypeIdentifier(
@@ -2038,7 +2083,7 @@ namespace VerilogLanguage
 
         private static void ProcessSnapshotDeclarationLine(
             Dictionary<string, Dictionary<string, int>> countsByScope,
-            HashSet<string> inferredTypeNames,
+            Dictionary<string, HashSet<string>> inferredTypeNamesByScope,
             string scope,
             string declarationText) {
             List<string> declarationNames = CollectDeclarationNamesInLine(declarationText);
@@ -2047,7 +2092,7 @@ namespace VerilogLanguage
             }
 
             foreach (string typeIdentifier in CollectDeclarationTypeIdentifiersInLine(declarationText)) {
-                inferredTypeNames.Add(typeIdentifier);
+                AddInferredTypeName(inferredTypeNamesByScope, scope, typeIdentifier);
             }
 
             VerilogTokenTypes variableType;
@@ -2086,14 +2131,19 @@ namespace VerilogLanguage
         }
 
         private static void RemoveMisclassifiedUserDefinedTypeSymbols(
-            HashSet<string> inferredTypeNames,
+            Dictionary<string, HashSet<string>> inferredTypeNamesByScope,
             HashSet<string> invalidFunctionScopes) {
             foreach (string scope in invalidFunctionScopes) {
                 RemoveHoverScope(scope);
             }
 
-            foreach (string scope in VerilogVariables.Keys.ToList()) {
-                foreach (string typeName in inferredTypeNames) {
+            foreach (KeyValuePair<string, HashSet<string>> scopedTypeNames in inferredTypeNamesByScope) {
+                string scope = NormalizeDeclarationDuplicateScope(scopedTypeNames.Key);
+                if (!VerilogVariables.ContainsKey(scope)) {
+                    continue;
+                }
+
+                foreach (string typeName in scopedTypeNames.Value) {
                     VerilogTokenTypes tokenType;
                     if (!VerilogVariables[scope].TryGetValue(typeName, out tokenType) ||
                         !IsMisclassifiedUserDefinedTypeToken(tokenType)) {
@@ -2117,7 +2167,8 @@ namespace VerilogLanguage
             }
 
             Dictionary<string, Dictionary<string, int>> countsByScope = new Dictionary<string, Dictionary<string, int>>();
-            HashSet<string> inferredTypeNames = CollectTypedefNamesFromSnapshot(snapshot);
+            Dictionary<string, HashSet<string>> inferredTypeNamesByScope =
+                CollectTypedefNamesFromSnapshot(snapshot);
             HashSet<string> invalidFunctionScopes = new HashSet<string>(StringComparer.Ordinal);
 
             string activeLocalScope = string.Empty;
@@ -2149,7 +2200,10 @@ namespace VerilogLanguage
                             "function",
                             functionName,
                             out returnTypeIdentifier)) {
-                        inferredTypeNames.Add(returnTypeIdentifier);
+                        AddInferredTypeName(
+                            inferredTypeNamesByScope,
+                            moduleScope,
+                            returnTypeIdentifier);
 
                         string invalidFunctionScope = FunctionLocalScopeName(moduleScope, returnTypeIdentifier);
                         if (invalidFunctionScope != activeLocalScope) {
@@ -2161,7 +2215,7 @@ namespace VerilogLanguage
                     if (CodeLineStartsWithDeclarationKeyword(argumentDeclarationText)) {
                         ProcessSnapshotDeclarationLine(
                             countsByScope,
-                            inferredTypeNames,
+                            inferredTypeNamesByScope,
                             activeLocalScope,
                             argumentDeclarationText);
                     }
@@ -2174,7 +2228,7 @@ namespace VerilogLanguage
                     if (CodeLineStartsWithDeclarationKeyword(argumentDeclarationText)) {
                         ProcessSnapshotDeclarationLine(
                             countsByScope,
-                            inferredTypeNames,
+                            inferredTypeNamesByScope,
                             activeLocalScope,
                             argumentDeclarationText);
                     }
@@ -2191,7 +2245,7 @@ namespace VerilogLanguage
 
                     ProcessSnapshotDeclarationLine(
                         countsByScope,
-                        inferredTypeNames,
+                        inferredTypeNamesByScope,
                         scope,
                         lineText);
                 }
@@ -2241,7 +2295,7 @@ namespace VerilogLanguage
                 }
             }
 
-            RemoveMisclassifiedUserDefinedTypeSymbols(inferredTypeNames, invalidFunctionScopes);
+            RemoveMisclassifiedUserDefinedTypeSymbols(inferredTypeNamesByScope, invalidFunctionScopes);
         }
 
         private static void AddHoverItem(string thisScope, string ItemName, string HoverText) {

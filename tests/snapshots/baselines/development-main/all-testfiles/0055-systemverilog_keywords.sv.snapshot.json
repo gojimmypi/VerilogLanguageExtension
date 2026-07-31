@@ -5,9 +5,9 @@
     "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\systemverilog_keywords.sv",
     "FileRelativePath":  "TestFiles\\systemverilog_keywords.sv",
     "ContentType":  "verilog",
-    "SnapshotLength":  477,
+    "SnapshotLength":  654,
     "SnapshotVersion":  2,
-    "TextSha256":  "70594694dc5d3ea2c5b687f2edc071e9ecafb9ee4f6e2292b6bcd8f860ff771f",
+    "TextSha256":  "8d2f22af344d98965e5cd0bb40b5d485e73dc59a56ab3ae1dd65d6fe71e592f9",
     "Errors":  [
 
                ],
@@ -541,6 +541,166 @@
                                 "Types":  [
                                               "endmodule"
                                           ]
+                            },
+                            {
+                                "Start":  479,
+                                "Length":  6,
+                                "Line":  31,
+                                "Column":  1,
+                                "Text":  "module",
+                                "Types":  [
+                                              "module"
+                                          ]
+                            },
+                            {
+                                "Start":  486,
+                                "Length":  24,
+                                "Line":  31,
+                                "Column":  8,
+                                "Text":  "systemverilog_type_owner",
+                                "Types":  [
+                                              "Variable_module"
+                                          ]
+                            },
+                            {
+                                "Start":  511,
+                                "Length":  2,
+                                "Line":  31,
+                                "Column":  33,
+                                "Text":  "()",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  518,
+                                "Length":  7,
+                                "Line":  33,
+                                "Column":  1,
+                                "Text":  "typedef",
+                                "Types":  [
+                                              "SystemVerilogYosysSupported"
+                                          ]
+                            },
+                            {
+                                "Start":  526,
+                                "Length":  5,
+                                "Line":  33,
+                                "Column":  9,
+                                "Text":  "logic",
+                                "Types":  [
+                                              "SystemVerilogYosysSupported"
+                                          ]
+                            },
+                            {
+                                "Start":  532,
+                                "Length":  1,
+                                "Line":  33,
+                                "Column":  15,
+                                "Text":  "[",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  533,
+                                "Length":  1,
+                                "Line":  33,
+                                "Column":  16,
+                                "Text":  "7",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  535,
+                                "Length":  1,
+                                "Line":  33,
+                                "Column":  18,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  536,
+                                "Length":  1,
+                                "Line":  33,
+                                "Column":  19,
+                                "Text":  "]",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  560,
+                                "Length":  9,
+                                "Line":  35,
+                                "Column":  1,
+                                "Text":  "endmodule",
+                                "Types":  [
+                                              "endmodule"
+                                          ]
+                            },
+                            {
+                                "Start":  573,
+                                "Length":  6,
+                                "Line":  37,
+                                "Column":  1,
+                                "Text":  "module",
+                                "Types":  [
+                                              "module"
+                                          ]
+                            },
+                            {
+                                "Start":  580,
+                                "Length":  28,
+                                "Line":  37,
+                                "Column":  8,
+                                "Text":  "systemverilog_variable_owner",
+                                "Types":  [
+                                              "Variable_module"
+                                          ]
+                            },
+                            {
+                                "Start":  609,
+                                "Length":  2,
+                                "Line":  37,
+                                "Column":  37,
+                                "Text":  "()",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  616,
+                                "Length":  4,
+                                "Line":  39,
+                                "Column":  1,
+                                "Text":  "wire",
+                                "Types":  [
+                                              "wire"
+                                          ]
+                            },
+                            {
+                                "Start":  621,
+                                "Length":  17,
+                                "Line":  39,
+                                "Column":  6,
+                                "Text":  "shared_scope_name",
+                                "Types":  [
+                                              "Variable_wire"
+                                          ]
+                            },
+                            {
+                                "Start":  643,
+                                "Length":  9,
+                                "Line":  41,
+                                "Column":  1,
+                                "Text":  "endmodule",
+                                "Types":  [
+                                              "endmodule"
+                                          ]
                             }
                         ],
     "Tags":  [
@@ -592,7 +752,7 @@
                      "Text":  "logic",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_SystemVerilogYosysSupported",
-                     "HoverText":  "SystemVerilog 4-state variable data type. VLE classifies this keyword as supported by the Yosys read_slang frontend."
+                     "HoverText":  "SystemVerilog 4-state variable data type. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version."
                  },
                  {
                      "Start":  50,
@@ -622,7 +782,7 @@
                      "Text":  "logic",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_SystemVerilogYosysSupported",
-                     "HoverText":  "SystemVerilog 4-state variable data type. VLE classifies this keyword as supported by the Yosys read_slang frontend."
+                     "HoverText":  "SystemVerilog 4-state variable data type. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version."
                  },
                  {
                      "Start":  73,
@@ -652,7 +812,7 @@
                      "Text":  "logic",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_SystemVerilogYosysSupported",
-                     "HoverText":  "SystemVerilog 4-state variable data type. VLE classifies this keyword as supported by the Yosys read_slang frontend."
+                     "HoverText":  "SystemVerilog 4-state variable data type. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version."
                  },
                  {
                      "Start":  94,
@@ -682,7 +842,7 @@
                      "Text":  "typedef",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_SystemVerilogYosysSupported",
-                     "HoverText":  "SystemVerilog keyword \u0027typedef\u0027. VLE classifies this use as supported by the Yosys read_slang frontend."
+                     "HoverText":  "SystemVerilog keyword \u0027typedef\u0027. VLE marks this use as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version."
                  },
                  {
                      "Start":  111,
@@ -692,7 +852,7 @@
                      "Text":  "logic",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_SystemVerilogYosysSupported",
-                     "HoverText":  "SystemVerilog 4-state variable data type. VLE classifies this keyword as supported by the Yosys read_slang frontend."
+                     "HoverText":  "SystemVerilog 4-state variable data type. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version."
                  },
                  {
                      "Start":  117,
@@ -742,7 +902,7 @@
                      "Text":  "bit",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_SystemVerilogYosysSupported",
-                     "HoverText":  "SystemVerilog 2-state variable data type. VLE classifies this keyword as supported by the Yosys read_slang frontend."
+                     "HoverText":  "SystemVerilog 2-state variable data type. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version."
                  },
                  {
                      "Start":  140,
@@ -862,7 +1022,7 @@
                      "Text":  "always_ff",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_SystemVerilogYosysSupported",
-                     "HoverText":  "SystemVerilog sequential procedure for flip-flop behavior. VLE classifies this keyword as supported by the Yosys read_slang frontend."
+                     "HoverText":  "SystemVerilog sequential procedure for flip-flop behavior. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version."
                  },
                  {
                      "Start":  284,
@@ -952,7 +1112,7 @@
                      "Text":  "always_comb",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_SystemVerilogYosysSupported",
-                     "HoverText":  "SystemVerilog combinational procedure. VLE classifies this keyword as supported by the Yosys read_slang frontend."
+                     "HoverText":  "SystemVerilog combinational procedure. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version."
                  },
                  {
                      "Start":  337,
@@ -1052,7 +1212,7 @@
                      "Text":  "final",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_SystemVerilogYosysUnsupported",
-                     "HoverText":  "SystemVerilog final procedure, executed once at the end of simulation. It is not synthesized; VLE classifies it as not synthesized or unsupported by Yosys."
+                     "HoverText":  "SystemVerilog final procedure, executed once at the end of simulation. It is not synthesized; VLE marks it as unsupported, non-synthesizable, or unverified for Yosys/sv-elab."
                  },
                  {
                      "Start":  411,
@@ -1148,6 +1308,186 @@
                      "Start":  466,
                      "Length":  9,
                      "Line":  29,
+                     "Column":  1,
+                     "Text":  "endmodule",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_endmodule",
+                     "HoverText":  "The endmodule reserved word is used to close a module statement."
+                 },
+                 {
+                     "Start":  479,
+                     "Length":  6,
+                     "Line":  31,
+                     "Column":  1,
+                     "Text":  "module",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_module",
+                     "HoverText":  "The module declaration is the only design unit in Verilog. It describes both a design\u0027s interface to other designs in the same environment, and its functional composition."
+                 },
+                 {
+                     "Start":  486,
+                     "Length":  24,
+                     "Line":  31,
+                     "Column":  8,
+                     "Text":  "systemverilog_type_owner",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_module",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  511,
+                     "Length":  1,
+                     "Line":  31,
+                     "Column":  33,
+                     "Text":  "(",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  512,
+                     "Length":  1,
+                     "Line":  31,
+                     "Column":  34,
+                     "Text":  ")",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  518,
+                     "Length":  7,
+                     "Line":  33,
+                     "Column":  1,
+                     "Text":  "typedef",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemVerilogYosysSupported",
+                     "HoverText":  "SystemVerilog keyword \u0027typedef\u0027. VLE marks this use as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version."
+                 },
+                 {
+                     "Start":  526,
+                     "Length":  5,
+                     "Line":  33,
+                     "Column":  9,
+                     "Text":  "logic",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemVerilogYosysSupported",
+                     "HoverText":  "SystemVerilog 4-state variable data type. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version."
+                 },
+                 {
+                     "Start":  532,
+                     "Length":  1,
+                     "Line":  33,
+                     "Column":  15,
+                     "Text":  "[",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  533,
+                     "Length":  1,
+                     "Line":  33,
+                     "Column":  16,
+                     "Text":  "7",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  535,
+                     "Length":  1,
+                     "Line":  33,
+                     "Column":  18,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  536,
+                     "Length":  1,
+                     "Line":  33,
+                     "Column":  19,
+                     "Text":  "]",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  560,
+                     "Length":  9,
+                     "Line":  35,
+                     "Column":  1,
+                     "Text":  "endmodule",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_endmodule",
+                     "HoverText":  "The endmodule reserved word is used to close a module statement."
+                 },
+                 {
+                     "Start":  573,
+                     "Length":  6,
+                     "Line":  37,
+                     "Column":  1,
+                     "Text":  "module",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_module",
+                     "HoverText":  "The module declaration is the only design unit in Verilog. It describes both a design\u0027s interface to other designs in the same environment, and its functional composition."
+                 },
+                 {
+                     "Start":  580,
+                     "Length":  28,
+                     "Line":  37,
+                     "Column":  8,
+                     "Text":  "systemverilog_variable_owner",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_module",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  609,
+                     "Length":  1,
+                     "Line":  37,
+                     "Column":  37,
+                     "Text":  "(",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  610,
+                     "Length":  1,
+                     "Line":  37,
+                     "Column":  38,
+                     "Text":  ")",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  616,
+                     "Length":  4,
+                     "Line":  39,
+                     "Column":  1,
+                     "Text":  "wire",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_wire",
+                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
+                 },
+                 {
+                     "Start":  621,
+                     "Length":  17,
+                     "Line":  39,
+                     "Column":  6,
+                     "Text":  "shared_scope_name",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "wire shared_scope_name"
+                 },
+                 {
+                     "Start":  643,
+                     "Length":  9,
+                     "Line":  41,
                      "Column":  1,
                      "Text":  "endmodule",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2123,6 +2463,262 @@
                        "Column":  1,
                        "Text":  "endmodule",
                        "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  479,
+                       "Length":  6,
+                       "Line":  31,
+                       "Column":  1,
+                       "Text":  "module",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  485,
+                       "Length":  1,
+                       "Line":  31,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  486,
+                       "Length":  24,
+                       "Line":  31,
+                       "Column":  8,
+                       "Text":  "systemverilog_type_owner",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  510,
+                       "Length":  1,
+                       "Line":  31,
+                       "Column":  32,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  511,
+                       "Length":  1,
+                       "Line":  31,
+                       "Column":  33,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  512,
+                       "Length":  1,
+                       "Line":  31,
+                       "Column":  34,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  513,
+                       "Length":  1,
+                       "Line":  31,
+                       "Column":  35,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  518,
+                       "Length":  7,
+                       "Line":  33,
+                       "Column":  1,
+                       "Text":  "typedef",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  525,
+                       "Length":  1,
+                       "Line":  33,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  526,
+                       "Length":  5,
+                       "Line":  33,
+                       "Column":  9,
+                       "Text":  "logic",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  531,
+                       "Length":  1,
+                       "Line":  33,
+                       "Column":  14,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  532,
+                       "Length":  1,
+                       "Line":  33,
+                       "Column":  15,
+                       "Text":  "[",
+                       "Context":  "SquareBracketOpen"
+                   },
+                   {
+                       "Start":  533,
+                       "Length":  1,
+                       "Line":  33,
+                       "Column":  16,
+                       "Text":  "7",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  534,
+                       "Length":  1,
+                       "Line":  33,
+                       "Column":  17,
+                       "Text":  ":",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  535,
+                       "Length":  1,
+                       "Line":  33,
+                       "Column":  18,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  536,
+                       "Length":  1,
+                       "Line":  33,
+                       "Column":  19,
+                       "Text":  "]",
+                       "Context":  "SquareBracketClose"
+                   },
+                   {
+                       "Start":  537,
+                       "Length":  1,
+                       "Line":  33,
+                       "Column":  20,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  538,
+                       "Length":  17,
+                       "Line":  33,
+                       "Column":  21,
+                       "Text":  "shared_scope_name",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  555,
+                       "Length":  1,
+                       "Line":  33,
+                       "Column":  38,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  560,
+                       "Length":  9,
+                       "Line":  35,
+                       "Column":  1,
+                       "Text":  "endmodule",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  573,
+                       "Length":  6,
+                       "Line":  37,
+                       "Column":  1,
+                       "Text":  "module",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  579,
+                       "Length":  1,
+                       "Line":  37,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  580,
+                       "Length":  28,
+                       "Line":  37,
+                       "Column":  8,
+                       "Text":  "systemverilog_variable_owner",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  608,
+                       "Length":  1,
+                       "Line":  37,
+                       "Column":  36,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  609,
+                       "Length":  1,
+                       "Line":  37,
+                       "Column":  37,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  610,
+                       "Length":  1,
+                       "Line":  37,
+                       "Column":  38,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  611,
+                       "Length":  1,
+                       "Line":  37,
+                       "Column":  39,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  616,
+                       "Length":  4,
+                       "Line":  39,
+                       "Column":  1,
+                       "Text":  "wire",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  620,
+                       "Length":  1,
+                       "Line":  39,
+                       "Column":  5,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  621,
+                       "Length":  17,
+                       "Line":  39,
+                       "Column":  6,
+                       "Text":  "shared_scope_name",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  638,
+                       "Length":  1,
+                       "Line":  39,
+                       "Column":  23,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  643,
+                       "Length":  9,
+                       "Line":  41,
+                       "Column":  1,
+                       "Text":  "endmodule",
+                       "Context":  "Undetermined"
                    }
                ],
     "Symbols":  [
@@ -2169,6 +2765,12 @@
                         "HoverText":  "bit enabled"
                     },
                     {
+                        "Scope":  "systemverilog_variable_owner",
+                        "Name":  "shared_scope_name",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "wire shared_scope_name"
+                    },
+                    {
                         "Scope":  "systemverilog_keywords::__FUNCTION__::sample_identity",
                         "Name":  "value",
                         "TokenType":  "Verilog_Variable_input",
@@ -2177,7 +2779,7 @@
                 ],
     "ProcessingTime":  {
                            "SchemaVersion":  2,
-                           "ElapsedBucket":  "25-29s",
+                           "ElapsedBucket":  "40-44s",
                            "Index":  1,
                            "Count":  1,
                            "Status":  "Completed"

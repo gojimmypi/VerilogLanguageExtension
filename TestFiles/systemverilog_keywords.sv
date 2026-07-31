@@ -27,3 +27,15 @@ final $display("enabled=%b", enabled);
 // synthesis translate_on
 
 endmodule
+
+module systemverilog_type_owner ();
+
+typedef logic [7:0] shared_scope_name;
+
+endmodule
+
+module systemverilog_variable_owner ();
+
+wire shared_scope_name;
+
+endmodule

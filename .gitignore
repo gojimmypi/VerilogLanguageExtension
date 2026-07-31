@@ -21,5 +21,20 @@
 
 /code_review-TODO.md
 
+**/*.bak
+**/*.WIP
+**/*.zip
+
 # Generated snapshot test artifacts
 artifacts/snapshots/
+
+# Misc
+/VLE-review-4ba0bcc9-to-10af4e4b-20260730-184307
+/DELETE_STALE_TEMPLATE_ROOT_FILES.txt
+/my_gh_refresh.sh
+/picorv32_MB_size.v
+/preview.jpg
+/AddedExtensionProjectTemplates/VerilogProject/README.md1
+/AddedExtensionProjectTemplates/VerilogProject/README.md2
+/images/yoysys_build.jpg
+/images/yoysys_build.png

@@ -2650,8 +2650,8 @@ namespace VerilogLanguage
     #region SystemVerilog Format Definition
 
     /// <summary>
-    /// Defines the editor format for SystemVerilog-only keywords supported by
-    /// Yosys 0.67+ read_slang / sv-elab.
+    /// Defines the editor format for SystemVerilog-only keywords that VLE marks as
+    /// synthesis-oriented guidance for Yosys read_slang / sv-elab.
     /// </summary>
     [Export(typeof(EditorFormatDefinition))]
     [ClassificationType(ClassificationTypeNames = "SystemVerilogYosysSupported")]
@@ -2661,7 +2661,7 @@ namespace VerilogLanguage
     internal sealed class Verilog_SystemVerilogYosysSupported : ClassificationFormatDefinition
     {
         public Verilog_SystemVerilogYosysSupported() {
-            DisplayName = "SystemVerilog - Yosys read_slang supported";
+            DisplayName = "SystemVerilog - synthesis-oriented Yosys/sv-elab guidance";
             IsBold = true;
             if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.Gold;
@@ -2673,8 +2673,8 @@ namespace VerilogLanguage
     }
 
     /// <summary>
-    /// Defines the editor format for SystemVerilog-only keywords that are
-    /// non-synthesizable or not reliably lowered by Yosys read_slang / sv-elab.
+    /// Defines the editor format for SystemVerilog-only keywords that VLE marks as
+    /// unsupported, non-synthesizable, or unverified for Yosys read_slang / sv-elab.
     /// </summary>
     [Export(typeof(EditorFormatDefinition))]
     [ClassificationType(ClassificationTypeNames = "SystemVerilogYosysUnsupported")]
@@ -2684,7 +2684,7 @@ namespace VerilogLanguage
     internal sealed class Verilog_SystemVerilogYosysUnsupported : ClassificationFormatDefinition
     {
         public Verilog_SystemVerilogYosysUnsupported() {
-            DisplayName = "SystemVerilog - Yosys synthesis unsupported";
+            DisplayName = "SystemVerilog - unsupported, non-synthesizable, or unverified";
             IsBold = true;
             if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.HotPink;

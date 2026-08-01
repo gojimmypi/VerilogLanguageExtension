@@ -19439,7 +19439,7 @@
                                 "Column":  16,
                                 "Text":  "fpga_s0",
                                 "Types":  [
-                                              "Variable_duplicate"
+                                              "Variable_reg"
                                           ]
                             },
                             {
@@ -20059,7 +20059,7 @@
                                 "Column":  40,
                                 "Text":  "fpga_s0",
                                 "Types":  [
-                                              "Variable_duplicate"
+                                              "Variable_reg"
                                           ]
                             },
                             {
@@ -20099,7 +20099,7 @@
                                 "Column":  67,
                                 "Text":  "fpga_s0",
                                 "Types":  [
-                                              "Variable_duplicate"
+                                              "Variable_reg"
                                           ]
                             },
                             {
@@ -20259,7 +20259,7 @@
                                 "Column":  38,
                                 "Text":  "fpga_s0",
                                 "Types":  [
-                                              "Variable_duplicate"
+                                              "Variable_reg"
                                           ]
                             },
                             {
@@ -20489,7 +20489,7 @@
                                 "Column":  28,
                                 "Text":  "fpga_s0",
                                 "Types":  [
-                                              "Variable_duplicate"
+                                              "Variable_reg"
                                           ]
                             },
                             {
@@ -21909,7 +21909,7 @@
                                 "Column":  13,
                                 "Text":  "fpga_s0",
                                 "Types":  [
-                                              "Variable_duplicate"
+                                              "Variable_reg"
                                           ]
                             },
                             {
@@ -22149,7 +22149,7 @@
                                 "Column":  17,
                                 "Text":  "fpga_s0",
                                 "Types":  [
-                                              "Variable_duplicate"
+                                              "Variable_reg"
                                           ]
                             },
                             {
@@ -36189,7 +36189,7 @@
                                 "Column":  46,
                                 "Text":  "inv_out",
                                 "Types":  [
-                                              "Variable_duplicate"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -36269,7 +36269,7 @@
                                 "Column":  33,
                                 "Text":  "inv_out",
                                 "Types":  [
-                                              "Variable_duplicate"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -36379,7 +36379,7 @@
                                 "Column":  24,
                                 "Text":  "inv_out",
                                 "Types":  [
-                                              "Variable_duplicate"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -36469,7 +36469,7 @@
                                 "Column":  21,
                                 "Text":  "inv_out",
                                 "Types":  [
-                                              "Variable_duplicate"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -36669,7 +36669,7 @@
                                 "Column":  12,
                                 "Text":  "inv_out",
                                 "Types":  [
-                                              "Variable_duplicate"
+                                              "Variable_wire"
                                           ]
                             },
                             {
@@ -63632,7 +63632,7 @@
                      "Text":  "fpga_prng_out",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  "wire [31:0] fpga_prng_out = rotl32(fpga_s0 + fpga_s3"
+                     "HoverText":  "wire [31:0] fpga_prng_out = rotl32(fpga_s0 + fpga_s3, 5\u0027d7) + fpga_s0"
                  },
                  {
                      "Start":  12476,
@@ -63682,7 +63682,7 @@
                      "Text":  "fpga_prng_out",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  "wire [31:0] fpga_prng_out = rotl32(fpga_s0 + fpga_s3"
+                     "HoverText":  "wire [31:0] fpga_prng_out = rotl32(fpga_s0 + fpga_s3, 5\u0027d7) + fpga_s0"
                  },
                  {
                      "Start":  12499,
@@ -63762,7 +63762,7 @@
                      "Text":  "fpga_prng_out",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  "wire [31:0] fpga_prng_out = rotl32(fpga_s0 + fpga_s3"
+                     "HoverText":  "wire [31:0] fpga_prng_out = rotl32(fpga_s0 + fpga_s3, 5\u0027d7) + fpga_s0"
                  },
                  {
                      "Start":  12564,
@@ -63812,7 +63812,7 @@
                      "Text":  "fpga_prng_out",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  "wire [31:0] fpga_prng_out = rotl32(fpga_s0 + fpga_s3"
+                     "HoverText":  "wire [31:0] fpga_prng_out = rotl32(fpga_s0 + fpga_s3, 5\u0027d7) + fpga_s0"
                  },
                  {
                      "Start":  12587,
@@ -89661,8 +89661,8 @@
                      "Column":  16,
                      "Text":  "fpga_s0",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_duplicate",
-                     "HoverText":  "duplicate? wire [31:0]  = rotl32(fpga_s0 + fpga_s35\u0027d7) + fpga_s0"
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  "reg [31:0] fpga_s0"
                  },
                  {
                      "Start":  19258,
@@ -90252,7 +90252,7 @@
                      "Text":  "fpga_prng_out",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  "wire [31:0] fpga_prng_out = rotl32(fpga_s0 + fpga_s3"
+                     "HoverText":  "wire [31:0] fpga_prng_out = rotl32(fpga_s0 + fpga_s3, 5\u0027d7) + fpga_s0"
                  },
                  {
                      "Start":  19561,
@@ -90281,8 +90281,8 @@
                      "Column":  40,
                      "Text":  "fpga_s0",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_duplicate",
-                     "HoverText":  "duplicate? wire [31:0]  = rotl32(fpga_s0 + fpga_s35\u0027d7) + fpga_s0"
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  "reg [31:0] fpga_s0"
                  },
                  {
                      "Start":  19578,
@@ -90321,8 +90321,8 @@
                      "Column":  67,
                      "Text":  "fpga_s0",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_duplicate",
-                     "HoverText":  "duplicate? wire [31:0]  = rotl32(fpga_s0 + fpga_s35\u0027d7) + fpga_s0"
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  "reg [31:0] fpga_s0"
                  },
                  {
                      "Start":  19609,
@@ -90481,8 +90481,8 @@
                      "Column":  38,
                      "Text":  "fpga_s0",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_duplicate",
-                     "HoverText":  "duplicate? wire [31:0]  = rotl32(fpga_s0 + fpga_s35\u0027d7) + fpga_s0"
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  "reg [31:0] fpga_s0"
                  },
                  {
                      "Start":  19696,
@@ -90711,8 +90711,8 @@
                      "Column":  28,
                      "Text":  "fpga_s0",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_duplicate",
-                     "HoverText":  "duplicate? wire [31:0]  = rotl32(fpga_s0 + fpga_s35\u0027d7) + fpga_s0"
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  "reg [31:0] fpga_s0"
                  },
                  {
                      "Start":  19822,
@@ -90862,7 +90862,7 @@
                      "Text":  "fpga_s3n",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  "wire [31:0] fpga_s3n = rotl32(fpga_s3a"
+                     "HoverText":  "wire [31:0] fpga_s3n = rotl32(fpga_s3a, 5\u0027d11)"
                  },
                  {
                      "Start":  19905,
@@ -91222,7 +91222,7 @@
                      "Text":  "fpga_prng_out",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire [31:0] fpga_prng_out = rotl32(fpga_s0 + fpga_s3"
+                     "HoverText":  "wire [31:0] fpga_prng_out = rotl32(fpga_s0 + fpga_s3, 5\u0027d7) + fpga_s0"
                  },
                  {
                      "Start":  20051,
@@ -92511,8 +92511,8 @@
                      "Column":  13,
                      "Text":  "fpga_s0",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_duplicate",
-                     "HoverText":  "duplicate? wire [31:0]  = rotl32(fpga_s0 + fpga_s35\u0027d7) + fpga_s0"
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  "reg [31:0] fpga_s0"
                  },
                  {
                      "Start":  20573,
@@ -92751,8 +92751,8 @@
                      "Column":  17,
                      "Text":  "fpga_s0",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_duplicate",
-                     "HoverText":  "duplicate? wire [31:0]  = rotl32(fpga_s0 + fpga_s35\u0027d7) + fpga_s0"
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  "reg [31:0] fpga_s0"
                  },
                  {
                      "Start":  20907,
@@ -92822,7 +92822,7 @@
                      "Text":  "fpga_s3n",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  "wire [31:0] fpga_s3n = rotl32(fpga_s3a"
+                     "HoverText":  "wire [31:0] fpga_s3n = rotl32(fpga_s3a, 5\u0027d11)"
                  },
                  {
                      "Start":  21040,
@@ -141501,8 +141501,8 @@
                      "Column":  46,
                      "Text":  "inv_out",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_duplicate",
-                     "HoverText":  "duplicate? module trng_ro_inverter_cell  [STAGES-1:0] ( .a(inv_in).y(inv_out) )"
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "wire [STAGES-1:0] inv_out"
                  },
                  {
                      "Start":  44215,
@@ -141581,8 +141581,8 @@
                      "Column":  33,
                      "Text":  "inv_out",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_duplicate",
-                     "HoverText":  "duplicate? module trng_ro_inverter_cell  [STAGES-1:0] ( .a(inv_in).y(inv_out) )"
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "wire [STAGES-1:0] inv_out"
                  },
                  {
                      "Start":  44250,
@@ -141691,8 +141691,8 @@
                      "Column":  24,
                      "Text":  "inv_out",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_duplicate",
-                     "HoverText":  "duplicate? module trng_ro_inverter_cell  [STAGES-1:0] ( .a(inv_in).y(inv_out) )"
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "wire [STAGES-1:0] inv_out"
                  },
                  {
                      "Start":  44294,
@@ -141981,8 +141981,8 @@
                      "Column":  21,
                      "Text":  "inv_out",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_duplicate",
-                     "HoverText":  "duplicate? module trng_ro_inverter_cell  [STAGES-1:0] ( .a(inv_in).y(inv_out) )"
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "wire [STAGES-1:0] inv_out"
                  },
                  {
                      "Start":  44407,
@@ -142052,7 +142052,7 @@
                      "Text":  "inv_array",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module trng_ro_inverter_cell inv_array [STAGES-1:0] ( .a(inv_in)"
+                     "HoverText":  "module trng_ro_inverter_cell inv_array [STAGES-1:0] ( .a(inv_in), .y(inv_out) )"
                  },
                  {
                      "Start":  44436,
@@ -142312,7 +142312,7 @@
                      "Text":  "inv_array",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  "module trng_ro_inverter_cell inv_array [STAGES-1:0] ( .a(inv_in)"
+                     "HoverText":  "module trng_ro_inverter_cell inv_array [STAGES-1:0] ( .a(inv_in), .y(inv_out) )"
                  },
                  {
                      "Start":  44571,
@@ -142421,8 +142421,8 @@
                      "Column":  12,
                      "Text":  "inv_out",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_duplicate",
-                     "HoverText":  "duplicate? module trng_ro_inverter_cell  [STAGES-1:0] ( .a(inv_in).y(inv_out) )"
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "wire [STAGES-1:0] inv_out"
                  },
                  {
                      "Start":  44628,
@@ -273073,8 +273073,8 @@
                     {
                         "Scope":  "trng_lab_core",
                         "Name":  "fpga_s0",
-                        "TokenType":  "Verilog_Variable_duplicate",
-                        "HoverText":  "duplicate? wire [31:0]  = rotl32(fpga_s0 + fpga_s35\u0027d7) + fpga_s0"
+                        "TokenType":  "Verilog_Variable_reg",
+                        "HoverText":  "reg [31:0] fpga_s0"
                     },
                     {
                         "Scope":  "trng_lab_core",
@@ -273110,7 +273110,7 @@
                         "Scope":  "trng_lab_core",
                         "Name":  "fpga_prng_out",
                         "TokenType":  "Verilog_Variable_wire",
-                        "HoverText":  "wire [31:0] fpga_prng_out = rotl32(fpga_s0 + fpga_s3"
+                        "HoverText":  "wire [31:0] fpga_prng_out = rotl32(fpga_s0 + fpga_s3, 5\u0027d7) + fpga_s0"
                     },
                     {
                         "Scope":  "trng_lab_core",
@@ -273152,7 +273152,7 @@
                         "Scope":  "trng_lab_core",
                         "Name":  "fpga_s3n",
                         "TokenType":  "Verilog_Variable_wire",
-                        "HoverText":  "wire [31:0] fpga_s3n = rotl32(fpga_s3a"
+                        "HoverText":  "wire [31:0] fpga_s3n = rotl32(fpga_s3a, 5\u0027d11)"
                     },
                     {
                         "Scope":  "trng_lab_core",
@@ -273595,19 +273595,19 @@
                     {
                         "Scope":  "trng_ro",
                         "Name":  "inv_out",
-                        "TokenType":  "Verilog_Variable_duplicate",
-                        "HoverText":  "duplicate? module trng_ro_inverter_cell  [STAGES-1:0] ( .a(inv_in).y(inv_out) )"
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "wire [STAGES-1:0] inv_out"
                     },
                     {
                         "Scope":  "trng_ro",
                         "Name":  "inv_array",
                         "TokenType":  "Verilog_Variable_wire",
-                        "HoverText":  "module trng_ro_inverter_cell inv_array [STAGES-1:0] ( .a(inv_in)"
+                        "HoverText":  "module trng_ro_inverter_cell inv_array [STAGES-1:0] ( .a(inv_in), .y(inv_out) )"
                     }
                 ],
     "ProcessingTime":  {
                            "SchemaVersion":  2,
-                           "ElapsedBucket":  "30-34s",
+                           "ElapsedBucket":  "40-44s",
                            "Index":  1,
                            "Count":  1,
                            "Status":  "Completed"

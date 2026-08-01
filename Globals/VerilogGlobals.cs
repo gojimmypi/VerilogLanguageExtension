@@ -601,6 +601,7 @@ namespace VerilogLanguage
         private static int pendingFunctionNameLineNumber = -1;
         private static int pendingFunctionNameLinePosition = -1;
         private static string thisModuleDeclarationText = string.Empty;
+        private static bool thisModuleNamedSegmentHasCode = false;
         private static string thisModuleParameterText = string.Empty;
         private static string thisItemText = string.Empty;
         private static int thisItemLineNumber = -1;
@@ -691,6 +692,7 @@ namespace VerilogLanguage
             thisVariableDeclarationText = string.Empty; // this is only variable declaration, even if inside a module declaration
 
             thisModuleDeclarationText = string.Empty; // this is the full module declaration
+            thisModuleNamedSegmentHasCode = false;
             thisModuleParameterText = string.Empty;
             thisModuleName = string.Empty;
             thisFunctionName = string.Empty;
@@ -946,130 +948,6 @@ namespace VerilogLanguage
             }
 
             return -1;
-        }
-
-        private static string StripCommentsAndStringsForModuleScope(
-            string lineText,
-            ref bool insideBlockComment) {
-            if (string.IsNullOrEmpty(lineText)) {
-                return string.Empty;
-            }
-
-            StringBuilder codeText = new StringBuilder(lineText.Length);
-            bool insideString = false;
-            bool escaped = false;
-
-            for (int index = 0; index < lineText.Length; index++) {
-                char current = lineText[index];
-                char next = index + 1 < lineText.Length ? lineText[index + 1] : '\0';
-
-                if (insideBlockComment) {
-                    if (current == '*' && next == '/') {
-                        insideBlockComment = false;
-                        codeText.Append(' ');
-                        codeText.Append(' ');
-                        index++;
-                    }
-                    else {
-                        codeText.Append(' ');
-                    }
-                    continue;
-                }
-
-                if (insideString) {
-                    codeText.Append(' ');
-                    if (escaped) {
-                        escaped = false;
-                    }
-                    else if (current == '\\') {
-                        escaped = true;
-                    }
-                    else if (current == '"') {
-                        insideString = false;
-                    }
-                    continue;
-                }
-
-                if (current == '/' && next == '/') {
-                    while (codeText.Length < lineText.Length) {
-                        codeText.Append(' ');
-                    }
-                    break;
-                }
-
-                if (current == '/' && next == '*') {
-                    insideBlockComment = true;
-                    codeText.Append(' ');
-                    codeText.Append(' ');
-                    index++;
-                    continue;
-                }
-
-                if (current == '"') {
-                    insideString = true;
-                    codeText.Append(' ');
-                    continue;
-                }
-
-                codeText.Append(current);
-            }
-
-            return codeText.ToString();
-        }
-
-        private static bool IsSnapshotModuleNameToken(string itemText) {
-            if (IsIdentifier(itemText)) {
-                return true;
-            }
-
-            return !string.IsNullOrEmpty(itemText) &&
-                itemText.Length > 1 &&
-                itemText[0] == '\\';
-        }
-
-        private static void UpdateSnapshotModuleScope(
-            string lineText,
-            ref bool awaitingModuleName,
-            ref bool insideBlockComment,
-            ref string activeModuleScope) {
-            string codeText = StripCommentsAndStringsForModuleScope(
-                lineText,
-                ref insideBlockComment);
-            VerilogToken[] lineTokens = VerilogKeywordSplit(codeText, new VerilogToken());
-
-            foreach (VerilogToken token in lineTokens) {
-                string itemText = (token.Part ?? string.Empty).Trim();
-                if (string.IsNullOrEmpty(itemText)) {
-                    continue;
-                }
-
-                if (itemText == "endmodule") {
-                    activeModuleScope = string.Empty;
-                    awaitingModuleName = false;
-                    continue;
-                }
-
-                if (awaitingModuleName) {
-                    if (itemText == "automatic" || itemText == "static") {
-                        continue;
-                    }
-
-                    if (IsSnapshotModuleNameToken(itemText)) {
-                        activeModuleScope = NormalizeDeclarationDuplicateScope(itemText);
-                        awaitingModuleName = false;
-                        continue;
-                    }
-
-                    if (itemText == ";") {
-                        awaitingModuleName = false;
-                    }
-                    continue;
-                }
-
-                if (itemText == "module" || itemText == "macromodule") {
-                    awaitingModuleName = true;
-                }
-            }
         }
 
         private static bool CodeLineStartsWithDeclarationKeyword(string lineText) {
@@ -2020,19 +1898,11 @@ namespace VerilogLanguage
             int squigglyDepth = 0;
             string typedefScope = string.Empty;
             string activeLocalScope = string.Empty;
-            string activeModuleScope = string.Empty;
-            bool awaitingModuleName = false;
-            bool insideBlockComment = false;
             List<string> topLevelIdentifiers = new List<string>();
 
             foreach (ITextSnapshotLine line in snapshot.Lines) {
                 string lineText = line.GetText();
-                UpdateSnapshotModuleScope(
-                    lineText,
-                    ref awaitingModuleName,
-                    ref insideBlockComment,
-                    ref activeModuleScope);
-                string moduleScope = NormalizeDeclarationDuplicateScope(activeModuleScope);
+                string moduleScope = NormalizeDeclarationDuplicateScope(TextModuleName(line.LineNumber, 0));
                 string functionName;
                 string taskName;
 
@@ -2304,17 +2174,9 @@ namespace VerilogLanguage
             HashSet<string> invalidFunctionScopes = new HashSet<string>(StringComparer.Ordinal);
 
             string activeLocalScope = string.Empty;
-            string activeModuleScope = string.Empty;
-            bool awaitingModuleName = false;
-            bool insideBlockComment = false;
 
             foreach (ITextSnapshotLine line in snapshot.Lines) {
                 string lineText = line.GetText();
-                UpdateSnapshotModuleScope(
-                    lineText,
-                    ref awaitingModuleName,
-                    ref insideBlockComment,
-                    ref activeModuleScope);
                 bool mayContainFunction = lineText.IndexOf("function", StringComparison.Ordinal) >= 0;
                 bool mayContainTask = lineText.IndexOf("task", StringComparison.Ordinal) >= 0;
                 bool mayContainDeclaration = CodeLineStartsWithDeclarationKeyword(lineText);
@@ -2331,7 +2193,7 @@ namespace VerilogLanguage
                 string taskName;
 
                 if (mayContainFunction && TryGetFunctionNameFromLineText(lineText, out functionName)) {
-                    moduleScope = NormalizeDeclarationDuplicateScope(activeModuleScope);
+                    moduleScope = NormalizeDeclarationDuplicateScope(TextModuleName(line.LineNumber, 0));
                     activeLocalScope = FunctionLocalScopeName(moduleScope, functionName);
 
                     string returnTypeIdentifier;
@@ -2361,7 +2223,7 @@ namespace VerilogLanguage
                     }
                 }
                 else if (mayContainTask && TryGetTaskNameFromLineText(lineText, out taskName)) {
-                    moduleScope = NormalizeDeclarationDuplicateScope(activeModuleScope);
+                    moduleScope = NormalizeDeclarationDuplicateScope(TextModuleName(line.LineNumber, 0));
                     activeLocalScope = TaskLocalScopeName(moduleScope, taskName);
 
                     string argumentDeclarationText = RoutineArgumentDeclarationText(lineText, "task");
@@ -2378,7 +2240,7 @@ namespace VerilogLanguage
                     string scope = activeLocalScope;
                     if (string.IsNullOrEmpty(scope)) {
                         if (string.IsNullOrEmpty(moduleScope)) {
-                            moduleScope = NormalizeDeclarationDuplicateScope(activeModuleScope);
+                            moduleScope = NormalizeDeclarationDuplicateScope(TextModuleName(line.LineNumber, 0));
                         }
                         scope = moduleScope;
                     }
@@ -2617,6 +2479,7 @@ namespace VerilogLanguage
                     // we're naming a module
                     BuildHoverState = BuildHoverStates.ModuleStart;
                     thisModuleDeclarationText = ItemText;
+                    thisModuleNamedSegmentHasCode = false;
                     break;
 
                 case "function":
@@ -2717,6 +2580,7 @@ namespace VerilogLanguage
                 default:
                     thisModuleName = ItemText;
                     thisModuleDeclarationText += ItemText;
+                    thisModuleNamedSegmentHasCode = false;
                     //editingBufferModuleAttributes.Add(new BufferModuleAttribute { LineStart = 0,
                     //                                                               ModuleName = thisModuleName });
                     BuildHoverState = BuildHoverStates.ModuleNamed;
@@ -2742,13 +2606,26 @@ namespace VerilogLanguage
 
                 case ";":
                     thisModuleDeclarationText += ItemText;
-                    AddHoverItem(thisModuleName, thisModuleName, thisModuleDeclarationText);
-                    thisHoverName = string.Empty;
-                    BuildHoverState = BuildHoverStates.UndefinedState;
+                    if (thisModuleNamedSegmentHasCode) {
+                        // A package import inside a module header ends with its own
+                        // semicolon. Stay in the header so a following parameter or
+                        // port list is still parsed:
+                        //     module name import package_name::*; #( ... ) ( ... );
+                        thisModuleNamedSegmentHasCode = false;
+                    }
+                    else {
+                        // An immediate semicolon after the module name (or after the
+                        // final package-import declaration) is the no-port module
+                        // header terminator.
+                        AddHoverItem(thisModuleName, thisModuleName, thisModuleDeclarationText);
+                        thisHoverName = string.Empty;
+                        BuildHoverState = BuildHoverStates.UndefinedState;
+                    }
                     break;
 
                 default:
                     thisModuleDeclarationText += ItemText;
+                    thisModuleNamedSegmentHasCode = true;
                     // BuildHoverState = BuildHoverStates.ModuleNamed; no state change
                     break;
             }

@@ -1,0 +1,126 @@
+{
+    "File": "TestFiles/z386.sv",
+    "MustHaveSymbols": [
+        {
+            "Name": "ea_dec_base_idx_r",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_reg",
+            "HoverContains": [
+                "reg",
+                "[2:0]",
+                "ea_dec_base_idx_r"
+            ],
+            "HoverNotContains": [
+                "duplicate?",
+                "fwd_ea_gpr"
+            ]
+        },
+        {
+            "Name": "ea_dec_index_idx_r",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_reg",
+            "HoverContains": [
+                "reg",
+                "[2:0]",
+                "ea_dec_index_idx_r"
+            ],
+            "HoverNotContains": [
+                "duplicate?",
+                "fwd_ea_gpr"
+            ]
+        },
+        {
+            "Name": "ea_dec_scale_r",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_reg",
+            "HoverContains": [
+                "reg",
+                "[1:0]",
+                "ea_dec_scale_r"
+            ],
+            "HoverNotContains": [
+                "duplicate?",
+                "calc_ea_prep"
+            ]
+        },
+        {
+            "Name": "ea_dec_scale_to_base_r",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_reg",
+            "HoverContains": [
+                "reg",
+                "ea_dec_scale_to_base_r"
+            ],
+            "HoverNotContains": [
+                "duplicate?",
+                "calc_ea_prep"
+            ]
+        }
+    ],
+    "MustHaveTaggedText": [
+        {
+            "Text": "ea_dec_base_idx_r",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_reg"
+        },
+        {
+            "Text": "ea_dec_index_idx_r",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_reg"
+        },
+        {
+            "Text": "ea_dec_scale_r",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_reg"
+        },
+        {
+            "Text": "ea_dec_scale_to_base_r",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_reg"
+        }
+    ],
+    "MustNotHaveSymbols": [
+        {
+            "Name": "ea_dec_base_idx_r",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_duplicate"
+        },
+        {
+            "Name": "ea_dec_index_idx_r",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_duplicate"
+        },
+        {
+            "Name": "ea_dec_scale_r",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_duplicate"
+        },
+        {
+            "Name": "ea_dec_scale_to_base_r",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_duplicate"
+        }
+    ],
+    "MustNotHaveTaggedText": [
+        {
+            "Text": "ea_dec_base_idx_r",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_duplicate"
+        },
+        {
+            "Text": "ea_dec_index_idx_r",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_duplicate"
+        },
+        {
+            "Text": "ea_dec_scale_r",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_duplicate"
+        },
+        {
+            "Text": "ea_dec_scale_to_base_r",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_duplicate"
+        }
+    ]
+}

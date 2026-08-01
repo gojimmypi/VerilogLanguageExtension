@@ -273564,9 +273564,9 @@
                     },
                     {
                         "Scope":  "trng_ro",
-                        "Name":  "integer",
+                        "Name":  "STAGES",
                         "TokenType":  "Verilog_Variable_parameter",
-                        "HoverText":  "module trng_ro( .. parameter integer STAGES = 3 .. )"
+                        "HoverText":  "parameter integer STAGES = 3"
                     },
                     {
                         "Scope":  "trng_ro",
@@ -273603,12 +273603,6 @@
                         "Name":  "inv_array",
                         "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "module trng_ro_inverter_cell inv_array [STAGES-1:0] ( .a(inv_in)"
-                    },
-                    {
-                        "Scope":  "trng_ro",
-                        "Name":  "STAGES",
-                        "TokenType":  "Verilog_Variable_parameter",
-                        "HoverText":  "parameter integer STAGES = 3"
                     }
                 ],
     "ProcessingTime":  {

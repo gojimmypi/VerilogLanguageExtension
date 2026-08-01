@@ -2824,10 +2824,10 @@ namespace VerilogLanguage
             DisplayName = "Verilog - Attribute (* ... *)";
             IsBold = true;
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = Colors.DeepSkyBlue;
+                ForegroundColor = Colors.Khaki;
             }
             else {
-                ForegroundColor = Colors.MediumBlue;
+                ForegroundColor = Colors.DarkMagenta;
             }
         }
     }
@@ -2946,7 +2946,7 @@ namespace VerilogLanguage
         public Verilog_Bracket2() {
             DisplayName = "Verilog - Bracket Depth 2"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = Colors.Khaki;
+                ForegroundColor = Colors.Tan;
             }
             else {
                 ForegroundColor = Colors.Brown;

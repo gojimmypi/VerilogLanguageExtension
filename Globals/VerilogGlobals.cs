@@ -612,6 +612,7 @@ namespace VerilogLanguage
         private static int thisModuleNameLinePosition = -1;
         private static bool IsInsideSquareBracket = false;
         private static bool IsInsideSquigglyBracket = false;
+        private static int thisVariableRoundBracketDepth = 0;
         private static VerilogTokenTypes thisVariableType = VerilogTokenTypes.Verilog_Variable;
         private sealed class ConditionalDefinitionCandidate
         {
@@ -712,6 +713,7 @@ namespace VerilogLanguage
             lastNonblankHoverItem = string.Empty;
             IsInsideSquareBracket = false;
             IsInsideSquigglyBracket = false;
+            thisVariableRoundBracketDepth = 0;
             thisVariableType = VerilogTokenTypes.Verilog_Variable;
 
             PreprocessorConditionStack.Clear();
@@ -2460,6 +2462,27 @@ namespace VerilogLanguage
             }
         }
 
+        private static void SetVariableRoundBracketContentStatus_For(string ItemText) {
+            switch (ItemText) {
+                case "(":
+                    thisVariableRoundBracketDepth++;
+                    break;
+
+                case ")":
+                    if (thisVariableRoundBracketDepth > 0) {
+                        thisVariableRoundBracketDepth--;
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        private static bool IsInsideVariableRoundBracket() {
+            return thisVariableRoundBracketDepth > 0;
+        }
+
         private static bool Is_BracketContent_For(string thisScope, string ItemText) {
             return IsInsideSquareBracket && IsDefinedVerilogVariable(thisScope, ItemText);
         }
@@ -2503,6 +2526,7 @@ namespace VerilogLanguage
                 case "localparam":
                 case "parameter":
                     // the same keywords could be used for module parameters, or variables:
+                    thisVariableRoundBracketDepth = 0;
                     switch (BuildHoverState) {
                         case BuildHoverStates.ModuleStart:
                             BuildHoverState = BuildHoverStates.ModuleParameterNaming;
@@ -2550,6 +2574,7 @@ namespace VerilogLanguage
                     if (VerilogVariables.ContainsKey(ItemText)) {
                         // a scope-level module name is defined, so treat it like a variable type
                         BuildHoverState = BuildHoverStates.VariableNaming; // actually, we are module naming. TODO different color for modules?
+                        thisVariableRoundBracketDepth = 0;
 
                         // a module instantiation will have the work "module" manually prepended
                         thisVariableDeclarationText = "module " + ItemText;
@@ -3080,30 +3105,31 @@ namespace VerilogLanguage
                 case ";":
                     AddHoverItem(thisModuleName, thisHoverName, thisVariableDeclarationText);
                     thisVariableDeclarationText = string.Empty; // reminder we do this manually, as AddHoverItem does not know *what* it is adding
+                    thisVariableRoundBracketDepth = 0;
                     BuildHoverState = BuildHoverStates.UndefinedState;
                     break;
 
                 case ",":
-                    if (thisHoverName == string.Empty) {
+                    if (IsInsideVariableRoundBracket() || IsInsideSquigglyBracket) {
+                        // Commas inside an initializer expression, function call,
+                        // concatenation, or module connection list do not begin
+                        // another declaration.
+                        thisVariableDeclarationText += ItemText;
+                    }
+                    else if (thisHoverName == string.Empty) {
                         // string a = "breakpoint";
                         // no hovername = nothing to do
 
                         BuildHoverState = BuildHoverStates.VariableMimicNaming; // Mimic naming is the same declaration but comma-delimited (e.g. input a,b // b has the input "mimic'd" )
                     }
                     else {
-                        if (IsInsideSquigglyBracket) {
-                            thisVariableDeclarationText += ItemText;
-                            // BuildHoverState remains variable building
-                        }
-                        else {
-                            AddHoverItem(thisModuleName, thisHoverName, thisVariableDeclarationText);
-                            // since we encountered a comma, we will use the same declaration text for a new name, so replace this name with a blank
-                            thisVariableDeclarationText = thisVariableDeclarationText.Replace(thisHoverName, "");
+                        AddHoverItem(thisModuleName, thisHoverName, thisVariableDeclarationText);
+                        // since we encountered a comma, we will use the same declaration text for a new name, so replace this name with a blank
+                        thisVariableDeclarationText = thisVariableDeclarationText.Replace(thisHoverName, "");
 
-                            thisHoverName = string.Empty; // IMPORTANT: next identifier is the next variable name
+                        thisHoverName = string.Empty; // IMPORTANT: next identifier is the next variable name
 
-                            BuildHoverState = BuildHoverStates.VariableMimicNaming; // Mimic naming is the same declaration but comma-delimited (e.g. input a,b // b has the input "mimic'd" )
-                        }
+                        BuildHoverState = BuildHoverStates.VariableMimicNaming; // Mimic naming is the same declaration but comma-delimited (e.g. input a,b // b has the input "mimic'd" )
                     }
                     break;
 
@@ -3131,9 +3157,12 @@ namespace VerilogLanguage
                     thisFunctionName = string.Empty;
                     thisFunctionScope = string.Empty;
                     thisModuleParameterText = string.Empty;
+                    thisVariableRoundBracketDepth = 0;
                     break;
 
                 default:
+                    SetVariableRoundBracketContentStatus_For(ItemText);
+
                     if (thisHoverName == string.Empty && IsIdentifier(ItemText) && !IsVerilogVariableSigner(ItemText)) {
                         if (IsInsideSquareBracket || IsInsideSquigglyBracket) {
                             // Identifier used in a range or concatenation is not a declared name
@@ -3185,13 +3214,18 @@ namespace VerilogLanguage
                     break;
 
                 case ",":
-                    AddHoverItem(thisModuleName, thisHoverName, thisVariableDeclarationText);
-                    if (thisHoverName == string.Empty) {
-                        // nothing to do!
+                    if (IsInsideVariableRoundBracket() || IsInsideSquigglyBracket) {
+                        thisVariableDeclarationText += ItemText;
                     }
                     else {
-                        thisVariableDeclarationText = thisVariableDeclarationText.Replace(thisHoverName, "");
-                        thisHoverName = string.Empty;
+                        AddHoverItem(thisModuleName, thisHoverName, thisVariableDeclarationText);
+                        if (thisHoverName == string.Empty) {
+                            // nothing to do!
+                        }
+                        else {
+                            thisVariableDeclarationText = thisVariableDeclarationText.Replace(thisHoverName, "");
+                            thisHoverName = string.Empty;
+                        }
                     }
                     break;
 
@@ -3199,6 +3233,7 @@ namespace VerilogLanguage
                     AddHoverItem(thisModuleName, thisHoverName, thisVariableDeclarationText);
                     thisHoverName = string.Empty;
                     thisVariableDeclarationText = string.Empty;
+                    thisVariableRoundBracketDepth = 0;
                     BuildHoverState = BuildHoverStates.UndefinedState;
                     break;
 
@@ -3206,6 +3241,7 @@ namespace VerilogLanguage
                     BuildHoverState = BuildHoverStates.UndefinedState;
                     thisFunctionName = string.Empty;
                     thisFunctionScope = string.Empty;
+                    thisVariableRoundBracketDepth = 0;
                     // we're done naming a module
                     //AddHoverItem(thisModuleName, thisHoverName, thisModuleParameterText);
                     //BuildHoverState = BuildHoverStates.ModuleNamed;
@@ -3216,6 +3252,8 @@ namespace VerilogLanguage
                     break;
 
                 default:
+                    SetVariableRoundBracketContentStatus_For(ItemText);
+
                     // if we encounter a NamerKeyword during a sequence of comma-delimited vars, then this is a new type!
                     // e.g.  input a,b,  // this is input a; input b;
                     //       output c    // this is output c;

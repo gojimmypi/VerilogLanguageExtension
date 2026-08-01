@@ -59,6 +59,16 @@ namespace VerilogLanguage.VerilogToken
         private ITextSnapshot _blockCommentStateSnapshot;
         private readonly List<bool> _blockCommentStateAtLineStart = new List<bool>();
 
+        private struct AttributeScanState
+        {
+            internal bool IsAttributeOpen;
+            internal bool IsBlockCommentOpen;
+        }
+
+        private readonly object _attributeStateLock = new object();
+        private ITextSnapshot _attributeStateSnapshot;
+        private readonly List<AttributeScanState> _attributeStateAtLineStart = new List<AttributeScanState>();
+
         // ITextView View { get; set; }
         private readonly ITextBuffer _buffer;
         private bool _systemVerilogDocumentKnown;
@@ -204,6 +214,7 @@ namespace VerilogLanguage.VerilogToken
             }
 
             InvalidateBlockCommentStateCache();
+            InvalidateAttributeStateCache();
 
             // If this isn't the most up-to-date version of the buffer, then ignore it for now (we'll eventually get another change event).
             if (e.After != _buffer.CurrentSnapshot) {
@@ -316,6 +327,192 @@ namespace VerilogLanguage.VerilogToken
             }
         }
 
+        private AttributeScanState GetAttributeStateAtLineStart(ITextSnapshot snapshot, int lineNumber) {
+            if (snapshot == null || lineNumber <= 0) {
+                return new AttributeScanState();
+            }
+
+            lock (_attributeStateLock) {
+                if (!object.ReferenceEquals(_attributeStateSnapshot, snapshot)) {
+                    _attributeStateSnapshot = snapshot;
+                    _attributeStateAtLineStart.Clear();
+                    _attributeStateAtLineStart.Add(new AttributeScanState());
+                }
+
+                while (_attributeStateAtLineStart.Count <= lineNumber) {
+                    int previousLineNumber = _attributeStateAtLineStart.Count - 1;
+                    AttributeScanState previousLineState = _attributeStateAtLineStart[previousLineNumber];
+                    ITextSnapshotLine previousLine = snapshot.GetLineFromLineNumber(previousLineNumber);
+                    AttributeScanState nextLineState;
+                    GetAttributeLineSpans(previousLine.GetText(), previousLineState, out nextLineState);
+                    _attributeStateAtLineStart.Add(nextLineState);
+                }
+
+                return _attributeStateAtLineStart[lineNumber];
+            }
+        }
+
+        private static List<Span> GetAttributeLineSpans(
+            string lineText,
+            AttributeScanState lineStartState,
+            out AttributeScanState lineEndState) {
+            List<Span> attributeSpans = null;
+            bool isAttributeOpen = lineStartState.IsAttributeOpen;
+            bool isBlockCommentOpen = lineStartState.IsBlockCommentOpen;
+            bool isStringOpen = false;
+            bool isEscaped = false;
+            bool isEscapedIdentifierOpen = false;
+            int attributeStart = isAttributeOpen ? 0 : -1;
+
+            if (lineText == null) {
+                lineText = string.Empty;
+            }
+
+            for (int i = 0; i < lineText.Length; i++) {
+                char currentChar = lineText[i];
+                char nextChar = (i + 1 < lineText.Length) ? lineText[i + 1] : '\0';
+
+                if (isBlockCommentOpen) {
+                    if (currentChar == '*' && nextChar == '/') {
+                        isBlockCommentOpen = false;
+                        i++;
+                    }
+
+                    continue;
+                }
+
+                if (isStringOpen) {
+                    if (isEscaped) {
+                        isEscaped = false;
+                    }
+                    else if (currentChar == '\\') {
+                        isEscaped = true;
+                    }
+                    else if (currentChar == '"') {
+                        isStringOpen = false;
+                    }
+
+                    continue;
+                }
+
+                if (isEscapedIdentifierOpen) {
+                    if (char.IsWhiteSpace(currentChar)) {
+                        isEscapedIdentifierOpen = false;
+                    }
+
+                    continue;
+                }
+
+                if (currentChar == '\\') {
+                    isEscapedIdentifierOpen = true;
+                    continue;
+                }
+
+                if (currentChar == '/' && nextChar == '/') {
+                    break;
+                }
+
+                if (currentChar == '/' && nextChar == '*') {
+                    isBlockCommentOpen = true;
+                    i++;
+                    continue;
+                }
+
+                if (currentChar == '"') {
+                    isStringOpen = true;
+                    isEscaped = false;
+                    continue;
+                }
+
+                // Do not confuse a wildcard event control such as @(*) or @(* )
+                // with an attribute opener. Both forms begin with the same (* pair.
+                bool isWildcardEventControl = IsWildcardEventControlStart(lineText, i);
+                if (!isAttributeOpen && currentChar == '(' && nextChar == '*' && !isWildcardEventControl) {
+                    isAttributeOpen = true;
+                    attributeStart = i;
+                    i++;
+                    continue;
+                }
+
+                if (isAttributeOpen && currentChar == '*' && nextChar == ')') {
+                    int attributeEnd = i + 2;
+                    AddAttributeLineSpan(ref attributeSpans, attributeStart, attributeEnd);
+                    isAttributeOpen = false;
+                    attributeStart = -1;
+                    i++;
+                }
+            }
+
+            if (isAttributeOpen && attributeStart >= 0) {
+                AddAttributeLineSpan(ref attributeSpans, attributeStart, lineText.Length);
+            }
+
+            lineEndState = new AttributeScanState {
+                IsAttributeOpen = isAttributeOpen,
+                IsBlockCommentOpen = isBlockCommentOpen
+            };
+
+            return attributeSpans;
+        }
+
+        private static bool IsWildcardEventControlStart(string lineText, int openParenIndex) {
+            if (string.IsNullOrEmpty(lineText) ||
+                openParenIndex < 0 ||
+                openParenIndex + 1 >= lineText.Length ||
+                lineText[openParenIndex] != '(' ||
+                lineText[openParenIndex + 1] != '*') {
+                return false;
+            }
+
+            for (int i = openParenIndex - 1; i >= 0; i--) {
+                if (!char.IsWhiteSpace(lineText[i])) {
+                    return lineText[i] == '@';
+                }
+            }
+
+            return false;
+        }
+
+        private static void AddAttributeLineSpan(ref List<Span> spans, int start, int end) {
+            int length = end - start;
+            if (start < 0 || length <= 0) {
+                return;
+            }
+
+            if (spans == null) {
+                spans = new List<Span>();
+            }
+
+            spans.Add(new Span(start, length));
+        }
+
+        private static bool IntersectsLineSpan(
+            SnapshotSpan snapshotSpan,
+            ITextSnapshotLine containingLine,
+            List<Span> lineSpans) {
+            if (containingLine == null || lineSpans == null || lineSpans.Count == 0) {
+                return false;
+            }
+
+            int relativeStart = snapshotSpan.Start.Position - containingLine.Start.Position;
+            int relativeEnd = relativeStart + snapshotSpan.Length;
+
+            foreach (Span lineSpan in lineSpans) {
+                if (relativeStart < lineSpan.End && lineSpan.Start < relativeEnd) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private void InvalidateAttributeStateCache() {
+            lock (_attributeStateLock) {
+                _attributeStateSnapshot = null;
+                _attributeStateAtLineStart.Clear();
+            }
+        }
+
         private void StopReparseCompletionWatcher() {
             Timer timerToDispose;
 
@@ -351,6 +548,7 @@ namespace VerilogLanguage.VerilogToken
             VerilogGlobals.ParseDataPublished -= ParseDataPublished;
             StopReparseCompletionWatcher();
             InvalidateBlockCommentStateCache();
+            InvalidateAttributeStateCache();
         }
 
         private void RaiseTagsChanged(SnapshotSpan span) {
@@ -546,6 +744,7 @@ namespace VerilogLanguage.VerilogToken
 
             VerilogGlobals.VerilogToken[] tokens = null;
             VerilogGlobals.VerilogToken priorToken = new VerilogGlobals.VerilogToken();
+            HashSet<Span> yieldedAttributeSpans = new HashSet<Span>();
 
             // look at each span for tokens, comments, etc
             foreach (SnapshotSpan curSpan in spans) {
@@ -586,6 +785,7 @@ namespace VerilogLanguage.VerilogToken
                 }
 
                 ITextSnapshotLine line = snapshot.GetLineFromPosition(startPos);
+                AttributeScanState attributeState = GetAttributeStateAtLineStart(snapshot, line.LineNumber);
                 string activeLocalScope = string.Empty;
                 if (haveParseData && parseData != null) {
                     TryFindActiveLocalScope(line.Snapshot, line.LineNumber, parseData, out activeLocalScope);
@@ -602,6 +802,20 @@ namespace VerilogLanguage.VerilogToken
                     }
 
                     List<Span> staticStringLineSpans = GetStaticStringLineSpans(lineText);
+                    List<Span> attributeLineSpans = GetAttributeLineSpans(lineText, attributeState, out attributeState);
+
+                    if (attributeLineSpans != null) {
+                        foreach (Span lineSpan in attributeLineSpans) {
+                            Span absoluteSpan = new Span(line.Start.Position + lineSpan.Start, lineSpan.Length);
+                            SnapshotSpan attributeSnapshotSpan = new SnapshotSpan(line.Snapshot, absoluteSpan);
+                            if (attributeSnapshotSpan.IntersectsWith(curSpan) && yieldedAttributeSpans.Add(absoluteSpan)) {
+                                yield return new TagSpan<VerilogTokenTag>(
+                                    attributeSnapshotSpan,
+                                    new VerilogTokenTag(VerilogTokenTypes.Verilog_Attribute));
+                            }
+                        }
+                    }
+
                     tokens = VerilogGlobals.VerilogKeywordSplit(lineText, priorToken);
 
                     int curLoc = line.Start.Position;
@@ -637,7 +851,8 @@ namespace VerilogLanguage.VerilogToken
                                 continue;
                             }
 
-                            if (directTokenSpan.IntersectsWith(curSpan)) {
+                            if (directTokenSpan.IntersectsWith(curSpan) &&
+                                !IntersectsLineSpan(directTokenSpan, line, attributeLineSpans)) {
                                 yield return new TagSpan<VerilogTokenTag>(
                                     directTokenSpan,
                                     new VerilogTokenTag(VerilogTokenTypes.Verilog_Value));
@@ -693,7 +908,8 @@ namespace VerilogLanguage.VerilogToken
                                 curLoc += len;
                                 continue;
                             }
-                            if (tokenSpan.IntersectsWith(curSpan)) {
+                            if (tokenSpan.IntersectsWith(curSpan) &&
+                                !IntersectsLineSpan(tokenSpan, line, attributeLineSpans)) {
                                 foreach (ITagSpan<VerilogTokenTag> tag in ProcessTokenSpan(
                                     curSpan,
                                     line,

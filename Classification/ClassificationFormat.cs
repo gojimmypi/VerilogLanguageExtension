@@ -2808,6 +2808,32 @@ namespace VerilogLanguage
     }
     #endregion
 
+    #region attributes
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "Attribute")]
+    [Name("Attribute")]
+    [UserVisible(true)]
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_Attribute : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for Verilog/SystemVerilog (* ... *) attributes.
+        /// </summary>
+        public Verilog_Attribute() {
+            DisplayName = "Verilog - Attribute (* ... *)";
+            IsBold = true;
+            if (ColorThemeAttribute.IsDarkTheme()) {
+                ForegroundColor = Colors.DeepSkyBlue;
+            }
+            else {
+                ForegroundColor = Colors.MediumBlue;
+            }
+        }
+    }
+
+    #endregion
+
     #region comments
 
     [Export(typeof(EditorFormatDefinition))]

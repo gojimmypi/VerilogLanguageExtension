@@ -113,6 +113,7 @@ namespace VerilogLanguage.VerilogToken
         Verilog_wire,
 
         Verilog_Directive, // note that all directives are colorized the same
+        Verilog_Attribute, // complete Verilog/SystemVerilog attribute instance: (* ... *)
         Verilog_Macro, // macro name/reference from `define, `ifdef, `ifndef, `elsif, or `MACRO use
         Verilog_MacroDefinition, // declaration name defined by macro-controlled conditional branches
         Verilog_StaticString, // static double-quoted string literal

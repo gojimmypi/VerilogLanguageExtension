@@ -216,6 +216,7 @@ namespace VerilogLanguage.VerilogToken
                 [VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported] = typeService.GetClassificationType("SystemVerilogYosysUnsupported"),
 
                 [VerilogTokenTypes.Verilog_Directive] = typeService.GetClassificationType("directive"), // type must be one of VerilogTokenTagger
+                [VerilogTokenTypes.Verilog_Attribute] = typeService.GetClassificationType("Attribute"),
                 [VerilogTokenTypes.Verilog_Macro] = typeService.GetClassificationType("Macro"),
                 [VerilogTokenTypes.Verilog_MacroDefinition] = typeService.GetClassificationType("MacroDefinition"),
                 [VerilogTokenTypes.Verilog_StaticString] = typeService.GetClassificationType("StaticString"),

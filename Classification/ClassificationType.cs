@@ -749,6 +749,15 @@ namespace VerilogLanguage
 
         #endregion
 
+        #region attributes
+        /// <summary>
+        /// Defines the "Verilog_Attribute" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Attribute")]
+        internal static ClassificationTypeDefinition Verilog_Attribute = null;
+        #endregion
+
         #region comments
         /// <summary>
         /// Defines the "Verilog_Comment" classification type.

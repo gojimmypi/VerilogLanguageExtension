@@ -3584,22 +3584,12 @@
                             },
                             {
                                 "Start":  4687,
-                                "Length":  1,
+                                "Length":  22,
                                 "Line":  141,
                                 "Column":  5,
-                                "Text":  "(",
+                                "Text":  "(* keep, dont_touch *)",
                                 "Types":  [
-                                              "Bracket1"
-                                          ]
-                            },
-                            {
-                                "Start":  4708,
-                                "Length":  1,
-                                "Line":  141,
-                                "Column":  26,
-                                "Text":  ")",
-                                "Types":  [
-                                              "Bracket1"
+                                              "Attribute"
                                           ]
                             },
                             {
@@ -34594,22 +34584,12 @@
                             },
                             {
                                 "Start":  38665,
-                                "Length":  1,
+                                "Length":  38,
                                 "Line":  1049,
                                 "Column":  1,
-                                "Text":  "(",
+                                "Text":  "(* keep_hierarchy, keep, dont_touch *)",
                                 "Types":  [
-                                              "Bracket1"
-                                          ]
-                            },
-                            {
-                                "Start":  38702,
-                                "Length":  1,
-                                "Line":  1049,
-                                "Column":  38,
-                                "Text":  ")",
-                                "Types":  [
-                                              "Bracket1"
+                                              "Attribute"
                                           ]
                             },
                             {
@@ -34814,22 +34794,12 @@
                             },
                             {
                                 "Start":  39388,
-                                "Length":  1,
+                                "Length":  38,
                                 "Line":  1066,
                                 "Column":  9,
-                                "Text":  "(",
+                                "Text":  "(* keep_hierarchy, keep, dont_touch *)",
                                 "Types":  [
-                                              "Bracket0"
-                                          ]
-                            },
-                            {
-                                "Start":  39425,
-                                "Length":  1,
-                                "Line":  1066,
-                                "Column":  46,
-                                "Text":  ")",
-                                "Types":  [
-                                              "Bracket0"
+                                              "Attribute"
                                           ]
                             },
                             {
@@ -35314,22 +35284,12 @@
                             },
                             {
                                 "Start":  42363,
-                                "Length":  1,
+                                "Length":  38,
                                 "Line":  1113,
                                 "Column":  9,
-                                "Text":  "(",
+                                "Text":  "(* keep_hierarchy, keep, dont_touch *)",
                                 "Types":  [
-                                              "Bracket1"
-                                          ]
-                            },
-                            {
-                                "Start":  42400,
-                                "Length":  1,
-                                "Line":  1113,
-                                "Column":  46,
-                                "Text":  ")",
-                                "Types":  [
-                                              "Bracket1"
+                                              "Attribute"
                                           ]
                             },
                             {
@@ -36014,22 +35974,12 @@
                             },
                             {
                                 "Start":  44107,
-                                "Length":  1,
+                                "Length":  22,
                                 "Line":  1162,
                                 "Column":  5,
-                                "Text":  "(",
+                                "Text":  "(* keep, dont_touch *)",
                                 "Types":  [
-                                              "Bracket1"
-                                          ]
-                            },
-                            {
-                                "Start":  44128,
-                                "Length":  1,
-                                "Line":  1162,
-                                "Column":  26,
-                                "Text":  ")",
-                                "Types":  [
-                                              "Bracket1"
+                                              "Attribute"
                                           ]
                             },
                             {
@@ -36104,22 +36054,12 @@
                             },
                             {
                                 "Start":  44160,
-                                "Length":  1,
+                                "Length":  22,
                                 "Line":  1163,
                                 "Column":  5,
-                                "Text":  "(",
+                                "Text":  "(* keep, dont_touch *)",
                                 "Types":  [
-                                              "Bracket1"
-                                          ]
-                            },
-                            {
-                                "Start":  44181,
-                                "Length":  1,
-                                "Line":  1163,
-                                "Column":  26,
-                                "Text":  ")",
-                                "Types":  [
-                                              "Bracket1"
+                                              "Attribute"
                                           ]
                             },
                             {
@@ -36524,22 +36464,12 @@
                             },
                             {
                                 "Start":  44500,
-                                "Length":  1,
+                                "Length":  38,
                                 "Line":  1172,
                                 "Column":  5,
-                                "Text":  "(",
+                                "Text":  "(* keep_hierarchy, keep, dont_touch *)",
                                 "Types":  [
-                                              "Bracket1"
-                                          ]
-                            },
-                            {
-                                "Start":  44537,
-                                "Length":  1,
-                                "Line":  1172,
-                                "Column":  42,
-                                "Text":  ")",
-                                "Types":  [
-                                              "Bracket1"
+                                              "Attribute"
                                           ]
                             },
                             {
@@ -51346,22 +51276,12 @@
                  },
                  {
                      "Start":  4687,
-                     "Length":  1,
+                     "Length":  22,
                      "Line":  141,
                      "Column":  5,
-                     "Text":  "(",
+                     "Text":  "(* keep, dont_touch *)",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  4708,
-                     "Length":  1,
-                     "Line":  141,
-                     "Column":  26,
-                     "Text":  ")",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
+                     "TagDetail":  "Verilog_Attribute",
                      "HoverText":  null
                  },
                  {
@@ -125326,22 +125246,12 @@
                  },
                  {
                      "Start":  38665,
-                     "Length":  1,
+                     "Length":  38,
                      "Line":  1049,
                      "Column":  1,
-                     "Text":  "(",
+                     "Text":  "(* keep_hierarchy, keep, dont_touch *)",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  38702,
-                     "Length":  1,
-                     "Line":  1049,
-                     "Column":  38,
-                     "Text":  ")",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
+                     "TagDetail":  "Verilog_Attribute",
                      "HoverText":  null
                  },
                  {
@@ -126926,22 +126836,12 @@
                  },
                  {
                      "Start":  39388,
-                     "Length":  1,
+                     "Length":  38,
                      "Line":  1066,
                      "Column":  9,
-                     "Text":  "(",
+                     "Text":  "(* keep_hierarchy, keep, dont_touch *)",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket0",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  39425,
-                     "Length":  1,
-                     "Line":  1066,
-                     "Column":  46,
-                     "Text":  ")",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket0",
+                     "TagDetail":  "Verilog_Attribute",
                      "HoverText":  null
                  },
                  {
@@ -134466,22 +134366,12 @@
                  },
                  {
                      "Start":  42363,
-                     "Length":  1,
+                     "Length":  38,
                      "Line":  1113,
                      "Column":  9,
-                     "Text":  "(",
+                     "Text":  "(* keep_hierarchy, keep, dont_touch *)",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  42400,
-                     "Length":  1,
-                     "Line":  1113,
-                     "Column":  46,
-                     "Text":  ")",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
+                     "TagDetail":  "Verilog_Attribute",
                      "HoverText":  null
                  },
                  {
@@ -141326,22 +141216,12 @@
                  },
                  {
                      "Start":  44107,
-                     "Length":  1,
+                     "Length":  22,
                      "Line":  1162,
                      "Column":  5,
-                     "Text":  "(",
+                     "Text":  "(* keep, dont_touch *)",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  44128,
-                     "Length":  1,
-                     "Line":  1162,
-                     "Column":  26,
-                     "Text":  ")",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
+                     "TagDetail":  "Verilog_Attribute",
                      "HoverText":  null
                  },
                  {
@@ -141416,22 +141296,12 @@
                  },
                  {
                      "Start":  44160,
-                     "Length":  1,
+                     "Length":  22,
                      "Line":  1163,
                      "Column":  5,
-                     "Text":  "(",
+                     "Text":  "(* keep, dont_touch *)",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  44181,
-                     "Length":  1,
-                     "Line":  1163,
-                     "Column":  26,
-                     "Text":  ")",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
+                     "TagDetail":  "Verilog_Attribute",
                      "HoverText":  null
                  },
                  {
@@ -142276,22 +142146,12 @@
                  },
                  {
                      "Start":  44500,
-                     "Length":  1,
+                     "Length":  38,
                      "Line":  1172,
                      "Column":  5,
-                     "Text":  "(",
+                     "Text":  "(* keep_hierarchy, keep, dont_touch *)",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  44537,
-                     "Length":  1,
-                     "Line":  1172,
-                     "Column":  42,
-                     "Text":  ")",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
+                     "TagDetail":  "Verilog_Attribute",
                      "HoverText":  null
                  },
                  {
@@ -273607,9 +273467,9 @@
                 ],
     "ProcessingTime":  {
                            "SchemaVersion":  2,
-                           "ElapsedBucket":  "40-44s",
-                           "Index":  1,
-                           "Count":  1,
+                           "ElapsedBucket":  "20-24s",
+                           "Index":  48,
+                           "Count":  55,
                            "Status":  "Completed"
                        }
 }

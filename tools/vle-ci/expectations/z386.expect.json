@@ -245,6 +245,30 @@
                 "duplicate?",
                 "calc_ea_prep"
             ]
+        },
+        {
+            "Name": "target_sign",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_reg",
+            "HoverContains": [
+                "logic",
+                "target_sign"
+            ],
+            "HoverNotContains": [
+                "duplicate?"
+            ]
+        },
+        {
+            "Name": "ovf",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_reg",
+            "HoverContains": [
+                "logic",
+                "ovf"
+            ],
+            "HoverNotContains": [
+                "duplicate?"
+            ]
         }
     ],
     "MustHaveTaggedText": [
@@ -265,6 +289,16 @@
         },
         {
             "Text": "ea_dec_scale_to_base_r",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_reg"
+        },
+        {
+            "Text": "target_sign",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_reg"
+        },
+        {
+            "Text": "ovf",
             "Source": "Tags",
             "TagDetail": "Verilog_Variable_reg"
         }
@@ -339,6 +373,16 @@
             "Name": "SEG_DS",
             "Scope": "z386",
             "TokenType": "Verilog_Variable_wire"
+        },
+        {
+            "Name": "target_sign",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_duplicate"
+        },
+        {
+            "Name": "ovf",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_duplicate"
         }
     ],
     "MustNotHaveTaggedText": [
@@ -399,6 +443,16 @@
         },
         {
             "Text": "ea_dec_scale_to_base_r",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_duplicate"
+        },
+        {
+            "Text": "target_sign",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_duplicate"
+        },
+        {
+            "Text": "ovf",
             "Source": "Tags",
             "TagDetail": "Verilog_Variable_duplicate"
         }

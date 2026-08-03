@@ -49,7 +49,7 @@ namespace VerilogLanguage
 
         public static System.Windows.Media.Color LightThemeDefault = Colors.RoyalBlue;
         public static System.Windows.Media.Color LightThemeInputOutput = Colors.DarkMagenta;
-        public static System.Windows.Media.Color LightThemeEdge = Colors.Yellow;
+        public static System.Windows.Media.Color LightThemeEdge = Colors.DarkOliveGreen;
 
         /// <summary>
         ///   IsDarkTheme - returns true if the current color scheme is dark (background brightness < 0.5)
@@ -148,7 +148,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.Orange; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.DarkOrange; // default color for light background
+                ForegroundColor = Colors.Sienna; // default color for light background
             }
         }
     }
@@ -396,7 +396,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.Orange; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.DarkOrange; // default color for light background
+                ForegroundColor = Colors.Sienna; // default color for light background
             }
         }
     }
@@ -800,7 +800,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.PeachPuff; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.DarkKhaki; // default color for light background
+                ForegroundColor = Colors.SaddleBrown; // default color for light background
             }
         }
     }
@@ -863,7 +863,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.PeachPuff; // default color for light background
             }
             else {
-                ForegroundColor = Colors.DarkKhaki; // default color for light background
+                ForegroundColor = Colors.SaddleBrown; // default color for light background
             }
         }
     }
@@ -926,7 +926,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.PeachPuff; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.DarkKhaki; // default color for light background
+                ForegroundColor = Colors.SaddleBrown; // default color for light background
             }
         }
     }
@@ -989,7 +989,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.PeachPuff; // default color for light background
             }
             else {
-                ForegroundColor = Colors.DarkKhaki; // default color for light background
+                ForegroundColor = Colors.SaddleBrown; // default color for light background
             }
         }
     }
@@ -1052,7 +1052,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.PeachPuff; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.DarkKhaki; // default color for light background
+                ForegroundColor = Colors.SaddleBrown; // default color for light background
             }
         }
     }
@@ -1301,7 +1301,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.PeachPuff; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.DarkKhaki; // default color for light background
+                ForegroundColor = Colors.SaddleBrown; // default color for light background
             }
         }
     }
@@ -1455,7 +1455,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.PeachPuff; // default color for light background
             }
             else {
-                ForegroundColor = Colors.DarkKhaki; // default color for light background
+                ForegroundColor = Colors.SaddleBrown; // default color for light background
             }
         }
     }
@@ -1797,7 +1797,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.PeachPuff; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.DarkKhaki; // default color for light background
+                ForegroundColor = Colors.SaddleBrown; // default color for light background
             }
         }
     }
@@ -1860,7 +1860,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.PeachPuff; // default color for light background
             }
             else {
-                ForegroundColor = Colors.DarkKhaki; // default color for light background
+                ForegroundColor = Colors.SaddleBrown; // default color for light background
             }
         }
     }
@@ -1923,7 +1923,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.PeachPuff; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.DarkKhaki; // default color for light background
+                ForegroundColor = Colors.SaddleBrown; // default color for light background
             }
         }
     }
@@ -2172,7 +2172,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.PeachPuff; // default color for light background
             }
             else {
-                ForegroundColor = Colors.DarkKhaki; // default color for light background
+                ForegroundColor = Colors.SaddleBrown; // default color for light background
             }
         }
     }
@@ -2667,7 +2667,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.Gold;
             }
             else {
-                ForegroundColor = Colors.DarkOrange;
+                ForegroundColor = Colors.DarkOliveGreen;
             }
         }
     }
@@ -2718,7 +2718,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.Salmon; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.IndianRed; // default color for light background
+                ForegroundColor = Colors.Firebrick; // default color for light background
             }
         }
     }
@@ -2760,7 +2760,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.Goldenrod;
             }
             else {
-                ForegroundColor = Colors.DarkGoldenrod;
+                ForegroundColor = Colors.Brown;
             }
         }
     }
@@ -2802,7 +2802,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.MediumSpringGreen;
             }
             else {
-                ForegroundColor = Colors.SeaGreen;
+                ForegroundColor = Colors.Teal;
             }
         }
     }
@@ -2827,7 +2827,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.Khaki;
             }
             else {
-                ForegroundColor = Colors.DarkMagenta;
+                ForegroundColor = Colors.DarkViolet;
             }
         }
     }
@@ -2854,7 +2854,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.LightSeaGreen; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.LimeGreen; // default color for light background
+                ForegroundColor = Colors.Green; // default color for light background
             }
         }
     }
@@ -2880,7 +2880,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.Cornsilk;
             }
             else {
-                ForegroundColor = Colors.Brown;
+                ForegroundColor = Colors.DarkSlateGray;
             }
         }
     }
@@ -2903,7 +2903,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.SkyBlue;
             }
             else {
-                ForegroundColor = Colors.RoyalBlue;
+                ForegroundColor = Colors.MediumBlue;
             }
         }
     }
@@ -2926,7 +2926,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.LightCoral;
             }
             else {
-                ForegroundColor = Colors.Brown;
+                ForegroundColor = Colors.Firebrick;
             }
         }
     }
@@ -2949,7 +2949,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.Tan;
             }
             else {
-                ForegroundColor = Colors.Brown;
+                ForegroundColor = Colors.SaddleBrown;
             }
         }
     }
@@ -2972,7 +2972,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.SteelBlue;
             }
             else {
-                ForegroundColor = Colors.Brown;
+                ForegroundColor = Colors.SlateBlue;
             }
         }
     }
@@ -2995,7 +2995,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.Orange;
             }
             else {
-                ForegroundColor = Colors.Brown;
+                ForegroundColor = Colors.Sienna;
             }
         }
     }
@@ -3018,7 +3018,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.PaleTurquoise;
             }
             else {
-                ForegroundColor = Colors.Brown;
+                ForegroundColor = Colors.Teal;
             }
         }
     }
@@ -3043,7 +3043,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.Cornsilk;
             }
             else {
-                ForegroundColor = Colors.Brown;
+                ForegroundColor = Colors.DarkSlateGray;
             }
         }
     }
@@ -3141,7 +3141,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.Red; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.DarkBlue; // default color for light background
+                ForegroundColor = Colors.Firebrick; // default color for light background
             }
         }
     }
@@ -3164,7 +3164,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.LightSteelBlue; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.DarkBlue; // default color for light background
+                ForegroundColor = Colors.SlateBlue; // default color for light background
             }
         }
     }
@@ -3187,7 +3187,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.Plum; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.DarkBlue; // default color for light background
+                ForegroundColor = Colors.Purple; // default color for light background
             }
         }
     }
@@ -3256,7 +3256,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.Red; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.Red; // default color for light background
+                ForegroundColor = Colors.DarkRed; // default color for light background
             }
         }
     }
@@ -3280,7 +3280,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.Cyan; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.DarkCyan; // default color for light background
+                ForegroundColor = Colors.Teal; // default color for light background
             }
         }
     }
@@ -3306,7 +3306,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.LightGreen; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.Navy; // default color for light background
+                ForegroundColor = Colors.DarkGreen; // default color for light background
             }
         }
     }
@@ -3329,7 +3329,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.LightGreen; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.Navy; // default color for light background
+                ForegroundColor = Colors.DarkGreen; // default color for light background
             }
         }
     }
@@ -3352,7 +3352,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.LightGreen; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.Navy; // default color for light background
+                ForegroundColor = Colors.DarkGreen; // default color for light background
             }
         }
     }
@@ -3375,7 +3375,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.LightGreen; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.Navy; // default color for light background
+                ForegroundColor = Colors.DarkGreen; // default color for light background
             }
         }
     }
@@ -3398,7 +3398,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.LightGreen; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.Navy; // default color for light background
+                ForegroundColor = Colors.DarkGreen; // default color for light background
             }
         }
     }
@@ -3421,7 +3421,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.LightGreen; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.Navy; // default color for light background
+                ForegroundColor = Colors.DarkGreen; // default color for light background
             }
         }
     }
@@ -3444,7 +3444,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.LightGreen; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.Navy; // default color for light background
+                ForegroundColor = Colors.DarkGreen; // default color for light background
             }
         }
     }
@@ -3472,7 +3472,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.Peru; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.Peru; // default color for light background
+                ForegroundColor = Colors.Maroon; // default color for light background
             }
         }
     }

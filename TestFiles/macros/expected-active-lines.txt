@@ -1,0 +1,19 @@
+Expected normal syntax highlighting:
+  active_even_when_macro_value_is_zero
+  active_elsif_branch
+  active_nested_ifndef
+  active_after_commented_directive
+
+Expected InactiveCode highlighting:
+  inactive_feature_zero_else
+  inactive_after_undef
+  inactive_final_else
+  inactive_outer_branch
+  inactive_nested_else
+
+Expected directive/macro highlighting even when the surrounding branch is inactive:
+  `define INNER_ONLY 1
+
+Important Verilog/SystemVerilog semantic check:
+  `define FEATURE_ZERO 0 still makes `ifdef FEATURE_ZERO true. `ifdef tests
+  whether the macro exists; it does not interpret the replacement value as a Boolean.

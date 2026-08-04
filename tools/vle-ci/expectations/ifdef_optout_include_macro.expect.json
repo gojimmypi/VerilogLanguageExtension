@@ -1,0 +1,27 @@
+{
+    "File": "TestFiles/macros/ifdef_optout_include_macro.sv",
+    "MustHaveTaggedText": [
+        {
+            "Text": "\"include-files/show_inactive_config.vh\"",
+            "Source": "Tags",
+            "TagDetail": "Verilog_StaticString"
+        },
+        {
+            "Text": "normally_colored_despite_inactive_branch",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_reg"
+        },
+        {
+            "Text": "active_branch",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_reg"
+        }
+    ],
+    "MustNotHaveTaggedText": [
+        {
+            "Text": "    logic normally_colored_despite_inactive_branch;",
+            "Source": "Tags",
+            "TagDetail": "Verilog_InactiveCode"
+        }
+    ]
+}

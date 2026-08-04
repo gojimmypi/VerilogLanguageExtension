@@ -1,0 +1,1 @@
+`define NO_INACTIVE_MACRO_CODE

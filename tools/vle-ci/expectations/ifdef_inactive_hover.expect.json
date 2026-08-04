@@ -1,0 +1,71 @@
+{
+    "File": "TestFiles/macros/ifdef_inactive_hover.sv",
+    "MustHaveTaggedText": [
+        {
+            "Text": "    logic inactive_missing_sim_macro;",
+            "Source": "Tags",
+            "TagDetail": "Verilog_InactiveCode",
+            "HoverContains": [
+                "SIM_JTAG_CORE_TB",
+                "not defined",
+                "earlier included configuration file",
+                "SHOW_INACTIVE_CODE"
+            ]
+        },
+        {
+            "Text": "    logic inactive_because_macro_is_defined;",
+            "Source": "Tags",
+            "TagDetail": "Verilog_InactiveCode",
+            "HoverContains": [
+                "PRESENT_FEATURE",
+                "is defined",
+                "Undefine",
+                "`ifndef",
+                "SHOW_INACTIVE_CODE"
+            ]
+        },
+        {
+            "Text": "    logic inactive_elsif_after_selected_branch;",
+            "Source": "Tags",
+            "TagDetail": "Verilog_InactiveCode",
+            "HoverContains": [
+                "PRESENT_FEATURE",
+                "earlier `ifdef branch is active",
+                "SHOW_INACTIVE_CODE"
+            ]
+        },
+        {
+            "Text": "    logic inactive_else_after_selected_branch;",
+            "Source": "Tags",
+            "TagDetail": "Verilog_InactiveCode",
+            "HoverContains": [
+                "PRESENT_FEATURE",
+                "earlier `ifdef branch is active",
+                "SHOW_INACTIVE_CODE"
+            ]
+        },
+        {
+            "Text": "        logic nested_inactive_uses_outer_reason;",
+            "Source": "Tags",
+            "TagDetail": "Verilog_InactiveCode",
+            "HoverContains": [
+                "MISSING_OUTER",
+                "not defined",
+                "SHOW_INACTIVE_CODE"
+            ],
+            "HoverNotContains": [
+                "PRESENT_FEATURE"
+            ]
+        },
+        {
+            "Text": "active_without_sim_macro",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_reg"
+        },
+        {
+            "Text": "active_first_branch",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_reg"
+        }
+    ]
+}

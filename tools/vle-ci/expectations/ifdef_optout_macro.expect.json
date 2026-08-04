@@ -1,0 +1,27 @@
+{
+    "File": "TestFiles/macros/ifdef_optout_macro.sv",
+    "MustHaveTaggedText": [
+        {
+            "Text": "VLE_SHOW_INACTIVE_CODE",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Macro"
+        },
+        {
+            "Text": "normally_colored_despite_inactive_branch",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_reg"
+        },
+        {
+            "Text": "active_branch",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_reg"
+        }
+    ],
+    "MustNotHaveTaggedText": [
+        {
+            "Text": "    logic normally_colored_despite_inactive_branch;",
+            "Source": "Tags",
+            "TagDetail": "Verilog_InactiveCode"
+        }
+    ]
+}

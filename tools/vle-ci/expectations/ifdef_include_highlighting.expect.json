@@ -1,0 +1,73 @@
+{
+    "File": "TestFiles/macros/ifdef_include_highlighting.sv",
+    "MustHaveTaggedText": [
+        {
+            "Text": "active_from_project_config",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_reg"
+        },
+        {
+            "Text": "active_included_zero_value",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_reg"
+        },
+        {
+            "Text": "active_from_nested_include",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_reg"
+        },
+        {
+            "Text": "active_after_include_cycle_guard",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_reg"
+        },
+        {
+            "Text": "active_from_second_cycle_file",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_reg"
+        },
+        {
+            "Text": "active_inactive_include_did_not_leak",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_reg"
+        },
+        {
+            "Text": "    logic inactive_project_config_else;",
+            "Source": "Tags",
+            "TagDetail": "Verilog_InactiveCode",
+            "HoverContains": [
+                "SIM_JTAG_CORE_TB",
+                "defined",
+                "earlier `ifdef branch is active",
+                "SHOW_INACTIVE_CODE"
+            ]
+        },
+        {
+            "Text": "    logic inactive_include_leaked_macro;",
+            "Source": "Tags",
+            "TagDetail": "Verilog_InactiveCode",
+            "HoverContains": [
+                "INACTIVE_INCLUDE_MUST_NOT_LEAK",
+                "not defined",
+                "SHOW_INACTIVE_CODE"
+            ]
+        },
+        {
+            "Text": "\"include-files/inactive_config.vh\"",
+            "Source": "Tags",
+            "TagDetail": "Verilog_StaticString"
+        }
+    ],
+    "MustNotHaveTaggedText": [
+        {
+            "Text": "inactive_project_config_else",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_reg"
+        },
+        {
+            "Text": "inactive_include_leaked_macro",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_reg"
+        }
+    ]
+}

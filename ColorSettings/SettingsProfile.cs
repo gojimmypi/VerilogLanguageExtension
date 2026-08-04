@@ -49,7 +49,8 @@ namespace VerilogLanguage.ColorSettings
     /// second hand-written name list.
     ///
     /// Raw Visual Studio COLORREF and font-flag values are preserved. This retains
-    /// Automatic and other encoded colors instead of reducing them to RGB.
+    /// Automatic and other encoded colors instead of reducing them to RGB. Each raw
+    /// value is accompanied by a human-readable color name, hex value, or flag list.
     /// </remarks>
     [ComVisible(true)]
     [Guid(ProfileGuidString)]
@@ -68,6 +69,11 @@ namespace VerilogLanguage.ColorSettings
         private static readonly Lazy<IReadOnlyList<VleColorFormatDescriptor>> FormatCatalog =
             new Lazy<IReadOnlyList<VleColorFormatDescriptor>>(
                 DiscoverVleColorFormats,
+                true);
+
+        private static readonly Lazy<IReadOnlyDictionary<uint, string>> NamedColorNames =
+            new Lazy<IReadOnlyDictionary<uint, string>>(
+                CreateNamedColorNameMap,
                 true);
 
         private List<PersistedColorFormat> _storedFormats =
@@ -91,11 +97,11 @@ namespace VerilogLanguage.ColorSettings
         /// Writes all loaded VLE display items to the .vssettings category.
         /// </summary>
         public void SaveSettingsToXml(IVsSettingsWriter writer) {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             if (writer == null) {
                 throw new ArgumentNullException("writer");
             }
-
-            ThreadHelper.ThrowIfNotOnUIThread();
 
             // Do not depend on Visual Studio preserving the same IProfileManager
             // instance between LoadSettingsFromStorage and SaveSettingsToXml.
@@ -114,6 +120,11 @@ namespace VerilogLanguage.ColorSettings
                     "UnavailableFormatCount",
                     _unavailableFormatNames.Count));
 
+            object colorService = GetRequiredGlobalServiceObject(
+                typeof(SVsFontAndColorStorage));
+            IVsFontAndColorUtilities colorUtilities =
+                colorService as IVsFontAndColorUtilities;
+
             for (int index = 0; index < _storedFormats.Count; index++) {
                 PersistedColorFormat format = _storedFormats[index];
                 string prefix = MakeSettingPrefix(index);
@@ -130,18 +141,34 @@ namespace VerilogLanguage.ColorSettings
                     writer.WriteSettingLong(
                         prefix + "Foreground",
                         unchecked((int)format.Foreground)));
+                WriteReadableColorSettings(
+                    writer,
+                    prefix + "Foreground",
+                    format.ForegroundValid,
+                    format.Foreground,
+                    colorUtilities);
                 ThrowOnFailure(
                     writer.WriteSettingLong(prefix + "BackgroundValid", format.BackgroundValid));
                 ThrowOnFailure(
                     writer.WriteSettingLong(
                         prefix + "Background",
                         unchecked((int)format.Background)));
+                WriteReadableColorSettings(
+                    writer,
+                    prefix + "Background",
+                    format.BackgroundValid,
+                    format.Background,
+                    colorUtilities);
                 ThrowOnFailure(
                     writer.WriteSettingLong(prefix + "FontFlagsValid", format.FontFlagsValid));
                 ThrowOnFailure(
                     writer.WriteSettingLong(
                         prefix + "FontFlags",
                         unchecked((int)format.FontFlags)));
+                ThrowOnFailure(
+                    writer.WriteSettingString(
+                        prefix + "FontFlagsText",
+                        FormatFontFlags(format.FontFlagsValid, format.FontFlags)));
             }
 
             for (int index = 0; index < _unavailableFormatNames.Count; index++) {
@@ -157,11 +184,11 @@ namespace VerilogLanguage.ColorSettings
         /// a modified file cannot alter unrelated Visual Studio display items.
         /// </summary>
         public void LoadSettingsFromXml(IVsSettingsReader reader) {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             if (reader == null) {
                 throw new ArgumentNullException("reader");
             }
-
-            ThreadHelper.ThrowIfNotOnUIThread();
 
             int count;
             if (!TryReadLong(reader, "FormatCount", out count)) {
@@ -445,6 +472,8 @@ namespace VerilogLanguage.ColorSettings
             out string storageName,
             out ColorableItemInfo info) {
 
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             foreach (string candidate in descriptor.GetStorageNameCandidates()) {
                 var buffer = new ColorableItemInfo[1];
                 if (Succeeded(storage.GetItem(candidate, buffer))) {
@@ -462,6 +491,8 @@ namespace VerilogLanguage.ColorSettings
         private static string ResolveStorageName(
             IVsFontAndColorStorage storage,
             VleColorFormatDescriptor descriptor) {
+
+            ThreadHelper.ThrowIfNotOnUIThread();
 
             string storageName;
             ColorableItemInfo ignored;
@@ -543,6 +574,176 @@ namespace VerilogLanguage.ColorSettings
             catch (ReflectionTypeLoadException ex) {
                 return ex.Types.Where(type => type != null);
             }
+        }
+
+        private static void WriteReadableColorSettings(
+            IVsSettingsWriter writer,
+            string settingName,
+            int valid,
+            uint colorRef,
+            IVsFontAndColorUtilities colorUtilities) {
+
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            ReadableColorValue readable = DescribeColor(
+                valid,
+                colorRef,
+                colorUtilities);
+
+            ThrowOnFailure(
+                writer.WriteSettingString(settingName + "Name", readable.Name));
+            ThrowOnFailure(
+                writer.WriteSettingString(settingName + "Hex", readable.Hex));
+        }
+
+        private static ReadableColorValue DescribeColor(
+            int valid,
+            uint colorRef,
+            IVsFontAndColorUtilities colorUtilities) {
+
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            if (valid == 0) {
+                return new ReadableColorValue("NotSet", "N/A");
+            }
+
+            int colorType;
+            if (colorUtilities != null &&
+                Succeeded(colorUtilities.GetColorType(colorRef, out colorType))) {
+
+                switch ((__VSCOLORTYPE)colorType) {
+                    case __VSCOLORTYPE.CT_RAW:
+                        return DescribeRawColor(colorRef);
+                    case __VSCOLORTYPE.CT_INVALID:
+                        return new ReadableColorValue(
+                            "Invalid",
+                            FormatEncodedColor(colorRef));
+                    case __VSCOLORTYPE.CT_COLORINDEX:
+                        return new ReadableColorValue(
+                            "ColorIndex",
+                            FormatEncodedColor(colorRef));
+                    case __VSCOLORTYPE.CT_SYSCOLOR:
+                        return new ReadableColorValue(
+                            "SystemColor",
+                            FormatEncodedColor(colorRef));
+                    case __VSCOLORTYPE.CT_VSCOLOR:
+                        return new ReadableColorValue(
+                            "VisualStudioColor",
+                            FormatEncodedColor(colorRef));
+                    case __VSCOLORTYPE.CT_AUTOMATIC:
+                        return new ReadableColorValue(
+                            "Automatic",
+                            FormatEncodedColor(colorRef));
+                    case __VSCOLORTYPE.CT_TRACK_FOREGROUND:
+                        return new ReadableColorValue(
+                            "TrackForeground",
+                            FormatEncodedColor(colorRef));
+                    case __VSCOLORTYPE.CT_TRACK_BACKGROUND:
+                        return new ReadableColorValue(
+                            "TrackBackground",
+                            FormatEncodedColor(colorRef));
+                }
+            }
+
+            if ((colorRef & 0xFF000000u) == 0) {
+                return DescribeRawColor(colorRef);
+            }
+
+            return new ReadableColorValue(
+                "Encoded",
+                FormatEncodedColor(colorRef));
+        }
+
+        private static ReadableColorValue DescribeRawColor(uint colorRef) {
+            byte red = (byte)(colorRef & 0xFFu);
+            byte green = (byte)((colorRef >> 8) & 0xFFu);
+            byte blue = (byte)((colorRef >> 16) & 0xFFu);
+            uint rgb = ((uint)red << 16) | ((uint)green << 8) | blue;
+
+            string name;
+            if (!NamedColorNames.Value.TryGetValue(rgb, out name)) {
+                name = "Custom";
+            }
+
+            return new ReadableColorValue(
+                name,
+                string.Format(
+                    CultureInfo.InvariantCulture,
+                    "#{0:X2}{1:X2}{2:X2}",
+                    red,
+                    green,
+                    blue));
+        }
+
+        private static string FormatEncodedColor(uint colorRef) {
+            return string.Format(
+                CultureInfo.InvariantCulture,
+                "0x{0:X8}",
+                colorRef);
+        }
+
+        private static string FormatFontFlags(int valid, uint fontFlags) {
+            if (valid == 0) {
+                return "NotSet";
+            }
+
+            if (fontFlags == 0) {
+                return "None";
+            }
+
+            const uint Bold = 0x00000001u;
+            const uint Strikethrough = 0x00000002u;
+            const uint TrackPlainTextBold = 0x80000000u;
+            const uint KnownFlags = Bold | Strikethrough | TrackPlainTextBold;
+
+            var names = new List<string>();
+            if ((fontFlags & Bold) != 0) {
+                names.Add("Bold");
+            }
+            if ((fontFlags & Strikethrough) != 0) {
+                names.Add("Strikethrough");
+            }
+            if ((fontFlags & TrackPlainTextBold) != 0) {
+                names.Add("TrackPlainTextBold");
+            }
+
+            uint unknownFlags = fontFlags & ~KnownFlags;
+            if (unknownFlags != 0) {
+                names.Add(string.Format(
+                    CultureInfo.InvariantCulture,
+                    "Unknown(0x{0:X8})",
+                    unknownFlags));
+            }
+
+            return string.Join(" | ", names);
+        }
+
+        private static IReadOnlyDictionary<uint, string> CreateNamedColorNameMap() {
+            var result = new Dictionary<uint, string>();
+            PropertyInfo[] properties = typeof(System.Windows.Media.Colors)
+                .GetProperties(BindingFlags.Public | BindingFlags.Static)
+                .Where(property =>
+                    property.PropertyType == typeof(System.Windows.Media.Color) &&
+                    property.GetIndexParameters().Length == 0)
+                .OrderBy(property => property.Name, StringComparer.Ordinal)
+                .ToArray();
+
+            foreach (PropertyInfo property in properties) {
+                var color = (System.Windows.Media.Color)property.GetValue(null, null);
+                if (color.A != byte.MaxValue) {
+                    continue;
+                }
+
+                uint rgb = ((uint)color.R << 16) |
+                    ((uint)color.G << 8) |
+                    color.B;
+
+                if (!result.ContainsKey(rgb)) {
+                    result.Add(rgb, property.Name);
+                }
+            }
+
+            return result;
         }
 
         private static string MakeSettingPrefix(int index) {
@@ -640,6 +841,17 @@ namespace VerilogLanguage.ColorSettings
                     yield return DisplayName;
                 }
             }
+        }
+
+        private sealed class ReadableColorValue
+        {
+            internal ReadableColorValue(string name, string hex) {
+                Name = name;
+                Hex = hex;
+            }
+
+            internal string Name { get; private set; }
+            internal string Hex { get; private set; }
         }
 
         private sealed class PersistedColorFormat

@@ -10,5 +10,20 @@ In Visual Studio:
 
 Click `Tools` - `Import and Export Settings ...`
 
+Leave the default `Export selected environment settings` and press `Next`.
+
+Choose desired export, typically only the `Verilog Colorization`:
+
 ![Choose-Settings-to-Export.jpg](./Choose-Settings-to-Export.jpg)
 
+## Import Settings
+
+Click `Tools` - `Import and Export Settings ...`
+
+Select `Import selected environment settings` and press `Next`.
+
+![Import selected environment settings](./Import-selected-environment-settings.jpg)
+
+Optionally save current settings.
+
+Proceed to import.

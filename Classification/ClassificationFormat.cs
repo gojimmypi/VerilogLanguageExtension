@@ -207,10 +207,10 @@ namespace VerilogLanguage
         public Verilog_begin() {
             DisplayName = "Verilog - begin"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = Colors.DeepSkyBlue; // default color for dark background
+                ForegroundColor = Colors.Turquoise; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.DarkSlateBlue; // default color for light background
+                ForegroundColor = Colors.Teal; // default color for light background
             }
         }
     }
@@ -238,10 +238,10 @@ namespace VerilogLanguage
         public Verilog_case() {
             DisplayName = "Verilog - case"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = Colors.DeepSkyBlue; // default color for dark background
+                ForegroundColor = Colors.Turquoise; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.DarkSlateBlue; // default color for light background
+                ForegroundColor = Colors.Teal; // default color for light background
             }
         }
     }
@@ -269,10 +269,10 @@ namespace VerilogLanguage
         public Verilog_casex() {
             DisplayName = "Verilog - casex"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
+                ForegroundColor = Colors.Turquoise; // default color for dark background
             }
             else {
-                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
+                ForegroundColor = Colors.Teal; // default color for light background
             }
         }
     }
@@ -300,10 +300,10 @@ namespace VerilogLanguage
         public Verilog_casez() {
             DisplayName = "Verilog - casez"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
+                ForegroundColor = Colors.Turquoise; // default color for dark background
             }
             else {
-                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
+                ForegroundColor = Colors.Teal; // default color for light background
             }
         }
     }
@@ -610,10 +610,10 @@ namespace VerilogLanguage
         public Verilog_end() {
             DisplayName = "Verilog - end"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = Colors.DeepSkyBlue; // default color for dark background
+                ForegroundColor = Colors.Turquoise; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.DarkSlateBlue; // default color for light background
+                ForegroundColor = Colors.Teal; // default color for light background
             }
         }
     }
@@ -641,10 +641,10 @@ namespace VerilogLanguage
         public Verilog_endcase() {
             DisplayName = "Verilog - endcase"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = Colors.DeepSkyBlue; // default color for dark background
+                ForegroundColor = Colors.Turquoise; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.DarkSlateBlue; // default color for light background
+                ForegroundColor = Colors.Teal; // default color for light background
             }
         }
     }
@@ -2715,10 +2715,10 @@ namespace VerilogLanguage
         public Verilog_directive() {
             DisplayName = "Verilog - Directive"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = Colors.Salmon; // default color for dark background
+                ForegroundColor = Colors.Gray; // default color for dark background MColor.FromRgb(0x9B, 0x9B, 0x9B);
             }
             else {
-                ForegroundColor = Colors.Firebrick; // default color for light background
+                ForegroundColor = Colors.DimGray; // default color for light background
             }
         }
     }

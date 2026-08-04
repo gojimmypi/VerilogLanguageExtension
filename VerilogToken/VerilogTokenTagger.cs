@@ -71,8 +71,12 @@ namespace VerilogLanguage.VerilogToken
 
         private readonly object _preprocessorStateLock = new object();
         private ITextSnapshot _preprocessorStateSnapshot;
+        private const int PreprocessorDependencyCheckIntervalMilliseconds = 1000;
         private List<VerilogPreprocessorEvaluator.LineState> _preprocessorLineStates =
             new List<VerilogPreprocessorEvaluator.LineState>();
+        private List<VerilogPreprocessorEvaluator.IncludeDependency> _preprocessorIncludeDependencies =
+            new List<VerilogPreprocessorEvaluator.IncludeDependency>();
+        private int _preprocessorDependencyCheckTick = int.MinValue;
 
         // ITextView View { get; set; }
         private readonly ITextBuffer _buffer;
@@ -167,6 +171,9 @@ namespace VerilogLanguage.VerilogToken
             }
 
             if (snapshot != null) {
+                // Parse publication can come from an included file. Re-evaluate include
+                // dependencies before repainting this buffer.
+                InvalidatePreprocessorStateCache();
                 InvalidateAll(snapshot);
             }
         }
@@ -536,17 +543,22 @@ namespace VerilogLanguage.VerilogToken
             }
 
             lock (_preprocessorStateLock) {
-                if (!object.ReferenceEquals(_preprocessorStateSnapshot, snapshot)) {
+                bool snapshotChanged = !object.ReferenceEquals(_preprocessorStateSnapshot, snapshot);
+                bool includeDependencyChanged = !snapshotChanged && HaveIncludeDependenciesChanged();
+                if (snapshotChanged || includeDependencyChanged) {
                     List<string> lines = new List<string>(snapshot.LineCount);
                     for (int currentLine = 0; currentLine < snapshot.LineCount; currentLine++) {
                         lines.Add(snapshot.GetLineFromLineNumber(currentLine).GetText());
                     }
 
+                    string sourceFilePath = VerilogLanguage.VerilogGlobals.GetDocumentPath(snapshot);
                     VerilogPreprocessorEvaluator.AnalysisResult analysis =
-                        VerilogPreprocessorEvaluator.Analyze(lines);
+                        VerilogPreprocessorEvaluator.Analyze(lines, sourceFilePath);
 
                     _preprocessorStateSnapshot = snapshot;
                     _preprocessorLineStates = analysis.LineStates;
+                    _preprocessorIncludeDependencies = analysis.IncludeDependencies;
+                    _preprocessorDependencyCheckTick = Environment.TickCount;
                 }
 
                 if (lineNumber >= _preprocessorLineStates.Count) {
@@ -557,10 +569,26 @@ namespace VerilogLanguage.VerilogToken
             }
         }
 
+        private bool HaveIncludeDependenciesChanged() {
+            int currentTick = Environment.TickCount;
+            if (_preprocessorDependencyCheckTick != int.MinValue) {
+                uint elapsedMilliseconds = unchecked((uint)(currentTick - _preprocessorDependencyCheckTick));
+                if (elapsedMilliseconds < PreprocessorDependencyCheckIntervalMilliseconds) {
+                    return false;
+                }
+            }
+
+            _preprocessorDependencyCheckTick = currentTick;
+            return !VerilogPreprocessorEvaluator.AreIncludeDependenciesCurrent(
+                _preprocessorIncludeDependencies);
+        }
+
         private void InvalidatePreprocessorStateCache() {
             lock (_preprocessorStateLock) {
                 _preprocessorStateSnapshot = null;
                 _preprocessorLineStates.Clear();
+                _preprocessorIncludeDependencies.Clear();
+                _preprocessorDependencyCheckTick = int.MinValue;
             }
         }
 

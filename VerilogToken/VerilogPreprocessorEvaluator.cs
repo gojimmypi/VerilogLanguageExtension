@@ -29,14 +29,17 @@ namespace VerilogLanguage.VerilogToken
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
 
     /// <summary>
-    /// Evaluates current-document Verilog/SystemVerilog compiler directives for
-    /// syntax-highlighting purposes. This intentionally does not expand macros;
-    /// `ifdef and `ifndef use standard defined/undefined semantics.
+    /// Evaluates Verilog/SystemVerilog compiler directives for syntax-highlighting
+    /// purposes. Included source files are processed in textual source order and
+    /// share the same macro and conditional state as the including document.
     /// </summary>
     internal static class VerilogPreprocessorEvaluator
     {
+        private const int MaximumIncludeDepth = 64;
+
         internal sealed class LineState
         {
             internal LineState(bool isActive, bool isDirective) {
@@ -48,15 +51,75 @@ namespace VerilogLanguage.VerilogToken
             internal bool IsDirective { get; private set; }
         }
 
+        internal sealed class IncludeDependency
+        {
+            internal IncludeDependency(string filePath, bool exists, DateTime lastWriteTimeUtc, long length) {
+                FilePath = filePath;
+                Exists = exists;
+                LastWriteTimeUtc = lastWriteTimeUtc;
+                Length = length;
+            }
+
+            internal string FilePath { get; private set; }
+            internal bool Exists { get; private set; }
+            internal DateTime LastWriteTimeUtc { get; private set; }
+            internal long Length { get; private set; }
+
+            internal bool IsCurrent() {
+                IncludeDependency current = Capture(FilePath);
+                return current.Exists == Exists &&
+                    current.LastWriteTimeUtc == LastWriteTimeUtc &&
+                    current.Length == Length;
+            }
+
+            internal static IncludeDependency Capture(string filePath) {
+                if (string.IsNullOrEmpty(filePath)) {
+                    return new IncludeDependency(string.Empty, false, DateTime.MinValue, 0);
+                }
+
+                try {
+                    FileInfo fileInfo = new FileInfo(filePath);
+                    fileInfo.Refresh();
+                    if (!fileInfo.Exists) {
+                        return new IncludeDependency(filePath, false, DateTime.MinValue, 0);
+                    }
+
+                    return new IncludeDependency(
+                        filePath,
+                        true,
+                        fileInfo.LastWriteTimeUtc,
+                        fileInfo.Length);
+                }
+                catch (IOException) {
+                    return new IncludeDependency(filePath, false, DateTime.MinValue, 0);
+                }
+                catch (UnauthorizedAccessException) {
+                    return new IncludeDependency(filePath, false, DateTime.MinValue, 0);
+                }
+                catch (NotSupportedException) {
+                    return new IncludeDependency(filePath, false, DateTime.MinValue, 0);
+                }
+                catch (System.Security.SecurityException) {
+                    return new IncludeDependency(filePath, false, DateTime.MinValue, 0);
+                }
+            }
+        }
+
         internal sealed class AnalysisResult
         {
-            internal AnalysisResult(List<LineState> lineStates, Dictionary<string, string> macroValues) {
+            internal AnalysisResult(
+                List<LineState> lineStates,
+                Dictionary<string, string> macroValues,
+                List<IncludeDependency> includeDependencies) {
+
                 LineStates = lineStates;
                 MacroValues = macroValues;
+                IncludeDependencies = includeDependencies;
             }
 
             internal List<LineState> LineStates { get; private set; }
             internal Dictionary<string, string> MacroValues { get; private set; }
+            internal List<IncludeDependency> IncludeDependencies { get; private set; }
         }
 
         private sealed class ConditionalFrame
@@ -67,13 +130,70 @@ namespace VerilogLanguage.VerilogToken
         }
 
         internal static AnalysisResult Analyze(IList<string> lines) {
+            return Analyze(lines, string.Empty);
+        }
+
+        internal static AnalysisResult Analyze(IList<string> lines, string sourceFilePath) {
             List<LineState> lineStates = new List<LineState>();
             Dictionary<string, string> macroValues = new Dictionary<string, string>(StringComparer.Ordinal);
             Stack<ConditionalFrame> conditionals = new Stack<ConditionalFrame>();
+            Dictionary<string, IncludeDependency> includeDependencies =
+                new Dictionary<string, IncludeDependency>(StringComparer.OrdinalIgnoreCase);
+            HashSet<string> activeIncludeStack = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             bool isBlockCommentOpen = false;
+            string normalizedSourceFilePath = NormalizePath(sourceFilePath);
+
+            if (!string.IsNullOrEmpty(normalizedSourceFilePath)) {
+                activeIncludeStack.Add(normalizedSourceFilePath);
+            }
+
+            ProcessLines(
+                lines,
+                normalizedSourceFilePath,
+                true,
+                lineStates,
+                macroValues,
+                conditionals,
+                includeDependencies,
+                activeIncludeStack,
+                ref isBlockCommentOpen,
+                0);
+
+            return new AnalysisResult(
+                lineStates,
+                macroValues,
+                new List<IncludeDependency>(includeDependencies.Values));
+        }
+
+        internal static bool AreIncludeDependenciesCurrent(IList<IncludeDependency> dependencies) {
+            if (dependencies == null) {
+                return true;
+            }
+
+            for (int index = 0; index < dependencies.Count; index++) {
+                IncludeDependency dependency = dependencies[index];
+                if (dependency != null && !dependency.IsCurrent()) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private static void ProcessLines(
+            IList<string> lines,
+            string sourceFilePath,
+            bool collectLineStates,
+            List<LineState> lineStates,
+            Dictionary<string, string> macroValues,
+            Stack<ConditionalFrame> conditionals,
+            Dictionary<string, IncludeDependency> includeDependencies,
+            HashSet<string> activeIncludeStack,
+            ref bool isBlockCommentOpen,
+            int includeDepth) {
 
             if (lines == null) {
-                return new AnalysisResult(lineStates, macroValues);
+                return;
             }
 
             for (int lineNumber = 0; lineNumber < lines.Count; lineNumber++) {
@@ -87,21 +207,26 @@ namespace VerilogLanguage.VerilogToken
                     out directiveName,
                     out directiveArgument);
 
-                lineStates.Add(new LineState(lineIsActive, isDirective));
+                if (collectLineStates) {
+                    lineStates.Add(new LineState(lineIsActive, isDirective));
+                }
 
                 if (isDirective) {
                     ProcessDirective(
                         directiveName,
                         directiveArgument,
                         lineIsActive,
+                        sourceFilePath,
                         macroValues,
-                        conditionals);
+                        conditionals,
+                        includeDependencies,
+                        activeIncludeStack,
+                        ref isBlockCommentOpen,
+                        includeDepth);
                 }
 
                 UpdateBlockCommentState(lineText, ref isBlockCommentOpen);
             }
-
-            return new AnalysisResult(lineStates, macroValues);
         }
 
         private static bool GetCurrentActiveState(Stack<ConditionalFrame> conditionals) {
@@ -116,8 +241,13 @@ namespace VerilogLanguage.VerilogToken
             string directiveName,
             string directiveArgument,
             bool lineIsActive,
+            string sourceFilePath,
             Dictionary<string, string> macroValues,
-            Stack<ConditionalFrame> conditionals) {
+            Stack<ConditionalFrame> conditionals,
+            Dictionary<string, IncludeDependency> includeDependencies,
+            HashSet<string> activeIncludeStack,
+            ref bool isBlockCommentOpen,
+            int includeDepth) {
 
             string macroName;
             string macroValue;
@@ -141,9 +271,24 @@ namespace VerilogLanguage.VerilogToken
                     }
                     break;
 
+                case "include":
+                    if (lineIsActive) {
+                        ProcessInclude(
+                            directiveArgument,
+                            sourceFilePath,
+                            macroValues,
+                            conditionals,
+                            includeDependencies,
+                            activeIncludeStack,
+                            ref isBlockCommentOpen,
+                            includeDepth);
+                    }
+                    break;
+
                 case "ifdef":
                 case "ifndef":
-                    bool isDefined = TryParseMacroName(directiveArgument, out macroName) && macroValues.ContainsKey(macroName);
+                    bool isDefined = TryParseMacroName(directiveArgument, out macroName) &&
+                        macroValues.ContainsKey(macroName);
                     bool conditionIsTrue = directiveName == "ifdef" ? isDefined : !isDefined;
                     ConditionalFrame frame = new ConditionalFrame {
                         ParentActive = lineIsActive,
@@ -156,7 +301,8 @@ namespace VerilogLanguage.VerilogToken
                 case "elsif":
                     if (conditionals.Count > 0) {
                         ConditionalFrame elsifFrame = conditionals.Peek();
-                        bool elsifDefined = TryParseMacroName(directiveArgument, out macroName) && macroValues.ContainsKey(macroName);
+                        bool elsifDefined = TryParseMacroName(directiveArgument, out macroName) &&
+                            macroValues.ContainsKey(macroName);
                         bool activateElsif = elsifFrame.ParentActive && !elsifFrame.BranchTaken && elsifDefined;
                         elsifFrame.CurrentBranchActive = activateElsif;
                         if (activateElsif) {
@@ -181,6 +327,208 @@ namespace VerilogLanguage.VerilogToken
                         conditionals.Pop();
                     }
                     break;
+            }
+        }
+
+        private static void ProcessInclude(
+            string directiveArgument,
+            string sourceFilePath,
+            Dictionary<string, string> macroValues,
+            Stack<ConditionalFrame> conditionals,
+            Dictionary<string, IncludeDependency> includeDependencies,
+            HashSet<string> activeIncludeStack,
+            ref bool isBlockCommentOpen,
+            int includeDepth) {
+
+            if (includeDepth >= MaximumIncludeDepth || string.IsNullOrEmpty(sourceFilePath)) {
+                return;
+            }
+
+            string includeName;
+            if (!TryParseIncludeName(directiveArgument, macroValues, out includeName)) {
+                return;
+            }
+
+            string includePath = ResolveIncludePath(sourceFilePath, includeName);
+            if (string.IsNullOrEmpty(includePath)) {
+                return;
+            }
+
+            IncludeDependency dependency = IncludeDependency.Capture(includePath);
+            includeDependencies[includePath] = dependency;
+            if (!dependency.Exists || activeIncludeStack.Contains(includePath)) {
+                return;
+            }
+
+            string[] includeLines;
+            try {
+                includeLines = File.ReadAllLines(includePath);
+            }
+            catch (IOException) {
+                return;
+            }
+            catch (UnauthorizedAccessException) {
+                return;
+            }
+            catch (NotSupportedException) {
+                return;
+            }
+            catch (System.Security.SecurityException) {
+                return;
+            }
+
+            activeIncludeStack.Add(includePath);
+            try {
+                ProcessLines(
+                    includeLines,
+                    includePath,
+                    false,
+                    null,
+                    macroValues,
+                    conditionals,
+                    includeDependencies,
+                    activeIncludeStack,
+                    ref isBlockCommentOpen,
+                    includeDepth + 1);
+            }
+            finally {
+                activeIncludeStack.Remove(includePath);
+            }
+        }
+
+        private static bool TryParseIncludeName(
+            string directiveArgument,
+            Dictionary<string, string> macroValues,
+            out string includeName) {
+
+            return TryParseIncludeName(directiveArgument, macroValues, out includeName, 0);
+        }
+
+        private static bool TryParseIncludeName(
+            string directiveArgument,
+            Dictionary<string, string> macroValues,
+            out string includeName,
+            int macroExpansionDepth) {
+
+            includeName = string.Empty;
+            if (string.IsNullOrWhiteSpace(directiveArgument)) {
+                return false;
+            }
+
+            string argument = directiveArgument.Trim();
+            if (argument.Length == 0) {
+                return false;
+            }
+
+            if (argument[0] == '`' && macroExpansionDepth < 8) {
+                string includeMacroName;
+                if (!TryParseMacroName(argument.Substring(1), out includeMacroName)) {
+                    return false;
+                }
+
+                string includeMacroValue;
+                if (!macroValues.TryGetValue(includeMacroName, out includeMacroValue)) {
+                    return false;
+                }
+
+                return TryParseIncludeName(
+                    includeMacroValue,
+                    macroValues,
+                    out includeName,
+                    macroExpansionDepth + 1);
+            }
+
+            char opening = argument[0];
+            char closing;
+            if (opening == '"') {
+                closing = '"';
+            }
+            else if (opening == '<') {
+                closing = '>';
+            }
+            else {
+                return false;
+            }
+
+            int closingIndex = FindClosingIncludeDelimiter(argument, closing);
+            if (closingIndex <= 1) {
+                return false;
+            }
+
+            includeName = argument.Substring(1, closingIndex - 1);
+            return !string.IsNullOrWhiteSpace(includeName);
+        }
+
+        private static int FindClosingIncludeDelimiter(string argument, char closing) {
+            bool isEscaped = false;
+            for (int index = 1; index < argument.Length; index++) {
+                char current = argument[index];
+                if (current == closing && !isEscaped) {
+                    return index;
+                }
+
+                if (current == '\\' && !isEscaped) {
+                    isEscaped = true;
+                }
+                else {
+                    isEscaped = false;
+                }
+            }
+
+            return -1;
+        }
+
+        private static string ResolveIncludePath(string sourceFilePath, string includeName) {
+            if (string.IsNullOrEmpty(sourceFilePath) || string.IsNullOrWhiteSpace(includeName)) {
+                return string.Empty;
+            }
+
+            try {
+                string candidatePath = includeName;
+                if (!Path.IsPathRooted(candidatePath)) {
+                    string sourceDirectory = Path.GetDirectoryName(sourceFilePath);
+                    if (string.IsNullOrEmpty(sourceDirectory)) {
+                        return string.Empty;
+                    }
+
+                    candidatePath = Path.Combine(sourceDirectory, candidatePath);
+                }
+
+                return Path.GetFullPath(candidatePath);
+            }
+            catch (ArgumentException) {
+                return string.Empty;
+            }
+            catch (NotSupportedException) {
+                return string.Empty;
+            }
+            catch (System.Security.SecurityException) {
+                return string.Empty;
+            }
+            catch (PathTooLongException) {
+                return string.Empty;
+            }
+        }
+
+        private static string NormalizePath(string filePath) {
+            if (string.IsNullOrWhiteSpace(filePath)) {
+                return string.Empty;
+            }
+
+            try {
+                return Path.GetFullPath(filePath);
+            }
+            catch (ArgumentException) {
+                return string.Empty;
+            }
+            catch (NotSupportedException) {
+                return string.Empty;
+            }
+            catch (System.Security.SecurityException) {
+                return string.Empty;
+            }
+            catch (PathTooLongException) {
+                return string.Empty;
             }
         }
 

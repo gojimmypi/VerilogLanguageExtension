@@ -147,11 +147,11 @@
     <Compile Include="Intellisense\QuickInfoControllerProvider.cs" />
     <Compile Include="Outlining\VerilogOutliningTagger.cs" />
     <Compile Include="Outlining\VerilogOutliningTaggerProvider.cs" />
+    <Compile Include="VerilogToken\VerilogPreprocessorEvaluator.cs" />
     <Compile Include="VerilogToken\VerilogTokenTag.cs" />
     <Compile Include="VerilogToken\VerilogTokenTypes.cs" />
     <Compile Include="VerilogToken\VerilogTokenTagger.cs" />
     <Compile Include="VerilogToken\VerilogTokenTagProvider.cs" />
-    <Compile Include="VerilogToken\VerilogPreprocessorEvaluator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".github\workflows\build-verilog-language-extension.yml" />
@@ -190,13 +190,6 @@
     <VSCTCompile Include="VerilogLanguagePackage.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
     </VSCTCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="VSPackage.resx">
-      <MergeWithCTO>true</MergeWithCTO>
-      <ManifestResourceName>VSPackage</ManifestResourceName>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\SnapshotExporter.png" />

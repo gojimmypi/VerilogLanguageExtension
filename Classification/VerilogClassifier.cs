@@ -219,6 +219,7 @@ namespace VerilogLanguage.VerilogToken
                 [VerilogTokenTypes.Verilog_Attribute] = typeService.GetClassificationType("Attribute"),
                 [VerilogTokenTypes.Verilog_Macro] = typeService.GetClassificationType("Macro"),
                 [VerilogTokenTypes.Verilog_MacroDefinition] = typeService.GetClassificationType("MacroDefinition"),
+                [VerilogTokenTypes.Verilog_InactiveCode] = typeService.GetClassificationType("InactiveCode"),
                 [VerilogTokenTypes.Verilog_StaticString] = typeService.GetClassificationType("StaticString"),
                 [VerilogTokenTypes.Verilog_FunctionName] = typeService.GetClassificationType("FunctionName"),
                 [VerilogTokenTypes.Verilog_Comment] = typeService.GetClassificationType("Comment"), // GetClassificationType string must be defined in ClassificationType.cs

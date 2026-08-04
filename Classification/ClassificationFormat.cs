@@ -2766,6 +2766,27 @@ namespace VerilogLanguage
     }
 
     [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "InactiveCode")]
+    [Name("InactiveCode")]
+    [UserVisible(true)]
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_InactiveCode : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for source excluded by compiler conditionals.
+        /// </summary>
+        public Verilog_InactiveCode() {
+            DisplayName = "Verilog - Inactive Preprocessor Code";
+            if (ColorThemeAttribute.IsDarkTheme()) {
+                ForegroundColor = Colors.Gray;
+            }
+            else {
+                ForegroundColor = Colors.DimGray;
+            }
+        }
+    }
+
+    [Export(typeof(EditorFormatDefinition))]
     [ClassificationType(ClassificationTypeNames = "StaticString")]
     [Name("StaticString")]
     [UserVisible(true)]

@@ -116,6 +116,7 @@ namespace VerilogLanguage.VerilogToken
         Verilog_Attribute, // complete Verilog/SystemVerilog attribute instance: (* ... *)
         Verilog_Macro, // macro name/reference from `define, `ifdef, `ifndef, `elsif, or `MACRO use
         Verilog_MacroDefinition, // declaration name defined by macro-controlled conditional branches
+        Verilog_InactiveCode, // source excluded by `ifdef / `ifndef / `elsif / `else evaluation
         Verilog_StaticString, // static double-quoted string literal
         Verilog_FunctionName, // function declaration name and references
 

@@ -69,6 +69,11 @@ namespace VerilogLanguage.VerilogToken
         private ITextSnapshot _attributeStateSnapshot;
         private readonly List<AttributeScanState> _attributeStateAtLineStart = new List<AttributeScanState>();
 
+        private readonly object _preprocessorStateLock = new object();
+        private ITextSnapshot _preprocessorStateSnapshot;
+        private List<VerilogPreprocessorEvaluator.LineState> _preprocessorLineStates =
+            new List<VerilogPreprocessorEvaluator.LineState>();
+
         // ITextView View { get; set; }
         private readonly ITextBuffer _buffer;
         private bool _systemVerilogDocumentKnown;
@@ -213,8 +218,11 @@ namespace VerilogLanguage.VerilogToken
                 return;
             }
 
+            bool preprocessorStateChanged = ChangeTouchesPreprocessorDirective(e);
+
             InvalidateBlockCommentStateCache();
             InvalidateAttributeStateCache();
+            InvalidatePreprocessorStateCache();
 
             // If this isn't the most up-to-date version of the buffer, then ignore it for now (we'll eventually get another change event).
             if (e.After != _buffer.CurrentSnapshot) {
@@ -229,7 +237,13 @@ namespace VerilogLanguage.VerilogToken
             // Always invalidate the affected span so classification refreshes reliably (even when we do not do a full reparse).
             InvalidateChangedSpan(e);
 
-            bool forceReparse = false;
+            bool forceReparse = preprocessorStateChanged;
+
+            if (preprocessorStateChanged) {
+                // A macro definition or conditional can change highlighting far beyond
+                // the edited line, so repaint the complete snapshot immediately.
+                InvalidateAll(e.After);
+            }
 
             foreach (ITextChange change in e.Changes) {
                 string theNewText = change.NewText;
@@ -513,6 +527,108 @@ namespace VerilogLanguage.VerilogToken
             }
         }
 
+        private VerilogPreprocessorEvaluator.LineState GetPreprocessorLineState(
+            ITextSnapshot snapshot,
+            int lineNumber) {
+
+            if (snapshot == null || lineNumber < 0 || lineNumber >= snapshot.LineCount) {
+                return new VerilogPreprocessorEvaluator.LineState(true, false);
+            }
+
+            lock (_preprocessorStateLock) {
+                if (!object.ReferenceEquals(_preprocessorStateSnapshot, snapshot)) {
+                    List<string> lines = new List<string>(snapshot.LineCount);
+                    for (int currentLine = 0; currentLine < snapshot.LineCount; currentLine++) {
+                        lines.Add(snapshot.GetLineFromLineNumber(currentLine).GetText());
+                    }
+
+                    VerilogPreprocessorEvaluator.AnalysisResult analysis =
+                        VerilogPreprocessorEvaluator.Analyze(lines);
+
+                    _preprocessorStateSnapshot = snapshot;
+                    _preprocessorLineStates = analysis.LineStates;
+                }
+
+                if (lineNumber >= _preprocessorLineStates.Count) {
+                    return new VerilogPreprocessorEvaluator.LineState(true, false);
+                }
+
+                return _preprocessorLineStates[lineNumber];
+            }
+        }
+
+        private void InvalidatePreprocessorStateCache() {
+            lock (_preprocessorStateLock) {
+                _preprocessorStateSnapshot = null;
+                _preprocessorLineStates.Clear();
+            }
+        }
+
+        private static bool ChangeTouchesPreprocessorDirective(TextContentChangedEventArgs e) {
+            if (e == null || e.Changes == null) {
+                return false;
+            }
+
+            foreach (ITextChange change in e.Changes) {
+                if (change == null) {
+                    continue;
+                }
+
+                if ((!string.IsNullOrEmpty(change.OldText) && change.OldText.IndexOf('`') >= 0) ||
+                    (!string.IsNullOrEmpty(change.NewText) && change.NewText.IndexOf('`') >= 0) ||
+                    SnapshotRangeContainsPreprocessorMarker(e.Before, change.OldPosition, change.OldLength) ||
+                    SnapshotRangeContainsPreprocessorMarker(e.After, change.NewPosition, change.NewLength)) {
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool SnapshotRangeContainsPreprocessorMarker(
+            ITextSnapshot snapshot,
+            int position,
+            int length) {
+
+            if (snapshot == null || snapshot.LineCount == 0) {
+                return false;
+            }
+
+            if (snapshot.Length == 0) {
+                return false;
+            }
+
+            int startPosition = position;
+            if (startPosition < 0) {
+                startPosition = 0;
+            }
+            if (startPosition >= snapshot.Length) {
+                startPosition = snapshot.Length - 1;
+            }
+
+            int endPosition = position + length;
+            if (endPosition < startPosition) {
+                endPosition = startPosition;
+            }
+            if (endPosition >= snapshot.Length) {
+                endPosition = snapshot.Length - 1;
+            }
+
+            int startLine = snapshot.GetLineFromPosition(startPosition).LineNumber;
+            int endLine = snapshot.GetLineFromPosition(endPosition).LineNumber;
+            startLine = Math.Max(0, startLine - 1);
+            endLine = Math.Min(snapshot.LineCount - 1, endLine + 1);
+
+            for (int lineNumber = startLine; lineNumber <= endLine; lineNumber++) {
+                if (snapshot.GetLineFromLineNumber(lineNumber).GetText().IndexOf('`') >= 0) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         private void StopReparseCompletionWatcher() {
             Timer timerToDispose;
 
@@ -549,6 +665,7 @@ namespace VerilogLanguage.VerilogToken
             StopReparseCompletionWatcher();
             InvalidateBlockCommentStateCache();
             InvalidateAttributeStateCache();
+            InvalidatePreprocessorStateCache();
         }
 
         private void RaiseTagsChanged(SnapshotSpan span) {
@@ -745,6 +862,7 @@ namespace VerilogLanguage.VerilogToken
             VerilogGlobals.VerilogToken[] tokens = null;
             VerilogGlobals.VerilogToken priorToken = new VerilogGlobals.VerilogToken();
             HashSet<Span> yieldedAttributeSpans = new HashSet<Span>();
+            HashSet<Span> yieldedInactiveCodeSpans = new HashSet<Span>();
 
             // look at each span for tokens, comments, etc
             foreach (SnapshotSpan curSpan in spans) {
@@ -797,12 +915,48 @@ namespace VerilogLanguage.VerilogToken
                     }
 
                     string lineText = line.GetText();
+                    VerilogPreprocessorEvaluator.LineState preprocessorLineState =
+                        GetPreprocessorLineState(snapshot, line.LineNumber);
+
+                    List<Span> attributeLineSpans = GetAttributeLineSpans(lineText, attributeState, out attributeState);
+                    tokens = VerilogGlobals.VerilogKeywordSplit(lineText, priorToken);
+
+                    if (!preprocessorLineState.IsActive && !preprocessorLineState.IsDirective) {
+                        // Keep lexical continuation state correct across inactive lines,
+                        // but suppress all normal syntax classifications for their text.
+                        CommentHelper inactiveCommentHelper =
+                            new CommentHelper(lineText, false, isContinuedBlockComment);
+                        isContinuedBlockComment = inactiveCommentHelper.HasBlockStartComment;
+
+                        SnapshotSpan inactiveCodeSpan = line.Extent;
+                        Span inactiveSpan = inactiveCodeSpan.Span;
+                        if (inactiveCodeSpan.Length > 0 &&
+                            inactiveCodeSpan.IntersectsWith(curSpan) &&
+                            yieldedInactiveCodeSpans.Add(inactiveSpan)) {
+
+                            yield return new TagSpan<VerilogTokenTag>(
+                                inactiveCodeSpan,
+                                new VerilogTokenTag(VerilogTokenTypes.Verilog_InactiveCode));
+                        }
+
+                        if (line.LineBreakLength == 0) {
+                            break;
+                        }
+
+                        int inactiveNextLineStart = line.EndIncludingLineBreak.Position;
+                        if (inactiveNextLineStart >= snapshot.Length) {
+                            break;
+                        }
+
+                        line = snapshot.GetLineFromPosition(inactiveNextLineStart);
+                        continue;
+                    }
+
                     if (haveParseData && parseData != null) {
                         UpdateActiveLocalScopeForLineStart(line, parseData, ref activeLocalScope);
                     }
 
                     List<Span> staticStringLineSpans = GetStaticStringLineSpans(lineText);
-                    List<Span> attributeLineSpans = GetAttributeLineSpans(lineText, attributeState, out attributeState);
 
                     if (attributeLineSpans != null) {
                         foreach (Span lineSpan in attributeLineSpans) {
@@ -815,8 +969,6 @@ namespace VerilogLanguage.VerilogToken
                             }
                         }
                     }
-
-                    tokens = VerilogGlobals.VerilogKeywordSplit(lineText, priorToken);
 
                     int curLoc = line.Start.Position;
                     bool isContinuedLineComment = false; // comments with "//" are only effective for the current line, but /* can span multiple lines

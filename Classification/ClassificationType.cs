@@ -734,6 +734,13 @@ namespace VerilogLanguage
         internal static ClassificationTypeDefinition Verilog_MacroDefinition = null;
 
         /// <summary>
+        /// Defines the "Verilog_InactiveCode" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("InactiveCode")]
+        internal static ClassificationTypeDefinition Verilog_InactiveCode = null;
+
+        /// <summary>
         /// Defines the "Verilog_StaticString" classification type.
         /// </summary>
         [Export(typeof(ClassificationTypeDefinition))]

@@ -151,6 +151,7 @@
     <Compile Include="VerilogToken\VerilogTokenTypes.cs" />
     <Compile Include="VerilogToken\VerilogTokenTagger.cs" />
     <Compile Include="VerilogToken\VerilogTokenTagProvider.cs" />
+    <Compile Include="VerilogToken\VerilogPreprocessorEvaluator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".github\workflows\build-verilog-language-extension.yml" />

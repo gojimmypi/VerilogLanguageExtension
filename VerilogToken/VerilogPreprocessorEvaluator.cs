@@ -39,16 +39,26 @@ namespace VerilogLanguage.VerilogToken
     internal static class VerilogPreprocessorEvaluator
     {
         private const int MaximumIncludeDepth = 64;
+        private const string InactiveCodeOptOutMacro = "NO_INACTIVE_MACRO_CODE";
+        private const string ShowInactiveCodeMacro = "VLE_SHOW_INACTIVE_CODE";
+        private const string ShowInactiveCodePragma = "// VLE: SHOW_INACTIVE_CODE";
+        private const string InactiveCodeOptOutAttribute = "(* NO_INACTIVE_MACRO_CODE *)";
 
         internal sealed class LineState
         {
-            internal LineState(bool isActive, bool isDirective) {
+            internal LineState(bool isActive, bool isDirective)
+                : this(isActive, isDirective, string.Empty) {
+            }
+
+            internal LineState(bool isActive, bool isDirective, string inactiveHoverText) {
                 IsActive = isActive;
                 IsDirective = isDirective;
+                InactiveHoverText = inactiveHoverText ?? string.Empty;
             }
 
             internal bool IsActive { get; private set; }
             internal bool IsDirective { get; private set; }
+            internal string InactiveHoverText { get; private set; }
         }
 
         internal sealed class IncludeDependency
@@ -110,16 +120,19 @@ namespace VerilogLanguage.VerilogToken
             internal AnalysisResult(
                 List<LineState> lineStates,
                 Dictionary<string, string> macroValues,
-                List<IncludeDependency> includeDependencies) {
+                List<IncludeDependency> includeDependencies,
+                bool suppressInactiveCodeHighlighting) {
 
                 LineStates = lineStates;
                 MacroValues = macroValues;
                 IncludeDependencies = includeDependencies;
+                SuppressInactiveCodeHighlighting = suppressInactiveCodeHighlighting;
             }
 
             internal List<LineState> LineStates { get; private set; }
             internal Dictionary<string, string> MacroValues { get; private set; }
             internal List<IncludeDependency> IncludeDependencies { get; private set; }
+            internal bool SuppressInactiveCodeHighlighting { get; private set; }
         }
 
         private sealed class ConditionalFrame
@@ -127,6 +140,14 @@ namespace VerilogLanguage.VerilogToken
             internal bool ParentActive;
             internal bool BranchTaken;
             internal bool CurrentBranchActive;
+            internal string ParentInactiveHoverText;
+            internal string CurrentInactiveHoverText;
+            internal string SelectedBranchDescription;
+        }
+
+        private sealed class EvaluationOptions
+        {
+            internal bool SuppressInactiveCodeHighlighting;
         }
 
         internal static AnalysisResult Analyze(IList<string> lines) {
@@ -142,6 +163,9 @@ namespace VerilogLanguage.VerilogToken
             HashSet<string> activeIncludeStack = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             bool isBlockCommentOpen = false;
             string normalizedSourceFilePath = NormalizePath(sourceFilePath);
+            EvaluationOptions options = new EvaluationOptions {
+                SuppressInactiveCodeHighlighting = ContainsInactiveCodeOptOutMarker(lines),
+            };
 
             if (!string.IsNullOrEmpty(normalizedSourceFilePath)) {
                 activeIncludeStack.Add(normalizedSourceFilePath);
@@ -156,13 +180,15 @@ namespace VerilogLanguage.VerilogToken
                 conditionals,
                 includeDependencies,
                 activeIncludeStack,
+                options,
                 ref isBlockCommentOpen,
                 0);
 
             return new AnalysisResult(
                 lineStates,
                 macroValues,
-                new List<IncludeDependency>(includeDependencies.Values));
+                new List<IncludeDependency>(includeDependencies.Values),
+                options.SuppressInactiveCodeHighlighting);
         }
 
         internal static bool AreIncludeDependenciesCurrent(IList<IncludeDependency> dependencies) {
@@ -189,6 +215,7 @@ namespace VerilogLanguage.VerilogToken
             Stack<ConditionalFrame> conditionals,
             Dictionary<string, IncludeDependency> includeDependencies,
             HashSet<string> activeIncludeStack,
+            EvaluationOptions options,
             ref bool isBlockCommentOpen,
             int includeDepth) {
 
@@ -208,7 +235,10 @@ namespace VerilogLanguage.VerilogToken
                     out directiveArgument);
 
                 if (collectLineStates) {
-                    lineStates.Add(new LineState(lineIsActive, isDirective));
+                    lineStates.Add(new LineState(
+                        lineIsActive,
+                        isDirective,
+                        GetCurrentInactiveHoverText(conditionals)));
                 }
 
                 if (isDirective) {
@@ -221,6 +251,7 @@ namespace VerilogLanguage.VerilogToken
                         conditionals,
                         includeDependencies,
                         activeIncludeStack,
+                        options,
                         ref isBlockCommentOpen,
                         includeDepth);
                 }
@@ -237,6 +268,14 @@ namespace VerilogLanguage.VerilogToken
             return conditionals.Peek().CurrentBranchActive;
         }
 
+        private static string GetCurrentInactiveHoverText(Stack<ConditionalFrame> conditionals) {
+            if (conditionals == null || conditionals.Count == 0) {
+                return string.Empty;
+            }
+
+            return conditionals.Peek().CurrentInactiveHoverText ?? string.Empty;
+        }
+
         private static void ProcessDirective(
             string directiveName,
             string directiveArgument,
@@ -246,6 +285,7 @@ namespace VerilogLanguage.VerilogToken
             Stack<ConditionalFrame> conditionals,
             Dictionary<string, IncludeDependency> includeDependencies,
             HashSet<string> activeIncludeStack,
+            EvaluationOptions options,
             ref bool isBlockCommentOpen,
             int includeDepth) {
 
@@ -256,6 +296,9 @@ namespace VerilogLanguage.VerilogToken
                 case "define":
                     if (lineIsActive && TryParseMacroDefinition(directiveArgument, out macroName, out macroValue)) {
                         macroValues[macroName] = macroValue;
+                        if (IsInactiveCodeOptOutMacro(macroName)) {
+                            options.SuppressInactiveCodeHighlighting = true;
+                        }
                     }
                     break;
 
@@ -280,6 +323,7 @@ namespace VerilogLanguage.VerilogToken
                             conditionals,
                             includeDependencies,
                             activeIncludeStack,
+                            options,
                             ref isBlockCommentOpen,
                             includeDepth);
                     }
@@ -287,25 +331,62 @@ namespace VerilogLanguage.VerilogToken
 
                 case "ifdef":
                 case "ifndef":
-                    bool isDefined = TryParseMacroName(directiveArgument, out macroName) &&
-                        macroValues.ContainsKey(macroName);
+                    bool haveMacroName = TryParseMacroName(directiveArgument, out macroName);
+                    bool isDefined = haveMacroName && macroValues.ContainsKey(macroName);
                     bool conditionIsTrue = directiveName == "ifdef" ? isDefined : !isDefined;
+                    string parentInactiveHoverText = GetCurrentInactiveHoverText(conditionals);
                     ConditionalFrame frame = new ConditionalFrame {
                         ParentActive = lineIsActive,
+                        ParentInactiveHoverText = parentInactiveHoverText,
                         CurrentBranchActive = lineIsActive && conditionIsTrue,
                         BranchTaken = lineIsActive && conditionIsTrue,
+                        CurrentInactiveHoverText = string.Empty,
+                        SelectedBranchDescription = string.Empty,
                     };
+
+                    if (!lineIsActive) {
+                        frame.CurrentInactiveHoverText = parentInactiveHoverText;
+                    }
+                    else if (!conditionIsTrue) {
+                        frame.CurrentInactiveHoverText = directiveName == "ifdef"
+                            ? BuildUndefinedMacroHoverText(macroName)
+                            : BuildDefinedMacroHoverText(macroName);
+                    }
+                    else {
+                        frame.SelectedBranchDescription = BuildSelectedBranchDescription(
+                            directiveName,
+                            macroName,
+                            isDefined);
+                    }
+
                     conditionals.Push(frame);
                     break;
 
                 case "elsif":
                     if (conditionals.Count > 0) {
                         ConditionalFrame elsifFrame = conditionals.Peek();
-                        bool elsifDefined = TryParseMacroName(directiveArgument, out macroName) &&
-                            macroValues.ContainsKey(macroName);
-                        bool activateElsif = elsifFrame.ParentActive && !elsifFrame.BranchTaken && elsifDefined;
+                        bool haveElsifMacroName = TryParseMacroName(directiveArgument, out macroName);
+                        bool elsifDefined = haveElsifMacroName && macroValues.ContainsKey(macroName);
+                        bool earlierBranchTaken = elsifFrame.BranchTaken;
+                        bool activateElsif = elsifFrame.ParentActive && !earlierBranchTaken && elsifDefined;
                         elsifFrame.CurrentBranchActive = activateElsif;
-                        if (activateElsif) {
+
+                        if (!elsifFrame.ParentActive) {
+                            elsifFrame.CurrentInactiveHoverText = elsifFrame.ParentInactiveHoverText;
+                        }
+                        else if (earlierBranchTaken) {
+                            elsifFrame.CurrentInactiveHoverText = BuildEarlierBranchHoverText(
+                                elsifFrame.SelectedBranchDescription);
+                        }
+                        else if (!elsifDefined) {
+                            elsifFrame.CurrentInactiveHoverText = BuildUndefinedMacroHoverText(macroName);
+                        }
+                        else {
+                            elsifFrame.CurrentInactiveHoverText = string.Empty;
+                            elsifFrame.SelectedBranchDescription = BuildSelectedBranchDescription(
+                                "elsif",
+                                macroName,
+                                true);
                             elsifFrame.BranchTaken = true;
                         }
                     }
@@ -314,9 +395,20 @@ namespace VerilogLanguage.VerilogToken
                 case "else":
                     if (conditionals.Count > 0) {
                         ConditionalFrame elseFrame = conditionals.Peek();
-                        bool activateElse = elseFrame.ParentActive && !elseFrame.BranchTaken;
+                        bool elseEarlierBranchTaken = elseFrame.BranchTaken;
+                        bool activateElse = elseFrame.ParentActive && !elseEarlierBranchTaken;
                         elseFrame.CurrentBranchActive = activateElse;
-                        if (activateElse) {
+
+                        if (!elseFrame.ParentActive) {
+                            elseFrame.CurrentInactiveHoverText = elseFrame.ParentInactiveHoverText;
+                        }
+                        else if (elseEarlierBranchTaken) {
+                            elseFrame.CurrentInactiveHoverText = BuildEarlierBranchHoverText(
+                                elseFrame.SelectedBranchDescription);
+                        }
+                        else {
+                            elseFrame.CurrentInactiveHoverText = string.Empty;
+                            elseFrame.SelectedBranchDescription = "the `else branch is active";
                             elseFrame.BranchTaken = true;
                         }
                     }
@@ -337,6 +429,7 @@ namespace VerilogLanguage.VerilogToken
             Stack<ConditionalFrame> conditionals,
             Dictionary<string, IncludeDependency> includeDependencies,
             HashSet<string> activeIncludeStack,
+            EvaluationOptions options,
             ref bool isBlockCommentOpen,
             int includeDepth) {
 
@@ -388,6 +481,7 @@ namespace VerilogLanguage.VerilogToken
                     conditionals,
                     includeDependencies,
                     activeIncludeStack,
+                    options,
                     ref isBlockCommentOpen,
                     includeDepth + 1);
             }
@@ -530,6 +624,77 @@ namespace VerilogLanguage.VerilogToken
             catch (PathTooLongException) {
                 return string.Empty;
             }
+        }
+
+        private static bool ContainsInactiveCodeOptOutMarker(IList<string> lines) {
+            if (lines == null) {
+                return false;
+            }
+
+            for (int lineNumber = 0; lineNumber < lines.Count; lineNumber++) {
+                string lineText = lines[lineNumber] ?? string.Empty;
+                string trimmedLine = lineText.Trim();
+                if (string.Equals(trimmedLine, ShowInactiveCodePragma, StringComparison.OrdinalIgnoreCase) ||
+                    string.Equals(trimmedLine, InactiveCodeOptOutAttribute, StringComparison.Ordinal)) {
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool IsInactiveCodeOptOutMacro(string macroName) {
+            return string.Equals(macroName, InactiveCodeOptOutMacro, StringComparison.Ordinal) ||
+                string.Equals(macroName, ShowInactiveCodeMacro, StringComparison.Ordinal);
+        }
+
+        private static string BuildUndefinedMacroHoverText(string macroName) {
+            string displayName = string.IsNullOrWhiteSpace(macroName) ? "the controlling macro" : "macro '" + macroName + "'";
+            return "Inactive preprocessor code: " + displayName +
+                " is not defined. Define it before this conditional (for example in an earlier included configuration file) " +
+                "to enable this branch." + BuildInactiveCodeOptOutHoverSuffix();
+        }
+
+        private static string BuildDefinedMacroHoverText(string macroName) {
+            string displayName = string.IsNullOrWhiteSpace(macroName) ? "the controlling macro" : "macro '" + macroName + "'";
+            return "Inactive preprocessor code: " + displayName +
+                " is defined. Undefine it before this `ifndef conditional to enable this branch." +
+                BuildInactiveCodeOptOutHoverSuffix();
+        }
+
+        private static string BuildEarlierBranchHoverText(string selectedBranchDescription) {
+            string description = string.IsNullOrWhiteSpace(selectedBranchDescription)
+                ? "an earlier branch in this conditional is active"
+                : selectedBranchDescription;
+
+            return "Inactive preprocessor code: " + description +
+                ". Change the controlling macro definitions to select this branch." +
+                BuildInactiveCodeOptOutHoverSuffix();
+        }
+
+        private static string BuildSelectedBranchDescription(
+            string directiveName,
+            string macroName,
+            bool isDefined) {
+
+            string displayName = string.IsNullOrWhiteSpace(macroName) ? "the controlling macro" : "macro '" + macroName + "'";
+            if (directiveName == "ifndef") {
+                return displayName + " is not defined, so the earlier `ifndef branch is active";
+            }
+
+            if (directiveName == "elsif") {
+                return displayName + " is defined, so an earlier `elsif branch is active";
+            }
+
+            return displayName + (isDefined ? " is defined" : " is not defined") +
+                ", so the earlier `ifdef branch is active";
+        }
+
+        private static string BuildInactiveCodeOptOutHoverSuffix() {
+            return " To show all branches with normal syntax coloring in this file, add '" +
+                ShowInactiveCodePragma + "', '" + InactiveCodeOptOutAttribute +
+                "', or define '" + ShowInactiveCodeMacro + "'.";
         }
 
         private static bool TryParseDirective(

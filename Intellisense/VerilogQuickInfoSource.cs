@@ -238,8 +238,10 @@ namespace VerilogLanguage
                     tagSpan,
                     SpanTrackingMode.EdgeExclusive);
 
-                string hover;
-                if (VerilogHoverInfo.TryGetHoverText(curTag.Tag.type, _buffer.CurrentSnapshot, tagSpan, out hover)) {
+                string hover = curTag.Tag.HoverText;
+                if (!string.IsNullOrWhiteSpace(hover) ||
+                    VerilogHoverInfo.TryGetHoverText(curTag.Tag.type, _buffer.CurrentSnapshot, tagSpan, out hover)) {
+
                     return Task.FromResult(new QuickInfoItem(applicableToSpan, hover));
                 }
 

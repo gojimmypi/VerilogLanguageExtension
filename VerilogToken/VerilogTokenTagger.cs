@@ -76,6 +76,7 @@ namespace VerilogLanguage.VerilogToken
             new List<VerilogPreprocessorEvaluator.LineState>();
         private List<VerilogPreprocessorEvaluator.IncludeDependency> _preprocessorIncludeDependencies =
             new List<VerilogPreprocessorEvaluator.IncludeDependency>();
+        private bool _preprocessorSuppressInactiveCodeHighlighting;
         private int _preprocessorDependencyCheckTick = int.MinValue;
 
         // ITextView View { get; set; }
@@ -558,6 +559,7 @@ namespace VerilogLanguage.VerilogToken
                     _preprocessorStateSnapshot = snapshot;
                     _preprocessorLineStates = analysis.LineStates;
                     _preprocessorIncludeDependencies = analysis.IncludeDependencies;
+                    _preprocessorSuppressInactiveCodeHighlighting = analysis.SuppressInactiveCodeHighlighting;
                     _preprocessorDependencyCheckTick = Environment.TickCount;
                 }
 
@@ -588,6 +590,7 @@ namespace VerilogLanguage.VerilogToken
                 _preprocessorStateSnapshot = null;
                 _preprocessorLineStates.Clear();
                 _preprocessorIncludeDependencies.Clear();
+                _preprocessorSuppressInactiveCodeHighlighting = false;
                 _preprocessorDependencyCheckTick = int.MinValue;
             }
         }
@@ -602,8 +605,8 @@ namespace VerilogLanguage.VerilogToken
                     continue;
                 }
 
-                if ((!string.IsNullOrEmpty(change.OldText) && change.OldText.IndexOf('`') >= 0) ||
-                    (!string.IsNullOrEmpty(change.NewText) && change.NewText.IndexOf('`') >= 0) ||
+                if (ContainsPreprocessorControlMarker(change.OldText) ||
+                    ContainsPreprocessorControlMarker(change.NewText) ||
                     SnapshotRangeContainsPreprocessorMarker(e.Before, change.OldPosition, change.OldLength) ||
                     SnapshotRangeContainsPreprocessorMarker(e.After, change.NewPosition, change.NewLength)) {
 
@@ -649,12 +652,25 @@ namespace VerilogLanguage.VerilogToken
             endLine = Math.Min(snapshot.LineCount - 1, endLine + 1);
 
             for (int lineNumber = startLine; lineNumber <= endLine; lineNumber++) {
-                if (snapshot.GetLineFromLineNumber(lineNumber).GetText().IndexOf('`') >= 0) {
+                if (ContainsPreprocessorControlMarker(
+                    snapshot.GetLineFromLineNumber(lineNumber).GetText())) {
+
                     return true;
                 }
             }
 
             return false;
+        }
+
+        private static bool ContainsPreprocessorControlMarker(string text) {
+            if (string.IsNullOrEmpty(text)) {
+                return false;
+            }
+
+            return text.IndexOf('`') >= 0 ||
+                text.IndexOf("NO_INACTIVE_MACRO_CODE", StringComparison.OrdinalIgnoreCase) >= 0 ||
+                text.IndexOf("VLE: SHOW_INACTIVE_CODE", StringComparison.OrdinalIgnoreCase) >= 0 ||
+                text.IndexOf("VLE_SHOW_INACTIVE_CODE", StringComparison.OrdinalIgnoreCase) >= 0;
         }
 
         private void StopReparseCompletionWatcher() {
@@ -949,7 +965,9 @@ namespace VerilogLanguage.VerilogToken
                     List<Span> attributeLineSpans = GetAttributeLineSpans(lineText, attributeState, out attributeState);
                     tokens = VerilogGlobals.VerilogKeywordSplit(lineText, priorToken);
 
-                    if (!preprocessorLineState.IsActive && !preprocessorLineState.IsDirective) {
+                    if (!preprocessorLineState.IsActive &&
+                        !preprocessorLineState.IsDirective &&
+                        !_preprocessorSuppressInactiveCodeHighlighting) {
                         // Keep lexical continuation state correct across inactive lines,
                         // but suppress all normal syntax classifications for their text.
                         CommentHelper inactiveCommentHelper =
@@ -964,7 +982,9 @@ namespace VerilogLanguage.VerilogToken
 
                             yield return new TagSpan<VerilogTokenTag>(
                                 inactiveCodeSpan,
-                                new VerilogTokenTag(VerilogTokenTypes.Verilog_InactiveCode));
+                                new VerilogTokenTag(
+                                    VerilogTokenTypes.Verilog_InactiveCode,
+                                    preprocessorLineState.InactiveHoverText));
                         }
 
                         if (line.LineBreakLength == 0) {

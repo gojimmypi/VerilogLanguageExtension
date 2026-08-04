@@ -59,6 +59,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{58A6
 		scripts\ci-check.ps1 = scripts\ci-check.ps1
 		scripts\ci-pass.ps1 = scripts\ci-pass.ps1
 		scripts\create-testfile-manifest.ps1 = scripts\create-testfile-manifest.ps1
+		extract_vle_colors.ps1 = extract_vle_colors.ps1
 		scripts\README.md = scripts\README.md
 		scripts\refresh-ci-check.ps1 = scripts\refresh-ci-check.ps1
 		scripts\refresh-tests.ps1 = scripts\refresh-tests.ps1

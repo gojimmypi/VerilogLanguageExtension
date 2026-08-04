@@ -110,6 +110,10 @@
     <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.14.2120" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColorSettings\SettingsProfile.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ColorSettings\SettingsRegistrationPackage.cs" />
     <Compile Include="Classification\ClassificationFormat.cs" />
     <Compile Include="Classification\ClassificationType.cs" />
     <Compile Include="Classification\VerilogClassifier.cs" />
@@ -173,7 +177,6 @@
   <ItemGroup>
     <Folder Include="images\" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="AddedExtensionProjectTemplates\VerilogProject\VerilogProjectTemplate.csproj">
       <Project>{8E669251-2F2E-4F2C-8627-0365D35B8A8B}</Project>
@@ -182,11 +185,17 @@
       <Private>false</Private>
     </ProjectReference>
   </ItemGroup>
-
   <ItemGroup>
     <VSCTCompile Include="VerilogLanguagePackage.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
     </VSCTCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="VSPackage.resx">
+      <MergeWithCTO>true</MergeWithCTO>
+      <ManifestResourceName>VSPackage</ManifestResourceName>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\SnapshotExporter.png" />

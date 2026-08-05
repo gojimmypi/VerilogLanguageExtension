@@ -1887,11 +1887,13 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_reg() {
             DisplayName = "Verilog - reg"; //human readable version of the name
+
+            /* See also type keyword declaration that is the same color. */
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
+                ForegroundColor = Colors.Thistle; // default color for dark background
             }
             else {
-                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
+                ForegroundColor = Colors.Purple; // default color for light background
             }
         }
     }
@@ -2633,11 +2635,13 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_wire() {
             DisplayName = "Verilog - wire"; //human readable version of the name
+
+            /* See also variable declarations that are the same/similar color. */
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
+                ForegroundColor = Colors.LightBlue; // default color for dark background
             }
             else {
-                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
+                ForegroundColor = Colors.SlateBlue; // default color for light background
             }
         }
     }
@@ -2715,7 +2719,7 @@ namespace VerilogLanguage
         public Verilog_directive() {
             DisplayName = "Verilog - Directive"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = Colors.DarkSalmon; // .Gray; // default color for dark background MColor.FromRgb(0x9B, 0x9B, 0x9B);
+                ForegroundColor = Colors.Peru; // .Gray; // default color for dark background MColor.FromRgb(0x9B, 0x9B, 0x9B);
             }
             else {
                 ForegroundColor = Colors.DimGray; // default color for light background
@@ -3181,6 +3185,8 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_Variable_wire() {
             DisplayName = "Verilog - Variable - wire"; //human readable version of the name
+
+            /* See also type keyword declaration that is the same color. */
             if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.LightSteelBlue; // default color for dark background
             }
@@ -3204,6 +3210,8 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_Variable_reg() {
             DisplayName = "Verilog - Variable - reg"; //human readable version of the name
+
+            /* See also type keyword declaration that is the same color. */
             if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.Plum; // default color for dark background
             }

@@ -134,8 +134,17 @@ namespace VerilogLanguage.CodeOutlining
                             pendingBlock = null;
                             break;
 
+                        case "`elsif":
+                        case "`else":
+                            if (directiveStack.Count > 0) {
+                                CloseScope(directiveStack, regions, snapshot, lineNumber - 1, IsDirectiveScope);
+                                directiveStack.Add(CreateStart("directive", line, originalLineText));
+                            }
+                            pendingBlock = null;
+                            break;
+
                         case "`endif":
-                            CloseScope(directiveStack, regions, snapshot, lineNumber, IsDirectiveScope);
+                            CloseScope(directiveStack, regions, snapshot, lineNumber - 1, IsDirectiveScope);
                             pendingBlock = null;
                             break;
 

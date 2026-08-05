@@ -98,13 +98,15 @@ namespace VerilogLanguage.VerilogToken
 
         internal sealed class MacroDefinitionInfo
         {
-            internal MacroDefinitionInfo(string filePath, int lineNumber) {
+            internal MacroDefinitionInfo(string filePath, int lineNumber, string value) {
                 FilePath = filePath ?? string.Empty;
                 LineNumber = lineNumber;
+                Value = value ?? string.Empty;
             }
 
             internal string FilePath { get; private set; }
             internal int LineNumber { get; private set; }
+            internal string Value { get; private set; }
         }
 
         internal sealed class IncludeDependency
@@ -378,7 +380,8 @@ namespace VerilogLanguage.VerilogToken
                             StringComparer.Ordinal);
                         macroDefinitions[macroName] = new MacroDefinitionInfo(
                             sourceFilePath,
-                            lineNumber + 1);
+                            lineNumber + 1,
+                            macroValue);
                         if (IsInactiveCodeOptOutMacro(macroName)) {
                             options.SuppressInactiveCodeHighlighting = true;
                         }

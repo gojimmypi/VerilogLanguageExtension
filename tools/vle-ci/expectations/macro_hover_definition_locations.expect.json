@@ -10,7 +10,9 @@
             ],
             "HoverNotContains": [
                 "File:",
-                "Line:"
+                "Line:",
+                "Value:",
+                "defined with no value"
             ]
         },
         {
@@ -20,7 +22,8 @@
             "HoverContains": [
                 "is defined",
                 "macro_hover_definition_locations.sv",
-                "Line: 5"
+                "Line: 5",
+                "Value: 1"
             ]
         },
         {
@@ -30,7 +33,8 @@
             "HoverContains": [
                 "is defined",
                 "macro_hover_definition_locations.sv",
-                "Line: 5"
+                "Line: 5",
+                "Value: 1"
             ]
         },
         {
@@ -42,7 +46,9 @@
             ],
             "HoverNotContains": [
                 "File:",
-                "Line:"
+                "Line:",
+                "Value:",
+                "defined with no value"
             ]
         },
         {
@@ -52,7 +58,8 @@
             "HoverContains": [
                 "is defined",
                 "macro_hover_config.vh",
-                "Line: 1"
+                "Line: 1",
+                "Value: 2"
             ]
         },
         {
@@ -62,7 +69,43 @@
             "HoverContains": [
                 "is defined",
                 "macro_hover_config.vh",
-                "Line: 1"
+                "Line: 1",
+                "Value: 2"
+            ]
+        },
+        {
+            "Text": "FLAG_ONLY_MACRO",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Macro",
+            "HoverContains": [
+                "defined with no value",
+                "macro_hover_definition_locations.sv",
+                "Line: 16"
+            ],
+            "HoverNotContains": [
+                "Value:"
+            ]
+        },
+        {
+            "Text": "`STRING_VALUE_MACRO",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Macro",
+            "HoverContains": [
+                "is defined",
+                "Value: \"Version 1.0\"",
+                "macro_hover_definition_locations.sv",
+                "Line: 20"
+            ]
+        },
+        {
+            "Text": "`EXPRESSION_VALUE_MACRO",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Macro",
+            "HoverContains": [
+                "is defined",
+                "Value: (`LOCAL_DEFINED_MACRO + 4)",
+                "macro_hover_definition_locations.sv",
+                "Line: 23"
             ]
         },
         {
@@ -74,7 +117,9 @@
             ],
             "HoverNotContains": [
                 "File:",
-                "Line:"
+                "Line:",
+                "Value:",
+                "defined with no value"
             ]
         }
     ]

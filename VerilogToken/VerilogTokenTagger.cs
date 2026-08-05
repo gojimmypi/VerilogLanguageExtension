@@ -1724,7 +1724,12 @@ namespace VerilogLanguage.VerilogToken
                 ? "(current buffer)"
                 : definition.FilePath;
 
-            return "Macro `" + macroName + "` is defined." + Environment.NewLine +
+            string valueText = string.IsNullOrEmpty(definition.Value)
+                ? "Macro `" + macroName + "` is defined with no value."
+                : "Macro `" + macroName + "` is defined." + Environment.NewLine +
+                    "Value: " + definition.Value;
+
+            return valueText + Environment.NewLine +
                 "File: " + filePath + Environment.NewLine +
                 "Line: " + definition.LineNumber.ToString();
         }

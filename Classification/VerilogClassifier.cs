@@ -222,6 +222,8 @@ namespace VerilogLanguage.VerilogToken
                 [VerilogTokenTypes.Verilog_InactiveCode] = typeService.GetClassificationType("InactiveCode"),
                 [VerilogTokenTypes.Verilog_StaticString] = typeService.GetClassificationType("StaticString"),
                 [VerilogTokenTypes.Verilog_FunctionName] = typeService.GetClassificationType("FunctionName"),
+                [VerilogTokenTypes.Verilog_SystemTaskFunction] = typeService.GetClassificationType("SystemTaskFunction"),
+                [VerilogTokenTypes.Verilog_SystemTaskFatal] = typeService.GetClassificationType("SystemTaskFatal"),
                 [VerilogTokenTypes.Verilog_Comment] = typeService.GetClassificationType("Comment"), // GetClassificationType string must be defined in ClassificationType.cs
                 [VerilogTokenTypes.Verilog_Bracket] = typeService.GetClassificationType("Bracket"),
                 [VerilogTokenTypes.Verilog_Bracket0] = typeService.GetClassificationType("Bracket0"),

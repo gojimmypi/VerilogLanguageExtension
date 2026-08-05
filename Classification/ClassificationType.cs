@@ -754,6 +754,20 @@ namespace VerilogLanguage
         [Name("FunctionName")]
         internal static ClassificationTypeDefinition Verilog_FunctionName = null;
 
+        /// <summary>
+        /// Defines the "Verilog_SystemTaskFunction" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("SystemTaskFunction")]
+        internal static ClassificationTypeDefinition Verilog_SystemTaskFunction = null;
+
+        /// <summary>
+        /// Defines the "Verilog_SystemTaskFatal" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("SystemTaskFatal")]
+        internal static ClassificationTypeDefinition Verilog_SystemTaskFatal = null;
+
         #endregion
 
         #region attributes

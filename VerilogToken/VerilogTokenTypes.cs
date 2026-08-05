@@ -119,6 +119,8 @@ namespace VerilogLanguage.VerilogToken
         Verilog_InactiveCode, // source excluded by `ifdef / `ifndef / `elsif / `else evaluation
         Verilog_StaticString, // static double-quoted string literal
         Verilog_FunctionName, // function declaration name and references
+        Verilog_SystemTaskFunction, // built-in $name system task or function
+        Verilog_SystemTaskFatal, // $fatal system task
 
         //
         Verilog_Comment,

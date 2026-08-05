@@ -1639,6 +1639,24 @@ namespace VerilogLanguage.VerilogToken
             return true;
         }
 
+        private static bool IsVerilogSystemTaskOrFunctionText(string text) {
+            if (string.IsNullOrEmpty(text) || text.Length < 2 || text[0] != '$') {
+                return false;
+            }
+
+            if (!(char.IsLetter(text[1]) || text[1] == '_')) {
+                return false;
+            }
+
+            for (int i = 2; i < text.Length; i++) {
+                if (!IsVerilogIdentifierContinuation(text[i])) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         private static bool IsKnownModuleName(string lookupText, VerilogGlobals.ParseDataSnapshot parseData) {
             if (string.IsNullOrEmpty(lookupText)) {
                 return false;
@@ -2055,6 +2073,20 @@ namespace VerilogLanguage.VerilogToken
                 yield return new TagSpan<VerilogTokenTag>(
                     lookupSpan,
                     new VerilogTokenTag(VerilogTokenTypes.Verilog_StaticString));
+                yield break;
+            }
+
+            if (IsVerilogSystemTaskOrFunctionText(lookupText)) {
+                VerilogTokenTypes systemTaskType = string.Equals(
+                    lookupText,
+                    "$fatal",
+                    StringComparison.Ordinal)
+                    ? VerilogTokenTypes.Verilog_SystemTaskFatal
+                    : VerilogTokenTypes.Verilog_SystemTaskFunction;
+
+                yield return new TagSpan<VerilogTokenTag>(
+                    lookupSpan,
+                    new VerilogTokenTag(systemTaskType));
                 yield break;
             }
 

@@ -2831,6 +2831,50 @@ namespace VerilogLanguage
             }
         }
     }
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "SystemTaskFunction")]
+    [Name("SystemTaskFunction")]
+    [UserVisible(true)]
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_SystemTaskFunction : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for built-in Verilog/SystemVerilog $name tasks and functions.
+        /// </summary>
+        public Verilog_SystemTaskFunction() {
+            DisplayName = "Verilog - System Task / Function ($name)";
+            IsBold = true;
+            if (ColorThemeAttribute.IsDarkTheme()) {
+                ForegroundColor = Colors.DeepSkyBlue;
+            }
+            else {
+                ForegroundColor = Colors.MediumBlue;
+            }
+        }
+    }
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "SystemTaskFatal")]
+    [Name("SystemTaskFatal")]
+    [UserVisible(true)]
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_SystemTaskFatal : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the $fatal system task.
+        /// </summary>
+        public Verilog_SystemTaskFatal() {
+            DisplayName = "Verilog - System Task - $fatal";
+            IsBold = true;
+            if (ColorThemeAttribute.IsDarkTheme()) {
+                ForegroundColor = Colors.OrangeRed;
+            }
+            else {
+                ForegroundColor = Colors.DarkRed;
+            }
+        }
+    }
     #endregion
 
     #region attributes

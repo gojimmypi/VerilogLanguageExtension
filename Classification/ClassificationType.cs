@@ -890,6 +890,13 @@ namespace VerilogLanguage
         internal static ClassificationTypeDefinition Verilog_Variable_reg = null;
 
         /// <summary>
+        /// Defines the "Verilog_Variable_SystemVerilog" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Variable_SystemVerilog")]
+        internal static ClassificationTypeDefinition Verilog_Variable_SystemVerilog = null;
+
+        /// <summary>
         /// Defines the "Verilog_Variable_localparam" classification type.
         /// </summary>
         [Export(typeof(ClassificationTypeDefinition))]

@@ -237,6 +237,7 @@ namespace VerilogLanguage.VerilogToken
                 [VerilogTokenTypes.Verilog_Variable_output] = typeService.GetClassificationType("Variable_output"),
                 [VerilogTokenTypes.Verilog_Variable_inout] = typeService.GetClassificationType("Variable_inout"),
                 [VerilogTokenTypes.Verilog_Variable_reg] = typeService.GetClassificationType("Variable_reg"),
+                [VerilogTokenTypes.Verilog_Variable_SystemVerilog] = typeService.GetClassificationType("Variable_SystemVerilog"),
                 [VerilogTokenTypes.Verilog_Variable_wire] = typeService.GetClassificationType("Variable_wire"),
                 [VerilogTokenTypes.Verilog_Variable_localparam] = typeService.GetClassificationType("Variable_localparam"),
                 [VerilogTokenTypes.Verilog_Variable_parameter] = typeService.GetClassificationType("Variable_parameter"),

@@ -184,9 +184,13 @@ namespace VerilogLanguage
                 }
             }
 
+            if (hasSystemVerilogVariableType) {
+                variableType = VerilogTokenTypes.Verilog_Variable_SystemVerilog;
+                return true;
+            }
+
             if (ContainsDeclarationKeyword(text, "reg")
-                    || ContainsDeclarationKeyword(text, "integer")
-                    || hasSystemVerilogVariableType) {
+                    || ContainsDeclarationKeyword(text, "integer")) {
                 variableType = VerilogTokenTypes.Verilog_Variable_reg;
                 return true;
             }
@@ -524,6 +528,7 @@ namespace VerilogLanguage
             ["variable_inout"] = VerilogTokenTypes.Verilog_Variable_inout,
             ["variable_wire"] = VerilogTokenTypes.Verilog_Variable_wire,
             ["variable_reg"] = VerilogTokenTypes.Verilog_Variable_reg,
+            ["variable_systemverilog"] = VerilogTokenTypes.Verilog_Variable_SystemVerilog,
             ["variable_localparam"] = VerilogTokenTypes.Verilog_Variable_localparam,
             ["variable_parameter"] = VerilogTokenTypes.Verilog_Variable_parameter,
             ["variable_duplicate"] = VerilogTokenTypes.Verilog_Variable_duplicate,
@@ -2399,6 +2404,7 @@ namespace VerilogLanguage
                 case VerilogTokenTypes.Verilog_Variable_inout:
                 case VerilogTokenTypes.Verilog_Variable_wire:
                 case VerilogTokenTypes.Verilog_Variable_reg:
+                case VerilogTokenTypes.Verilog_Variable_SystemVerilog:
                 case VerilogTokenTypes.Verilog_Variable_localparam:
                 case VerilogTokenTypes.Verilog_Variable_parameter:
                 case VerilogTokenTypes.Verilog_Variable_duplicate:

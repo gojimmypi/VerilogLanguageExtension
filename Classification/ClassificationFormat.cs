@@ -3222,6 +3222,31 @@ namespace VerilogLanguage
     }
 
     [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "Variable_SystemVerilog")]
+    [Name("variable_systemverilog")]
+    //this should be visible to the end user
+    [UserVisible(true)]
+    //set the priority to be after the default classifiers
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_Variable_SystemVerilog : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for variables declared with a SystemVerilog data type
+        /// </summary>
+        public Verilog_Variable_SystemVerilog() {
+            DisplayName = "Verilog - Variable - SystemVerilog"; //human readable version of the name
+
+            /* Keep the variable distinct from the bold SystemVerilog type keyword. */
+            if (ColorThemeAttribute.IsDarkTheme()) {
+                ForegroundColor = Colors.Khaki; // slightly lighter than the Gold type keyword
+            }
+            else {
+                ForegroundColor = Colors.DarkGoldenrod; // default color for light background
+            }
+        }
+    }
+
+    [Export(typeof(EditorFormatDefinition))]
     [ClassificationType(ClassificationTypeNames = "variable - localparam")]
     [Name("variable_localparam")]
     //this should be visible to the end user

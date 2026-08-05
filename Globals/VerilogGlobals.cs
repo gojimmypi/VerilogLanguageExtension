@@ -1100,12 +1100,17 @@ namespace VerilogLanguage
         private static List<string> CollectSnapshotDeclarationBlockTokens(
             string lineText,
             ref bool insideBlockComment,
-            ref bool insideAttribute) {
+            ref bool insideAttribute,
+            out string declarationCodeText) {
             List<string> blockTokens = new List<string>();
             if (string.IsNullOrEmpty(lineText)) {
+                declarationCodeText = string.Empty;
                 return blockTokens;
             }
 
+            // Keep source positions stable while removing comments and attributes from
+            // the text used by duplicate-declaration and routine-scope detection.
+            StringBuilder declarationCodeBuilder = new StringBuilder(lineText);
             bool insideString = false;
             bool escapedStringCharacter = false;
             bool sawCode = false;
@@ -1115,7 +1120,9 @@ namespace VerilogLanguage
                 char next = index + 1 < lineText.Length ? lineText[index + 1] : '\0';
 
                 if (insideBlockComment) {
+                    declarationCodeBuilder[index] = ' ';
                     if (current == '*' && next == '/') {
+                        declarationCodeBuilder[index + 1] = ' ';
                         insideBlockComment = false;
                         index++;
                     }
@@ -1123,7 +1130,9 @@ namespace VerilogLanguage
                 }
 
                 if (insideAttribute) {
+                    declarationCodeBuilder[index] = ' ';
                     if (current == '*' && next == ')') {
+                        declarationCodeBuilder[index + 1] = ' ';
                         insideAttribute = false;
                         index++;
                     }
@@ -1144,10 +1153,15 @@ namespace VerilogLanguage
                 }
 
                 if (current == '/' && next == '/') {
+                    for (int commentIndex = index; commentIndex < lineText.Length; commentIndex++) {
+                        declarationCodeBuilder[commentIndex] = ' ';
+                    }
                     break;
                 }
 
                 if (current == '/' && next == '*') {
+                    declarationCodeBuilder[index] = ' ';
+                    declarationCodeBuilder[index + 1] = ' ';
                     insideBlockComment = true;
                     index++;
                     continue;
@@ -1162,6 +1176,8 @@ namespace VerilogLanguage
                 }
 
                 if (current == '(' && next == '*') {
+                    declarationCodeBuilder[index] = ' ';
+                    declarationCodeBuilder[index + 1] = ' ';
                     insideAttribute = true;
                     index++;
                     continue;
@@ -1219,6 +1235,7 @@ namespace VerilogLanguage
                 }
             }
 
+            declarationCodeText = declarationCodeBuilder.ToString();
             return blockTokens;
         }
 
@@ -2481,16 +2498,18 @@ namespace VerilogLanguage
 
             foreach (ITextSnapshotLine line in snapshot.Lines) {
                 string lineText = line.GetText();
+                string declarationCodeText;
                 List<string> blockTokens = CollectSnapshotDeclarationBlockTokens(
                     lineText,
                     ref insideBlockComment,
-                    ref insideAttribute);
-                bool mayContainFunction = lineText.IndexOf("function", StringComparison.Ordinal) >= 0;
-                bool mayContainTask = lineText.IndexOf("task", StringComparison.Ordinal) >= 0;
-                bool mayContainDeclaration = CodeLineStartsWithDeclarationKeyword(lineText);
+                    ref insideAttribute,
+                    out declarationCodeText);
+                bool mayContainFunction = declarationCodeText.IndexOf("function", StringComparison.Ordinal) >= 0;
+                bool mayContainTask = declarationCodeText.IndexOf("task", StringComparison.Ordinal) >= 0;
+                bool mayContainDeclaration = CodeLineStartsWithDeclarationKeyword(declarationCodeText);
                 bool mayEndLocalScope = !string.IsNullOrEmpty(activeLocalScope) &&
-                    (lineText.IndexOf("endfunction", StringComparison.Ordinal) >= 0 ||
-                     lineText.IndexOf("endtask", StringComparison.Ordinal) >= 0);
+                    (declarationCodeText.IndexOf("endfunction", StringComparison.Ordinal) >= 0 ||
+                     declarationCodeText.IndexOf("endtask", StringComparison.Ordinal) >= 0);
 
                 if (!mayContainFunction && !mayContainTask && !mayContainDeclaration &&
                     !mayEndLocalScope && blockTokens.Count == 0) {
@@ -2501,12 +2520,12 @@ namespace VerilogLanguage
                 string functionName;
                 string taskName;
 
-                if (mayContainFunction && TryGetFunctionNameFromLineText(lineText, out functionName)) {
+                if (mayContainFunction && TryGetFunctionNameFromLineText(declarationCodeText, out functionName)) {
                     activeLocalScope = FunctionLocalScopeName(moduleScope, functionName);
 
                     string returnTypeIdentifier;
                     if (TryGetRoutineReturnTypeIdentifier(
-                            lineText,
+                            declarationCodeText,
                             "function",
                             functionName,
                             out returnTypeIdentifier)) {
@@ -2526,7 +2545,7 @@ namespace VerilogLanguage
                         activeBlockDeclarationScope = activeLocalScope;
                     }
 
-                    string argumentDeclarationText = RoutineArgumentDeclarationText(lineText, "function");
+                    string argumentDeclarationText = RoutineArgumentDeclarationText(declarationCodeText, "function");
                     if (CodeLineStartsWithDeclarationKeyword(argumentDeclarationText)) {
                         string lexicalScope = ActiveSnapshotLexicalScope(
                             activeLocalScope,
@@ -2544,7 +2563,7 @@ namespace VerilogLanguage
                             argumentDeclarationText);
                     }
                 }
-                else if (mayContainTask && TryGetTaskNameFromLineText(lineText, out taskName)) {
+                else if (mayContainTask && TryGetTaskNameFromLineText(declarationCodeText, out taskName)) {
                     activeLocalScope = TaskLocalScopeName(moduleScope, taskName);
 
                     if (activeBlockDeclarationScope != activeLocalScope) {
@@ -2552,7 +2571,7 @@ namespace VerilogLanguage
                         activeBlockDeclarationScope = activeLocalScope;
                     }
 
-                    string argumentDeclarationText = RoutineArgumentDeclarationText(lineText, "task");
+                    string argumentDeclarationText = RoutineArgumentDeclarationText(declarationCodeText, "task");
                     if (CodeLineStartsWithDeclarationKeyword(argumentDeclarationText)) {
                         string lexicalScope = ActiveSnapshotLexicalScope(
                             activeLocalScope,
@@ -2593,7 +2612,7 @@ namespace VerilogLanguage
                         inferredTypeNamesByScope,
                         declarationScope,
                         lexicalScope,
-                        lineText);
+                        declarationCodeText);
                 }
 
                 UpdateSnapshotDeclarationBlockScopes(
@@ -2604,7 +2623,7 @@ namespace VerilogLanguage
                     declarationScopeByLexicalScope,
                     ref nextBlockScopeId);
 
-                if (mayEndLocalScope && (IsEndFunctionLineText(lineText) || IsEndTaskLineText(lineText))) {
+                if (mayEndLocalScope && (IsEndFunctionLineText(declarationCodeText) || IsEndTaskLineText(declarationCodeText))) {
                     activeLocalScope = string.Empty;
                     activeBlockDeclarationScope = string.Empty;
                     activeBlockScopes.Clear();

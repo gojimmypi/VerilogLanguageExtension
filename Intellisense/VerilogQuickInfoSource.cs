@@ -170,6 +170,10 @@ namespace VerilogLanguage
             {
                 ["logic"] = "SystemVerilog 4-state variable data type. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version.",
                 ["bit"] = "SystemVerilog 2-state variable data type. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version.",
+                ["byte"] = "SystemVerilog 8-bit integral variable data type. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version.",
+                ["shortint"] = "SystemVerilog 16-bit integral variable data type. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version.",
+                ["int"] = "SystemVerilog 32-bit integral variable data type. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version.",
+                ["longint"] = "SystemVerilog 64-bit integral variable data type. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version.",
                 ["always_ff"] = "SystemVerilog sequential procedure for flip-flop behavior. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version.",
                 ["always_comb"] = "SystemVerilog combinational procedure. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version.",
                 ["always_latch"] = "SystemVerilog procedure for latch behavior. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version.",

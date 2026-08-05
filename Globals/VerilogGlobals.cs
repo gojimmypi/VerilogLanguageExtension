@@ -158,10 +158,14 @@ namespace VerilogLanguage
 
             bool hasSystemVerilogVariableType = allowSystemVerilog &&
                 (ContainsDeclarationKeyword(text, "logic") ||
-                 ContainsDeclarationKeyword(text, "bit"));
+                 ContainsDeclarationKeyword(text, "bit") ||
+                 ContainsDeclarationKeyword(text, "byte") ||
+                 ContainsDeclarationKeyword(text, "shortint") ||
+                 ContainsDeclarationKeyword(text, "int") ||
+                 ContainsDeclarationKeyword(text, "longint"));
 
-            // In an ANSI-style SystemVerilog port declaration, logic/bit is the
-            // data type and input/output/inout is still the symbol's direction.
+            // In an ANSI-style SystemVerilog port declaration, the built-in data
+            // type and input/output/inout direction describe the same symbol.
             // Preserve that direction instead of reducing every typed port to reg.
             if (hasSystemVerilogVariableType) {
                 if (ContainsDeclarationKeyword(text, "inout")) {
@@ -846,6 +850,10 @@ namespace VerilogLanguage
                 case "reg":
                 case "logic":
                 case "bit":
+                case "byte":
+                case "shortint":
+                case "int":
+                case "longint":
                 case "integer":
                 case "parameter":
                 case "localparam":
@@ -2877,6 +2885,13 @@ namespace VerilogLanguage
                 case "inout":
                 case "wire":
                 case "reg":
+                case "logic":
+                case "bit":
+                case "byte":
+                case "shortint":
+                case "int":
+                case "longint":
+                case "integer":
                 case "localparam":
                 case "parameter":
                     // the same keywords could be used for module parameters, or variables:
@@ -3026,6 +3041,13 @@ namespace VerilogLanguage
                 case "inout":
                 case "wire":
                 case "reg":
+                case "logic":
+                case "bit":
+                case "byte":
+                case "shortint":
+                case "int":
+                case "longint":
+                case "integer":
                 case "localparam":
                 case "parameter":
                     // the same keywords could be used for module parameters, or variables:
@@ -3496,6 +3518,10 @@ namespace VerilogLanguage
                 case "parameter":
                 case "bit":
                 case "logic":
+                case "byte":
+                case "shortint":
+                case "int":
+                case "longint":
                 case "integer":
                     thisVariableDeclarationText += ItemText;
                     UpdateCurrentDeclarationVariableType(thisVariableDeclarationText);
@@ -3611,7 +3637,7 @@ namespace VerilogLanguage
                     // if we encounter a NamerKeyword during a sequence of comma-delimited vars, then this is a new type!
                     // e.g.  input a,b,  // this is input a; input b;
                     //       output c    // this is output c;
-                    if (IsVerilogNamerKeyword(ItemText)) {
+                    if (IsVerilogNamerKeyword(ItemText) || IsDeclarationStartKeyword(ItemText)) {
                         Process_UndefinedState_For(ItemText);
                     }
                     else {

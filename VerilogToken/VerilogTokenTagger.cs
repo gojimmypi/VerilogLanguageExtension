@@ -1345,6 +1345,10 @@ namespace VerilogLanguage.VerilogToken
                 case "reg":
                 case "logic":
                 case "bit":
+                case "byte":
+                case "shortint":
+                case "int":
+                case "longint":
                 case "integer":
                 case "time":
                 case "real":

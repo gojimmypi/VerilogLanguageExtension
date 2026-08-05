@@ -1,7 +1,7 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.10",
+    "ExtensionVersion":  "0.4.1.11",
     "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\systemverilog_keywords.sv",
     "FileRelativePath":  "TestFiles\\systemverilog_keywords.sv",
     "ContentType":  "verilog",
@@ -5452,12 +5452,5 @@
                         "TokenType":  "Verilog_Variable_input",
                         "HoverText":  "input sample_t value"
                     }
-                ],
-    "ProcessingTime":  {
-                           "SchemaVersion":  2,
-                           "ElapsedBucket":  "40-44s",
-                           "Index":  1,
-                           "Count":  1,
-                           "Status":  "Completed"
-                       }
+                ]
 }

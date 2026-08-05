@@ -1,0 +1,686 @@
+{
+    "SchemaVersion":  3,
+    "RunName":  "all-testfiles",
+    "ExtensionVersion":  "0.4.1.11",
+    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\macros\\ifdef_include_source_order.sv",
+    "FileRelativePath":  "TestFiles\\macros\\ifdef_include_source_order.sv",
+    "ContentType":  "verilog",
+    "SnapshotLength":  312,
+    "SnapshotVersion":  2,
+    "TextSha256":  "3c990dd898d7c8ffa3fcfa31db545402cfcca4249fe1e63a655abbc890255281",
+    "Errors":  [
+
+               ],
+    "Classifications":  [
+                            {
+                                "Start":  0,
+                                "Length":  16,
+                                "Line":  1,
+                                "Column":  1,
+                                "Text":  "`default_nettype",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  25,
+                                "Length":  6,
+                                "Line":  3,
+                                "Column":  1,
+                                "Text":  "`ifdef",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  32,
+                                "Length":  16,
+                                "Line":  3,
+                                "Column":  8,
+                                "Text":  "SIM_JTAG_CORE_TB",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  54,
+                                "Length":  10,
+                                "Line":  4,
+                                "Column":  5,
+                                "Text":  "`timescale",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  76,
+                                "Length":  49,
+                                "Line":  5,
+                                "Column":  1,
+                                "Text":  "    logic inactive_before_project_config_include;",
+                                "Types":  [
+                                              "InactiveCode"
+                                          ]
+                            },
+                            {
+                                "Start":  127,
+                                "Length":  6,
+                                "Line":  6,
+                                "Column":  1,
+                                "Text":  "`endif",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  137,
+                                "Length":  8,
+                                "Line":  8,
+                                "Column":  1,
+                                "Text":  "`include",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  146,
+                                "Length":  32,
+                                "Line":  8,
+                                "Column":  10,
+                                "Text":  "\"include-files/project_config.v\"",
+                                "Types":  [
+                                              "StaticString"
+                                          ]
+                            },
+                            {
+                                "Start":  182,
+                                "Length":  6,
+                                "Line":  10,
+                                "Column":  1,
+                                "Text":  "`ifdef",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  189,
+                                "Length":  16,
+                                "Line":  10,
+                                "Column":  8,
+                                "Text":  "SIM_JTAG_CORE_TB",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  211,
+                                "Length":  5,
+                                "Line":  11,
+                                "Column":  5,
+                                "Text":  "logic",
+                                "Types":  [
+                                              "SystemVerilogYosysSupported"
+                                          ]
+                            },
+                            {
+                                "Start":  217,
+                                "Length":  35,
+                                "Line":  11,
+                                "Column":  11,
+                                "Text":  "active_after_project_config_include",
+                                "Types":  [
+                                              "Variable_reg"
+                                          ]
+                            },
+                            {
+                                "Start":  255,
+                                "Length":  6,
+                                "Line":  12,
+                                "Column":  1,
+                                "Text":  "`endif",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  265,
+                                "Length":  6,
+                                "Line":  14,
+                                "Column":  1,
+                                "Text":  "module",
+                                "Types":  [
+                                              "module"
+                                          ]
+                            },
+                            {
+                                "Start":  272,
+                                "Length":  26,
+                                "Line":  14,
+                                "Column":  8,
+                                "Text":  "ifdef_include_source_order",
+                                "Types":  [
+                                              "Variable_module"
+                                          ]
+                            },
+                            {
+                                "Start":  301,
+                                "Length":  9,
+                                "Line":  15,
+                                "Column":  1,
+                                "Text":  "endmodule",
+                                "Types":  [
+                                              "endmodule"
+                                          ]
+                            }
+                        ],
+    "Tags":  [
+                 {
+                     "Start":  0,
+                     "Length":  16,
+                     "Line":  1,
+                     "Column":  1,
+                     "Text":  "`default_nettype",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  25,
+                     "Length":  6,
+                     "Line":  3,
+                     "Column":  1,
+                     "Text":  "`ifdef",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  32,
+                     "Length":  16,
+                     "Line":  3,
+                     "Column":  8,
+                     "Text":  "SIM_JTAG_CORE_TB",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "macro condition:\r\n`ifdef SIM_JTAG_CORE_TB"
+                 },
+                 {
+                     "Start":  54,
+                     "Length":  10,
+                     "Line":  4,
+                     "Column":  5,
+                     "Text":  "`timescale",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  76,
+                     "Length":  49,
+                     "Line":  5,
+                     "Column":  1,
+                     "Text":  "    logic inactive_before_project_config_include;",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027SIM_JTAG_CORE_TB\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
+                 },
+                 {
+                     "Start":  127,
+                     "Length":  6,
+                     "Line":  6,
+                     "Column":  1,
+                     "Text":  "`endif",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  137,
+                     "Length":  8,
+                     "Line":  8,
+                     "Column":  1,
+                     "Text":  "`include",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  146,
+                     "Length":  32,
+                     "Line":  8,
+                     "Column":  10,
+                     "Text":  "\"include-files/project_config.v\"",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_StaticString",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  182,
+                     "Length":  6,
+                     "Line":  10,
+                     "Column":  1,
+                     "Text":  "`ifdef",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  189,
+                     "Length":  16,
+                     "Line":  10,
+                     "Column":  8,
+                     "Text":  "SIM_JTAG_CORE_TB",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "macro condition:\r\n`ifdef SIM_JTAG_CORE_TB"
+                 },
+                 {
+                     "Start":  211,
+                     "Length":  5,
+                     "Line":  11,
+                     "Column":  5,
+                     "Text":  "logic",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemVerilogYosysSupported",
+                     "HoverText":  "SystemVerilog 4-state variable data type. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version."
+                 },
+                 {
+                     "Start":  217,
+                     "Length":  35,
+                     "Line":  11,
+                     "Column":  11,
+                     "Text":  "active_after_project_config_include",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_reg",
+                     "HoverText":  "logic active_after_project_config_include"
+                 },
+                 {
+                     "Start":  255,
+                     "Length":  6,
+                     "Line":  12,
+                     "Column":  1,
+                     "Text":  "`endif",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  265,
+                     "Length":  6,
+                     "Line":  14,
+                     "Column":  1,
+                     "Text":  "module",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_module",
+                     "HoverText":  "The module declaration is the only design unit in Verilog. It describes both a design\u0027s interface to other designs in the same environment, and its functional composition."
+                 },
+                 {
+                     "Start":  272,
+                     "Length":  26,
+                     "Line":  14,
+                     "Column":  8,
+                     "Text":  "ifdef_include_source_order",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_module",
+                     "HoverText":  "module ifdef_include_source_order;"
+                 },
+                 {
+                     "Start":  301,
+                     "Length":  9,
+                     "Line":  15,
+                     "Column":  1,
+                     "Text":  "endmodule",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_endmodule",
+                     "HoverText":  "The endmodule reserved word is used to close a module statement."
+                 }
+             ],
+    "Tokens":  [
+                   {
+                       "Start":  0,
+                       "Length":  16,
+                       "Line":  1,
+                       "Column":  1,
+                       "Text":  "`default_nettype",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  16,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  17,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  17,
+                       "Length":  4,
+                       "Line":  1,
+                       "Column":  18,
+                       "Text":  "none",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  25,
+                       "Length":  6,
+                       "Line":  3,
+                       "Column":  1,
+                       "Text":  "`ifdef",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  31,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  32,
+                       "Length":  16,
+                       "Line":  3,
+                       "Column":  8,
+                       "Text":  "SIM_JTAG_CORE_TB",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  50,
+                       "Length":  4,
+                       "Line":  4,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  54,
+                       "Length":  10,
+                       "Line":  4,
+                       "Column":  5,
+                       "Text":  "`timescale",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  64,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  15,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  65,
+                       "Length":  4,
+                       "Line":  4,
+                       "Column":  16,
+                       "Text":  "1ns ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  69,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  20,
+                       "Text":  "/",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  70,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  21,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  71,
+                       "Length":  3,
+                       "Line":  4,
+                       "Column":  22,
+                       "Text":  "1ps",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  76,
+                       "Length":  4,
+                       "Line":  5,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  80,
+                       "Length":  5,
+                       "Line":  5,
+                       "Column":  5,
+                       "Text":  "logic",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  85,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  10,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  86,
+                       "Length":  38,
+                       "Line":  5,
+                       "Column":  11,
+                       "Text":  "inactive_before_project_config_include",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  124,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  49,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  127,
+                       "Length":  6,
+                       "Line":  6,
+                       "Column":  1,
+                       "Text":  "`endif",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  137,
+                       "Length":  8,
+                       "Line":  8,
+                       "Column":  1,
+                       "Text":  "`include",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  145,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  9,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  146,
+                       "Length":  8,
+                       "Line":  8,
+                       "Column":  10,
+                       "Text":  "\"include",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  154,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  18,
+                       "Text":  "-",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  155,
+                       "Length":  5,
+                       "Line":  8,
+                       "Column":  19,
+                       "Text":  "files",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  160,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  24,
+                       "Text":  "/",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  161,
+                       "Length":  17,
+                       "Line":  8,
+                       "Column":  25,
+                       "Text":  "project_config.v\"",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  182,
+                       "Length":  6,
+                       "Line":  10,
+                       "Column":  1,
+                       "Text":  "`ifdef",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  188,
+                       "Length":  1,
+                       "Line":  10,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  189,
+                       "Length":  16,
+                       "Line":  10,
+                       "Column":  8,
+                       "Text":  "SIM_JTAG_CORE_TB",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  207,
+                       "Length":  4,
+                       "Line":  11,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  211,
+                       "Length":  5,
+                       "Line":  11,
+                       "Column":  5,
+                       "Text":  "logic",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  216,
+                       "Length":  1,
+                       "Line":  11,
+                       "Column":  10,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  217,
+                       "Length":  35,
+                       "Line":  11,
+                       "Column":  11,
+                       "Text":  "active_after_project_config_include",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  252,
+                       "Length":  1,
+                       "Line":  11,
+                       "Column":  46,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  255,
+                       "Length":  6,
+                       "Line":  12,
+                       "Column":  1,
+                       "Text":  "`endif",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  265,
+                       "Length":  6,
+                       "Line":  14,
+                       "Column":  1,
+                       "Text":  "module",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  271,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  272,
+                       "Length":  26,
+                       "Line":  14,
+                       "Column":  8,
+                       "Text":  "ifdef_include_source_order",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  298,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  34,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  301,
+                       "Length":  9,
+                       "Line":  15,
+                       "Column":  1,
+                       "Text":  "endmodule",
+                       "Context":  "Undetermined"
+                   }
+               ],
+    "Symbols":  [
+                    {
+                        "Scope":  "global",
+                        "Name":  "inactive_before_project_config_include",
+                        "TokenType":  "Verilog_Variable_reg",
+                        "HoverText":  "logic inactive_before_project_config_include"
+                    },
+                    {
+                        "Scope":  "global",
+                        "Name":  "active_after_project_config_include",
+                        "TokenType":  "Verilog_Variable_reg",
+                        "HoverText":  "logic active_after_project_config_include"
+                    },
+                    {
+                        "Scope":  "__MACRO__",
+                        "Name":  "SIM_JTAG_CORE_TB",
+                        "TokenType":  "Verilog_Macro",
+                        "HoverText":  "macro condition:\r\n`ifdef SIM_JTAG_CORE_TB"
+                    },
+                    {
+                        "Scope":  "ifdef_include_source_order",
+                        "Name":  "ifdef_include_source_order",
+                        "TokenType":  "Verilog_Variable_module",
+                        "HoverText":  "module ifdef_include_source_order;"
+                    }
+                ]
+}

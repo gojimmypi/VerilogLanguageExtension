@@ -1,7 +1,7 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.10",
+    "ExtensionVersion":  "0.4.1.11",
     "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\comma.v",
     "FileRelativePath":  "TestFiles\\comma.v",
     "ContentType":  "verilog",
@@ -3624,12 +3624,5 @@
                         "TokenType":  "Verilog_Variable_input",
                         "HoverText":  "input [35:0] TRACE_IRQ3"
                     }
-                ],
-    "ProcessingTime":  {
-                           "SchemaVersion":  2,
-                           "ElapsedBucket":  "25-29s",
-                           "Index":  1,
-                           "Count":  1,
-                           "Status":  "Completed"
-                       }
+                ]
 }

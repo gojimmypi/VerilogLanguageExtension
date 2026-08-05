@@ -76,9 +76,9 @@ if ([string]::IsNullOrWhiteSpace($vsixVersion)) {
 }
 
 $assemblyText = Get-Content -Raw -Encoding UTF8 -Path $assemblyInfoPath
-$assemblyVersion = Get-RegexCapture -Text $assemblyText -Pattern '\[assembly:\s*AssemblyVersion\("([^"]+)"\)\]' -Name "AssemblyVersion"
-$assemblyFileVersion = Get-RegexCapture -Text $assemblyText -Pattern '\[assembly:\s*AssemblyFileVersion\("([^"]+)"\)\]' -Name "AssemblyFileVersion"
-$assemblyInformationalVersion = Get-RegexCapture -Text $assemblyText -Pattern '\[assembly:\s*AssemblyInformationalVersion\("([^"]+)"\)\]' -Name "AssemblyInformationalVersion"
+$assemblyVersion = Get-RegexCapture -Text $assemblyText -Pattern '(?m)^[ \t]*\[assembly:\s*AssemblyVersion\s*\(\s*"([^"]+)"\s*\)\s*\]' -Name "AssemblyVersion"
+$assemblyFileVersion = Get-RegexCapture -Text $assemblyText -Pattern '(?m)^[ \t]*\[assembly:\s*AssemblyFileVersion\s*\(\s*"([^"]+)"\s*\)\s*\]' -Name "AssemblyFileVersion"
+$assemblyInformationalVersion = Get-RegexCapture -Text $assemblyText -Pattern '(?m)^[ \t]*\[assembly:\s*AssemblyInformationalVersion\s*\(\s*"([^"]+)"\s*\)\s*\]' -Name "AssemblyInformationalVersion"
 
 $packageText = Get-Content -Raw -Encoding UTF8 -Path $packagePath
 $menuMatch = [regex]::Match(

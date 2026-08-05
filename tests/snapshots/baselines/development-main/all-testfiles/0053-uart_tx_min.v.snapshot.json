@@ -1,7 +1,7 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.10",
+    "ExtensionVersion":  "0.4.1.11",
     "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\src\\UART\\uart_tx_min.v",
     "FileRelativePath":  "TestFiles\\src\\UART\\uart_tx_min.v",
     "ContentType":  "verilog",
@@ -853,73 +853,13 @@
                                           ]
                             },
                             {
-                                "Start":  1894,
-                                "Length":  5,
+                                "Start":  1890,
+                                "Length":  32,
                                 "Line":  61,
-                                "Column":  5,
-                                "Text":  "input",
+                                "Column":  1,
+                                "Text":  "    input  wire [15:0] baud_div,",
                                 "Types":  [
-                                              "input"
-                                          ]
-                            },
-                            {
-                                "Start":  1901,
-                                "Length":  4,
-                                "Line":  61,
-                                "Column":  12,
-                                "Text":  "wire",
-                                "Types":  [
-                                              "wire"
-                                          ]
-                            },
-                            {
-                                "Start":  1906,
-                                "Length":  1,
-                                "Line":  61,
-                                "Column":  17,
-                                "Text":  "[",
-                                "Types":  [
-                                              "Bracket2"
-                                          ]
-                            },
-                            {
-                                "Start":  1907,
-                                "Length":  2,
-                                "Line":  61,
-                                "Column":  18,
-                                "Text":  "15",
-                                "Types":  [
-                                              "Value"
-                                          ]
-                            },
-                            {
-                                "Start":  1910,
-                                "Length":  1,
-                                "Line":  61,
-                                "Column":  21,
-                                "Text":  "0",
-                                "Types":  [
-                                              "Value"
-                                          ]
-                            },
-                            {
-                                "Start":  1911,
-                                "Length":  1,
-                                "Line":  61,
-                                "Column":  22,
-                                "Text":  "]",
-                                "Types":  [
-                                              "Bracket2"
-                                          ]
-                            },
-                            {
-                                "Start":  1913,
-                                "Length":  8,
-                                "Line":  61,
-                                "Column":  24,
-                                "Text":  "baud_div",
-                                "Types":  [
-                                              "Variable_wire"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -1323,103 +1263,23 @@
                                           ]
                             },
                             {
-                                "Start":  2493,
-                                "Length":  4,
+                                "Start":  2489,
+                                "Length":  32,
                                 "Line":  82,
-                                "Column":  5,
-                                "Text":  "wire",
+                                "Column":  1,
+                                "Text":  "    wire [15:0] clks_per_bit_m1;",
                                 "Types":  [
-                                              "wire"
+                                              "InactiveCode"
                                           ]
                             },
                             {
-                                "Start":  2498,
-                                "Length":  1,
-                                "Line":  82,
-                                "Column":  10,
-                                "Text":  "[",
-                                "Types":  [
-                                              "Bracket1"
-                                          ]
-                            },
-                            {
-                                "Start":  2499,
-                                "Length":  2,
-                                "Line":  82,
-                                "Column":  11,
-                                "Text":  "15",
-                                "Types":  [
-                                              "Value"
-                                          ]
-                            },
-                            {
-                                "Start":  2502,
-                                "Length":  1,
-                                "Line":  82,
-                                "Column":  14,
-                                "Text":  "0",
-                                "Types":  [
-                                              "Value"
-                                          ]
-                            },
-                            {
-                                "Start":  2503,
-                                "Length":  1,
-                                "Line":  82,
-                                "Column":  15,
-                                "Text":  "]",
-                                "Types":  [
-                                              "Bracket1"
-                                          ]
-                            },
-                            {
-                                "Start":  2505,
-                                "Length":  15,
-                                "Line":  82,
-                                "Column":  17,
-                                "Text":  "clks_per_bit_m1",
-                                "Types":  [
-                                              "Variable_wire"
-                                          ]
-                            },
-                            {
-                                "Start":  2527,
-                                "Length":  6,
+                                "Start":  2523,
+                                "Length":  46,
                                 "Line":  84,
-                                "Column":  5,
-                                "Text":  "assign",
+                                "Column":  1,
+                                "Text":  "    assign clks_per_bit_m1 = baud_div - 16\u0027d1;",
                                 "Types":  [
-                                              "assign"
-                                          ]
-                            },
-                            {
-                                "Start":  2534,
-                                "Length":  15,
-                                "Line":  84,
-                                "Column":  12,
-                                "Text":  "clks_per_bit_m1",
-                                "Types":  [
-                                              "Variable_wire"
-                                          ]
-                            },
-                            {
-                                "Start":  2552,
-                                "Length":  8,
-                                "Line":  84,
-                                "Column":  30,
-                                "Text":  "baud_div",
-                                "Types":  [
-                                              "Variable_wire"
-                                          ]
-                            },
-                            {
-                                "Start":  2563,
-                                "Length":  5,
-                                "Line":  84,
-                                "Column":  41,
-                                "Text":  "16\u0027d1",
-                                "Types":  [
-                                              "Value"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -2923,63 +2783,13 @@
                                           ]
                             },
                             {
-                                "Start":  4542,
-                                "Length":  2,
+                                "Start":  4522,
+                                "Length":  59,
                                 "Line":  143,
-                                "Column":  21,
-                                "Text":  "if",
+                                "Column":  1,
+                                "Text":  "                    if (clk_count == clks_per_bit_m1) begin",
                                 "Types":  [
-                                              "if"
-                                          ]
-                            },
-                            {
-                                "Start":  4545,
-                                "Length":  1,
-                                "Line":  143,
-                                "Column":  24,
-                                "Text":  "(",
-                                "Types":  [
-                                              "Bracket1"
-                                          ]
-                            },
-                            {
-                                "Start":  4546,
-                                "Length":  9,
-                                "Line":  143,
-                                "Column":  25,
-                                "Text":  "clk_count",
-                                "Types":  [
-                                              "Variable_reg"
-                                          ]
-                            },
-                            {
-                                "Start":  4559,
-                                "Length":  15,
-                                "Line":  143,
-                                "Column":  38,
-                                "Text":  "clks_per_bit_m1",
-                                "Types":  [
-                                              "Variable_wire"
-                                          ]
-                            },
-                            {
-                                "Start":  4574,
-                                "Length":  1,
-                                "Line":  143,
-                                "Column":  53,
-                                "Text":  ")",
-                                "Types":  [
-                                              "Bracket1"
-                                          ]
-                            },
-                            {
-                                "Start":  4576,
-                                "Length":  5,
-                                "Line":  143,
-                                "Column":  55,
-                                "Text":  "begin",
-                                "Types":  [
-                                              "begin"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -3413,63 +3223,13 @@
                                           ]
                             },
                             {
-                                "Start":  5226,
-                                "Length":  2,
+                                "Start":  5206,
+                                "Length":  59,
                                 "Line":  164,
-                                "Column":  21,
-                                "Text":  "if",
+                                "Column":  1,
+                                "Text":  "                    if (clk_count == clks_per_bit_m1) begin",
                                 "Types":  [
-                                              "if"
-                                          ]
-                            },
-                            {
-                                "Start":  5229,
-                                "Length":  1,
-                                "Line":  164,
-                                "Column":  24,
-                                "Text":  "(",
-                                "Types":  [
-                                              "Bracket1"
-                                          ]
-                            },
-                            {
-                                "Start":  5230,
-                                "Length":  9,
-                                "Line":  164,
-                                "Column":  25,
-                                "Text":  "clk_count",
-                                "Types":  [
-                                              "Variable_reg"
-                                          ]
-                            },
-                            {
-                                "Start":  5243,
-                                "Length":  15,
-                                "Line":  164,
-                                "Column":  38,
-                                "Text":  "clks_per_bit_m1",
-                                "Types":  [
-                                              "Variable_wire"
-                                          ]
-                            },
-                            {
-                                "Start":  5258,
-                                "Length":  1,
-                                "Line":  164,
-                                "Column":  53,
-                                "Text":  ")",
-                                "Types":  [
-                                              "Bracket1"
-                                          ]
-                            },
-                            {
-                                "Start":  5260,
-                                "Length":  5,
-                                "Line":  164,
-                                "Column":  55,
-                                "Text":  "begin",
-                                "Types":  [
-                                              "begin"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -4043,63 +3803,13 @@
                                           ]
                             },
                             {
-                                "Start":  6199,
-                                "Length":  2,
+                                "Start":  6179,
+                                "Length":  59,
                                 "Line":  189,
-                                "Column":  21,
-                                "Text":  "if",
+                                "Column":  1,
+                                "Text":  "                    if (clk_count == clks_per_bit_m1) begin",
                                 "Types":  [
-                                              "if"
-                                          ]
-                            },
-                            {
-                                "Start":  6202,
-                                "Length":  1,
-                                "Line":  189,
-                                "Column":  24,
-                                "Text":  "(",
-                                "Types":  [
-                                              "Bracket1"
-                                          ]
-                            },
-                            {
-                                "Start":  6203,
-                                "Length":  9,
-                                "Line":  189,
-                                "Column":  25,
-                                "Text":  "clk_count",
-                                "Types":  [
-                                              "Variable_reg"
-                                          ]
-                            },
-                            {
-                                "Start":  6216,
-                                "Length":  15,
-                                "Line":  189,
-                                "Column":  38,
-                                "Text":  "clks_per_bit_m1",
-                                "Types":  [
-                                              "Variable_wire"
-                                          ]
-                            },
-                            {
-                                "Start":  6231,
-                                "Length":  1,
-                                "Line":  189,
-                                "Column":  53,
-                                "Text":  ")",
-                                "Types":  [
-                                              "Bracket1"
-                                          ]
-                            },
-                            {
-                                "Start":  6233,
-                                "Length":  5,
-                                "Line":  189,
-                                "Column":  55,
-                                "Text":  "begin",
-                                "Types":  [
-                                              "begin"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -10405,74 +10115,14 @@
                      "HoverText":  "macro condition:\r\n`ifdef ADJUSTABLE_BAUD_ENABLED"
                  },
                  {
-                     "Start":  1894,
-                     "Length":  5,
+                     "Start":  1890,
+                     "Length":  32,
                      "Line":  61,
-                     "Column":  5,
-                     "Text":  "input",
+                     "Column":  1,
+                     "Text":  "    input  wire [15:0] baud_div,",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_input",
-                     "HoverText":  "The reserved word input is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
-                 },
-                 {
-                     "Start":  1901,
-                     "Length":  4,
-                     "Line":  61,
-                     "Column":  12,
-                     "Text":  "wire",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_wire",
-                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
-                 },
-                 {
-                     "Start":  1906,
-                     "Length":  1,
-                     "Line":  61,
-                     "Column":  17,
-                     "Text":  "[",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket2",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  1907,
-                     "Length":  2,
-                     "Line":  61,
-                     "Column":  18,
-                     "Text":  "15",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Value",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  1910,
-                     "Length":  1,
-                     "Line":  61,
-                     "Column":  21,
-                     "Text":  "0",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Value",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  1911,
-                     "Length":  1,
-                     "Line":  61,
-                     "Column":  22,
-                     "Text":  "]",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket2",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  1913,
-                     "Length":  8,
-                     "Line":  61,
-                     "Column":  24,
-                     "Text":  "baud_div",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  "input wire [15:0] baud_div"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027ADJUSTABLE_BAUD_ENABLED\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  1923,
@@ -10985,104 +10635,24 @@
                      "HoverText":  "macro condition:\r\n`ifdef ADJUSTABLE_BAUD_ENABLED"
                  },
                  {
-                     "Start":  2493,
-                     "Length":  4,
+                     "Start":  2489,
+                     "Length":  32,
                      "Line":  82,
-                     "Column":  5,
-                     "Text":  "wire",
+                     "Column":  1,
+                     "Text":  "    wire [15:0] clks_per_bit_m1;",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_wire",
-                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027ADJUSTABLE_BAUD_ENABLED\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  2498,
-                     "Length":  1,
-                     "Line":  82,
-                     "Column":  10,
-                     "Text":  "[",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  2499,
-                     "Length":  2,
-                     "Line":  82,
-                     "Column":  11,
-                     "Text":  "15",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Value",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  2502,
-                     "Length":  1,
-                     "Line":  82,
-                     "Column":  14,
-                     "Text":  "0",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Value",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  2503,
-                     "Length":  1,
-                     "Line":  82,
-                     "Column":  15,
-                     "Text":  "]",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  2505,
-                     "Length":  15,
-                     "Line":  82,
-                     "Column":  17,
-                     "Text":  "clks_per_bit_m1",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  "wire [15:0] clks_per_bit_m1"
-                 },
-                 {
-                     "Start":  2527,
-                     "Length":  6,
+                     "Start":  2523,
+                     "Length":  46,
                      "Line":  84,
-                     "Column":  5,
-                     "Text":  "assign",
+                     "Column":  1,
+                     "Text":  "    assign clks_per_bit_m1 = baud_div - 16\u0027d1;",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_assign",
-                     "HoverText":  "The assign statement is used to express the first type of procedural continuous assignment. Assign of reg data types is not supported. "
-                 },
-                 {
-                     "Start":  2534,
-                     "Length":  15,
-                     "Line":  84,
-                     "Column":  12,
-                     "Text":  "clks_per_bit_m1",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  "wire [15:0] clks_per_bit_m1"
-                 },
-                 {
-                     "Start":  2552,
-                     "Length":  8,
-                     "Line":  84,
-                     "Column":  30,
-                     "Text":  "baud_div",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  "input wire [15:0] baud_div"
-                 },
-                 {
-                     "Start":  2563,
-                     "Length":  5,
-                     "Line":  84,
-                     "Column":  41,
-                     "Text":  "16\u0027d1",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Value",
-                     "HoverText":  "16\u0027D1 = (16 bit Decimal) 1; "
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027ADJUSTABLE_BAUD_ENABLED\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  2570,
@@ -14215,64 +13785,14 @@
                      "HoverText":  "macro condition:\r\n`ifdef ADJUSTABLE_BAUD_ENABLED"
                  },
                  {
-                     "Start":  4542,
-                     "Length":  2,
+                     "Start":  4522,
+                     "Length":  59,
                      "Line":  143,
-                     "Column":  21,
-                     "Text":  "if",
+                     "Column":  1,
+                     "Text":  "                    if (clk_count == clks_per_bit_m1) begin",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_if",
-                     "HoverText":  "Conditional logic statement. Presents a condition to be evaluated as true or false."
-                 },
-                 {
-                     "Start":  4545,
-                     "Length":  1,
-                     "Line":  143,
-                     "Column":  24,
-                     "Text":  "(",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  4546,
-                     "Length":  9,
-                     "Line":  143,
-                     "Column":  25,
-                     "Text":  "clk_count",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
-                     "HoverText":  "reg [15:0] clk_count"
-                 },
-                 {
-                     "Start":  4559,
-                     "Length":  15,
-                     "Line":  143,
-                     "Column":  38,
-                     "Text":  "clks_per_bit_m1",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  "wire [15:0] clks_per_bit_m1"
-                 },
-                 {
-                     "Start":  4574,
-                     "Length":  1,
-                     "Line":  143,
-                     "Column":  53,
-                     "Text":  ")",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  4576,
-                     "Length":  5,
-                     "Line":  143,
-                     "Column":  55,
-                     "Text":  "begin",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_begin",
-                     "HoverText":  "A begin-end block is a means of grouping two or more procedural assignments together so that they act like a single group of sequential statements."
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027ADJUSTABLE_BAUD_ENABLED\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  4582,
@@ -14885,64 +14405,14 @@
                      "HoverText":  "macro condition:\r\n`ifdef ADJUSTABLE_BAUD_ENABLED"
                  },
                  {
-                     "Start":  5226,
-                     "Length":  2,
+                     "Start":  5206,
+                     "Length":  59,
                      "Line":  164,
-                     "Column":  21,
-                     "Text":  "if",
+                     "Column":  1,
+                     "Text":  "                    if (clk_count == clks_per_bit_m1) begin",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_if",
-                     "HoverText":  "Conditional logic statement. Presents a condition to be evaluated as true or false."
-                 },
-                 {
-                     "Start":  5229,
-                     "Length":  1,
-                     "Line":  164,
-                     "Column":  24,
-                     "Text":  "(",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  5230,
-                     "Length":  9,
-                     "Line":  164,
-                     "Column":  25,
-                     "Text":  "clk_count",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
-                     "HoverText":  "reg [15:0] clk_count"
-                 },
-                 {
-                     "Start":  5243,
-                     "Length":  15,
-                     "Line":  164,
-                     "Column":  38,
-                     "Text":  "clks_per_bit_m1",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  "wire [15:0] clks_per_bit_m1"
-                 },
-                 {
-                     "Start":  5258,
-                     "Length":  1,
-                     "Line":  164,
-                     "Column":  53,
-                     "Text":  ")",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  5260,
-                     "Length":  5,
-                     "Line":  164,
-                     "Column":  55,
-                     "Text":  "begin",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_begin",
-                     "HoverText":  "A begin-end block is a means of grouping two or more procedural assignments together so that they act like a single group of sequential statements."
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027ADJUSTABLE_BAUD_ENABLED\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  5266,
@@ -15905,64 +15375,14 @@
                      "HoverText":  "macro condition:\r\n`ifdef ADJUSTABLE_BAUD_ENABLED"
                  },
                  {
-                     "Start":  6199,
-                     "Length":  2,
+                     "Start":  6179,
+                     "Length":  59,
                      "Line":  189,
-                     "Column":  21,
-                     "Text":  "if",
+                     "Column":  1,
+                     "Text":  "                    if (clk_count == clks_per_bit_m1) begin",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_if",
-                     "HoverText":  "Conditional logic statement. Presents a condition to be evaluated as true or false."
-                 },
-                 {
-                     "Start":  6202,
-                     "Length":  1,
-                     "Line":  189,
-                     "Column":  24,
-                     "Text":  "(",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  6203,
-                     "Length":  9,
-                     "Line":  189,
-                     "Column":  25,
-                     "Text":  "clk_count",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
-                     "HoverText":  "reg [15:0] clk_count"
-                 },
-                 {
-                     "Start":  6216,
-                     "Length":  15,
-                     "Line":  189,
-                     "Column":  38,
-                     "Text":  "clks_per_bit_m1",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  "wire [15:0] clks_per_bit_m1"
-                 },
-                 {
-                     "Start":  6231,
-                     "Length":  1,
-                     "Line":  189,
-                     "Column":  53,
-                     "Text":  ")",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  6233,
-                     "Length":  5,
-                     "Line":  189,
-                     "Column":  55,
-                     "Text":  "begin",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_begin",
-                     "HoverText":  "A begin-end block is a means of grouping two or more procedural assignments together so that they act like a single group of sequential statements."
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027ADJUSTABLE_BAUD_ENABLED\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  6239,
@@ -30436,12 +29856,5 @@
                         "TokenType":  "Verilog_Value",
                         "HoverText":  "4\u0027D8 = (4 bit Decimal) 8; "
                     }
-                ],
-    "ProcessingTime":  {
-                           "SchemaVersion":  2,
-                           "ElapsedBucket":  "30-34s",
-                           "Index":  1,
-                           "Count":  1,
-                           "Status":  "Completed"
-                       }
+                ]
 }

@@ -271,6 +271,14 @@ From [Microsoft System.Windows.Media.Colors Class](https://docs.microsoft.com/en
 
 ![art-color-table.png](./images/art-color-table.png)
 
+## Development
+
+Remove "experimental" directories, probably called something like `18.0_83ca6b20Exp` in both:
+
+```
+C:\Users\%USERNAME%\AppData\Roaming\Microsoft\VisualStudio
+C:\Users\%USERNAME%\AppData\Local\Microsoft\VisualStudio
+```
 
 ## Troubleshooting
 

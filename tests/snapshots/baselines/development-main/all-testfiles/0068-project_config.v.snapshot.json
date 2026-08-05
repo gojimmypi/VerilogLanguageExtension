@@ -1,0 +1,646 @@
+{
+    "SchemaVersion":  3,
+    "RunName":  "all-testfiles",
+    "ExtensionVersion":  "0.4.1.11",
+    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\macros\\include-files\\project_config.v",
+    "FileRelativePath":  "TestFiles\\macros\\include-files\\project_config.v",
+    "ContentType":  "verilog",
+    "SnapshotLength":  238,
+    "SnapshotVersion":  2,
+    "TextSha256":  "7f51c26603df8859281a6b089355d6bab67a735e33a9737bc152b77b80b50e92",
+    "Errors":  [
+
+               ],
+    "Classifications":  [
+                            {
+                                "Start":  0,
+                                "Length":  7,
+                                "Line":  1,
+                                "Column":  1,
+                                "Text":  "`ifndef",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  8,
+                                "Length":  20,
+                                "Line":  1,
+                                "Column":  9,
+                                "Text":  "VLE_PROJECT_CONFIG_V",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  30,
+                                "Length":  7,
+                                "Line":  2,
+                                "Column":  1,
+                                "Text":  "`define",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  38,
+                                "Length":  20,
+                                "Line":  2,
+                                "Column":  9,
+                                "Text":  "VLE_PROJECT_CONFIG_V",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  62,
+                                "Length":  7,
+                                "Line":  4,
+                                "Column":  1,
+                                "Text":  "`define",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  70,
+                                "Length":  16,
+                                "Line":  4,
+                                "Column":  9,
+                                "Text":  "SIM_JTAG_CORE_TB",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  87,
+                                "Length":  1,
+                                "Line":  4,
+                                "Column":  26,
+                                "Text":  "1",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  90,
+                                "Length":  7,
+                                "Line":  5,
+                                "Column":  1,
+                                "Text":  "`define",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  98,
+                                "Length":  19,
+                                "Line":  5,
+                                "Column":  9,
+                                "Text":  "INCLUDED_ZERO_VALUE",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  118,
+                                "Length":  1,
+                                "Line":  5,
+                                "Column":  29,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  121,
+                                "Length":  7,
+                                "Line":  6,
+                                "Column":  1,
+                                "Text":  "`define",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  129,
+                                "Length":  18,
+                                "Line":  6,
+                                "Column":  9,
+                                "Text":  "NESTED_CONFIG_FILE",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  148,
+                                "Length":  25,
+                                "Line":  6,
+                                "Column":  28,
+                                "Text":  "\"nested/nested_config.vh\"",
+                                "Types":  [
+                                              "StaticString"
+                                          ]
+                            },
+                            {
+                                "Start":  175,
+                                "Length":  8,
+                                "Line":  7,
+                                "Column":  1,
+                                "Text":  "`include",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  184,
+                                "Length":  19,
+                                "Line":  7,
+                                "Column":  10,
+                                "Text":  "`NESTED_CONFIG_FILE",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  205,
+                                "Length":  8,
+                                "Line":  8,
+                                "Column":  1,
+                                "Text":  "`include",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  214,
+                                "Length":  12,
+                                "Line":  8,
+                                "Column":  10,
+                                "Text":  "\"cycle_a.vh\"",
+                                "Types":  [
+                                              "StaticString"
+                                          ]
+                            },
+                            {
+                                "Start":  230,
+                                "Length":  6,
+                                "Line":  10,
+                                "Column":  1,
+                                "Text":  "`endif",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            }
+                        ],
+    "Tags":  [
+                 {
+                     "Start":  0,
+                     "Length":  7,
+                     "Line":  1,
+                     "Column":  1,
+                     "Text":  "`ifndef",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  8,
+                     "Length":  20,
+                     "Line":  1,
+                     "Column":  9,
+                     "Text":  "VLE_PROJECT_CONFIG_V",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "macro condition:\r\n`ifndef VLE_PROJECT_CONFIG_V\r\n\r\nmacro definition:\r\n`define VLE_PROJECT_CONFIG_V\r\n\r\ncondition:\r\n`ifndef VLE_PROJECT_CONFIG_V"
+                 },
+                 {
+                     "Start":  30,
+                     "Length":  7,
+                     "Line":  2,
+                     "Column":  1,
+                     "Text":  "`define",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  38,
+                     "Length":  20,
+                     "Line":  2,
+                     "Column":  9,
+                     "Text":  "VLE_PROJECT_CONFIG_V",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "macro condition:\r\n`ifndef VLE_PROJECT_CONFIG_V\r\n\r\nmacro definition:\r\n`define VLE_PROJECT_CONFIG_V\r\n\r\ncondition:\r\n`ifndef VLE_PROJECT_CONFIG_V"
+                 },
+                 {
+                     "Start":  62,
+                     "Length":  7,
+                     "Line":  4,
+                     "Column":  1,
+                     "Text":  "`define",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  70,
+                     "Length":  16,
+                     "Line":  4,
+                     "Column":  9,
+                     "Text":  "SIM_JTAG_CORE_TB",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "macro definition:\r\n`define SIM_JTAG_CORE_TB 1\r\n\r\ncondition:\r\n`ifndef VLE_PROJECT_CONFIG_V"
+                 },
+                 {
+                     "Start":  87,
+                     "Length":  1,
+                     "Line":  4,
+                     "Column":  26,
+                     "Text":  "1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  90,
+                     "Length":  7,
+                     "Line":  5,
+                     "Column":  1,
+                     "Text":  "`define",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  98,
+                     "Length":  19,
+                     "Line":  5,
+                     "Column":  9,
+                     "Text":  "INCLUDED_ZERO_VALUE",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "macro definition:\r\n`define INCLUDED_ZERO_VALUE 0\r\n\r\ncondition:\r\n`ifndef VLE_PROJECT_CONFIG_V"
+                 },
+                 {
+                     "Start":  118,
+                     "Length":  1,
+                     "Line":  5,
+                     "Column":  29,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  121,
+                     "Length":  7,
+                     "Line":  6,
+                     "Column":  1,
+                     "Text":  "`define",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  129,
+                     "Length":  18,
+                     "Line":  6,
+                     "Column":  9,
+                     "Text":  "NESTED_CONFIG_FILE",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "macro definition:\r\n`define NESTED_CONFIG_FILE \"nested/nested_config.vh\"\r\n\r\ncondition:\r\n`ifndef VLE_PROJECT_CONFIG_V"
+                 },
+                 {
+                     "Start":  148,
+                     "Length":  25,
+                     "Line":  6,
+                     "Column":  28,
+                     "Text":  "\"nested/nested_config.vh\"",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_StaticString",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  175,
+                     "Length":  8,
+                     "Line":  7,
+                     "Column":  1,
+                     "Text":  "`include",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  184,
+                     "Length":  19,
+                     "Line":  7,
+                     "Column":  10,
+                     "Text":  "`NESTED_CONFIG_FILE",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "macro definition:\r\n`define NESTED_CONFIG_FILE \"nested/nested_config.vh\"\r\n\r\ncondition:\r\n`ifndef VLE_PROJECT_CONFIG_V"
+                 },
+                 {
+                     "Start":  205,
+                     "Length":  8,
+                     "Line":  8,
+                     "Column":  1,
+                     "Text":  "`include",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  214,
+                     "Length":  12,
+                     "Line":  8,
+                     "Column":  10,
+                     "Text":  "\"cycle_a.vh\"",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_StaticString",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  230,
+                     "Length":  6,
+                     "Line":  10,
+                     "Column":  1,
+                     "Text":  "`endif",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 }
+             ],
+    "Tokens":  [
+                   {
+                       "Start":  0,
+                       "Length":  7,
+                       "Line":  1,
+                       "Column":  1,
+                       "Text":  "`ifndef",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  7,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  8,
+                       "Length":  20,
+                       "Line":  1,
+                       "Column":  9,
+                       "Text":  "VLE_PROJECT_CONFIG_V",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  30,
+                       "Length":  7,
+                       "Line":  2,
+                       "Column":  1,
+                       "Text":  "`define",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  37,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  38,
+                       "Length":  20,
+                       "Line":  2,
+                       "Column":  9,
+                       "Text":  "VLE_PROJECT_CONFIG_V",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  62,
+                       "Length":  7,
+                       "Line":  4,
+                       "Column":  1,
+                       "Text":  "`define",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  69,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  70,
+                       "Length":  16,
+                       "Line":  4,
+                       "Column":  9,
+                       "Text":  "SIM_JTAG_CORE_TB",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  86,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  25,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  87,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  26,
+                       "Text":  "1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  90,
+                       "Length":  7,
+                       "Line":  5,
+                       "Column":  1,
+                       "Text":  "`define",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  97,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  98,
+                       "Length":  19,
+                       "Line":  5,
+                       "Column":  9,
+                       "Text":  "INCLUDED_ZERO_VALUE",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  117,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  28,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  118,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  29,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  121,
+                       "Length":  7,
+                       "Line":  6,
+                       "Column":  1,
+                       "Text":  "`define",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  128,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  129,
+                       "Length":  18,
+                       "Line":  6,
+                       "Column":  9,
+                       "Text":  "NESTED_CONFIG_FILE",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  147,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  27,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  148,
+                       "Length":  7,
+                       "Line":  6,
+                       "Column":  28,
+                       "Text":  "\"nested",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  155,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  35,
+                       "Text":  "/",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  156,
+                       "Length":  17,
+                       "Line":  6,
+                       "Column":  36,
+                       "Text":  "nested_config.vh\"",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  175,
+                       "Length":  8,
+                       "Line":  7,
+                       "Column":  1,
+                       "Text":  "`include",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  183,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  9,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  184,
+                       "Length":  19,
+                       "Line":  7,
+                       "Column":  10,
+                       "Text":  "`NESTED_CONFIG_FILE",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  205,
+                       "Length":  8,
+                       "Line":  8,
+                       "Column":  1,
+                       "Text":  "`include",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  213,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  9,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  214,
+                       "Length":  12,
+                       "Line":  8,
+                       "Column":  10,
+                       "Text":  "\"cycle_a.vh\"",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  230,
+                       "Length":  6,
+                       "Line":  10,
+                       "Column":  1,
+                       "Text":  "`endif",
+                       "Context":  "Undetermined"
+                   }
+               ],
+    "Symbols":  [
+                    {
+                        "Scope":  "__MACRO__",
+                        "Name":  "VLE_PROJECT_CONFIG_V",
+                        "TokenType":  "Verilog_Macro",
+                        "HoverText":  "macro condition:\r\n`ifndef VLE_PROJECT_CONFIG_V\r\n\r\nmacro definition:\r\n`define VLE_PROJECT_CONFIG_V\r\n\r\ncondition:\r\n`ifndef VLE_PROJECT_CONFIG_V"
+                    },
+                    {
+                        "Scope":  "__MACRO__",
+                        "Name":  "SIM_JTAG_CORE_TB",
+                        "TokenType":  "Verilog_Macro",
+                        "HoverText":  "macro definition:\r\n`define SIM_JTAG_CORE_TB 1\r\n\r\ncondition:\r\n`ifndef VLE_PROJECT_CONFIG_V"
+                    },
+                    {
+                        "Scope":  "__MACRO__",
+                        "Name":  "INCLUDED_ZERO_VALUE",
+                        "TokenType":  "Verilog_Macro",
+                        "HoverText":  "macro definition:\r\n`define INCLUDED_ZERO_VALUE 0\r\n\r\ncondition:\r\n`ifndef VLE_PROJECT_CONFIG_V"
+                    },
+                    {
+                        "Scope":  "__MACRO__",
+                        "Name":  "NESTED_CONFIG_FILE",
+                        "TokenType":  "Verilog_Macro",
+                        "HoverText":  "macro definition:\r\n`define NESTED_CONFIG_FILE \"nested/nested_config.vh\"\r\n\r\ncondition:\r\n`ifndef VLE_PROJECT_CONFIG_V"
+                    }
+                ]
+}

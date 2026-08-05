@@ -1,7 +1,7 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.10",
+    "ExtensionVersion":  "0.4.1.11",
     "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\din _test3.v",
     "FileRelativePath":  "TestFiles\\din _test3.v",
     "ContentType":  "verilog",
@@ -5214,12 +5214,5 @@
                         "TokenType":  "Verilog_Variable_module",
                         "HoverText":  "module myff_din (  [31:0] MASKED_IRQz = 32\u0027h0000_0000,\r\n parameter [31:0] LATCHED_IRQ = 32\u0027h ffff_ffff;\r\ninput [7:0] din)"
                     }
-                ],
-    "ProcessingTime":  {
-                           "SchemaVersion":  2,
-                           "ElapsedBucket":  "30-34s",
-                           "Index":  1,
-                           "Count":  1,
-                           "Status":  "Completed"
-                       }
+                ]
 }

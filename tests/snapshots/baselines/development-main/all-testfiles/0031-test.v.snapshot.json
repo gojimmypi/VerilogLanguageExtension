@@ -1,7 +1,7 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.5",
+    "ExtensionVersion":  "0.4.1.11",
     "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\test.v",
     "FileRelativePath":  "TestFiles\\test.v",
     "ContentType":  "verilog",
@@ -479,7 +479,7 @@
                                 "Column":  1,
                                 "Text":  "/* verilator lint_off UNUSED */",
                                 "Types":  [
-                                              "comment"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -489,307 +489,87 @@
                                 "Column":  1,
                                 "Text":  "// this is a sample test; [delim]\t[tab] ;;// test",
                                 "Types":  [
-                                              "comment"
+                                              "InactiveCode"
                                           ]
                             },
                             {
                                 "Start":  801,
-                                "Length":  6,
+                                "Length":  19,
                                 "Line":  22,
                                 "Column":  1,
-                                "Text":  "module",
+                                "Text":  "module ulx3s_adda (",
                                 "Types":  [
-                                              "module"
+                                              "InactiveCode"
                                           ]
                             },
                             {
-                                "Start":  808,
-                                "Length":  10,
-                                "Line":  22,
-                                "Column":  8,
-                                "Text":  "ulx3s_adda",
-                                "Types":  [
-                                              "Variable_module"
-                                          ]
-                            },
-                            {
-                                "Start":  819,
-                                "Length":  1,
-                                "Line":  22,
-                                "Column":  19,
-                                "Text":  "(",
-                                "Types":  [
-                                              "Bracket1"
-                                          ]
-                            },
-                            {
-                                "Start":  824,
-                                "Length":  5,
+                                "Start":  822,
+                                "Length":  15,
                                 "Line":  23,
-                                "Column":  3,
-                                "Text":  "input",
+                                "Column":  1,
+                                "Text":  "  input  i_clk,",
                                 "Types":  [
-                                              "input"
+                                              "InactiveCode"
                                           ]
                             },
                             {
-                                "Start":  831,
-                                "Length":  5,
-                                "Line":  23,
-                                "Column":  10,
-                                "Text":  "i_clk",
-                                "Types":  [
-                                              "Variable_duplicate"
-                                          ]
-                            },
-                            {
-                                "Start":  841,
-                                "Length":  5,
+                                "Start":  839,
+                                "Length":  15,
                                 "Line":  24,
-                                "Column":  3,
-                                "Text":  "input",
+                                "Column":  1,
+                                "Text":  "  input  reset,",
                                 "Types":  [
-                                              "input"
+                                              "InactiveCode"
                                           ]
                             },
                             {
-                                "Start":  848,
-                                "Length":  5,
-                                "Line":  24,
-                                "Column":  10,
-                                "Text":  "reset",
-                                "Types":  [
-                                              "Variable_input"
-                                          ]
-                            },
-                            {
-                                "Start":  858,
-                                "Length":  6,
+                                "Start":  856,
+                                "Length":  21,
                                 "Line":  25,
-                                "Column":  3,
-                                "Text":  "output",
+                                "Column":  1,
+                                "Text":  "  output [7:0] o_led,",
                                 "Types":  [
-                                              "output"
+                                              "InactiveCode"
                                           ]
                             },
                             {
-                                "Start":  865,
-                                "Length":  1,
-                                "Line":  25,
-                                "Column":  10,
-                                "Text":  "[",
-                                "Types":  [
-                                              "Bracket2"
-                                          ]
-                            },
-                            {
-                                "Start":  866,
-                                "Length":  1,
-                                "Line":  25,
-                                "Column":  11,
-                                "Text":  "7",
-                                "Types":  [
-                                              "Value"
-                                          ]
-                            },
-                            {
-                                "Start":  868,
-                                "Length":  1,
-                                "Line":  25,
-                                "Column":  13,
-                                "Text":  "0",
-                                "Types":  [
-                                              "Value"
-                                          ]
-                            },
-                            {
-                                "Start":  869,
-                                "Length":  1,
-                                "Line":  25,
-                                "Column":  14,
-                                "Text":  "]",
-                                "Types":  [
-                                              "Bracket2"
-                                          ]
-                            },
-                            {
-                                "Start":  871,
-                                "Length":  5,
-                                "Line":  25,
-                                "Column":  16,
-                                "Text":  "o_led",
-                                "Types":  [
-                                              "Variable_duplicate"
-                                          ]
-                            },
-                            {
-                                "Start":  881,
-                                "Length":  6,
+                                "Start":  879,
+                                "Length":  18,
                                 "Line":  26,
-                                "Column":  3,
-                                "Text":  "output",
+                                "Column":  1,
+                                "Text":  "\t output o_AD_CLK,",
                                 "Types":  [
-                                              "output"
+                                              "InactiveCode"
                                           ]
                             },
                             {
-                                "Start":  888,
-                                "Length":  8,
-                                "Line":  26,
-                                "Column":  10,
-                                "Text":  "o_AD_CLK",
-                                "Types":  [
-                                              "Variable_duplicate"
-                                          ]
-                            },
-                            {
-                                "Start":  901,
-                                "Length":  5,
+                                "Start":  899,
+                                "Length":  26,
                                 "Line":  27,
-                                "Column":  3,
-                                "Text":  "input",
+                                "Column":  1,
+                                "Text":  "\t input  [7:0] J2_AD_PORT,",
                                 "Types":  [
-                                              "input"
+                                              "InactiveCode"
                                           ]
                             },
                             {
-                                "Start":  908,
-                                "Length":  1,
-                                "Line":  27,
-                                "Column":  10,
-                                "Text":  "[",
-                                "Types":  [
-                                              "Bracket2"
-                                          ]
-                            },
-                            {
-                                "Start":  909,
-                                "Length":  1,
-                                "Line":  27,
-                                "Column":  11,
-                                "Text":  "7",
-                                "Types":  [
-                                              "Value"
-                                          ]
-                            },
-                            {
-                                "Start":  911,
-                                "Length":  1,
-                                "Line":  27,
-                                "Column":  13,
-                                "Text":  "0",
-                                "Types":  [
-                                              "Value"
-                                          ]
-                            },
-                            {
-                                "Start":  912,
-                                "Length":  1,
-                                "Line":  27,
-                                "Column":  14,
-                                "Text":  "]",
-                                "Types":  [
-                                              "Bracket2"
-                                          ]
-                            },
-                            {
-                                "Start":  914,
-                                "Length":  10,
-                                "Line":  27,
-                                "Column":  16,
-                                "Text":  "J2_AD_PORT",
-                                "Types":  [
-                                              "Variable_input"
-                                          ]
-                            },
-                            {
-                                "Start":  929,
-                                "Length":  6,
+                                "Start":  927,
+                                "Length":  18,
                                 "Line":  28,
-                                "Column":  3,
-                                "Text":  "output",
+                                "Column":  1,
+                                "Text":  "\t output o_DA_CLK,",
                                 "Types":  [
-                                              "output"
+                                              "InactiveCode"
                                           ]
                             },
                             {
-                                "Start":  936,
-                                "Length":  8,
-                                "Line":  28,
-                                "Column":  10,
-                                "Text":  "o_DA_CLK",
-                                "Types":  [
-                                              "Variable_duplicate"
-                                          ]
-                            },
-                            {
-                                "Start":  949,
-                                "Length":  6,
+                                "Start":  947,
+                                "Length":  27,
                                 "Line":  29,
-                                "Column":  3,
-                                "Text":  "output",
+                                "Column":  1,
+                                "Text":  "\t output [7:0] J2_DA_PORT);",
                                 "Types":  [
-                                              "output"
-                                          ]
-                            },
-                            {
-                                "Start":  956,
-                                "Length":  1,
-                                "Line":  29,
-                                "Column":  10,
-                                "Text":  "[",
-                                "Types":  [
-                                              "Bracket2"
-                                          ]
-                            },
-                            {
-                                "Start":  957,
-                                "Length":  1,
-                                "Line":  29,
-                                "Column":  11,
-                                "Text":  "7",
-                                "Types":  [
-                                              "Value"
-                                          ]
-                            },
-                            {
-                                "Start":  959,
-                                "Length":  1,
-                                "Line":  29,
-                                "Column":  13,
-                                "Text":  "0",
-                                "Types":  [
-                                              "Value"
-                                          ]
-                            },
-                            {
-                                "Start":  960,
-                                "Length":  1,
-                                "Line":  29,
-                                "Column":  14,
-                                "Text":  "]",
-                                "Types":  [
-                                              "Bracket2"
-                                          ]
-                            },
-                            {
-                                "Start":  962,
-                                "Length":  10,
-                                "Line":  29,
-                                "Column":  16,
-                                "Text":  "J2_DA_PORT",
-                                "Types":  [
-                                              "Variable_output"
-                                          ]
-                            },
-                            {
-                                "Start":  972,
-                                "Length":  1,
-                                "Line":  29,
-                                "Column":  26,
-                                "Text":  ")",
-                                "Types":  [
-                                              "Bracket1"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -799,247 +579,67 @@
                                 "Column":  1,
                                 "Text":  "/* verilator lint_on UNUSED */",
                                 "Types":  [
-                                              "comment"
+                                              "InactiveCode"
                                           ]
                             },
                             {
-                                "Start":  1014,
-                                "Length":  4,
-                                "Line":  32,
-                                "Column":  5,
-                                "Text":  "wire",
-                                "Types":  [
-                                              "wire"
-                                          ]
-                            },
-                            {
-                                "Start":  1019,
-                                "Length":  5,
-                                "Line":  32,
-                                "Column":  10,
-                                "Text":  "i_clk",
-                                "Types":  [
-                                              "Variable_duplicate"
-                                          ]
-                            },
-                            {
-                                "Start":  1031,
-                                "Length":  4,
-                                "Line":  33,
-                                "Column":  5,
-                                "Text":  "wire",
-                                "Types":  [
-                                              "wire"
-                                          ]
-                            },
-                            {
-                                "Start":  1036,
-                                "Length":  1,
-                                "Line":  33,
-                                "Column":  10,
-                                "Text":  "[",
-                                "Types":  [
-                                              "Bracket1"
-                                          ]
-                            },
-                            {
-                                "Start":  1037,
-                                "Length":  1,
-                                "Line":  33,
-                                "Column":  11,
-                                "Text":  "7",
-                                "Types":  [
-                                              "Value"
-                                          ]
-                            },
-                            {
-                                "Start":  1039,
-                                "Length":  1,
-                                "Line":  33,
-                                "Column":  13,
-                                "Text":  "0",
-                                "Types":  [
-                                              "Value"
-                                          ]
-                            },
-                            {
-                                "Start":  1040,
-                                "Length":  1,
-                                "Line":  33,
-                                "Column":  14,
-                                "Text":  "]",
-                                "Types":  [
-                                              "Bracket1"
-                                          ]
-                            },
-                            {
-                                "Start":  1042,
-                                "Length":  5,
-                                "Line":  33,
-                                "Column":  16,
-                                "Text":  "o_led",
-                                "Types":  [
-                                              "Variable_duplicate"
-                                          ]
-                            },
-                            {
-                                "Start":  1054,
-                                "Length":  4,
-                                "Line":  35,
-                                "Column":  3,
-                                "Text":  "wire",
-                                "Types":  [
-                                              "wire"
-                                          ]
-                            },
-                            {
-                                "Start":  1059,
-                                "Length":  8,
-                                "Line":  35,
-                                "Column":  8,
-                                "Text":  "o_AD_CLK",
-                                "Types":  [
-                                              "Variable_duplicate"
-                                          ]
-                            },
-                            {
-                                "Start":  1072,
-                                "Length":  4,
-                                "Line":  36,
-                                "Column":  3,
-                                "Text":  "wire",
-                                "Types":  [
-                                              "wire"
-                                          ]
-                            },
-                            {
-                                "Start":  1078,
-                                "Length":  1,
-                                "Line":  36,
-                                "Column":  9,
-                                "Text":  "[",
-                                "Types":  [
-                                              "Bracket1"
-                                          ]
-                            },
-                            {
-                                "Start":  1079,
-                                "Length":  1,
-                                "Line":  36,
-                                "Column":  10,
-                                "Text":  "7",
-                                "Types":  [
-                                              "Value"
-                                          ]
-                            },
-                            {
-                                "Start":  1081,
-                                "Length":  1,
-                                "Line":  36,
-                                "Column":  12,
-                                "Text":  "0",
-                                "Types":  [
-                                              "Value"
-                                          ]
-                            },
-                            {
-                                "Start":  1082,
-                                "Length":  1,
-                                "Line":  36,
-                                "Column":  13,
-                                "Text":  "]",
-                                "Types":  [
-                                              "Bracket1"
-                                          ]
-                            },
-                            {
-                                "Start":  1084,
+                                "Start":  1010,
                                 "Length":  15,
+                                "Line":  32,
+                                "Column":  1,
+                                "Text":  "    wire i_clk;",
+                                "Types":  [
+                                              "InactiveCode"
+                                          ]
+                            },
+                            {
+                                "Start":  1027,
+                                "Length":  21,
+                                "Line":  33,
+                                "Column":  1,
+                                "Text":  "    wire [7:0] o_led;",
+                                "Types":  [
+                                              "InactiveCode"
+                                          ]
+                            },
+                            {
+                                "Start":  1052,
+                                "Length":  16,
+                                "Line":  35,
+                                "Column":  1,
+                                "Text":  "  wire o_AD_CLK;",
+                                "Types":  [
+                                              "InactiveCode"
+                                          ]
+                            },
+                            {
+                                "Start":  1070,
+                                "Length":  30,
                                 "Line":  36,
-                                "Column":  15,
-                                "Text":  "i_ad_port_value",
+                                "Column":  1,
+                                "Text":  "  wire  [7:0] i_ad_port_value;",
                                 "Types":  [
-                                              "Variable_wire"
+                                              "InactiveCode"
                                           ]
                             },
                             {
-                                "Start":  1106,
-                                "Length":  4,
+                                "Start":  1104,
+                                "Length":  16,
                                 "Line":  38,
-                                "Column":  3,
-                                "Text":  "wire",
+                                "Column":  1,
+                                "Text":  "  wire o_DA_CLK;",
                                 "Types":  [
-                                              "wire"
+                                              "InactiveCode"
                                           ]
                             },
                             {
-                                "Start":  1111,
-                                "Length":  8,
-                                "Line":  38,
-                                "Column":  8,
-                                "Text":  "o_DA_CLK",
-                                "Types":  [
-                                              "Variable_duplicate"
-                                          ]
-                            },
-                            {
-                                "Start":  1124,
-                                "Length":  4,
+                                "Start":  1122,
+                                "Length":  21,
                                 "Line":  39,
-                                "Column":  3,
-                                "Text":  "wire",
+                                "Column":  1,
+                                "Text":  "  wire [7:0] o_value;",
                                 "Types":  [
-                                              "wire"
-                                          ]
-                            },
-                            {
-                                "Start":  1129,
-                                "Length":  1,
-                                "Line":  39,
-                                "Column":  8,
-                                "Text":  "[",
-                                "Types":  [
-                                              "Bracket1"
-                                          ]
-                            },
-                            {
-                                "Start":  1130,
-                                "Length":  1,
-                                "Line":  39,
-                                "Column":  9,
-                                "Text":  "7",
-                                "Types":  [
-                                              "Value"
-                                          ]
-                            },
-                            {
-                                "Start":  1132,
-                                "Length":  1,
-                                "Line":  39,
-                                "Column":  11,
-                                "Text":  "0",
-                                "Types":  [
-                                              "Value"
-                                          ]
-                            },
-                            {
-                                "Start":  1133,
-                                "Length":  1,
-                                "Line":  39,
-                                "Column":  12,
-                                "Text":  "]",
-                                "Types":  [
-                                              "Bracket1"
-                                          ]
-                            },
-                            {
-                                "Start":  1135,
-                                "Length":  7,
-                                "Line":  39,
-                                "Column":  14,
-                                "Text":  "o_value",
-                                "Types":  [
-                                              "Variable_wire"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -4566,983 +4166,173 @@
                  },
                  {
                      "Start":  717,
-                     "Length":  2,
+                     "Length":  31,
                      "Line":  20,
                      "Column":  1,
-                     "Text":  "/*",
+                     "Text":  "/* verilator lint_off UNUSED */",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  719,
-                     "Length":  1,
-                     "Line":  20,
-                     "Column":  3,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  720,
-                     "Length":  9,
-                     "Line":  20,
-                     "Column":  4,
-                     "Text":  "verilator",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  729,
-                     "Length":  1,
-                     "Line":  20,
-                     "Column":  13,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  730,
-                     "Length":  8,
-                     "Line":  20,
-                     "Column":  14,
-                     "Text":  "lint_off",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  738,
-                     "Length":  1,
-                     "Line":  20,
-                     "Column":  22,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  739,
-                     "Length":  6,
-                     "Line":  20,
-                     "Column":  23,
-                     "Text":  "UNUSED",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  745,
-                     "Length":  1,
-                     "Line":  20,
-                     "Column":  29,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  746,
-                     "Length":  2,
-                     "Line":  20,
-                     "Column":  30,
-                     "Text":  "*/",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027VERILATOR\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  750,
-                     "Length":  2,
+                     "Length":  49,
                      "Line":  21,
                      "Column":  1,
-                     "Text":  "//",
+                     "Text":  "// this is a sample test; [delim]\t[tab] ;;// test",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  752,
-                     "Length":  1,
-                     "Line":  21,
-                     "Column":  3,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  753,
-                     "Length":  4,
-                     "Line":  21,
-                     "Column":  4,
-                     "Text":  "this",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  757,
-                     "Length":  1,
-                     "Line":  21,
-                     "Column":  8,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  758,
-                     "Length":  2,
-                     "Line":  21,
-                     "Column":  9,
-                     "Text":  "is",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  760,
-                     "Length":  1,
-                     "Line":  21,
-                     "Column":  11,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  761,
-                     "Length":  1,
-                     "Line":  21,
-                     "Column":  12,
-                     "Text":  "a",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  762,
-                     "Length":  1,
-                     "Line":  21,
-                     "Column":  13,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  763,
-                     "Length":  6,
-                     "Line":  21,
-                     "Column":  14,
-                     "Text":  "sample",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  769,
-                     "Length":  1,
-                     "Line":  21,
-                     "Column":  20,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  770,
-                     "Length":  4,
-                     "Line":  21,
-                     "Column":  21,
-                     "Text":  "test",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  774,
-                     "Length":  1,
-                     "Line":  21,
-                     "Column":  25,
-                     "Text":  ";",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  775,
-                     "Length":  1,
-                     "Line":  21,
-                     "Column":  26,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  776,
-                     "Length":  1,
-                     "Line":  21,
-                     "Column":  27,
-                     "Text":  "[",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  777,
-                     "Length":  5,
-                     "Line":  21,
-                     "Column":  28,
-                     "Text":  "delim",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  782,
-                     "Length":  1,
-                     "Line":  21,
-                     "Column":  33,
-                     "Text":  "]",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  783,
-                     "Length":  1,
-                     "Line":  21,
-                     "Column":  34,
-                     "Text":  "\t",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  784,
-                     "Length":  1,
-                     "Line":  21,
-                     "Column":  35,
-                     "Text":  "[",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  785,
-                     "Length":  3,
-                     "Line":  21,
-                     "Column":  36,
-                     "Text":  "tab",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  788,
-                     "Length":  1,
-                     "Line":  21,
-                     "Column":  39,
-                     "Text":  "]",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  789,
-                     "Length":  1,
-                     "Line":  21,
-                     "Column":  40,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  790,
-                     "Length":  1,
-                     "Line":  21,
-                     "Column":  41,
-                     "Text":  ";",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  791,
-                     "Length":  1,
-                     "Line":  21,
-                     "Column":  42,
-                     "Text":  ";",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  792,
-                     "Length":  2,
-                     "Line":  21,
-                     "Column":  43,
-                     "Text":  "//",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  794,
-                     "Length":  1,
-                     "Line":  21,
-                     "Column":  45,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  795,
-                     "Length":  4,
-                     "Line":  21,
-                     "Column":  46,
-                     "Text":  "test",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027VERILATOR\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  801,
-                     "Length":  6,
+                     "Length":  19,
                      "Line":  22,
                      "Column":  1,
-                     "Text":  "module",
+                     "Text":  "module ulx3s_adda (",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_module",
-                     "HoverText":  "The module declaration is the only design unit in Verilog. It describes both a design\u0027s interface to other designs in the same environment, and its functional composition."
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027VERILATOR\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  808,
-                     "Length":  10,
-                     "Line":  22,
-                     "Column":  8,
-                     "Text":  "ulx3s_adda",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_module",
-                     "HoverText":  "module ulx3s_adda (  i_clk,\r\n input reset,\r\n output [7:0] o_led,\r\n output o_AD_CLK,\r\n input [7:0] J2_AD_PORT,\r\n output o_DA_CLK,\r\n output [7:0] J2_DA_PORT)"
-                 },
-                 {
-                     "Start":  819,
-                     "Length":  1,
-                     "Line":  22,
-                     "Column":  19,
-                     "Text":  "(",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  824,
-                     "Length":  5,
+                     "Start":  822,
+                     "Length":  15,
                      "Line":  23,
-                     "Column":  3,
-                     "Text":  "input",
+                     "Column":  1,
+                     "Text":  "  input  i_clk,",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_input",
-                     "HoverText":  "The reserved word input is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027VERILATOR\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  831,
-                     "Length":  5,
-                     "Line":  23,
-                     "Column":  10,
-                     "Text":  "i_clk",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_duplicate",
-                     "HoverText":  "duplicate? wire i_clk"
-                 },
-                 {
-                     "Start":  841,
-                     "Length":  5,
+                     "Start":  839,
+                     "Length":  15,
                      "Line":  24,
-                     "Column":  3,
-                     "Text":  "input",
+                     "Column":  1,
+                     "Text":  "  input  reset,",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_input",
-                     "HoverText":  "The reserved word input is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027VERILATOR\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  848,
-                     "Length":  5,
-                     "Line":  24,
-                     "Column":  10,
-                     "Text":  "reset",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_input",
-                     "HoverText":  "module ulx3s_adda( .. input reset .. )"
-                 },
-                 {
-                     "Start":  858,
-                     "Length":  6,
+                     "Start":  856,
+                     "Length":  21,
                      "Line":  25,
-                     "Column":  3,
-                     "Text":  "output",
+                     "Column":  1,
+                     "Text":  "  output [7:0] o_led,",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_output",
-                     "HoverText":  "The reserved word output is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027VERILATOR\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  865,
-                     "Length":  1,
-                     "Line":  25,
-                     "Column":  10,
-                     "Text":  "[",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket2",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  866,
-                     "Length":  1,
-                     "Line":  25,
-                     "Column":  11,
-                     "Text":  "7",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Value",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  868,
-                     "Length":  1,
-                     "Line":  25,
-                     "Column":  13,
-                     "Text":  "0",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Value",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  869,
-                     "Length":  1,
-                     "Line":  25,
-                     "Column":  14,
-                     "Text":  "]",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket2",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  871,
-                     "Length":  5,
-                     "Line":  25,
-                     "Column":  16,
-                     "Text":  "o_led",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_duplicate",
-                     "HoverText":  "duplicate? wire [7:0] o_led"
-                 },
-                 {
-                     "Start":  881,
-                     "Length":  6,
+                     "Start":  879,
+                     "Length":  18,
                      "Line":  26,
-                     "Column":  3,
-                     "Text":  "output",
+                     "Column":  1,
+                     "Text":  "\t output o_AD_CLK,",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_output",
-                     "HoverText":  "The reserved word output is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027VERILATOR\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  888,
-                     "Length":  8,
-                     "Line":  26,
-                     "Column":  10,
-                     "Text":  "o_AD_CLK",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_duplicate",
-                     "HoverText":  "duplicate? wire o_AD_CLK"
-                 },
-                 {
-                     "Start":  901,
-                     "Length":  5,
+                     "Start":  899,
+                     "Length":  26,
                      "Line":  27,
-                     "Column":  3,
-                     "Text":  "input",
+                     "Column":  1,
+                     "Text":  "\t input  [7:0] J2_AD_PORT,",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_input",
-                     "HoverText":  "The reserved word input is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027VERILATOR\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  908,
-                     "Length":  1,
-                     "Line":  27,
-                     "Column":  10,
-                     "Text":  "[",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket2",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  909,
-                     "Length":  1,
-                     "Line":  27,
-                     "Column":  11,
-                     "Text":  "7",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Value",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  911,
-                     "Length":  1,
-                     "Line":  27,
-                     "Column":  13,
-                     "Text":  "0",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Value",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  912,
-                     "Length":  1,
-                     "Line":  27,
-                     "Column":  14,
-                     "Text":  "]",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket2",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  914,
-                     "Length":  10,
-                     "Line":  27,
-                     "Column":  16,
-                     "Text":  "J2_AD_PORT",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_input",
-                     "HoverText":  "module ulx3s_adda( .. input [7:0] J2_AD_PORT .. )"
-                 },
-                 {
-                     "Start":  929,
-                     "Length":  6,
+                     "Start":  927,
+                     "Length":  18,
                      "Line":  28,
-                     "Column":  3,
-                     "Text":  "output",
+                     "Column":  1,
+                     "Text":  "\t output o_DA_CLK,",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_output",
-                     "HoverText":  "The reserved word output is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027VERILATOR\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  936,
-                     "Length":  8,
-                     "Line":  28,
-                     "Column":  10,
-                     "Text":  "o_DA_CLK",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_duplicate",
-                     "HoverText":  "duplicate? wire o_DA_CLK"
-                 },
-                 {
-                     "Start":  949,
-                     "Length":  6,
+                     "Start":  947,
+                     "Length":  27,
                      "Line":  29,
-                     "Column":  3,
-                     "Text":  "output",
+                     "Column":  1,
+                     "Text":  "\t output [7:0] J2_DA_PORT);",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_output",
-                     "HoverText":  "The reserved word output is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
-                 },
-                 {
-                     "Start":  956,
-                     "Length":  1,
-                     "Line":  29,
-                     "Column":  10,
-                     "Text":  "[",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket2",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  957,
-                     "Length":  1,
-                     "Line":  29,
-                     "Column":  11,
-                     "Text":  "7",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Value",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  959,
-                     "Length":  1,
-                     "Line":  29,
-                     "Column":  13,
-                     "Text":  "0",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Value",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  960,
-                     "Length":  1,
-                     "Line":  29,
-                     "Column":  14,
-                     "Text":  "]",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket2",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  962,
-                     "Length":  10,
-                     "Line":  29,
-                     "Column":  16,
-                     "Text":  "J2_DA_PORT",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_output",
-                     "HoverText":  "module ulx3s_adda( .. output [7:0] J2_DA_PORT .. )"
-                 },
-                 {
-                     "Start":  972,
-                     "Length":  1,
-                     "Line":  29,
-                     "Column":  26,
-                     "Text":  ")",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027VERILATOR\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  976,
-                     "Length":  2,
+                     "Length":  30,
                      "Line":  30,
                      "Column":  1,
-                     "Text":  "/*",
+                     "Text":  "/* verilator lint_on UNUSED */",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027VERILATOR\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  978,
-                     "Length":  1,
-                     "Line":  30,
-                     "Column":  3,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  979,
-                     "Length":  9,
-                     "Line":  30,
-                     "Column":  4,
-                     "Text":  "verilator",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  988,
-                     "Length":  1,
-                     "Line":  30,
-                     "Column":  13,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  989,
-                     "Length":  7,
-                     "Line":  30,
-                     "Column":  14,
-                     "Text":  "lint_on",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  996,
-                     "Length":  1,
-                     "Line":  30,
-                     "Column":  21,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  997,
-                     "Length":  6,
-                     "Line":  30,
-                     "Column":  22,
-                     "Text":  "UNUSED",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  1003,
-                     "Length":  1,
-                     "Line":  30,
-                     "Column":  28,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  1004,
-                     "Length":  2,
-                     "Line":  30,
-                     "Column":  29,
-                     "Text":  "*/",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  1014,
-                     "Length":  4,
-                     "Line":  32,
-                     "Column":  5,
-                     "Text":  "wire",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_wire",
-                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
-                 },
-                 {
-                     "Start":  1019,
-                     "Length":  5,
-                     "Line":  32,
-                     "Column":  10,
-                     "Text":  "i_clk",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_duplicate",
-                     "HoverText":  "duplicate? wire i_clk"
-                 },
-                 {
-                     "Start":  1031,
-                     "Length":  4,
-                     "Line":  33,
-                     "Column":  5,
-                     "Text":  "wire",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_wire",
-                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
-                 },
-                 {
-                     "Start":  1036,
-                     "Length":  1,
-                     "Line":  33,
-                     "Column":  10,
-                     "Text":  "[",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  1037,
-                     "Length":  1,
-                     "Line":  33,
-                     "Column":  11,
-                     "Text":  "7",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Value",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  1039,
-                     "Length":  1,
-                     "Line":  33,
-                     "Column":  13,
-                     "Text":  "0",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Value",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  1040,
-                     "Length":  1,
-                     "Line":  33,
-                     "Column":  14,
-                     "Text":  "]",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  1042,
-                     "Length":  5,
-                     "Line":  33,
-                     "Column":  16,
-                     "Text":  "o_led",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_duplicate",
-                     "HoverText":  "duplicate? wire [7:0] o_led"
-                 },
-                 {
-                     "Start":  1054,
-                     "Length":  4,
-                     "Line":  35,
-                     "Column":  3,
-                     "Text":  "wire",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_wire",
-                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
-                 },
-                 {
-                     "Start":  1059,
-                     "Length":  8,
-                     "Line":  35,
-                     "Column":  8,
-                     "Text":  "o_AD_CLK",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_duplicate",
-                     "HoverText":  "duplicate? wire o_AD_CLK"
-                 },
-                 {
-                     "Start":  1072,
-                     "Length":  4,
-                     "Line":  36,
-                     "Column":  3,
-                     "Text":  "wire",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_wire",
-                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
-                 },
-                 {
-                     "Start":  1078,
-                     "Length":  1,
-                     "Line":  36,
-                     "Column":  9,
-                     "Text":  "[",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  1079,
-                     "Length":  1,
-                     "Line":  36,
-                     "Column":  10,
-                     "Text":  "7",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Value",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  1081,
-                     "Length":  1,
-                     "Line":  36,
-                     "Column":  12,
-                     "Text":  "0",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Value",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  1082,
-                     "Length":  1,
-                     "Line":  36,
-                     "Column":  13,
-                     "Text":  "]",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  1084,
+                     "Start":  1010,
                      "Length":  15,
+                     "Line":  32,
+                     "Column":  1,
+                     "Text":  "    wire i_clk;",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027VERILATOR\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
+                 },
+                 {
+                     "Start":  1027,
+                     "Length":  21,
+                     "Line":  33,
+                     "Column":  1,
+                     "Text":  "    wire [7:0] o_led;",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027VERILATOR\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
+                 },
+                 {
+                     "Start":  1052,
+                     "Length":  16,
+                     "Line":  35,
+                     "Column":  1,
+                     "Text":  "  wire o_AD_CLK;",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027VERILATOR\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
+                 },
+                 {
+                     "Start":  1070,
+                     "Length":  30,
                      "Line":  36,
-                     "Column":  15,
-                     "Text":  "i_ad_port_value",
+                     "Column":  1,
+                     "Text":  "  wire  [7:0] i_ad_port_value;",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  "wire [7:0] i_ad_port_value"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027VERILATOR\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  1106,
-                     "Length":  4,
+                     "Start":  1104,
+                     "Length":  16,
                      "Line":  38,
-                     "Column":  3,
-                     "Text":  "wire",
+                     "Column":  1,
+                     "Text":  "  wire o_DA_CLK;",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_wire",
-                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027VERILATOR\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  1111,
-                     "Length":  8,
-                     "Line":  38,
-                     "Column":  8,
-                     "Text":  "o_DA_CLK",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_duplicate",
-                     "HoverText":  "duplicate? wire o_DA_CLK"
-                 },
-                 {
-                     "Start":  1124,
-                     "Length":  4,
+                     "Start":  1122,
+                     "Length":  21,
                      "Line":  39,
-                     "Column":  3,
-                     "Text":  "wire",
+                     "Column":  1,
+                     "Text":  "  wire [7:0] o_value;",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_wire",
-                     "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
-                 },
-                 {
-                     "Start":  1129,
-                     "Length":  1,
-                     "Line":  39,
-                     "Column":  8,
-                     "Text":  "[",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  1130,
-                     "Length":  1,
-                     "Line":  39,
-                     "Column":  9,
-                     "Text":  "7",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Value",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  1132,
-                     "Length":  1,
-                     "Line":  39,
-                     "Column":  11,
-                     "Text":  "0",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Value",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  1133,
-                     "Length":  1,
-                     "Line":  39,
-                     "Column":  12,
-                     "Text":  "]",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  1135,
-                     "Length":  7,
-                     "Line":  39,
-                     "Column":  14,
-                     "Text":  "o_value",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_wire",
-                     "HoverText":  "wire [7:0] o_value"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027VERILATOR\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  1147,

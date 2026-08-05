@@ -105,7 +105,7 @@ $utf8Strict = New-Object System.Text.UTF8Encoding($false, $true)
 function Add-Failure {
     param([string]$Message)
 
-    if ($script:failures.Count -lt $MaxFailures) {
+    if ($MaxFailures -le 0 -or $script:failures.Count -lt $MaxFailures) {
         [void]$script:failures.Add($Message)
     }
 }
@@ -353,7 +353,7 @@ if ($failures.Count -gt 0) {
         Write-Host "::error::$failure"
     }
 
-    if ($failures.Count -ge $MaxFailures) {
+    if ($MaxFailures -gt 0 -and $failures.Count -ge $MaxFailures) {
         Write-Host "::warning::Failure output was capped at $MaxFailures findings."
     }
 

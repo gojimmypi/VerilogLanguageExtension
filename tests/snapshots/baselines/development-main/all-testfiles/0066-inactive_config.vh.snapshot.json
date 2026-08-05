@@ -1,0 +1,128 @@
+{
+    "SchemaVersion":  3,
+    "RunName":  "all-testfiles",
+    "ExtensionVersion":  "0.4.1.11",
+    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\macros\\include-files\\inactive_config.vh",
+    "FileRelativePath":  "TestFiles\\macros\\include-files\\inactive_config.vh",
+    "ContentType":  "verilog",
+    "SnapshotLength":  42,
+    "SnapshotVersion":  2,
+    "TextSha256":  "a434f14d9439a18db80653e8cc49de671330bb8c14d3819a94a5fb2badf54846",
+    "Errors":  [
+
+               ],
+    "Classifications":  [
+                            {
+                                "Start":  0,
+                                "Length":  7,
+                                "Line":  1,
+                                "Column":  1,
+                                "Text":  "`define",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  8,
+                                "Length":  30,
+                                "Line":  1,
+                                "Column":  9,
+                                "Text":  "INACTIVE_INCLUDE_MUST_NOT_LEAK",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  39,
+                                "Length":  1,
+                                "Line":  1,
+                                "Column":  40,
+                                "Text":  "1",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            }
+                        ],
+    "Tags":  [
+                 {
+                     "Start":  0,
+                     "Length":  7,
+                     "Line":  1,
+                     "Column":  1,
+                     "Text":  "`define",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  8,
+                     "Length":  30,
+                     "Line":  1,
+                     "Column":  9,
+                     "Text":  "INACTIVE_INCLUDE_MUST_NOT_LEAK",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "macro definition:\r\n`define INACTIVE_INCLUDE_MUST_NOT_LEAK 1\r\n\r\ncondition:\r\n(unconditional)"
+                 },
+                 {
+                     "Start":  39,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  40,
+                     "Text":  "1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 }
+             ],
+    "Tokens":  [
+                   {
+                       "Start":  0,
+                       "Length":  7,
+                       "Line":  1,
+                       "Column":  1,
+                       "Text":  "`define",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  7,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  8,
+                       "Length":  30,
+                       "Line":  1,
+                       "Column":  9,
+                       "Text":  "INACTIVE_INCLUDE_MUST_NOT_LEAK",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  38,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  39,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  39,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  40,
+                       "Text":  "1",
+                       "Context":  "Text"
+                   }
+               ],
+    "Symbols":  [
+                    {
+                        "Scope":  "__MACRO__",
+                        "Name":  "INACTIVE_INCLUDE_MUST_NOT_LEAK",
+                        "TokenType":  "Verilog_Macro",
+                        "HoverText":  "macro definition:\r\n`define INACTIVE_INCLUDE_MUST_NOT_LEAK 1\r\n\r\ncondition:\r\n(unconditional)"
+                    }
+                ]
+}

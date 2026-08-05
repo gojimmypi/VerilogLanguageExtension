@@ -1,7 +1,7 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.5",
+    "ExtensionVersion":  "0.4.1.11",
     "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\src\\target_pdk.v",
     "FileRelativePath":  "TestFiles\\src\\target_pdk.v",
     "ContentType":  "verilog",
@@ -153,13 +153,13 @@
                                           ]
                             },
                             {
-                                "Start":  371,
-                                "Length":  43,
+                                "Start":  367,
+                                "Length":  47,
                                 "Line":  17,
-                                "Column":  5,
-                                "Text":  "/* Neither PDK for my local iverilog sim */",
+                                "Column":  1,
+                                "Text":  "    /* Neither PDK for my local iverilog sim */",
                                 "Types":  [
-                                              "comment"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -1435,174 +1435,14 @@
                      "HoverText":  "macro condition:\r\n`ifdef IS_MY_IVERILOG_SIMULATION"
                  },
                  {
-                     "Start":  371,
-                     "Length":  2,
+                     "Start":  367,
+                     "Length":  47,
                      "Line":  17,
-                     "Column":  5,
-                     "Text":  "/*",
+                     "Column":  1,
+                     "Text":  "    /* Neither PDK for my local iverilog sim */",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  373,
-                     "Length":  1,
-                     "Line":  17,
-                     "Column":  7,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  374,
-                     "Length":  7,
-                     "Line":  17,
-                     "Column":  8,
-                     "Text":  "Neither",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  381,
-                     "Length":  1,
-                     "Line":  17,
-                     "Column":  15,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  382,
-                     "Length":  3,
-                     "Line":  17,
-                     "Column":  16,
-                     "Text":  "PDK",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  385,
-                     "Length":  1,
-                     "Line":  17,
-                     "Column":  19,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  386,
-                     "Length":  3,
-                     "Line":  17,
-                     "Column":  20,
-                     "Text":  "for",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  389,
-                     "Length":  1,
-                     "Line":  17,
-                     "Column":  23,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  390,
-                     "Length":  2,
-                     "Line":  17,
-                     "Column":  24,
-                     "Text":  "my",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  392,
-                     "Length":  1,
-                     "Line":  17,
-                     "Column":  26,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  393,
-                     "Length":  5,
-                     "Line":  17,
-                     "Column":  27,
-                     "Text":  "local",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  398,
-                     "Length":  1,
-                     "Line":  17,
-                     "Column":  32,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  399,
-                     "Length":  8,
-                     "Line":  17,
-                     "Column":  33,
-                     "Text":  "iverilog",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  407,
-                     "Length":  1,
-                     "Line":  17,
-                     "Column":  41,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  408,
-                     "Length":  3,
-                     "Line":  17,
-                     "Column":  42,
-                     "Text":  "sim",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  411,
-                     "Length":  1,
-                     "Line":  17,
-                     "Column":  45,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  412,
-                     "Length":  2,
-                     "Line":  17,
-                     "Column":  46,
-                     "Text":  "*/",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027IS_MY_IVERILOG_SIMULATION\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  416,

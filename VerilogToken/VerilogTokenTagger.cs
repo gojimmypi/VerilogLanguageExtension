@@ -81,8 +81,6 @@ namespace VerilogLanguage.VerilogToken
 
         // ITextView View { get; set; }
         private readonly ITextBuffer _buffer;
-        private bool _systemVerilogDocumentKnown;
-        private bool _isSystemVerilogDocument;
 
 #if USE_JTF
         private readonly JoinableTaskFactory _jtf;
@@ -2031,31 +2029,7 @@ namespace VerilogLanguage.VerilogToken
 
             return VerilogGlobals.TryGetDeclarationVariableTypeFromText(
                 prefixText,
-                IsSystemVerilogDocument(),
                 out variableType);
-        }
-
-        private bool IsSystemVerilogDocument() {
-            if (_systemVerilogDocumentKnown) {
-                return _isSystemVerilogDocument;
-            }
-
-            string documentPath = VerilogGlobals.GetDocumentPath(_buffer.CurrentSnapshot);
-            if (string.IsNullOrEmpty(documentPath)) {
-                return false;
-            }
-
-            string extension = System.IO.Path.GetExtension(documentPath);
-            _isSystemVerilogDocument =
-                string.Equals(extension, ".sv", StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(extension, ".svh", StringComparison.OrdinalIgnoreCase);
-            _systemVerilogDocumentKnown = true;
-            return _isSystemVerilogDocument;
-        }
-
-        private static bool IsSystemVerilogOnlyKeywordType(VerilogTokenTypes tokenType) {
-            return tokenType == VerilogTokenTypes.Verilog_SystemVerilogYosysSupported ||
-                   tokenType == VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported;
         }
 
         private IEnumerable<ITagSpan<VerilogTokenTag>> ProcessLookupText(
@@ -2090,12 +2064,11 @@ namespace VerilogLanguage.VerilogToken
                 yield break;
             }
 
-            // Check for standard keyword syntax highlighting. The two shared
-            // SystemVerilog-only classifications apply only to .sv and .svh files;
-            // legacy Verilog files may legally use those words as identifiers.
+            // Apply recognized Verilog and SystemVerilog keyword classifications in
+            // every VLE-supported source file. File extensions are conventions and
+            // do not reliably identify which language features the build enables.
             VerilogTokenTypes keywordType;
-            if (VerilogGlobals.VerilogTypes.TryGetValue(lookupText, out keywordType) &&
-                (!IsSystemVerilogOnlyKeywordType(keywordType) || IsSystemVerilogDocument())) {
+            if (VerilogGlobals.VerilogTypes.TryGetValue(lookupText, out keywordType)) {
 #if TAG_DEBUG
                 System.Diagnostics.Debug.WriteLine("IEnumerable VerilogTokenTag yield " + lookupText);
 #endif

@@ -180,6 +180,51 @@ namespace VerilogLanguage
                 ["final"] = "SystemVerilog final procedure, executed once at the end of simulation. It is not synthesized; VLE marks it as unsupported, non-synthesizable, or unverified for Yosys/sv-elab."
             };
 
+        internal static readonly IDictionary<string, string> SystemTaskFunctionHoverText =
+            new Dictionary<string, string>(StringComparer.Ordinal)
+            {
+                ["$display"] = "$display([format,] arguments...); System task that formats its arguments, writes them immediately to standard output, and appends a newline.",
+                ["$write"] = "$write([format,] arguments...); System task that formats its arguments and writes them immediately to standard output without appending a newline.",
+                ["$strobe"] = "$strobe([format,] arguments...); System task that prints at the end of the current simulation time step, after nonblocking assignments have updated, and appends a newline.",
+                ["$monitor"] = "$monitor([format,] arguments...); System task that prints whenever one of its arguments changes. A new $monitor call replaces the current monitor list.",
+                ["$monitoron"] = "$monitoron; System task that enables output from the current $monitor list.",
+                ["$monitoroff"] = "$monitoroff; System task that disables output from the current $monitor list without removing it.",
+                ["$time"] = "$time; System function that returns the current simulation time as an integer value scaled to the current scope's time unit.",
+                ["$stime"] = "$stime; System function that returns the low 32 bits of the current simulation time, scaled to the current scope's time unit.",
+                ["$realtime"] = "$realtime; System function that returns the current simulation time as a real value, preserving fractional time-unit precision.",
+                ["$test$plusargs"] = "$test$plusargs(\"prefix\"); System function that returns 1 when a command-line plusarg begins with the supplied prefix, otherwise 0.",
+                ["$value$plusargs"] = "$value$plusargs(\"format\", variable); System function that scans command-line plusargs, stores a matched value in variable, and returns 1 on success.",
+                ["$fatal"] = "$fatal([finish_number,] message...); SystemVerilog system task that reports a fatal run-time error and terminates simulation. The optional finish_number is handled as for $finish.",
+                ["$error"] = "$error([message...]); SystemVerilog system task that reports a nonfatal run-time error and allows simulation to continue.",
+                ["$warning"] = "$warning([message...]); SystemVerilog system task that reports a run-time warning and allows simulation to continue.",
+                ["$info"] = "$info([message...]); SystemVerilog system task that reports an informational run-time message.",
+                ["$finish"] = "$finish([diagnostic_level]); System task that terminates simulation and returns control to the host environment.",
+                ["$stop"] = "$stop([diagnostic_level]); System task that suspends simulation, normally entering the simulator's interactive mode when available.",
+                ["$clog2"] = "$clog2(expression); System function that returns the ceiling of the base-2 logarithm, commonly used to calculate an address or counter width.",
+                ["$bits"] = "$bits(expression_or_type); SystemVerilog system function that returns the number of bits required to represent an expression or data type.",
+                ["$signed"] = "$signed(expression); System function that interprets the expression as signed without changing its bit pattern.",
+                ["$unsigned"] = "$unsigned(expression); System function that interprets the expression as unsigned without changing its bit pattern.",
+                ["$random"] = "$random([seed]); System function that returns a signed 32-bit pseudo-random value. Supplying a seed updates that seed variable.",
+                ["$urandom"] = "$urandom([seed]); SystemVerilog system function that returns an unsigned 32-bit pseudo-random value.",
+                ["$urandom_range"] = "$urandom_range(maximum[, minimum]); SystemVerilog system function that returns an unsigned pseudo-random value in the inclusive requested range.",
+                ["$readmemb"] = "$readmemb(file_name, memory[, start[, finish]]); System task that loads binary text values from a file into a memory array.",
+                ["$readmemh"] = "$readmemh(file_name, memory[, start[, finish]]); System task that loads hexadecimal text values from a file into a memory array.",
+                ["$writememb"] = "$writememb(file_name, memory[, start[, finish]]); System task that writes a memory array to a file using binary text values.",
+                ["$writememh"] = "$writememh(file_name, memory[, start[, finish]]); System task that writes a memory array to a file using hexadecimal text values.",
+                ["$fopen"] = "$fopen(file_name[, mode]); System function that opens a file and returns a descriptor. A return value of zero indicates failure.",
+                ["$fclose"] = "$fclose(file_descriptor); System task that closes an open file descriptor.",
+                ["$fdisplay"] = "$fdisplay(file_descriptor[, format,] arguments...); System task that writes formatted output to a file and appends a newline.",
+                ["$fwrite"] = "$fwrite(file_descriptor[, format,] arguments...); System task that writes formatted output to a file without appending a newline.",
+                ["$fscanf"] = "$fscanf(file_descriptor, format, arguments...); System function that reads formatted data from a file and returns the number of successful conversions.",
+                ["$sscanf"] = "$sscanf(string, format, arguments...); System function that reads formatted data from a string and returns the number of successful conversions.",
+                ["$fgets"] = "$fgets(string, file_descriptor); System function that reads one line from a file into a string or packed register and returns the number of characters read.",
+                ["$fread"] = "$fread(destination, file_descriptor[, start[, count]]); System function that reads binary data from a file and returns the number of bytes read.",
+                ["$feof"] = "$feof(file_descriptor); System function that returns nonzero after the end-of-file condition has been reached.",
+                ["$fflush"] = "$fflush([file_descriptor]); System task that flushes buffered file output. With no argument, it flushes all open output streams.",
+                ["$dumpfile"] = "$dumpfile(file_name); Common simulator system task that selects the VCD waveform output file.",
+                ["$dumpvars"] = "$dumpvars([levels[, scope_or_signal...]]); Common simulator system task that selects hierarchy and signals for VCD waveform recording."
+            };
+
         private readonly IDictionary<VerilogToken.VerilogTokenTypes, string> _verilogKeywordHoverText;
 
         public VerilogAsyncQuickInfoSource(
@@ -282,6 +327,27 @@ namespace VerilogLanguage
             if (VerilogAsyncQuickInfoSource.VerilogKeywordHoverText.TryGetValue(tokenType, out keywordHover)) {
                 hoverText = keywordHover;
                 return true;
+            }
+
+            if (tokenType == VerilogToken.VerilogTokenTypes.Verilog_SystemTaskFunction ||
+                tokenType == VerilogToken.VerilogTokenTypes.Verilog_SystemTaskFatal) {
+                string systemTaskFunctionName = tagSpan.GetText();
+                if (VerilogAsyncQuickInfoSource.SystemTaskFunctionHoverText.TryGetValue(
+                    systemTaskFunctionName,
+                    out keywordHover)) {
+
+                    hoverText = keywordHover;
+                    return true;
+                }
+
+                if (!string.IsNullOrWhiteSpace(systemTaskFunctionName)) {
+                    hoverText = "Verilog/SystemVerilog system task or function '" +
+                        systemTaskFunctionName +
+                        "'. It may be defined by the language, provided by the simulator, or registered through PLI/VPI; behavior and synthesis support depend on the tool.";
+                    return true;
+                }
+
+                return false;
             }
 
             if (tokenType == VerilogToken.VerilogTokenTypes.Verilog_SystemVerilogYosysSupported ||

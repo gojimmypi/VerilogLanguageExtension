@@ -1,0 +1,1 @@
+`define INCLUDED_DEFINED_MACRO 2

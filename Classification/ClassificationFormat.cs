@@ -2715,7 +2715,7 @@ namespace VerilogLanguage
         public Verilog_directive() {
             DisplayName = "Verilog - Directive"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = Colors.Gray; // default color for dark background MColor.FromRgb(0x9B, 0x9B, 0x9B);
+                ForegroundColor = Colors.DarkSalmon; // .Gray; // default color for dark background MColor.FromRgb(0x9B, 0x9B, 0x9B);
             }
             else {
                 ForegroundColor = Colors.DimGray; // default color for light background
@@ -2769,7 +2769,7 @@ namespace VerilogLanguage
     [ClassificationType(ClassificationTypeNames = "InactiveCode")]
     [Name("InactiveCode")]
     [UserVisible(true)]
-    [Order(Before = Priority.Default)]
+    [Order(After = Priority.Default, Before = Priority.High)]
     internal sealed class Verilog_InactiveCode : ClassificationFormatDefinition
     {
         /// <summary>

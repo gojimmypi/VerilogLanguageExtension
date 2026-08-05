@@ -47,17 +47,24 @@ namespace VerilogLanguage.VerilogToken
         internal sealed class LineState
         {
             internal LineState(bool isActive, bool isDirective)
-                : this(isActive, isDirective, string.Empty) {
+                : this(isActive, isDirective, false, string.Empty) {
             }
 
-            internal LineState(bool isActive, bool isDirective, string inactiveHoverText) {
+            internal LineState(
+                bool isActive,
+                bool isDirective,
+                bool isConditionalDirective,
+                string inactiveHoverText) {
+
                 IsActive = isActive;
                 IsDirective = isDirective;
+                IsConditionalDirective = isConditionalDirective;
                 InactiveHoverText = inactiveHoverText ?? string.Empty;
             }
 
             internal bool IsActive { get; private set; }
             internal bool IsDirective { get; private set; }
+            internal bool IsConditionalDirective { get; private set; }
             internal string InactiveHoverText { get; private set; }
         }
 
@@ -238,6 +245,7 @@ namespace VerilogLanguage.VerilogToken
                     lineStates.Add(new LineState(
                         lineIsActive,
                         isDirective,
+                        IsConditionalDirective(directiveName),
                         GetCurrentInactiveHoverText(conditionals)));
                 }
 
@@ -274,6 +282,20 @@ namespace VerilogLanguage.VerilogToken
             }
 
             return conditionals.Peek().CurrentInactiveHoverText ?? string.Empty;
+        }
+
+        private static bool IsConditionalDirective(string directiveName) {
+            switch (directiveName) {
+                case "ifdef":
+                case "ifndef":
+                case "elsif":
+                case "else":
+                case "endif":
+                    return true;
+
+                default:
+                    return false;
+            }
         }
 
         private static void ProcessDirective(

@@ -53,9 +53,14 @@
             ]
         },
         {
-            "Text": "\"include-files/inactive_config.vh\"",
+            "Text": "    `include \"include-files/inactive_config.vh\"",
             "Source": "Tags",
-            "TagDetail": "Verilog_StaticString"
+            "TagDetail": "Verilog_InactiveCode",
+            "HoverContains": [
+                "UNKNOWN_BRANCH",
+                "not defined",
+                "SHOW_INACTIVE_CODE"
+            ]
         }
     ],
     "MustNotHaveTaggedText": [
@@ -68,6 +73,11 @@
             "Text": "inactive_include_leaked_macro",
             "Source": "Tags",
             "TagDetail": "Verilog_Variable_reg"
+        },
+        {
+            "Text": "\"include-files/inactive_config.vh\"",
+            "Source": "Tags",
+            "TagDetail": "Verilog_StaticString"
         }
     ]
 }

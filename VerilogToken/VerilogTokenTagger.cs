@@ -966,7 +966,8 @@ namespace VerilogLanguage.VerilogToken
                     tokens = VerilogGlobals.VerilogKeywordSplit(lineText, priorToken);
 
                     if (!preprocessorLineState.IsActive &&
-                        !preprocessorLineState.IsDirective &&
+                        (!preprocessorLineState.IsDirective ||
+                            !preprocessorLineState.IsConditionalDirective) &&
                         !_preprocessorSuppressInactiveCodeHighlighting) {
                         // Keep lexical continuation state correct across inactive lines,
                         // but suppress all normal syntax classifications for their text.

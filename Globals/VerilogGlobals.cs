@@ -536,6 +536,8 @@ namespace VerilogLanguage
 
             ["static_string"] = VerilogTokenTypes.Verilog_StaticString,
             ["function_name"] = VerilogTokenTypes.Verilog_FunctionName,
+            ["system_task_function"] = VerilogTokenTypes.Verilog_SystemTaskFunction,
+            ["system_task_fatal"] = VerilogTokenTypes.Verilog_SystemTaskFatal,
 
             // primitives
             ["and"] = VerilogTokenTypes.Verilog_Primitive_and,

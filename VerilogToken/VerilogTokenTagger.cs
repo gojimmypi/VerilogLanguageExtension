@@ -1120,7 +1120,8 @@ namespace VerilogLanguage.VerilogToken
                                     curLoc,
                                     haveParseData ? parseData : null,
                                     activeLocalScope,
-                                    staticStringLineSpans)) {
+                                    staticStringLineSpans,
+                                    preprocessorLineState)) {
 
                                     yield return tag;
                                 }
@@ -1172,7 +1173,8 @@ namespace VerilogLanguage.VerilogToken
             int curLoc,
             VerilogGlobals.ParseDataSnapshot parseData,
             string activeLocalScope,
-            List<Span> staticStringLineSpans) {
+            List<Span> staticStringLineSpans,
+            VerilogPreprocessorEvaluator.LineState preprocessorLineState) {
             // is this item a comment? If so, color as appropriate. comments take highest priority: no other condition will change color of a comment
             if (item.IsComment) {
 #if TAG_DEBUG
@@ -1215,7 +1217,17 @@ namespace VerilogLanguage.VerilogToken
                 }
             }
 
-            foreach (ITagSpan<VerilogTokenTag> tag in ProcessLookupText(containingLine, verilogToken, tokenSpan, lookupSpan, lookupText, curLoc, leadingTrim, parseData, activeLocalScope)) {
+            foreach (ITagSpan<VerilogTokenTag> tag in ProcessLookupText(
+                containingLine,
+                verilogToken,
+                tokenSpan,
+                lookupSpan,
+                lookupText,
+                curLoc,
+                leadingTrim,
+                parseData,
+                activeLocalScope,
+                preprocessorLineState)) {
                 yield return tag;
             }
 
@@ -1696,6 +1708,27 @@ namespace VerilogLanguage.VerilogToken
             return false;
         }
 
+        private static string BuildMacroHoverText(
+            VerilogPreprocessorEvaluator.LineState lineState,
+            string macroName,
+            bool useStateAfterLine) {
+
+            VerilogPreprocessorEvaluator.MacroDefinitionInfo definition;
+            if (lineState == null ||
+                !lineState.TryGetMacroDefinition(macroName, useStateAfterLine, out definition)) {
+
+                return "Macro `" + macroName + "` is not defined.";
+            }
+
+            string filePath = string.IsNullOrEmpty(definition.FilePath)
+                ? "(current buffer)"
+                : definition.FilePath;
+
+            return "Macro `" + macroName + "` is defined." + Environment.NewLine +
+                "File: " + filePath + Environment.NewLine +
+                "Line: " + definition.LineNumber.ToString();
+        }
+
         private static bool IsVerilogIdentifierContinuation(char c) {
             return char.IsLetterOrDigit(c) || c == '_' || c == '$';
         }
@@ -2007,7 +2040,8 @@ namespace VerilogLanguage.VerilogToken
             int curLoc,
             int leadingWhitespace,
             VerilogGlobals.ParseDataSnapshot parseData,
-            string activeLocalScope) {
+            string activeLocalScope,
+            VerilogPreprocessorEvaluator.LineState preprocessorLineState) {
             if (IsStaticStringText(lookupText)) {
                 yield return new TagSpan<VerilogTokenTag>(
                     lookupSpan,
@@ -2041,7 +2075,9 @@ namespace VerilogLanguage.VerilogToken
             if (TryGetMacroNameFromLookupText(lookupText, out macroName)) {
                 yield return new TagSpan<VerilogTokenTag>(
                     lookupSpan,
-                    new VerilogTokenTag(VerilogTokenTypes.Verilog_Macro));
+                    new VerilogTokenTag(
+                        VerilogTokenTypes.Verilog_Macro,
+                        BuildMacroHoverText(preprocessorLineState, macroName, false)));
                 yield break;
             }
 
@@ -2053,9 +2089,17 @@ namespace VerilogLanguage.VerilogToken
                     (curLoc + leadingWhitespace) - containingLine.Start.Position,
                     lookupText)) {
 
+                bool useStateAfterLine = preprocessorLineState != null &&
+                    preprocessorLineState.DirectiveName == "define";
+
                 yield return new TagSpan<VerilogTokenTag>(
                     lookupSpan,
-                    new VerilogTokenTag(VerilogTokenTypes.Verilog_Macro));
+                    new VerilogTokenTag(
+                        VerilogTokenTypes.Verilog_Macro,
+                        BuildMacroHoverText(
+                            preprocessorLineState,
+                            lookupText,
+                            useStateAfterLine)));
                 yield break;
             }
 

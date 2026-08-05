@@ -46,26 +46,65 @@ namespace VerilogLanguage.VerilogToken
 
         internal sealed class LineState
         {
+            private Dictionary<string, MacroDefinitionInfo> _macroDefinitionsAfterLine;
+
             internal LineState(bool isActive, bool isDirective)
-                : this(isActive, isDirective, false, string.Empty) {
+                : this(isActive, isDirective, false, string.Empty, string.Empty, null) {
             }
 
             internal LineState(
                 bool isActive,
                 bool isDirective,
                 bool isConditionalDirective,
-                string inactiveHoverText) {
+                string inactiveHoverText,
+                string directiveName,
+                Dictionary<string, MacroDefinitionInfo> macroDefinitionsBeforeLine) {
 
                 IsActive = isActive;
                 IsDirective = isDirective;
                 IsConditionalDirective = isConditionalDirective;
                 InactiveHoverText = inactiveHoverText ?? string.Empty;
+                DirectiveName = directiveName ?? string.Empty;
+                MacroDefinitionsBeforeLine = macroDefinitionsBeforeLine;
             }
 
             internal bool IsActive { get; private set; }
             internal bool IsDirective { get; private set; }
             internal bool IsConditionalDirective { get; private set; }
             internal string InactiveHoverText { get; private set; }
+            internal string DirectiveName { get; private set; }
+            private Dictionary<string, MacroDefinitionInfo> MacroDefinitionsBeforeLine { get; set; }
+
+            internal void SetMacroDefinitionsAfterLine(
+                Dictionary<string, MacroDefinitionInfo> macroDefinitionsAfterLine) {
+
+                _macroDefinitionsAfterLine = macroDefinitionsAfterLine;
+            }
+
+            internal bool TryGetMacroDefinition(
+                string macroName,
+                bool useStateAfterLine,
+                out MacroDefinitionInfo definition) {
+
+                Dictionary<string, MacroDefinitionInfo> definitions = useStateAfterLine
+                    ? _macroDefinitionsAfterLine
+                    : MacroDefinitionsBeforeLine;
+
+                definition = null;
+                return definitions != null &&
+                    definitions.TryGetValue(macroName, out definition);
+            }
+        }
+
+        internal sealed class MacroDefinitionInfo
+        {
+            internal MacroDefinitionInfo(string filePath, int lineNumber) {
+                FilePath = filePath ?? string.Empty;
+                LineNumber = lineNumber;
+            }
+
+            internal string FilePath { get; private set; }
+            internal int LineNumber { get; private set; }
         }
 
         internal sealed class IncludeDependency
@@ -164,6 +203,8 @@ namespace VerilogLanguage.VerilogToken
         internal static AnalysisResult Analyze(IList<string> lines, string sourceFilePath) {
             List<LineState> lineStates = new List<LineState>();
             Dictionary<string, string> macroValues = new Dictionary<string, string>(StringComparer.Ordinal);
+            Dictionary<string, MacroDefinitionInfo> macroDefinitions =
+                new Dictionary<string, MacroDefinitionInfo>(StringComparer.Ordinal);
             Stack<ConditionalFrame> conditionals = new Stack<ConditionalFrame>();
             Dictionary<string, IncludeDependency> includeDependencies =
                 new Dictionary<string, IncludeDependency>(StringComparer.OrdinalIgnoreCase);
@@ -184,6 +225,7 @@ namespace VerilogLanguage.VerilogToken
                 true,
                 lineStates,
                 macroValues,
+                ref macroDefinitions,
                 conditionals,
                 includeDependencies,
                 activeIncludeStack,
@@ -219,6 +261,7 @@ namespace VerilogLanguage.VerilogToken
             bool collectLineStates,
             List<LineState> lineStates,
             Dictionary<string, string> macroValues,
+            ref Dictionary<string, MacroDefinitionInfo> macroDefinitions,
             Stack<ConditionalFrame> conditionals,
             Dictionary<string, IncludeDependency> includeDependencies,
             HashSet<string> activeIncludeStack,
@@ -241,12 +284,16 @@ namespace VerilogLanguage.VerilogToken
                     out directiveName,
                     out directiveArgument);
 
+                LineState lineState = null;
                 if (collectLineStates) {
-                    lineStates.Add(new LineState(
+                    lineState = new LineState(
                         lineIsActive,
                         isDirective,
                         IsConditionalDirective(directiveName),
-                        GetCurrentInactiveHoverText(conditionals)));
+                        GetCurrentInactiveHoverText(conditionals),
+                        directiveName,
+                        macroDefinitions);
+                    lineStates.Add(lineState);
                 }
 
                 if (isDirective) {
@@ -255,13 +302,19 @@ namespace VerilogLanguage.VerilogToken
                         directiveArgument,
                         lineIsActive,
                         sourceFilePath,
+                        lineNumber,
                         macroValues,
+                        ref macroDefinitions,
                         conditionals,
                         includeDependencies,
                         activeIncludeStack,
                         options,
                         ref isBlockCommentOpen,
                         includeDepth);
+                }
+
+                if (lineState != null) {
+                    lineState.SetMacroDefinitionsAfterLine(macroDefinitions);
                 }
 
                 UpdateBlockCommentState(lineText, ref isBlockCommentOpen);
@@ -303,7 +356,9 @@ namespace VerilogLanguage.VerilogToken
             string directiveArgument,
             bool lineIsActive,
             string sourceFilePath,
+            int lineNumber,
             Dictionary<string, string> macroValues,
+            ref Dictionary<string, MacroDefinitionInfo> macroDefinitions,
             Stack<ConditionalFrame> conditionals,
             Dictionary<string, IncludeDependency> includeDependencies,
             HashSet<string> activeIncludeStack,
@@ -318,6 +373,12 @@ namespace VerilogLanguage.VerilogToken
                 case "define":
                     if (lineIsActive && TryParseMacroDefinition(directiveArgument, out macroName, out macroValue)) {
                         macroValues[macroName] = macroValue;
+                        macroDefinitions = new Dictionary<string, MacroDefinitionInfo>(
+                            macroDefinitions,
+                            StringComparer.Ordinal);
+                        macroDefinitions[macroName] = new MacroDefinitionInfo(
+                            sourceFilePath,
+                            lineNumber + 1);
                         if (IsInactiveCodeOptOutMacro(macroName)) {
                             options.SuppressInactiveCodeHighlighting = true;
                         }
@@ -327,12 +388,20 @@ namespace VerilogLanguage.VerilogToken
                 case "undef":
                     if (lineIsActive && TryParseMacroName(directiveArgument, out macroName)) {
                         macroValues.Remove(macroName);
+                        if (macroDefinitions.ContainsKey(macroName)) {
+                            macroDefinitions = new Dictionary<string, MacroDefinitionInfo>(
+                                macroDefinitions,
+                                StringComparer.Ordinal);
+                            macroDefinitions.Remove(macroName);
+                        }
                     }
                     break;
 
                 case "undefineall":
                     if (lineIsActive) {
                         macroValues.Clear();
+                        macroDefinitions =
+                            new Dictionary<string, MacroDefinitionInfo>(StringComparer.Ordinal);
                     }
                     break;
 
@@ -342,6 +411,7 @@ namespace VerilogLanguage.VerilogToken
                             directiveArgument,
                             sourceFilePath,
                             macroValues,
+                            ref macroDefinitions,
                             conditionals,
                             includeDependencies,
                             activeIncludeStack,
@@ -448,6 +518,7 @@ namespace VerilogLanguage.VerilogToken
             string directiveArgument,
             string sourceFilePath,
             Dictionary<string, string> macroValues,
+            ref Dictionary<string, MacroDefinitionInfo> macroDefinitions,
             Stack<ConditionalFrame> conditionals,
             Dictionary<string, IncludeDependency> includeDependencies,
             HashSet<string> activeIncludeStack,
@@ -500,6 +571,7 @@ namespace VerilogLanguage.VerilogToken
                     false,
                     null,
                     macroValues,
+                    ref macroDefinitions,
                     conditionals,
                     includeDependencies,
                     activeIncludeStack,

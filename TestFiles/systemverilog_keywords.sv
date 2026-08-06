@@ -74,6 +74,8 @@ module systemverilog_type_owner_parameterized_ports #(
 
 typedef logic [WIDTH - 1:0] shared_parameterized_ports_name;
 
+shared_parameterized_ports_name = 3;
+
 endmodule
 
 module systemverilog_variable_owner_parameterized_ports #(
@@ -81,5 +83,7 @@ module systemverilog_variable_owner_parameterized_ports #(
 ) ();
 
 wire shared_parameterized_ports_name;
+
+shared_parameterized_ports_name = 4;
 
 endmodule

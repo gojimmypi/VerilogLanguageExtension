@@ -963,12 +963,13 @@ namespace VerilogLanguage.VerilogToken
                     List<Span> attributeLineSpans = GetAttributeLineSpans(lineText, attributeState, out attributeState);
                     tokens = VerilogGlobals.VerilogKeywordSplit(lineText, priorToken);
 
-                    if (!preprocessorLineState.IsActive &&
-                        (!preprocessorLineState.IsDirective ||
-                            !preprocessorLineState.IsConditionalDirective) &&
+                    if (!preprocessorLineState.IsActiveForHighlighting &&
                         !_preprocessorSuppressInactiveCodeHighlighting) {
                         // Keep lexical continuation state correct across inactive lines,
                         // but suppress all normal syntax classifications for their text.
+                        // Conditional directives nested below an inactive parent are
+                        // inactive whole lines; active branch transitions and their matching
+                        // closing directives remain normal through the evaluator line state.
                         CommentHelper inactiveCommentHelper =
                             new CommentHelper(lineText, false, isContinuedBlockComment);
                         isContinuedBlockComment = inactiveCommentHelper.HasBlockStartComment;

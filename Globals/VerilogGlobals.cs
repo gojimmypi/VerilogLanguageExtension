@@ -871,8 +871,14 @@ namespace VerilogLanguage
             }
         }
 
+        private static bool IsDeclarationLifetimeKeyword(string itemText) {
+            return itemText == "automatic" || itemText == "static";
+        }
+
         private static bool IsDeclarationModifierKeyword(string itemText) {
-            return IsDeclarationStartKeyword(itemText) || IsVerilogVariableSigner(itemText);
+            return IsDeclarationStartKeyword(itemText) ||
+                IsDeclarationLifetimeKeyword(itemText) ||
+                IsVerilogVariableSigner(itemText);
         }
 
         private static string StripLineCommentForDuplicateScan(string lineText) {
@@ -974,20 +980,31 @@ namespace VerilogLanguage
             }
 
             int index = 0;
-            while (index < codeText.Length && char.IsWhiteSpace(codeText[index])) {
-                index++;
+            while (index < codeText.Length) {
+                while (index < codeText.Length && char.IsWhiteSpace(codeText[index])) {
+                    index++;
+                }
+
+                int start = index;
+                while (index < codeText.Length && IsVerilogIdentifierChar(codeText[index])) {
+                    index++;
+                }
+
+                if (index == start) {
+                    return false;
+                }
+
+                string itemText = codeText.Substring(start, index - start);
+                if (IsDeclarationStartKeyword(itemText)) {
+                    return true;
+                }
+
+                if (!IsDeclarationLifetimeKeyword(itemText)) {
+                    return false;
+                }
             }
 
-            int start = index;
-            while (index < codeText.Length && IsVerilogIdentifierChar(codeText[index])) {
-                index++;
-            }
-
-            if (index == start) {
-                return false;
-            }
-
-            return IsDeclarationStartKeyword(codeText.Substring(start, index - start));
+            return false;
         }
 
         private static bool TryGetRoutineNameFromLineText(string lineText, string keyword, out string routineName) {
@@ -1239,52 +1256,82 @@ namespace VerilogLanguage
             return blockTokens;
         }
 
-        private static string ActiveSnapshotLexicalScope(
-            string declarationScope,
-            List<string> activeBlockScopes,
-            Dictionary<string, string> declarationScopeByLexicalScope) {
-            string lexicalScope = activeBlockScopes.Count == 0
-                ? declarationScope
-                : activeBlockScopes[activeBlockScopes.Count - 1];
-
-            if (!declarationScopeByLexicalScope.ContainsKey(lexicalScope)) {
-                declarationScopeByLexicalScope.Add(lexicalScope, declarationScope);
+        private static Dictionary<int, string> CollectSnapshotDeclarationBlockScopeByLine(
+            ITextSnapshot snapshot) {
+            Dictionary<int, string> blockScopeByLine = new Dictionary<int, string>();
+            if (snapshot == null || snapshot.Length == 0) {
+                return blockScopeByLine;
             }
 
-            return lexicalScope;
-        }
+            List<string> activeBlockScopes = new List<string>();
+            bool insideBlockComment = false;
+            bool insideAttribute = false;
+            int nextBlockScopeId = 1;
 
-        private static void UpdateSnapshotDeclarationBlockScopes(
-            List<string> blockTokens,
-            string declarationScope,
-            int lineNumber,
-            List<string> activeBlockScopes,
-            Dictionary<string, string> declarationScopeByLexicalScope,
-            ref int nextBlockScopeId) {
-            foreach (string itemText in blockTokens) {
-                switch (itemText) {
-                    case "begin":
-                    case "fork":
-                        string blockScope = declarationScope + "::__BLOCK__::" +
-                            lineNumber.ToString() + ":" + nextBlockScopeId.ToString();
-                        nextBlockScopeId++;
-                        activeBlockScopes.Add(blockScope);
-                        declarationScopeByLexicalScope[blockScope] = declarationScope;
-                        break;
+            foreach (ITextSnapshotLine line in snapshot.Lines) {
+                string declarationCodeText;
+                List<string> blockTokens = CollectSnapshotDeclarationBlockTokens(
+                    line.GetText(),
+                    ref insideBlockComment,
+                    ref insideAttribute,
+                    out declarationCodeText);
 
-                    case "end":
-                    case "join":
-                    case "join_any":
-                    case "join_none":
-                        if (activeBlockScopes.Count > 0) {
-                            activeBlockScopes.RemoveAt(activeBlockScopes.Count - 1);
-                        }
-                        break;
+                if (activeBlockScopes.Count > 0) {
+                    blockScopeByLine[line.LineNumber] =
+                        activeBlockScopes[activeBlockScopes.Count - 1];
+                }
 
-                    default:
-                        break;
+                if (blockTokens.Count == 0 &&
+                    string.IsNullOrWhiteSpace(declarationCodeText)) {
+                    continue;
+                }
+
+                foreach (string itemText in blockTokens) {
+                    switch (itemText) {
+                        case "begin":
+                        case "fork":
+                            string blockScope = "__BLOCK__::" +
+                                line.LineNumber.ToString() + ":" +
+                                nextBlockScopeId.ToString();
+                            nextBlockScopeId++;
+                            activeBlockScopes.Add(blockScope);
+                            break;
+
+                        case "end":
+                        case "join":
+                        case "join_any":
+                        case "join_none":
+                            if (activeBlockScopes.Count > 0) {
+                                activeBlockScopes.RemoveAt(activeBlockScopes.Count - 1);
+                            }
+                            break;
+
+                        default:
+                            break;
+                    }
                 }
             }
+
+            return blockScopeByLine;
+        }
+
+        private static string SnapshotDeclarationLexicalScope(
+            string declarationScope,
+            int lineNumber,
+            Dictionary<int, string> blockScopeByLine,
+            Dictionary<string, string> declarationScopeByLexicalScope) {
+            declarationScope = NormalizeDeclarationDuplicateScope(declarationScope);
+
+            string blockScope;
+            string lexicalScope = declarationScope;
+            if (blockScopeByLine != null &&
+                blockScopeByLine.TryGetValue(lineNumber, out blockScope) &&
+                !string.IsNullOrEmpty(blockScope)) {
+                lexicalScope = declarationScope + "::" + blockScope;
+            }
+
+            declarationScopeByLexicalScope[lexicalScope] = declarationScope;
+            return lexicalScope;
         }
 
         private static void CaptureSnapshotDeclaration(
@@ -1401,7 +1448,14 @@ namespace VerilogLanguage
                 }
             }
 
-            if (items.Count == 0 || !IsDeclarationStartKeyword(items[0])) {
+            int declarationStartIndex = 0;
+            while (declarationStartIndex < items.Count &&
+                IsDeclarationLifetimeKeyword(items[declarationStartIndex])) {
+                declarationStartIndex++;
+            }
+
+            if (declarationStartIndex >= items.Count ||
+                !IsDeclarationStartKeyword(items[declarationStartIndex])) {
                 return segments;
             }
 
@@ -2489,17 +2543,17 @@ namespace VerilogLanguage
                 CollectTypedefNamesFromSnapshot(snapshot);
             HashSet<string> invalidFunctionScopes = new HashSet<string>(StringComparer.Ordinal);
 
+            Dictionary<int, string> blockScopeByLine =
+                CollectSnapshotDeclarationBlockScopeByLine(snapshot);
+
             string activeLocalScope = string.Empty;
-            string activeBlockDeclarationScope = string.Empty;
-            List<string> activeBlockScopes = new List<string>();
             bool insideBlockComment = false;
             bool insideAttribute = false;
-            int nextBlockScopeId = 1;
 
             foreach (ITextSnapshotLine line in snapshot.Lines) {
                 string lineText = line.GetText();
                 string declarationCodeText;
-                List<string> blockTokens = CollectSnapshotDeclarationBlockTokens(
+                CollectSnapshotDeclarationBlockTokens(
                     lineText,
                     ref insideBlockComment,
                     ref insideAttribute,
@@ -2512,7 +2566,7 @@ namespace VerilogLanguage
                      declarationCodeText.IndexOf("endtask", StringComparison.Ordinal) >= 0);
 
                 if (!mayContainFunction && !mayContainTask && !mayContainDeclaration &&
-                    !mayEndLocalScope && blockTokens.Count == 0) {
+                    !mayEndLocalScope) {
                     continue;
                 }
 
@@ -2540,16 +2594,12 @@ namespace VerilogLanguage
                         }
                     }
 
-                    if (activeBlockDeclarationScope != activeLocalScope) {
-                        activeBlockScopes.Clear();
-                        activeBlockDeclarationScope = activeLocalScope;
-                    }
-
                     string argumentDeclarationText = RoutineArgumentDeclarationText(declarationCodeText, "function");
                     if (CodeLineStartsWithDeclarationKeyword(argumentDeclarationText)) {
-                        string lexicalScope = ActiveSnapshotLexicalScope(
+                        string lexicalScope = SnapshotDeclarationLexicalScope(
                             activeLocalScope,
-                            activeBlockScopes,
+                            line.LineNumber,
+                            blockScopeByLine,
                             declarationScopeByLexicalScope);
                         ProcessSnapshotDeclarationLine(
                             countsByScope,
@@ -2566,16 +2616,12 @@ namespace VerilogLanguage
                 else if (mayContainTask && TryGetTaskNameFromLineText(declarationCodeText, out taskName)) {
                     activeLocalScope = TaskLocalScopeName(moduleScope, taskName);
 
-                    if (activeBlockDeclarationScope != activeLocalScope) {
-                        activeBlockScopes.Clear();
-                        activeBlockDeclarationScope = activeLocalScope;
-                    }
-
                     string argumentDeclarationText = RoutineArgumentDeclarationText(declarationCodeText, "task");
                     if (CodeLineStartsWithDeclarationKeyword(argumentDeclarationText)) {
-                        string lexicalScope = ActiveSnapshotLexicalScope(
+                        string lexicalScope = SnapshotDeclarationLexicalScope(
                             activeLocalScope,
-                            activeBlockScopes,
+                            line.LineNumber,
+                            blockScopeByLine,
                             declarationScopeByLexicalScope);
                         ProcessSnapshotDeclarationLine(
                             countsByScope,
@@ -2593,15 +2639,11 @@ namespace VerilogLanguage
                 string declarationScope = string.IsNullOrEmpty(activeLocalScope)
                     ? moduleScope
                     : activeLocalScope;
-                if (activeBlockDeclarationScope != declarationScope) {
-                    activeBlockScopes.Clear();
-                    activeBlockDeclarationScope = declarationScope;
-                }
-
                 if (mayContainDeclaration) {
-                    string lexicalScope = ActiveSnapshotLexicalScope(
+                    string lexicalScope = SnapshotDeclarationLexicalScope(
                         declarationScope,
-                        activeBlockScopes,
+                        line.LineNumber,
+                        blockScopeByLine,
                         declarationScopeByLexicalScope);
                     ProcessSnapshotDeclarationLine(
                         countsByScope,
@@ -2615,18 +2657,8 @@ namespace VerilogLanguage
                         declarationCodeText);
                 }
 
-                UpdateSnapshotDeclarationBlockScopes(
-                    blockTokens,
-                    declarationScope,
-                    line.LineNumber,
-                    activeBlockScopes,
-                    declarationScopeByLexicalScope,
-                    ref nextBlockScopeId);
-
                 if (mayEndLocalScope && (IsEndFunctionLineText(declarationCodeText) || IsEndTaskLineText(declarationCodeText))) {
                     activeLocalScope = string.Empty;
-                    activeBlockDeclarationScope = string.Empty;
-                    activeBlockScopes.Clear();
                 }
             }
 

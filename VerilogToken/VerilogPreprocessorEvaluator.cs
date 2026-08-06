@@ -48,19 +48,19 @@ namespace VerilogLanguage.VerilogToken
         {
             private Dictionary<string, MacroDefinitionInfo> _macroDefinitionsAfterLine;
 
-            internal LineState(bool isActive, bool isDirective)
-                : this(isActive, isDirective, false, string.Empty, string.Empty, null) {
+            internal LineState(bool isActiveForHighlighting, bool isDirective)
+                : this(isActiveForHighlighting, isDirective, false, string.Empty, string.Empty, null) {
             }
 
             internal LineState(
-                bool isActive,
+                bool isActiveForHighlighting,
                 bool isDirective,
                 bool isConditionalDirective,
                 string inactiveHoverText,
                 string directiveName,
                 Dictionary<string, MacroDefinitionInfo> macroDefinitionsBeforeLine) {
 
-                IsActive = isActive;
+                IsActiveForHighlighting = isActiveForHighlighting;
                 IsDirective = isDirective;
                 IsConditionalDirective = isConditionalDirective;
                 InactiveHoverText = inactiveHoverText ?? string.Empty;
@@ -68,7 +68,7 @@ namespace VerilogLanguage.VerilogToken
                 MacroDefinitionsBeforeLine = macroDefinitionsBeforeLine;
             }
 
-            internal bool IsActive { get; private set; }
+            internal bool IsActiveForHighlighting { get; private set; }
             internal bool IsDirective { get; private set; }
             internal bool IsConditionalDirective { get; private set; }
             internal string InactiveHoverText { get; private set; }
@@ -288,8 +288,12 @@ namespace VerilogLanguage.VerilogToken
 
                 LineState lineState = null;
                 if (collectLineStates) {
-                    lineState = new LineState(
+                    bool lineIsActiveForHighlighting = IsLineActiveForHighlighting(
+                        conditionals,
                         lineIsActive,
+                        directiveName);
+                    lineState = new LineState(
+                        lineIsActiveForHighlighting,
                         isDirective,
                         IsConditionalDirective(directiveName),
                         GetCurrentInactiveHoverText(conditionals),
@@ -337,6 +341,31 @@ namespace VerilogLanguage.VerilogToken
             }
 
             return conditionals.Peek().CurrentInactiveHoverText ?? string.Empty;
+        }
+
+        private static bool IsLineActiveForHighlighting(
+            Stack<ConditionalFrame> conditionals,
+            bool currentBranchActive,
+            string directiveName) {
+
+            switch (directiveName) {
+                case "elsif":
+                case "else":
+                case "endif":
+                    // These directives operate on the current conditional group.
+                    // They remain normally highlighted when that group's parent is active,
+                    // even if the branch immediately before the directive is inactive.
+                    // When the entire group is nested below an inactive parent, the
+                    // directive is inactive too and should be uniformly grayed.
+                    if (conditionals == null || conditionals.Count == 0) {
+                        return currentBranchActive;
+                    }
+
+                    return conditionals.Peek().ParentActive;
+
+                default:
+                    return currentBranchActive;
+            }
         }
 
         private static bool IsConditionalDirective(string directiveName) {

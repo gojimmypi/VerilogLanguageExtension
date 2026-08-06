@@ -155,6 +155,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".github\workflows\build-verilog-language-extension.yml" />
+    <None Include="tools\Refresh-Baseline.ps1" />
+    <None Include="tools\vle-ci\ci-Audit.ps1" />
     <None Include="tools\vle-ci\Compare-Snapshots.py" />
     <None Include="tools\vle-ci\Export-Snapshots.ps1" />
     <None Include="tools\vle-ci\Run-LocalCI.ps1" />

@@ -222,7 +222,7 @@
         {
             "Text": "enabled",
             "Source": "Tags",
-            "TagDetail": "Verilog_Variable_reg",
+            "TagDetail": "Verilog_Variable_SystemVerilog",
             "HoverContains": [
                 "bit",
                 "enabled"

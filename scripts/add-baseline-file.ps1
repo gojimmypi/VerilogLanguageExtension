@@ -16,6 +16,10 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
+. (Join-Path (Join-Path $PSScriptRoot "..") "tools/vle-ci/SnapshotBaseline.ps1")
+
+Assert-VleCanonicalPowerShell
+
 function Get-RepoRoot {
     return (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "..")).Path
 }
@@ -69,15 +73,6 @@ function Write-JsonFile {
         $Path,
         ($text + [Environment]::NewLine),
         $utf8NoBom)
-}
-
-function Remove-GitCommit {
-    param([object]$Snapshot)
-
-    $property = $Snapshot.PSObject.Properties["GitCommit"]
-    if ($null -ne $property) {
-        $Snapshot.PSObject.Properties.Remove("GitCommit")
-    }
 }
 
 function Get-SnapshotSourcePath {
@@ -275,13 +270,15 @@ try {
         throw "Generated snapshot is for '$currentSource', not '$relativeSource'."
     }
 
-    # Match ci-baseline.ps1: remove GitCommit only and use UTF-8 without BOM.
-    Remove-GitCommit -Snapshot $currentSnapshot
-    Write-JsonFile -Path $baselineTempPath -Value $currentSnapshot
+    # Use the same portability transform and canonical serializer as the full
+    # ci-baseline.ps1 flow. This prevents single-file updates from introducing
+    # absolute paths, volatile or release-only fields, LF-only JSON, or
+    # Python-style spacing.
+    $portableSnapshot = ConvertTo-VlePortableSnapshot -Snapshot $currentSnapshot
+    Write-VleJsonFile -Path $baselineTempPath -Value $portableSnapshot
 
-    $writtenSnapshot = Read-JsonFile -Path $baselineTempPath
-    Remove-GitCommit -Snapshot $writtenSnapshot
-    $expectedJson = $currentSnapshot | ConvertTo-Json -Depth 100
+    $writtenSnapshot = Read-VleJsonFile -Path $baselineTempPath
+    $expectedJson = $portableSnapshot | ConvertTo-Json -Depth 100
     $writtenJson = $writtenSnapshot | ConvertTo-Json -Depth 100
     if ($expectedJson -cne $writtenJson) {
         throw "Staged baseline verification failed."

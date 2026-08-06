@@ -4,22 +4,22 @@
         {
             "Text": "active_even_when_macro_value_is_zero",
             "Source": "Tags",
-            "TagDetail": "Verilog_Variable_reg"
+            "TagDetail": "Verilog_Variable_SystemVerilog"
         },
         {
             "Text": "active_elsif_branch",
             "Source": "Tags",
-            "TagDetail": "Verilog_Variable_reg"
+            "TagDetail": "Verilog_Variable_SystemVerilog"
         },
         {
             "Text": "active_nested_ifndef",
             "Source": "Tags",
-            "TagDetail": "Verilog_Variable_reg"
+            "TagDetail": "Verilog_Variable_SystemVerilog"
         },
         {
             "Text": "active_after_commented_directive",
             "Source": "Tags",
-            "TagDetail": "Verilog_Variable_reg"
+            "TagDetail": "Verilog_Variable_SystemVerilog"
         },
         {
             "Text": "    wire inactive_feature_zero_else;",
@@ -99,7 +99,7 @@
         {
             "Text": "inactive_nested_else",
             "Source": "Tags",
-            "TagDetail": "Verilog_Variable_reg"
+            "TagDetail": "Verilog_Variable_SystemVerilog"
         }
     ]
 }

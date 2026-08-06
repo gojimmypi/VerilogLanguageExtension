@@ -45,6 +45,19 @@
             ]
         },
         {
+            "Text": "    `ifdef PRESENT_FEATURE",
+            "Source": "Tags",
+            "TagDetail": "Verilog_InactiveCode",
+            "HoverContains": [
+                "MISSING_OUTER",
+                "not defined",
+                "SHOW_INACTIVE_CODE"
+            ],
+            "HoverNotContains": [
+                "PRESENT_FEATURE"
+            ]
+        },
+        {
             "Text": "        logic nested_inactive_uses_outer_reason;",
             "Source": "Tags",
             "TagDetail": "Verilog_InactiveCode",
@@ -58,14 +71,24 @@
             ]
         },
         {
+            "Text": "    `endif",
+            "Source": "Tags",
+            "TagDetail": "Verilog_InactiveCode",
+            "HoverContains": [
+                "MISSING_OUTER",
+                "not defined",
+                "SHOW_INACTIVE_CODE"
+            ]
+        },
+        {
             "Text": "active_without_sim_macro",
             "Source": "Tags",
-            "TagDetail": "Verilog_Variable_reg"
+            "TagDetail": "Verilog_Variable_SystemVerilog"
         },
         {
             "Text": "active_first_branch",
             "Source": "Tags",
-            "TagDetail": "Verilog_Variable_reg"
+            "TagDetail": "Verilog_Variable_SystemVerilog"
         }
     ]
 }

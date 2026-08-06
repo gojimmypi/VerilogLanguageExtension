@@ -4,32 +4,32 @@
         {
             "Text": "active_from_project_config",
             "Source": "Tags",
-            "TagDetail": "Verilog_Variable_reg"
+            "TagDetail": "Verilog_Variable_SystemVerilog"
         },
         {
             "Text": "active_included_zero_value",
             "Source": "Tags",
-            "TagDetail": "Verilog_Variable_reg"
+            "TagDetail": "Verilog_Variable_SystemVerilog"
         },
         {
             "Text": "active_from_nested_include",
             "Source": "Tags",
-            "TagDetail": "Verilog_Variable_reg"
+            "TagDetail": "Verilog_Variable_SystemVerilog"
         },
         {
             "Text": "active_after_include_cycle_guard",
             "Source": "Tags",
-            "TagDetail": "Verilog_Variable_reg"
+            "TagDetail": "Verilog_Variable_SystemVerilog"
         },
         {
             "Text": "active_from_second_cycle_file",
             "Source": "Tags",
-            "TagDetail": "Verilog_Variable_reg"
+            "TagDetail": "Verilog_Variable_SystemVerilog"
         },
         {
             "Text": "active_inactive_include_did_not_leak",
             "Source": "Tags",
-            "TagDetail": "Verilog_Variable_reg"
+            "TagDetail": "Verilog_Variable_SystemVerilog"
         },
         {
             "Text": "    logic inactive_project_config_else;",
@@ -67,12 +67,12 @@
         {
             "Text": "inactive_project_config_else",
             "Source": "Tags",
-            "TagDetail": "Verilog_Variable_reg"
+            "TagDetail": "Verilog_Variable_SystemVerilog"
         },
         {
             "Text": "inactive_include_leaked_macro",
             "Source": "Tags",
-            "TagDetail": "Verilog_Variable_reg"
+            "TagDetail": "Verilog_Variable_SystemVerilog"
         },
         {
             "Text": "\"include-files/inactive_config.vh\"",

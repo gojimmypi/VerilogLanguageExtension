@@ -1,0 +1,41 @@
+{
+  "File": "TestFiles/mini_test - Copy.v",
+  "MustHaveSymbols": [
+    {
+      "Name": "J2_AD_PORT",
+      "Scope": "global",
+      "TokenType": "Verilog_Variable_input",
+      "HoverContains": [
+        "input",
+        "[7:0]",
+        "J2_AD_PORT"
+      ]
+    }
+  ],
+  "MustNotHaveSymbols": [
+    {
+      "Name": "J2_AD_PORT",
+      "Scope": "global",
+      "TokenType": "Verilog_Variable_duplicate"
+    }
+  ],
+  "MustHaveTaggedText": [
+    {
+      "Text": "J2_AD_PORT",
+      "Source": "Tags",
+      "TagDetail": "Verilog_Variable_input",
+      "HoverContains": [
+        "input",
+        "[7:0]",
+        "J2_AD_PORT"
+      ]
+    }
+  ],
+  "MustNotHaveTaggedText": [
+    {
+      "Text": "J2_AD_PORT",
+      "Source": "Tags",
+      "TagDetail": "Verilog_Variable_duplicate"
+    }
+  ]
+}

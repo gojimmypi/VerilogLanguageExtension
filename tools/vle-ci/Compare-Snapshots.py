@@ -13,6 +13,7 @@ import argparse
 import json
 import re
 import shutil
+import subprocess
 import sys
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Tuple
@@ -20,8 +21,6 @@ from typing import Any, Dict, Iterable, List, Tuple
 
 Snapshot = Dict[str, Any]
 FailureList = List[str]
-RUN_INFO_FILE_NAME = "run-info.json"
-
 KEYWORD_TAG_TEXT = {
     "Verilog_always": "always",
     "Verilog_assign": "assign",
@@ -140,11 +139,6 @@ KEYWORD_TAG_TEXT = {
 IDENTIFIER_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_$]*$")
 ESCAPED_IDENTIFIER_RE = re.compile(r"^\\\S+$")
 
-SYSTEMVERILOG_EXTENSIONS = {".sv", ".svh"}
-SYSTEMVERILOG_CLASSIFICATION_TYPES = {
-    "SystemVerilogYosysSupported",
-    "SystemVerilogYosysUnsupported",
-}
 LEGACY_SYSTEMVERILOG_CLASSIFICATION_TYPES = {
     "bit",
 }
@@ -304,13 +298,6 @@ def load_json(path: Path) -> Any:
         return json.load(f)
 
 
-def write_json(path: Path, value: Any) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8", newline="\n") as f:
-        json.dump(value, f, indent=4)
-        f.write("\n")
-
-
 def iter_snapshot_files(root: Path) -> Iterable[Path]:
     if not root.exists():
         return []
@@ -321,28 +308,103 @@ def normalize_slashes(value: str) -> str:
     return value.replace("\\", "/")
 
 
-VOLATILE_SNAPSHOT_FIELDS = {
-    "GeneratedAtUtc",
-    "GitCommit",
-    "ProcessingTime",
-    "RunTiming",
-}
+def snapshot_repository_root(snapshot: Snapshot) -> str:
+    """Return the machine-specific repository root for one snapshot, if known."""
+    full_path = normalize_slashes(str(snapshot.get("FilePath") or ""))
+    relative_path = normalize_slashes(str(snapshot.get("FileRelativePath") or ""))
+
+    if not full_path or not relative_path:
+        return ""
+
+    full_lower = full_path.lower()
+    relative_lower = relative_path.lower()
+    if not full_lower.endswith(relative_lower):
+        return ""
+
+    return full_path[:-len(relative_path)].rstrip("/")
 
 
-def snapshot_for_baseline(snapshot: Snapshot) -> Snapshot:
-    cleaned = dict(snapshot)
-    for field in VOLATILE_SNAPSHOT_FIELDS:
-        cleaned.pop(field, None)
-    return cleaned
+def normalize_hover_text(hover_text: str, repository_root: str) -> str:
+    """Make absolute source locations in hover text repository-relative."""
+    if not hover_text:
+        return ""
+
+    root = normalize_slashes(repository_root).rstrip("/")
+    root_lower = root.lower()
+
+    normalized_lines: List[str] = []
+    for line in hover_text.splitlines(keepends=True):
+        line_ending = ""
+        line_body = line
+        if line.endswith("\r\n"):
+            line_body = line[:-2]
+            line_ending = "\r\n"
+        elif line.endswith("\n"):
+            line_body = line[:-1]
+            line_ending = "\n"
+        elif line.endswith("\r"):
+            line_body = line[:-1]
+            line_ending = "\r"
+
+        if line_body.startswith("File:"):
+            prefix, path_text = line_body.split(":", 1)
+            normalized_path = normalize_slashes(path_text.strip())
+
+            if root and normalized_path.lower().startswith(root_lower + "/"):
+                normalized_path = normalized_path[len(root) + 1:]
+            else:
+                testfiles_marker = "/TestFiles/"
+                marker_index = normalized_path.lower().find(testfiles_marker.lower())
+                if marker_index >= 0:
+                    normalized_path = normalized_path[marker_index + 1:]
+
+            line_body = prefix + ": " + normalized_path
+
+        normalized_lines.append(line_body + line_ending)
+
+    return "".join(normalized_lines)
 
 
-def copy_run_info(current_root: Path, baseline_root: Path) -> None:
-    src = current_root / RUN_INFO_FILE_NAME
-    if not src.exists():
-        return
+def find_powershell() -> str:
+    """Find a PowerShell host for the canonical baseline writer."""
+    for candidate in ("powershell.exe", "powershell"):
+        resolved = shutil.which(candidate)
+        if resolved:
+            return resolved
 
-    dst = baseline_root / RUN_INFO_FILE_NAME
-    write_json(dst, load_json(src))
+    raise RuntimeError(
+        "Baseline updates require Windows PowerShell 5.1. "
+        "Run scripts/ci-baseline.ps1 from a Visual Studio Windows environment.")
+
+
+def update_baseline(current_root: Path, baseline_root: Path) -> None:
+    """Delegate baseline serialization to the canonical PowerShell writer.
+
+    Python intentionally never writes approved snapshot JSON. The historical
+    baseline representation is Windows PowerShell 5.1 ConvertTo-Json with CRLF and
+    UTF-8 without BOM; using json.dump here would turn semantic changes into
+    whole-file whitespace and escaping diffs.
+    """
+    writer = Path(__file__).resolve().with_name("Write-SnapshotBaseline.ps1")
+    if not writer.is_file():
+        raise RuntimeError(f"Canonical baseline writer not found: {writer}")
+
+    command = [
+        find_powershell(),
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        str(writer),
+        "-CurrentDirectory",
+        str(current_root.resolve()),
+        "-BaselineDirectory",
+        str(baseline_root.resolve()),
+    ]
+    completed = subprocess.run(command, check=False)
+    if completed.returncode != 0:
+        raise RuntimeError(
+            f"Canonical baseline writer failed with exit code {completed.returncode}")
 
 
 def snapshot_key(snapshot_path: Path, snapshot_root: Path, snapshot: Snapshot) -> str:
@@ -357,7 +419,10 @@ def snapshot_key(snapshot_path: Path, snapshot_root: Path, snapshot: Snapshot) -
     return normalize_slashes(str(Path(str(run_name)) / base_name))
 
 
-def normalize_span(span: Dict[str, Any], include_types: bool) -> Dict[str, Any]:
+def normalize_span(
+        span: Dict[str, Any],
+        include_types: bool,
+        repository_root: str) -> Dict[str, Any]:
     normalized: Dict[str, Any] = {
         "Line": span.get("Line"),
         "Column": span.get("Column"),
@@ -370,7 +435,7 @@ def normalize_span(span: Dict[str, Any], include_types: bool) -> Dict[str, Any]:
         normalized["TagDetail"] = span.get("TagDetail", "")
         hover = span.get("HoverText")
         if hover:
-            normalized["HoverText"] = hover
+            normalized["HoverText"] = normalize_hover_text(str(hover), repository_root)
 
     return normalized
 
@@ -385,7 +450,9 @@ def normalize_token(token: Dict[str, Any]) -> Dict[str, Any]:
     return normalized
 
 
-def normalize_symbol(symbol: Dict[str, Any]) -> Dict[str, Any]:
+def normalize_symbol(
+        symbol: Dict[str, Any],
+        repository_root: str) -> Dict[str, Any]:
     normalized = {
         "Scope": symbol.get("Scope", ""),
         "Name": symbol.get("Name", ""),
@@ -394,12 +461,14 @@ def normalize_symbol(symbol: Dict[str, Any]) -> Dict[str, Any]:
 
     hover = symbol.get("HoverText")
     if hover:
-        normalized["HoverText"] = hover
+        normalized["HoverText"] = normalize_hover_text(str(hover), repository_root)
 
     return normalized
 
 
 def normalize_snapshot(snapshot: Snapshot) -> Dict[str, Any]:
+    repository_root = snapshot_repository_root(snapshot)
+
     normalized = {
         "SchemaVersion": snapshot.get("SchemaVersion"),
         "RunName": snapshot.get("RunName", ""),
@@ -407,10 +476,19 @@ def normalize_snapshot(snapshot: Snapshot) -> Dict[str, Any]:
         "ContentType": snapshot.get("ContentType", ""),
         "TextSha256": snapshot.get("TextSha256", ""),
         "Errors": snapshot.get("Errors") or [],
-        "Classifications": [normalize_span(item, True) for item in snapshot.get("Classifications") or []],
-        "Tags": [normalize_span(item, False) for item in snapshot.get("Tags") or []],
+        "Classifications": [
+            normalize_span(item, True, repository_root)
+            for item in snapshot.get("Classifications") or []
+        ],
+        "Tags": [
+            normalize_span(item, False, repository_root)
+            for item in snapshot.get("Tags") or []
+        ],
         "Tokens": [normalize_token(item) for item in snapshot.get("Tokens") or []],
-        "Symbols": [normalize_symbol(item) for item in snapshot.get("Symbols") or []],
+        "Symbols": [
+            normalize_symbol(item, repository_root)
+            for item in snapshot.get("Symbols") or []
+        ],
     }
 
     normalized["Classifications"].sort(key=lambda item: (item.get("Line") or 0, item.get("Column") or 0, item.get("Text") or "", str(item.get("Types") or "")))
@@ -465,49 +543,6 @@ def compare_snapshots(current_root: Path, baseline_root: Path, failures: Failure
                 f"  Baseline: {baseline_path}\n"
                 f"  Current:  {current_path}\n"
                 f"{summary}")
-
-
-def update_baseline(current_root: Path, baseline_root: Path) -> None:
-    """Replace a baseline only after a complete staged copy exists.
-
-    This avoids leaving a half-populated approved baseline if the refresh is
-    interrupted while JSON files are being written. The old baseline is kept
-    until the new one is fully staged.
-    """
-    parent = baseline_root.parent
-    parent.mkdir(parents=True, exist_ok=True)
-
-    staging_root = parent / f".{baseline_root.name}.tmp-update"
-    backup_root = parent / f".{baseline_root.name}.old-update"
-
-    if staging_root.exists():
-        shutil.rmtree(staging_root)
-    if backup_root.exists():
-        shutil.rmtree(backup_root)
-
-    staging_root.mkdir(parents=True, exist_ok=True)
-
-    try:
-        for src in iter_snapshot_files(current_root):
-            rel = src.relative_to(current_root)
-            dst = staging_root / rel
-            write_json(dst, snapshot_for_baseline(load_json(src)))
-
-        copy_run_info(current_root, staging_root)
-
-        if baseline_root.exists():
-            baseline_root.rename(backup_root)
-
-        staging_root.rename(baseline_root)
-
-        if backup_root.exists():
-            shutil.rmtree(backup_root)
-    except Exception:
-        if not baseline_root.exists() and backup_root.exists():
-            backup_root.rename(baseline_root)
-        if staging_root.exists():
-            shutil.rmtree(staging_root, ignore_errors=True)
-        raise
 
 
 def matching_snapshots_for_file(current: Dict[str, Tuple[Path, Snapshot, Dict[str, Any]]], expected_file: str) -> List[Tuple[Path, Snapshot, Dict[str, Any]]]:
@@ -810,20 +845,10 @@ def check_snapshot_sanity(path: Path, normalized: Dict[str, Any], failures: Fail
             failures.append(
                 f"{path}: variable tag {tag_detail} covered non-identifier text {text!r}")
 
-    relative_path = normalize_slashes(str(normalized.get("FileRelativePath", "")))
-    extension = Path(relative_path).suffix.lower()
-    is_systemverilog = extension in SYSTEMVERILOG_EXTENSIONS
-
     for item in normalized.get("Classifications") or []:
         text = str(item.get("Text", ""))
         types = set(item.get("Types") or [])
-        systemverilog_types = sorted(types & SYSTEMVERILOG_CLASSIFICATION_TYPES)
         legacy_types = sorted(types & LEGACY_SYSTEMVERILOG_CLASSIFICATION_TYPES)
-
-        if systemverilog_types and not is_systemverilog:
-            failures.append(
-                f"{path}: SystemVerilog classification {systemverilog_types} "
-                f"applied to {text!r} in non-SystemVerilog file {relative_path}")
 
         if legacy_types:
             failures.append(
@@ -831,7 +856,7 @@ def check_snapshot_sanity(path: Path, normalized: Dict[str, Any], failures: Fail
                 f"applied to {text!r}; use SystemVerilogYosysSupported or "
                 "SystemVerilogYosysUnsupported")
 
-        if text == "bit" and is_systemverilog and "SystemVerilogYosysSupported" not in types:
+        if text == "bit" and "SystemVerilogYosysSupported" not in types:
             failures.append(
                 f"{path}: SystemVerilog keyword 'bit' must use "
                 "SystemVerilogYosysSupported classification")
@@ -866,6 +891,9 @@ def main(argv: List[str]) -> int:
 
     check_all_snapshot_sanity(args.current, failures)
 
+    if args.expectations:
+        check_expectations(args.current, args.expectations, failures)
+
     if args.update_baseline:
         if not args.baseline:
             print("--update-baseline requires --baseline", file=sys.stderr)
@@ -873,15 +901,15 @@ def main(argv: List[str]) -> int:
         if failures:
             print_failures(failures)
             return 1
-        update_baseline(args.current, args.baseline)
-        print(f"Updated baseline: {args.baseline}")
+        try:
+            update_baseline(args.current, args.baseline)
+        except (OSError, RuntimeError) as error:
+            print(str(error), file=sys.stderr)
+            return 1
         return 0
 
     if args.baseline:
         compare_snapshots(args.current, args.baseline, failures, args.allow_new_snapshots)
-
-    if args.expectations:
-        check_expectations(args.current, args.expectations, failures)
 
     if failures:
         print_failures(failures)

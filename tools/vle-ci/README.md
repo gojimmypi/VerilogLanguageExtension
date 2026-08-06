@@ -170,7 +170,10 @@ Equivalent command:
     -UpdateBaseline
 ```
 
-Use this only after manually reviewing and approving the current snapshot output.
+Use this only after manually reviewing and approving the current snapshot
+output. The update is staged and written by `Write-SnapshotBaseline.ps1`, which
+requires Windows PowerShell 5.1, preserves the repository's historical JSON
+representation, and prevents Python- or PowerShell-7-format whole-file churn.
 
 ### `ci-check.ps1`
 
@@ -200,7 +203,7 @@ It performs these steps:
 3. Runs `Export-Snapshots.ps1` unless `-SkipSnapshots` is used.
 4. Runs `Compare-Snapshots.py` against targeted expectations.
 5. Optionally compares against a baseline.
-6. Optionally updates a baseline when `-UpdateBaseline` is used.
+6. Optionally validates expectations and delegates a staged baseline update to `Write-SnapshotBaseline.ps1` when `-UpdateBaseline` is used.
 
 Common usage:
 
@@ -236,6 +239,27 @@ Use a different Experimental Instance root suffix:
 .\tools\vle-ci\Run-LocalCI.ps1 `
     -RootSuffix Exp2
 ```
+
+
+### `tools/vle-ci/Write-SnapshotBaseline.ps1`
+
+Canonical snapshot-baseline writer. All full and single-file baseline update paths
+use the shared functions in `SnapshotBaseline.ps1`. The writer:
+
+- requires Windows PowerShell 5.1 for approved-baseline serialization;
+- uses an exclusive update lock and a uniquely named staging directory;
+- restores an interrupted `.old-update` backup before starting a new update;
+- stages and validates the complete destination before replacement;
+- removes per-snapshot release versions and volatile snapshot fields;
+- removes timestamps, timings, and Git identifiers from baseline `run-info.json`;
+- retains stable release versions, status, and snapshot-count metadata;
+- stores repository-relative `/` paths and portable `File:` hover locations;
+- writes CRLF JSON as UTF-8 without BOM.
+
+`Compare-Snapshots.py --update-baseline` delegates to this script and never writes
+approved JSON with Python. `Test-SnapshotBaselineWriter.ps1` verifies encoding,
+portability, metadata filtering, byte-identical repeated output, and recovery of
+an interrupted update.
 
 ### `tools\vle-ci\Export-Snapshots.ps1`
 

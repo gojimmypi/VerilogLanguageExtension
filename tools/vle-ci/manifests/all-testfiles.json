@@ -348,6 +348,16 @@
                       "Path":  "TestFiles/macros/include-files/show_inactive_config.vh",
                       "SnapshotFileName":  "0069-show_inactive_config.vh.snapshot.json",
                       "IsNew":  false
+                  },
+                  {
+                      "Path":  "TestFiles/macros/include-files/macro_hover_config.vh",
+                      "SnapshotFileName":  "0070-macro_hover_config.vh.snapshot.json",
+                      "IsNew":  false
+                  },
+                  {
+                      "Path":  "TestFiles/macros/macro_hover_definition_locations.sv",
+                      "SnapshotFileName":  "0071-macro_hover_definition_locations.sv.snapshot.json",
+                      "IsNew":  false
                   }
               ]
 }

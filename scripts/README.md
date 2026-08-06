@@ -23,7 +23,8 @@ When adding additional test files, run the manifest generator to ensure that the
 
 When adding a single baseline file, run the manifest generator to ensure that the new file is included in the snapshot baseline.
 
-For example when adding `z386.sv` to the baseline, run:
+For example when adding `z386.sv` to the baseline, run from Windows
+PowerShell 5.1:
 
 ```powershell
 .\scripts\add-baseline-file.ps1 z386.sv -MaxWaitSeconds 300
@@ -69,10 +70,18 @@ What it does:
 - Refreshes the all-testfiles manifest.
 - Runs `tools/vle-ci/Run-LocalCI.ps1` with `-UpdateBaseline`.
 - Updates `tests/snapshots/baselines/development-main/all-testfiles`.
-- Formats generated JSON as UTF-8 without BOM.
+- Writes baselines through `tools/vle-ci/Write-SnapshotBaseline.ps1`.
+- Preserves the historical Windows PowerShell 5.1 JSON layout, CRLF, and UTF-8 without BOM.
+- Converts snapshot paths and hover source locations to repository-relative paths.
+- Omits per-snapshot release versions and volatile snapshot/run timing fields.
+- Keeps stable release and snapshot-count metadata in baseline `run-info.json`.
 - Accepts the current manifest ordering after a successful baseline update.
 
-Safety note: `Run-LocalCI.ps1` only allows `-UpdateBaseline` paths under `tests/snapshots/baselines`.
+Safety note: `Run-LocalCI.ps1` only allows `-UpdateBaseline` paths under
+`tests/snapshots/baselines`. Python performs comparison only; baseline
+serialization is delegated to the canonical Windows PowerShell 5.1 writer so
+`json.dump` or PowerShell 7 cannot reformat the corpus. The writer uses an
+exclusive lock, staged replacement, and interrupted-update recovery.
 
 ### `ci-check.ps1`
 

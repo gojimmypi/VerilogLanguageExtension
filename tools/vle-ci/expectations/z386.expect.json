@@ -249,7 +249,7 @@
         {
             "Name": "target_sign",
             "Scope": "z386",
-            "TokenType": "Verilog_Variable_reg",
+            "TokenType": "Verilog_Variable_SystemVerilog",
             "HoverContains": [
                 "logic",
                 "target_sign"
@@ -261,10 +261,36 @@
         {
             "Name": "ovf",
             "Scope": "z386",
-            "TokenType": "Verilog_Variable_reg",
+            "TokenType": "Verilog_Variable_SystemVerilog",
             "HoverContains": [
                 "logic",
                 "ovf"
+            ],
+            "HoverNotContains": [
+                "duplicate?"
+            ]
+        },
+        {
+            "Name": "stk",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_SystemVerilog",
+            "HoverContains": [
+                "logic",
+                "[31:0]",
+                "stk"
+            ],
+            "HoverNotContains": [
+                "duplicate?"
+            ]
+        },
+        {
+            "Name": "ind_next",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_SystemVerilog",
+            "HoverContains": [
+                "logic",
+                "[31:0]",
+                "ind_next"
             ],
             "HoverNotContains": [
                 "duplicate?"
@@ -295,12 +321,38 @@
         {
             "Text": "target_sign",
             "Source": "Tags",
-            "TagDetail": "Verilog_Variable_reg"
+            "TagDetail": "Verilog_Variable_SystemVerilog"
         },
         {
             "Text": "ovf",
             "Source": "Tags",
-            "TagDetail": "Verilog_Variable_reg"
+            "TagDetail": "Verilog_Variable_SystemVerilog"
+        },
+        {
+            "Text": "stk",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_SystemVerilog",
+            "HoverContains": [
+                "logic",
+                "[31:0]",
+                "stk"
+            ],
+            "HoverNotContains": [
+                "duplicate?"
+            ]
+        },
+        {
+            "Text": "ind_next",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_SystemVerilog",
+            "HoverContains": [
+                "logic",
+                "[31:0]",
+                "ind_next"
+            ],
+            "HoverNotContains": [
+                "duplicate?"
+            ]
         }
     ],
     "MustNotHaveSymbols": [
@@ -383,6 +435,16 @@
             "Name": "ovf",
             "Scope": "z386",
             "TokenType": "Verilog_Variable_duplicate"
+        },
+        {
+            "Name": "stk",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_duplicate"
+        },
+        {
+            "Name": "ind_next",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_duplicate"
         }
     ],
     "MustNotHaveTaggedText": [
@@ -453,6 +515,16 @@
         },
         {
             "Text": "ovf",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_duplicate"
+        },
+        {
+            "Text": "stk",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_duplicate"
+        },
+        {
+            "Text": "ind_next",
             "Source": "Tags",
             "TagDetail": "Verilog_Variable_duplicate"
         }

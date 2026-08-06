@@ -23,6 +23,8 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
+. (Join-Path $PSScriptRoot "SnapshotBaseline.ps1")
+
 function Get-RepoRoot {
     $scriptDir = Split-Path -Parent $PSCommandPath
     return (Resolve-Path (Join-Path $scriptDir "../..")).Path
@@ -149,11 +151,8 @@ function Format-JsonFile {
     }
 
     try {
-        $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
-        $rawJson = [System.IO.File]::ReadAllText($Path, [System.Text.Encoding]::UTF8)
-        $json = $rawJson | ConvertFrom-Json
-        $text = $json | ConvertTo-Json -Depth 100
-        [System.IO.File]::WriteAllText($Path, ($text + [Environment]::NewLine), $utf8NoBom)
+        $json = Read-VleJsonFile -Path $Path
+        Write-VleJsonFile -Path $Path -Value $json
     }
     catch {
         Write-Warning "Could not format JSON $Path`: $_"
@@ -320,9 +319,7 @@ function Add-RunInfoVersionMetadata {
         Write-Warning "Could not record Git commit in run-info.json: $_"
     }
 
-    $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
-    $text = $runInfo | ConvertTo-Json -Depth 100
-    [System.IO.File]::WriteAllText($runInfoPath, ($text + [Environment]::NewLine), $utf8NoBom)
+    Write-VleJsonFile -Path $runInfoPath -Value $runInfo
 }
 
 function Add-RunInfoCiTimingMetadata {
@@ -343,9 +340,7 @@ function Add-RunInfoCiTimingMetadata {
         Add-NoteProperty -Object $runInfo -Name "CiElapsedSeconds" -Value $totalRecord[0].ElapsedSeconds
     }
 
-    $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
-    $text = $runInfo | ConvertTo-Json -Depth 100
-    [System.IO.File]::WriteAllText($runInfoPath, ($text + [Environment]::NewLine), $utf8NoBom)
+    Write-VleJsonFile -Path $runInfoPath -Value $runInfo
 }
 
 $script:ciTimingRecords = New-Object 'System.Collections.Generic.List[object]'
@@ -462,30 +457,11 @@ catch {
     throw
 }
 
-if ($UpdateBaseline -and ![string]::IsNullOrWhiteSpace($baselinePath)) {
-    Add-RunInfoVersionMetadata -RepoRoot $repoRoot -SnapshotDirectory $baselinePath
-
-    $formatBaselineStopwatch = [System.Diagnostics.Stopwatch]::StartNew()
-    try {
-        Format-GeneratedJsonFiles -Directory $baselinePath
-        Add-CiTimingRecord -Name "Format baseline JSON" -Stopwatch $formatBaselineStopwatch | Out-Null
-    }
-    catch {
-        Add-CiTimingRecord -Name "Format baseline JSON" -Stopwatch $formatBaselineStopwatch -Status "Failed" | Out-Null
-        throw
-    }
-}
-
 Add-CiTimingRecord -Name "Total" -Stopwatch $ciTotalStopwatch | Out-Null
 
 if (!$SkipSnapshots) {
     Add-RunInfoCiTimingMetadata -SnapshotDirectory $currentSnapshots
     Format-JsonFile -Path (Join-Path $currentSnapshots "run-info.json")
-
-    if ($UpdateBaseline -and ![string]::IsNullOrWhiteSpace($baselinePath)) {
-        Add-RunInfoCiTimingMetadata -SnapshotDirectory $baselinePath
-        Format-JsonFile -Path (Join-Path $baselinePath "run-info.json")
-    }
 }
 
 Write-Host "Local CI completed successfully."

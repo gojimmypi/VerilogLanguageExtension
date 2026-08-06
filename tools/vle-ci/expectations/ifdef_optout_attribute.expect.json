@@ -9,12 +9,12 @@
         {
             "Text": "normally_colored_despite_inactive_branch",
             "Source": "Tags",
-            "TagDetail": "Verilog_Variable_reg"
+            "TagDetail": "Verilog_Variable_SystemVerilog"
         },
         {
             "Text": "active_branch",
             "Source": "Tags",
-            "TagDetail": "Verilog_Variable_reg"
+            "TagDetail": "Verilog_Variable_SystemVerilog"
         }
     ],
     "MustNotHaveTaggedText": [

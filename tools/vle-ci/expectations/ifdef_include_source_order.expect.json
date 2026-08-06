@@ -15,14 +15,14 @@
         {
             "Text": "active_after_project_config_include",
             "Source": "Tags",
-            "TagDetail": "Verilog_Variable_reg"
+            "TagDetail": "Verilog_Variable_SystemVerilog"
         }
     ],
     "MustNotHaveTaggedText": [
         {
             "Text": "inactive_before_project_config_include",
             "Source": "Tags",
-            "TagDetail": "Verilog_Variable_reg"
+            "TagDetail": "Verilog_Variable_SystemVerilog"
         }
     ]
 }

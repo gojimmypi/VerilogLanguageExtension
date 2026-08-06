@@ -51,6 +51,7 @@ jobs:
         shell: pwsh
         run: |
           $excludePath = @(
+              'VerilogLanguage.csproj' # Visual Studio manages this, saves typically without final newline
               'CODE_OF_CONDUCT.md'
               'Lattice_securelyfitz.md'
               'LICENSE.md'

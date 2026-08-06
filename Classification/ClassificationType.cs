@@ -709,6 +709,13 @@ namespace VerilogLanguage
         [Name("SystemVerilogYosysUnsupported")]
         internal static ClassificationTypeDefinition Verilog_SystemVerilogYosysUnsupported = null;
 
+        /// <summary>
+        /// Defines a resolved SystemVerilog typedef alias declaration or reference.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("UserDefinedType")]
+        internal static ClassificationTypeDefinition Verilog_UserDefinedType = null;
+
         #endregion
 
         #region directives

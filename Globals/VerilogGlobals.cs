@@ -536,6 +536,7 @@ namespace VerilogLanguage
 
             ["static_string"] = VerilogTokenTypes.Verilog_StaticString,
             ["function_name"] = VerilogTokenTypes.Verilog_FunctionName,
+            ["user_defined_type"] = VerilogTokenTypes.Verilog_UserDefinedType,
             ["system_task_function"] = VerilogTokenTypes.Verilog_SystemTaskFunction,
             ["system_task_fatal"] = VerilogTokenTypes.Verilog_SystemTaskFatal,
 
@@ -2236,16 +2237,177 @@ namespace VerilogLanguage
             typeNames.Add(typeName);
         }
 
-        private static Dictionary<string, HashSet<string>> CollectTypedefNamesFromSnapshot(ITextSnapshot snapshot) {
+        private sealed class TypedefIdentifierCandidate
+        {
+            public string Name { get; private set; }
+            public int LineNumber { get; private set; }
+            public int LinePosition { get; private set; }
+
+            public TypedefIdentifierCandidate(string name, int lineNumber, int linePosition) {
+                Name = name ?? string.Empty;
+                LineNumber = lineNumber;
+                LinePosition = linePosition;
+            }
+        }
+
+        private sealed class TypedefAliasInfo
+        {
+            public string Scope { get; private set; }
+            public string Name { get; private set; }
+            public string UnderlyingType { get; private set; }
+            public int LineNumber { get; private set; }
+            public int LinePosition { get; private set; }
+
+            public TypedefAliasInfo(
+                string scope,
+                string name,
+                string underlyingType,
+                int lineNumber,
+                int linePosition) {
+
+                Scope = scope ?? string.Empty;
+                Name = name ?? string.Empty;
+                UnderlyingType = underlyingType ?? string.Empty;
+                LineNumber = lineNumber;
+                LinePosition = linePosition;
+            }
+        }
+
+        private static string NormalizeTypedefTextForHover(string text) {
+            if (string.IsNullOrWhiteSpace(text)) {
+                return string.Empty;
+            }
+
+            StringBuilder normalized = new StringBuilder(text.Length);
+            bool pendingSpace = false;
+
+            foreach (char c in text) {
+                if (char.IsWhiteSpace(c)) {
+                    pendingSpace = normalized.Length > 0;
+                    continue;
+                }
+
+                if (pendingSpace) {
+                    normalized.Append(' ');
+                    pendingSpace = false;
+                }
+
+                normalized.Append(c);
+            }
+
+            return normalized.ToString().Trim();
+        }
+
+        private static int FindLastStandaloneIdentifier(string text, string identifier) {
+            if (string.IsNullOrEmpty(text) || string.IsNullOrEmpty(identifier)) {
+                return -1;
+            }
+
+            int searchEnd = text.Length;
+            while (searchEnd > 0) {
+                int index = text.LastIndexOf(identifier, searchEnd - 1, StringComparison.Ordinal);
+                if (index < 0) {
+                    return -1;
+                }
+
+                bool validPrefix = index == 0 || !IsVerilogIdentifierChar(text[index - 1]);
+                int afterIndex = index + identifier.Length;
+                bool validSuffix = afterIndex >= text.Length || !IsVerilogIdentifierChar(text[afterIndex]);
+                if (validPrefix && validSuffix) {
+                    return index;
+                }
+
+                searchEnd = index;
+            }
+
+            return -1;
+        }
+
+        private static string GetTypedefUnderlyingType(string declarationText, string aliasName) {
+            string normalized = NormalizeTypedefTextForHover(declarationText);
+            if (string.IsNullOrEmpty(normalized) || string.IsNullOrEmpty(aliasName)) {
+                return string.Empty;
+            }
+
+            if (normalized.StartsWith("typedef", StringComparison.Ordinal)) {
+                normalized = normalized.Substring("typedef".Length).TrimStart();
+            }
+
+            normalized = normalized.TrimEnd().TrimEnd(';').TrimEnd();
+            int aliasIndex = FindLastStandaloneIdentifier(normalized, aliasName);
+            if (aliasIndex < 0) {
+                return normalized;
+            }
+
+            string beforeAlias = normalized.Substring(0, aliasIndex).TrimEnd();
+            string afterAlias = normalized.Substring(aliasIndex + aliasName.Length).TrimStart();
+            return NormalizeTypedefTextForHover(beforeAlias + " " + afterAlias);
+        }
+
+        private static string BuildTypedefHoverText(TypedefAliasInfo alias) {
+            if (alias == null || string.IsNullOrEmpty(alias.Name)) {
+                return string.Empty;
+            }
+
+            List<string> lines = new List<string> {
+                "typedef " + alias.Name
+            };
+
+            if (!string.IsNullOrEmpty(alias.UnderlyingType)) {
+                lines.Add("underlying type: " + alias.UnderlyingType);
+            }
+
+            if (!string.IsNullOrEmpty(alias.Scope)) {
+                lines.Add("scope: " + alias.Scope);
+            }
+
+            return string.Join(Environment.NewLine, lines.ToArray());
+        }
+
+        private static void RegisterTypedefAliases(IEnumerable<TypedefAliasInfo> aliases) {
+            if (aliases == null) {
+                return;
+            }
+
+            foreach (TypedefAliasInfo alias in aliases) {
+                if (alias == null || string.IsNullOrEmpty(alias.Name)) {
+                    continue;
+                }
+
+                string scope = NormalizeDeclarationDuplicateScope(alias.Scope);
+                EnsureHoverScope(scope);
+
+                string hoverText = BuildTypedefHoverText(alias);
+                VerilogVariables[scope][alias.Name] = VerilogTokenTypes.Verilog_UserDefinedType;
+                VerilogVariableHoverText[scope][alias.Name] = hoverText;
+                VerilogDefinitionLocations[scope][alias.Name] =
+                    new VerilogDefinitionLocation(
+                        scope,
+                        alias.Name,
+                        alias.LineNumber,
+                        alias.LinePosition,
+                        alias.Name.Length,
+                        VerilogTokenTypes.Verilog_UserDefinedType,
+                        hoverText);
+            }
+        }
+
+        private static Dictionary<string, HashSet<string>> CollectTypedefNamesFromSnapshot(
+            ITextSnapshot snapshot,
+            out List<TypedefAliasInfo> typedefAliases) {
+
             Dictionary<string, HashSet<string>> typeNamesByScope =
                 new Dictionary<string, HashSet<string>>(StringComparer.Ordinal);
+            typedefAliases = new List<TypedefAliasInfo>();
             bool insideTypedef = false;
             int squareDepth = 0;
             int roundDepth = 0;
             int squigglyDepth = 0;
             string typedefScope = string.Empty;
             string activeLocalScope = string.Empty;
-            List<string> topLevelIdentifiers = new List<string>();
+            List<TypedefIdentifierCandidate> topLevelIdentifiers =
+                new List<TypedefIdentifierCandidate>();
+            StringBuilder typedefDeclaration = new StringBuilder();
 
             foreach (ITextSnapshotLine line in snapshot.Lines) {
                 string lineText = line.GetText();
@@ -2265,10 +2427,19 @@ namespace VerilogLanguage
                     : activeLocalScope;
                 string codeText = StripLineCommentForDuplicateScan(lineText);
                 VerilogToken[] lineTokens = VerilogKeywordSplit(codeText, new VerilogToken());
+                int tokenColumn = 0;
 
                 foreach (VerilogToken token in lineTokens) {
-                    string itemText = (token.Part ?? string.Empty).Trim();
+                    string tokenText = token.Part ?? string.Empty;
+                    string itemText = tokenText.Trim();
+                    int leadingWhitespace = tokenText.Length - tokenText.TrimStart().Length;
+                    int itemColumn = tokenColumn + leadingWhitespace;
+                    tokenColumn += tokenText.Length;
+
                     if (string.IsNullOrEmpty(itemText)) {
+                        if (insideTypedef) {
+                            typedefDeclaration.Append(tokenText);
+                        }
                         continue;
                     }
 
@@ -2280,9 +2451,13 @@ namespace VerilogLanguage
                             squigglyDepth = 0;
                             typedefScope = lineScope;
                             topLevelIdentifiers.Clear();
+                            typedefDeclaration.Clear();
+                            typedefDeclaration.Append(tokenText.TrimStart());
                         }
                         continue;
                     }
+
+                    typedefDeclaration.Append(tokenText);
 
                     if (itemText == "[") {
                         squareDepth++;
@@ -2326,21 +2501,36 @@ namespace VerilogLanguage
 
                     if (itemText == ";") {
                         if (topLevelIdentifiers.Count > 0) {
-                            AddInferredTypeName(
-                                typeNamesByScope,
-                                typedefScope,
-                                topLevelIdentifiers[topLevelIdentifiers.Count - 1]);
+                            TypedefIdentifierCandidate alias =
+                                topLevelIdentifiers[topLevelIdentifiers.Count - 1];
+                            AddInferredTypeName(typeNamesByScope, typedefScope, alias.Name);
+                            typedefAliases.Add(
+                                new TypedefAliasInfo(
+                                    typedefScope,
+                                    alias.Name,
+                                    GetTypedefUnderlyingType(typedefDeclaration.ToString(), alias.Name),
+                                    alias.LineNumber,
+                                    alias.LinePosition));
                         }
 
                         insideTypedef = false;
                         typedefScope = string.Empty;
                         topLevelIdentifiers.Clear();
+                        typedefDeclaration.Clear();
                         continue;
                     }
 
                     if (IsIdentifier(itemText)) {
-                        topLevelIdentifiers.Add(itemText);
+                        topLevelIdentifiers.Add(
+                            new TypedefIdentifierCandidate(
+                                itemText,
+                                line.LineNumber,
+                                itemColumn));
                     }
+                }
+
+                if (insideTypedef) {
+                    typedefDeclaration.Append(Environment.NewLine);
                 }
 
                 if (IsEndFunctionLineText(lineText) || IsEndTaskLineText(lineText)) {
@@ -2539,8 +2729,9 @@ namespace VerilogLanguage
                 new Dictionary<string, Dictionary<string, VerilogTokenTypes>>(StringComparer.Ordinal);
             Dictionary<string, Dictionary<string, string>> declarationHoverTextByScope =
                 new Dictionary<string, Dictionary<string, string>>(StringComparer.Ordinal);
+            List<TypedefAliasInfo> typedefAliases;
             Dictionary<string, HashSet<string>> inferredTypeNamesByScope =
-                CollectTypedefNamesFromSnapshot(snapshot);
+                CollectTypedefNamesFromSnapshot(snapshot, out typedefAliases);
             HashSet<string> invalidFunctionScopes = new HashSet<string>(StringComparer.Ordinal);
 
             Dictionary<int, string> blockScopeByLine =
@@ -2721,6 +2912,7 @@ namespace VerilogLanguage
             }
 
             RemoveMisclassifiedUserDefinedTypeSymbols(inferredTypeNamesByScope, invalidFunctionScopes);
+            RegisterTypedefAliases(typedefAliases);
         }
 
         private static bool HasNewDeclarationModifierBeforeName(string declarationText, string itemName) {

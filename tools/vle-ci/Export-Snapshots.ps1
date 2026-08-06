@@ -27,6 +27,12 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
+$baselineHelpers = Join-Path $PSScriptRoot "SnapshotBaseline.ps1"
+if (!(Test-Path -LiteralPath $baselineHelpers -PathType Leaf)) {
+    throw "Snapshot baseline helpers not found: $baselineHelpers"
+}
+. $baselineHelpers
+
 function Get-RepoRoot {
     $scriptDir = Split-Path -Parent $PSCommandPath
     return (Resolve-Path (Join-Path $scriptDir "../..")).Path
@@ -411,19 +417,6 @@ function Copy-SnapshotToFinalName {
     return $targetPath
 }
 
-function Remove-SnapshotGitCommit {
-    param([object]$Json)
-
-    if ($null -eq $Json) {
-        return
-    }
-
-    $gitCommitProperty = $Json.PSObject.Properties["GitCommit"]
-    if ($null -ne $gitCommitProperty) {
-        $Json.PSObject.Properties.Remove("GitCommit")
-    }
-}
-
 function Format-JsonFile {
     param([string]$Path)
 
@@ -432,16 +425,26 @@ function Format-JsonFile {
     }
 
     try {
-        $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
-        $rawJson = [System.IO.File]::ReadAllText($Path, [System.Text.Encoding]::UTF8)
-        $json = $rawJson | ConvertFrom-Json
-
         if ((Split-Path $Path -Leaf) -like "*.snapshot.json") {
-            Remove-SnapshotGitCommit -Json $json
+            # Current snapshots use the same portable, stable representation as
+            # approved baselines. This keeps direct folder/file comparisons
+            # useful while run-specific diagnostics remain in run-info.json.
+            $snapshot = Read-VleJsonFile -Path $Path
+            $portable = ConvertTo-VlePortableSnapshot -Snapshot $snapshot
+            Write-VleJsonFile -Path $Path -Value $portable
+            return
         }
 
+        $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+        $rawJson = [System.IO.File]::ReadAllText(
+            $Path,
+            [System.Text.Encoding]::UTF8)
+        $json = $rawJson | ConvertFrom-Json
         $text = $json | ConvertTo-Json -Depth 100
-        [System.IO.File]::WriteAllText($Path, ($text + [Environment]::NewLine), $utf8NoBom)
+        [System.IO.File]::WriteAllText(
+            $Path,
+            ($text + [Environment]::NewLine),
+            $utf8NoBom)
     }
     catch {
         Write-Warning "Could not format JSON $Path`: $_"
@@ -540,46 +543,6 @@ function Add-SnapshotTimingRecord {
     [void]$script:snapshotTimingRecords.Add($recordObject)
     Write-Host ("Timing: snapshot [{0}/{1}] {2}: {3} ({4})" -f $Index, $Count, $Path, $elapsedBucket, $Status)
     return $recordObject
-}
-
-function Set-SnapshotProcessingTime {
-    param(
-        [string]$Path,
-        [object]$TimingRecord,
-        [datetime]$RunStartedAt
-    )
-
-    if ($null -eq $TimingRecord -or !(Test-Path -LiteralPath $Path)) {
-        return
-    }
-
-    try {
-        $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
-        $rawJson = [System.IO.File]::ReadAllText($Path, [System.Text.Encoding]::UTF8)
-        $json = $rawJson | ConvertFrom-Json
-
-        foreach ($propertyName in @("ProcessingTime", "RunTiming")) {
-            $property = $json.PSObject.Properties[$propertyName]
-            if ($null -ne $property) {
-                $json.PSObject.Properties.Remove($propertyName)
-            }
-        }
-
-        $processingTime = [ordered]@{
-            SchemaVersion = 2
-            ElapsedBucket = [string]$TimingRecord.ElapsedBucket
-            Index = [int]$TimingRecord.Index
-            Count = [int]$TimingRecord.Count
-            Status = [string]$TimingRecord.Status
-        }
-
-        $json | Add-Member -MemberType NoteProperty -Name "ProcessingTime" -Value ([pscustomobject]$processingTime)
-        $text = $json | ConvertTo-Json -Depth 100
-        [System.IO.File]::WriteAllText($Path, ($text + [Environment]::NewLine), $utf8NoBom)
-    }
-    catch {
-        Write-Warning "Could not write processing time to snapshot $Path`: $_"
-    }
 }
 
 function Format-GeneratedJsonFiles {
@@ -856,18 +819,13 @@ try {
             Start-Sleep -Seconds 1
         }
 
-        $timingRecord = Add-SnapshotTimingRecord `
+        $null = Add-SnapshotTimingRecord `
             -Index $index `
             -Count $fileCount `
             -Path $file `
             -SnapshotFileName (Split-Path -Leaf $finalSnapshotPath) `
             -Stopwatch $fileStopwatch `
             -StartedAt $fileTimingStartedAt
-
-        Set-SnapshotProcessingTime `
-            -Path $finalSnapshotPath `
-            -TimingRecord $timingRecord `
-            -RunStartedAt $snapshotRunStartedAt
     }
 }
 finally {

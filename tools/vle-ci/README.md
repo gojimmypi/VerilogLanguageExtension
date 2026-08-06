@@ -497,6 +497,15 @@ Snapshot files are named with a sequence prefix:
 
 The sequence prefix is intentional. It makes repeated-open scenarios testable.
 
+Per-file processing times are recorded in `run-info.json`, not in each
+`*.snapshot.json` file. Current snapshots are rewritten through the same
+portable-snapshot helper used by the approved baseline writer. This removes
+volatile fields such as `ExtensionVersion`, converts `FilePath` and
+`FileRelativePath` to the same repository-relative forward-slash path, and
+normalizes repository paths embedded in hover text. Therefore an unchanged
+current snapshot can compare byte-for-byte with its approved baseline; direct
+folder comparison highlights only real snapshot changes.
+
 Snapshot JSON includes data such as:
 
 ```json

@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.11",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\src\\PINS\\pin_id_core.v",
-    "FileRelativePath":  "TestFiles\\src\\PINS\\pin_id_core.v",
+    "FilePath":  "TestFiles/src/PINS/pin_id_core.v",
+    "FileRelativePath":  "TestFiles/src/PINS/pin_id_core.v",
     "ContentType":  "verilog",
     "SnapshotLength":  8516,
     "SnapshotVersion":  2,
@@ -383,13 +382,13 @@
                                           ]
                             },
                             {
-                                "Start":  1256,
-                                "Length":  10,
+                                "Start":  1252,
+                                "Length":  24,
                                 "Line":  38,
-                                "Column":  5,
-                                "Text":  "`timescale",
+                                "Column":  1,
+                                "Text":  "    `timescale 1ns / 1ps",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -6662,17 +6661,17 @@
                      "Text":  "SIM_JTAG_CORE_TB",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef SIM_JTAG_CORE_TB"
+                     "HoverText":  "Macro `SIM_JTAG_CORE_TB` is not defined."
                  },
                  {
-                     "Start":  1256,
-                     "Length":  10,
+                     "Start":  1252,
+                     "Length":  24,
                      "Line":  38,
-                     "Column":  5,
-                     "Text":  "`timescale",
+                     "Column":  1,
+                     "Text":  "    `timescale 1ns / 1ps",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027SIM_JTAG_CORE_TB\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  1277,
@@ -6702,7 +6701,7 @@
                      "Text":  "PIN_DIAG",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef PIN_DIAG"
+                     "HoverText":  "Macro `PIN_DIAG` is not defined."
                  },
                  {
                      "Start":  1302,

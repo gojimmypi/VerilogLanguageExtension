@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.11",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\src\\target_pdk.v",
-    "FileRelativePath":  "TestFiles\\src\\target_pdk.v",
+    "FilePath":  "TestFiles/src/target_pdk.v",
+    "FileRelativePath":  "TestFiles/src/target_pdk.v",
     "ContentType":  "verilog",
     "SnapshotLength":  895,
     "SnapshotVersion":  2,
@@ -1432,7 +1431,7 @@
                      "Text":  "IS_MY_IVERILOG_SIMULATION",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef IS_MY_IVERILOG_SIMULATION"
+                     "HoverText":  "Macro `IS_MY_IVERILOG_SIMULATION` is not defined."
                  },
                  {
                      "Start":  367,
@@ -2282,7 +2281,7 @@
                      "Text":  "PDK_TARGET_GF180",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define PDK_TARGET_GF180\r\n\r\ncondition:\r\n`else (from `ifdef IS_MY_IVERILOG_SIMULATION)"
+                     "HoverText":  "Macro `PDK_TARGET_GF180` is defined with no value.\r\nFile: TestFiles/src/target_pdk.v\r\nLine: 25"
                  },
                  {
                      "Start":  765,

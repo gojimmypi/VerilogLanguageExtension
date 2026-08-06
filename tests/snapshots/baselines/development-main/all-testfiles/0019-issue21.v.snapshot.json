@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.11",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\issue21.v",
-    "FileRelativePath":  "TestFiles\\issue21.v",
+    "FilePath":  "TestFiles/issue21.v",
+    "FileRelativePath":  "TestFiles/issue21.v",
     "ContentType":  "verilog",
     "SnapshotLength":  664,
     "SnapshotVersion":  2,

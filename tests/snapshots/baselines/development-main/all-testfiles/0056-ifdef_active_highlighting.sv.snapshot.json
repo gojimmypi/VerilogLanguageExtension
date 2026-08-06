@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.11",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\macros\\ifdef_active_highlighting.sv",
-    "FileRelativePath":  "TestFiles\\macros\\ifdef_active_highlighting.sv",
+    "FilePath":  "TestFiles/macros/ifdef_active_highlighting.sv",
+    "FileRelativePath":  "TestFiles/macros/ifdef_active_highlighting.sv",
     "ContentType":  "verilog",
     "SnapshotLength":  746,
     "SnapshotVersion":  2,
@@ -219,7 +218,7 @@
                                 "Column":  11,
                                 "Text":  "active_even_when_macro_value_is_zero",
                                 "Types":  [
-                                              "Variable_reg"
+                                              "Variable_SystemVerilog"
                                           ]
                             },
                             {
@@ -339,7 +338,7 @@
                                 "Column":  11,
                                 "Text":  "active_elsif_branch",
                                 "Types":  [
-                                              "Variable_reg"
+                                              "Variable_SystemVerilog"
                                           ]
                             },
                             {
@@ -393,33 +392,13 @@
                                           ]
                             },
                             {
-                                "Start":  461,
-                                "Length":  7,
+                                "Start":  457,
+                                "Length":  24,
                                 "Line":  24,
-                                "Column":  5,
-                                "Text":  "`define",
+                                "Column":  1,
+                                "Text":  "    `define INNER_ONLY 1",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  469,
-                                "Length":  10,
-                                "Line":  24,
-                                "Column":  13,
-                                "Text":  "INNER_ONLY",
-                                "Types":  [
-                                              "Macro"
-                                          ]
-                            },
-                            {
-                                "Start":  480,
-                                "Length":  1,
-                                "Line":  24,
-                                "Column":  24,
-                                "Text":  "1",
-                                "Types":  [
-                                              "Value"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -479,7 +458,7 @@
                                 "Column":  15,
                                 "Text":  "active_nested_ifndef",
                                 "Types":  [
-                                              "Variable_reg"
+                                              "Variable_SystemVerilog"
                                           ]
                             },
                             {
@@ -549,7 +528,7 @@
                                 "Column":  7,
                                 "Text":  "active_after_commented_directive",
                                 "Types":  [
-                                              "Variable_reg"
+                                              "Variable_SystemVerilog"
                                           ]
                             },
                             {
@@ -582,7 +561,7 @@
                      "Text":  "FEATURE_ZERO",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define FEATURE_ZERO 0\r\n\r\ncondition:\r\n(unconditional)\r\n\r\nmacro condition:\r\n`ifdef FEATURE_ZERO\r\n\r\nmacro undef:\r\n`undef FEATURE_ZERO"
+                     "HoverText":  "Macro `FEATURE_ZERO` is defined.\r\nValue: 0\r\nFile: TestFiles/macros/ifdef_active_highlighting.sv\r\nLine: 1"
                  },
                  {
                      "Start":  21,
@@ -612,7 +591,7 @@
                      "Text":  "SELECTED_FEATURE",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define SELECTED_FEATURE 1\r\n\r\ncondition:\r\n(unconditional)\r\n\r\nmacro condition:\r\n`elsif SELECTED_FEATURE"
+                     "HoverText":  "Macro `SELECTED_FEATURE` is defined.\r\nValue: 1\r\nFile: TestFiles/macros/ifdef_active_highlighting.sv\r\nLine: 2"
                  },
                  {
                      "Start":  49,
@@ -642,7 +621,7 @@
                      "Text":  "SCALE",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define SCALE(value) ((value) * 2)\r\n\r\ncondition:\r\n(unconditional)"
+                     "HoverText":  "Macro `SCALE` is defined.\r\nValue: ((value) * 2)\r\nFile: TestFiles/macros/ifdef_active_highlighting.sv\r\nLine: 3"
                  },
                  {
                      "Start":  65,
@@ -752,7 +731,7 @@
                      "Text":  "FEATURE_ZERO",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define FEATURE_ZERO 0\r\n\r\ncondition:\r\n(unconditional)\r\n\r\nmacro condition:\r\n`ifdef FEATURE_ZERO\r\n\r\nmacro undef:\r\n`undef FEATURE_ZERO"
+                     "HoverText":  "Macro `FEATURE_ZERO` is defined.\r\nValue: 0\r\nFile: TestFiles/macros/ifdef_active_highlighting.sv\r\nLine: 1"
                  },
                  {
                      "Start":  152,
@@ -771,7 +750,7 @@
                      "Column":  11,
                      "Text":  "active_even_when_macro_value_is_zero",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
+                     "TagDetail":  "Verilog_Variable_SystemVerilog",
                      "HoverText":  "logic active_even_when_macro_value_is_zero"
                  },
                  {
@@ -822,7 +801,7 @@
                      "Text":  "FEATURE_ZERO",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define FEATURE_ZERO 0\r\n\r\ncondition:\r\n(unconditional)\r\n\r\nmacro condition:\r\n`ifdef FEATURE_ZERO\r\n\r\nmacro undef:\r\n`undef FEATURE_ZERO"
+                     "HoverText":  "Macro `FEATURE_ZERO` is defined.\r\nValue: 0\r\nFile: TestFiles/macros/ifdef_active_highlighting.sv\r\nLine: 1"
                  },
                  {
                      "Start":  275,
@@ -842,7 +821,7 @@
                      "Text":  "FEATURE_ZERO",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define FEATURE_ZERO 0\r\n\r\ncondition:\r\n(unconditional)\r\n\r\nmacro condition:\r\n`ifdef FEATURE_ZERO\r\n\r\nmacro undef:\r\n`undef FEATURE_ZERO"
+                     "HoverText":  "Macro `FEATURE_ZERO` is not defined."
                  },
                  {
                      "Start":  296,
@@ -872,7 +851,7 @@
                      "Text":  "SELECTED_FEATURE",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define SELECTED_FEATURE 1\r\n\r\ncondition:\r\n(unconditional)\r\n\r\nmacro condition:\r\n`elsif SELECTED_FEATURE"
+                     "HoverText":  "Macro `SELECTED_FEATURE` is defined.\r\nValue: 1\r\nFile: TestFiles/macros/ifdef_active_highlighting.sv\r\nLine: 2"
                  },
                  {
                      "Start":  356,
@@ -891,7 +870,7 @@
                      "Column":  11,
                      "Text":  "active_elsif_branch",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
+                     "TagDetail":  "Verilog_Variable_SystemVerilog",
                      "HoverText":  "logic active_elsif_branch"
                  },
                  {
@@ -942,37 +921,17 @@
                      "Text":  "UNKNOWN_OUTER",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef UNKNOWN_OUTER"
+                     "HoverText":  "Macro `UNKNOWN_OUTER` is not defined."
                  },
                  {
-                     "Start":  461,
-                     "Length":  7,
+                     "Start":  457,
+                     "Length":  24,
                      "Line":  24,
-                     "Column":  5,
-                     "Text":  "`define",
+                     "Column":  1,
+                     "Text":  "    `define INNER_ONLY 1",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  469,
-                     "Length":  10,
-                     "Line":  24,
-                     "Column":  13,
-                     "Text":  "INNER_ONLY",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define INNER_ONLY 1\r\n\r\ncondition:\r\n`ifdef UNKNOWN_OUTER\r\n\r\nmacro condition:\r\n`ifndef INNER_ONLY"
-                 },
-                 {
-                     "Start":  480,
-                     "Length":  1,
-                     "Line":  24,
-                     "Column":  24,
-                     "Text":  "1",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Value",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027UNKNOWN_OUTER\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  483,
@@ -1012,7 +971,7 @@
                      "Text":  "INNER_ONLY",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define INNER_ONLY 1\r\n\r\ncondition:\r\n`ifdef UNKNOWN_OUTER\r\n\r\nmacro condition:\r\n`ifndef INNER_ONLY"
+                     "HoverText":  "Macro `INNER_ONLY` is not defined."
                  },
                  {
                      "Start":  555,
@@ -1031,7 +990,7 @@
                      "Column":  15,
                      "Text":  "active_nested_ifndef",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
+                     "TagDetail":  "Verilog_Variable_SystemVerilog",
                      "HoverText":  "logic active_nested_ifndef"
                  },
                  {
@@ -1161,7 +1120,7 @@
                      "Column":  7,
                      "Text":  "active_after_commented_directive",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
+                     "TagDetail":  "Verilog_Variable_SystemVerilog",
                      "HoverText":  "logic active_after_commented_directive"
                  },
                  {
@@ -2152,6 +2111,12 @@
                     },
                     {
                         "Scope":  "ifdef_active_highlighting",
+                        "Name":  "active_even_when_macro_value_is_zero",
+                        "TokenType":  "Verilog_Variable_SystemVerilog",
+                        "HoverText":  "logic active_even_when_macro_value_is_zero"
+                    },
+                    {
+                        "Scope":  "ifdef_active_highlighting",
                         "Name":  "inactive_feature_zero_else",
                         "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "wire inactive_feature_zero_else"
@@ -2164,20 +2129,8 @@
                     },
                     {
                         "Scope":  "ifdef_active_highlighting",
-                        "Name":  "inactive_outer_branch",
-                        "TokenType":  "Verilog_Variable_wire",
-                        "HoverText":  "wire inactive_outer_branch"
-                    },
-                    {
-                        "Scope":  "ifdef_active_highlighting",
-                        "Name":  "active_even_when_macro_value_is_zero",
-                        "TokenType":  "Verilog_Variable_reg",
-                        "HoverText":  "logic active_even_when_macro_value_is_zero"
-                    },
-                    {
-                        "Scope":  "ifdef_active_highlighting",
                         "Name":  "active_elsif_branch",
-                        "TokenType":  "Verilog_Variable_reg",
+                        "TokenType":  "Verilog_Variable_SystemVerilog",
                         "HoverText":  "logic active_elsif_branch"
                     },
                     {
@@ -2188,20 +2141,26 @@
                     },
                     {
                         "Scope":  "ifdef_active_highlighting",
+                        "Name":  "inactive_outer_branch",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "wire inactive_outer_branch"
+                    },
+                    {
+                        "Scope":  "ifdef_active_highlighting",
                         "Name":  "active_nested_ifndef",
-                        "TokenType":  "Verilog_Variable_reg",
+                        "TokenType":  "Verilog_Variable_SystemVerilog",
                         "HoverText":  "logic active_nested_ifndef"
                     },
                     {
                         "Scope":  "ifdef_active_highlighting",
                         "Name":  "inactive_nested_else",
-                        "TokenType":  "Verilog_Variable_reg",
+                        "TokenType":  "Verilog_Variable_SystemVerilog",
                         "HoverText":  "logic inactive_nested_else"
                     },
                     {
                         "Scope":  "ifdef_active_highlighting",
                         "Name":  "active_after_commented_directive",
-                        "TokenType":  "Verilog_Variable_reg",
+                        "TokenType":  "Verilog_Variable_SystemVerilog",
                         "HoverText":  "logic active_after_commented_directive"
                     }
                 ]

@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.11",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\bracketest.v",
-    "FileRelativePath":  "TestFiles\\bracketest.v",
+    "FilePath":  "TestFiles/bracketest.v",
+    "FileRelativePath":  "TestFiles/bracketest.v",
     "ContentType":  "verilog",
     "SnapshotLength":  110,
     "SnapshotVersion":  2,

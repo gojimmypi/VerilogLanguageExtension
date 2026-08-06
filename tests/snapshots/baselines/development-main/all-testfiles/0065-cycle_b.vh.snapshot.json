@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.11",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\macros\\include-files\\cycle_b.vh",
-    "FileRelativePath":  "TestFiles\\macros\\include-files\\cycle_b.vh",
+    "FilePath":  "TestFiles/macros/include-files/cycle_b.vh",
+    "FileRelativePath":  "TestFiles/macros/include-files/cycle_b.vh",
     "ContentType":  "verilog",
     "SnapshotLength":  50,
     "SnapshotVersion":  2,
@@ -82,7 +81,7 @@
                      "Text":  "CYCLE_B_REACHED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define CYCLE_B_REACHED 1\r\n\r\ncondition:\r\n(unconditional)"
+                     "HoverText":  "Macro `CYCLE_B_REACHED` is defined.\r\nValue: 1\r\nFile: TestFiles/macros/include-files/cycle_b.vh\r\nLine: 1"
                  },
                  {
                      "Start":  24,

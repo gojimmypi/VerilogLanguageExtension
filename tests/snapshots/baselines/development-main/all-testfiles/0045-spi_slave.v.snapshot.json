@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.11",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\src\\SPI\\spi_slave.v",
-    "FileRelativePath":  "TestFiles\\src\\SPI\\spi_slave.v",
+    "FilePath":  "TestFiles/src/SPI/spi_slave.v",
+    "FileRelativePath":  "TestFiles/src/SPI/spi_slave.v",
     "ContentType":  "verilog",
     "SnapshotLength":  9211,
     "SnapshotVersion":  2,
@@ -613,13 +612,13 @@
                                           ]
                             },
                             {
-                                "Start":  1765,
-                                "Length":  10,
+                                "Start":  1761,
+                                "Length":  24,
                                 "Line":  62,
-                                "Column":  5,
-                                "Text":  "`timescale",
+                                "Column":  1,
+                                "Text":  "    `timescale 1ns / 1ps",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -1124,22 +1123,12 @@
                             },
                             {
                                 "Start":  2216,
-                                "Length":  6,
+                                "Length":  20,
                                 "Line":  85,
                                 "Column":  1,
-                                "Text":  "`ifdef",
+                                "Text":  "`ifdef SPI_TEST_BYTE",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  2223,
-                                "Length":  13,
-                                "Line":  85,
-                                "Column":  8,
-                                "Text":  "SPI_TEST_BYTE",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -1169,7 +1158,7 @@
                                 "Column":  1,
                                 "Text":  "`else",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -1189,7 +1178,7 @@
                                 "Column":  1,
                                 "Text":  "`endif",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -11662,17 +11651,17 @@
                      "Text":  "SIM_JTAG_CORE_TB",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef SIM_JTAG_CORE_TB"
+                     "HoverText":  "Macro `SIM_JTAG_CORE_TB` is not defined."
                  },
                  {
-                     "Start":  1765,
-                     "Length":  10,
+                     "Start":  1761,
+                     "Length":  24,
                      "Line":  62,
-                     "Column":  5,
-                     "Text":  "`timescale",
+                     "Column":  1,
+                     "Text":  "    `timescale 1ns / 1ps",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027SIM_JTAG_CORE_TB\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  1786,
@@ -11962,7 +11951,7 @@
                      "Text":  "`SPI_ADDR_MSB",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  null
+                     "HoverText":  "Macro `SPI_ADDR_MSB` is not defined."
                  },
                  {
                      "Start":  2066,
@@ -12162,7 +12151,7 @@
                      "Text":  "SPI_TEST_FIXED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef SPI_TEST_FIXED"
+                     "HoverText":  "Macro `SPI_TEST_FIXED` is not defined."
                  },
                  {
                      "Start":  2171,
@@ -12176,23 +12165,13 @@
                  },
                  {
                      "Start":  2216,
-                     "Length":  6,
+                     "Length":  20,
                      "Line":  85,
                      "Column":  1,
-                     "Text":  "`ifdef",
+                     "Text":  "`ifdef SPI_TEST_BYTE",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  2223,
-                     "Length":  13,
-                     "Line":  85,
-                     "Column":  8,
-                     "Text":  "SPI_TEST_BYTE",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef SPI_TEST_BYTE"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027SPI_TEST_FIXED\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  2237,
@@ -12221,8 +12200,8 @@
                      "Column":  1,
                      "Text":  "`else",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027SPI_TEST_FIXED\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  2367,
@@ -12241,8 +12220,8 @@
                      "Column":  1,
                      "Text":  "`endif",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027SPI_TEST_FIXED\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  2423,
@@ -15752,7 +15731,7 @@
                      "Text":  "`SPI_ADDR_WIDTH",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  null
+                     "HoverText":  "Macro `SPI_ADDR_WIDTH` is not defined."
                  },
                  {
                      "Start":  6349,
@@ -16742,7 +16721,7 @@
                      "Text":  "`SPI_ADDR_MSB",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  null
+                     "HoverText":  "Macro `SPI_ADDR_MSB` is not defined."
                  },
                  {
                      "Start":  7387,

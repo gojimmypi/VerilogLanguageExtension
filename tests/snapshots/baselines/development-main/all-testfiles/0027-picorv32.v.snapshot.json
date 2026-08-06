@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.11",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\picorv32.v",
-    "FileRelativePath":  "TestFiles\\picorv32.v",
+    "FilePath":  "TestFiles/picorv32.v",
+    "FileRelativePath":  "TestFiles/picorv32.v",
     "ContentType":  "verilog",
     "SnapshotLength":  94292,
     "SnapshotVersion":  2,
@@ -273,43 +272,13 @@
                                           ]
                             },
                             {
-                                "Start":  1014,
-                                "Length":  7,
+                                "Start":  1012,
+                                "Length":  44,
                                 "Line":  28,
-                                "Column":  3,
-                                "Text":  "`define",
+                                "Column":  1,
+                                "Text":  "  `define debug(debug_command) debug_command",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  1022,
-                                "Length":  5,
-                                "Line":  28,
-                                "Column":  11,
-                                "Text":  "debug",
-                                "Types":  [
-                                              "Macro"
-                                          ]
-                            },
-                            {
-                                "Start":  1027,
-                                "Length":  1,
-                                "Line":  28,
-                                "Column":  16,
-                                "Text":  "(",
-                                "Types":  [
-                                              "Bracket1"
-                                          ]
-                            },
-                            {
-                                "Start":  1041,
-                                "Length":  1,
-                                "Line":  28,
-                                "Column":  30,
-                                "Text":  ")",
-                                "Types":  [
-                                              "Bracket1"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -393,93 +362,23 @@
                                           ]
                             },
                             {
-                                "Start":  1118,
-                                "Length":  7,
+                                "Start":  1116,
+                                "Length":  32,
                                 "Line":  34,
-                                "Column":  3,
-                                "Text":  "`define",
+                                "Column":  1,
+                                "Text":  "  `define FORMAL_KEEP (* keep *)",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
-                                "Start":  1126,
-                                "Length":  11,
-                                "Line":  34,
-                                "Column":  11,
-                                "Text":  "FORMAL_KEEP",
-                                "Types":  [
-                                              "Macro"
-                                          ]
-                            },
-                            {
-                                "Start":  1138,
-                                "Length":  10,
-                                "Line":  34,
-                                "Column":  23,
-                                "Text":  "(* keep *)",
-                                "Types":  [
-                                              "Attribute"
-                                          ]
-                            },
-                            {
-                                "Start":  1151,
-                                "Length":  7,
+                                "Start":  1149,
+                                "Length":  49,
                                 "Line":  35,
-                                "Column":  3,
-                                "Text":  "`define",
+                                "Column":  1,
+                                "Text":  "  `define assert(assert_expr) assert(assert_expr)",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  1159,
-                                "Length":  6,
-                                "Line":  35,
-                                "Column":  11,
-                                "Text":  "assert",
-                                "Types":  [
-                                              "Macro"
-                                          ]
-                            },
-                            {
-                                "Start":  1165,
-                                "Length":  1,
-                                "Line":  35,
-                                "Column":  17,
-                                "Text":  "(",
-                                "Types":  [
-                                              "Bracket1"
-                                          ]
-                            },
-                            {
-                                "Start":  1177,
-                                "Length":  1,
-                                "Line":  35,
-                                "Column":  29,
-                                "Text":  ")",
-                                "Types":  [
-                                              "Bracket1"
-                                          ]
-                            },
-                            {
-                                "Start":  1185,
-                                "Length":  1,
-                                "Line":  35,
-                                "Column":  37,
-                                "Text":  "(",
-                                "Types":  [
-                                              "Bracket1"
-                                          ]
-                            },
-                            {
-                                "Start":  1197,
-                                "Length":  1,
-                                "Line":  35,
-                                "Column":  49,
-                                "Text":  ")",
-                                "Types":  [
-                                              "Bracket1"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -513,33 +412,13 @@
                                           ]
                             },
                             {
-                                "Start":  1228,
-                                "Length":  7,
+                                "Start":  1224,
+                                "Length":  34,
                                 "Line":  38,
-                                "Column":  5,
-                                "Text":  "`define",
+                                "Column":  1,
+                                "Text":  "    `define FORMAL_KEEP (* keep *)",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  1236,
-                                "Length":  11,
-                                "Line":  38,
-                                "Column":  13,
-                                "Text":  "FORMAL_KEEP",
-                                "Types":  [
-                                              "Macro"
-                                          ]
-                            },
-                            {
-                                "Start":  1248,
-                                "Length":  10,
-                                "Line":  38,
-                                "Column":  25,
-                                "Text":  "(* keep *)",
-                                "Types":  [
-                                              "Attribute"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -599,7 +478,7 @@
                                 "Column":  11,
                                 "Text":  "assert",
                                 "Types":  [
-                                              "Macro"
+                                              "SystemVerilogYosysSupported"
                                           ]
                             },
                             {
@@ -15263,6 +15142,16 @@
                                           ]
                             },
                             {
+                                "Start":  14555,
+                                "Length":  7,
+                                "Line":  453,
+                                "Column":  30,
+                                "Text":  "$signed",
+                                "Types":  [
+                                              "SystemTaskFunction"
+                                          ]
+                            },
+                            {
                                 "Start":  14562,
                                 "Length":  1,
                                 "Line":  453,
@@ -15540,6 +15429,16 @@
                                 "Text":  "]",
                                 "Types":  [
                                               "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  14718,
+                                "Length":  7,
+                                "Line":  457,
+                                "Column":  30,
+                                "Text":  "$signed",
+                                "Types":  [
+                                              "SystemTaskFunction"
                                           ]
                             },
                             {
@@ -15923,6 +15822,16 @@
                                           ]
                             },
                             {
+                                "Start":  14936,
+                                "Length":  7,
+                                "Line":  462,
+                                "Column":  31,
+                                "Text":  "$signed",
+                                "Types":  [
+                                              "SystemTaskFunction"
+                                          ]
+                            },
+                            {
                                 "Start":  14943,
                                 "Length":  1,
                                 "Line":  462,
@@ -16270,6 +16179,16 @@
                                 "Text":  "]",
                                 "Types":  [
                                               "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  15141,
+                                "Length":  7,
+                                "Line":  465,
+                                "Column":  31,
+                                "Text":  "$signed",
+                                "Types":  [
+                                              "SystemTaskFunction"
                                           ]
                             },
                             {
@@ -17140,6 +17059,16 @@
                                 "Text":  "]",
                                 "Types":  [
                                               "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  15678,
+                                "Length":  7,
+                                "Line":  479,
+                                "Column":  31,
+                                "Text":  "$signed",
+                                "Types":  [
+                                              "SystemTaskFunction"
                                           ]
                             },
                             {
@@ -18433,6 +18362,16 @@
                                           ]
                             },
                             {
+                                "Start":  16401,
+                                "Length":  7,
+                                "Line":  492,
+                                "Column":  10,
+                                "Text":  "$signed",
+                                "Types":  [
+                                              "SystemTaskFunction"
+                                          ]
+                            },
+                            {
                                 "Start":  16408,
                                 "Length":  1,
                                 "Line":  492,
@@ -19000,6 +18939,16 @@
                                 "Text":  "}",
                                 "Types":  [
                                               "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  16714,
+                                "Length":  7,
+                                "Line":  498,
+                                "Column":  10,
+                                "Text":  "$signed",
+                                "Types":  [
+                                              "SystemTaskFunction"
                                           ]
                             },
                             {
@@ -34133,6 +34082,16 @@
                                           ]
                             },
                             {
+                                "Start":  29548,
+                                "Length":  7,
+                                "Line":  873,
+                                "Column":  112,
+                                "Text":  "$signed",
+                                "Types":  [
+                                              "SystemTaskFunction"
+                                          ]
+                            },
+                            {
                                 "Start":  29555,
                                 "Length":  1,
                                 "Line":  873,
@@ -35480,6 +35439,16 @@
                                 "Text":  "}",
                                 "Types":  [
                                               "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  30444,
+                                "Length":  7,
+                                "Line":  893,
+                                "Column":  85,
+                                "Text":  "$signed",
+                                "Types":  [
+                                              "SystemTaskFunction"
                                           ]
                             },
                             {
@@ -48063,6 +48032,16 @@
                                           ]
                             },
                             {
+                                "Start":  40429,
+                                "Length":  7,
+                                "Line":  1118,
+                                "Column":  21,
+                                "Text":  "$signed",
+                                "Types":  [
+                                              "SystemTaskFunction"
+                                          ]
+                            },
+                            {
                                 "Start":  40436,
                                 "Length":  1,
                                 "Line":  1118,
@@ -48150,6 +48129,16 @@
                                 "Text":  "decoded_imm",
                                 "Types":  [
                                               "Variable_reg"
+                                          ]
+                            },
+                            {
+                                "Start":  40512,
+                                "Length":  7,
+                                "Line":  1120,
+                                "Column":  21,
+                                "Text":  "$signed",
+                                "Types":  [
+                                              "SystemTaskFunction"
                                           ]
                             },
                             {
@@ -48400,6 +48389,16 @@
                                 "Text":  "decoded_imm",
                                 "Types":  [
                                               "Variable_reg"
+                                          ]
+                            },
+                            {
+                                "Start":  40638,
+                                "Length":  7,
+                                "Line":  1122,
+                                "Column":  21,
+                                "Text":  "$signed",
+                                "Types":  [
+                                              "SystemTaskFunction"
                                           ]
                             },
                             {
@@ -51303,6 +51302,16 @@
                                           ]
                             },
                             {
+                                "Start":  43159,
+                                "Length":  7,
+                                "Line":  1223,
+                                "Column":  15,
+                                "Text":  "$signed",
+                                "Types":  [
+                                              "SystemTaskFunction"
+                                          ]
+                            },
+                            {
                                 "Start":  43166,
                                 "Length":  1,
                                 "Line":  1223,
@@ -51330,6 +51339,16 @@
                                 "Text":  ")",
                                 "Types":  [
                                               "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  43178,
+                                "Length":  7,
+                                "Line":  1223,
+                                "Column":  34,
+                                "Text":  "$signed",
+                                "Types":  [
+                                              "SystemTaskFunction"
                                           ]
                             },
                             {
@@ -51470,6 +51489,16 @@
                                 "Text":  "alu_shr",
                                 "Types":  [
                                               "Variable_reg"
+                                          ]
+                            },
+                            {
+                                "Start":  43282,
+                                "Length":  7,
+                                "Line":  1226,
+                                "Column":  15,
+                                "Text":  "$signed",
+                                "Types":  [
+                                              "SystemTaskFunction"
                                           ]
                             },
                             {
@@ -51803,6 +51832,16 @@
                                           ]
                             },
                             {
+                                "Start":  43518,
+                                "Length":  7,
+                                "Line":  1232,
+                                "Column":  14,
+                                "Text":  "$signed",
+                                "Types":  [
+                                              "SystemTaskFunction"
+                                          ]
+                            },
+                            {
                                 "Start":  43525,
                                 "Length":  1,
                                 "Line":  1232,
@@ -51830,6 +51869,16 @@
                                 "Text":  ")",
                                 "Types":  [
                                               "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  43537,
+                                "Length":  7,
+                                "Line":  1232,
+                                "Column":  33,
+                                "Text":  "$signed",
+                                "Types":  [
+                                              "SystemTaskFunction"
                                           ]
                             },
                             {
@@ -51970,6 +52019,16 @@
                                 "Text":  "alu_shr",
                                 "Types":  [
                                               "Variable_reg"
+                                          ]
+                            },
+                            {
+                                "Start":  43638,
+                                "Length":  7,
+                                "Line":  1235,
+                                "Column":  14,
+                                "Text":  "$signed",
+                                "Types":  [
+                                              "SystemTaskFunction"
                                           ]
                             },
                             {
@@ -57993,6 +58052,16 @@
                                           ]
                             },
                             {
+                                "Start":  50333,
+                                "Length":  8,
+                                "Line":  1497,
+                                "Column":  14,
+                                "Text":  "$display",
+                                "Types":  [
+                                              "SystemTaskFunction"
+                                          ]
+                            },
+                            {
                                 "Start":  50341,
                                 "Length":  1,
                                 "Line":  1497,
@@ -58170,6 +58239,16 @@
                                 "Text":  "(",
                                 "Types":  [
                                               "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  50506,
+                                "Length":  8,
+                                "Line":  1500,
+                                "Column":  14,
+                                "Text":  "$display",
+                                "Types":  [
+                                              "SystemTaskFunction"
                                           ]
                             },
                             {
@@ -59993,6 +60072,16 @@
                                           ]
                             },
                             {
+                                "Start":  52212,
+                                "Length":  8,
+                                "Line":  1554,
+                                "Column":  13,
+                                "Text":  "$display",
+                                "Types":  [
+                                              "SystemTaskFunction"
+                                          ]
+                            },
+                            {
                                 "Start":  52220,
                                 "Length":  1,
                                 "Line":  1554,
@@ -60010,6 +60099,16 @@
                                 "Text":  "\"-- %-0t\"",
                                 "Types":  [
                                               "StaticString"
+                                          ]
+                            },
+                            {
+                                "Start":  52232,
+                                "Length":  5,
+                                "Line":  1554,
+                                "Column":  33,
+                                "Text":  "$time",
+                                "Types":  [
+                                              "SystemTaskFunction"
                                           ]
                             },
                             {
@@ -60843,6 +60942,16 @@
                                           ]
                             },
                             {
+                                "Start":  53008,
+                                "Length":  8,
+                                "Line":  1583,
+                                "Column":  15,
+                                "Text":  "$display",
+                                "Types":  [
+                                              "SystemTaskFunction"
+                                          ]
+                            },
+                            {
                                 "Start":  53016,
                                 "Length":  1,
                                 "Line":  1583,
@@ -61050,6 +61159,26 @@
                                 "Text":  "(",
                                 "Types":  [
                                               "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  53241,
+                                "Length":  7,
+                                "Line":  1589,
+                                "Column":  16,
+                                "Text":  "$displa",
+                                "Types":  [
+                                              "SystemTaskFunction"
+                                          ]
+                            },
+                            {
+                                "Start":  53248,
+                                "Length":  1,
+                                "Line":  1589,
+                                "Column":  23,
+                                "Text":  "y",
+                                "Types":  [
+                                              "SystemTaskFunction"
                                           ]
                             },
                             {
@@ -61493,6 +61622,16 @@
                                           ]
                             },
                             {
+                                "Start":  53760,
+                                "Length":  8,
+                                "Line":  1603,
+                                "Column":  17,
+                                "Text":  "$display",
+                                "Types":  [
+                                              "SystemTaskFunction"
+                                          ]
+                            },
+                            {
                                 "Start":  53768,
                                 "Length":  1,
                                 "Line":  1603,
@@ -61870,6 +62009,16 @@
                                 "Text":  "(",
                                 "Types":  [
                                               "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  54150,
+                                "Length":  8,
+                                "Line":  1614,
+                                "Column":  15,
+                                "Text":  "$display",
+                                "Types":  [
+                                              "SystemTaskFunction"
                                           ]
                             },
                             {
@@ -62853,6 +63002,16 @@
                                           ]
                             },
                             {
+                                "Start":  55236,
+                                "Length":  8,
+                                "Line":  1647,
+                                "Column":  14,
+                                "Text":  "$display",
+                                "Types":  [
+                                              "SystemTaskFunction"
+                                          ]
+                            },
+                            {
                                 "Start":  55244,
                                 "Length":  1,
                                 "Line":  1647,
@@ -63080,6 +63239,16 @@
                                 "Text":  "(",
                                 "Types":  [
                                               "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  55528,
+                                "Length":  8,
+                                "Line":  1655,
+                                "Column":  14,
+                                "Text":  "$display",
+                                "Types":  [
+                                              "SystemTaskFunction"
                                           ]
                             },
                             {
@@ -63413,6 +63582,16 @@
                                           ]
                             },
                             {
+                                "Start":  55943,
+                                "Length":  8,
+                                "Line":  1668,
+                                "Column":  14,
+                                "Text":  "$display",
+                                "Types":  [
+                                              "SystemTaskFunction"
+                                          ]
+                            },
+                            {
                                 "Start":  55951,
                                 "Length":  1,
                                 "Line":  1668,
@@ -63703,6 +63882,16 @@
                                           ]
                             },
                             {
+                                "Start":  56294,
+                                "Length":  8,
+                                "Line":  1677,
+                                "Column":  14,
+                                "Text":  "$display",
+                                "Types":  [
+                                              "SystemTaskFunction"
+                                          ]
+                            },
+                            {
                                 "Start":  56302,
                                 "Length":  1,
                                 "Line":  1677,
@@ -63963,6 +64152,16 @@
                                           ]
                             },
                             {
+                                "Start":  56625,
+                                "Length":  8,
+                                "Line":  1686,
+                                "Column":  14,
+                                "Text":  "$display",
+                                "Types":  [
+                                              "SystemTaskFunction"
+                                          ]
+                            },
+                            {
                                 "Start":  56633,
                                 "Length":  1,
                                 "Line":  1686,
@@ -64160,6 +64359,16 @@
                                 "Text":  "(",
                                 "Types":  [
                                               "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  56879,
+                                "Length":  8,
+                                "Line":  1693,
+                                "Column":  14,
+                                "Text":  "$display",
+                                "Types":  [
+                                              "SystemTaskFunction"
                                           ]
                             },
                             {
@@ -64380,6 +64589,16 @@
                                 "Text":  "(",
                                 "Types":  [
                                               "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  57162,
+                                "Length":  8,
+                                "Line":  1701,
+                                "Column":  14,
+                                "Text":  "$display",
+                                "Types":  [
+                                              "SystemTaskFunction"
                                           ]
                             },
                             {
@@ -64610,6 +64829,16 @@
                                 "Text":  "(",
                                 "Types":  [
                                               "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  57487,
+                                "Length":  8,
+                                "Line":  1709,
+                                "Column":  14,
+                                "Text":  "$display",
+                                "Types":  [
+                                              "SystemTaskFunction"
                                           ]
                             },
                             {
@@ -64943,6 +65172,16 @@
                                           ]
                             },
                             {
+                                "Start":  57895,
+                                "Length":  8,
+                                "Line":  1721,
+                                "Column":  14,
+                                "Text":  "$display",
+                                "Types":  [
+                                              "SystemTaskFunction"
+                                          ]
+                            },
+                            {
                                 "Start":  57903,
                                 "Length":  1,
                                 "Line":  1721,
@@ -65130,6 +65369,16 @@
                                 "Text":  "(",
                                 "Types":  [
                                               "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  58098,
+                                "Length":  8,
+                                "Line":  1726,
+                                "Column":  15,
+                                "Text":  "$display",
+                                "Types":  [
+                                              "SystemTaskFunction"
                                           ]
                             },
                             {
@@ -65833,6 +66082,16 @@
                                           ]
                             },
                             {
+                                "Start":  59011,
+                                "Length":  8,
+                                "Line":  1756,
+                                "Column":  12,
+                                "Text":  "$display",
+                                "Types":  [
+                                              "SystemTaskFunction"
+                                          ]
+                            },
+                            {
                                 "Start":  59019,
                                 "Length":  1,
                                 "Line":  1756,
@@ -66370,6 +66629,16 @@
                                 "Text":  "(",
                                 "Types":  [
                                               "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  59594,
+                                "Length":  8,
+                                "Line":  1775,
+                                "Column":  15,
+                                "Text":  "$display",
+                                "Types":  [
+                                              "SystemTaskFunction"
                                           ]
                             },
                             {
@@ -68193,6 +68462,16 @@
                                           ]
                             },
                             {
+                                "Start":  61607,
+                                "Length":  7,
+                                "Line":  1836,
+                                "Column":  43,
+                                "Text":  "$signed",
+                                "Types":  [
+                                              "SystemTaskFunction"
+                                          ]
+                            },
+                            {
                                 "Start":  61614,
                                 "Length":  1,
                                 "Line":  1836,
@@ -68480,6 +68759,16 @@
                                 "Text":  "reg_op1",
                                 "Types":  [
                                               "Variable_reg"
+                                          ]
+                            },
+                            {
+                                "Start":  61897,
+                                "Length":  7,
+                                "Line":  1844,
+                                "Column":  43,
+                                "Text":  "$signed",
+                                "Types":  [
+                                              "SystemTaskFunction"
                                           ]
                             },
                             {
@@ -70173,6 +70462,16 @@
                                           ]
                             },
                             {
+                                "Start":  63581,
+                                "Length":  7,
+                                "Line":  1900,
+                                "Column":  34,
+                                "Text":  "$signed",
+                                "Types":  [
+                                              "SystemTaskFunction"
+                                          ]
+                            },
+                            {
                                 "Start":  63588,
                                 "Length":  1,
                                 "Line":  1900,
@@ -70260,6 +70559,16 @@
                                 "Text":  "reg_out",
                                 "Types":  [
                                               "Variable_reg"
+                                          ]
+                            },
+                            {
+                                "Start":  63645,
+                                "Length":  7,
+                                "Line":  1901,
+                                "Column":  34,
+                                "Text":  "$signed",
+                                "Types":  [
+                                              "SystemTaskFunction"
                                           ]
                             },
                             {
@@ -70683,6 +70992,16 @@
                                           ]
                             },
                             {
+                                "Start":  63959,
+                                "Length":  8,
+                                "Line":  1913,
+                                "Column":  12,
+                                "Text":  "$display",
+                                "Types":  [
+                                              "SystemTaskFunction"
+                                          ]
+                            },
+                            {
                                 "Start":  63967,
                                 "Length":  1,
                                 "Line":  1913,
@@ -71060,6 +71379,16 @@
                                 "Text":  "(",
                                 "Types":  [
                                               "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  64231,
+                                "Length":  8,
+                                "Line":  1920,
+                                "Column":  12,
+                                "Text":  "$display",
+                                "Types":  [
+                                              "SystemTaskFunction"
                                           ]
                             },
                             {
@@ -71530,6 +71859,16 @@
                                 "Text":  "(",
                                 "Types":  [
                                               "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  64562,
+                                "Length":  8,
+                                "Line":  1928,
+                                "Column":  11,
+                                "Text":  "$display",
+                                "Types":  [
+                                              "SystemTaskFunction"
                                           ]
                             },
                             {
@@ -73014,22 +73353,12 @@
                             },
                             {
                                 "Start":  66447,
-                                "Length":  6,
+                                "Length":  27,
                                 "Line":  2004,
                                 "Column":  1,
-                                "Text":  "`ifdef",
+                                "Text":  "`ifdef PICORV32_TESTBUG_003",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  66454,
-                                "Length":  20,
-                                "Line":  2004,
-                                "Column":  8,
-                                "Text":  "PICORV32_TESTBUG_003",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -73049,7 +73378,7 @@
                                 "Column":  1,
                                 "Text":  "`else",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -73069,27 +73398,17 @@
                                 "Column":  1,
                                 "Text":  "`endif",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
                                 "Start":  66554,
-                                "Length":  6,
+                                "Length":  27,
                                 "Line":  2009,
                                 "Column":  1,
-                                "Text":  "`ifdef",
+                                "Text":  "`ifdef PICORV32_TESTBUG_004",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  66561,
-                                "Length":  20,
-                                "Line":  2009,
-                                "Column":  8,
-                                "Text":  "PICORV32_TESTBUG_004",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -73109,7 +73428,7 @@
                                 "Column":  1,
                                 "Text":  "`else",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -73129,7 +73448,7 @@
                                 "Column":  1,
                                 "Text":  "`endif",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -73504,22 +73823,12 @@
                             },
                             {
                                 "Start":  67644,
-                                "Length":  6,
+                                "Length":  27,
                                 "Line":  2054,
                                 "Column":  1,
-                                "Text":  "`ifdef",
+                                "Text":  "`ifdef PICORV32_TESTBUG_005",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  67651,
-                                "Length":  20,
-                                "Line":  2054,
-                                "Column":  8,
-                                "Text":  "PICORV32_TESTBUG_005",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -73539,7 +73848,7 @@
                                 "Column":  1,
                                 "Text":  "`else",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -73559,7 +73868,7 @@
                                 "Column":  1,
                                 "Text":  "`endif",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -78683,6 +78992,26 @@
                                           ]
                             },
                             {
+                                "Start":  73725,
+                                "Length":  3,
+                                "Line":  2269,
+                                "Column":  12,
+                                "Text":  "$si",
+                                "Types":  [
+                                              "SystemTaskFunction"
+                                          ]
+                            },
+                            {
+                                "Start":  73728,
+                                "Length":  4,
+                                "Line":  2269,
+                                "Column":  15,
+                                "Text":  "gned",
+                                "Types":  [
+                                              "SystemTaskFunction"
+                                          ]
+                            },
+                            {
                                 "Start":  73732,
                                 "Length":  1,
                                 "Line":  2269,
@@ -78730,6 +79059,16 @@
                                 "Text":  "rs1",
                                 "Types":  [
                                               "Variable_reg"
+                                          ]
+                            },
+                            {
+                                "Start":  73763,
+                                "Length":  9,
+                                "Line":  2271,
+                                "Column":  12,
+                                "Text":  "$unsigned",
+                                "Types":  [
+                                              "SystemTaskFunction"
                                           ]
                             },
                             {
@@ -78813,6 +79152,16 @@
                                           ]
                             },
                             {
+                                "Start":  73821,
+                                "Length":  7,
+                                "Line":  2274,
+                                "Column":  12,
+                                "Text":  "$signed",
+                                "Types":  [
+                                              "SystemTaskFunction"
+                                          ]
+                            },
+                            {
                                 "Start":  73828,
                                 "Length":  1,
                                 "Line":  2274,
@@ -78860,6 +79209,16 @@
                                 "Text":  "rs2",
                                 "Types":  [
                                               "Variable_reg"
+                                          ]
+                            },
+                            {
+                                "Start":  73859,
+                                "Length":  9,
+                                "Line":  2276,
+                                "Column":  12,
+                                "Text":  "$unsigned",
+                                "Types":  [
+                                              "SystemTaskFunction"
                                           ]
                             },
                             {
@@ -81573,6 +81932,16 @@
                                           ]
                             },
                             {
+                                "Start":  75876,
+                                "Length":  7,
+                                "Line":  2360,
+                                "Column":  10,
+                                "Text":  "$signed",
+                                "Types":  [
+                                              "SystemTaskFunction"
+                                          ]
+                            },
+                            {
                                 "Start":  75883,
                                 "Length":  1,
                                 "Line":  2360,
@@ -81620,6 +81989,16 @@
                                 "Text":  ")",
                                 "Types":  [
                                               "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  75915,
+                                "Length":  7,
+                                "Line":  2360,
+                                "Column":  49,
+                                "Text":  "$signed",
+                                "Types":  [
+                                              "SystemTaskFunction"
                                           ]
                             },
                             {
@@ -82103,6 +82482,16 @@
                                           ]
                             },
                             {
+                                "Start":  76165,
+                                "Length":  7,
+                                "Line":  2370,
+                                "Column":  12,
+                                "Text":  "$signed",
+                                "Types":  [
+                                              "SystemTaskFunction"
+                                          ]
+                            },
+                            {
                                 "Start":  76172,
                                 "Length":  1,
                                 "Line":  2370,
@@ -82150,6 +82539,16 @@
                                 "Text":  "rs1",
                                 "Types":  [
                                               "Variable_reg"
+                                          ]
+                            },
+                            {
+                                "Start":  76203,
+                                "Length":  9,
+                                "Line":  2372,
+                                "Column":  12,
+                                "Text":  "$unsigned",
+                                "Types":  [
+                                              "SystemTaskFunction"
                                           ]
                             },
                             {
@@ -82233,6 +82632,16 @@
                                           ]
                             },
                             {
+                                "Start":  76261,
+                                "Length":  7,
+                                "Line":  2375,
+                                "Column":  12,
+                                "Text":  "$signed",
+                                "Types":  [
+                                              "SystemTaskFunction"
+                                          ]
+                            },
+                            {
                                 "Start":  76268,
                                 "Length":  1,
                                 "Line":  2375,
@@ -82280,6 +82689,16 @@
                                 "Text":  "rs2",
                                 "Types":  [
                                               "Variable_reg"
+                                          ]
+                            },
+                            {
+                                "Start":  76299,
+                                "Length":  9,
+                                "Line":  2377,
+                                "Column":  12,
+                                "Text":  "$unsigned",
+                                "Types":  [
+                                              "SystemTaskFunction"
                                           ]
                             },
                             {
@@ -104152,47 +104571,17 @@
                      "Text":  "DEBUG",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef DEBUG"
+                     "HoverText":  "Macro `DEBUG` is not defined."
                  },
                  {
-                     "Start":  1014,
-                     "Length":  7,
+                     "Start":  1012,
+                     "Length":  44,
                      "Line":  28,
-                     "Column":  3,
-                     "Text":  "`define",
+                     "Column":  1,
+                     "Text":  "  `define debug(debug_command) debug_command",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  1022,
-                     "Length":  5,
-                     "Line":  28,
-                     "Column":  11,
-                     "Text":  "debug",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define debug(debug_command) debug_command\r\n\r\ncondition:\r\n`ifdef DEBUG\r\n\r\nmacro definition:\r\n`define debug(debug_command)\r\n\r\ncondition:\r\n`else (from `ifdef DEBUG)"
-                 },
-                 {
-                     "Start":  1027,
-                     "Length":  1,
-                     "Line":  28,
-                     "Column":  16,
-                     "Text":  "(",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  1041,
-                     "Length":  1,
-                     "Line":  28,
-                     "Column":  30,
-                     "Text":  ")",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027DEBUG\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  1057,
@@ -104222,7 +104611,7 @@
                      "Text":  "debug",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define debug(debug_command) debug_command\r\n\r\ncondition:\r\n`ifdef DEBUG\r\n\r\nmacro definition:\r\n`define debug(debug_command)\r\n\r\ncondition:\r\n`else (from `ifdef DEBUG)"
+                     "HoverText":  "Macro `debug` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 30"
                  },
                  {
                      "Start":  1078,
@@ -104272,97 +104661,27 @@
                      "Text":  "FORMAL",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef FORMAL"
+                     "HoverText":  "Macro `FORMAL` is not defined."
                  },
                  {
-                     "Start":  1138,
-                     "Length":  10,
+                     "Start":  1116,
+                     "Length":  32,
                      "Line":  34,
-                     "Column":  23,
-                     "Text":  "(* keep *)",
+                     "Column":  1,
+                     "Text":  "  `define FORMAL_KEEP (* keep *)",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Attribute",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027FORMAL\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  1118,
-                     "Length":  7,
-                     "Line":  34,
-                     "Column":  3,
-                     "Text":  "`define",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  1126,
-                     "Length":  11,
-                     "Line":  34,
-                     "Column":  11,
-                     "Text":  "FORMAL_KEEP",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define FORMAL_KEEP (* keep *)\r\n\r\ncondition:\r\n`ifdef FORMAL\r\n\r\nmacro definition:\r\n`define FORMAL_KEEP (* keep *)\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)\r\n`ifdef DEBUGNETS\r\n\r\nmacro definition:\r\n`define FORMAL_KEEP\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)\r\n`else (from `ifdef DEBUGNETS)"
-                 },
-                 {
-                     "Start":  1151,
-                     "Length":  7,
+                     "Start":  1149,
+                     "Length":  49,
                      "Line":  35,
-                     "Column":  3,
-                     "Text":  "`define",
+                     "Column":  1,
+                     "Text":  "  `define assert(assert_expr) assert(assert_expr)",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  1159,
-                     "Length":  6,
-                     "Line":  35,
-                     "Column":  11,
-                     "Text":  "assert",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define assert(assert_expr) assert(assert_expr)\r\n\r\ncondition:\r\n`ifdef FORMAL\r\n\r\nmacro definition:\r\n`define assert(assert_expr) empty_statement\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)"
-                 },
-                 {
-                     "Start":  1165,
-                     "Length":  1,
-                     "Line":  35,
-                     "Column":  17,
-                     "Text":  "(",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  1177,
-                     "Length":  1,
-                     "Line":  35,
-                     "Column":  29,
-                     "Text":  ")",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  1185,
-                     "Length":  1,
-                     "Line":  35,
-                     "Column":  37,
-                     "Text":  "(",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  1197,
-                     "Length":  1,
-                     "Line":  35,
-                     "Column":  49,
-                     "Text":  ")",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket1",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027FORMAL\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  1199,
@@ -104392,37 +104711,17 @@
                      "Text":  "DEBUGNETS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef DEBUGNETS"
+                     "HoverText":  "Macro `DEBUGNETS` is not defined."
                  },
                  {
-                     "Start":  1248,
-                     "Length":  10,
+                     "Start":  1224,
+                     "Length":  34,
                      "Line":  38,
-                     "Column":  25,
-                     "Text":  "(* keep *)",
+                     "Column":  1,
+                     "Text":  "    `define FORMAL_KEEP (* keep *)",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Attribute",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  1228,
-                     "Length":  7,
-                     "Line":  38,
-                     "Column":  5,
-                     "Text":  "`define",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  1236,
-                     "Length":  11,
-                     "Line":  38,
-                     "Column":  13,
-                     "Text":  "FORMAL_KEEP",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define FORMAL_KEEP (* keep *)\r\n\r\ncondition:\r\n`ifdef FORMAL\r\n\r\nmacro definition:\r\n`define FORMAL_KEEP (* keep *)\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)\r\n`ifdef DEBUGNETS\r\n\r\nmacro definition:\r\n`define FORMAL_KEEP\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)\r\n`else (from `ifdef DEBUGNETS)"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027DEBUGNETS\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  1261,
@@ -104452,7 +104751,7 @@
                      "Text":  "FORMAL_KEEP",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define FORMAL_KEEP (* keep *)\r\n\r\ncondition:\r\n`ifdef FORMAL\r\n\r\nmacro definition:\r\n`define FORMAL_KEEP (* keep *)\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)\r\n`ifdef DEBUGNETS\r\n\r\nmacro definition:\r\n`define FORMAL_KEEP\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)\r\n`else (from `ifdef DEBUGNETS)"
+                     "HoverText":  "Macro `FORMAL_KEEP` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 40"
                  },
                  {
                      "Start":  1293,
@@ -104481,8 +104780,8 @@
                      "Column":  11,
                      "Text":  "assert",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define assert(assert_expr) assert(assert_expr)\r\n\r\ncondition:\r\n`ifdef FORMAL\r\n\r\nmacro definition:\r\n`define assert(assert_expr) empty_statement\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)"
+                     "TagDetail":  "Verilog_SystemVerilogYosysSupported",
+                     "HoverText":  "SystemVerilog keyword \u0027assert\u0027. VLE marks this use as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version."
                  },
                  {
                      "Start":  1316,
@@ -105192,7 +105491,7 @@
                      "Text":  "PICORV32_V",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define PICORV32_V\r\n\r\ncondition:\r\n(unconditional)"
+                     "HoverText":  "Macro `PICORV32_V` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 50"
                  },
                  {
                      "Start":  1572,
@@ -109762,7 +110061,7 @@
                      "Text":  "RISCV_FORMAL",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef RISCV_FORMAL"
+                     "HoverText":  "Macro `RISCV_FORMAL` is not defined."
                  },
                  {
                      "Start":  3585,
@@ -112112,7 +112411,7 @@
                      "Text":  "PICORV32_REGS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifndef PICORV32_REGS"
+                     "HoverText":  "Macro `PICORV32_REGS` is not defined."
                  },
                  {
                      "Start":  5997,
@@ -113072,7 +113371,7 @@
                      "Text":  "DEBUGREGS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef DEBUGREGS"
+                     "HoverText":  "Macro `DEBUGREGS` is not defined."
                  },
                  {
                      "Start":  6381,
@@ -122025,6 +122324,16 @@
                      "HoverText":  null
                  },
                  {
+                     "Start":  14555,
+                     "Length":  7,
+                     "Line":  453,
+                     "Column":  30,
+                     "Text":  "$signed",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$signed(expression); System function that interprets the expression as signed without changing its bit pattern."
+                 },
+                 {
                      "Start":  14562,
                      "Length":  1,
                      "Line":  453,
@@ -122323,6 +122632,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  14718,
+                     "Length":  7,
+                     "Line":  457,
+                     "Column":  30,
+                     "Text":  "$signed",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$signed(expression); System function that interprets the expression as signed without changing its bit pattern."
                  },
                  {
                      "Start":  14725,
@@ -122725,6 +123044,16 @@
                      "HoverText":  null
                  },
                  {
+                     "Start":  14936,
+                     "Length":  7,
+                     "Line":  462,
+                     "Column":  31,
+                     "Text":  "$signed",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$signed(expression); System function that interprets the expression as signed without changing its bit pattern."
+                 },
+                 {
                      "Start":  14943,
                      "Length":  1,
                      "Line":  462,
@@ -123093,6 +123422,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  15141,
+                     "Length":  7,
+                     "Line":  465,
+                     "Column":  31,
+                     "Text":  "$signed",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$signed(expression); System function that interprets the expression as signed without changing its bit pattern."
                  },
                  {
                      "Start":  15148,
@@ -124023,6 +124362,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  15678,
+                     "Length":  7,
+                     "Line":  479,
+                     "Column":  31,
+                     "Text":  "$signed",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$signed(expression); System function that interprets the expression as signed without changing its bit pattern."
                  },
                  {
                      "Start":  15685,
@@ -125445,6 +125794,16 @@
                      "HoverText":  null
                  },
                  {
+                     "Start":  16401,
+                     "Length":  7,
+                     "Line":  492,
+                     "Column":  10,
+                     "Text":  "$signed",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$signed(expression); System function that interprets the expression as signed without changing its bit pattern."
+                 },
+                 {
                      "Start":  16408,
                      "Length":  1,
                      "Line":  492,
@@ -126033,6 +126392,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  16714,
+                     "Length":  7,
+                     "Line":  498,
+                     "Column":  10,
+                     "Text":  "$signed",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$signed(expression); System function that interprets the expression as signed without changing its bit pattern."
                  },
                  {
                      "Start":  16721,
@@ -128962,7 +129331,7 @@
                      "Text":  "`assert",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define assert(assert_expr) assert(assert_expr)\r\n\r\ncondition:\r\n`ifdef FORMAL\r\n\r\nmacro definition:\r\n`define assert(assert_expr) empty_statement\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)"
+                     "HoverText":  "Macro `assert` is defined.\r\nValue: empty_statement\r\nFile: TestFiles/picorv32.v\r\nLine: 42"
                  },
                  {
                      "Start":  18382,
@@ -129052,7 +129421,7 @@
                      "Text":  "`assert",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define assert(assert_expr) assert(assert_expr)\r\n\r\ncondition:\r\n`ifdef FORMAL\r\n\r\nmacro definition:\r\n`define assert(assert_expr) empty_statement\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)"
+                     "HoverText":  "Macro `assert` is defined.\r\nValue: empty_statement\r\nFile: TestFiles/picorv32.v\r\nLine: 42"
                  },
                  {
                      "Start":  18451,
@@ -129132,7 +129501,7 @@
                      "Text":  "`assert",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define assert(assert_expr) assert(assert_expr)\r\n\r\ncondition:\r\n`ifdef FORMAL\r\n\r\nmacro definition:\r\n`define assert(assert_expr) empty_statement\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)"
+                     "HoverText":  "Macro `assert` is defined.\r\nValue: empty_statement\r\nFile: TestFiles/picorv32.v\r\nLine: 42"
                  },
                  {
                      "Start":  18501,
@@ -129222,7 +129591,7 @@
                      "Text":  "`assert",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define assert(assert_expr) assert(assert_expr)\r\n\r\ncondition:\r\n`ifdef FORMAL\r\n\r\nmacro definition:\r\n`define assert(assert_expr) empty_statement\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)"
+                     "HoverText":  "Macro `assert` is defined.\r\nValue: empty_statement\r\nFile: TestFiles/picorv32.v\r\nLine: 42"
                  },
                  {
                      "Start":  18571,
@@ -129372,7 +129741,7 @@
                      "Text":  "`assert",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define assert(assert_expr) assert(assert_expr)\r\n\r\ncondition:\r\n`ifdef FORMAL\r\n\r\nmacro definition:\r\n`define assert(assert_expr) empty_statement\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)"
+                     "HoverText":  "Macro `assert` is defined.\r\nValue: empty_statement\r\nFile: TestFiles/picorv32.v\r\nLine: 42"
                  },
                  {
                      "Start":  18678,
@@ -130392,7 +130761,7 @@
                      "Text":  "`assert",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define assert(assert_expr) assert(assert_expr)\r\n\r\ncondition:\r\n`ifdef FORMAL\r\n\r\nmacro definition:\r\n`define assert(assert_expr) empty_statement\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)"
+                     "HoverText":  "Macro `assert` is defined.\r\nValue: empty_statement\r\nFile: TestFiles/picorv32.v\r\nLine: 42"
                  },
                  {
                      "Start":  19525,
@@ -130442,7 +130811,7 @@
                      "Text":  "`assert",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define assert(assert_expr) assert(assert_expr)\r\n\r\ncondition:\r\n`ifdef FORMAL\r\n\r\nmacro definition:\r\n`define assert(assert_expr) empty_statement\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)"
+                     "HoverText":  "Macro `assert` is defined.\r\nValue: empty_statement\r\nFile: TestFiles/picorv32.v\r\nLine: 42"
                  },
                  {
                      "Start":  19555,
@@ -130502,7 +130871,7 @@
                      "Text":  "`assert",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define assert(assert_expr) assert(assert_expr)\r\n\r\ncondition:\r\n`ifdef FORMAL\r\n\r\nmacro definition:\r\n`define assert(assert_expr) empty_statement\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)"
+                     "HoverText":  "Macro `assert` is defined.\r\nValue: empty_statement\r\nFile: TestFiles/picorv32.v\r\nLine: 42"
                  },
                  {
                      "Start":  19618,
@@ -130552,7 +130921,7 @@
                      "Text":  "`assert",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define assert(assert_expr) assert(assert_expr)\r\n\r\ncondition:\r\n`ifdef FORMAL\r\n\r\nmacro definition:\r\n`define assert(assert_expr) empty_statement\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)"
+                     "HoverText":  "Macro `assert` is defined.\r\nValue: empty_statement\r\nFile: TestFiles/picorv32.v\r\nLine: 42"
                  },
                  {
                      "Start":  19679,
@@ -131362,7 +131731,7 @@
                      "Text":  "`assert",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define assert(assert_expr) assert(assert_expr)\r\n\r\ncondition:\r\n`ifdef FORMAL\r\n\r\nmacro definition:\r\n`define assert(assert_expr) empty_statement\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)"
+                     "HoverText":  "Macro `assert` is defined.\r\nValue: empty_statement\r\nFile: TestFiles/picorv32.v\r\nLine: 42"
                  },
                  {
                      "Start":  20403,
@@ -131412,7 +131781,7 @@
                      "Text":  "`assert",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define assert(assert_expr) assert(assert_expr)\r\n\r\ncondition:\r\n`ifdef FORMAL\r\n\r\nmacro definition:\r\n`define assert(assert_expr) empty_statement\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)"
+                     "HoverText":  "Macro `assert` is defined.\r\nValue: empty_statement\r\nFile: TestFiles/picorv32.v\r\nLine: 42"
                  },
                  {
                      "Start":  20433,
@@ -131582,7 +131951,7 @@
                      "Text":  "`assert",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define assert(assert_expr) assert(assert_expr)\r\n\r\ncondition:\r\n`ifdef FORMAL\r\n\r\nmacro definition:\r\n`define assert(assert_expr) empty_statement\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)"
+                     "HoverText":  "Macro `assert` is defined.\r\nValue: empty_statement\r\nFile: TestFiles/picorv32.v\r\nLine: 42"
                  },
                  {
                      "Start":  20560,
@@ -131632,7 +132001,7 @@
                      "Text":  "`assert",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define assert(assert_expr) assert(assert_expr)\r\n\r\ncondition:\r\n`ifdef FORMAL\r\n\r\nmacro definition:\r\n`define assert(assert_expr) empty_statement\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)"
+                     "HoverText":  "Macro `assert` is defined.\r\nValue: empty_statement\r\nFile: TestFiles/picorv32.v\r\nLine: 42"
                  },
                  {
                      "Start":  20590,
@@ -133722,7 +134091,7 @@
                      "Text":  "`FORMAL_KEEP",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define FORMAL_KEEP (* keep *)\r\n\r\ncondition:\r\n`ifdef FORMAL\r\n\r\nmacro definition:\r\n`define FORMAL_KEEP (* keep *)\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)\r\n`ifdef DEBUGNETS\r\n\r\nmacro definition:\r\n`define FORMAL_KEEP\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)\r\n`else (from `ifdef DEBUGNETS)"
+                     "HoverText":  "Macro `FORMAL_KEEP` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 40"
                  },
                  {
                      "Start":  22848,
@@ -133792,7 +134161,7 @@
                      "Text":  "`FORMAL_KEEP",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define FORMAL_KEEP (* keep *)\r\n\r\ncondition:\r\n`ifdef FORMAL\r\n\r\nmacro definition:\r\n`define FORMAL_KEEP (* keep *)\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)\r\n`ifdef DEBUGNETS\r\n\r\nmacro definition:\r\n`define FORMAL_KEEP\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)\r\n`else (from `ifdef DEBUGNETS)"
+                     "HoverText":  "Macro `FORMAL_KEEP` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 40"
                  },
                  {
                      "Start":  22890,
@@ -133862,7 +134231,7 @@
                      "Text":  "`FORMAL_KEEP",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define FORMAL_KEEP (* keep *)\r\n\r\ncondition:\r\n`ifdef FORMAL\r\n\r\nmacro definition:\r\n`define FORMAL_KEEP (* keep *)\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)\r\n`ifdef DEBUGNETS\r\n\r\nmacro definition:\r\n`define FORMAL_KEEP\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)\r\n`else (from `ifdef DEBUGNETS)"
+                     "HoverText":  "Macro `FORMAL_KEEP` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 40"
                  },
                  {
                      "Start":  22929,
@@ -133932,7 +134301,7 @@
                      "Text":  "`FORMAL_KEEP",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define FORMAL_KEEP (* keep *)\r\n\r\ncondition:\r\n`ifdef FORMAL\r\n\r\nmacro definition:\r\n`define FORMAL_KEEP (* keep *)\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)\r\n`ifdef DEBUGNETS\r\n\r\nmacro definition:\r\n`define FORMAL_KEEP\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)\r\n`else (from `ifdef DEBUGNETS)"
+                     "HoverText":  "Macro `FORMAL_KEEP` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 40"
                  },
                  {
                      "Start":  22967,
@@ -134002,7 +134371,7 @@
                      "Text":  "`FORMAL_KEEP",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define FORMAL_KEEP (* keep *)\r\n\r\ncondition:\r\n`ifdef FORMAL\r\n\r\nmacro definition:\r\n`define FORMAL_KEEP (* keep *)\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)\r\n`ifdef DEBUGNETS\r\n\r\nmacro definition:\r\n`define FORMAL_KEEP\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)\r\n`else (from `ifdef DEBUGNETS)"
+                     "HoverText":  "Macro `FORMAL_KEEP` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 40"
                  },
                  {
                      "Start":  23005,
@@ -134072,7 +134441,7 @@
                      "Text":  "`FORMAL_KEEP",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define FORMAL_KEEP (* keep *)\r\n\r\ncondition:\r\n`ifdef FORMAL\r\n\r\nmacro definition:\r\n`define FORMAL_KEEP (* keep *)\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)\r\n`ifdef DEBUGNETS\r\n\r\nmacro definition:\r\n`define FORMAL_KEEP\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)\r\n`else (from `ifdef DEBUGNETS)"
+                     "HoverText":  "Macro `FORMAL_KEEP` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 40"
                  },
                  {
                      "Start":  23042,
@@ -134142,7 +134511,7 @@
                      "Text":  "`FORMAL_KEEP",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define FORMAL_KEEP (* keep *)\r\n\r\ncondition:\r\n`ifdef FORMAL\r\n\r\nmacro definition:\r\n`define FORMAL_KEEP (* keep *)\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)\r\n`ifdef DEBUGNETS\r\n\r\nmacro definition:\r\n`define FORMAL_KEEP\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)\r\n`else (from `ifdef DEBUGNETS)"
+                     "HoverText":  "Macro `FORMAL_KEEP` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 40"
                  },
                  {
                      "Start":  23079,
@@ -134212,7 +134581,7 @@
                      "Text":  "`FORMAL_KEEP",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define FORMAL_KEEP (* keep *)\r\n\r\ncondition:\r\n`ifdef FORMAL\r\n\r\nmacro definition:\r\n`define FORMAL_KEEP (* keep *)\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)\r\n`ifdef DEBUGNETS\r\n\r\nmacro definition:\r\n`define FORMAL_KEEP\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)\r\n`else (from `ifdef DEBUGNETS)"
+                     "HoverText":  "Macro `FORMAL_KEEP` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 40"
                  },
                  {
                      "Start":  23116,
@@ -134242,7 +134611,7 @@
                      "Text":  "`FORMAL_KEEP",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define FORMAL_KEEP (* keep *)\r\n\r\ncondition:\r\n`ifdef FORMAL\r\n\r\nmacro definition:\r\n`define FORMAL_KEEP (* keep *)\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)\r\n`ifdef DEBUGNETS\r\n\r\nmacro definition:\r\n`define FORMAL_KEEP\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)\r\n`else (from `ifdef DEBUGNETS)"
+                     "HoverText":  "Macro `FORMAL_KEEP` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 40"
                  },
                  {
                      "Start":  23152,
@@ -139442,7 +139811,7 @@
                      "Text":  "DEBUGASM",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef DEBUGASM"
+                     "HoverText":  "Macro `DEBUGASM` is not defined."
                  },
                  {
                      "Start":  27493,
@@ -139522,7 +139891,7 @@
                      "Text":  "DEBUG",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef DEBUG"
+                     "HoverText":  "Macro `DEBUG` is not defined."
                  },
                  {
                      "Start":  27683,
@@ -141375,6 +141744,16 @@
                      "HoverText":  null
                  },
                  {
+                     "Start":  29548,
+                     "Length":  7,
+                     "Line":  873,
+                     "Column":  112,
+                     "Text":  "$signed",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$signed(expression); System function that interprets the expression as signed without changing its bit pattern."
+                 },
+                 {
                      "Start":  29555,
                      "Length":  1,
                      "Line":  873,
@@ -142763,6 +143142,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  30444,
+                     "Length":  7,
+                     "Line":  893,
+                     "Column":  85,
+                     "Text":  "$signed",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$signed(expression); System function that interprets the expression as signed without changing its bit pattern."
                  },
                  {
                      "Start":  30451,
@@ -156045,6 +156434,16 @@
                      "HoverText":  "reg [31:0] decoded_imm"
                  },
                  {
+                     "Start":  40429,
+                     "Length":  7,
+                     "Line":  1118,
+                     "Column":  21,
+                     "Text":  "$signed",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$signed(expression); System function that interprets the expression as signed without changing its bit pattern."
+                 },
+                 {
                      "Start":  40436,
                      "Length":  1,
                      "Line":  1118,
@@ -156133,6 +156532,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
                      "HoverText":  "reg [31:0] decoded_imm"
+                 },
+                 {
+                     "Start":  40512,
+                     "Length":  7,
+                     "Line":  1120,
+                     "Column":  21,
+                     "Text":  "$signed",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$signed(expression); System function that interprets the expression as signed without changing its bit pattern."
                  },
                  {
                      "Start":  40519,
@@ -156383,6 +156792,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
                      "HoverText":  "reg [31:0] decoded_imm"
+                 },
+                 {
+                     "Start":  40638,
+                     "Length":  7,
+                     "Line":  1122,
+                     "Column":  21,
+                     "Text":  "$signed",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$signed(expression); System function that interprets the expression as signed without changing its bit pattern."
                  },
                  {
                      "Start":  40645,
@@ -157562,7 +157981,7 @@
                      "Text":  "`FORMAL_KEEP",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define FORMAL_KEEP (* keep *)\r\n\r\ncondition:\r\n`ifdef FORMAL\r\n\r\nmacro definition:\r\n`define FORMAL_KEEP (* keep *)\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)\r\n`ifdef DEBUGNETS\r\n\r\nmacro definition:\r\n`define FORMAL_KEEP\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)\r\n`else (from `ifdef DEBUGNETS)"
+                     "HoverText":  "Macro `FORMAL_KEEP` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 40"
                  },
                  {
                      "Start":  41738,
@@ -159335,6 +159754,16 @@
                      "HoverText":  "reg alu_lts"
                  },
                  {
+                     "Start":  43159,
+                     "Length":  7,
+                     "Line":  1223,
+                     "Column":  15,
+                     "Text":  "$signed",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$signed(expression); System function that interprets the expression as signed without changing its bit pattern."
+                 },
+                 {
                      "Start":  43166,
                      "Length":  1,
                      "Line":  1223,
@@ -159363,6 +159792,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  43178,
+                     "Length":  7,
+                     "Line":  1223,
+                     "Column":  34,
+                     "Text":  "$signed",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$signed(expression); System function that interprets the expression as signed without changing its bit pattern."
                  },
                  {
                      "Start":  43185,
@@ -159503,6 +159942,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
                      "HoverText":  "reg [31:0] alu_shr"
+                 },
+                 {
+                     "Start":  43282,
+                     "Length":  7,
+                     "Line":  1226,
+                     "Column":  15,
+                     "Text":  "$signed",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$signed(expression); System function that interprets the expression as signed without changing its bit pattern."
                  },
                  {
                      "Start":  43289,
@@ -159835,6 +160284,16 @@
                      "HoverText":  "reg alu_lts"
                  },
                  {
+                     "Start":  43518,
+                     "Length":  7,
+                     "Line":  1232,
+                     "Column":  14,
+                     "Text":  "$signed",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$signed(expression); System function that interprets the expression as signed without changing its bit pattern."
+                 },
+                 {
                      "Start":  43525,
                      "Length":  1,
                      "Line":  1232,
@@ -159863,6 +160322,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  43537,
+                     "Length":  7,
+                     "Line":  1232,
+                     "Column":  33,
+                     "Text":  "$signed",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$signed(expression); System function that interprets the expression as signed without changing its bit pattern."
                  },
                  {
                      "Start":  43544,
@@ -160003,6 +160472,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
                      "HoverText":  "reg [31:0] alu_shr"
+                 },
+                 {
+                     "Start":  43638,
+                     "Length":  7,
+                     "Line":  1235,
+                     "Column":  14,
+                     "Text":  "$signed",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$signed(expression); System function that interprets the expression as signed without changing its bit pattern."
                  },
                  {
                      "Start":  43645,
@@ -161112,7 +161591,7 @@
                      "Text":  "RISCV_FORMAL_BLACKBOX_ALU",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef RISCV_FORMAL_BLACKBOX_ALU"
+                     "HoverText":  "Macro `RISCV_FORMAL_BLACKBOX_ALU` is not defined."
                  },
                  {
                      "Start":  44796,
@@ -162372,7 +162851,7 @@
                      "Text":  "PICORV32_REGS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifndef PICORV32_REGS"
+                     "HoverText":  "Macro `PICORV32_REGS` is not defined."
                  },
                  {
                      "Start":  46026,
@@ -162512,7 +162991,7 @@
                      "Text":  "PICORV32_TESTBUG_001",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef PICORV32_TESTBUG_001"
+                     "HoverText":  "Macro `PICORV32_TESTBUG_001` is not defined."
                  },
                  {
                      "Start":  46127,
@@ -162542,7 +163021,7 @@
                      "Text":  "PICORV32_TESTBUG_002",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`elsif PICORV32_TESTBUG_002"
+                     "HoverText":  "Macro `PICORV32_TESTBUG_002` is not defined."
                  },
                  {
                      "Start":  46201,
@@ -162732,7 +163211,7 @@
                      "Text":  "RISCV_FORMAL_BLACKBOX_REGS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifndef RISCV_FORMAL_BLACKBOX_REGS"
+                     "HoverText":  "Macro `RISCV_FORMAL_BLACKBOX_REGS` is not defined."
                  },
                  {
                      "Start":  46417,
@@ -163032,7 +163511,7 @@
                      "Text":  "RISCV_FORMAL_BLACKBOX_REGS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifndef RISCV_FORMAL_BLACKBOX_REGS"
+                     "HoverText":  "Macro `RISCV_FORMAL_BLACKBOX_REGS` is not defined."
                  },
                  {
                      "Start":  46761,
@@ -166002,7 +166481,7 @@
                      "Text":  "`debug",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define debug(debug_command) debug_command\r\n\r\ncondition:\r\n`ifdef DEBUG\r\n\r\nmacro definition:\r\n`define debug(debug_command)\r\n\r\ncondition:\r\n`else (from `ifdef DEBUG)"
+                     "HoverText":  "Macro `debug` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 30"
                  },
                  {
                      "Start":  50332,
@@ -166013,6 +166492,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  50333,
+                     "Length":  8,
+                     "Line":  1497,
+                     "Column":  14,
+                     "Text":  "$display",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$display([format,] arguments...); System task that formats its arguments, writes them immediately to standard output, and appends a newline."
                  },
                  {
                      "Start":  50341,
@@ -166182,7 +166671,7 @@
                      "Text":  "`debug",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define debug(debug_command) debug_command\r\n\r\ncondition:\r\n`ifdef DEBUG\r\n\r\nmacro definition:\r\n`define debug(debug_command)\r\n\r\ncondition:\r\n`else (from `ifdef DEBUG)"
+                     "HoverText":  "Macro `debug` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 30"
                  },
                  {
                      "Start":  50505,
@@ -166193,6 +166682,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  50506,
+                     "Length":  8,
+                     "Line":  1500,
+                     "Column":  14,
+                     "Text":  "$display",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$display([format,] arguments...); System task that formats its arguments, writes them immediately to standard output, and appends a newline."
                  },
                  {
                      "Start":  50514,
@@ -168002,7 +168501,7 @@
                      "Text":  "`debug",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define debug(debug_command) debug_command\r\n\r\ncondition:\r\n`ifdef DEBUG\r\n\r\nmacro definition:\r\n`define debug(debug_command)\r\n\r\ncondition:\r\n`else (from `ifdef DEBUG)"
+                     "HoverText":  "Macro `debug` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 30"
                  },
                  {
                      "Start":  52211,
@@ -168013,6 +168512,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  52212,
+                     "Length":  8,
+                     "Line":  1554,
+                     "Column":  13,
+                     "Text":  "$display",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$display([format,] arguments...); System task that formats its arguments, writes them immediately to standard output, and appends a newline."
                  },
                  {
                      "Start":  52220,
@@ -168033,6 +168542,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_StaticString",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  52232,
+                     "Length":  5,
+                     "Line":  1554,
+                     "Column":  33,
+                     "Text":  "$time",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$time; System function that returns the current simulation time as an integer value scaled to the current scope\u0027s time unit."
                  },
                  {
                      "Start":  52237,
@@ -168852,7 +169371,7 @@
                      "Text":  "`debug",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define debug(debug_command) debug_command\r\n\r\ncondition:\r\n`ifdef DEBUG\r\n\r\nmacro definition:\r\n`define debug(debug_command)\r\n\r\ncondition:\r\n`else (from `ifdef DEBUG)"
+                     "HoverText":  "Macro `debug` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 30"
                  },
                  {
                      "Start":  53007,
@@ -168863,6 +169382,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  53008,
+                     "Length":  8,
+                     "Line":  1583,
+                     "Column":  15,
+                     "Text":  "$display",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$display([format,] arguments...); System task that formats its arguments, writes them immediately to standard output, and appends a newline."
                  },
                  {
                      "Start":  53016,
@@ -169062,7 +169591,7 @@
                      "Text":  "`debug",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define debug(debug_command) debug_command\r\n\r\ncondition:\r\n`ifdef DEBUG\r\n\r\nmacro definition:\r\n`define debug(debug_command)\r\n\r\ncondition:\r\n`else (from `ifdef DEBUG)"
+                     "HoverText":  "Macro `debug` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 30"
                  },
                  {
                      "Start":  53240,
@@ -169073,6 +169602,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  53241,
+                     "Length":  8,
+                     "Line":  1589,
+                     "Column":  16,
+                     "Text":  "$display",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$display([format,] arguments...); System task that formats its arguments, writes them immediately to standard output, and appends a newline."
                  },
                  {
                      "Start":  53249,
@@ -169502,7 +170041,7 @@
                      "Text":  "`debug",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define debug(debug_command) debug_command\r\n\r\ncondition:\r\n`ifdef DEBUG\r\n\r\nmacro definition:\r\n`define debug(debug_command)\r\n\r\ncondition:\r\n`else (from `ifdef DEBUG)"
+                     "HoverText":  "Macro `debug` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 30"
                  },
                  {
                      "Start":  53759,
@@ -169513,6 +170052,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  53760,
+                     "Length":  8,
+                     "Line":  1603,
+                     "Column":  17,
+                     "Text":  "$display",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$display([format,] arguments...); System task that formats its arguments, writes them immediately to standard output, and appends a newline."
                  },
                  {
                      "Start":  53768,
@@ -169882,7 +170431,7 @@
                      "Text":  "`debug",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define debug(debug_command) debug_command\r\n\r\ncondition:\r\n`ifdef DEBUG\r\n\r\nmacro definition:\r\n`define debug(debug_command)\r\n\r\ncondition:\r\n`else (from `ifdef DEBUG)"
+                     "HoverText":  "Macro `debug` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 30"
                  },
                  {
                      "Start":  54149,
@@ -169893,6 +170442,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  54150,
+                     "Length":  8,
+                     "Line":  1614,
+                     "Column":  15,
+                     "Text":  "$display",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$display([format,] arguments...); System task that formats its arguments, writes them immediately to standard output, and appends a newline."
                  },
                  {
                      "Start":  54158,
@@ -170862,7 +171421,7 @@
                      "Text":  "`debug",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define debug(debug_command) debug_command\r\n\r\ncondition:\r\n`ifdef DEBUG\r\n\r\nmacro definition:\r\n`define debug(debug_command)\r\n\r\ncondition:\r\n`else (from `ifdef DEBUG)"
+                     "HoverText":  "Macro `debug` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 30"
                  },
                  {
                      "Start":  55235,
@@ -170873,6 +171432,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  55236,
+                     "Length":  8,
+                     "Line":  1647,
+                     "Column":  14,
+                     "Text":  "$display",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$display([format,] arguments...); System task that formats its arguments, writes them immediately to standard output, and appends a newline."
                  },
                  {
                      "Start":  55244,
@@ -171092,7 +171661,7 @@
                      "Text":  "`debug",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define debug(debug_command) debug_command\r\n\r\ncondition:\r\n`ifdef DEBUG\r\n\r\nmacro definition:\r\n`define debug(debug_command)\r\n\r\ncondition:\r\n`else (from `ifdef DEBUG)"
+                     "HoverText":  "Macro `debug` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 30"
                  },
                  {
                      "Start":  55527,
@@ -171103,6 +171672,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  55528,
+                     "Length":  8,
+                     "Line":  1655,
+                     "Column":  14,
+                     "Text":  "$display",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$display([format,] arguments...); System task that formats its arguments, writes them immediately to standard output, and appends a newline."
                  },
                  {
                      "Start":  55536,
@@ -171422,7 +172001,7 @@
                      "Text":  "`debug",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define debug(debug_command) debug_command\r\n\r\ncondition:\r\n`ifdef DEBUG\r\n\r\nmacro definition:\r\n`define debug(debug_command)\r\n\r\ncondition:\r\n`else (from `ifdef DEBUG)"
+                     "HoverText":  "Macro `debug` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 30"
                  },
                  {
                      "Start":  55942,
@@ -171433,6 +172012,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  55943,
+                     "Length":  8,
+                     "Line":  1668,
+                     "Column":  14,
+                     "Text":  "$display",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$display([format,] arguments...); System task that formats its arguments, writes them immediately to standard output, and appends a newline."
                  },
                  {
                      "Start":  55951,
@@ -171712,7 +172301,7 @@
                      "Text":  "`debug",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define debug(debug_command) debug_command\r\n\r\ncondition:\r\n`ifdef DEBUG\r\n\r\nmacro definition:\r\n`define debug(debug_command)\r\n\r\ncondition:\r\n`else (from `ifdef DEBUG)"
+                     "HoverText":  "Macro `debug` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 30"
                  },
                  {
                      "Start":  56293,
@@ -171723,6 +172312,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  56294,
+                     "Length":  8,
+                     "Line":  1677,
+                     "Column":  14,
+                     "Text":  "$display",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$display([format,] arguments...); System task that formats its arguments, writes them immediately to standard output, and appends a newline."
                  },
                  {
                      "Start":  56302,
@@ -171972,7 +172571,7 @@
                      "Text":  "`debug",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define debug(debug_command) debug_command\r\n\r\ncondition:\r\n`ifdef DEBUG\r\n\r\nmacro definition:\r\n`define debug(debug_command)\r\n\r\ncondition:\r\n`else (from `ifdef DEBUG)"
+                     "HoverText":  "Macro `debug` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 30"
                  },
                  {
                      "Start":  56624,
@@ -171983,6 +172582,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  56625,
+                     "Length":  8,
+                     "Line":  1686,
+                     "Column":  14,
+                     "Text":  "$display",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$display([format,] arguments...); System task that formats its arguments, writes them immediately to standard output, and appends a newline."
                  },
                  {
                      "Start":  56633,
@@ -172172,7 +172781,7 @@
                      "Text":  "`debug",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define debug(debug_command) debug_command\r\n\r\ncondition:\r\n`ifdef DEBUG\r\n\r\nmacro definition:\r\n`define debug(debug_command)\r\n\r\ncondition:\r\n`else (from `ifdef DEBUG)"
+                     "HoverText":  "Macro `debug` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 30"
                  },
                  {
                      "Start":  56878,
@@ -172183,6 +172792,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  56879,
+                     "Length":  8,
+                     "Line":  1693,
+                     "Column":  14,
+                     "Text":  "$display",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$display([format,] arguments...); System task that formats its arguments, writes them immediately to standard output, and appends a newline."
                  },
                  {
                      "Start":  56887,
@@ -172392,7 +173011,7 @@
                      "Text":  "`debug",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define debug(debug_command) debug_command\r\n\r\ncondition:\r\n`ifdef DEBUG\r\n\r\nmacro definition:\r\n`define debug(debug_command)\r\n\r\ncondition:\r\n`else (from `ifdef DEBUG)"
+                     "HoverText":  "Macro `debug` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 30"
                  },
                  {
                      "Start":  57161,
@@ -172403,6 +173022,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  57162,
+                     "Length":  8,
+                     "Line":  1701,
+                     "Column":  14,
+                     "Text":  "$display",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$display([format,] arguments...); System task that formats its arguments, writes them immediately to standard output, and appends a newline."
                  },
                  {
                      "Start":  57170,
@@ -172622,7 +173251,7 @@
                      "Text":  "`debug",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define debug(debug_command) debug_command\r\n\r\ncondition:\r\n`ifdef DEBUG\r\n\r\nmacro definition:\r\n`define debug(debug_command)\r\n\r\ncondition:\r\n`else (from `ifdef DEBUG)"
+                     "HoverText":  "Macro `debug` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 30"
                  },
                  {
                      "Start":  57486,
@@ -172633,6 +173262,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  57487,
+                     "Length":  8,
+                     "Line":  1709,
+                     "Column":  14,
+                     "Text":  "$display",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$display([format,] arguments...); System task that formats its arguments, writes them immediately to standard output, and appends a newline."
                  },
                  {
                      "Start":  57495,
@@ -172952,7 +173591,7 @@
                      "Text":  "`debug",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define debug(debug_command) debug_command\r\n\r\ncondition:\r\n`ifdef DEBUG\r\n\r\nmacro definition:\r\n`define debug(debug_command)\r\n\r\ncondition:\r\n`else (from `ifdef DEBUG)"
+                     "HoverText":  "Macro `debug` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 30"
                  },
                  {
                      "Start":  57894,
@@ -172963,6 +173602,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  57895,
+                     "Length":  8,
+                     "Line":  1721,
+                     "Column":  14,
+                     "Text":  "$display",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$display([format,] arguments...); System task that formats its arguments, writes them immediately to standard output, and appends a newline."
                  },
                  {
                      "Start":  57903,
@@ -173142,7 +173791,7 @@
                      "Text":  "`debug",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define debug(debug_command) debug_command\r\n\r\ncondition:\r\n`ifdef DEBUG\r\n\r\nmacro definition:\r\n`define debug(debug_command)\r\n\r\ncondition:\r\n`else (from `ifdef DEBUG)"
+                     "HoverText":  "Macro `debug` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 30"
                  },
                  {
                      "Start":  58097,
@@ -173153,6 +173802,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  58098,
+                     "Length":  8,
+                     "Line":  1726,
+                     "Column":  15,
+                     "Text":  "$display",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$display([format,] arguments...); System task that formats its arguments, writes them immediately to standard output, and appends a newline."
                  },
                  {
                      "Start":  58106,
@@ -173842,7 +174501,7 @@
                      "Text":  "`debug",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define debug(debug_command) debug_command\r\n\r\ncondition:\r\n`ifdef DEBUG\r\n\r\nmacro definition:\r\n`define debug(debug_command)\r\n\r\ncondition:\r\n`else (from `ifdef DEBUG)"
+                     "HoverText":  "Macro `debug` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 30"
                  },
                  {
                      "Start":  59010,
@@ -173853,6 +174512,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  59011,
+                     "Length":  8,
+                     "Line":  1756,
+                     "Column":  12,
+                     "Text":  "$display",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$display([format,] arguments...); System task that formats its arguments, writes them immediately to standard output, and appends a newline."
                  },
                  {
                      "Start":  59019,
@@ -174382,7 +175051,7 @@
                      "Text":  "`debug",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define debug(debug_command) debug_command\r\n\r\ncondition:\r\n`ifdef DEBUG\r\n\r\nmacro definition:\r\n`define debug(debug_command)\r\n\r\ncondition:\r\n`else (from `ifdef DEBUG)"
+                     "HoverText":  "Macro `debug` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 30"
                  },
                  {
                      "Start":  59593,
@@ -174393,6 +175062,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  59594,
+                     "Length":  8,
+                     "Line":  1775,
+                     "Column":  15,
+                     "Text":  "$display",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$display([format,] arguments...); System task that formats its arguments, writes them immediately to standard output, and appends a newline."
                  },
                  {
                      "Start":  59602,
@@ -176215,6 +176894,16 @@
                      "HoverText":  "reg [31:0] reg_op1"
                  },
                  {
+                     "Start":  61607,
+                     "Length":  7,
+                     "Line":  1836,
+                     "Column":  43,
+                     "Text":  "$signed",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$signed(expression); System function that interprets the expression as signed without changing its bit pattern."
+                 },
+                 {
                      "Start":  61614,
                      "Length":  1,
                      "Line":  1836,
@@ -176503,6 +177192,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
                      "HoverText":  "reg [31:0] reg_op1"
+                 },
+                 {
+                     "Start":  61897,
+                     "Length":  7,
+                     "Line":  1844,
+                     "Column":  43,
+                     "Text":  "$signed",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$signed(expression); System function that interprets the expression as signed without changing its bit pattern."
                  },
                  {
                      "Start":  61904,
@@ -178195,6 +178894,16 @@
                      "HoverText":  "reg [31:0] reg_out"
                  },
                  {
+                     "Start":  63581,
+                     "Length":  7,
+                     "Line":  1900,
+                     "Column":  34,
+                     "Text":  "$signed",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$signed(expression); System function that interprets the expression as signed without changing its bit pattern."
+                 },
+                 {
                      "Start":  63588,
                      "Length":  1,
                      "Line":  1900,
@@ -178283,6 +178992,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
                      "HoverText":  "reg [31:0] reg_out"
+                 },
+                 {
+                     "Start":  63645,
+                     "Length":  7,
+                     "Line":  1901,
+                     "Column":  34,
+                     "Text":  "$signed",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$signed(expression); System function that interprets the expression as signed without changing its bit pattern."
                  },
                  {
                      "Start":  63652,
@@ -178692,7 +179411,7 @@
                      "Text":  "`debug",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define debug(debug_command) debug_command\r\n\r\ncondition:\r\n`ifdef DEBUG\r\n\r\nmacro definition:\r\n`define debug(debug_command)\r\n\r\ncondition:\r\n`else (from `ifdef DEBUG)"
+                     "HoverText":  "Macro `debug` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 30"
                  },
                  {
                      "Start":  63958,
@@ -178703,6 +179422,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  63959,
+                     "Length":  8,
+                     "Line":  1913,
+                     "Column":  12,
+                     "Text":  "$display",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$display([format,] arguments...); System task that formats its arguments, writes them immediately to standard output, and appends a newline."
                  },
                  {
                      "Start":  63967,
@@ -179072,7 +179801,7 @@
                      "Text":  "`debug",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define debug(debug_command) debug_command\r\n\r\ncondition:\r\n`ifdef DEBUG\r\n\r\nmacro definition:\r\n`define debug(debug_command)\r\n\r\ncondition:\r\n`else (from `ifdef DEBUG)"
+                     "HoverText":  "Macro `debug` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 30"
                  },
                  {
                      "Start":  64230,
@@ -179083,6 +179812,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  64231,
+                     "Length":  8,
+                     "Line":  1920,
+                     "Column":  12,
+                     "Text":  "$display",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$display([format,] arguments...); System task that formats its arguments, writes them immediately to standard output, and appends a newline."
                  },
                  {
                      "Start":  64239,
@@ -179542,7 +180281,7 @@
                      "Text":  "`debug",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define debug(debug_command) debug_command\r\n\r\ncondition:\r\n`ifdef DEBUG\r\n\r\nmacro definition:\r\n`define debug(debug_command)\r\n\r\ncondition:\r\n`else (from `ifdef DEBUG)"
+                     "HoverText":  "Macro `debug` is defined with no value.\r\nFile: TestFiles/picorv32.v\r\nLine: 30"
                  },
                  {
                      "Start":  64561,
@@ -179553,6 +180292,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  64562,
+                     "Length":  8,
+                     "Line":  1928,
+                     "Column":  11,
+                     "Text":  "$display",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$display([format,] arguments...); System task that formats its arguments, writes them immediately to standard output, and appends a newline."
                  },
                  {
                      "Start":  64570,
@@ -180682,7 +181431,7 @@
                      "Text":  "RISCV_FORMAL",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef RISCV_FORMAL"
+                     "HoverText":  "Macro `RISCV_FORMAL` is not defined."
                  },
                  {
                      "Start":  65461,
@@ -181026,23 +181775,13 @@
                  },
                  {
                      "Start":  66447,
-                     "Length":  6,
+                     "Length":  27,
                      "Line":  2004,
                      "Column":  1,
-                     "Text":  "`ifdef",
+                     "Text":  "`ifdef PICORV32_TESTBUG_003",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  66454,
-                     "Length":  20,
-                     "Line":  2004,
-                     "Column":  8,
-                     "Text":  "PICORV32_TESTBUG_003",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef PICORV32_TESTBUG_003"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027RISCV_FORMAL\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  66475,
@@ -181061,8 +181800,8 @@
                      "Column":  1,
                      "Text":  "`else",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027RISCV_FORMAL\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  66516,
@@ -181081,28 +181820,18 @@
                      "Column":  1,
                      "Text":  "`endif",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027RISCV_FORMAL\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  66554,
-                     "Length":  6,
+                     "Length":  27,
                      "Line":  2009,
                      "Column":  1,
-                     "Text":  "`ifdef",
+                     "Text":  "`ifdef PICORV32_TESTBUG_004",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  66561,
-                     "Length":  20,
-                     "Line":  2009,
-                     "Column":  8,
-                     "Text":  "PICORV32_TESTBUG_004",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef PICORV32_TESTBUG_004"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027RISCV_FORMAL\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  66582,
@@ -181121,8 +181850,8 @@
                      "Column":  1,
                      "Text":  "`else",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027RISCV_FORMAL\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  66645,
@@ -181141,8 +181870,8 @@
                      "Column":  1,
                      "Text":  "`endif",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027RISCV_FORMAL\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  66705,
@@ -181516,23 +182245,13 @@
                  },
                  {
                      "Start":  67644,
-                     "Length":  6,
+                     "Length":  27,
                      "Line":  2054,
                      "Column":  1,
-                     "Text":  "`ifdef",
+                     "Text":  "`ifdef PICORV32_TESTBUG_005",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  67651,
-                     "Length":  20,
-                     "Line":  2054,
-                     "Column":  8,
-                     "Text":  "PICORV32_TESTBUG_005",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef PICORV32_TESTBUG_005"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027RISCV_FORMAL\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  67672,
@@ -181551,8 +182270,8 @@
                      "Column":  1,
                      "Text":  "`else",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027RISCV_FORMAL\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  67746,
@@ -181571,8 +182290,8 @@
                      "Column":  1,
                      "Text":  "`endif",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027RISCV_FORMAL\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  67816,
@@ -181922,7 +182641,7 @@
                      "Text":  "FORMAL",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef FORMAL"
+                     "HoverText":  "Macro `FORMAL` is not defined."
                  },
                  {
                      "Start":  68870,
@@ -187452,7 +188171,7 @@
                      "Text":  "i",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
-                     "HoverText":  "integer i, j"
+                     "HoverText":  "integer i"
                  },
                  {
                      "Start":  72822,
@@ -187462,7 +188181,7 @@
                      "Text":  "j",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
-                     "HoverText":  "integer i, j"
+                     "HoverText":  "nteger j"
                  },
                  {
                      "Start":  72827,
@@ -187662,7 +188381,7 @@
                      "Text":  "i",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
-                     "HoverText":  "integer i, j"
+                     "HoverText":  "integer i"
                  },
                  {
                      "Start":  72952,
@@ -187682,7 +188401,7 @@
                      "Text":  "i",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
-                     "HoverText":  "integer i, j"
+                     "HoverText":  "integer i"
                  },
                  {
                      "Start":  72959,
@@ -187702,7 +188421,7 @@
                      "Text":  "i",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
-                     "HoverText":  "integer i, j"
+                     "HoverText":  "integer i"
                  },
                  {
                      "Start":  72976,
@@ -187712,7 +188431,7 @@
                      "Text":  "i",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
-                     "HoverText":  "integer i, j"
+                     "HoverText":  "integer i"
                  },
                  {
                      "Start":  72978,
@@ -188172,7 +188891,7 @@
                      "Text":  "j",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
-                     "HoverText":  "integer i, j"
+                     "HoverText":  "nteger j"
                  },
                  {
                      "Start":  73270,
@@ -188192,7 +188911,7 @@
                      "Text":  "j",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
-                     "HoverText":  "integer i, j"
+                     "HoverText":  "nteger j"
                  },
                  {
                      "Start":  73277,
@@ -188212,7 +188931,7 @@
                      "Text":  "j",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
-                     "HoverText":  "integer i, j"
+                     "HoverText":  "nteger j"
                  },
                  {
                      "Start":  73285,
@@ -188222,7 +188941,7 @@
                      "Text":  "j",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
-                     "HoverText":  "integer i, j"
+                     "HoverText":  "nteger j"
                  },
                  {
                      "Start":  73289,
@@ -188282,7 +189001,7 @@
                      "Text":  "j",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
-                     "HoverText":  "integer i, j"
+                     "HoverText":  "nteger j"
                  },
                  {
                      "Start":  73319,
@@ -188342,7 +189061,7 @@
                      "Text":  "j",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
-                     "HoverText":  "integer i, j"
+                     "HoverText":  "nteger j"
                  },
                  {
                      "Start":  73348,
@@ -188402,7 +189121,7 @@
                      "Text":  "j",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
-                     "HoverText":  "integer i, j"
+                     "HoverText":  "nteger j"
                  },
                  {
                      "Start":  73384,
@@ -188452,7 +189171,7 @@
                      "Text":  "j",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
-                     "HoverText":  "integer i, j"
+                     "HoverText":  "nteger j"
                  },
                  {
                      "Start":  73413,
@@ -188502,7 +189221,7 @@
                      "Text":  "j",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
-                     "HoverText":  "integer i, j"
+                     "HoverText":  "nteger j"
                  },
                  {
                      "Start":  73442,
@@ -188915,6 +189634,16 @@
                      "HoverText":  "reg [63:0] rs1"
                  },
                  {
+                     "Start":  73725,
+                     "Length":  7,
+                     "Line":  2269,
+                     "Column":  12,
+                     "Text":  "$signed",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$signed(expression); System function that interprets the expression as signed without changing its bit pattern."
+                 },
+                 {
                      "Start":  73732,
                      "Length":  1,
                      "Line":  2269,
@@ -188963,6 +189692,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
                      "HoverText":  "reg [63:0] rs1"
+                 },
+                 {
+                     "Start":  73763,
+                     "Length":  9,
+                     "Line":  2271,
+                     "Column":  12,
+                     "Text":  "$unsigned",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$unsigned(expression); System function that interprets the expression as unsigned without changing its bit pattern."
                  },
                  {
                      "Start":  73772,
@@ -189045,6 +189784,16 @@
                      "HoverText":  "reg [63:0] rs2"
                  },
                  {
+                     "Start":  73821,
+                     "Length":  7,
+                     "Line":  2274,
+                     "Column":  12,
+                     "Text":  "$signed",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$signed(expression); System function that interprets the expression as signed without changing its bit pattern."
+                 },
+                 {
                      "Start":  73828,
                      "Length":  1,
                      "Line":  2274,
@@ -189093,6 +189842,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
                      "HoverText":  "reg [63:0] rs2"
+                 },
+                 {
+                     "Start":  73859,
+                     "Length":  9,
+                     "Line":  2276,
+                     "Column":  12,
+                     "Text":  "$unsigned",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$unsigned(expression); System function that interprets the expression as unsigned without changing its bit pattern."
                  },
                  {
                      "Start":  73868,
@@ -191805,6 +192564,16 @@
                      "HoverText":  "reg [63:0] rd"
                  },
                  {
+                     "Start":  75876,
+                     "Length":  7,
+                     "Line":  2360,
+                     "Column":  10,
+                     "Text":  "$signed",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$signed(expression); System function that interprets the expression as signed without changing its bit pattern."
+                 },
+                 {
                      "Start":  75883,
                      "Length":  1,
                      "Line":  2360,
@@ -191853,6 +192622,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  75915,
+                     "Length":  7,
+                     "Line":  2360,
+                     "Column":  49,
+                     "Text":  "$signed",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$signed(expression); System function that interprets the expression as signed without changing its bit pattern."
                  },
                  {
                      "Start":  75922,
@@ -192335,6 +193114,16 @@
                      "HoverText":  "reg [32:0] rs1"
                  },
                  {
+                     "Start":  76165,
+                     "Length":  7,
+                     "Line":  2370,
+                     "Column":  12,
+                     "Text":  "$signed",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$signed(expression); System function that interprets the expression as signed without changing its bit pattern."
+                 },
+                 {
                      "Start":  76172,
                      "Length":  1,
                      "Line":  2370,
@@ -192383,6 +193172,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
                      "HoverText":  "reg [32:0] rs1"
+                 },
+                 {
+                     "Start":  76203,
+                     "Length":  9,
+                     "Line":  2372,
+                     "Column":  12,
+                     "Text":  "$unsigned",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$unsigned(expression); System function that interprets the expression as unsigned without changing its bit pattern."
                  },
                  {
                      "Start":  76212,
@@ -192465,6 +193264,16 @@
                      "HoverText":  "reg [32:0] rs2"
                  },
                  {
+                     "Start":  76261,
+                     "Length":  7,
+                     "Line":  2375,
+                     "Column":  12,
+                     "Text":  "$signed",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$signed(expression); System function that interprets the expression as signed without changing its bit pattern."
+                 },
+                 {
                      "Start":  76268,
                      "Length":  1,
                      "Line":  2375,
@@ -192513,6 +193322,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Variable_reg",
                      "HoverText":  "reg [32:0] rs2"
+                 },
+                 {
+                     "Start":  76299,
+                     "Length":  9,
+                     "Line":  2377,
+                     "Column":  12,
+                     "Text":  "$unsigned",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$unsigned(expression); System function that interprets the expression as unsigned without changing its bit pattern."
                  },
                  {
                      "Start":  76308,
@@ -193042,7 +193861,7 @@
                      "Text":  "RISCV_FORMAL_ALTOPS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef RISCV_FORMAL_ALTOPS"
+                     "HoverText":  "Macro `RISCV_FORMAL_ALTOPS` is not defined."
                  },
                  {
                      "Start":  76627,
@@ -197022,7 +197841,7 @@
                      "Text":  "RISCV_FORMAL_ALTOPS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef RISCV_FORMAL_ALTOPS"
+                     "HoverText":  "Macro `RISCV_FORMAL_ALTOPS` is not defined."
                  },
                  {
                      "Start":  78827,
@@ -197452,7 +198271,7 @@
                      "Text":  "RISCV_FORMAL_ALTOPS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef RISCV_FORMAL_ALTOPS"
+                     "HoverText":  "Macro `RISCV_FORMAL_ALTOPS` is not defined."
                  },
                  {
                      "Start":  79447,
@@ -202072,7 +202891,7 @@
                      "Text":  "RISCV_FORMAL",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef RISCV_FORMAL"
+                     "HoverText":  "Macro `RISCV_FORMAL` is not defined."
                  },
                  {
                      "Start":  81667,
@@ -204932,7 +205751,7 @@
                      "Text":  "RISCV_FORMAL",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef RISCV_FORMAL"
+                     "HoverText":  "Macro `RISCV_FORMAL` is not defined."
                  },
                  {
                      "Start":  85188,
@@ -213092,7 +213911,7 @@
                      "Text":  "RISCV_FORMAL",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef RISCV_FORMAL"
+                     "HoverText":  "Macro `RISCV_FORMAL` is not defined."
                  },
                  {
                      "Start":  89844,
@@ -215242,7 +216061,7 @@
                      "Text":  "RISCV_FORMAL",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef RISCV_FORMAL"
+                     "HoverText":  "Macro `RISCV_FORMAL` is not defined."
                  },
                  {
                      "Start":  92437,
@@ -499794,6 +500613,12 @@
                     },
                     {
                         "Scope":  "picorv32",
+                        "Name":  "i",
+                        "TokenType":  "Verilog_Variable_reg",
+                        "HoverText":  "integer i"
+                    },
+                    {
+                        "Scope":  "picorv32",
                         "Name":  "empty_statement",
                         "TokenType":  "Verilog_FunctionName",
                         "HoverText":  "task empty_statement"
@@ -501155,12 +501980,6 @@
                         "HoverText":  "reg [3:0] last_mem_la_wstrb = 0"
                     },
                     {
-                        "Scope":  "picorv32",
-                        "Name":  "i",
-                        "TokenType":  "Verilog_Variable_reg",
-                        "HoverText":  "integer i"
-                    },
-                    {
                         "Scope":  "__CONST__",
                         "Name":  "32\u0027h 0000_0000",
                         "TokenType":  "Verilog_Value",
@@ -501974,13 +502793,13 @@
                         "Scope":  "picorv32_pcpi_mul",
                         "Name":  "i",
                         "TokenType":  "Verilog_Variable_reg",
-                        "HoverText":  "integer i, j"
+                        "HoverText":  "integer i"
                     },
                     {
                         "Scope":  "picorv32_pcpi_mul",
                         "Name":  "j",
                         "TokenType":  "Verilog_Variable_reg",
-                        "HoverText":  "integer i, j"
+                        "HoverText":  "nteger j"
                     },
                     {
                         "Scope":  "picorv32_pcpi_fast_mul",

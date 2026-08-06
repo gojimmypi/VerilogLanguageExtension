@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.11",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\macros\\ifdef_include_source_order.sv",
-    "FileRelativePath":  "TestFiles\\macros\\ifdef_include_source_order.sv",
+    "FilePath":  "TestFiles/macros/ifdef_include_source_order.sv",
+    "FileRelativePath":  "TestFiles/macros/ifdef_include_source_order.sv",
     "ContentType":  "verilog",
     "SnapshotLength":  312,
     "SnapshotVersion":  2,
@@ -43,13 +42,13 @@
                                           ]
                             },
                             {
-                                "Start":  54,
-                                "Length":  10,
+                                "Start":  50,
+                                "Length":  24,
                                 "Line":  4,
-                                "Column":  5,
-                                "Text":  "`timescale",
+                                "Column":  1,
+                                "Text":  "    `timescale 1ns / 1ps",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -129,7 +128,7 @@
                                 "Column":  11,
                                 "Text":  "active_after_project_config_include",
                                 "Types":  [
-                                              "Variable_reg"
+                                              "Variable_SystemVerilog"
                                           ]
                             },
                             {
@@ -202,17 +201,17 @@
                      "Text":  "SIM_JTAG_CORE_TB",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef SIM_JTAG_CORE_TB"
+                     "HoverText":  "Macro `SIM_JTAG_CORE_TB` is not defined."
                  },
                  {
-                     "Start":  54,
-                     "Length":  10,
+                     "Start":  50,
+                     "Length":  24,
                      "Line":  4,
-                     "Column":  5,
-                     "Text":  "`timescale",
+                     "Column":  1,
+                     "Text":  "    `timescale 1ns / 1ps",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027SIM_JTAG_CORE_TB\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  76,
@@ -272,7 +271,7 @@
                      "Text":  "SIM_JTAG_CORE_TB",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef SIM_JTAG_CORE_TB"
+                     "HoverText":  "Macro `SIM_JTAG_CORE_TB` is defined.\r\nValue: 1\r\nFile: TestFiles/macros/include-files/project_config.v\r\nLine: 4"
                  },
                  {
                      "Start":  211,
@@ -291,7 +290,7 @@
                      "Column":  11,
                      "Text":  "active_after_project_config_include",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
+                     "TagDetail":  "Verilog_Variable_SystemVerilog",
                      "HoverText":  "logic active_after_project_config_include"
                  },
                  {
@@ -661,13 +660,13 @@
                     {
                         "Scope":  "global",
                         "Name":  "inactive_before_project_config_include",
-                        "TokenType":  "Verilog_Variable_reg",
+                        "TokenType":  "Verilog_Variable_SystemVerilog",
                         "HoverText":  "logic inactive_before_project_config_include"
                     },
                     {
                         "Scope":  "global",
                         "Name":  "active_after_project_config_include",
-                        "TokenType":  "Verilog_Variable_reg",
+                        "TokenType":  "Verilog_Variable_SystemVerilog",
                         "HoverText":  "logic active_after_project_config_include"
                     },
                     {

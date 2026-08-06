@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.11",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\vert_bar.v",
-    "FileRelativePath":  "TestFiles\\vert_bar.v",
+    "FilePath":  "TestFiles/vert_bar.v",
+    "FileRelativePath":  "TestFiles/vert_bar.v",
     "ContentType":  "verilog",
     "SnapshotLength":  184,
     "SnapshotVersion":  2,

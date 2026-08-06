@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.11",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\macros\\include-files\\inactive_config.vh",
-    "FileRelativePath":  "TestFiles\\macros\\include-files\\inactive_config.vh",
+    "FilePath":  "TestFiles/macros/include-files/inactive_config.vh",
+    "FileRelativePath":  "TestFiles/macros/include-files/inactive_config.vh",
     "ContentType":  "verilog",
     "SnapshotLength":  42,
     "SnapshotVersion":  2,
@@ -62,7 +61,7 @@
                      "Text":  "INACTIVE_INCLUDE_MUST_NOT_LEAK",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define INACTIVE_INCLUDE_MUST_NOT_LEAK 1\r\n\r\ncondition:\r\n(unconditional)"
+                     "HoverText":  "Macro `INACTIVE_INCLUDE_MUST_NOT_LEAK` is defined.\r\nValue: 1\r\nFile: TestFiles/macros/include-files/inactive_config.vh\r\nLine: 1"
                  },
                  {
                      "Start":  39,

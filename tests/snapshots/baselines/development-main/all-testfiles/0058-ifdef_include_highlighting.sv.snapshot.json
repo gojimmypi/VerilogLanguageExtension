@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.11",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\macros\\ifdef_include_highlighting.sv",
-    "FileRelativePath":  "TestFiles\\macros\\ifdef_include_highlighting.sv",
+    "FilePath":  "TestFiles/macros/ifdef_include_highlighting.sv",
+    "FileRelativePath":  "TestFiles/macros/ifdef_include_highlighting.sv",
     "ContentType":  "verilog",
     "SnapshotLength":  804,
     "SnapshotVersion":  2,
@@ -89,7 +88,7 @@
                                 "Column":  11,
                                 "Text":  "active_from_project_config",
                                 "Types":  [
-                                              "Variable_reg"
+                                              "Variable_SystemVerilog"
                                           ]
                             },
                             {
@@ -159,7 +158,7 @@
                                 "Column":  11,
                                 "Text":  "active_included_zero_value",
                                 "Types":  [
-                                              "Variable_reg"
+                                              "Variable_SystemVerilog"
                                           ]
                             },
                             {
@@ -209,7 +208,7 @@
                                 "Column":  11,
                                 "Text":  "active_from_nested_include",
                                 "Types":  [
-                                              "Variable_reg"
+                                              "Variable_SystemVerilog"
                                           ]
                             },
                             {
@@ -259,7 +258,7 @@
                                 "Column":  11,
                                 "Text":  "active_after_include_cycle_guard",
                                 "Types":  [
-                                              "Variable_reg"
+                                              "Variable_SystemVerilog"
                                           ]
                             },
                             {
@@ -309,7 +308,7 @@
                                 "Column":  11,
                                 "Text":  "active_from_second_cycle_file",
                                 "Types":  [
-                                              "Variable_reg"
+                                              "Variable_SystemVerilog"
                                           ]
                             },
                             {
@@ -343,23 +342,13 @@
                                           ]
                             },
                             {
-                                "Start":  555,
-                                "Length":  8,
+                                "Start":  551,
+                                "Length":  47,
                                 "Line":  29,
-                                "Column":  5,
-                                "Text":  "`include",
+                                "Column":  1,
+                                "Text":  "    `include \"include-files/inactive_config.vh\"",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  564,
-                                "Length":  34,
-                                "Line":  29,
-                                "Column":  14,
-                                "Text":  "\"include-files/inactive_config.vh\"",
-                                "Types":  [
-                                              "StaticString"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -429,7 +418,7 @@
                                 "Column":  11,
                                 "Text":  "active_inactive_include_did_not_leak",
                                 "Types":  [
-                                              "Variable_reg"
+                                              "Variable_SystemVerilog"
                                           ]
                             },
                             {
@@ -522,7 +511,7 @@
                      "Text":  "SIM_JTAG_CORE_TB",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef SIM_JTAG_CORE_TB"
+                     "HoverText":  "Macro `SIM_JTAG_CORE_TB` is defined.\r\nValue: 1\r\nFile: TestFiles/macros/include-files/project_config.v\r\nLine: 4"
                  },
                  {
                      "Start":  99,
@@ -551,7 +540,7 @@
                      "Column":  11,
                      "Text":  "active_from_project_config",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
+                     "TagDetail":  "Verilog_Variable_SystemVerilog",
                      "HoverText":  "logic active_from_project_config"
                  },
                  {
@@ -602,7 +591,7 @@
                      "Text":  "INCLUDED_ZERO_VALUE",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef INCLUDED_ZERO_VALUE"
+                     "HoverText":  "Macro `INCLUDED_ZERO_VALUE` is defined.\r\nValue: 0\r\nFile: TestFiles/macros/include-files/project_config.v\r\nLine: 5"
                  },
                  {
                      "Start":  250,
@@ -621,7 +610,7 @@
                      "Column":  11,
                      "Text":  "active_included_zero_value",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
+                     "TagDetail":  "Verilog_Variable_SystemVerilog",
                      "HoverText":  "logic active_included_zero_value"
                  },
                  {
@@ -652,7 +641,7 @@
                      "Text":  "NESTED_CONFIG_ACTIVE",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef NESTED_CONFIG_ACTIVE"
+                     "HoverText":  "Macro `NESTED_CONFIG_ACTIVE` is defined.\r\nValue: 1\r\nFile: TestFiles/macros/include-files/nested/nested_config.vh\r\nLine: 1"
                  },
                  {
                      "Start":  328,
@@ -671,7 +660,7 @@
                      "Column":  11,
                      "Text":  "active_from_nested_include",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
+                     "TagDetail":  "Verilog_Variable_SystemVerilog",
                      "HoverText":  "logic active_from_nested_include"
                  },
                  {
@@ -702,7 +691,7 @@
                      "Text":  "CYCLE_A_REACHED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef CYCLE_A_REACHED"
+                     "HoverText":  "Macro `CYCLE_A_REACHED` is defined.\r\nValue: 1\r\nFile: TestFiles/macros/include-files/cycle_a.vh\r\nLine: 1"
                  },
                  {
                      "Start":  401,
@@ -721,7 +710,7 @@
                      "Column":  11,
                      "Text":  "active_after_include_cycle_guard",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
+                     "TagDetail":  "Verilog_Variable_SystemVerilog",
                      "HoverText":  "logic active_after_include_cycle_guard"
                  },
                  {
@@ -752,7 +741,7 @@
                      "Text":  "CYCLE_B_REACHED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef CYCLE_B_REACHED"
+                     "HoverText":  "Macro `CYCLE_B_REACHED` is defined.\r\nValue: 1\r\nFile: TestFiles/macros/include-files/cycle_b.vh\r\nLine: 1"
                  },
                  {
                      "Start":  480,
@@ -771,7 +760,7 @@
                      "Column":  11,
                      "Text":  "active_from_second_cycle_file",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
+                     "TagDetail":  "Verilog_Variable_SystemVerilog",
                      "HoverText":  "logic active_from_second_cycle_file"
                  },
                  {
@@ -802,27 +791,17 @@
                      "Text":  "UNKNOWN_BRANCH",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef UNKNOWN_BRANCH"
+                     "HoverText":  "Macro `UNKNOWN_BRANCH` is not defined."
                  },
                  {
-                     "Start":  555,
-                     "Length":  8,
+                     "Start":  551,
+                     "Length":  47,
                      "Line":  29,
-                     "Column":  5,
-                     "Text":  "`include",
+                     "Column":  1,
+                     "Text":  "    `include \"include-files/inactive_config.vh\"",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  564,
-                     "Length":  34,
-                     "Line":  29,
-                     "Column":  14,
-                     "Text":  "\"include-files/inactive_config.vh\"",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_StaticString",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027UNKNOWN_BRANCH\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  600,
@@ -852,7 +831,7 @@
                      "Text":  "INACTIVE_INCLUDE_MUST_NOT_LEAK",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef INACTIVE_INCLUDE_MUST_NOT_LEAK"
+                     "HoverText":  "Macro `INACTIVE_INCLUDE_MUST_NOT_LEAK` is not defined."
                  },
                  {
                      "Start":  649,
@@ -891,7 +870,7 @@
                      "Column":  11,
                      "Text":  "active_inactive_include_did_not_leak",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
+                     "TagDetail":  "Verilog_Variable_SystemVerilog",
                      "HoverText":  "logic active_inactive_include_did_not_leak"
                  },
                  {
@@ -1741,49 +1720,49 @@
                     {
                         "Scope":  "global",
                         "Name":  "active_from_project_config",
-                        "TokenType":  "Verilog_Variable_reg",
+                        "TokenType":  "Verilog_Variable_SystemVerilog",
                         "HoverText":  "logic active_from_project_config"
                     },
                     {
                         "Scope":  "global",
                         "Name":  "inactive_project_config_else",
-                        "TokenType":  "Verilog_Variable_reg",
+                        "TokenType":  "Verilog_Variable_SystemVerilog",
                         "HoverText":  "logic inactive_project_config_else"
                     },
                     {
                         "Scope":  "global",
                         "Name":  "active_included_zero_value",
-                        "TokenType":  "Verilog_Variable_reg",
+                        "TokenType":  "Verilog_Variable_SystemVerilog",
                         "HoverText":  "logic active_included_zero_value"
                     },
                     {
                         "Scope":  "global",
                         "Name":  "active_from_nested_include",
-                        "TokenType":  "Verilog_Variable_reg",
+                        "TokenType":  "Verilog_Variable_SystemVerilog",
                         "HoverText":  "logic active_from_nested_include"
                     },
                     {
                         "Scope":  "global",
                         "Name":  "active_after_include_cycle_guard",
-                        "TokenType":  "Verilog_Variable_reg",
+                        "TokenType":  "Verilog_Variable_SystemVerilog",
                         "HoverText":  "logic active_after_include_cycle_guard"
                     },
                     {
                         "Scope":  "global",
                         "Name":  "active_from_second_cycle_file",
-                        "TokenType":  "Verilog_Variable_reg",
+                        "TokenType":  "Verilog_Variable_SystemVerilog",
                         "HoverText":  "logic active_from_second_cycle_file"
                     },
                     {
                         "Scope":  "global",
                         "Name":  "inactive_include_leaked_macro",
-                        "TokenType":  "Verilog_Variable_reg",
+                        "TokenType":  "Verilog_Variable_SystemVerilog",
                         "HoverText":  "logic inactive_include_leaked_macro"
                     },
                     {
                         "Scope":  "global",
                         "Name":  "active_inactive_include_did_not_leak",
-                        "TokenType":  "Verilog_Variable_reg",
+                        "TokenType":  "Verilog_Variable_SystemVerilog",
                         "HoverText":  "logic active_inactive_include_did_not_leak"
                     },
                     {

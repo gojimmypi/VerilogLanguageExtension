@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.11",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\systemverilog_keywords.sv",
-    "FileRelativePath":  "TestFiles\\systemverilog_keywords.sv",
+    "FilePath":  "TestFiles/systemverilog_keywords.sv",
+    "FileRelativePath":  "TestFiles/systemverilog_keywords.sv",
     "ContentType":  "verilog",
     "SnapshotLength":  1517,
     "SnapshotVersion":  2,
@@ -219,7 +218,7 @@
                                 "Column":  5,
                                 "Text":  "enabled",
                                 "Types":  [
-                                              "Variable_reg"
+                                              "Variable_SystemVerilog"
                                           ]
                             },
                             {
@@ -439,7 +438,7 @@
                                 "Column":  5,
                                 "Text":  "enabled",
                                 "Types":  [
-                                              "Variable_reg"
+                                              "Variable_SystemVerilog"
                                           ]
                             },
                             {
@@ -483,6 +482,16 @@
                                           ]
                             },
                             {
+                                "Start":  403,
+                                "Length":  8,
+                                "Line":  26,
+                                "Column":  7,
+                                "Text":  "$display",
+                                "Types":  [
+                                              "SystemTaskFunction"
+                                          ]
+                            },
+                            {
                                 "Start":  411,
                                 "Length":  1,
                                 "Line":  26,
@@ -509,7 +518,7 @@
                                 "Column":  30,
                                 "Text":  "enabled",
                                 "Types":  [
-                                              "Variable_reg"
+                                              "Variable_SystemVerilog"
                                           ]
                             },
                             {
@@ -1611,7 +1620,7 @@
                      "Column":  5,
                      "Text":  "enabled",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
+                     "TagDetail":  "Verilog_Variable_SystemVerilog",
                      "HoverText":  "bit enabled"
                  },
                  {
@@ -1831,7 +1840,7 @@
                      "Column":  5,
                      "Text":  "enabled",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
+                     "TagDetail":  "Verilog_Variable_SystemVerilog",
                      "HoverText":  "bit enabled"
                  },
                  {
@@ -1915,6 +1924,16 @@
                      "HoverText":  "SystemVerilog final procedure, executed once at the end of simulation. It is not synthesized; VLE marks it as unsupported, non-synthesizable, or unverified for Yosys/sv-elab."
                  },
                  {
+                     "Start":  403,
+                     "Length":  8,
+                     "Line":  26,
+                     "Column":  7,
+                     "Text":  "$display",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemTaskFunction",
+                     "HoverText":  "$display([format,] arguments...); System task that formats its arguments, writes them immediately to standard output, and appends a newline."
+                 },
+                 {
                      "Start":  411,
                      "Length":  1,
                      "Line":  26,
@@ -1941,7 +1960,7 @@
                      "Column":  30,
                      "Text":  "enabled",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
+                     "TagDetail":  "Verilog_Variable_SystemVerilog",
                      "HoverText":  "bit enabled"
                  },
                  {
@@ -5352,15 +5371,15 @@
                     },
                     {
                         "Scope":  "systemverilog_keywords",
-                        "Name":  "sample_identity",
-                        "TokenType":  "Verilog_FunctionName",
-                        "HoverText":  "function automatic sample_t sample_identity"
+                        "Name":  "enabled",
+                        "TokenType":  "Verilog_Variable_SystemVerilog",
+                        "HoverText":  "bit enabled"
                     },
                     {
                         "Scope":  "systemverilog_keywords",
-                        "Name":  "enabled",
-                        "TokenType":  "Verilog_Variable_reg",
-                        "HoverText":  "bit enabled"
+                        "Name":  "sample_identity",
+                        "TokenType":  "Verilog_FunctionName",
+                        "HoverText":  "function automatic sample_t sample_identity"
                     },
                     {
                         "Scope":  "systemverilog_variable_owner",

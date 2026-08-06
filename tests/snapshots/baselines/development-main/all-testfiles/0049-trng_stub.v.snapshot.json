@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.11",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\src\\TRNG\\trng_stub.v",
-    "FileRelativePath":  "TestFiles\\src\\TRNG\\trng_stub.v",
+    "FilePath":  "TestFiles/src/TRNG/trng_stub.v",
+    "FileRelativePath":  "TestFiles/src/TRNG/trng_stub.v",
     "ContentType":  "verilog",
     "SnapshotLength":  3952,
     "SnapshotVersion":  2,
@@ -5452,7 +5451,7 @@
                      "Text":  "TRNG_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_ENABLED"
+                     "HoverText":  "Macro `TRNG_ENABLED` is not defined."
                  },
                  {
                      "Start":  671,
@@ -5922,7 +5921,7 @@
                      "Text":  "enable",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input  wire       reg_oscen, /* oscillator enable */"
+                     "HoverText":  null
                  },
                  {
                      "Start":  979,
@@ -6172,7 +6171,7 @@
                      "Text":  "TRNG_BINARY_STREAM",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "module trng_stub( .. output reg [7:0] stream_sample_count .. )"
+                     "HoverText":  "Macro `TRNG_BINARY_STREAM` is not defined."
                  },
                  {
                      "Start":  1109,
@@ -8252,7 +8251,7 @@
                      "Text":  "TRNG_BINARY_STREAM",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "module trng_stub( .. output reg [7:0] stream_sample_count .. )"
+                     "HoverText":  "Macro `TRNG_BINARY_STREAM` is not defined."
                  },
                  {
                      "Start":  1995,
@@ -9922,7 +9921,7 @@
                      "Text":  "TRNG_BINARY_STREAM",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "module trng_stub( .. output reg [7:0] stream_sample_count .. )"
+                     "HoverText":  "Macro `TRNG_BINARY_STREAM` is not defined."
                  },
                  {
                      "Start":  2971,
@@ -21643,12 +21642,6 @@
                         "Name":  "_unused_reg_mode",
                         "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "wire _unused_reg_mode = \u0026reg_mode[7:3]"
-                    },
-                    {
-                        "Scope":  "trng_stub",
-                        "Name":  "enable",
-                        "TokenType":  "Verilog_Variable_wire",
-                        "HoverText":  "input  wire       reg_oscen, /* oscillator enable */"
                     },
                     {
                         "Scope":  "trng_stub",

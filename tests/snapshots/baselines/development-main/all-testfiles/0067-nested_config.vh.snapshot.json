@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.11",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\macros\\include-files\\nested\\nested_config.vh",
-    "FileRelativePath":  "TestFiles\\macros\\include-files\\nested\\nested_config.vh",
+    "FilePath":  "TestFiles/macros/include-files/nested/nested_config.vh",
+    "FileRelativePath":  "TestFiles/macros/include-files/nested/nested_config.vh",
     "ContentType":  "verilog",
     "SnapshotLength":  32,
     "SnapshotVersion":  2,
@@ -62,7 +61,7 @@
                      "Text":  "NESTED_CONFIG_ACTIVE",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define NESTED_CONFIG_ACTIVE 1\r\n\r\ncondition:\r\n(unconditional)"
+                     "HoverText":  "Macro `NESTED_CONFIG_ACTIVE` is defined.\r\nValue: 1\r\nFile: TestFiles/macros/include-files/nested/nested_config.vh\r\nLine: 1"
                  },
                  {
                      "Start":  29,

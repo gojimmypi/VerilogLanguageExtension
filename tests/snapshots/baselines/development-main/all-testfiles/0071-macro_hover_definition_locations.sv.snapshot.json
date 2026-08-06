@@ -1,0 +1,2383 @@
+{
+    "SchemaVersion":  3,
+    "RunName":  "all-testfiles",
+    "FilePath":  "TestFiles/macros/macro_hover_definition_locations.sv",
+    "FileRelativePath":  "TestFiles/macros/macro_hover_definition_locations.sv",
+    "ContentType":  "verilog",
+    "SnapshotLength":  822,
+    "SnapshotVersion":  2,
+    "TextSha256":  "c97bfba53357186452796aa83994edf8533e404dc37a96290a3bd93a22830244",
+    "Errors":  [
+
+               ],
+    "Classifications":  [
+                            {
+                                "Start":  0,
+                                "Length":  46,
+                                "Line":  1,
+                                "Column":  1,
+                                "Text":  "// Macro hover definition-location validation.",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  48,
+                                "Length":  6,
+                                "Line":  2,
+                                "Column":  1,
+                                "Text":  "`ifdef",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  55,
+                                "Length":  19,
+                                "Line":  2,
+                                "Column":  8,
+                                "Text":  "NEVER_DEFINED_MACRO",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  76,
+                                "Length":  6,
+                                "Line":  3,
+                                "Column":  1,
+                                "Text":  "`endif",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  86,
+                                "Length":  7,
+                                "Line":  5,
+                                "Column":  1,
+                                "Text":  "`define",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  94,
+                                "Length":  19,
+                                "Line":  5,
+                                "Column":  9,
+                                "Text":  "LOCAL_DEFINED_MACRO",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  114,
+                                "Length":  1,
+                                "Line":  5,
+                                "Column":  29,
+                                "Text":  "1",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  117,
+                                "Length":  6,
+                                "Line":  6,
+                                "Column":  1,
+                                "Text":  "`ifdef",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  124,
+                                "Length":  19,
+                                "Line":  6,
+                                "Column":  8,
+                                "Text":  "LOCAL_DEFINED_MACRO",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  145,
+                                "Length":  6,
+                                "Line":  7,
+                                "Column":  1,
+                                "Text":  "`endif",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  153,
+                                "Length":  10,
+                                "Line":  8,
+                                "Column":  1,
+                                "Text":  "localparam",
+                                "Types":  [
+                                              "localparam"
+                                          ]
+                            },
+                            {
+                                "Start":  164,
+                                "Length":  3,
+                                "Line":  8,
+                                "Column":  12,
+                                "Text":  "int",
+                                "Types":  [
+                                              "SystemVerilogYosysSupported"
+                                          ]
+                            },
+                            {
+                                "Start":  168,
+                                "Length":  17,
+                                "Line":  8,
+                                "Column":  16,
+                                "Text":  "local_macro_value",
+                                "Types":  [
+                                              "Variable_localparam"
+                                          ]
+                            },
+                            {
+                                "Start":  188,
+                                "Length":  20,
+                                "Line":  8,
+                                "Column":  36,
+                                "Text":  "`LOCAL_DEFINED_MACRO",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  211,
+                                "Length":  10,
+                                "Line":  9,
+                                "Column":  1,
+                                "Text":  "localparam",
+                                "Types":  [
+                                              "localparam"
+                                          ]
+                            },
+                            {
+                                "Start":  222,
+                                "Length":  3,
+                                "Line":  9,
+                                "Column":  12,
+                                "Text":  "int",
+                                "Types":  [
+                                              "SystemVerilogYosysSupported"
+                                          ]
+                            },
+                            {
+                                "Start":  226,
+                                "Length":  19,
+                                "Line":  9,
+                                "Column":  16,
+                                "Text":  "missing_macro_value",
+                                "Types":  [
+                                              "Variable_localparam"
+                                          ]
+                            },
+                            {
+                                "Start":  248,
+                                "Length":  24,
+                                "Line":  9,
+                                "Column":  38,
+                                "Text":  "`MISSING_REFERENCE_MACRO",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  277,
+                                "Length":  8,
+                                "Line":  11,
+                                "Column":  1,
+                                "Text":  "`include",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  286,
+                                "Length":  37,
+                                "Line":  11,
+                                "Column":  10,
+                                "Text":  "\"include-files/macro_hover_config.vh\"",
+                                "Types":  [
+                                              "StaticString"
+                                          ]
+                            },
+                            {
+                                "Start":  325,
+                                "Length":  6,
+                                "Line":  12,
+                                "Column":  1,
+                                "Text":  "`ifdef",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  332,
+                                "Length":  22,
+                                "Line":  12,
+                                "Column":  8,
+                                "Text":  "INCLUDED_DEFINED_MACRO",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  356,
+                                "Length":  6,
+                                "Line":  13,
+                                "Column":  1,
+                                "Text":  "`endif",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  364,
+                                "Length":  10,
+                                "Line":  14,
+                                "Column":  1,
+                                "Text":  "localparam",
+                                "Types":  [
+                                              "localparam"
+                                          ]
+                            },
+                            {
+                                "Start":  375,
+                                "Length":  3,
+                                "Line":  14,
+                                "Column":  12,
+                                "Text":  "int",
+                                "Types":  [
+                                              "SystemVerilogYosysSupported"
+                                          ]
+                            },
+                            {
+                                "Start":  379,
+                                "Length":  20,
+                                "Line":  14,
+                                "Column":  16,
+                                "Text":  "included_macro_value",
+                                "Types":  [
+                                              "Variable_localparam"
+                                          ]
+                            },
+                            {
+                                "Start":  402,
+                                "Length":  23,
+                                "Line":  14,
+                                "Column":  39,
+                                "Text":  "`INCLUDED_DEFINED_MACRO",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  430,
+                                "Length":  7,
+                                "Line":  16,
+                                "Column":  1,
+                                "Text":  "`define",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  438,
+                                "Length":  15,
+                                "Line":  16,
+                                "Column":  9,
+                                "Text":  "FLAG_ONLY_MACRO",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  455,
+                                "Length":  6,
+                                "Line":  17,
+                                "Column":  1,
+                                "Text":  "`ifdef",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  462,
+                                "Length":  15,
+                                "Line":  17,
+                                "Column":  8,
+                                "Text":  "FLAG_ONLY_MACRO",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  479,
+                                "Length":  6,
+                                "Line":  18,
+                                "Column":  1,
+                                "Text":  "`endif",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  489,
+                                "Length":  7,
+                                "Line":  20,
+                                "Column":  1,
+                                "Text":  "`define",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  497,
+                                "Length":  18,
+                                "Line":  20,
+                                "Column":  9,
+                                "Text":  "STRING_VALUE_MACRO",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  516,
+                                "Length":  13,
+                                "Line":  20,
+                                "Column":  28,
+                                "Text":  "\"Version 1.0\"",
+                                "Types":  [
+                                              "StaticString"
+                                          ]
+                            },
+                            {
+                                "Start":  531,
+                                "Length":  10,
+                                "Line":  21,
+                                "Column":  1,
+                                "Text":  "localparam",
+                                "Types":  [
+                                              "localparam"
+                                          ]
+                            },
+                            {
+                                "Start":  542,
+                                "Length":  6,
+                                "Line":  21,
+                                "Column":  12,
+                                "Text":  "string",
+                                "Types":  [
+                                              "SystemVerilogYosysUnsupported"
+                                          ]
+                            },
+                            {
+                                "Start":  549,
+                                "Length":  18,
+                                "Line":  21,
+                                "Column":  19,
+                                "Text":  "string_macro_value",
+                                "Types":  [
+                                              "Variable_localparam"
+                                          ]
+                            },
+                            {
+                                "Start":  570,
+                                "Length":  19,
+                                "Line":  21,
+                                "Column":  40,
+                                "Text":  "`STRING_VALUE_MACRO",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  594,
+                                "Length":  7,
+                                "Line":  23,
+                                "Column":  1,
+                                "Text":  "`define",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  602,
+                                "Length":  22,
+                                "Line":  23,
+                                "Column":  9,
+                                "Text":  "EXPRESSION_VALUE_MACRO",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  625,
+                                "Length":  1,
+                                "Line":  23,
+                                "Column":  32,
+                                "Text":  "(",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  626,
+                                "Length":  20,
+                                "Line":  23,
+                                "Column":  33,
+                                "Text":  "`LOCAL_DEFINED_MACRO",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  649,
+                                "Length":  1,
+                                "Line":  23,
+                                "Column":  56,
+                                "Text":  "4",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  650,
+                                "Length":  1,
+                                "Line":  23,
+                                "Column":  57,
+                                "Text":  ")",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  653,
+                                "Length":  10,
+                                "Line":  24,
+                                "Column":  1,
+                                "Text":  "localparam",
+                                "Types":  [
+                                              "localparam"
+                                          ]
+                            },
+                            {
+                                "Start":  664,
+                                "Length":  3,
+                                "Line":  24,
+                                "Column":  12,
+                                "Text":  "int",
+                                "Types":  [
+                                              "SystemVerilogYosysSupported"
+                                          ]
+                            },
+                            {
+                                "Start":  668,
+                                "Length":  22,
+                                "Line":  24,
+                                "Column":  16,
+                                "Text":  "expression_macro_value",
+                                "Types":  [
+                                              "Variable_localparam"
+                                          ]
+                            },
+                            {
+                                "Start":  693,
+                                "Length":  23,
+                                "Line":  24,
+                                "Column":  41,
+                                "Text":  "`EXPRESSION_VALUE_MACRO",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  721,
+                                "Length":  7,
+                                "Line":  26,
+                                "Column":  1,
+                                "Text":  "`define",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  729,
+                                "Length":  13,
+                                "Line":  26,
+                                "Column":  9,
+                                "Text":  "REMOVED_MACRO",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  743,
+                                "Length":  1,
+                                "Line":  26,
+                                "Column":  23,
+                                "Text":  "3",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  746,
+                                "Length":  6,
+                                "Line":  27,
+                                "Column":  1,
+                                "Text":  "`undef",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  753,
+                                "Length":  13,
+                                "Line":  27,
+                                "Column":  8,
+                                "Text":  "REMOVED_MACRO",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  768,
+                                "Length":  10,
+                                "Line":  28,
+                                "Column":  1,
+                                "Text":  "localparam",
+                                "Types":  [
+                                              "localparam"
+                                          ]
+                            },
+                            {
+                                "Start":  779,
+                                "Length":  3,
+                                "Line":  28,
+                                "Column":  12,
+                                "Text":  "int",
+                                "Types":  [
+                                              "SystemVerilogYosysSupported"
+                                          ]
+                            },
+                            {
+                                "Start":  783,
+                                "Length":  19,
+                                "Line":  28,
+                                "Column":  16,
+                                "Text":  "removed_macro_value",
+                                "Types":  [
+                                              "Variable_localparam"
+                                          ]
+                            },
+                            {
+                                "Start":  805,
+                                "Length":  14,
+                                "Line":  28,
+                                "Column":  38,
+                                "Text":  "`REMOVED_MACRO",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            }
+                        ],
+    "Tags":  [
+                 {
+                     "Start":  0,
+                     "Length":  2,
+                     "Line":  1,
+                     "Column":  1,
+                     "Text":  "//",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  2,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  3,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  3,
+                     "Length":  5,
+                     "Line":  1,
+                     "Column":  4,
+                     "Text":  "Macro",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  8,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  9,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  9,
+                     "Length":  5,
+                     "Line":  1,
+                     "Column":  10,
+                     "Text":  "hover",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  14,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  15,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  15,
+                     "Length":  10,
+                     "Line":  1,
+                     "Column":  16,
+                     "Text":  "definition",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  25,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  26,
+                     "Text":  "-",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  26,
+                     "Length":  8,
+                     "Line":  1,
+                     "Column":  27,
+                     "Text":  "location",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  34,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  35,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  35,
+                     "Length":  11,
+                     "Line":  1,
+                     "Column":  36,
+                     "Text":  "validation.",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  48,
+                     "Length":  6,
+                     "Line":  2,
+                     "Column":  1,
+                     "Text":  "`ifdef",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  55,
+                     "Length":  19,
+                     "Line":  2,
+                     "Column":  8,
+                     "Text":  "NEVER_DEFINED_MACRO",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "Macro `NEVER_DEFINED_MACRO` is not defined."
+                 },
+                 {
+                     "Start":  76,
+                     "Length":  6,
+                     "Line":  3,
+                     "Column":  1,
+                     "Text":  "`endif",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  86,
+                     "Length":  7,
+                     "Line":  5,
+                     "Column":  1,
+                     "Text":  "`define",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  94,
+                     "Length":  19,
+                     "Line":  5,
+                     "Column":  9,
+                     "Text":  "LOCAL_DEFINED_MACRO",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "Macro `LOCAL_DEFINED_MACRO` is defined.\r\nValue: 1\r\nFile: TestFiles/macros/macro_hover_definition_locations.sv\r\nLine: 5"
+                 },
+                 {
+                     "Start":  114,
+                     "Length":  1,
+                     "Line":  5,
+                     "Column":  29,
+                     "Text":  "1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  117,
+                     "Length":  6,
+                     "Line":  6,
+                     "Column":  1,
+                     "Text":  "`ifdef",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  124,
+                     "Length":  19,
+                     "Line":  6,
+                     "Column":  8,
+                     "Text":  "LOCAL_DEFINED_MACRO",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "Macro `LOCAL_DEFINED_MACRO` is defined.\r\nValue: 1\r\nFile: TestFiles/macros/macro_hover_definition_locations.sv\r\nLine: 5"
+                 },
+                 {
+                     "Start":  145,
+                     "Length":  6,
+                     "Line":  7,
+                     "Column":  1,
+                     "Text":  "`endif",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  153,
+                     "Length":  10,
+                     "Line":  8,
+                     "Column":  1,
+                     "Text":  "localparam",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_localparam",
+                     "HoverText":  "Local parameters are identical to parameters, but cannot be directly modified with a defparam statement. A localparam can be assigned the value of parameter constants, and can be indirectly refined from outside the module. A localparam cannot be used within the module port parameter list."
+                 },
+                 {
+                     "Start":  164,
+                     "Length":  3,
+                     "Line":  8,
+                     "Column":  12,
+                     "Text":  "int",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemVerilogYosysSupported",
+                     "HoverText":  "SystemVerilog 32-bit integral variable data type. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version."
+                 },
+                 {
+                     "Start":  168,
+                     "Length":  17,
+                     "Line":  8,
+                     "Column":  16,
+                     "Text":  "local_macro_value",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_localparam",
+                     "HoverText":  "localparam int local_macro_value = `LOCAL_DEFINED_MACRO"
+                 },
+                 {
+                     "Start":  188,
+                     "Length":  20,
+                     "Line":  8,
+                     "Column":  36,
+                     "Text":  "`LOCAL_DEFINED_MACRO",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "Macro `LOCAL_DEFINED_MACRO` is defined.\r\nValue: 1\r\nFile: TestFiles/macros/macro_hover_definition_locations.sv\r\nLine: 5"
+                 },
+                 {
+                     "Start":  211,
+                     "Length":  10,
+                     "Line":  9,
+                     "Column":  1,
+                     "Text":  "localparam",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_localparam",
+                     "HoverText":  "Local parameters are identical to parameters, but cannot be directly modified with a defparam statement. A localparam can be assigned the value of parameter constants, and can be indirectly refined from outside the module. A localparam cannot be used within the module port parameter list."
+                 },
+                 {
+                     "Start":  222,
+                     "Length":  3,
+                     "Line":  9,
+                     "Column":  12,
+                     "Text":  "int",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemVerilogYosysSupported",
+                     "HoverText":  "SystemVerilog 32-bit integral variable data type. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version."
+                 },
+                 {
+                     "Start":  226,
+                     "Length":  19,
+                     "Line":  9,
+                     "Column":  16,
+                     "Text":  "missing_macro_value",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_localparam",
+                     "HoverText":  "localparam int missing_macro_value = `MISSING_REFERENCE_MACRO"
+                 },
+                 {
+                     "Start":  248,
+                     "Length":  24,
+                     "Line":  9,
+                     "Column":  38,
+                     "Text":  "`MISSING_REFERENCE_MACRO",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "Macro `MISSING_REFERENCE_MACRO` is not defined."
+                 },
+                 {
+                     "Start":  277,
+                     "Length":  8,
+                     "Line":  11,
+                     "Column":  1,
+                     "Text":  "`include",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  286,
+                     "Length":  37,
+                     "Line":  11,
+                     "Column":  10,
+                     "Text":  "\"include-files/macro_hover_config.vh\"",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_StaticString",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  325,
+                     "Length":  6,
+                     "Line":  12,
+                     "Column":  1,
+                     "Text":  "`ifdef",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  332,
+                     "Length":  22,
+                     "Line":  12,
+                     "Column":  8,
+                     "Text":  "INCLUDED_DEFINED_MACRO",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "Macro `INCLUDED_DEFINED_MACRO` is defined.\r\nValue: 2\r\nFile: TestFiles/macros/include-files/macro_hover_config.vh\r\nLine: 1"
+                 },
+                 {
+                     "Start":  356,
+                     "Length":  6,
+                     "Line":  13,
+                     "Column":  1,
+                     "Text":  "`endif",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  364,
+                     "Length":  10,
+                     "Line":  14,
+                     "Column":  1,
+                     "Text":  "localparam",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_localparam",
+                     "HoverText":  "Local parameters are identical to parameters, but cannot be directly modified with a defparam statement. A localparam can be assigned the value of parameter constants, and can be indirectly refined from outside the module. A localparam cannot be used within the module port parameter list."
+                 },
+                 {
+                     "Start":  375,
+                     "Length":  3,
+                     "Line":  14,
+                     "Column":  12,
+                     "Text":  "int",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemVerilogYosysSupported",
+                     "HoverText":  "SystemVerilog 32-bit integral variable data type. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version."
+                 },
+                 {
+                     "Start":  379,
+                     "Length":  20,
+                     "Line":  14,
+                     "Column":  16,
+                     "Text":  "included_macro_value",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_localparam",
+                     "HoverText":  "localparam int included_macro_value = `INCLUDED_DEFINED_MACRO"
+                 },
+                 {
+                     "Start":  402,
+                     "Length":  23,
+                     "Line":  14,
+                     "Column":  39,
+                     "Text":  "`INCLUDED_DEFINED_MACRO",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "Macro `INCLUDED_DEFINED_MACRO` is defined.\r\nValue: 2\r\nFile: TestFiles/macros/include-files/macro_hover_config.vh\r\nLine: 1"
+                 },
+                 {
+                     "Start":  430,
+                     "Length":  7,
+                     "Line":  16,
+                     "Column":  1,
+                     "Text":  "`define",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  438,
+                     "Length":  15,
+                     "Line":  16,
+                     "Column":  9,
+                     "Text":  "FLAG_ONLY_MACRO",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "Macro `FLAG_ONLY_MACRO` is defined with no value.\r\nFile: TestFiles/macros/macro_hover_definition_locations.sv\r\nLine: 16"
+                 },
+                 {
+                     "Start":  455,
+                     "Length":  6,
+                     "Line":  17,
+                     "Column":  1,
+                     "Text":  "`ifdef",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  462,
+                     "Length":  15,
+                     "Line":  17,
+                     "Column":  8,
+                     "Text":  "FLAG_ONLY_MACRO",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "Macro `FLAG_ONLY_MACRO` is defined with no value.\r\nFile: TestFiles/macros/macro_hover_definition_locations.sv\r\nLine: 16"
+                 },
+                 {
+                     "Start":  479,
+                     "Length":  6,
+                     "Line":  18,
+                     "Column":  1,
+                     "Text":  "`endif",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  489,
+                     "Length":  7,
+                     "Line":  20,
+                     "Column":  1,
+                     "Text":  "`define",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  497,
+                     "Length":  18,
+                     "Line":  20,
+                     "Column":  9,
+                     "Text":  "STRING_VALUE_MACRO",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "Macro `STRING_VALUE_MACRO` is defined.\r\nValue: \"Version 1.0\"\r\nFile: TestFiles/macros/macro_hover_definition_locations.sv\r\nLine: 20"
+                 },
+                 {
+                     "Start":  516,
+                     "Length":  13,
+                     "Line":  20,
+                     "Column":  28,
+                     "Text":  "\"Version 1.0\"",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_StaticString",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  531,
+                     "Length":  10,
+                     "Line":  21,
+                     "Column":  1,
+                     "Text":  "localparam",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_localparam",
+                     "HoverText":  "Local parameters are identical to parameters, but cannot be directly modified with a defparam statement. A localparam can be assigned the value of parameter constants, and can be indirectly refined from outside the module. A localparam cannot be used within the module port parameter list."
+                 },
+                 {
+                     "Start":  542,
+                     "Length":  6,
+                     "Line":  21,
+                     "Column":  12,
+                     "Text":  "string",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemVerilogYosysUnsupported",
+                     "HoverText":  "SystemVerilog keyword \u0027string\u0027. VLE marks it as unsupported, non-synthesizable, or unverified for Yosys/sv-elab; actual handling depends on context and tool version."
+                 },
+                 {
+                     "Start":  549,
+                     "Length":  18,
+                     "Line":  21,
+                     "Column":  19,
+                     "Text":  "string_macro_value",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_localparam",
+                     "HoverText":  "localparam string string_macro_value = `STRING_VALUE_MACRO"
+                 },
+                 {
+                     "Start":  570,
+                     "Length":  19,
+                     "Line":  21,
+                     "Column":  40,
+                     "Text":  "`STRING_VALUE_MACRO",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "Macro `STRING_VALUE_MACRO` is defined.\r\nValue: \"Version 1.0\"\r\nFile: TestFiles/macros/macro_hover_definition_locations.sv\r\nLine: 20"
+                 },
+                 {
+                     "Start":  594,
+                     "Length":  7,
+                     "Line":  23,
+                     "Column":  1,
+                     "Text":  "`define",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  602,
+                     "Length":  22,
+                     "Line":  23,
+                     "Column":  9,
+                     "Text":  "EXPRESSION_VALUE_MACRO",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "Macro `EXPRESSION_VALUE_MACRO` is defined.\r\nValue: (`LOCAL_DEFINED_MACRO + 4)\r\nFile: TestFiles/macros/macro_hover_definition_locations.sv\r\nLine: 23"
+                 },
+                 {
+                     "Start":  625,
+                     "Length":  1,
+                     "Line":  23,
+                     "Column":  32,
+                     "Text":  "(",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  626,
+                     "Length":  20,
+                     "Line":  23,
+                     "Column":  33,
+                     "Text":  "`LOCAL_DEFINED_MACRO",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "Macro `LOCAL_DEFINED_MACRO` is defined.\r\nValue: 1\r\nFile: TestFiles/macros/macro_hover_definition_locations.sv\r\nLine: 5"
+                 },
+                 {
+                     "Start":  649,
+                     "Length":  1,
+                     "Line":  23,
+                     "Column":  56,
+                     "Text":  "4",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  650,
+                     "Length":  1,
+                     "Line":  23,
+                     "Column":  57,
+                     "Text":  ")",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  653,
+                     "Length":  10,
+                     "Line":  24,
+                     "Column":  1,
+                     "Text":  "localparam",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_localparam",
+                     "HoverText":  "Local parameters are identical to parameters, but cannot be directly modified with a defparam statement. A localparam can be assigned the value of parameter constants, and can be indirectly refined from outside the module. A localparam cannot be used within the module port parameter list."
+                 },
+                 {
+                     "Start":  664,
+                     "Length":  3,
+                     "Line":  24,
+                     "Column":  12,
+                     "Text":  "int",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemVerilogYosysSupported",
+                     "HoverText":  "SystemVerilog 32-bit integral variable data type. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version."
+                 },
+                 {
+                     "Start":  668,
+                     "Length":  22,
+                     "Line":  24,
+                     "Column":  16,
+                     "Text":  "expression_macro_value",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_localparam",
+                     "HoverText":  "localparam int expression_macro_value = `EXPRESSION_VALUE_MACRO"
+                 },
+                 {
+                     "Start":  693,
+                     "Length":  23,
+                     "Line":  24,
+                     "Column":  41,
+                     "Text":  "`EXPRESSION_VALUE_MACRO",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "Macro `EXPRESSION_VALUE_MACRO` is defined.\r\nValue: (`LOCAL_DEFINED_MACRO + 4)\r\nFile: TestFiles/macros/macro_hover_definition_locations.sv\r\nLine: 23"
+                 },
+                 {
+                     "Start":  721,
+                     "Length":  7,
+                     "Line":  26,
+                     "Column":  1,
+                     "Text":  "`define",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  729,
+                     "Length":  13,
+                     "Line":  26,
+                     "Column":  9,
+                     "Text":  "REMOVED_MACRO",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "Macro `REMOVED_MACRO` is defined.\r\nValue: 3\r\nFile: TestFiles/macros/macro_hover_definition_locations.sv\r\nLine: 26"
+                 },
+                 {
+                     "Start":  743,
+                     "Length":  1,
+                     "Line":  26,
+                     "Column":  23,
+                     "Text":  "3",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  746,
+                     "Length":  6,
+                     "Line":  27,
+                     "Column":  1,
+                     "Text":  "`undef",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  753,
+                     "Length":  13,
+                     "Line":  27,
+                     "Column":  8,
+                     "Text":  "REMOVED_MACRO",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "Macro `REMOVED_MACRO` is defined.\r\nValue: 3\r\nFile: TestFiles/macros/macro_hover_definition_locations.sv\r\nLine: 26"
+                 },
+                 {
+                     "Start":  768,
+                     "Length":  10,
+                     "Line":  28,
+                     "Column":  1,
+                     "Text":  "localparam",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_localparam",
+                     "HoverText":  "Local parameters are identical to parameters, but cannot be directly modified with a defparam statement. A localparam can be assigned the value of parameter constants, and can be indirectly refined from outside the module. A localparam cannot be used within the module port parameter list."
+                 },
+                 {
+                     "Start":  779,
+                     "Length":  3,
+                     "Line":  28,
+                     "Column":  12,
+                     "Text":  "int",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemVerilogYosysSupported",
+                     "HoverText":  "SystemVerilog 32-bit integral variable data type. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version."
+                 },
+                 {
+                     "Start":  783,
+                     "Length":  19,
+                     "Line":  28,
+                     "Column":  16,
+                     "Text":  "removed_macro_value",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_localparam",
+                     "HoverText":  "localparam int removed_macro_value = `REMOVED_MACRO"
+                 },
+                 {
+                     "Start":  805,
+                     "Length":  14,
+                     "Line":  28,
+                     "Column":  38,
+                     "Text":  "`REMOVED_MACRO",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "Macro `REMOVED_MACRO` is not defined."
+                 }
+             ],
+    "Tokens":  [
+                   {
+                       "Start":  0,
+                       "Length":  2,
+                       "Line":  1,
+                       "Column":  1,
+                       "Text":  "//",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  2,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  3,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  3,
+                       "Length":  5,
+                       "Line":  1,
+                       "Column":  4,
+                       "Text":  "Macro",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  8,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  9,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  9,
+                       "Length":  5,
+                       "Line":  1,
+                       "Column":  10,
+                       "Text":  "hover",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  14,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  15,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  15,
+                       "Length":  10,
+                       "Line":  1,
+                       "Column":  16,
+                       "Text":  "definition",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  25,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  26,
+                       "Text":  "-",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  26,
+                       "Length":  8,
+                       "Line":  1,
+                       "Column":  27,
+                       "Text":  "location",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  34,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  35,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  35,
+                       "Length":  11,
+                       "Line":  1,
+                       "Column":  36,
+                       "Text":  "validation.",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  48,
+                       "Length":  6,
+                       "Line":  2,
+                       "Column":  1,
+                       "Text":  "`ifdef",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  54,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  55,
+                       "Length":  19,
+                       "Line":  2,
+                       "Column":  8,
+                       "Text":  "NEVER_DEFINED_MACRO",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  76,
+                       "Length":  6,
+                       "Line":  3,
+                       "Column":  1,
+                       "Text":  "`endif",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  86,
+                       "Length":  7,
+                       "Line":  5,
+                       "Column":  1,
+                       "Text":  "`define",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  93,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  94,
+                       "Length":  19,
+                       "Line":  5,
+                       "Column":  9,
+                       "Text":  "LOCAL_DEFINED_MACRO",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  113,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  28,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  114,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  29,
+                       "Text":  "1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  117,
+                       "Length":  6,
+                       "Line":  6,
+                       "Column":  1,
+                       "Text":  "`ifdef",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  123,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  124,
+                       "Length":  19,
+                       "Line":  6,
+                       "Column":  8,
+                       "Text":  "LOCAL_DEFINED_MACRO",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  145,
+                       "Length":  6,
+                       "Line":  7,
+                       "Column":  1,
+                       "Text":  "`endif",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  153,
+                       "Length":  10,
+                       "Line":  8,
+                       "Column":  1,
+                       "Text":  "localparam",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  163,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  11,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  164,
+                       "Length":  3,
+                       "Line":  8,
+                       "Column":  12,
+                       "Text":  "int",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  167,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  15,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  168,
+                       "Length":  17,
+                       "Line":  8,
+                       "Column":  16,
+                       "Text":  "local_macro_value",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  185,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  33,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  186,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  34,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  187,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  35,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  188,
+                       "Length":  20,
+                       "Line":  8,
+                       "Column":  36,
+                       "Text":  "`LOCAL_DEFINED_MACRO",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  208,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  56,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  211,
+                       "Length":  10,
+                       "Line":  9,
+                       "Column":  1,
+                       "Text":  "localparam",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  221,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  11,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  222,
+                       "Length":  3,
+                       "Line":  9,
+                       "Column":  12,
+                       "Text":  "int",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  225,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  15,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  226,
+                       "Length":  19,
+                       "Line":  9,
+                       "Column":  16,
+                       "Text":  "missing_macro_value",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  245,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  35,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  246,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  36,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  247,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  37,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  248,
+                       "Length":  24,
+                       "Line":  9,
+                       "Column":  38,
+                       "Text":  "`MISSING_REFERENCE_MACRO",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  272,
+                       "Length":  1,
+                       "Line":  9,
+                       "Column":  62,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  277,
+                       "Length":  8,
+                       "Line":  11,
+                       "Column":  1,
+                       "Text":  "`include",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  285,
+                       "Length":  1,
+                       "Line":  11,
+                       "Column":  9,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  286,
+                       "Length":  8,
+                       "Line":  11,
+                       "Column":  10,
+                       "Text":  "\"include",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  294,
+                       "Length":  1,
+                       "Line":  11,
+                       "Column":  18,
+                       "Text":  "-",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  295,
+                       "Length":  5,
+                       "Line":  11,
+                       "Column":  19,
+                       "Text":  "files",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  300,
+                       "Length":  1,
+                       "Line":  11,
+                       "Column":  24,
+                       "Text":  "/",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  301,
+                       "Length":  22,
+                       "Line":  11,
+                       "Column":  25,
+                       "Text":  "macro_hover_config.vh\"",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  325,
+                       "Length":  6,
+                       "Line":  12,
+                       "Column":  1,
+                       "Text":  "`ifdef",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  331,
+                       "Length":  1,
+                       "Line":  12,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  332,
+                       "Length":  22,
+                       "Line":  12,
+                       "Column":  8,
+                       "Text":  "INCLUDED_DEFINED_MACRO",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  356,
+                       "Length":  6,
+                       "Line":  13,
+                       "Column":  1,
+                       "Text":  "`endif",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  364,
+                       "Length":  10,
+                       "Line":  14,
+                       "Column":  1,
+                       "Text":  "localparam",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  374,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  11,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  375,
+                       "Length":  3,
+                       "Line":  14,
+                       "Column":  12,
+                       "Text":  "int",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  378,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  15,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  379,
+                       "Length":  20,
+                       "Line":  14,
+                       "Column":  16,
+                       "Text":  "included_macro_value",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  399,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  36,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  400,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  37,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  401,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  38,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  402,
+                       "Length":  23,
+                       "Line":  14,
+                       "Column":  39,
+                       "Text":  "`INCLUDED_DEFINED_MACRO",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  425,
+                       "Length":  1,
+                       "Line":  14,
+                       "Column":  62,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  430,
+                       "Length":  7,
+                       "Line":  16,
+                       "Column":  1,
+                       "Text":  "`define",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  437,
+                       "Length":  1,
+                       "Line":  16,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  438,
+                       "Length":  15,
+                       "Line":  16,
+                       "Column":  9,
+                       "Text":  "FLAG_ONLY_MACRO",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  455,
+                       "Length":  6,
+                       "Line":  17,
+                       "Column":  1,
+                       "Text":  "`ifdef",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  461,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  462,
+                       "Length":  15,
+                       "Line":  17,
+                       "Column":  8,
+                       "Text":  "FLAG_ONLY_MACRO",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  479,
+                       "Length":  6,
+                       "Line":  18,
+                       "Column":  1,
+                       "Text":  "`endif",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  489,
+                       "Length":  7,
+                       "Line":  20,
+                       "Column":  1,
+                       "Text":  "`define",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  496,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  497,
+                       "Length":  18,
+                       "Line":  20,
+                       "Column":  9,
+                       "Text":  "STRING_VALUE_MACRO",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  515,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  27,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  516,
+                       "Length":  8,
+                       "Line":  20,
+                       "Column":  28,
+                       "Text":  "\"Version",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  524,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  36,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  525,
+                       "Length":  4,
+                       "Line":  20,
+                       "Column":  37,
+                       "Text":  "1.0\"",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  531,
+                       "Length":  10,
+                       "Line":  21,
+                       "Column":  1,
+                       "Text":  "localparam",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  541,
+                       "Length":  1,
+                       "Line":  21,
+                       "Column":  11,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  542,
+                       "Length":  6,
+                       "Line":  21,
+                       "Column":  12,
+                       "Text":  "string",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  548,
+                       "Length":  1,
+                       "Line":  21,
+                       "Column":  18,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  549,
+                       "Length":  18,
+                       "Line":  21,
+                       "Column":  19,
+                       "Text":  "string_macro_value",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  567,
+                       "Length":  1,
+                       "Line":  21,
+                       "Column":  37,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  568,
+                       "Length":  1,
+                       "Line":  21,
+                       "Column":  38,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  569,
+                       "Length":  1,
+                       "Line":  21,
+                       "Column":  39,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  570,
+                       "Length":  19,
+                       "Line":  21,
+                       "Column":  40,
+                       "Text":  "`STRING_VALUE_MACRO",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  589,
+                       "Length":  1,
+                       "Line":  21,
+                       "Column":  59,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  594,
+                       "Length":  7,
+                       "Line":  23,
+                       "Column":  1,
+                       "Text":  "`define",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  601,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  602,
+                       "Length":  22,
+                       "Line":  23,
+                       "Column":  9,
+                       "Text":  "EXPRESSION_VALUE_MACRO",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  624,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  31,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  625,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  32,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  626,
+                       "Length":  20,
+                       "Line":  23,
+                       "Column":  33,
+                       "Text":  "`LOCAL_DEFINED_MACRO",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  646,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  53,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  647,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  54,
+                       "Text":  "+",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  648,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  55,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  649,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  56,
+                       "Text":  "4",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  650,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  57,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  653,
+                       "Length":  10,
+                       "Line":  24,
+                       "Column":  1,
+                       "Text":  "localparam",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  663,
+                       "Length":  1,
+                       "Line":  24,
+                       "Column":  11,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  664,
+                       "Length":  3,
+                       "Line":  24,
+                       "Column":  12,
+                       "Text":  "int",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  667,
+                       "Length":  1,
+                       "Line":  24,
+                       "Column":  15,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  668,
+                       "Length":  22,
+                       "Line":  24,
+                       "Column":  16,
+                       "Text":  "expression_macro_value",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  690,
+                       "Length":  1,
+                       "Line":  24,
+                       "Column":  38,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  691,
+                       "Length":  1,
+                       "Line":  24,
+                       "Column":  39,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  692,
+                       "Length":  1,
+                       "Line":  24,
+                       "Column":  40,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  693,
+                       "Length":  23,
+                       "Line":  24,
+                       "Column":  41,
+                       "Text":  "`EXPRESSION_VALUE_MACRO",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  716,
+                       "Length":  1,
+                       "Line":  24,
+                       "Column":  64,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  721,
+                       "Length":  7,
+                       "Line":  26,
+                       "Column":  1,
+                       "Text":  "`define",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  728,
+                       "Length":  1,
+                       "Line":  26,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  729,
+                       "Length":  13,
+                       "Line":  26,
+                       "Column":  9,
+                       "Text":  "REMOVED_MACRO",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  742,
+                       "Length":  1,
+                       "Line":  26,
+                       "Column":  22,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  743,
+                       "Length":  1,
+                       "Line":  26,
+                       "Column":  23,
+                       "Text":  "3",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  746,
+                       "Length":  6,
+                       "Line":  27,
+                       "Column":  1,
+                       "Text":  "`undef",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  752,
+                       "Length":  1,
+                       "Line":  27,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  753,
+                       "Length":  13,
+                       "Line":  27,
+                       "Column":  8,
+                       "Text":  "REMOVED_MACRO",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  768,
+                       "Length":  10,
+                       "Line":  28,
+                       "Column":  1,
+                       "Text":  "localparam",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  778,
+                       "Length":  1,
+                       "Line":  28,
+                       "Column":  11,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  779,
+                       "Length":  3,
+                       "Line":  28,
+                       "Column":  12,
+                       "Text":  "int",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  782,
+                       "Length":  1,
+                       "Line":  28,
+                       "Column":  15,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  783,
+                       "Length":  19,
+                       "Line":  28,
+                       "Column":  16,
+                       "Text":  "removed_macro_value",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  802,
+                       "Length":  1,
+                       "Line":  28,
+                       "Column":  35,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  803,
+                       "Length":  1,
+                       "Line":  28,
+                       "Column":  36,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  804,
+                       "Length":  1,
+                       "Line":  28,
+                       "Column":  37,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  805,
+                       "Length":  14,
+                       "Line":  28,
+                       "Column":  38,
+                       "Text":  "`REMOVED_MACRO",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  819,
+                       "Length":  1,
+                       "Line":  28,
+                       "Column":  52,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   }
+               ],
+    "Symbols":  [
+                    {
+                        "Scope":  "global",
+                        "Name":  "local_macro_value",
+                        "TokenType":  "Verilog_Variable_localparam",
+                        "HoverText":  "localparam int local_macro_value = `LOCAL_DEFINED_MACRO"
+                    },
+                    {
+                        "Scope":  "global",
+                        "Name":  "missing_macro_value",
+                        "TokenType":  "Verilog_Variable_localparam",
+                        "HoverText":  "localparam int missing_macro_value = `MISSING_REFERENCE_MACRO"
+                    },
+                    {
+                        "Scope":  "global",
+                        "Name":  "included_macro_value",
+                        "TokenType":  "Verilog_Variable_localparam",
+                        "HoverText":  "localparam int included_macro_value = `INCLUDED_DEFINED_MACRO"
+                    },
+                    {
+                        "Scope":  "global",
+                        "Name":  "expression_macro_value",
+                        "TokenType":  "Verilog_Variable_localparam",
+                        "HoverText":  "localparam int expression_macro_value = `EXPRESSION_VALUE_MACRO"
+                    },
+                    {
+                        "Scope":  "global",
+                        "Name":  "removed_macro_value",
+                        "TokenType":  "Verilog_Variable_localparam",
+                        "HoverText":  "localparam int removed_macro_value = `REMOVED_MACRO"
+                    },
+                    {
+                        "Scope":  "global",
+                        "Name":  "string_macro_value",
+                        "TokenType":  "Verilog_Variable_localparam",
+                        "HoverText":  "localparam string string_macro_value = `STRING_VALUE_MACRO"
+                    },
+                    {
+                        "Scope":  "__MACRO__",
+                        "Name":  "NEVER_DEFINED_MACRO",
+                        "TokenType":  "Verilog_Macro",
+                        "HoverText":  "macro condition:\r\n`ifdef NEVER_DEFINED_MACRO"
+                    },
+                    {
+                        "Scope":  "__MACRO__",
+                        "Name":  "LOCAL_DEFINED_MACRO",
+                        "TokenType":  "Verilog_Macro",
+                        "HoverText":  "macro definition:\r\n`define LOCAL_DEFINED_MACRO 1\r\n\r\ncondition:\r\n(unconditional)\r\n\r\nmacro condition:\r\n`ifdef LOCAL_DEFINED_MACRO"
+                    },
+                    {
+                        "Scope":  "__MACRO__",
+                        "Name":  "INCLUDED_DEFINED_MACRO",
+                        "TokenType":  "Verilog_Macro",
+                        "HoverText":  "macro condition:\r\n`ifdef INCLUDED_DEFINED_MACRO"
+                    },
+                    {
+                        "Scope":  "__MACRO__",
+                        "Name":  "FLAG_ONLY_MACRO",
+                        "TokenType":  "Verilog_Macro",
+                        "HoverText":  "macro definition:\r\n`define FLAG_ONLY_MACRO\r\n\r\ncondition:\r\n(unconditional)\r\n\r\nmacro condition:\r\n`ifdef FLAG_ONLY_MACRO"
+                    },
+                    {
+                        "Scope":  "__MACRO__",
+                        "Name":  "STRING_VALUE_MACRO",
+                        "TokenType":  "Verilog_Macro",
+                        "HoverText":  "macro definition:\r\n`define STRING_VALUE_MACRO \"Version 1.0\"\r\n\r\ncondition:\r\n(unconditional)"
+                    },
+                    {
+                        "Scope":  "__MACRO__",
+                        "Name":  "EXPRESSION_VALUE_MACRO",
+                        "TokenType":  "Verilog_Macro",
+                        "HoverText":  "macro definition:\r\n`define EXPRESSION_VALUE_MACRO (`LOCAL_DEFINED_MACRO + 4)\r\n\r\ncondition:\r\n(unconditional)"
+                    },
+                    {
+                        "Scope":  "__MACRO__",
+                        "Name":  "REMOVED_MACRO",
+                        "TokenType":  "Verilog_Macro",
+                        "HoverText":  "macro definition:\r\n`define REMOVED_MACRO 3\r\n\r\ncondition:\r\n(unconditional)\r\n\r\nmacro undef:\r\n`undef REMOVED_MACRO"
+                    }
+                ]
+}

@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.11",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\src\\JTAG\\jtag_core.v",
-    "FileRelativePath":  "TestFiles\\src\\JTAG\\jtag_core.v",
+    "FilePath":  "TestFiles/src/JTAG/jtag_core.v",
+    "FileRelativePath":  "TestFiles/src/JTAG/jtag_core.v",
     "ContentType":  "verilog",
     "SnapshotLength":  8223,
     "SnapshotVersion":  2,
@@ -273,13 +272,13 @@
                                           ]
                             },
                             {
-                                "Start":  755,
-                                "Length":  10,
+                                "Start":  751,
+                                "Length":  24,
                                 "Line":  27,
-                                "Column":  5,
-                                "Text":  "`timescale",
+                                "Column":  1,
+                                "Text":  "    `timescale 1ns / 1ps",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -10302,17 +10301,17 @@
                      "Text":  "SIM_JTAG_CORE_TB",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef SIM_JTAG_CORE_TB"
+                     "HoverText":  "Macro `SIM_JTAG_CORE_TB` is not defined."
                  },
                  {
-                     "Start":  755,
-                     "Length":  10,
+                     "Start":  751,
+                     "Length":  24,
                      "Line":  27,
-                     "Column":  5,
-                     "Text":  "`timescale",
+                     "Column":  1,
+                     "Text":  "    `timescale 1ns / 1ps",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027SIM_JTAG_CORE_TB\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  776,
@@ -10782,7 +10781,7 @@
                      "Text":  "`JTAG_ADDR_MSB",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "output reg [`JTAG_ADDR_MSB:0] reg_addr_o"
+                     "HoverText":  "Macro `JTAG_ADDR_MSB` is not defined."
                  },
                  {
                      "Start":  1112,
@@ -15552,7 +15551,7 @@
                      "Text":  "`JTAG_ADDR_WIDTH",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  null
+                     "HoverText":  "Macro `JTAG_ADDR_WIDTH` is not defined."
                  },
                  {
                      "Start":  5285,
@@ -15772,7 +15771,7 @@
                      "Text":  "`JTAG_ADDR_WIDTH",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  null
+                     "HoverText":  "Macro `JTAG_ADDR_WIDTH` is not defined."
                  },
                  {
                      "Start":  5480,
@@ -16322,7 +16321,7 @@
                      "Text":  "`JTAG_ADDR_WIDTH",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  null
+                     "HoverText":  "Macro `JTAG_ADDR_WIDTH` is not defined."
                  },
                  {
                      "Start":  5982,
@@ -17322,7 +17321,7 @@
                      "Text":  "`JTAG_ADDR_MSB",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "output reg [`JTAG_ADDR_MSB:0] reg_addr_o"
+                     "HoverText":  "Macro `JTAG_ADDR_MSB` is not defined."
                  },
                  {
                      "Start":  7253,

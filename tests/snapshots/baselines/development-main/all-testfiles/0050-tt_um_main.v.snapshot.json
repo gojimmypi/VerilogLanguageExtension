@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.11",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\src\\tt_um_main.v",
-    "FileRelativePath":  "TestFiles\\src\\tt_um_main.v",
+    "FilePath":  "TestFiles/src/tt_um_main.v",
+    "FileRelativePath":  "TestFiles/src/tt_um_main.v",
     "ContentType":  "verilog",
     "SnapshotLength":  18717,
     "SnapshotVersion":  2,
@@ -443,13 +442,13 @@
                                           ]
                             },
                             {
-                                "Start":  1715,
-                                "Length":  10,
+                                "Start":  1711,
+                                "Length":  24,
                                 "Line":  44,
-                                "Column":  5,
-                                "Text":  "`timescale",
+                                "Column":  1,
+                                "Text":  "    `timescale 1ns / 1ps",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -4773,23 +4772,13 @@
                                           ]
                             },
                             {
-                                "Start":  6656,
-                                "Length":  6,
+                                "Start":  6652,
+                                "Length":  23,
                                 "Line":  230,
-                                "Column":  5,
-                                "Text":  "`ifdef",
+                                "Column":  1,
+                                "Text":  "    `ifdef JTAG_ENABLED",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  6663,
-                                "Length":  12,
-                                "Line":  230,
-                                "Column":  12,
-                                "Text":  "JTAG_ENABLED",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -4803,13 +4792,13 @@
                                           ]
                             },
                             {
-                                "Start":  6738,
-                                "Length":  5,
+                                "Start":  6734,
+                                "Length":  9,
                                 "Line":  232,
-                                "Column":  5,
-                                "Text":  "`else",
+                                "Column":  1,
+                                "Text":  "    `else",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -4823,13 +4812,13 @@
                                           ]
                             },
                             {
-                                "Start":  6791,
-                                "Length":  6,
+                                "Start":  6787,
+                                "Length":  10,
                                 "Line":  234,
-                                "Column":  5,
-                                "Text":  "`endif",
+                                "Column":  1,
+                                "Text":  "    `endif",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -11143,23 +11132,13 @@
                                           ]
                             },
                             {
-                                "Start":  17700,
-                                "Length":  6,
+                                "Start":  17696,
+                                "Length":  23,
                                 "Line":  569,
-                                "Column":  5,
-                                "Text":  "`ifdef",
+                                "Column":  1,
+                                "Text":  "    `ifdef JTAG_ENABLED",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  17707,
-                                "Length":  12,
-                                "Line":  569,
-                                "Column":  12,
-                                "Text":  "JTAG_ENABLED",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -11223,13 +11202,13 @@
                                           ]
                             },
                             {
-                                "Start":  17992,
-                                "Length":  5,
+                                "Start":  17988,
+                                "Length":  9,
                                 "Line":  577,
-                                "Column":  5,
-                                "Text":  "`else",
+                                "Column":  1,
+                                "Text":  "    `else",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -11253,13 +11232,13 @@
                                           ]
                             },
                             {
-                                "Start":  18084,
-                                "Length":  6,
+                                "Start":  18080,
+                                "Length":  10,
                                 "Line":  580,
-                                "Column":  5,
-                                "Text":  "`endif",
+                                "Column":  1,
+                                "Text":  "    `endif",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -18352,17 +18331,17 @@
                      "Text":  "SIM_JTAG_CORE_TB",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef SIM_JTAG_CORE_TB"
+                     "HoverText":  "Macro `SIM_JTAG_CORE_TB` is not defined."
                  },
                  {
-                     "Start":  1715,
-                     "Length":  10,
+                     "Start":  1711,
+                     "Length":  24,
                      "Line":  44,
-                     "Column":  5,
-                     "Text":  "`timescale",
+                     "Column":  1,
+                     "Text":  "    `timescale 1ns / 1ps",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027SIM_JTAG_CORE_TB\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  1736,
@@ -18492,7 +18471,7 @@
                      "Text":  "`PROJECT_CLOCK_HZ",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  null
+                     "HoverText":  "Macro `PROJECT_CLOCK_HZ` is defined.\r\nValue: 32\u0027d25_000_000\r\nFile: TestFiles/src/project_config.v\r\nLine: 57"
                  },
                  {
                      "Start":  1851,
@@ -18562,7 +18541,7 @@
                      "Text":  "`PROJECT_UART_BAUD",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  null
+                     "HoverText":  "Macro `PROJECT_UART_BAUD` is defined.\r\nValue: 32\u0027d115_200\r\nFile: TestFiles/src/project_config.v\r\nLine: 61"
                  },
                  {
                      "Start":  1899,
@@ -20772,7 +20751,7 @@
                      "Text":  "PIN_DIAG",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef PIN_DIAG"
+                     "HoverText":  "Macro `PIN_DIAG` is not defined."
                  },
                  {
                      "Start":  3169,
@@ -21172,7 +21151,7 @@
                      "Text":  "JTAG_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef JTAG_ENABLED"
+                     "HoverText":  "Macro `JTAG_ENABLED` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 187"
                  },
                  {
                      "Start":  3664,
@@ -21242,7 +21221,7 @@
                      "Text":  "SPI_REG_ACCESS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef SPI_REG_ACCESS\r\n\r\nmacro condition:\r\n`ifndef SPI_REG_ACCESS"
+                     "HoverText":  "Macro `SPI_REG_ACCESS` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 77"
                  },
                  {
                      "Start":  3756,
@@ -21292,7 +21271,7 @@
                      "Text":  "`SPI_ADDR_MSB",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "wire [`SPI_ADDR_MSB:0] spi_reg_addr"
+                     "HoverText":  "Macro `SPI_ADDR_MSB` is defined.\r\nValue: 3\r\nFile: TestFiles/src/project_config.v\r\nLine: 237"
                  },
                  {
                      "Start":  3806,
@@ -21462,7 +21441,7 @@
                      "Text":  "SPI_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef SPI_ENABLED"
+                     "HoverText":  "Macro `SPI_ENABLED` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 76"
                  },
                  {
                      "Start":  3915,
@@ -21512,7 +21491,7 @@
                      "Text":  "`SPI_ADDR_MSB",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "wire [`SPI_ADDR_MSB:0] spi_reg_addr"
+                     "HoverText":  "Macro `SPI_ADDR_MSB` is defined.\r\nValue: 3\r\nFile: TestFiles/src/project_config.v\r\nLine: 237"
                  },
                  {
                      "Start":  3975,
@@ -21682,7 +21661,7 @@
                      "Text":  "JTAG_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef JTAG_ENABLED"
+                     "HoverText":  "Macro `JTAG_ENABLED` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 187"
                  },
                  {
                      "Start":  4100,
@@ -21732,7 +21711,7 @@
                      "Text":  "`JTAG_ADDR_MSB",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "wire [`JTAG_ADDR_MSB:0] jtag_reg_addr"
+                     "HoverText":  "Macro `JTAG_ADDR_MSB` is defined.\r\nValue: `SPI_ADDR_MSB\r\nFile: TestFiles/src/project_config.v\r\nLine: 245"
                  },
                  {
                      "Start":  4156,
@@ -21872,7 +21851,7 @@
                      "Text":  "`SPI_ADDR_MSB",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "wire [`SPI_ADDR_MSB:0] spi_reg_addr"
+                     "HoverText":  "Macro `SPI_ADDR_MSB` is defined.\r\nValue: 3\r\nFile: TestFiles/src/project_config.v\r\nLine: 237"
                  },
                  {
                      "Start":  4275,
@@ -22012,7 +21991,7 @@
                      "Text":  "`SPI_ADDR_MSB",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "wire [`SPI_ADDR_MSB:0] spi_reg_addr"
+                     "HoverText":  "Macro `SPI_ADDR_MSB` is defined.\r\nValue: 3\r\nFile: TestFiles/src/project_config.v\r\nLine: 237"
                  },
                  {
                      "Start":  4398,
@@ -22512,7 +22491,7 @@
                      "Text":  "SPI_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef SPI_ENABLED"
+                     "HoverText":  "Macro `SPI_ENABLED` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 76"
                  },
                  {
                      "Start":  4622,
@@ -22612,7 +22591,7 @@
                      "Text":  "SPI_REG_ACCESS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef SPI_REG_ACCESS\r\n\r\nmacro condition:\r\n`ifndef SPI_REG_ACCESS"
+                     "HoverText":  "Macro `SPI_REG_ACCESS` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 77"
                  },
                  {
                      "Start":  4720,
@@ -22782,7 +22761,7 @@
                      "Text":  "JTAG_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef JTAG_ENABLED"
+                     "HoverText":  "Macro `JTAG_ENABLED` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 187"
                  },
                  {
                      "Start":  4936,
@@ -23102,7 +23081,7 @@
                      "Text":  "TRNG_HEALTH_STATUS_DEBUG_PAGE_SELECT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_HEALTH_STATUS_DEBUG_PAGE_SELECT"
+                     "HoverText":  "Macro `TRNG_HEALTH_STATUS_DEBUG_PAGE_SELECT` is not defined."
                  },
                  {
                      "Start":  5134,
@@ -23492,7 +23471,7 @@
                      "Text":  "JTAG_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef JTAG_ENABLED"
+                     "HoverText":  "Macro `JTAG_ENABLED` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 187"
                  },
                  {
                      "Start":  5369,
@@ -24122,7 +24101,7 @@
                      "Text":  "SPI_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef SPI_ENABLED"
+                     "HoverText":  "Macro `SPI_ENABLED` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 76"
                  },
                  {
                      "Start":  5623,
@@ -24512,7 +24491,7 @@
                      "Text":  "PIN_DIAG",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef PIN_DIAG"
+                     "HoverText":  "Macro `PIN_DIAG` is not defined."
                  },
                  {
                      "Start":  6053,
@@ -25512,7 +25491,7 @@
                      "Text":  "SPI_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef SPI_ENABLED"
+                     "HoverText":  "Macro `SPI_ENABLED` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 76"
                  },
                  {
                      "Start":  6585,
@@ -25675,24 +25654,14 @@
                      "HoverText":  "Verilog directive"
                  },
                  {
-                     "Start":  6656,
-                     "Length":  6,
+                     "Start":  6652,
+                     "Length":  23,
                      "Line":  230,
-                     "Column":  5,
-                     "Text":  "`ifdef",
+                     "Column":  1,
+                     "Text":  "    `ifdef JTAG_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  6663,
-                     "Length":  12,
-                     "Line":  230,
-                     "Column":  12,
-                     "Text":  "JTAG_ENABLED",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef JTAG_ENABLED"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027SPI_ENABLED\u0027 is defined, so the earlier `ifdef branch is active. Change the controlling macro definitions to select this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  6676,
@@ -25705,14 +25674,14 @@
                      "HoverText":  "Inactive preprocessor code: macro \u0027SPI_ENABLED\u0027 is defined, so the earlier `ifdef branch is active. Change the controlling macro definitions to select this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  6738,
-                     "Length":  5,
+                     "Start":  6734,
+                     "Length":  9,
                      "Line":  232,
-                     "Column":  5,
-                     "Text":  "`else",
+                     "Column":  1,
+                     "Text":  "    `else",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027SPI_ENABLED\u0027 is defined, so the earlier `ifdef branch is active. Change the controlling macro definitions to select this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  6744,
@@ -25725,14 +25694,14 @@
                      "HoverText":  "Inactive preprocessor code: macro \u0027SPI_ENABLED\u0027 is defined, so the earlier `ifdef branch is active. Change the controlling macro definitions to select this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  6791,
-                     "Length":  6,
+                     "Start":  6787,
+                     "Length":  10,
                      "Line":  234,
-                     "Column":  5,
-                     "Text":  "`endif",
+                     "Column":  1,
+                     "Text":  "    `endif",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027SPI_ENABLED\u0027 is defined, so the earlier `ifdef branch is active. Change the controlling macro definitions to select this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  6798,
@@ -27822,7 +27791,7 @@
                      "Text":  "JTAG_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef JTAG_ENABLED"
+                     "HoverText":  "Macro `JTAG_ENABLED` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 187"
                  },
                  {
                      "Start":  7837,
@@ -29132,7 +29101,7 @@
                      "Text":  "ULX3S",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef ULX3S"
+                     "HoverText":  "Macro `ULX3S` is not defined."
                  },
                  {
                      "Start":  8245,
@@ -30272,7 +30241,7 @@
                      "Text":  "SPI_REG_ACCESS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef SPI_REG_ACCESS\r\n\r\nmacro condition:\r\n`ifndef SPI_REG_ACCESS"
+                     "HoverText":  "Macro `SPI_REG_ACCESS` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 77"
                  },
                  {
                      "Start":  9010,
@@ -30292,7 +30261,7 @@
                      "Text":  "JTAG_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef JTAG_ENABLED"
+                     "HoverText":  "Macro `JTAG_ENABLED` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 187"
                  },
                  {
                      "Start":  9034,
@@ -31342,7 +31311,7 @@
                      "Text":  "`SPI_ADDR_WIDTH",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  null
+                     "HoverText":  "Macro `SPI_ADDR_WIDTH` is defined.\r\nValue: (`SPI_ADDR_MSB + 1)\r\nFile: TestFiles/src/project_config.v\r\nLine: 241"
                  },
                  {
                      "Start":  9464,
@@ -31552,7 +31521,7 @@
                      "Text":  "PIN_DIAG",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef PIN_DIAG"
+                     "HoverText":  "Macro `PIN_DIAG` is not defined."
                  },
                  {
                      "Start":  9738,
@@ -35542,7 +35511,7 @@
                      "Text":  "SPI_REG_ACCESS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef SPI_REG_ACCESS\r\n\r\nmacro condition:\r\n`ifndef SPI_REG_ACCESS"
+                     "HoverText":  "Macro `SPI_REG_ACCESS` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 77"
                  },
                  {
                      "Start":  11137,
@@ -35692,7 +35661,7 @@
                      "Text":  "BIG16_SPI_REG",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef BIG16_SPI_REG"
+                     "HoverText":  "Macro `BIG16_SPI_REG` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 86"
                  },
                  {
                      "Start":  11321,
@@ -39252,7 +39221,7 @@
                      "Text":  "PIN_DIAG",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef PIN_DIAG"
+                     "HoverText":  "Macro `PIN_DIAG` is not defined."
                  },
                  {
                      "Start":  11844,
@@ -40622,7 +40591,7 @@
                      "Text":  "TRNG_HEALTH_STATUS_DEBUG_PAGE_SELECT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_HEALTH_STATUS_DEBUG_PAGE_SELECT"
+                     "HoverText":  "Macro `TRNG_HEALTH_STATUS_DEBUG_PAGE_SELECT` is not defined."
                  },
                  {
                      "Start":  12857,
@@ -40992,7 +40961,7 @@
                      "Text":  "JTAG_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef JTAG_ENABLED"
+                     "HoverText":  "Macro `JTAG_ENABLED` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 187"
                  },
                  {
                      "Start":  13410,
@@ -41012,7 +40981,7 @@
                      "Text":  "ULX3S",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef ULX3S"
+                     "HoverText":  "Macro `ULX3S` is not defined."
                  },
                  {
                      "Start":  13423,
@@ -46412,7 +46381,7 @@
                      "Text":  "SPI_REG_ACCESS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef SPI_REG_ACCESS\r\n\r\nmacro condition:\r\n`ifndef SPI_REG_ACCESS"
+                     "HoverText":  "Macro `SPI_REG_ACCESS` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 77"
                  },
                  {
                      "Start":  14941,
@@ -46662,7 +46631,7 @@
                      "Text":  "SPI_REG_ACCESS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef SPI_REG_ACCESS\r\n\r\nmacro condition:\r\n`ifndef SPI_REG_ACCESS"
+                     "HoverText":  "Macro `SPI_REG_ACCESS` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 77"
                  },
                  {
                      "Start":  15289,
@@ -46682,7 +46651,7 @@
                      "Text":  "JTAG_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef JTAG_ENABLED"
+                     "HoverText":  "Macro `JTAG_ENABLED` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 187"
                  },
                  {
                      "Start":  15317,
@@ -50352,7 +50321,7 @@
                      "Text":  "SPI_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef SPI_ENABLED"
+                     "HoverText":  "Macro `SPI_ENABLED` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 76"
                  },
                  {
                      "Start":  16296,
@@ -50742,7 +50711,7 @@
                      "Text":  "SPI_REG_ACCESS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef SPI_REG_ACCESS\r\n\r\nmacro condition:\r\n`ifndef SPI_REG_ACCESS"
+                     "HoverText":  "Macro `SPI_REG_ACCESS` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 77"
                  },
                  {
                      "Start":  16633,
@@ -51502,7 +51471,7 @@
                      "Text":  "JTAG_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef JTAG_ENABLED"
+                     "HoverText":  "Macro `JTAG_ENABLED` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 187"
                  },
                  {
                      "Start":  17169,
@@ -51832,7 +51801,7 @@
                      "Text":  "SPI_REG_ACCESS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef SPI_REG_ACCESS\r\n\r\nmacro condition:\r\n`ifndef SPI_REG_ACCESS"
+                     "HoverText":  "Macro `SPI_REG_ACCESS` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 77"
                  },
                  {
                      "Start":  17456,
@@ -51995,24 +51964,14 @@
                      "HoverText":  "Inactive preprocessor code: macro \u0027SPI_ENABLED\u0027 is defined, so the earlier `ifdef branch is active. Change the controlling macro definitions to select this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  17700,
-                     "Length":  6,
+                     "Start":  17696,
+                     "Length":  23,
                      "Line":  569,
-                     "Column":  5,
-                     "Text":  "`ifdef",
+                     "Column":  1,
+                     "Text":  "    `ifdef JTAG_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  17707,
-                     "Length":  12,
-                     "Line":  569,
-                     "Column":  12,
-                     "Text":  "JTAG_ENABLED",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef JTAG_ENABLED"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027SPI_ENABLED\u0027 is defined, so the earlier `ifdef branch is active. Change the controlling macro definitions to select this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  17720,
@@ -52075,14 +52034,14 @@
                      "HoverText":  "Inactive preprocessor code: macro \u0027SPI_ENABLED\u0027 is defined, so the earlier `ifdef branch is active. Change the controlling macro definitions to select this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  17992,
-                     "Length":  5,
+                     "Start":  17988,
+                     "Length":  9,
                      "Line":  577,
-                     "Column":  5,
-                     "Text":  "`else",
+                     "Column":  1,
+                     "Text":  "    `else",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027SPI_ENABLED\u0027 is defined, so the earlier `ifdef branch is active. Change the controlling macro definitions to select this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  17998,
@@ -52105,14 +52064,14 @@
                      "HoverText":  "Inactive preprocessor code: macro \u0027SPI_ENABLED\u0027 is defined, so the earlier `ifdef branch is active. Change the controlling macro definitions to select this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  18084,
-                     "Length":  6,
+                     "Start":  18080,
+                     "Length":  10,
                      "Line":  580,
-                     "Column":  5,
-                     "Text":  "`endif",
+                     "Column":  1,
+                     "Text":  "    `endif",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027SPI_ENABLED\u0027 is defined, so the earlier `ifdef branch is active. Change the controlling macro definitions to select this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  18091,
@@ -52212,7 +52171,7 @@
                      "Text":  "PIN_DIAG",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef PIN_DIAG"
+                     "HoverText":  "Macro `PIN_DIAG` is not defined."
                  },
                  {
                      "Start":  18137,

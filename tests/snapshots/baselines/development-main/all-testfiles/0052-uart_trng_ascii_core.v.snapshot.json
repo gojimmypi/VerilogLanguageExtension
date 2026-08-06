@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.11",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\src\\UART\\uart_trng_ascii_core.v",
-    "FileRelativePath":  "TestFiles\\src\\UART\\uart_trng_ascii_core.v",
+    "FilePath":  "TestFiles/src/UART/uart_trng_ascii_core.v",
+    "FileRelativePath":  "TestFiles/src/UART/uart_trng_ascii_core.v",
     "ContentType":  "verilog",
     "SnapshotLength":  18024,
     "SnapshotVersion":  2,
@@ -243,13 +242,13 @@
                                           ]
                             },
                             {
-                                "Start":  728,
-                                "Length":  10,
+                                "Start":  724,
+                                "Length":  24,
                                 "Line":  24,
-                                "Column":  5,
-                                "Text":  "`timescale",
+                                "Column":  1,
+                                "Text":  "    `timescale 1ns / 1ps",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -3943,23 +3942,13 @@
                                           ]
                             },
                             {
-                                "Start":  7867,
-                                "Length":  6,
+                                "Start":  7863,
+                                "Length":  25,
                                 "Line":  240,
-                                "Column":  5,
-                                "Text":  "`ifdef",
+                                "Column":  1,
+                                "Text":  "    `ifdef FORCE_LOOPBACK",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  7874,
-                                "Length":  14,
-                                "Line":  240,
-                                "Column":  12,
-                                "Text":  "FORCE_LOOPBACK",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -3973,13 +3962,13 @@
                                           ]
                             },
                             {
-                                "Start":  7979,
-                                "Length":  6,
+                                "Start":  7975,
+                                "Length":  10,
                                 "Line":  242,
-                                "Column":  5,
-                                "Text":  "`endif",
+                                "Column":  1,
+                                "Text":  "    `endif",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -4214,22 +4203,12 @@
                             },
                             {
                                 "Start":  8679,
-                                "Length":  6,
+                                "Length":  25,
                                 "Line":  272,
                                 "Column":  1,
-                                "Text":  "`ifdef",
+                                "Text":  "`ifdef TRNG_BINARY_STREAM",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  8686,
-                                "Length":  18,
-                                "Line":  272,
-                                "Column":  8,
-                                "Text":  "TRNG_BINARY_STREAM",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -4249,47 +4228,27 @@
                                 "Column":  1,
                                 "Text":  "`endif",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
                                 "Start":  8749,
-                                "Length":  6,
+                                "Length":  30,
                                 "Line":  276,
                                 "Column":  1,
-                                "Text":  "`ifdef",
+                                "Text":  "`ifdef TRNG_CONDITIONED_STREAM",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  8756,
-                                "Length":  23,
-                                "Line":  276,
-                                "Column":  8,
-                                "Text":  "TRNG_CONDITIONED_STREAM",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
                                 "Start":  8780,
-                                "Length":  6,
+                                "Length":  37,
                                 "Line":  277,
                                 "Column":  1,
-                                "Text":  "`ifdef",
+                                "Text":  "`ifdef TRNG_CONDITIONED_STREAM_64_XOR",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  8787,
-                                "Length":  30,
-                                "Line":  277,
-                                "Column":  8,
-                                "Text":  "TRNG_CONDITIONED_STREAM_64_XOR",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -4379,7 +4338,7 @@
                                 "Column":  1,
                                 "Text":  "`else",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -4404,42 +4363,22 @@
                             },
                             {
                                 "Start":  9086,
-                                "Length":  6,
+                                "Length":  45,
                                 "Line":  289,
                                 "Column":  1,
-                                "Text":  "`endif",
+                                "Text":  "`endif /* ! TRNG_CONDITIONED_STREAM_64_XOR */",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  9093,
-                                "Length":  38,
-                                "Line":  289,
-                                "Column":  8,
-                                "Text":  "/* ! TRNG_CONDITIONED_STREAM_64_XOR */",
-                                "Types":  [
-                                              "comment"
+                                              "InactiveCode"
                                           ]
                             },
                             {
                                 "Start":  9132,
-                                "Length":  6,
+                                "Length":  37,
                                 "Line":  290,
                                 "Column":  1,
-                                "Text":  "`endif",
+                                "Text":  "`endif /* TRNG_CONDITIONED_STREAM */ ",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  9139,
-                                "Length":  29,
-                                "Line":  290,
-                                "Column":  8,
-                                "Text":  "/* TRNG_CONDITIONED_STREAM */",
-                                "Types":  [
-                                              "comment"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -4464,22 +4403,12 @@
                             },
                             {
                                 "Start":  9251,
-                                "Length":  6,
+                                "Length":  30,
                                 "Line":  296,
                                 "Column":  1,
-                                "Text":  "`ifdef",
+                                "Text":  "`ifdef ADJUSTABLE_BAUD_ENABLED",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  9258,
-                                "Length":  23,
-                                "Line":  296,
-                                "Column":  8,
-                                "Text":  "ADJUSTABLE_BAUD_ENABLED",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -4499,7 +4428,7 @@
                                 "Column":  1,
                                 "Text":  "`endif",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -4614,22 +4543,12 @@
                             },
                             {
                                 "Start":  9690,
-                                "Length":  6,
+                                "Length":  21,
                                 "Line":  313,
                                 "Column":  1,
-                                "Text":  "`ifdef",
+                                "Text":  "`ifdef SPI_REG_ACCESS",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  9697,
-                                "Length":  14,
-                                "Line":  313,
-                                "Column":  8,
-                                "Text":  "SPI_REG_ACCESS",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -4659,7 +4578,7 @@
                                 "Column":  1,
                                 "Text":  "`endif",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -5804,22 +5723,12 @@
                             },
                             {
                                 "Start":  12356,
-                                "Length":  6,
+                                "Length":  37,
                                 "Line":  397,
                                 "Column":  1,
-                                "Text":  "`ifdef",
+                                "Text":  "`ifdef TRNG_CONDITIONED_STREAM_64_XOR",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  12363,
-                                "Length":  30,
-                                "Line":  397,
-                                "Column":  8,
-                                "Text":  "TRNG_CONDITIONED_STREAM_64_XOR",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -5909,7 +5818,7 @@
                                 "Column":  1,
                                 "Text":  "`else",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -5934,22 +5843,12 @@
                             },
                             {
                                 "Start":  12662,
-                                "Length":  6,
+                                "Length":  45,
                                 "Line":  409,
                                 "Column":  1,
-                                "Text":  "`endif",
+                                "Text":  "`endif /* ! TRNG_CONDITIONED_STREAM_64_XOR */",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  12669,
-                                "Length":  38,
-                                "Line":  409,
-                                "Column":  8,
-                                "Text":  "/* ! TRNG_CONDITIONED_STREAM_64_XOR */",
-                                "Types":  [
-                                              "comment"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -7584,22 +7483,12 @@
                             },
                             {
                                 "Start":  14851,
-                                "Length":  6,
+                                "Length":  37,
                                 "Line":  491,
                                 "Column":  1,
-                                "Text":  "`ifdef",
+                                "Text":  "`ifdef TRNG_CONDITIONED_STREAM_64_XOR",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  14858,
-                                "Length":  30,
-                                "Line":  491,
-                                "Column":  8,
-                                "Text":  "TRNG_CONDITIONED_STREAM_64_XOR",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -7689,7 +7578,7 @@
                                 "Column":  1,
                                 "Text":  "`else",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -7719,7 +7608,7 @@
                                 "Column":  1,
                                 "Text":  "`endif",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -8134,22 +8023,12 @@
                             },
                             {
                                 "Start":  15941,
-                                "Length":  6,
+                                "Length":  25,
                                 "Line":  533,
                                 "Column":  1,
-                                "Text":  "`ifdef",
+                                "Text":  "`ifdef TRNG_BINARY_STREAM",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  15948,
-                                "Length":  18,
-                                "Line":  533,
-                                "Column":  8,
-                                "Text":  "TRNG_BINARY_STREAM",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -8169,47 +8048,27 @@
                                 "Column":  1,
                                 "Text":  "`endif",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
                                 "Start":  16026,
-                                "Length":  6,
+                                "Length":  30,
                                 "Line":  537,
                                 "Column":  1,
-                                "Text":  "`ifdef",
+                                "Text":  "`ifdef TRNG_CONDITIONED_STREAM",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  16033,
-                                "Length":  23,
-                                "Line":  537,
-                                "Column":  8,
-                                "Text":  "TRNG_CONDITIONED_STREAM",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
                                 "Start":  16057,
-                                "Length":  6,
+                                "Length":  37,
                                 "Line":  538,
                                 "Column":  1,
-                                "Text":  "`ifdef",
+                                "Text":  "`ifdef TRNG_CONDITIONED_STREAM_64_XOR",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  16064,
-                                "Length":  30,
-                                "Line":  538,
-                                "Column":  8,
-                                "Text":  "TRNG_CONDITIONED_STREAM_64_XOR",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -8299,7 +8158,7 @@
                                 "Column":  1,
                                 "Text":  "`else",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -8339,7 +8198,7 @@
                                 "Column":  1,
                                 "Text":  "`endif",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -8349,7 +8208,7 @@
                                 "Column":  1,
                                 "Text":  "`endif",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -8404,22 +8263,12 @@
                             },
                             {
                                 "Start":  16501,
-                                "Length":  6,
+                                "Length":  37,
                                 "Line":  556,
                                 "Column":  1,
-                                "Text":  "`ifdef",
+                                "Text":  "`ifdef TRNG_CONDITIONED_STREAM_64_XOR",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  16508,
-                                "Length":  30,
-                                "Line":  556,
-                                "Column":  8,
-                                "Text":  "TRNG_CONDITIONED_STREAM_64_XOR",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -8509,7 +8358,7 @@
                                 "Column":  1,
                                 "Text":  "`else",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -8539,7 +8388,7 @@
                                 "Column":  1,
                                 "Text":  "`endif",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -11832,17 +11681,17 @@
                      "Text":  "SIM_JTAG_CORE_TB",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef SIM_JTAG_CORE_TB"
+                     "HoverText":  "Macro `SIM_JTAG_CORE_TB` is not defined."
                  },
                  {
-                     "Start":  728,
-                     "Length":  10,
+                     "Start":  724,
+                     "Length":  24,
                      "Line":  24,
-                     "Column":  5,
-                     "Text":  "`timescale",
+                     "Column":  1,
+                     "Text":  "    `timescale 1ns / 1ps",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027SIM_JTAG_CORE_TB\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  749,
@@ -14692,7 +14541,7 @@
                      "Text":  "`PROJECT_CLOCK_HZ",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  null
+                     "HoverText":  "Macro `PROJECT_CLOCK_HZ` is not defined."
                  },
                  {
                      "Start":  1627,
@@ -14762,7 +14611,7 @@
                      "Text":  "`PROJECT_UART_BAUD",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  null
+                     "HoverText":  "Macro `PROJECT_UART_BAUD` is not defined."
                  },
                  {
                      "Start":  1675,
@@ -15512,7 +15361,7 @@
                      "Text":  "SPI_REG_ACCESS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef SPI_REG_ACCESS\r\n\r\nmacro condition:\r\n`ifndef SPI_REG_ACCESS"
+                     "HoverText":  "Macro `SPI_REG_ACCESS` is not defined."
                  },
                  {
                      "Start":  2133,
@@ -15642,7 +15491,7 @@
                      "Text":  "BIG16_SPI_REG",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef BIG16_SPI_REG"
+                     "HoverText":  "Macro `BIG16_SPI_REG` is not defined."
                  },
                  {
                      "Start":  2347,
@@ -16902,7 +16751,7 @@
                      "Text":  "ADJUSTABLE_BAUD_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef ADJUSTABLE_BAUD_ENABLED"
+                     "HoverText":  "Macro `ADJUSTABLE_BAUD_ENABLED` is not defined."
                  },
                  {
                      "Start":  3321,
@@ -20722,7 +20571,7 @@
                      "Text":  "ADJUSTABLE_BAUD_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef ADJUSTABLE_BAUD_ENABLED"
+                     "HoverText":  "Macro `ADJUSTABLE_BAUD_ENABLED` is not defined."
                  },
                  {
                      "Start":  6970,
@@ -21042,7 +20891,7 @@
                      "Text":  "ADJUSTABLE_BAUD_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef ADJUSTABLE_BAUD_ENABLED"
+                     "HoverText":  "Macro `ADJUSTABLE_BAUD_ENABLED` is not defined."
                  },
                  {
                      "Start":  7316,
@@ -21152,7 +21001,7 @@
                      "Text":  "FORCE_DEEP_LOOPBACK",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef FORCE_DEEP_LOOPBACK"
+                     "HoverText":  "Macro `FORCE_DEEP_LOOPBACK` is not defined."
                  },
                  {
                      "Start":  7441,
@@ -21245,24 +21094,14 @@
                      "HoverText":  "Inactive preprocessor code: macro \u0027FORCE_DEEP_LOOPBACK\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  7867,
-                     "Length":  6,
+                     "Start":  7863,
+                     "Length":  25,
                      "Line":  240,
-                     "Column":  5,
-                     "Text":  "`ifdef",
+                     "Column":  1,
+                     "Text":  "    `ifdef FORCE_LOOPBACK",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  7874,
-                     "Length":  14,
-                     "Line":  240,
-                     "Column":  12,
-                     "Text":  "FORCE_LOOPBACK",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef FORCE_LOOPBACK"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027FORCE_DEEP_LOOPBACK\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  7889,
@@ -21275,14 +21114,14 @@
                      "HoverText":  "Inactive preprocessor code: macro \u0027FORCE_DEEP_LOOPBACK\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  7979,
-                     "Length":  6,
+                     "Start":  7975,
+                     "Length":  10,
                      "Line":  242,
-                     "Column":  5,
-                     "Text":  "`endif",
+                     "Column":  1,
+                     "Text":  "    `endif",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027FORCE_DEEP_LOOPBACK\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  7987,
@@ -21506,23 +21345,13 @@
                  },
                  {
                      "Start":  8679,
-                     "Length":  6,
+                     "Length":  25,
                      "Line":  272,
                      "Column":  1,
-                     "Text":  "`ifdef",
+                     "Text":  "`ifdef TRNG_BINARY_STREAM",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  8686,
-                     "Length":  18,
-                     "Line":  272,
-                     "Column":  8,
-                     "Text":  "TRNG_BINARY_STREAM",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_BINARY_STREAM"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027FORCE_DEEP_LOOPBACK\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  8705,
@@ -21541,48 +21370,28 @@
                      "Column":  1,
                      "Text":  "`endif",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027FORCE_DEEP_LOOPBACK\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  8749,
-                     "Length":  6,
+                     "Length":  30,
                      "Line":  276,
                      "Column":  1,
-                     "Text":  "`ifdef",
+                     "Text":  "`ifdef TRNG_CONDITIONED_STREAM",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  8756,
-                     "Length":  23,
-                     "Line":  276,
-                     "Column":  8,
-                     "Text":  "TRNG_CONDITIONED_STREAM",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_CONDITIONED_STREAM"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027FORCE_DEEP_LOOPBACK\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  8780,
-                     "Length":  6,
+                     "Length":  37,
                      "Line":  277,
                      "Column":  1,
-                     "Text":  "`ifdef",
+                     "Text":  "`ifdef TRNG_CONDITIONED_STREAM_64_XOR",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  8787,
-                     "Length":  30,
-                     "Line":  277,
-                     "Column":  8,
-                     "Text":  "TRNG_CONDITIONED_STREAM_64_XOR",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_CONDITIONED_STREAM_64_XOR"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027FORCE_DEEP_LOOPBACK\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  8818,
@@ -21671,8 +21480,8 @@
                      "Column":  1,
                      "Text":  "`else",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027FORCE_DEEP_LOOPBACK\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  9032,
@@ -21696,143 +21505,23 @@
                  },
                  {
                      "Start":  9086,
-                     "Length":  6,
+                     "Length":  45,
                      "Line":  289,
                      "Column":  1,
-                     "Text":  "`endif",
+                     "Text":  "`endif /* ! TRNG_CONDITIONED_STREAM_64_XOR */",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  9093,
-                     "Length":  2,
-                     "Line":  289,
-                     "Column":  8,
-                     "Text":  "/*",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  9095,
-                     "Length":  1,
-                     "Line":  289,
-                     "Column":  10,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  9096,
-                     "Length":  1,
-                     "Line":  289,
-                     "Column":  11,
-                     "Text":  "!",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  9097,
-                     "Length":  1,
-                     "Line":  289,
-                     "Column":  12,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  9098,
-                     "Length":  30,
-                     "Line":  289,
-                     "Column":  13,
-                     "Text":  "TRNG_CONDITIONED_STREAM_64_XOR",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  9128,
-                     "Length":  1,
-                     "Line":  289,
-                     "Column":  43,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  9129,
-                     "Length":  2,
-                     "Line":  289,
-                     "Column":  44,
-                     "Text":  "*/",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027FORCE_DEEP_LOOPBACK\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  9132,
-                     "Length":  6,
+                     "Length":  37,
                      "Line":  290,
                      "Column":  1,
-                     "Text":  "`endif",
+                     "Text":  "`endif /* TRNG_CONDITIONED_STREAM */ ",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  9139,
-                     "Length":  2,
-                     "Line":  290,
-                     "Column":  8,
-                     "Text":  "/*",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  9141,
-                     "Length":  1,
-                     "Line":  290,
-                     "Column":  10,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  9142,
-                     "Length":  23,
-                     "Line":  290,
-                     "Column":  11,
-                     "Text":  "TRNG_CONDITIONED_STREAM",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  9165,
-                     "Length":  1,
-                     "Line":  290,
-                     "Column":  34,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  9166,
-                     "Length":  2,
-                     "Line":  290,
-                     "Column":  35,
-                     "Text":  "*/",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027FORCE_DEEP_LOOPBACK\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  9171,
@@ -21856,23 +21545,13 @@
                  },
                  {
                      "Start":  9251,
-                     "Length":  6,
+                     "Length":  30,
                      "Line":  296,
                      "Column":  1,
-                     "Text":  "`ifdef",
+                     "Text":  "`ifdef ADJUSTABLE_BAUD_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  9258,
-                     "Length":  23,
-                     "Line":  296,
-                     "Column":  8,
-                     "Text":  "ADJUSTABLE_BAUD_ENABLED",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef ADJUSTABLE_BAUD_ENABLED"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027FORCE_DEEP_LOOPBACK\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  9282,
@@ -21891,8 +21570,8 @@
                      "Column":  1,
                      "Text":  "`endif",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027FORCE_DEEP_LOOPBACK\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  9323,
@@ -22006,23 +21685,13 @@
                  },
                  {
                      "Start":  9690,
-                     "Length":  6,
+                     "Length":  21,
                      "Line":  313,
                      "Column":  1,
-                     "Text":  "`ifdef",
+                     "Text":  "`ifdef SPI_REG_ACCESS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  9697,
-                     "Length":  14,
-                     "Line":  313,
-                     "Column":  8,
-                     "Text":  "SPI_REG_ACCESS",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef SPI_REG_ACCESS\r\n\r\nmacro condition:\r\n`ifndef SPI_REG_ACCESS"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027FORCE_DEEP_LOOPBACK\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  9712,
@@ -22051,8 +21720,8 @@
                      "Column":  1,
                      "Text":  "`endif",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027FORCE_DEEP_LOOPBACK\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  9834,
@@ -23922,7 +23591,7 @@
                      "Text":  "TRNG_BINARY_STREAM",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_BINARY_STREAM"
+                     "HoverText":  "Macro `TRNG_BINARY_STREAM` is not defined."
                  },
                  {
                      "Start":  12281,
@@ -23962,27 +23631,17 @@
                      "Text":  "TRNG_CONDITIONED_STREAM",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_CONDITIONED_STREAM"
+                     "HoverText":  "Macro `TRNG_CONDITIONED_STREAM` is not defined."
                  },
                  {
                      "Start":  12356,
-                     "Length":  6,
+                     "Length":  37,
                      "Line":  397,
                      "Column":  1,
-                     "Text":  "`ifdef",
+                     "Text":  "`ifdef TRNG_CONDITIONED_STREAM_64_XOR",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  12363,
-                     "Length":  30,
-                     "Line":  397,
-                     "Column":  8,
-                     "Text":  "TRNG_CONDITIONED_STREAM_64_XOR",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_CONDITIONED_STREAM_64_XOR"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_CONDITIONED_STREAM\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  12394,
@@ -24071,8 +23730,8 @@
                      "Column":  1,
                      "Text":  "`else",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_CONDITIONED_STREAM\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  12608,
@@ -24096,83 +23755,13 @@
                  },
                  {
                      "Start":  12662,
-                     "Length":  6,
+                     "Length":  45,
                      "Line":  409,
                      "Column":  1,
-                     "Text":  "`endif",
+                     "Text":  "`endif /* ! TRNG_CONDITIONED_STREAM_64_XOR */",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  12669,
-                     "Length":  2,
-                     "Line":  409,
-                     "Column":  8,
-                     "Text":  "/*",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  12671,
-                     "Length":  1,
-                     "Line":  409,
-                     "Column":  10,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  12672,
-                     "Length":  1,
-                     "Line":  409,
-                     "Column":  11,
-                     "Text":  "!",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  12673,
-                     "Length":  1,
-                     "Line":  409,
-                     "Column":  12,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  12674,
-                     "Length":  30,
-                     "Line":  409,
-                     "Column":  13,
-                     "Text":  "TRNG_CONDITIONED_STREAM_64_XOR",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  12704,
-                     "Length":  1,
-                     "Line":  409,
-                     "Column":  43,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  12705,
-                     "Length":  2,
-                     "Line":  409,
-                     "Column":  44,
-                     "Text":  "*/",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_CONDITIONED_STREAM\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  12708,
@@ -26282,7 +25871,7 @@
                      "Text":  "SPI_REG_ACCESS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef SPI_REG_ACCESS\r\n\r\nmacro condition:\r\n`ifndef SPI_REG_ACCESS"
+                     "HoverText":  "Macro `SPI_REG_ACCESS` is not defined."
                  },
                  {
                      "Start":  13884,
@@ -26672,7 +26261,7 @@
                      "Text":  "ADJUSTABLE_BAUD_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef ADJUSTABLE_BAUD_ENABLED"
+                     "HoverText":  "Macro `ADJUSTABLE_BAUD_ENABLED` is not defined."
                  },
                  {
                      "Start":  14294,
@@ -26952,7 +26541,7 @@
                      "Text":  "BIG16_SPI_REG",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef BIG16_SPI_REG"
+                     "HoverText":  "Macro `BIG16_SPI_REG` is not defined."
                  },
                  {
                      "Start":  14602,
@@ -27032,7 +26621,7 @@
                      "Text":  "TRNG_BINARY_STREAM",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_BINARY_STREAM"
+                     "HoverText":  "Macro `TRNG_BINARY_STREAM` is not defined."
                  },
                  {
                      "Start":  14761,
@@ -27072,27 +26661,17 @@
                      "Text":  "TRNG_CONDITIONED_STREAM",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_CONDITIONED_STREAM"
+                     "HoverText":  "Macro `TRNG_CONDITIONED_STREAM` is not defined."
                  },
                  {
                      "Start":  14851,
-                     "Length":  6,
+                     "Length":  37,
                      "Line":  491,
                      "Column":  1,
-                     "Text":  "`ifdef",
+                     "Text":  "`ifdef TRNG_CONDITIONED_STREAM_64_XOR",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  14858,
-                     "Length":  30,
-                     "Line":  491,
-                     "Column":  8,
-                     "Text":  "TRNG_CONDITIONED_STREAM_64_XOR",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_CONDITIONED_STREAM_64_XOR"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_CONDITIONED_STREAM\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  14889,
@@ -27181,8 +26760,8 @@
                      "Column":  1,
                      "Text":  "`else",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_CONDITIONED_STREAM\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  15143,
@@ -27211,8 +26790,8 @@
                      "Column":  1,
                      "Text":  "`endif",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_CONDITIONED_STREAM\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  15216,
@@ -27242,7 +26821,7 @@
                      "Text":  "SPI_REG_ACCESS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef SPI_REG_ACCESS\r\n\r\nmacro condition:\r\n`ifndef SPI_REG_ACCESS"
+                     "HoverText":  "Macro `SPI_REG_ACCESS` is not defined."
                  },
                  {
                      "Start":  15246,
@@ -27352,7 +26931,7 @@
                      "Text":  "`SPI_ADDR_WIDTH",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  null
+                     "HoverText":  "Macro `SPI_ADDR_WIDTH` is not defined."
                  },
                  {
                      "Start":  15473,
@@ -27502,7 +27081,7 @@
                      "Text":  "TRNG_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_ENABLED"
+                     "HoverText":  "Macro `TRNG_ENABLED` is not defined."
                  },
                  {
                      "Start":  15594,
@@ -27626,23 +27205,13 @@
                  },
                  {
                      "Start":  15941,
-                     "Length":  6,
+                     "Length":  25,
                      "Line":  533,
                      "Column":  1,
-                     "Text":  "`ifdef",
+                     "Text":  "`ifdef TRNG_BINARY_STREAM",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  15948,
-                     "Length":  18,
-                     "Line":  533,
-                     "Column":  8,
-                     "Text":  "TRNG_BINARY_STREAM",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_BINARY_STREAM"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_ENABLED\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  15967,
@@ -27661,48 +27230,28 @@
                      "Column":  1,
                      "Text":  "`endif",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_ENABLED\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  16026,
-                     "Length":  6,
+                     "Length":  30,
                      "Line":  537,
                      "Column":  1,
-                     "Text":  "`ifdef",
+                     "Text":  "`ifdef TRNG_CONDITIONED_STREAM",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  16033,
-                     "Length":  23,
-                     "Line":  537,
-                     "Column":  8,
-                     "Text":  "TRNG_CONDITIONED_STREAM",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_CONDITIONED_STREAM"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_ENABLED\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  16057,
-                     "Length":  6,
+                     "Length":  37,
                      "Line":  538,
                      "Column":  1,
-                     "Text":  "`ifdef",
+                     "Text":  "`ifdef TRNG_CONDITIONED_STREAM_64_XOR",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  16064,
-                     "Length":  30,
-                     "Line":  538,
-                     "Column":  8,
-                     "Text":  "TRNG_CONDITIONED_STREAM_64_XOR",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_CONDITIONED_STREAM_64_XOR"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_ENABLED\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  16095,
@@ -27791,8 +27340,8 @@
                      "Column":  1,
                      "Text":  "`else",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_ENABLED\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  16349,
@@ -27821,8 +27370,8 @@
                      "Column":  1,
                      "Text":  "`endif",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_ENABLED\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  16422,
@@ -27831,8 +27380,8 @@
                      "Column":  1,
                      "Text":  "`endif",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_ENABLED\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  16429,
@@ -27882,27 +27431,17 @@
                      "Text":  "TRNG_CONDITIONED_STREAM",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_CONDITIONED_STREAM"
+                     "HoverText":  "Macro `TRNG_CONDITIONED_STREAM` is not defined."
                  },
                  {
                      "Start":  16501,
-                     "Length":  6,
+                     "Length":  37,
                      "Line":  556,
                      "Column":  1,
-                     "Text":  "`ifdef",
+                     "Text":  "`ifdef TRNG_CONDITIONED_STREAM_64_XOR",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  16508,
-                     "Length":  30,
-                     "Line":  556,
-                     "Column":  8,
-                     "Text":  "TRNG_CONDITIONED_STREAM_64_XOR",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_CONDITIONED_STREAM_64_XOR"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_CONDITIONED_STREAM\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  16539,
@@ -27991,8 +27530,8 @@
                      "Column":  1,
                      "Text":  "`else",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_CONDITIONED_STREAM\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  16817,
@@ -28021,8 +27560,8 @@
                      "Column":  1,
                      "Text":  "`endif",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_CONDITIONED_STREAM\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  16894,
@@ -28832,7 +28371,7 @@
                      "Text":  "TRNG_BINARY_STREAM",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_BINARY_STREAM"
+                     "HoverText":  "Macro `TRNG_BINARY_STREAM` is not defined."
                  },
                  {
                      "Start":  17382,

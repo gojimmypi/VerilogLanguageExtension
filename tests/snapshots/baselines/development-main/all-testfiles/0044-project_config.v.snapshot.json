@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.11",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\src\\project_config.v",
-    "FileRelativePath":  "TestFiles\\src\\project_config.v",
+    "FilePath":  "TestFiles/src/project_config.v",
+    "FileRelativePath":  "TestFiles/src/project_config.v",
     "ContentType":  "verilog",
     "SnapshotLength":  13088,
     "SnapshotVersion":  2,
@@ -543,33 +542,13 @@
                                           ]
                             },
                             {
-                                "Start":  1721,
-                                "Length":  7,
+                                "Start":  1713,
+                                "Length":  47,
                                 "Line":  53,
-                                "Column":  9,
-                                "Text":  "`define",
+                                "Column":  1,
+                                "Text":  "        `define PROJECT_CLOCK_HZ 32\u0027d50_000_000",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  1729,
-                                "Length":  16,
-                                "Line":  53,
-                                "Column":  17,
-                                "Text":  "PROJECT_CLOCK_HZ",
-                                "Types":  [
-                                              "Macro"
-                                          ]
-                            },
-                            {
-                                "Start":  1746,
-                                "Length":  14,
-                                "Line":  53,
-                                "Column":  34,
-                                "Text":  "32\u0027d50_000_000",
-                                "Types":  [
-                                              "Value"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -2043,23 +2022,13 @@
                                           ]
                             },
                             {
-                                "Start":  8653,
-                                "Length":  7,
+                                "Start":  8645,
+                                "Length":  33,
                                 "Line":  203,
-                                "Column":  9,
-                                "Text":  "`define",
+                                "Column":  1,
+                                "Text":  "        `define ULX3S_SPI_ENABLED",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  8661,
-                                "Length":  17,
-                                "Line":  203,
-                                "Column":  17,
-                                "Text":  "ULX3S_SPI_ENABLED",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -2263,23 +2232,13 @@
                                           ]
                             },
                             {
-                                "Start":  9455,
-                                "Length":  7,
+                                "Start":  9443,
+                                "Length":  56,
                                 "Line":  228,
-                                "Column":  13,
-                                "Text":  "`define",
+                                "Column":  1,
+                                "Text":  "            `define TRNG_HEALTH_STATUS_DEBUG_PAGE_SELECT",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  9463,
-                                "Length":  36,
-                                "Line":  228,
-                                "Column":  21,
-                                "Text":  "TRNG_HEALTH_STATUS_DEBUG_PAGE_SELECT",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -2343,53 +2302,23 @@
                                           ]
                             },
                             {
-                                "Start":  9592,
-                                "Length":  7,
+                                "Start":  9580,
+                                "Length":  34,
                                 "Line":  234,
-                                "Column":  13,
-                                "Text":  "`define",
+                                "Column":  1,
+                                "Text":  "            `define SPI_ADDR_MSB 6",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
-                                "Start":  9600,
-                                "Length":  12,
-                                "Line":  234,
-                                "Column":  21,
-                                "Text":  "SPI_ADDR_MSB",
-                                "Types":  [
-                                              "Macro"
-                                          ]
-                            },
-                            {
-                                "Start":  9613,
-                                "Length":  1,
-                                "Line":  234,
-                                "Column":  34,
-                                "Text":  "6",
-                                "Types":  [
-                                              "Value"
-                                          ]
-                            },
-                            {
-                                "Start":  9627,
-                                "Length":  7,
+                                "Start":  9615,
+                                "Length":  23,
                                 "Line":  235,
-                                "Column":  13,
-                                "Text":  "`define",
+                                "Column":  1,
+                                "Text":  "            `define MAX",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  9635,
-                                "Length":  3,
-                                "Line":  235,
-                                "Column":  21,
-                                "Text":  "MAX",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -2453,33 +2382,13 @@
                                           ]
                             },
                             {
-                                "Start":  9729,
-                                "Length":  7,
+                                "Start":  9717,
+                                "Length":  34,
                                 "Line":  239,
-                                "Column":  13,
-                                "Text":  "`define",
+                                "Column":  1,
+                                "Text":  "            `define SPI_ADDR_MSB 2",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  9737,
-                                "Length":  12,
-                                "Line":  239,
-                                "Column":  21,
-                                "Text":  "SPI_ADDR_MSB",
-                                "Types":  [
-                                              "Macro"
-                                          ]
-                            },
-                            {
-                                "Start":  9750,
-                                "Length":  1,
-                                "Line":  239,
-                                "Column":  34,
-                                "Text":  "2",
-                                "Types":  [
-                                              "Value"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -2783,23 +2692,13 @@
                                           ]
                             },
                             {
-                                "Start":  10289,
-                                "Length":  7,
+                                "Start":  10281,
+                                "Length":  39,
                                 "Line":  257,
-                                "Column":  9,
-                                "Text":  "`ifndef",
+                                "Column":  1,
+                                "Text":  "        `ifndef TRNG_CONDITIONED_STREAM",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  10297,
-                                "Length":  23,
-                                "Line":  257,
-                                "Column":  17,
-                                "Text":  "TRNG_CONDITIONED_STREAM",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -2813,13 +2712,13 @@
                                           ]
                             },
                             {
-                                "Start":  10489,
-                                "Length":  6,
+                                "Start":  10481,
+                                "Length":  14,
                                 "Line":  259,
-                                "Column":  9,
-                                "Text":  "`endif",
+                                "Column":  1,
+                                "Text":  "        `endif",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -2853,23 +2752,13 @@
                                           ]
                             },
                             {
-                                "Start":  10555,
-                                "Length":  7,
+                                "Start":  10547,
+                                "Length":  39,
                                 "Line":  263,
-                                "Column":  9,
-                                "Text":  "`ifndef",
+                                "Column":  1,
+                                "Text":  "        `ifndef TRNG_CONDITIONED_STREAM",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  10563,
-                                "Length":  23,
-                                "Line":  263,
-                                "Column":  17,
-                                "Text":  "TRNG_CONDITIONED_STREAM",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -2883,13 +2772,13 @@
                                           ]
                             },
                             {
-                                "Start":  10749,
-                                "Length":  6,
+                                "Start":  10741,
+                                "Length":  14,
                                 "Line":  265,
-                                "Column":  9,
-                                "Text":  "`endif",
+                                "Column":  1,
+                                "Text":  "        `endif",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -2993,23 +2882,13 @@
                                           ]
                             },
                             {
-                                "Start":  11087,
-                                "Length":  6,
+                                "Start":  11079,
+                                "Length":  42,
                                 "Line":  275,
-                                "Column":  9,
-                                "Text":  "`ifdef",
+                                "Column":  1,
+                                "Text":  "        `ifdef TRNG_CONDITIONED_STREAM_CRC",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  11094,
-                                "Length":  27,
-                                "Line":  275,
-                                "Column":  16,
-                                "Text":  "TRNG_CONDITIONED_STREAM_CRC",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -3023,13 +2902,13 @@
                                           ]
                             },
                             {
-                                "Start":  11318,
-                                "Length":  6,
+                                "Start":  11310,
+                                "Length":  14,
                                 "Line":  277,
-                                "Column":  9,
-                                "Text":  "`endif",
+                                "Column":  1,
+                                "Text":  "        `endif",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -3063,23 +2942,13 @@
                                           ]
                             },
                             {
-                                "Start":  11387,
-                                "Length":  6,
+                                "Start":  11379,
+                                "Length":  45,
                                 "Line":  281,
-                                "Column":  9,
-                                "Text":  "`ifdef",
+                                "Column":  1,
+                                "Text":  "        `ifdef TRNG_CONDITIONED_STREAM_GALOIS",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  11394,
-                                "Length":  30,
-                                "Line":  281,
-                                "Column":  16,
-                                "Text":  "TRNG_CONDITIONED_STREAM_GALOIS",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -3093,13 +2962,13 @@
                                           ]
                             },
                             {
-                                "Start":  11627,
-                                "Length":  6,
+                                "Start":  11619,
+                                "Length":  14,
                                 "Line":  283,
-                                "Column":  9,
-                                "Text":  "`endif",
+                                "Column":  1,
+                                "Text":  "        `endif",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -3133,23 +3002,13 @@
                                           ]
                             },
                             {
-                                "Start":  11693,
-                                "Length":  6,
+                                "Start":  11685,
+                                "Length":  45,
                                 "Line":  287,
-                                "Column":  9,
-                                "Text":  "`ifdef",
+                                "Column":  1,
+                                "Text":  "        `ifdef TRNG_CONDITIONED_STREAM_GALOIS",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  11700,
-                                "Length":  30,
-                                "Line":  287,
-                                "Column":  16,
-                                "Text":  "TRNG_CONDITIONED_STREAM_GALOIS",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -3163,13 +3022,13 @@
                                           ]
                             },
                             {
-                                "Start":  11927,
-                                "Length":  6,
+                                "Start":  11919,
+                                "Length":  14,
                                 "Line":  289,
-                                "Column":  9,
-                                "Text":  "`endif",
+                                "Column":  1,
+                                "Text":  "        `endif",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -3203,23 +3062,13 @@
                                           ]
                             },
                             {
-                                "Start":  11982,
-                                "Length":  6,
+                                "Start":  11974,
+                                "Length":  35,
                                 "Line":  293,
-                                "Column":  9,
-                                "Text":  "`ifdef",
+                                "Column":  1,
+                                "Text":  "        `ifdef CASE_INSENSITIVE_ALT",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  11989,
-                                "Length":  20,
-                                "Line":  293,
-                                "Column":  16,
-                                "Text":  "CASE_INSENSITIVE_ALT",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -3233,13 +3082,13 @@
                                           ]
                             },
                             {
-                                "Start":  12156,
-                                "Length":  6,
+                                "Start":  12148,
+                                "Length":  14,
                                 "Line":  295,
-                                "Column":  9,
-                                "Text":  "`endif",
+                                "Column":  1,
+                                "Text":  "        `endif",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -3273,23 +3122,13 @@
                                           ]
                             },
                             {
-                                "Start":  12215,
-                                "Length":  6,
+                                "Start":  12207,
+                                "Length":  31,
                                 "Line":  299,
-                                "Column":  9,
-                                "Text":  "`ifdef",
+                                "Column":  1,
+                                "Text":  "        `ifdef CASE_INSENSITIVE",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  12222,
-                                "Length":  16,
-                                "Line":  299,
-                                "Column":  16,
-                                "Text":  "CASE_INSENSITIVE",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -3313,13 +3152,13 @@
                                           ]
                             },
                             {
-                                "Start":  12382,
-                                "Length":  6,
+                                "Start":  12374,
+                                "Length":  14,
                                 "Line":  301,
-                                "Column":  9,
-                                "Text":  "`endif",
+                                "Column":  1,
+                                "Text":  "        `endif",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -3533,23 +3372,13 @@
                                           ]
                             },
                             {
-                                "Start":  12886,
-                                "Length":  6,
+                                "Start":  12878,
+                                "Length":  28,
                                 "Line":  321,
-                                "Column":  9,
-                                "Text":  "`ifdef",
+                                "Column":  1,
+                                "Text":  "        `ifdef BIG16_SPI_REG",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  12893,
-                                "Length":  13,
-                                "Line":  321,
-                                "Column":  16,
-                                "Text":  "BIG16_SPI_REG",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -3563,13 +3392,13 @@
                                           ]
                             },
                             {
-                                "Start":  13016,
-                                "Length":  6,
+                                "Start":  13008,
+                                "Length":  14,
                                 "Line":  323,
-                                "Column":  9,
-                                "Text":  "`endif",
+                                "Column":  1,
+                                "Text":  "        `endif",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -5452,7 +5281,7 @@
                      "Text":  "PROJECT_CONFIG_V",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifndef PROJECT_CONFIG_V\r\n\r\nmacro definition:\r\n`define PROJECT_CONFIG_V\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V"
+                     "HoverText":  "Macro `PROJECT_CONFIG_V` is not defined."
                  },
                  {
                      "Start":  584,
@@ -5472,7 +5301,7 @@
                      "Text":  "PROJECT_CONFIG_V",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifndef PROJECT_CONFIG_V\r\n\r\nmacro definition:\r\n`define PROJECT_CONFIG_V\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V"
+                     "HoverText":  "Macro `PROJECT_CONFIG_V` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 23"
                  },
                  {
                      "Start":  613,
@@ -6012,7 +5841,7 @@
                      "Text":  "USE_LONG_STRINGS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define USE_LONG_STRINGS\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n\r\nmacro condition:\r\n`ifdef USE_LONG_STRINGS"
+                     "HoverText":  "Macro `USE_LONG_STRINGS` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 26"
                  },
                  {
                      "Start":  792,
@@ -6032,7 +5861,7 @@
                      "Text":  "USE_LONG_STRINGS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define USE_LONG_STRINGS\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n\r\nmacro condition:\r\n`ifdef USE_LONG_STRINGS"
+                     "HoverText":  "Macro `USE_LONG_STRINGS` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 26"
                  },
                  {
                      "Start":  824,
@@ -6052,7 +5881,7 @@
                      "Text":  "VERSION_STRING_LEN",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define VERSION_STRING_LEN 23\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifdef USE_LONG_STRINGS"
+                     "HoverText":  "Macro `VERSION_STRING_LEN` is defined.\r\nValue: 23 /* 123456789012345678901234 */\r\nFile: TestFiles/src/project_config.v\r\nLine: 29"
                  },
                  {
                      "Start":  851,
@@ -6122,7 +5951,7 @@
                      "Text":  "VERSION_STRING",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define VERSION_STRING          \"Version 1.0.5 6/21/2026\"\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifdef USE_LONG_STRINGS"
+                     "HoverText":  "Macro `VERSION_STRING` is defined.\r\nValue: \"Version 1.0.5 6/21/2026\"\r\nFile: TestFiles/src/project_config.v\r\nLine: 30"
                  },
                  {
                      "Start":  928,
@@ -7932,37 +7761,17 @@
                      "Text":  "ULX3S_USE_GN12_50MHZ",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef ULX3S_USE_GN12_50MHZ"
+                     "HoverText":  "Macro `ULX3S_USE_GN12_50MHZ` is not defined."
                  },
                  {
-                     "Start":  1721,
-                     "Length":  7,
+                     "Start":  1713,
+                     "Length":  47,
                      "Line":  53,
-                     "Column":  9,
-                     "Text":  "`define",
+                     "Column":  1,
+                     "Text":  "        `define PROJECT_CLOCK_HZ 32\u0027d50_000_000",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  1729,
-                     "Length":  16,
-                     "Line":  53,
-                     "Column":  17,
-                     "Text":  "PROJECT_CLOCK_HZ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define PROJECT_CLOCK_HZ 32\u0027d50_000_000\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifdef ULX3S_USE_GN12_50MHZ\r\n\r\nmacro condition:\r\n`ifndef PROJECT_CLOCK_HZ\r\n\r\nmacro definition:\r\n`define PROJECT_CLOCK_HZ 32\u0027d25_000_000\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifndef PROJECT_CLOCK_HZ"
-                 },
-                 {
-                     "Start":  1746,
-                     "Length":  14,
-                     "Line":  53,
-                     "Column":  34,
-                     "Text":  "32\u0027d50_000_000",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Value",
-                     "HoverText":  "32\u0027D50000000 = (32 bit Decimal) 50000000; "
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027ULX3S_USE_GN12_50MHZ\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  1765,
@@ -7992,7 +7801,7 @@
                      "Text":  "PROJECT_CLOCK_HZ",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define PROJECT_CLOCK_HZ 32\u0027d50_000_000\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifdef ULX3S_USE_GN12_50MHZ\r\n\r\nmacro condition:\r\n`ifndef PROJECT_CLOCK_HZ\r\n\r\nmacro definition:\r\n`define PROJECT_CLOCK_HZ 32\u0027d25_000_000\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifndef PROJECT_CLOCK_HZ"
+                     "HoverText":  "Macro `PROJECT_CLOCK_HZ` is not defined."
                  },
                  {
                      "Start":  1809,
@@ -8012,7 +7821,7 @@
                      "Text":  "PROJECT_CLOCK_HZ",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define PROJECT_CLOCK_HZ 32\u0027d50_000_000\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifdef ULX3S_USE_GN12_50MHZ\r\n\r\nmacro condition:\r\n`ifndef PROJECT_CLOCK_HZ\r\n\r\nmacro definition:\r\n`define PROJECT_CLOCK_HZ 32\u0027d25_000_000\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifndef PROJECT_CLOCK_HZ"
+                     "HoverText":  "Macro `PROJECT_CLOCK_HZ` is defined.\r\nValue: 32\u0027d25_000_000\r\nFile: TestFiles/src/project_config.v\r\nLine: 57"
                  },
                  {
                      "Start":  1834,
@@ -8052,7 +7861,7 @@
                      "Text":  "PROJECT_UART_BAUD",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifndef PROJECT_UART_BAUD\r\n\r\nmacro definition:\r\n`define PROJECT_UART_BAUD 32\u0027d115_200\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifndef PROJECT_UART_BAUD"
+                     "HoverText":  "Macro `PROJECT_UART_BAUD` is not defined."
                  },
                  {
                      "Start":  1899,
@@ -8072,7 +7881,7 @@
                      "Text":  "PROJECT_UART_BAUD",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifndef PROJECT_UART_BAUD\r\n\r\nmacro definition:\r\n`define PROJECT_UART_BAUD 32\u0027d115_200\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifndef PROJECT_UART_BAUD"
+                     "HoverText":  "Macro `PROJECT_UART_BAUD` is defined.\r\nValue: 32\u0027d115_200\r\nFile: TestFiles/src/project_config.v\r\nLine: 61"
                  },
                  {
                      "Start":  1925,
@@ -8112,7 +7921,7 @@
                      "Text":  "ADJUSTABLE_BAUD_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define ADJUSTABLE_BAUD_ENABLED\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V"
+                     "HoverText":  "Macro `ADJUSTABLE_BAUD_ENABLED` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 64"
                  },
                  {
                      "Start":  1990,
@@ -8432,7 +8241,7 @@
                      "Text":  "UART_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define UART_ENABLED\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V"
+                     "HoverText":  "Macro `UART_ENABLED` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 69"
                  },
                  {
                      "Start":  2137,
@@ -10502,7 +10311,7 @@
                      "Text":  "SPI_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define SPI_ENABLED\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n\r\nmacro condition:\r\n`ifndef SPI_ENABLED"
+                     "HoverText":  "Macro `SPI_ENABLED` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 76"
                  },
                  {
                      "Start":  2415,
@@ -10522,7 +10331,7 @@
                      "Text":  "SPI_REG_ACCESS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define SPI_REG_ACCESS\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n\r\nmacro condition:\r\n`ifdef SPI_REG_ACCESS"
+                     "HoverText":  "Macro `SPI_REG_ACCESS` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 77"
                  },
                  {
                      "Start":  2443,
@@ -11182,7 +10991,7 @@
                      "Text":  "BIG16_SPI_REG",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define BIG16_SPI_REG\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n\r\nmacro condition:\r\n`elsif BIG16_SPI_REG\r\n\r\nmacro condition:\r\n`ifdef BIG16_SPI_REG"
+                     "HoverText":  "Macro `BIG16_SPI_REG` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 86"
                  },
                  {
                      "Start":  2733,
@@ -11202,7 +11011,7 @@
                      "Text":  "TRNG_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define TRNG_ENABLED\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V"
+                     "HoverText":  "Macro `TRNG_ENABLED` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 88"
                  },
                  {
                      "Start":  2758,
@@ -11222,7 +11031,7 @@
                      "Text":  "TRNG_BINARY_STREAM",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define TRNG_BINARY_STREAM\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n\r\nmacro condition:\r\n`ifndef TRNG_BINARY_STREAM"
+                     "HoverText":  "Macro `TRNG_BINARY_STREAM` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 89"
                  },
                  {
                      "Start":  2790,
@@ -11772,7 +11581,7 @@
                      "Text":  "TRNG_HEALTH_STATUS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define TRNG_HEALTH_STATUS\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n\r\nmacro condition:\r\n`ifdef TRNG_HEALTH_STATUS"
+                     "HoverText":  "Macro `TRNG_HEALTH_STATUS` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 93"
                  },
                  {
                      "Start":  2987,
@@ -15102,7 +14911,7 @@
                      "Text":  "TRNG_CONDITIONED_STREAM",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define TRNG_CONDITIONED_STREAM\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n\r\nmacro condition:\r\n`ifdef TRNG_CONDITIONED_STREAM\r\n\r\nmacro condition:\r\n`ifndef TRNG_CONDITIONED_STREAM"
+                     "HoverText":  "Macro `TRNG_CONDITIONED_STREAM` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 110"
                  },
                  {
                      "Start":  3696,
@@ -28772,7 +28581,7 @@
                      "Text":  "TRNG_CONDITIONED_STREAM_GALOIS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define TRNG_CONDITIONED_STREAM_GALOIS\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n\r\nmacro condition:\r\n`ifdef TRNG_CONDITIONED_STREAM_GALOIS"
+                     "HoverText":  "Macro `TRNG_CONDITIONED_STREAM_GALOIS` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 157"
                  },
                  {
                      "Start":  6529,
@@ -31392,7 +31201,7 @@
                      "Text":  "TRNG_RAW_CLEAN_MIX",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define TRNG_RAW_CLEAN_MIX\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V"
+                     "HoverText":  "Macro `TRNG_RAW_CLEAN_MIX` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 166"
                  },
                  {
                      "Start":  6992,
@@ -36132,7 +35941,7 @@
                      "Text":  "PDK_TARGET_SKY130",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef PDK_TARGET_SKY130"
+                     "HoverText":  "Macro `PDK_TARGET_SKY130` is not defined."
                  },
                  {
                      "Start":  7865,
@@ -36172,7 +35981,7 @@
                      "Text":  "JTAG_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define JTAG_ENABLED\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`else (from `ifdef PDK_TARGET_SKY130)\r\n\r\nmacro condition:\r\n`ifdef JTAG_ENABLED"
+                     "HoverText":  "Macro `JTAG_ENABLED` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 187"
                  },
                  {
                      "Start":  7943,
@@ -37162,7 +36971,7 @@
                      "Text":  "ULX3S",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef ULX3S"
+                     "HoverText":  "Macro `ULX3S` is not defined."
                  },
                  {
                      "Start":  8367,
@@ -37205,24 +37014,14 @@
                      "HoverText":  "Inactive preprocessor code: macro \u0027ULX3S\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  8653,
-                     "Length":  7,
+                     "Start":  8645,
+                     "Length":  33,
                      "Line":  203,
-                     "Column":  9,
-                     "Text":  "`define",
+                     "Column":  1,
+                     "Text":  "        `define ULX3S_SPI_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  8661,
-                     "Length":  17,
-                     "Line":  203,
-                     "Column":  17,
-                     "Text":  "ULX3S_SPI_ENABLED",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define ULX3S_SPI_ENABLED\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifdef ULX3S"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027ULX3S\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  8684,
@@ -37242,7 +37041,7 @@
                      "Text":  "IS_MY_IVERILOG_SIMULATION",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`elsif IS_MY_IVERILOG_SIMULATION"
+                     "HoverText":  "Macro `IS_MY_IVERILOG_SIMULATION` is not defined."
                  },
                  {
                      "Start":  8718,
@@ -38502,7 +38301,7 @@
                      "Text":  "TRNG_HEALTH_STATUS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define TRNG_HEALTH_STATUS\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n\r\nmacro condition:\r\n`ifdef TRNG_HEALTH_STATUS"
+                     "HoverText":  "Macro `TRNG_HEALTH_STATUS` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 93"
                  },
                  {
                      "Start":  9360,
@@ -38522,7 +38321,7 @@
                      "Text":  "DEBUG_PAGE_SELECT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef DEBUG_PAGE_SELECT"
+                     "HoverText":  "Macro `DEBUG_PAGE_SELECT` is not defined."
                  },
                  {
                      "Start":  9385,
@@ -38535,24 +38334,14 @@
                      "HoverText":  "Inactive preprocessor code: macro \u0027DEBUG_PAGE_SELECT\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  9455,
-                     "Length":  7,
+                     "Start":  9443,
+                     "Length":  56,
                      "Line":  228,
-                     "Column":  13,
-                     "Text":  "`define",
+                     "Column":  1,
+                     "Text":  "            `define TRNG_HEALTH_STATUS_DEBUG_PAGE_SELECT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  9463,
-                     "Length":  36,
-                     "Line":  228,
-                     "Column":  21,
-                     "Text":  "TRNG_HEALTH_STATUS_DEBUG_PAGE_SELECT",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define TRNG_HEALTH_STATUS_DEBUG_PAGE_SELECT\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifdef TRNG_HEALTH_STATUS\r\n`ifdef DEBUG_PAGE_SELECT"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027DEBUG_PAGE_SELECT\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  9508,
@@ -38592,7 +38381,7 @@
                      "Text":  "SPI_REG_ACCESS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define SPI_REG_ACCESS\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n\r\nmacro condition:\r\n`ifdef SPI_REG_ACCESS"
+                     "HoverText":  "Macro `SPI_REG_ACCESS` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 77"
                  },
                  {
                      "Start":  9561,
@@ -38612,57 +38401,27 @@
                      "Text":  "MAX_SPI_REG",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef MAX_SPI_REG"
+                     "HoverText":  "Macro `MAX_SPI_REG` is not defined."
                  },
                  {
-                     "Start":  9592,
-                     "Length":  7,
+                     "Start":  9580,
+                     "Length":  34,
                      "Line":  234,
-                     "Column":  13,
-                     "Text":  "`define",
+                     "Column":  1,
+                     "Text":  "            `define SPI_ADDR_MSB 6",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027MAX_SPI_REG\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  9600,
-                     "Length":  12,
-                     "Line":  234,
-                     "Column":  21,
-                     "Text":  "SPI_ADDR_MSB",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define SPI_ADDR_MSB 6\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifdef SPI_REG_ACCESS\r\n`ifdef MAX_SPI_REG\r\n\r\nmacro definition:\r\n`define SPI_ADDR_MSB 3\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifdef SPI_REG_ACCESS\r\n`elsif BIG16_SPI_REG (from `ifdef MAX_SPI_REG)\r\n\r\nmacro definition:\r\n`define SPI_ADDR_MSB 2\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifdef SPI_REG_ACCESS\r\n`else (from `elsif BIG16_SPI_REG (from `ifdef MAX_SPI_REG))"
-                 },
-                 {
-                     "Start":  9613,
-                     "Length":  1,
-                     "Line":  234,
-                     "Column":  34,
-                     "Text":  "6",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Value",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  9627,
-                     "Length":  7,
+                     "Start":  9615,
+                     "Length":  23,
                      "Line":  235,
-                     "Column":  13,
-                     "Text":  "`define",
+                     "Column":  1,
+                     "Text":  "            `define MAX",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  9635,
-                     "Length":  3,
-                     "Line":  235,
-                     "Column":  21,
-                     "Text":  "MAX",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define MAX\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifdef SPI_REG_ACCESS\r\n`ifdef MAX_SPI_REG"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027MAX_SPI_REG\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  9647,
@@ -38682,7 +38441,7 @@
                      "Text":  "BIG16_SPI_REG",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define BIG16_SPI_REG\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n\r\nmacro condition:\r\n`elsif BIG16_SPI_REG\r\n\r\nmacro condition:\r\n`ifdef BIG16_SPI_REG"
+                     "HoverText":  "Macro `BIG16_SPI_REG` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 86"
                  },
                  {
                      "Start":  9680,
@@ -38702,7 +38461,7 @@
                      "Text":  "SPI_ADDR_MSB",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define SPI_ADDR_MSB 6\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifdef SPI_REG_ACCESS\r\n`ifdef MAX_SPI_REG\r\n\r\nmacro definition:\r\n`define SPI_ADDR_MSB 3\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifdef SPI_REG_ACCESS\r\n`elsif BIG16_SPI_REG (from `ifdef MAX_SPI_REG)\r\n\r\nmacro definition:\r\n`define SPI_ADDR_MSB 2\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifdef SPI_REG_ACCESS\r\n`else (from `elsif BIG16_SPI_REG (from `ifdef MAX_SPI_REG))"
+                     "HoverText":  "Macro `SPI_ADDR_MSB` is defined.\r\nValue: 3\r\nFile: TestFiles/src/project_config.v\r\nLine: 237"
                  },
                  {
                      "Start":  9701,
@@ -38725,34 +38484,14 @@
                      "HoverText":  "Verilog directive"
                  },
                  {
-                     "Start":  9729,
-                     "Length":  7,
+                     "Start":  9717,
+                     "Length":  34,
                      "Line":  239,
-                     "Column":  13,
-                     "Text":  "`define",
+                     "Column":  1,
+                     "Text":  "            `define SPI_ADDR_MSB 2",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  9737,
-                     "Length":  12,
-                     "Line":  239,
-                     "Column":  21,
-                     "Text":  "SPI_ADDR_MSB",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define SPI_ADDR_MSB 6\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifdef SPI_REG_ACCESS\r\n`ifdef MAX_SPI_REG\r\n\r\nmacro definition:\r\n`define SPI_ADDR_MSB 3\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifdef SPI_REG_ACCESS\r\n`elsif BIG16_SPI_REG (from `ifdef MAX_SPI_REG)\r\n\r\nmacro definition:\r\n`define SPI_ADDR_MSB 2\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifdef SPI_REG_ACCESS\r\n`else (from `elsif BIG16_SPI_REG (from `ifdef MAX_SPI_REG))"
-                 },
-                 {
-                     "Start":  9750,
-                     "Length":  1,
-                     "Line":  239,
-                     "Column":  34,
-                     "Text":  "2",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Value",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027BIG16_SPI_REG\u0027 is defined, so an earlier `elsif branch is active. Change the controlling macro definitions to select this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  9760,
@@ -38782,7 +38521,7 @@
                      "Text":  "SPI_ADDR_WIDTH",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define SPI_ADDR_WIDTH  (`SPI_ADDR_MSB + 1)\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifdef SPI_REG_ACCESS"
+                     "HoverText":  "Macro `SPI_ADDR_WIDTH` is defined.\r\nValue: (`SPI_ADDR_MSB + 1)\r\nFile: TestFiles/src/project_config.v\r\nLine: 241"
                  },
                  {
                      "Start":  9799,
@@ -38802,7 +38541,7 @@
                      "Text":  "`SPI_ADDR_MSB",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define SPI_ADDR_MSB 6\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifdef SPI_REG_ACCESS\r\n`ifdef MAX_SPI_REG\r\n\r\nmacro definition:\r\n`define SPI_ADDR_MSB 3\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifdef SPI_REG_ACCESS\r\n`elsif BIG16_SPI_REG (from `ifdef MAX_SPI_REG)\r\n\r\nmacro definition:\r\n`define SPI_ADDR_MSB 2\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifdef SPI_REG_ACCESS\r\n`else (from `elsif BIG16_SPI_REG (from `ifdef MAX_SPI_REG))"
+                     "HoverText":  "Macro `SPI_ADDR_MSB` is defined.\r\nValue: 3\r\nFile: TestFiles/src/project_config.v\r\nLine: 237"
                  },
                  {
                      "Start":  9816,
@@ -38852,7 +38591,7 @@
                      "Text":  "JTAG_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define JTAG_ENABLED\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`else (from `ifdef PDK_TARGET_SKY130)\r\n\r\nmacro condition:\r\n`ifdef JTAG_ENABLED"
+                     "HoverText":  "Macro `JTAG_ENABLED` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 187"
                  },
                  {
                      "Start":  9863,
@@ -38872,7 +38611,7 @@
                      "Text":  "JTAG_ADDR_MSB",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define JTAG_ADDR_MSB `SPI_ADDR_MSB\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifdef JTAG_ENABLED"
+                     "HoverText":  "Macro `JTAG_ADDR_MSB` is defined.\r\nValue: `SPI_ADDR_MSB\r\nFile: TestFiles/src/project_config.v\r\nLine: 245"
                  },
                  {
                      "Start":  9885,
@@ -38882,7 +38621,7 @@
                      "Text":  "`SPI_ADDR_MSB",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define SPI_ADDR_MSB 6\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifdef SPI_REG_ACCESS\r\n`ifdef MAX_SPI_REG\r\n\r\nmacro definition:\r\n`define SPI_ADDR_MSB 3\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifdef SPI_REG_ACCESS\r\n`elsif BIG16_SPI_REG (from `ifdef MAX_SPI_REG)\r\n\r\nmacro definition:\r\n`define SPI_ADDR_MSB 2\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifdef SPI_REG_ACCESS\r\n`else (from `elsif BIG16_SPI_REG (from `ifdef MAX_SPI_REG))"
+                     "HoverText":  "Macro `SPI_ADDR_MSB` is defined.\r\nValue: 3\r\nFile: TestFiles/src/project_config.v\r\nLine: 237"
                  },
                  {
                      "Start":  9907,
@@ -38902,7 +38641,7 @@
                      "Text":  "JTAG_ADDR_WIDTH",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define JTAG_ADDR_WIDTH (`JTAG_ADDR_MSB + 1)\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifdef JTAG_ENABLED"
+                     "HoverText":  "Macro `JTAG_ADDR_WIDTH` is defined.\r\nValue: (`JTAG_ADDR_MSB + 1)\r\nFile: TestFiles/src/project_config.v\r\nLine: 246"
                  },
                  {
                      "Start":  9931,
@@ -38922,7 +38661,7 @@
                      "Text":  "`JTAG_ADDR_MSB",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define JTAG_ADDR_MSB `SPI_ADDR_MSB\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n`ifdef JTAG_ENABLED"
+                     "HoverText":  "Macro `JTAG_ADDR_MSB` is defined.\r\nValue: `SPI_ADDR_MSB\r\nFile: TestFiles/src/project_config.v\r\nLine: 245"
                  },
                  {
                      "Start":  9949,
@@ -39102,7 +38841,7 @@
                      "Text":  "TRNG_CONDITIONED_STREAM",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define TRNG_CONDITIONED_STREAM\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n\r\nmacro condition:\r\n`ifdef TRNG_CONDITIONED_STREAM\r\n\r\nmacro condition:\r\n`ifndef TRNG_CONDITIONED_STREAM"
+                     "HoverText":  "Macro `TRNG_CONDITIONED_STREAM` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 110"
                  },
                  {
                      "Start":  10049,
@@ -39122,7 +38861,7 @@
                      "Text":  "TRNG_BINARY_STREAM",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define TRNG_BINARY_STREAM\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n\r\nmacro condition:\r\n`ifndef TRNG_BINARY_STREAM"
+                     "HoverText":  "Macro `TRNG_BINARY_STREAM` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 89"
                  },
                  {
                      "Start":  10076,
@@ -39172,27 +38911,17 @@
                      "Text":  "TRNG_CONDITIONED_STREAM_64_XOR",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_CONDITIONED_STREAM_64_XOR"
+                     "HoverText":  "Macro `TRNG_CONDITIONED_STREAM_64_XOR` is not defined."
                  },
                  {
-                     "Start":  10289,
-                     "Length":  7,
+                     "Start":  10281,
+                     "Length":  39,
                      "Line":  257,
-                     "Column":  9,
-                     "Text":  "`ifndef",
+                     "Column":  1,
+                     "Text":  "        `ifndef TRNG_CONDITIONED_STREAM",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  10297,
-                     "Length":  23,
-                     "Line":  257,
-                     "Column":  17,
-                     "Text":  "TRNG_CONDITIONED_STREAM",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define TRNG_CONDITIONED_STREAM\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n\r\nmacro condition:\r\n`ifdef TRNG_CONDITIONED_STREAM\r\n\r\nmacro condition:\r\n`ifndef TRNG_CONDITIONED_STREAM"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_CONDITIONED_STREAM_64_XOR\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  10321,
@@ -39205,14 +38934,14 @@
                      "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_CONDITIONED_STREAM_64_XOR\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  10489,
-                     "Length":  6,
+                     "Start":  10481,
+                     "Length":  14,
                      "Line":  259,
-                     "Column":  9,
-                     "Text":  "`endif",
+                     "Column":  1,
+                     "Text":  "        `endif",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_CONDITIONED_STREAM_64_XOR\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  10500,
@@ -39242,27 +38971,17 @@
                      "Text":  "TRNG_CONDITIONED_STREAM_CRC",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_CONDITIONED_STREAM_CRC"
+                     "HoverText":  "Macro `TRNG_CONDITIONED_STREAM_CRC` is not defined."
                  },
                  {
-                     "Start":  10555,
-                     "Length":  7,
+                     "Start":  10547,
+                     "Length":  39,
                      "Line":  263,
-                     "Column":  9,
-                     "Text":  "`ifndef",
+                     "Column":  1,
+                     "Text":  "        `ifndef TRNG_CONDITIONED_STREAM",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  10563,
-                     "Length":  23,
-                     "Line":  263,
-                     "Column":  17,
-                     "Text":  "TRNG_CONDITIONED_STREAM",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define TRNG_CONDITIONED_STREAM\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n\r\nmacro condition:\r\n`ifdef TRNG_CONDITIONED_STREAM\r\n\r\nmacro condition:\r\n`ifndef TRNG_CONDITIONED_STREAM"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_CONDITIONED_STREAM_CRC\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  10587,
@@ -39275,14 +38994,14 @@
                      "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_CONDITIONED_STREAM_CRC\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  10749,
-                     "Length":  6,
+                     "Start":  10741,
+                     "Length":  14,
                      "Line":  265,
-                     "Column":  9,
-                     "Text":  "`endif",
+                     "Column":  1,
+                     "Text":  "        `endif",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_CONDITIONED_STREAM_CRC\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  10760,
@@ -39312,7 +39031,7 @@
                      "Text":  "TRNG_CONDITIONED_STREAM_GALOIS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define TRNG_CONDITIONED_STREAM_GALOIS\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n\r\nmacro condition:\r\n`ifdef TRNG_CONDITIONED_STREAM_GALOIS"
+                     "HoverText":  "Macro `TRNG_CONDITIONED_STREAM_GALOIS` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 157"
                  },
                  {
                      "Start":  10818,
@@ -39332,7 +39051,7 @@
                      "Text":  "TRNG_CONDITIONED_STREAM",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define TRNG_CONDITIONED_STREAM\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n\r\nmacro condition:\r\n`ifdef TRNG_CONDITIONED_STREAM\r\n\r\nmacro condition:\r\n`ifndef TRNG_CONDITIONED_STREAM"
+                     "HoverText":  "Macro `TRNG_CONDITIONED_STREAM` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 110"
                  },
                  {
                      "Start":  10850,
@@ -39382,27 +39101,17 @@
                      "Text":  "TRNG_CONDITIONED_STREAM_64_XOR",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_CONDITIONED_STREAM_64_XOR"
+                     "HoverText":  "Macro `TRNG_CONDITIONED_STREAM_64_XOR` is not defined."
                  },
                  {
-                     "Start":  11087,
-                     "Length":  6,
+                     "Start":  11079,
+                     "Length":  42,
                      "Line":  275,
-                     "Column":  9,
-                     "Text":  "`ifdef",
+                     "Column":  1,
+                     "Text":  "        `ifdef TRNG_CONDITIONED_STREAM_CRC",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  11094,
-                     "Length":  27,
-                     "Line":  275,
-                     "Column":  16,
-                     "Text":  "TRNG_CONDITIONED_STREAM_CRC",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_CONDITIONED_STREAM_CRC"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_CONDITIONED_STREAM_64_XOR\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  11122,
@@ -39415,14 +39124,14 @@
                      "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_CONDITIONED_STREAM_64_XOR\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  11318,
-                     "Length":  6,
+                     "Start":  11310,
+                     "Length":  14,
                      "Line":  277,
-                     "Column":  9,
-                     "Text":  "`endif",
+                     "Column":  1,
+                     "Text":  "        `endif",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_CONDITIONED_STREAM_64_XOR\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  11329,
@@ -39452,27 +39161,17 @@
                      "Text":  "TRNG_CONDITIONED_STREAM_64_XOR",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_CONDITIONED_STREAM_64_XOR"
+                     "HoverText":  "Macro `TRNG_CONDITIONED_STREAM_64_XOR` is not defined."
                  },
                  {
-                     "Start":  11387,
-                     "Length":  6,
+                     "Start":  11379,
+                     "Length":  45,
                      "Line":  281,
-                     "Column":  9,
-                     "Text":  "`ifdef",
+                     "Column":  1,
+                     "Text":  "        `ifdef TRNG_CONDITIONED_STREAM_GALOIS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  11394,
-                     "Length":  30,
-                     "Line":  281,
-                     "Column":  16,
-                     "Text":  "TRNG_CONDITIONED_STREAM_GALOIS",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define TRNG_CONDITIONED_STREAM_GALOIS\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n\r\nmacro condition:\r\n`ifdef TRNG_CONDITIONED_STREAM_GALOIS"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_CONDITIONED_STREAM_64_XOR\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  11425,
@@ -39485,14 +39184,14 @@
                      "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_CONDITIONED_STREAM_64_XOR\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  11627,
-                     "Length":  6,
+                     "Start":  11619,
+                     "Length":  14,
                      "Line":  283,
-                     "Column":  9,
-                     "Text":  "`endif",
+                     "Column":  1,
+                     "Text":  "        `endif",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_CONDITIONED_STREAM_64_XOR\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  11638,
@@ -39522,27 +39221,17 @@
                      "Text":  "TRNG_CONDITIONED_STREAM_CRC",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_CONDITIONED_STREAM_CRC"
+                     "HoverText":  "Macro `TRNG_CONDITIONED_STREAM_CRC` is not defined."
                  },
                  {
-                     "Start":  11693,
-                     "Length":  6,
+                     "Start":  11685,
+                     "Length":  45,
                      "Line":  287,
-                     "Column":  9,
-                     "Text":  "`ifdef",
+                     "Column":  1,
+                     "Text":  "        `ifdef TRNG_CONDITIONED_STREAM_GALOIS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  11700,
-                     "Length":  30,
-                     "Line":  287,
-                     "Column":  16,
-                     "Text":  "TRNG_CONDITIONED_STREAM_GALOIS",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define TRNG_CONDITIONED_STREAM_GALOIS\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n\r\nmacro condition:\r\n`ifdef TRNG_CONDITIONED_STREAM_GALOIS"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_CONDITIONED_STREAM_CRC\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  11731,
@@ -39555,14 +39244,14 @@
                      "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_CONDITIONED_STREAM_CRC\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  11927,
-                     "Length":  6,
+                     "Start":  11919,
+                     "Length":  14,
                      "Line":  289,
-                     "Column":  9,
-                     "Text":  "`endif",
+                     "Column":  1,
+                     "Text":  "        `endif",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_CONDITIONED_STREAM_CRC\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  11938,
@@ -39592,27 +39281,17 @@
                      "Text":  "CASE_INSENSITIVE",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef CASE_INSENSITIVE"
+                     "HoverText":  "Macro `CASE_INSENSITIVE` is not defined."
                  },
                  {
-                     "Start":  11982,
-                     "Length":  6,
+                     "Start":  11974,
+                     "Length":  35,
                      "Line":  293,
-                     "Column":  9,
-                     "Text":  "`ifdef",
+                     "Column":  1,
+                     "Text":  "        `ifdef CASE_INSENSITIVE_ALT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  11989,
-                     "Length":  20,
-                     "Line":  293,
-                     "Column":  16,
-                     "Text":  "CASE_INSENSITIVE_ALT",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef CASE_INSENSITIVE_ALT"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027CASE_INSENSITIVE\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  12010,
@@ -39625,14 +39304,14 @@
                      "HoverText":  "Inactive preprocessor code: macro \u0027CASE_INSENSITIVE\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  12156,
-                     "Length":  6,
+                     "Start":  12148,
+                     "Length":  14,
                      "Line":  295,
-                     "Column":  9,
-                     "Text":  "`endif",
+                     "Column":  1,
+                     "Text":  "        `endif",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027CASE_INSENSITIVE\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  12167,
@@ -39662,27 +39341,17 @@
                      "Text":  "CASE_INSENSITIVE_ALT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef CASE_INSENSITIVE_ALT"
+                     "HoverText":  "Macro `CASE_INSENSITIVE_ALT` is not defined."
                  },
                  {
-                     "Start":  12215,
-                     "Length":  6,
+                     "Start":  12207,
+                     "Length":  31,
                      "Line":  299,
-                     "Column":  9,
-                     "Text":  "`ifdef",
+                     "Column":  1,
+                     "Text":  "        `ifdef CASE_INSENSITIVE",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  12222,
-                     "Length":  16,
-                     "Line":  299,
-                     "Column":  16,
-                     "Text":  "CASE_INSENSITIVE",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef CASE_INSENSITIVE"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027CASE_INSENSITIVE_ALT\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  12239,
@@ -39695,14 +39364,14 @@
                      "HoverText":  "Inactive preprocessor code: macro \u0027CASE_INSENSITIVE_ALT\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  12382,
-                     "Length":  6,
+                     "Start":  12374,
+                     "Length":  14,
                      "Line":  301,
-                     "Column":  9,
-                     "Text":  "`endif",
+                     "Column":  1,
+                     "Text":  "        `endif",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027CASE_INSENSITIVE_ALT\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  12393,
@@ -39732,7 +39401,7 @@
                      "Text":  "FPGA_BASIC_LSFR_RO_TAPS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef FPGA_BASIC_LSFR_RO_TAPS"
+                     "HoverText":  "Macro `FPGA_BASIC_LSFR_RO_TAPS` is not defined."
                  },
                  {
                      "Start":  12436,
@@ -39772,7 +39441,7 @@
                      "Text":  "SPI_REG_ACCESS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define SPI_REG_ACCESS\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n\r\nmacro condition:\r\n`ifdef SPI_REG_ACCESS"
+                     "HoverText":  "Macro `SPI_REG_ACCESS` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 77"
                  },
                  {
                      "Start":  12561,
@@ -39792,7 +39461,7 @@
                      "Text":  "SPI_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define SPI_ENABLED\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n\r\nmacro condition:\r\n`ifndef SPI_ENABLED"
+                     "HoverText":  "Macro `SPI_ENABLED` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 76"
                  },
                  {
                      "Start":  12581,
@@ -39842,7 +39511,7 @@
                      "Text":  "BIG16_SPI_REG",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define BIG16_SPI_REG\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n\r\nmacro condition:\r\n`elsif BIG16_SPI_REG\r\n\r\nmacro condition:\r\n`ifdef BIG16_SPI_REG"
+                     "HoverText":  "Macro `BIG16_SPI_REG` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 86"
                  },
                  {
                      "Start":  12708,
@@ -39862,7 +39531,7 @@
                      "Text":  "MAX_SPI_REG",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef MAX_SPI_REG"
+                     "HoverText":  "Macro `MAX_SPI_REG` is not defined."
                  },
                  {
                      "Start":  12727,
@@ -39912,27 +39581,17 @@
                      "Text":  "MAX_SPI_REG",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef MAX_SPI_REG"
+                     "HoverText":  "Macro `MAX_SPI_REG` is not defined."
                  },
                  {
-                     "Start":  12886,
-                     "Length":  6,
+                     "Start":  12878,
+                     "Length":  28,
                      "Line":  321,
-                     "Column":  9,
-                     "Text":  "`ifdef",
+                     "Column":  1,
+                     "Text":  "        `ifdef BIG16_SPI_REG",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  12893,
-                     "Length":  13,
-                     "Line":  321,
-                     "Column":  16,
-                     "Text":  "BIG16_SPI_REG",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define BIG16_SPI_REG\r\n\r\ncondition:\r\n`ifndef PROJECT_CONFIG_V\r\n\r\nmacro condition:\r\n`elsif BIG16_SPI_REG\r\n\r\nmacro condition:\r\n`ifdef BIG16_SPI_REG"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027MAX_SPI_REG\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  12907,
@@ -39945,14 +39604,14 @@
                      "HoverText":  "Inactive preprocessor code: macro \u0027MAX_SPI_REG\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  13016,
-                     "Length":  6,
+                     "Start":  13008,
+                     "Length":  14,
                      "Line":  323,
-                     "Column":  9,
-                     "Text":  "`endif",
+                     "Column":  1,
+                     "Text":  "        `endif",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027MAX_SPI_REG\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  13027,

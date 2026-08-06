@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.11",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\src\\UART\\uart_rx_min.v",
-    "FileRelativePath":  "TestFiles\\src\\UART\\uart_rx_min.v",
+    "FilePath":  "TestFiles/src/UART/uart_rx_min.v",
+    "FileRelativePath":  "TestFiles/src/UART/uart_rx_min.v",
     "ContentType":  "verilog",
     "SnapshotLength":  7537,
     "SnapshotVersion":  2,
@@ -353,13 +352,13 @@
                                           ]
                             },
                             {
-                                "Start":  967,
-                                "Length":  10,
+                                "Start":  963,
+                                "Length":  24,
                                 "Line":  35,
-                                "Column":  5,
-                                "Text":  "`timescale",
+                                "Column":  1,
+                                "Text":  "    `timescale 1ns / 1ps",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -7932,17 +7931,17 @@
                      "Text":  "SIM_JTAG_CORE_TB",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef SIM_JTAG_CORE_TB"
+                     "HoverText":  "Macro `SIM_JTAG_CORE_TB` is not defined."
                  },
                  {
-                     "Start":  967,
-                     "Length":  10,
+                     "Start":  963,
+                     "Length":  24,
                      "Line":  35,
-                     "Column":  5,
-                     "Text":  "`timescale",
+                     "Column":  1,
+                     "Text":  "    `timescale 1ns / 1ps",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027SIM_JTAG_CORE_TB\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  988,
@@ -10622,7 +10621,7 @@
                      "Text":  "`PROJECT_CLOCK_HZ",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  null
+                     "HoverText":  "Macro `PROJECT_CLOCK_HZ` is not defined."
                  },
                  {
                      "Start":  1795,
@@ -10692,7 +10691,7 @@
                      "Text":  "`PROJECT_UART_BAUD",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  null
+                     "HoverText":  "Macro `PROJECT_UART_BAUD` is not defined."
                  },
                  {
                      "Start":  1843,
@@ -10822,7 +10821,7 @@
                      "Text":  "ADJUSTABLE_BAUD_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef ADJUSTABLE_BAUD_ENABLED"
+                     "HoverText":  "Macro `ADJUSTABLE_BAUD_ENABLED` is not defined."
                  },
                  {
                      "Start":  1960,
@@ -11382,7 +11381,7 @@
                      "Text":  "ADJUSTABLE_BAUD_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef ADJUSTABLE_BAUD_ENABLED"
+                     "HoverText":  "Macro `ADJUSTABLE_BAUD_ENABLED` is not defined."
                  },
                  {
                      "Start":  2571,
@@ -15362,7 +15361,7 @@
                      "Text":  "ADJUSTABLE_BAUD_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef ADJUSTABLE_BAUD_ENABLED"
+                     "HoverText":  "Macro `ADJUSTABLE_BAUD_ENABLED` is not defined."
                  },
                  {
                      "Start":  5088,
@@ -16272,7 +16271,7 @@
                      "Text":  "ADJUSTABLE_BAUD_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef ADJUSTABLE_BAUD_ENABLED"
+                     "HoverText":  "Macro `ADJUSTABLE_BAUD_ENABLED` is not defined."
                  },
                  {
                      "Start":  5976,
@@ -17152,7 +17151,7 @@
                      "Text":  "ADJUSTABLE_BAUD_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef ADJUSTABLE_BAUD_ENABLED"
+                     "HoverText":  "Macro `ADJUSTABLE_BAUD_ENABLED` is not defined."
                  },
                  {
                      "Start":  6835,

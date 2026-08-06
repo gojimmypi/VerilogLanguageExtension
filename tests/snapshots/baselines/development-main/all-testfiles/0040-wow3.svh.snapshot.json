@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.11",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\wow3.svh",
-    "FileRelativePath":  "TestFiles\\wow3.svh",
+    "FilePath":  "TestFiles/wow3.svh",
+    "FileRelativePath":  "TestFiles/wow3.svh",
     "ContentType":  "verilog",
     "SnapshotLength":  158,
     "SnapshotVersion":  2,

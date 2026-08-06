@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.11",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\test.v",
-    "FileRelativePath":  "TestFiles\\test.v",
+    "FilePath":  "TestFiles/test.v",
+    "FileRelativePath":  "TestFiles/test.v",
     "ContentType":  "verilog",
     "SnapshotLength":  3673,
     "SnapshotVersion":  2,
@@ -210,6 +209,16 @@
                                 "Text":  "/* tab dellmited*/",
                                 "Types":  [
                                               "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  324,
+                                "Length":  4,
+                                "Line":  7,
+                                "Column":  34,
+                                "Text":  "this",
+                                "Types":  [
+                                              "SystemVerilogYosysUnsupported"
                                           ]
                             },
                             {
@@ -3515,6 +3524,16 @@
                      "HoverText":  null
                  },
                  {
+                     "Start":  324,
+                     "Length":  4,
+                     "Line":  7,
+                     "Column":  34,
+                     "Text":  "this",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemVerilogYosysUnsupported",
+                     "HoverText":  "SystemVerilog keyword \u0027this\u0027. VLE marks it as unsupported, non-synthesizable, or unverified for Yosys/sv-elab; actual handling depends on context and tool version."
+                 },
+                 {
                      "Start":  332,
                      "Length":  3,
                      "Line":  7,
@@ -4162,7 +4181,7 @@
                      "Text":  "VERILATOR",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef VERILATOR"
+                     "HoverText":  "Macro `VERILATOR` is not defined."
                  },
                  {
                      "Start":  717,

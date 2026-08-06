@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.11",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\macros\\include-files\\show_inactive_config.vh",
-    "FileRelativePath":  "TestFiles\\macros\\include-files\\show_inactive_config.vh",
+    "FilePath":  "TestFiles/macros/include-files/show_inactive_config.vh",
+    "FileRelativePath":  "TestFiles/macros/include-files/show_inactive_config.vh",
     "ContentType":  "verilog",
     "SnapshotLength":  32,
     "SnapshotVersion":  2,
@@ -52,7 +51,7 @@
                      "Text":  "NO_INACTIVE_MACRO_CODE",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define NO_INACTIVE_MACRO_CODE\r\n\r\ncondition:\r\n(unconditional)"
+                     "HoverText":  "Macro `NO_INACTIVE_MACRO_CODE` is defined with no value.\r\nFile: TestFiles/macros/include-files/show_inactive_config.vh\r\nLine: 1"
                  }
              ],
     "Tokens":  [

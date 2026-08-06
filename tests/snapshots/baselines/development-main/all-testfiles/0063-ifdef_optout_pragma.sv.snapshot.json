@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.11",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\macros\\ifdef_optout_pragma.sv",
-    "FileRelativePath":  "TestFiles\\macros\\ifdef_optout_pragma.sv",
+    "FilePath":  "TestFiles/macros/ifdef_optout_pragma.sv",
+    "FileRelativePath":  "TestFiles/macros/ifdef_optout_pragma.sv",
     "ContentType":  "verilog",
     "SnapshotLength":  188,
     "SnapshotVersion":  2,
@@ -79,7 +78,7 @@
                                 "Column":  11,
                                 "Text":  "normally_colored_despite_inactive_branch",
                                 "Types":  [
-                                              "Variable_reg"
+                                              "Variable_SystemVerilog"
                                           ]
                             },
                             {
@@ -109,7 +108,7 @@
                                 "Column":  11,
                                 "Text":  "active_branch",
                                 "Types":  [
-                                              "Variable_reg"
+                                              "Variable_SystemVerilog"
                                           ]
                             },
                             {
@@ -232,7 +231,7 @@
                      "Text":  "UNDEFINED_FEATURE",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef UNDEFINED_FEATURE"
+                     "HoverText":  "Macro `UNDEFINED_FEATURE` is not defined."
                  },
                  {
                      "Start":  87,
@@ -251,7 +250,7 @@
                      "Column":  11,
                      "Text":  "normally_colored_despite_inactive_branch",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
+                     "TagDetail":  "Verilog_Variable_SystemVerilog",
                      "HoverText":  "logic normally_colored_despite_inactive_branch"
                  },
                  {
@@ -281,7 +280,7 @@
                      "Column":  11,
                      "Text":  "active_branch",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
+                     "TagDetail":  "Verilog_Variable_SystemVerilog",
                      "HoverText":  "logic active_branch"
                  },
                  {
@@ -531,13 +530,13 @@
                     {
                         "Scope":  "ifdef_optout_pragma",
                         "Name":  "normally_colored_despite_inactive_branch",
-                        "TokenType":  "Verilog_Variable_reg",
+                        "TokenType":  "Verilog_Variable_SystemVerilog",
                         "HoverText":  "logic normally_colored_despite_inactive_branch"
                     },
                     {
                         "Scope":  "ifdef_optout_pragma",
                         "Name":  "active_branch",
-                        "TokenType":  "Verilog_Variable_reg",
+                        "TokenType":  "Verilog_Variable_SystemVerilog",
                         "HoverText":  "logic active_branch"
                     }
                 ]

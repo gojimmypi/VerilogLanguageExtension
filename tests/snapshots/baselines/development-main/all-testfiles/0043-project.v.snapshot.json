@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.11",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\src\\project.v",
-    "FileRelativePath":  "TestFiles\\src\\project.v",
+    "FilePath":  "TestFiles/src/project.v",
+    "FileRelativePath":  "TestFiles/src/project.v",
     "ContentType":  "verilog",
     "SnapshotLength":  10635,
     "SnapshotVersion":  2,
@@ -313,13 +312,13 @@
                                           ]
                             },
                             {
-                                "Start":  791,
-                                "Length":  10,
+                                "Start":  787,
+                                "Length":  22,
                                 "Line":  31,
-                                "Column":  5,
-                                "Text":  "`timescale",
+                                "Column":  1,
+                                "Text":  "    `timescale 1ns/1ps",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -413,23 +412,13 @@
                                           ]
                             },
                             {
-                                "Start":  1114,
-                                "Length":  6,
+                                "Start":  1110,
+                                "Length":  22,
                                 "Line":  40,
-                                "Column":  5,
-                                "Text":  "`ifdef",
+                                "Column":  1,
+                                "Text":  "    `ifdef TRNG_USE_RO",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  1121,
-                                "Length":  11,
-                                "Line":  40,
-                                "Column":  12,
-                                "Text":  "TRNG_USE_RO",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -443,33 +432,23 @@
                                           ]
                             },
                             {
-                                "Start":  1195,
-                                "Length":  6,
+                                "Start":  1191,
+                                "Length":  10,
                                 "Line":  42,
-                                "Column":  5,
-                                "Text":  "`endif",
+                                "Column":  1,
+                                "Text":  "    `endif",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
-                                "Start":  1206,
-                                "Length":  6,
+                                "Start":  1202,
+                                "Length":  29,
                                 "Line":  43,
-                                "Column":  5,
-                                "Text":  "`ifdef",
+                                "Column":  1,
+                                "Text":  "    `ifdef TRNG_ALLOW_REAL_RO",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  1213,
-                                "Length":  18,
-                                "Line":  43,
-                                "Column":  12,
-                                "Text":  "TRNG_ALLOW_REAL_RO",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -483,13 +462,13 @@
                                           ]
                             },
                             {
-                                "Start":  1301,
-                                "Length":  6,
+                                "Start":  1297,
+                                "Length":  10,
                                 "Line":  45,
-                                "Column":  5,
-                                "Text":  "`endif",
+                                "Column":  1,
+                                "Text":  "    `endif",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -573,83 +552,43 @@
                                           ]
                             },
                             {
-                                "Start":  1779,
-                                "Length":  7,
+                                "Start":  1771,
+                                "Length":  27,
                                 "Line":  55,
-                                "Column":  9,
-                                "Text":  "`define",
+                                "Column":  1,
+                                "Text":  "        `define TRNG_USE_RO",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
-                                "Start":  1787,
-                                "Length":  11,
-                                "Line":  55,
-                                "Column":  17,
-                                "Text":  "TRNG_USE_RO",
-                                "Types":  [
-                                              "Macro"
-                                          ]
-                            },
-                            {
-                                "Start":  1807,
-                                "Length":  7,
+                                "Start":  1799,
+                                "Length":  34,
                                 "Line":  56,
-                                "Column":  9,
-                                "Text":  "`define",
+                                "Column":  1,
+                                "Text":  "        `define TRNG_ALLOW_REAL_RO",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
-                                "Start":  1815,
-                                "Length":  18,
-                                "Line":  56,
-                                "Column":  17,
-                                "Text":  "TRNG_ALLOW_REAL_RO",
-                                "Types":  [
-                                              "Macro"
-                                          ]
-                            },
-                            {
-                                "Start":  1842,
-                                "Length":  7,
+                                "Start":  1834,
+                                "Length":  28,
                                 "Line":  57,
-                                "Column":  9,
-                                "Text":  "`define",
+                                "Column":  1,
+                                "Text":  "        `define FOUND_TT_PDK",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
-                                "Start":  1850,
-                                "Length":  12,
-                                "Line":  57,
-                                "Column":  17,
-                                "Text":  "FOUND_TT_PDK",
-                                "Types":  [
-                                              "Macro"
-                                          ]
-                            },
-                            {
-                                "Start":  1871,
-                                "Length":  7,
+                                "Start":  1863,
+                                "Length":  35,
                                 "Line":  58,
-                                "Column":  9,
-                                "Text":  "`define",
+                                "Column":  1,
+                                "Text":  "        `define FOUND_TT_PDK_SKY130",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  1879,
-                                "Length":  19,
-                                "Line":  58,
-                                "Column":  17,
-                                "Text":  "FOUND_TT_PDK_SKY130",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -713,83 +652,43 @@
                                           ]
                             },
                             {
-                                "Start":  2310,
-                                "Length":  7,
+                                "Start":  2302,
+                                "Length":  27,
                                 "Line":  66,
-                                "Column":  9,
-                                "Text":  "`define",
+                                "Column":  1,
+                                "Text":  "        `define TRNG_USE_RO",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
-                                "Start":  2318,
-                                "Length":  11,
-                                "Line":  66,
-                                "Column":  17,
-                                "Text":  "TRNG_USE_RO",
-                                "Types":  [
-                                              "Macro"
-                                          ]
-                            },
-                            {
-                                "Start":  2338,
-                                "Length":  7,
+                                "Start":  2330,
+                                "Length":  34,
                                 "Line":  67,
-                                "Column":  9,
-                                "Text":  "`define",
+                                "Column":  1,
+                                "Text":  "        `define TRNG_ALLOW_REAL_RO",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
-                                "Start":  2346,
-                                "Length":  18,
-                                "Line":  67,
-                                "Column":  17,
-                                "Text":  "TRNG_ALLOW_REAL_RO",
-                                "Types":  [
-                                              "Macro"
-                                          ]
-                            },
-                            {
-                                "Start":  2373,
-                                "Length":  7,
+                                "Start":  2365,
+                                "Length":  28,
                                 "Line":  68,
-                                "Column":  9,
-                                "Text":  "`define",
+                                "Column":  1,
+                                "Text":  "        `define FOUND_TT_PDK",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
-                                "Start":  2381,
-                                "Length":  12,
-                                "Line":  68,
-                                "Column":  17,
-                                "Text":  "FOUND_TT_PDK",
-                                "Types":  [
-                                              "Macro"
-                                          ]
-                            },
-                            {
-                                "Start":  2402,
-                                "Length":  7,
+                                "Start":  2394,
+                                "Length":  34,
                                 "Line":  69,
-                                "Column":  9,
-                                "Text":  "`define",
+                                "Column":  1,
+                                "Text":  "        `define FOUND_TT_PDK_GF180",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  2410,
-                                "Length":  18,
-                                "Line":  69,
-                                "Column":  17,
-                                "Text":  "FOUND_TT_PDK_GF180",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -863,63 +762,33 @@
                                           ]
                             },
                             {
-                                "Start":  2944,
-                                "Length":  7,
+                                "Start":  2936,
+                                "Length":  27,
                                 "Line":  78,
-                                "Column":  9,
-                                "Text":  "`define",
+                                "Column":  1,
+                                "Text":  "        `define TRNG_USE_RO",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
-                                "Start":  2952,
-                                "Length":  11,
-                                "Line":  78,
-                                "Column":  17,
-                                "Text":  "TRNG_USE_RO",
-                                "Types":  [
-                                              "Macro"
-                                          ]
-                            },
-                            {
-                                "Start":  2972,
-                                "Length":  7,
+                                "Start":  2964,
+                                "Length":  34,
                                 "Line":  79,
-                                "Column":  9,
-                                "Text":  "`define",
+                                "Column":  1,
+                                "Text":  "        `define TRNG_ALLOW_REAL_RO",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
-                                "Start":  2980,
-                                "Length":  18,
-                                "Line":  79,
-                                "Column":  17,
-                                "Text":  "TRNG_ALLOW_REAL_RO",
-                                "Types":  [
-                                              "Macro"
-                                          ]
-                            },
-                            {
-                                "Start":  3007,
-                                "Length":  7,
+                                "Start":  2999,
+                                "Length":  28,
                                 "Line":  80,
-                                "Column":  9,
-                                "Text":  "`define",
+                                "Column":  1,
+                                "Text":  "        `define FOUND_TT_PDK",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  3015,
-                                "Length":  12,
-                                "Line":  80,
-                                "Column":  17,
-                                "Text":  "FOUND_TT_PDK",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -1633,23 +1502,13 @@
                                           ]
                             },
                             {
-                                "Start":  5822,
-                                "Length":  8,
+                                "Start":  5814,
+                                "Length":  37,
                                 "Line":  148,
-                                "Column":  9,
-                                "Text":  "`include",
+                                "Column":  1,
+                                "Text":  "        `include \"PINS/pin_id_core.v\"",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  5831,
-                                "Length":  20,
-                                "Line":  148,
-                                "Column":  18,
-                                "Text":  "\"PINS/pin_id_core.v\"",
-                                "Types":  [
-                                              "StaticString"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -1713,23 +1572,13 @@
                                           ]
                             },
                             {
-                                "Start":  5945,
-                                "Length":  8,
+                                "Start":  5937,
+                                "Length":  35,
                                 "Line":  153,
-                                "Column":  9,
-                                "Text":  "`include",
+                                "Column":  1,
+                                "Text":  "        `include \"TRNG/trng_stub.v\"",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  5954,
-                                "Length":  18,
-                                "Line":  153,
-                                "Column":  18,
-                                "Text":  "\"TRNG/trng_stub.v\"",
-                                "Types":  [
-                                              "StaticString"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -1803,23 +1652,13 @@
                                           ]
                             },
                             {
-                                "Start":  6081,
-                                "Length":  6,
+                                "Start":  6077,
+                                "Length":  27,
                                 "Line":  159,
-                                "Column":  5,
-                                "Text":  "`ifdef",
+                                "Column":  1,
+                                "Text":  "    `ifdef PDK_TARGET_GF180",
                                 "Types":  [
-                                              "Directive"
-                                          ]
-                            },
-                            {
-                                "Start":  6088,
-                                "Length":  16,
-                                "Line":  159,
-                                "Column":  12,
-                                "Text":  "PDK_TARGET_GF180",
-                                "Types":  [
-                                              "Macro"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -1833,13 +1672,13 @@
                                           ]
                             },
                             {
-                                "Start":  6224,
-                                "Length":  6,
+                                "Start":  6220,
+                                "Length":  10,
                                 "Line":  161,
-                                "Column":  5,
-                                "Text":  "`endif",
+                                "Column":  1,
+                                "Text":  "    `endif",
                                 "Types":  [
-                                              "Directive"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -6682,17 +6521,17 @@
                      "Text":  "ULX3S",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef ULX3S"
+                     "HoverText":  "Macro `ULX3S` is not defined."
                  },
                  {
-                     "Start":  791,
-                     "Length":  10,
+                     "Start":  787,
+                     "Length":  22,
                      "Line":  31,
-                     "Column":  5,
-                     "Text":  "`timescale",
+                     "Column":  1,
+                     "Text":  "    `timescale 1ns/1ps",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027ULX3S\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  810,
@@ -7152,7 +6991,7 @@
                      "Text":  "ULX3S",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef ULX3S"
+                     "HoverText":  "Macro `ULX3S` is not defined."
                  },
                  {
                      "Start":  963,
@@ -7175,24 +7014,14 @@
                      "HoverText":  "Inactive preprocessor code: macro \u0027ULX3S\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  1114,
-                     "Length":  6,
+                     "Start":  1110,
+                     "Length":  22,
                      "Line":  40,
-                     "Column":  5,
-                     "Text":  "`ifdef",
+                     "Column":  1,
+                     "Text":  "    `ifdef TRNG_USE_RO",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  1121,
-                     "Length":  11,
-                     "Line":  40,
-                     "Column":  12,
-                     "Text":  "TRNG_USE_RO",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_USE_RO\r\n\r\nmacro definition:\r\n`define TRNG_USE_RO\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`ifdef SCL_sky130_fd_sc_hd\r\n\r\nmacro definition:\r\n`define TRNG_USE_RO\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`elsif SCL_gf180mcu_fd_sc_mcu7t5v0 (from `ifdef SCL_sky130_fd_sc_hd)\r\n\r\nmacro definition:\r\n`define TRNG_USE_RO\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`elsif __pnr__ (from `elsif SCL_gf180mcu_fd_sc_mcu7t5v0 (from `ifdef SCL_sky130_fd_sc_hd))"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027ULX3S\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  1133,
@@ -7205,34 +7034,24 @@
                      "HoverText":  "Inactive preprocessor code: macro \u0027ULX3S\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  1195,
-                     "Length":  6,
+                     "Start":  1191,
+                     "Length":  10,
                      "Line":  42,
-                     "Column":  5,
-                     "Text":  "`endif",
+                     "Column":  1,
+                     "Text":  "    `endif",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027ULX3S\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  1206,
-                     "Length":  6,
+                     "Start":  1202,
+                     "Length":  29,
                      "Line":  43,
-                     "Column":  5,
-                     "Text":  "`ifdef",
+                     "Column":  1,
+                     "Text":  "    `ifdef TRNG_ALLOW_REAL_RO",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  1213,
-                     "Length":  18,
-                     "Line":  43,
-                     "Column":  12,
-                     "Text":  "TRNG_ALLOW_REAL_RO",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_ALLOW_REAL_RO\r\n\r\nmacro definition:\r\n`define TRNG_ALLOW_REAL_RO\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`ifdef SCL_sky130_fd_sc_hd\r\n\r\nmacro definition:\r\n`define TRNG_ALLOW_REAL_RO\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`elsif SCL_gf180mcu_fd_sc_mcu7t5v0 (from `ifdef SCL_sky130_fd_sc_hd)\r\n\r\nmacro definition:\r\n`define TRNG_ALLOW_REAL_RO\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`elsif __pnr__ (from `elsif SCL_gf180mcu_fd_sc_mcu7t5v0 (from `ifdef SCL_sky130_fd_sc_hd))"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027ULX3S\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  1232,
@@ -7245,14 +7064,14 @@
                      "HoverText":  "Inactive preprocessor code: macro \u0027ULX3S\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  1301,
-                     "Length":  6,
+                     "Start":  1297,
+                     "Length":  10,
                      "Line":  45,
-                     "Column":  5,
-                     "Text":  "`endif",
+                     "Column":  1,
+                     "Text":  "    `endif",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027ULX3S\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  1308,
@@ -7962,7 +7781,7 @@
                      "Text":  "SCL_sky130_fd_sc_hd",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef SCL_sky130_fd_sc_hd"
+                     "HoverText":  "Macro `SCL_sky130_fd_sc_hd` is not defined."
                  },
                  {
                      "Start":  1565,
@@ -7985,84 +7804,44 @@
                      "HoverText":  "Inactive preprocessor code: macro \u0027SCL_sky130_fd_sc_hd\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  1779,
-                     "Length":  7,
+                     "Start":  1771,
+                     "Length":  27,
                      "Line":  55,
-                     "Column":  9,
-                     "Text":  "`define",
+                     "Column":  1,
+                     "Text":  "        `define TRNG_USE_RO",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027SCL_sky130_fd_sc_hd\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  1787,
-                     "Length":  11,
-                     "Line":  55,
-                     "Column":  17,
-                     "Text":  "TRNG_USE_RO",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_USE_RO\r\n\r\nmacro definition:\r\n`define TRNG_USE_RO\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`ifdef SCL_sky130_fd_sc_hd\r\n\r\nmacro definition:\r\n`define TRNG_USE_RO\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`elsif SCL_gf180mcu_fd_sc_mcu7t5v0 (from `ifdef SCL_sky130_fd_sc_hd)\r\n\r\nmacro definition:\r\n`define TRNG_USE_RO\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`elsif __pnr__ (from `elsif SCL_gf180mcu_fd_sc_mcu7t5v0 (from `ifdef SCL_sky130_fd_sc_hd))"
-                 },
-                 {
-                     "Start":  1807,
-                     "Length":  7,
+                     "Start":  1799,
+                     "Length":  34,
                      "Line":  56,
-                     "Column":  9,
-                     "Text":  "`define",
+                     "Column":  1,
+                     "Text":  "        `define TRNG_ALLOW_REAL_RO",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027SCL_sky130_fd_sc_hd\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  1815,
-                     "Length":  18,
-                     "Line":  56,
-                     "Column":  17,
-                     "Text":  "TRNG_ALLOW_REAL_RO",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_ALLOW_REAL_RO\r\n\r\nmacro definition:\r\n`define TRNG_ALLOW_REAL_RO\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`ifdef SCL_sky130_fd_sc_hd\r\n\r\nmacro definition:\r\n`define TRNG_ALLOW_REAL_RO\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`elsif SCL_gf180mcu_fd_sc_mcu7t5v0 (from `ifdef SCL_sky130_fd_sc_hd)\r\n\r\nmacro definition:\r\n`define TRNG_ALLOW_REAL_RO\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`elsif __pnr__ (from `elsif SCL_gf180mcu_fd_sc_mcu7t5v0 (from `ifdef SCL_sky130_fd_sc_hd))"
-                 },
-                 {
-                     "Start":  1842,
-                     "Length":  7,
+                     "Start":  1834,
+                     "Length":  28,
                      "Line":  57,
-                     "Column":  9,
-                     "Text":  "`define",
+                     "Column":  1,
+                     "Text":  "        `define FOUND_TT_PDK",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027SCL_sky130_fd_sc_hd\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  1850,
-                     "Length":  12,
-                     "Line":  57,
-                     "Column":  17,
-                     "Text":  "FOUND_TT_PDK",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define FOUND_TT_PDK\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`ifdef SCL_sky130_fd_sc_hd\r\n\r\nmacro definition:\r\n`define FOUND_TT_PDK\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`elsif SCL_gf180mcu_fd_sc_mcu7t5v0 (from `ifdef SCL_sky130_fd_sc_hd)\r\n\r\nmacro definition:\r\n`define FOUND_TT_PDK\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`elsif __pnr__ (from `elsif SCL_gf180mcu_fd_sc_mcu7t5v0 (from `ifdef SCL_sky130_fd_sc_hd))\r\n\r\nmacro condition:\r\n`ifdef FOUND_TT_PDK"
-                 },
-                 {
-                     "Start":  1871,
-                     "Length":  7,
+                     "Start":  1863,
+                     "Length":  35,
                      "Line":  58,
-                     "Column":  9,
-                     "Text":  "`define",
+                     "Column":  1,
+                     "Text":  "        `define FOUND_TT_PDK_SKY130",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  1879,
-                     "Length":  19,
-                     "Line":  58,
-                     "Column":  17,
-                     "Text":  "FOUND_TT_PDK_SKY130",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define FOUND_TT_PDK_SKY130\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`ifdef SCL_sky130_fd_sc_hd"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027SCL_sky130_fd_sc_hd\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  1900,
@@ -8102,7 +7881,7 @@
                      "Text":  "SCL_gf180mcu_fd_sc_mcu7t5v0",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`elsif SCL_gf180mcu_fd_sc_mcu7t5v0"
+                     "HoverText":  "Macro `SCL_gf180mcu_fd_sc_mcu7t5v0` is not defined."
                  },
                  {
                      "Start":  2097,
@@ -8125,84 +7904,44 @@
                      "HoverText":  "Inactive preprocessor code: macro \u0027SCL_gf180mcu_fd_sc_mcu7t5v0\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  2310,
-                     "Length":  7,
+                     "Start":  2302,
+                     "Length":  27,
                      "Line":  66,
-                     "Column":  9,
-                     "Text":  "`define",
+                     "Column":  1,
+                     "Text":  "        `define TRNG_USE_RO",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027SCL_gf180mcu_fd_sc_mcu7t5v0\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  2318,
-                     "Length":  11,
-                     "Line":  66,
-                     "Column":  17,
-                     "Text":  "TRNG_USE_RO",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_USE_RO\r\n\r\nmacro definition:\r\n`define TRNG_USE_RO\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`ifdef SCL_sky130_fd_sc_hd\r\n\r\nmacro definition:\r\n`define TRNG_USE_RO\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`elsif SCL_gf180mcu_fd_sc_mcu7t5v0 (from `ifdef SCL_sky130_fd_sc_hd)\r\n\r\nmacro definition:\r\n`define TRNG_USE_RO\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`elsif __pnr__ (from `elsif SCL_gf180mcu_fd_sc_mcu7t5v0 (from `ifdef SCL_sky130_fd_sc_hd))"
-                 },
-                 {
-                     "Start":  2338,
-                     "Length":  7,
+                     "Start":  2330,
+                     "Length":  34,
                      "Line":  67,
-                     "Column":  9,
-                     "Text":  "`define",
+                     "Column":  1,
+                     "Text":  "        `define TRNG_ALLOW_REAL_RO",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027SCL_gf180mcu_fd_sc_mcu7t5v0\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  2346,
-                     "Length":  18,
-                     "Line":  67,
-                     "Column":  17,
-                     "Text":  "TRNG_ALLOW_REAL_RO",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_ALLOW_REAL_RO\r\n\r\nmacro definition:\r\n`define TRNG_ALLOW_REAL_RO\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`ifdef SCL_sky130_fd_sc_hd\r\n\r\nmacro definition:\r\n`define TRNG_ALLOW_REAL_RO\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`elsif SCL_gf180mcu_fd_sc_mcu7t5v0 (from `ifdef SCL_sky130_fd_sc_hd)\r\n\r\nmacro definition:\r\n`define TRNG_ALLOW_REAL_RO\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`elsif __pnr__ (from `elsif SCL_gf180mcu_fd_sc_mcu7t5v0 (from `ifdef SCL_sky130_fd_sc_hd))"
-                 },
-                 {
-                     "Start":  2373,
-                     "Length":  7,
+                     "Start":  2365,
+                     "Length":  28,
                      "Line":  68,
-                     "Column":  9,
-                     "Text":  "`define",
+                     "Column":  1,
+                     "Text":  "        `define FOUND_TT_PDK",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027SCL_gf180mcu_fd_sc_mcu7t5v0\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  2381,
-                     "Length":  12,
-                     "Line":  68,
-                     "Column":  17,
-                     "Text":  "FOUND_TT_PDK",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define FOUND_TT_PDK\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`ifdef SCL_sky130_fd_sc_hd\r\n\r\nmacro definition:\r\n`define FOUND_TT_PDK\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`elsif SCL_gf180mcu_fd_sc_mcu7t5v0 (from `ifdef SCL_sky130_fd_sc_hd)\r\n\r\nmacro definition:\r\n`define FOUND_TT_PDK\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`elsif __pnr__ (from `elsif SCL_gf180mcu_fd_sc_mcu7t5v0 (from `ifdef SCL_sky130_fd_sc_hd))\r\n\r\nmacro condition:\r\n`ifdef FOUND_TT_PDK"
-                 },
-                 {
-                     "Start":  2402,
-                     "Length":  7,
+                     "Start":  2394,
+                     "Length":  34,
                      "Line":  69,
-                     "Column":  9,
-                     "Text":  "`define",
+                     "Column":  1,
+                     "Text":  "        `define FOUND_TT_PDK_GF180",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  2410,
-                     "Length":  18,
-                     "Line":  69,
-                     "Column":  17,
-                     "Text":  "FOUND_TT_PDK_GF180",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define FOUND_TT_PDK_GF180\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`elsif SCL_gf180mcu_fd_sc_mcu7t5v0 (from `ifdef SCL_sky130_fd_sc_hd)"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027SCL_gf180mcu_fd_sc_mcu7t5v0\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  2430,
@@ -8252,7 +7991,7 @@
                      "Text":  "__pnr__",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`elsif __pnr__"
+                     "HoverText":  "Macro `__pnr__` is not defined."
                  },
                  {
                      "Start":  2710,
@@ -8275,64 +8014,34 @@
                      "HoverText":  "Inactive preprocessor code: macro \u0027__pnr__\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  2944,
-                     "Length":  7,
+                     "Start":  2936,
+                     "Length":  27,
                      "Line":  78,
-                     "Column":  9,
-                     "Text":  "`define",
+                     "Column":  1,
+                     "Text":  "        `define TRNG_USE_RO",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027__pnr__\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  2952,
-                     "Length":  11,
-                     "Line":  78,
-                     "Column":  17,
-                     "Text":  "TRNG_USE_RO",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_USE_RO\r\n\r\nmacro definition:\r\n`define TRNG_USE_RO\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`ifdef SCL_sky130_fd_sc_hd\r\n\r\nmacro definition:\r\n`define TRNG_USE_RO\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`elsif SCL_gf180mcu_fd_sc_mcu7t5v0 (from `ifdef SCL_sky130_fd_sc_hd)\r\n\r\nmacro definition:\r\n`define TRNG_USE_RO\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`elsif __pnr__ (from `elsif SCL_gf180mcu_fd_sc_mcu7t5v0 (from `ifdef SCL_sky130_fd_sc_hd))"
-                 },
-                 {
-                     "Start":  2972,
-                     "Length":  7,
+                     "Start":  2964,
+                     "Length":  34,
                      "Line":  79,
-                     "Column":  9,
-                     "Text":  "`define",
+                     "Column":  1,
+                     "Text":  "        `define TRNG_ALLOW_REAL_RO",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027__pnr__\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  2980,
-                     "Length":  18,
-                     "Line":  79,
-                     "Column":  17,
-                     "Text":  "TRNG_ALLOW_REAL_RO",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_ALLOW_REAL_RO\r\n\r\nmacro definition:\r\n`define TRNG_ALLOW_REAL_RO\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`ifdef SCL_sky130_fd_sc_hd\r\n\r\nmacro definition:\r\n`define TRNG_ALLOW_REAL_RO\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`elsif SCL_gf180mcu_fd_sc_mcu7t5v0 (from `ifdef SCL_sky130_fd_sc_hd)\r\n\r\nmacro definition:\r\n`define TRNG_ALLOW_REAL_RO\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`elsif __pnr__ (from `elsif SCL_gf180mcu_fd_sc_mcu7t5v0 (from `ifdef SCL_sky130_fd_sc_hd))"
-                 },
-                 {
-                     "Start":  3007,
-                     "Length":  7,
+                     "Start":  2999,
+                     "Length":  28,
                      "Line":  80,
-                     "Column":  9,
-                     "Text":  "`define",
+                     "Column":  1,
+                     "Text":  "        `define FOUND_TT_PDK",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  3015,
-                     "Length":  12,
-                     "Line":  80,
-                     "Column":  17,
-                     "Text":  "FOUND_TT_PDK",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define FOUND_TT_PDK\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`ifdef SCL_sky130_fd_sc_hd\r\n\r\nmacro definition:\r\n`define FOUND_TT_PDK\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`elsif SCL_gf180mcu_fd_sc_mcu7t5v0 (from `ifdef SCL_sky130_fd_sc_hd)\r\n\r\nmacro definition:\r\n`define FOUND_TT_PDK\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`elsif __pnr__ (from `elsif SCL_gf180mcu_fd_sc_mcu7t5v0 (from `ifdef SCL_sky130_fd_sc_hd))\r\n\r\nmacro condition:\r\n`ifdef FOUND_TT_PDK"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027__pnr__\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  3029,
@@ -8762,7 +8471,7 @@
                      "Text":  "TT_NON_ASIC_BUILD",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define TT_NON_ASIC_BUILD\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`else (from `elsif __pnr__ (from `elsif SCL_gf180mcu_fd_sc_mcu7t5v0 (from `ifdef SCL_sky130_fd_sc_hd)))"
+                     "HoverText":  "Macro `TT_NON_ASIC_BUILD` is defined with no value.\r\nFile: TestFiles/src/project.v\r\nLine: 88"
                  },
                  {
                      "Start":  3402,
@@ -9122,7 +8831,7 @@
                      "Text":  "TRNG_USE_RO",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_USE_RO\r\n\r\nmacro definition:\r\n`define TRNG_USE_RO\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`ifdef SCL_sky130_fd_sc_hd\r\n\r\nmacro definition:\r\n`define TRNG_USE_RO\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`elsif SCL_gf180mcu_fd_sc_mcu7t5v0 (from `ifdef SCL_sky130_fd_sc_hd)\r\n\r\nmacro definition:\r\n`define TRNG_USE_RO\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`elsif __pnr__ (from `elsif SCL_gf180mcu_fd_sc_mcu7t5v0 (from `ifdef SCL_sky130_fd_sc_hd))"
+                     "HoverText":  "Macro `TRNG_USE_RO` is not defined."
                  },
                  {
                      "Start":  3519,
@@ -9162,7 +8871,7 @@
                      "Text":  "TRNG_ALLOW_REAL_RO",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_ALLOW_REAL_RO\r\n\r\nmacro definition:\r\n`define TRNG_ALLOW_REAL_RO\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`ifdef SCL_sky130_fd_sc_hd\r\n\r\nmacro definition:\r\n`define TRNG_ALLOW_REAL_RO\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`elsif SCL_gf180mcu_fd_sc_mcu7t5v0 (from `ifdef SCL_sky130_fd_sc_hd)\r\n\r\nmacro definition:\r\n`define TRNG_ALLOW_REAL_RO\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`elsif __pnr__ (from `elsif SCL_gf180mcu_fd_sc_mcu7t5v0 (from `ifdef SCL_sky130_fd_sc_hd))"
+                     "HoverText":  "Macro `TRNG_ALLOW_REAL_RO` is not defined."
                  },
                  {
                      "Start":  3634,
@@ -9202,7 +8911,7 @@
                      "Text":  "FOUND_TT_PDK",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define FOUND_TT_PDK\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`ifdef SCL_sky130_fd_sc_hd\r\n\r\nmacro definition:\r\n`define FOUND_TT_PDK\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`elsif SCL_gf180mcu_fd_sc_mcu7t5v0 (from `ifdef SCL_sky130_fd_sc_hd)\r\n\r\nmacro definition:\r\n`define FOUND_TT_PDK\r\n\r\ncondition:\r\n`else (from `ifdef ULX3S)\r\n`elsif __pnr__ (from `elsif SCL_gf180mcu_fd_sc_mcu7t5v0 (from `ifdef SCL_sky130_fd_sc_hd))\r\n\r\nmacro condition:\r\n`ifdef FOUND_TT_PDK"
+                     "HoverText":  "Macro `FOUND_TT_PDK` is not defined."
                  },
                  {
                      "Start":  3750,
@@ -11962,7 +11671,7 @@
                      "Text":  "PROJECT_CONFIG_V",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifndef PROJECT_CONFIG_V"
+                     "HoverText":  "Macro `PROJECT_CONFIG_V` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 23"
                  },
                  {
                      "Start":  4725,
@@ -12002,7 +11711,7 @@
                      "Text":  "ULX3S",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef ULX3S"
+                     "HoverText":  "Macro `ULX3S` is not defined."
                  },
                  {
                      "Start":  4844,
@@ -12042,7 +11751,7 @@
                      "Text":  "IS_MY_IVERILOG_SIMULATION",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`elsif IS_MY_IVERILOG_SIMULATION"
+                     "HoverText":  "Macro `IS_MY_IVERILOG_SIMULATION` is not defined."
                  },
                  {
                      "Start":  5028,
@@ -13442,27 +13151,17 @@
                      "Text":  "PIN_DIAG",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef PIN_DIAG"
+                     "HoverText":  "Macro `PIN_DIAG` is not defined."
                  },
                  {
-                     "Start":  5822,
-                     "Length":  8,
+                     "Start":  5814,
+                     "Length":  37,
                      "Line":  148,
-                     "Column":  9,
-                     "Text":  "`include",
+                     "Column":  1,
+                     "Text":  "        `include \"PINS/pin_id_core.v\"",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  5831,
-                     "Length":  20,
-                     "Line":  148,
-                     "Column":  18,
-                     "Text":  "\"PINS/pin_id_core.v\"",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_StaticString",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027PIN_DIAG\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  5856,
@@ -13492,7 +13191,7 @@
                      "Text":  "TRNG_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_ENABLED"
+                     "HoverText":  "Macro `TRNG_ENABLED` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 88"
                  },
                  {
                      "Start":  5895,
@@ -13525,24 +13224,14 @@
                      "HoverText":  "Verilog directive"
                  },
                  {
-                     "Start":  5945,
-                     "Length":  8,
+                     "Start":  5937,
+                     "Length":  35,
                      "Line":  153,
-                     "Column":  9,
-                     "Text":  "`include",
+                     "Column":  1,
+                     "Text":  "        `include \"TRNG/trng_stub.v\"",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  5954,
-                     "Length":  18,
-                     "Line":  153,
-                     "Column":  18,
-                     "Text":  "\"TRNG/trng_stub.v\"",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_StaticString",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_ENABLED\u0027 is defined, so the earlier `ifdef branch is active. Change the controlling macro definitions to select this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  5977,
@@ -13792,27 +13481,17 @@
                      "Text":  "ANALOG_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef ANALOG_ENABLED"
+                     "HoverText":  "Macro `ANALOG_ENABLED` is not defined."
                  },
                  {
-                     "Start":  6081,
-                     "Length":  6,
+                     "Start":  6077,
+                     "Length":  27,
                      "Line":  159,
-                     "Column":  5,
-                     "Text":  "`ifdef",
+                     "Column":  1,
+                     "Text":  "    `ifdef PDK_TARGET_GF180",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
-                 },
-                 {
-                     "Start":  6088,
-                     "Length":  16,
-                     "Line":  159,
-                     "Column":  12,
-                     "Text":  "PDK_TARGET_GF180",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef PDK_TARGET_GF180\r\n\r\nmacro condition:\r\n`elsif PDK_TARGET_GF180"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027ANALOG_ENABLED\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  6105,
@@ -13825,14 +13504,14 @@
                      "HoverText":  "Inactive preprocessor code: macro \u0027ANALOG_ENABLED\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
-                     "Start":  6224,
-                     "Length":  6,
+                     "Start":  6220,
+                     "Length":  10,
                      "Line":  161,
-                     "Column":  5,
-                     "Text":  "`endif",
+                     "Column":  1,
+                     "Text":  "    `endif",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Directive",
-                     "HoverText":  "Verilog directive"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027ANALOG_ENABLED\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  6231,
@@ -15792,7 +15471,7 @@
                      "Text":  "PDK_TARGET_SKY130",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef PDK_TARGET_SKY130"
+                     "HoverText":  "Macro `PDK_TARGET_SKY130` is not defined."
                  },
                  {
                      "Start":  6863,
@@ -15842,7 +15521,7 @@
                      "Text":  "PDK_TARGET_GF180",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef PDK_TARGET_GF180\r\n\r\nmacro condition:\r\n`elsif PDK_TARGET_GF180"
+                     "HoverText":  "Macro `PDK_TARGET_GF180` is defined with no value.\r\nFile: TestFiles/src/target_pdk.v\r\nLine: 25"
                  },
                  {
                      "Start":  7010,
@@ -16052,7 +15731,7 @@
                      "Text":  "IS_MY_IVERILOG_SIMULATION",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`elsif IS_MY_IVERILOG_SIMULATION"
+                     "HoverText":  "Macro `IS_MY_IVERILOG_SIMULATION` is not defined."
                  },
                  {
                      "Start":  7165,
@@ -16342,7 +16021,7 @@
                      "Text":  "`PROJECT_CLOCK_HZ",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  null
+                     "HoverText":  "Macro `PROJECT_CLOCK_HZ` is defined.\r\nValue: 32\u0027d25_000_000\r\nFile: TestFiles/src/project_config.v\r\nLine: 57"
                  },
                  {
                      "Start":  7489,
@@ -16412,7 +16091,7 @@
                      "Text":  "is",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "parameter [31:0] CLOCK_HZ  = `PROJECT_CLOCK_HZ,    /* default clock is 25 MHz */"
+                     "HoverText":  null
                  },
                  {
                      "Start":  7508,
@@ -16512,7 +16191,7 @@
                      "Text":  "`PROJECT_UART_BAUD",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  null
+                     "HoverText":  "Macro `PROJECT_UART_BAUD` is defined.\r\nValue: 32\u0027d115_200\r\nFile: TestFiles/src/project_config.v\r\nLine: 61"
                  },
                  {
                      "Start":  7574,
@@ -16582,7 +16261,7 @@
                      "Text":  "is",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "parameter [31:0] CLOCK_HZ  = `PROJECT_CLOCK_HZ,    /* default clock is 25 MHz */"
+                     "HoverText":  null
                  },
                  {
                      "Start":  7592,
@@ -16652,7 +16331,7 @@
                      "Text":  "ANALOG_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef ANALOG_ENABLED"
+                     "HoverText":  "Macro `ANALOG_ENABLED` is not defined."
                  },
                  {
                      "Start":  7634,
@@ -18732,7 +18411,7 @@
                      "Text":  "SPI_REG_ACCESS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef SPI_REG_ACCESS"
+                     "HoverText":  "Macro `SPI_REG_ACCESS` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 77"
                  },
                  {
                      "Start":  8869,
@@ -18752,7 +18431,7 @@
                      "Text":  "JTAG_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef JTAG_ENABLED"
+                     "HoverText":  "Macro `JTAG_ENABLED` is defined with no value.\r\nFile: TestFiles/src/project_config.v\r\nLine: 187"
                  },
                  {
                      "Start":  8897,
@@ -19092,7 +18771,7 @@
                      "Text":  "`SPI_ADDR_MSB",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  null
+                     "HoverText":  "Macro `SPI_ADDR_MSB` is defined.\r\nValue: 3\r\nFile: TestFiles/src/project_config.v\r\nLine: 237"
                  },
                  {
                      "Start":  9008,
@@ -19102,7 +18781,7 @@
                      "Text":  "`JTAG_ADDR_MSB",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  null
+                     "HoverText":  "Macro `JTAG_ADDR_MSB` is defined.\r\nValue: `SPI_ADDR_MSB\r\nFile: TestFiles/src/project_config.v\r\nLine: 245"
                  },
                  {
                      "Start":  9022,
@@ -19492,7 +19171,7 @@
                      "Text":  "`SPI_ADDR_WIDTH",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  null
+                     "HoverText":  "Macro `SPI_ADDR_WIDTH` is defined.\r\nValue: (`SPI_ADDR_MSB + 1)\r\nFile: TestFiles/src/project_config.v\r\nLine: 241"
                  },
                  {
                      "Start":  9274,
@@ -19502,7 +19181,7 @@
                      "Text":  "`JTAG_ADDR_WIDTH",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  null
+                     "HoverText":  "Macro `JTAG_ADDR_WIDTH` is defined.\r\nValue: (`JTAG_ADDR_MSB + 1)\r\nFile: TestFiles/src/project_config.v\r\nLine: 246"
                  },
                  {
                      "Start":  9290,
@@ -20062,7 +19741,7 @@
                      "Text":  "ANALOG_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef ANALOG_ENABLED"
+                     "HoverText":  "Macro `ANALOG_ENABLED` is not defined."
                  },
                  {
                      "Start":  9833,
@@ -20192,7 +19871,7 @@
                      "Text":  "ULX3S",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef ULX3S"
+                     "HoverText":  "Macro `ULX3S` is not defined."
                  },
                  {
                      "Start":  10004,
@@ -20822,7 +20501,7 @@
                      "Text":  "FORCE_LOOPBACK",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef FORCE_LOOPBACK"
+                     "HoverText":  "Macro `FORCE_LOOPBACK` is not defined."
                  },
                  {
                      "Start":  10435,
@@ -45147,12 +44826,6 @@
                         "Name":  "unused_ok",
                         "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "wire unused_ok"
-                    },
-                    {
-                        "Scope":  "tt_um_gojimmypi_ttsky_UART_FSM_TRNG_Lab",
-                        "Name":  "is",
-                        "TokenType":  "Verilog_Variable_parameter",
-                        "HoverText":  "parameter [31:0] CLOCK_HZ  = `PROJECT_CLOCK_HZ,    /* default clock is 25 MHz */"
                     },
                     {
                         "Scope":  "__CONST__",

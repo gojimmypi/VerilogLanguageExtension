@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.11",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\macros\\include-files\\project_config.v",
-    "FileRelativePath":  "TestFiles\\macros\\include-files\\project_config.v",
+    "FilePath":  "TestFiles/macros/include-files/project_config.v",
+    "FileRelativePath":  "TestFiles/macros/include-files/project_config.v",
     "ContentType":  "verilog",
     "SnapshotLength":  238,
     "SnapshotVersion":  2,
@@ -212,7 +211,7 @@
                      "Text":  "VLE_PROJECT_CONFIG_V",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifndef VLE_PROJECT_CONFIG_V\r\n\r\nmacro definition:\r\n`define VLE_PROJECT_CONFIG_V\r\n\r\ncondition:\r\n`ifndef VLE_PROJECT_CONFIG_V"
+                     "HoverText":  "Macro `VLE_PROJECT_CONFIG_V` is not defined."
                  },
                  {
                      "Start":  30,
@@ -232,7 +231,7 @@
                      "Text":  "VLE_PROJECT_CONFIG_V",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifndef VLE_PROJECT_CONFIG_V\r\n\r\nmacro definition:\r\n`define VLE_PROJECT_CONFIG_V\r\n\r\ncondition:\r\n`ifndef VLE_PROJECT_CONFIG_V"
+                     "HoverText":  "Macro `VLE_PROJECT_CONFIG_V` is defined with no value.\r\nFile: TestFiles/macros/include-files/project_config.v\r\nLine: 2"
                  },
                  {
                      "Start":  62,
@@ -252,7 +251,7 @@
                      "Text":  "SIM_JTAG_CORE_TB",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define SIM_JTAG_CORE_TB 1\r\n\r\ncondition:\r\n`ifndef VLE_PROJECT_CONFIG_V"
+                     "HoverText":  "Macro `SIM_JTAG_CORE_TB` is defined.\r\nValue: 1\r\nFile: TestFiles/macros/include-files/project_config.v\r\nLine: 4"
                  },
                  {
                      "Start":  87,
@@ -282,7 +281,7 @@
                      "Text":  "INCLUDED_ZERO_VALUE",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define INCLUDED_ZERO_VALUE 0\r\n\r\ncondition:\r\n`ifndef VLE_PROJECT_CONFIG_V"
+                     "HoverText":  "Macro `INCLUDED_ZERO_VALUE` is defined.\r\nValue: 0\r\nFile: TestFiles/macros/include-files/project_config.v\r\nLine: 5"
                  },
                  {
                      "Start":  118,
@@ -312,7 +311,7 @@
                      "Text":  "NESTED_CONFIG_FILE",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define NESTED_CONFIG_FILE \"nested/nested_config.vh\"\r\n\r\ncondition:\r\n`ifndef VLE_PROJECT_CONFIG_V"
+                     "HoverText":  "Macro `NESTED_CONFIG_FILE` is defined.\r\nValue: \"nested/nested_config.vh\"\r\nFile: TestFiles/macros/include-files/project_config.v\r\nLine: 6"
                  },
                  {
                      "Start":  148,
@@ -342,7 +341,7 @@
                      "Text":  "`NESTED_CONFIG_FILE",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro definition:\r\n`define NESTED_CONFIG_FILE \"nested/nested_config.vh\"\r\n\r\ncondition:\r\n`ifndef VLE_PROJECT_CONFIG_V"
+                     "HoverText":  "Macro `NESTED_CONFIG_FILE` is defined.\r\nValue: \"nested/nested_config.vh\"\r\nFile: TestFiles/macros/include-files/project_config.v\r\nLine: 6"
                  },
                  {
                      "Start":  205,

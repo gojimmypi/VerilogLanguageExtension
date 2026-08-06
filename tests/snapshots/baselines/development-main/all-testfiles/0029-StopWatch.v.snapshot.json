@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.11",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\StopWatch.v",
-    "FileRelativePath":  "TestFiles\\StopWatch.v",
+    "FilePath":  "TestFiles/StopWatch.v",
+    "FileRelativePath":  "TestFiles/StopWatch.v",
     "ContentType":  "verilog",
     "SnapshotLength":  4355,
     "SnapshotVersion":  2,

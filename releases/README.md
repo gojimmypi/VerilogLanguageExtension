@@ -4,6 +4,14 @@ Because you never know, you might need that someday.
 
 Downloads available for prior versions of vsix extensions:
 
+[Version 0.4.1.16](./VerilogLanguage_v0.4.1.16.vsix) Pre-release polish. Not published.
+
+Version 0.4.1.12 to 0.4.1.15  - development versions only
+
+[Version 0.4.1.11](./VerilogLanguage_v0.4.1.11.vsix) System Verilog, [yosys 0.67](https://github.com/YosysHQ/yosys/releases/tag/v0.67) support, see [docs](https://yosyshq.readthedocs.io/projects/yosys/en/v0.67/). Not published, working stable version.
+
+Version 0.4.1.6 to 0.4.1.10  - development versions only
+
 [Version 0.4.1.5](./VerilogLanguage_v0.4.1.5.vsix) Added Peek Definition and Find All References for Verilog symbols, with improved cross-file definition lookup, reference reporting, and release/CI metadata validation.
 
 [Version 0.4.1.4](./VerilogLanguage_v0.4.1.4.vsix) Improved "Goto definition" feature: some multi-file support. Fixed missing operational functionality for vsix.

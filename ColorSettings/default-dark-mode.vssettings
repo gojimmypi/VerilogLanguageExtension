@@ -3,7 +3,7 @@
     <ToolsOptions/>
     <Category name="Verilog Language Extension_Colorization" Category="{c62dadbd-6016-4eba-848f-f0484e9948e6}" Package="{cb86b343-5900-4cb9-a7eb-e6a1a43147da}" RegisteredName="Verilog Language Extension_Colorization" PackageName="VleColorSettingsRegistrationPackage">
         <Version>1.0.0.0</Version>
-        <PropertyValue name="FormatCount">118</PropertyValue>
+        <PropertyValue name="FormatCount">119</PropertyValue>
         <PropertyValue name="UnavailableFormatCount">0</PropertyValue>
         <PropertyValue name="Format.0000.Name">Attribute</PropertyValue>
         <PropertyValue name="Format.0000.StorageName">Attribute</PropertyValue>
@@ -1657,5 +1657,19 @@
         <PropertyValue name="Format.0117.FontFlagsValid">1</PropertyValue>
         <PropertyValue name="Format.0117.FontFlags">0</PropertyValue>
         <PropertyValue name="Format.0117.FontFlagsText">None</PropertyValue>
+        <PropertyValue name="Format.0118.Name">UserDefinedType</PropertyValue>
+        <PropertyValue name="Format.0118.StorageName">UserDefinedType</PropertyValue>
+        <PropertyValue name="Format.0118.SourceType">VerilogLanguage.Verilog_UserDefinedType</PropertyValue>
+        <PropertyValue name="Format.0118.ForegroundValid">1</PropertyValue>
+        <PropertyValue name="Format.0118.Foreground">14524637</PropertyValue>
+        <PropertyValue name="Format.0118.ForegroundName">Plum</PropertyValue>
+        <PropertyValue name="Format.0118.ForegroundHex">#DDA0DD</PropertyValue>
+        <PropertyValue name="Format.0118.BackgroundValid">1</PropertyValue>
+        <PropertyValue name="Format.0118.Background">16777217</PropertyValue>
+        <PropertyValue name="Format.0118.BackgroundName">ColorIndex</PropertyValue>
+        <PropertyValue name="Format.0118.BackgroundHex">0x01000001</PropertyValue>
+        <PropertyValue name="Format.0118.FontFlagsValid">1</PropertyValue>
+        <PropertyValue name="Format.0118.FontFlags">0</PropertyValue>
+        <PropertyValue name="Format.0118.FontFlagsText">None</PropertyValue>
     </Category>
 </UserSettings>

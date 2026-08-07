@@ -371,6 +371,11 @@ namespace VerilogLanguage
                 return false;
             }
 
+            if (tokenType == VerilogToken.VerilogTokenTypes.Verilog_Comment ||
+                tokenType == VerilogToken.VerilogTokenTypes.Verilog_InactiveCode) {
+                return false;
+            }
+
             return TryGetVariableHoverText(snapshot, tagSpan, out hoverText);
         }
 

@@ -537,6 +537,7 @@ namespace VerilogLanguage
             ["static_string"] = VerilogTokenTypes.Verilog_StaticString,
             ["function_name"] = VerilogTokenTypes.Verilog_FunctionName,
             ["user_defined_type"] = VerilogTokenTypes.Verilog_UserDefinedType,
+            ["user_defined_type_variable"] = VerilogTokenTypes.Verilog_UserDefinedTypeVariable,
             ["system_task_function"] = VerilogTokenTypes.Verilog_SystemTaskFunction,
             ["system_task_fatal"] = VerilogTokenTypes.Verilog_SystemTaskFatal,
 
@@ -2541,6 +2542,213 @@ namespace VerilogLanguage
             return typeNamesByScope;
         }
 
+        private static Dictionary<string, HashSet<string>> CopyScopedTypeNames(
+            Dictionary<string, HashSet<string>> source) {
+            Dictionary<string, HashSet<string>> copy =
+                new Dictionary<string, HashSet<string>>(StringComparer.Ordinal);
+
+            if (source == null) {
+                return copy;
+            }
+
+            foreach (KeyValuePair<string, HashSet<string>> scopedNames in source) {
+                copy.Add(
+                    scopedNames.Key,
+                    new HashSet<string>(scopedNames.Value, StringComparer.Ordinal));
+            }
+
+            return copy;
+        }
+
+        private static bool IsTypedefNameVisible(
+            Dictionary<string, HashSet<string>> typeNamesByScope,
+            string scope,
+            string typeName) {
+            if (typeNamesByScope == null || string.IsNullOrEmpty(typeName)) {
+                return false;
+            }
+
+            string normalizedScope = NormalizeDeclarationDuplicateScope(scope);
+            HashSet<string> typeNames;
+            if (typeNamesByScope.TryGetValue(normalizedScope, out typeNames) &&
+                typeNames.Contains(typeName)) {
+                return true;
+            }
+
+            string parentScope = ParentScopeName(normalizedScope);
+            if (parentScope != normalizedScope &&
+                typeNamesByScope.TryGetValue(parentScope, out typeNames) &&
+                typeNames.Contains(typeName)) {
+                return true;
+            }
+
+            string globalScope = NormalizeDeclarationDuplicateScope("global");
+            return globalScope != normalizedScope &&
+                globalScope != parentScope &&
+                typeNamesByScope.TryGetValue(globalScope, out typeNames) &&
+                typeNames.Contains(typeName);
+        }
+
+        private static bool IsTypedefVariableDeclarationPrefixModifier(string itemText) {
+            switch (itemText) {
+                case "automatic":
+                case "static":
+                case "const":
+                case "var":
+                case "rand":
+                case "randc":
+                    return true;
+
+                default:
+                    return false;
+            }
+        }
+
+        private static bool TryCollectTypedefVariableDeclarationNames(
+            string declarationText,
+            int lineNumber,
+            string scope,
+            Dictionary<string, HashSet<string>> typeNamesByScope,
+            out string typeName,
+            out List<TypedefIdentifierCandidate> declarationNames) {
+            typeName = string.Empty;
+            declarationNames = new List<TypedefIdentifierCandidate>();
+
+            string codeText = StripLineCommentForDuplicateScan(declarationText);
+            if (string.IsNullOrWhiteSpace(codeText)) {
+                return false;
+            }
+
+            VerilogToken[] lineTokens = VerilogKeywordSplit(codeText, new VerilogToken());
+            bool foundType = false;
+            bool expectingName = false;
+            bool skippingInitializer = false;
+            int squareDepth = 0;
+            int roundDepth = 0;
+            int squigglyDepth = 0;
+            int tokenColumn = 0;
+
+            foreach (VerilogToken token in lineTokens) {
+                string tokenText = token.Part ?? string.Empty;
+                string itemText = tokenText.Trim();
+                int leadingWhitespace = tokenText.Length - tokenText.TrimStart().Length;
+                int itemColumn = tokenColumn + leadingWhitespace;
+                tokenColumn += tokenText.Length;
+
+                if (string.IsNullOrEmpty(itemText)) {
+                    continue;
+                }
+
+                if (!foundType) {
+                    if (IsTypedefVariableDeclarationPrefixModifier(itemText)) {
+                        continue;
+                    }
+
+                    if (!IsIdentifier(itemText) ||
+                        !IsTypedefNameVisible(typeNamesByScope, scope, itemText)) {
+                        return false;
+                    }
+
+                    typeName = itemText;
+                    foundType = true;
+                    expectingName = true;
+                    continue;
+                }
+
+                if (itemText == "[") {
+                    squareDepth++;
+                    continue;
+                }
+
+                if (itemText == "]") {
+                    if (squareDepth > 0) {
+                        squareDepth--;
+                    }
+                    continue;
+                }
+
+                if (itemText == "(") {
+                    if (squareDepth == 0 && roundDepth == 0 && squigglyDepth == 0 &&
+                        expectingName && declarationNames.Count == 0) {
+                        // A cast or call beginning with a typedef name is not a declaration.
+                        return false;
+                    }
+                    roundDepth++;
+                    continue;
+                }
+
+                if (itemText == ")") {
+                    if (roundDepth > 0) {
+                        roundDepth--;
+                        continue;
+                    }
+
+                    // End of a routine argument list.
+                    break;
+                }
+
+                if (itemText == "{") {
+                    squigglyDepth++;
+                    continue;
+                }
+
+                if (itemText == "}") {
+                    if (squigglyDepth > 0) {
+                        squigglyDepth--;
+                    }
+                    continue;
+                }
+
+                if (squareDepth != 0 || roundDepth != 0 || squigglyDepth != 0) {
+                    continue;
+                }
+
+                if (itemText == ";") {
+                    break;
+                }
+
+                if (itemText == ",") {
+                    if (declarationNames.Count == 0) {
+                        return false;
+                    }
+
+                    expectingName = true;
+                    skippingInitializer = false;
+                    continue;
+                }
+
+                if (itemText == "=") {
+                    if (expectingName) {
+                        // For example: typedef_name = 3; is an invalid assignment to a type,
+                        // not a declaration of an object.
+                        return false;
+                    }
+
+                    skippingInitializer = true;
+                    continue;
+                }
+
+                if (skippingInitializer) {
+                    continue;
+                }
+
+                if (expectingName) {
+                    if (!IsIdentifier(itemText)) {
+                        return false;
+                    }
+
+                    declarationNames.Add(
+                        new TypedefIdentifierCandidate(
+                            itemText,
+                            lineNumber,
+                            itemColumn));
+                    expectingName = false;
+                }
+            }
+
+            return foundType && declarationNames.Count > 0;
+        }
+
         private static bool TryGetRoutineReturnTypeIdentifier(
             string lineText,
             string keyword,
@@ -2658,6 +2866,75 @@ namespace VerilogLanguage
             }
         }
 
+        private static void ProcessSnapshotTypedefVariableDeclarationLine(
+            Dictionary<string, Dictionary<string, int>> countsByScope,
+            Dictionary<string, Dictionary<string, int>> countsByLexicalScope,
+            Dictionary<string, string> declarationScopeByLexicalScope,
+            Dictionary<string, Dictionary<string, VerilogTokenTypes>> declarationTypesByScope,
+            Dictionary<string, Dictionary<string, string>> declarationHoverTextByScope,
+            string scope,
+            string lexicalScope,
+            string declarationText,
+            string typedefTypeName,
+            List<TypedefIdentifierCandidate> declarationNames) {
+            if (string.IsNullOrEmpty(typedefTypeName) ||
+                declarationNames == null || declarationNames.Count == 0) {
+                return;
+            }
+
+            declarationScopeByLexicalScope[lexicalScope] = scope;
+
+            if (!declarationTypesByScope.ContainsKey(scope)) {
+                declarationTypesByScope.Add(scope, new Dictionary<string, VerilogTokenTypes>());
+            }
+
+            if (!declarationHoverTextByScope.ContainsKey(scope)) {
+                declarationHoverTextByScope.Add(scope, new Dictionary<string, string>());
+            }
+
+            string hoverText = BackfillDeclarationHoverText(declarationText);
+            EnsureHoverScope(scope);
+
+            foreach (TypedefIdentifierCandidate declarationName in declarationNames) {
+                string name = declarationName.Name;
+                if (string.IsNullOrEmpty(name)) {
+                    continue;
+                }
+
+                AddDuplicateScanName(countsByScope, scope, name);
+                AddDuplicateScanName(countsByLexicalScope, lexicalScope, name);
+
+                if (!declarationTypesByScope[scope].ContainsKey(name)) {
+                    declarationTypesByScope[scope].Add(
+                        name,
+                        VerilogTokenTypes.Verilog_UserDefinedTypeVariable);
+                }
+
+                if (!string.IsNullOrEmpty(hoverText) &&
+                    !declarationHoverTextByScope[scope].ContainsKey(name)) {
+                    declarationHoverTextByScope[scope].Add(name, hoverText);
+                }
+
+                VerilogVariables[scope][name] = VerilogTokenTypes.Verilog_UserDefinedTypeVariable;
+                if (!string.IsNullOrEmpty(hoverText)) {
+                    VerilogVariableHoverText[scope][name] = hoverText;
+                }
+
+                if (!VerilogDefinitionLocations[scope].ContainsKey(name)) {
+                    VerilogDefinitionLocations[scope].Add(
+                        name,
+                        new VerilogDefinitionLocation(
+                            scope,
+                            name,
+                            declarationName.LineNumber,
+                            declarationName.LinePosition,
+                            name.Length,
+                            VerilogTokenTypes.Verilog_UserDefinedTypeVariable,
+                            hoverText));
+                }
+            }
+        }
+
         private static bool IsMisclassifiedUserDefinedTypeToken(VerilogTokenTypes tokenType) {
             switch (tokenType) {
                 case VerilogTokenTypes.Verilog_FunctionName:
@@ -2668,6 +2945,7 @@ namespace VerilogLanguage
                 case VerilogTokenTypes.Verilog_Variable_wire:
                 case VerilogTokenTypes.Verilog_Variable_reg:
                 case VerilogTokenTypes.Verilog_Variable_SystemVerilog:
+                case VerilogTokenTypes.Verilog_UserDefinedTypeVariable:
                 case VerilogTokenTypes.Verilog_Variable_localparam:
                 case VerilogTokenTypes.Verilog_Variable_parameter:
                 case VerilogTokenTypes.Verilog_Variable_duplicate:
@@ -2730,8 +3008,10 @@ namespace VerilogLanguage
             Dictionary<string, Dictionary<string, string>> declarationHoverTextByScope =
                 new Dictionary<string, Dictionary<string, string>>(StringComparer.Ordinal);
             List<TypedefAliasInfo> typedefAliases;
-            Dictionary<string, HashSet<string>> inferredTypeNamesByScope =
+            Dictionary<string, HashSet<string>> typedefNamesByScope =
                 CollectTypedefNamesFromSnapshot(snapshot, out typedefAliases);
+            Dictionary<string, HashSet<string>> inferredTypeNamesByScope =
+                CopyScopedTypeNames(typedefNamesByScope);
             HashSet<string> invalidFunctionScopes = new HashSet<string>(StringComparer.Ordinal);
 
             Dictionary<int, string> blockScopeByLine =
@@ -2749,6 +3029,22 @@ namespace VerilogLanguage
                     ref insideBlockComment,
                     ref insideAttribute,
                     out declarationCodeText);
+
+                string moduleScope = NormalizeDeclarationDuplicateScope(TextModuleName(line.LineNumber, 0));
+                string preliminaryDeclarationScope = string.IsNullOrEmpty(activeLocalScope)
+                    ? moduleScope
+                    : activeLocalScope;
+                string typedefVariableTypeName;
+                List<TypedefIdentifierCandidate> typedefVariableNames;
+                bool mayContainTypedefVariableDeclaration =
+                    TryCollectTypedefVariableDeclarationNames(
+                        declarationCodeText,
+                        line.LineNumber,
+                        preliminaryDeclarationScope,
+                        typedefNamesByScope,
+                        out typedefVariableTypeName,
+                        out typedefVariableNames);
+
                 bool mayContainFunction = declarationCodeText.IndexOf("function", StringComparison.Ordinal) >= 0;
                 bool mayContainTask = declarationCodeText.IndexOf("task", StringComparison.Ordinal) >= 0;
                 bool mayContainDeclaration = CodeLineStartsWithDeclarationKeyword(declarationCodeText);
@@ -2757,11 +3053,10 @@ namespace VerilogLanguage
                      declarationCodeText.IndexOf("endtask", StringComparison.Ordinal) >= 0);
 
                 if (!mayContainFunction && !mayContainTask && !mayContainDeclaration &&
-                    !mayEndLocalScope) {
+                    !mayContainTypedefVariableDeclaration && !mayEndLocalScope) {
                     continue;
                 }
 
-                string moduleScope = NormalizeDeclarationDuplicateScope(TextModuleName(line.LineNumber, 0));
                 string functionName;
                 string taskName;
 
@@ -2846,6 +3141,24 @@ namespace VerilogLanguage
                         declarationScope,
                         lexicalScope,
                         declarationCodeText);
+                }
+                else if (mayContainTypedefVariableDeclaration) {
+                    string lexicalScope = SnapshotDeclarationLexicalScope(
+                        declarationScope,
+                        line.LineNumber,
+                        blockScopeByLine,
+                        declarationScopeByLexicalScope);
+                    ProcessSnapshotTypedefVariableDeclarationLine(
+                        countsByScope,
+                        countsByLexicalScope,
+                        declarationScopeByLexicalScope,
+                        declarationTypesByScope,
+                        declarationHoverTextByScope,
+                        declarationScope,
+                        lexicalScope,
+                        declarationCodeText,
+                        typedefVariableTypeName,
+                        typedefVariableNames);
                 }
 
                 if (mayEndLocalScope && (IsEndFunctionLineText(declarationCodeText) || IsEndTaskLineText(declarationCodeText))) {

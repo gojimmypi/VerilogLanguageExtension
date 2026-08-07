@@ -41,6 +41,65 @@
             ]
         },
         {
+            "Name": "sample_t",
+            "Scope": "systemverilog_keywords",
+            "TokenType": "Verilog_UserDefinedType",
+            "HoverContains": [
+                "typedef sample_t",
+                "underlying type: logic [7:0]",
+                "scope: systemverilog_keywords"
+            ]
+        },
+        {
+            "Name": "shared_scope_name",
+            "Scope": "systemverilog_type_owner",
+            "TokenType": "Verilog_UserDefinedType",
+            "HoverContains": [
+                "typedef shared_scope_name",
+                "underlying type: logic [7:0]",
+                "scope: systemverilog_type_owner"
+            ]
+        },
+        {
+            "Name": "shared_no_ports_name",
+            "Scope": "systemverilog_type_owner_no_ports",
+            "TokenType": "Verilog_UserDefinedType",
+            "HoverContains": [
+                "typedef shared_no_ports_name",
+                "underlying type: logic [7:0]",
+                "scope: systemverilog_type_owner_no_ports"
+            ]
+        },
+        {
+            "Name": "shared_parameterized_no_ports_name",
+            "Scope": "systemverilog_type_owner_parameterized_no_ports",
+            "TokenType": "Verilog_UserDefinedType",
+            "HoverContains": [
+                "typedef shared_parameterized_no_ports_name",
+                "underlying type: logic [WIDTH - 1:0]",
+                "scope: systemverilog_type_owner_parameterized_no_ports"
+            ]
+        },
+        {
+            "Name": "shared_parameterized_ports_name",
+            "Scope": "systemverilog_type_owner_parameterized_ports",
+            "TokenType": "Verilog_UserDefinedType",
+            "HoverContains": [
+                "typedef shared_parameterized_ports_name",
+                "underlying type: logic [WIDTH - 1:0]",
+                "scope: systemverilog_type_owner_parameterized_ports"
+            ]
+        },
+        {
+            "Name": "myvar",
+            "Scope": "systemverilog_type_owner_parameterized_ports",
+            "TokenType": "Verilog_UserDefinedTypeVariable",
+            "HoverContains": [
+                "shared_parameterized_ports_name",
+                "myvar"
+            ]
+        },
+        {
             "Name": "shared_scope_name",
             "Scope": "systemverilog_variable_owner",
             "TokenType": "Verilog_Variable_wire",
@@ -283,6 +342,60 @@
                 "wire",
                 "shared_parameterized_ports_name"
             ]
+        },
+        {
+            "Text": "sample_t",
+            "Source": "Tags",
+            "TagDetail": "Verilog_UserDefinedType",
+            "HoverContains": [
+                "typedef sample_t",
+                "underlying type: logic [7:0]"
+            ]
+        },
+        {
+            "Text": "shared_scope_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_UserDefinedType",
+            "HoverContains": [
+                "typedef shared_scope_name",
+                "underlying type: logic [7:0]"
+            ]
+        },
+        {
+            "Text": "shared_no_ports_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_UserDefinedType",
+            "HoverContains": [
+                "typedef shared_no_ports_name",
+                "underlying type: logic [7:0]"
+            ]
+        },
+        {
+            "Text": "shared_parameterized_no_ports_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_UserDefinedType",
+            "HoverContains": [
+                "typedef shared_parameterized_no_ports_name",
+                "underlying type: logic [WIDTH - 1:0]"
+            ]
+        },
+        {
+            "Text": "shared_parameterized_ports_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_UserDefinedType",
+            "HoverContains": [
+                "typedef shared_parameterized_ports_name",
+                "underlying type: logic [WIDTH - 1:0]"
+            ]
+        },
+        {
+            "Text": "myvar",
+            "Source": "Tags",
+            "TagDetail": "Verilog_UserDefinedTypeVariable",
+            "HoverContains": [
+                "shared_parameterized_ports_name",
+                "myvar"
+            ]
         }
     ],
     "MustNotHaveTaggedText": [
@@ -383,22 +496,6 @@
         }
     ],
     "MustNotHaveSymbols": [
-        {
-            "Name": "shared_scope_name",
-            "Scope": "systemverilog_type_owner"
-        },
-        {
-            "Name": "shared_no_ports_name",
-            "Scope": "systemverilog_type_owner_no_ports"
-        },
-        {
-            "Name": "shared_parameterized_no_ports_name",
-            "Scope": "systemverilog_type_owner_parameterized_no_ports"
-        },
-        {
-            "Name": "shared_parameterized_ports_name",
-            "Scope": "systemverilog_type_owner_parameterized_ports"
-        },
         {
             "Name": "integer",
             "Scope": "systemverilog_type_owner_parameterized_no_ports"

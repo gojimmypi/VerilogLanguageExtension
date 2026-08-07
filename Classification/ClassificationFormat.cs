@@ -2712,10 +2712,31 @@ namespace VerilogLanguage
         public Verilog_UserDefinedType() {
             DisplayName = "Verilog - User-defined type (typedef alias)";
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = Colors.LemonChiffon; // default color for dark background
+                ForegroundColor = Colors.Yellow; // close to, but distinct from, the Gold SystemVerilog type keyword
             }
             else {
-                ForegroundColor = Colors.Chocolate; // default color for light background
+                ForegroundColor = Colors.DarkGoldenrod;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Defines the editor format for variables declared using a SystemVerilog typedef alias.
+    /// </summary>
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "UserDefinedTypeVariable")]
+    [Name("UserDefinedTypeVariable")]
+    [UserVisible(true)]
+    [Order(After = Priority.Default)]
+    internal sealed class Verilog_UserDefinedTypeVariable : ClassificationFormatDefinition
+    {
+        public Verilog_UserDefinedTypeVariable() {
+            DisplayName = "Verilog - Variable declared with typedef alias";
+            if (ColorThemeAttribute.IsDarkTheme()) {
+                ForegroundColor = Colors.LemonChiffon;
+            }
+            else {
+                ForegroundColor = Colors.Chocolate;
             }
         }
     }
@@ -2740,7 +2761,7 @@ namespace VerilogLanguage
         public Verilog_directive() {
             DisplayName = "Verilog - Directive"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = Colors.Peru; // default color for dark background
+                ForegroundColor = Colors.Peru; // .Gray; // default color for dark background MColor.FromRgb(0x9B, 0x9B, 0x9B);
             }
             else {
                 ForegroundColor = Colors.DimGray; // default color for light background
@@ -2782,7 +2803,7 @@ namespace VerilogLanguage
         public Verilog_MacroDefinition() {
             DisplayName = "Verilog - Macro Conditional Definition";
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = Colors.Khaki;
+                ForegroundColor = Colors.Goldenrod;
             }
             else {
                 ForegroundColor = Colors.Brown;

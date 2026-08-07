@@ -716,6 +716,13 @@ namespace VerilogLanguage
         [Name("UserDefinedType")]
         internal static ClassificationTypeDefinition Verilog_UserDefinedType = null;
 
+        /// <summary>
+        /// Defines a variable declared using a resolved SystemVerilog typedef alias.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("UserDefinedTypeVariable")]
+        internal static ClassificationTypeDefinition Verilog_UserDefinedTypeVariable = null;
+
         #endregion
 
         #region directives

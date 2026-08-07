@@ -506,6 +506,44 @@ normalizes repository paths embedded in hover text. Therefore an unchanged
 current snapshot can compare byte-for-byte with its approved baseline; direct
 folder comparison highlights only real snapshot changes.
 
+## Performance baseline
+
+Semantic snapshots and performance measurements use separate baselines. This
+keeps `tests\snapshots\baselines` clean for direct folder comparison while
+still allowing CI to report whether processing became better, worse, or stayed
+within the normal variation range.
+
+The current run records exact per-file seconds and CI-stage seconds in:
+
+```text
+artifacts\snapshots\current\run-info.json
+```
+
+The approved performance reference is stored separately at:
+
+```text
+tests\snapshots\performance-baselines\development-main\all-testfiles.performance.json
+```
+
+After reviewing a completed `ci-check.ps1` run, create or update that reference
+explicitly:
+
+```powershell
+.\scripts\update-performance-baseline.ps1
+```
+
+`ci-check.ps1` compares the next run against the approved performance baseline.
+The default report treats changes within 10 percent as `SAME`, larger decreases
+as `BETTER`, and larger increases as `WORSE`. A regression threshold is also
+reported when the increase exceeds both 25 percent and 10 seconds. Performance
+regressions are report-only by default because Visual Studio startup and machine
+load can vary. Compare runs made with the same machine, Visual Studio instance,
+and build configuration. Pass `-FailOnPerformanceRegression` directly to
+`Run-LocalCI.ps1` when a blocking performance gate is wanted.
+
+The performance baseline is never updated by `ci-baseline.ps1`; semantic and
+performance approval remain separate explicit actions.
+
 Snapshot JSON includes data such as:
 
 ```json
@@ -599,12 +637,14 @@ Do not update the baseline. Fix the parser/classifier/tagger change and rerun
 Commit:
 
 ```text
+scripts\update-performance-baseline.ps1
 tools\vle-ci\*.ps1
 tools\vle-ci\*.py
 tools\vle-ci\README.md
 tools\vle-ci\manifests\*.json
 tools\vle-ci\expectations\*.expect.json
 tests\snapshots\baselines\...\*.snapshot.json
+tests\snapshots\performance-baselines\...\*.performance.json
 ```
 
 Do not commit:
@@ -631,10 +671,16 @@ Update all-testfiles baseline:
 .\ci-baseline.ps1
 ```
 
-Check current output against all-testfiles baseline:
+Check current output against all-testfiles baseline and report performance:
 
 ```powershell
 .\ci-check.ps1
+```
+
+Approve the latest completed run as the performance reference:
+
+```powershell
+.\scripts\update-performance-baseline.ps1
 ```
 
 Run cold-open only:

@@ -13,8 +13,13 @@ param(
     [string]$Configuration = "Debug",
     [string]$Manifest = "tools/vle-ci/manifests/cold-open.json",
     [string]$Baseline = "",
+    [string]$PerformanceBaseline = "",
     [switch]$UpdateBaseline,
     [switch]$AllowNewSnapshots,
+    [switch]$FailOnPerformanceRegression,
+    [double]$PerformanceSamePercent = 10.0,
+    [double]$PerformanceRegressionPercent = 25.0,
+    [double]$PerformanceMinimumRegressionSeconds = 10.0,
     [switch]$SkipBuild,
     [switch]$SkipSnapshots,
     [string]$RootSuffix = "Exp"
@@ -24,6 +29,7 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
 . (Join-Path $PSScriptRoot "SnapshotBaseline.ps1")
+. (Join-Path $PSScriptRoot "PerformanceBaseline.ps1")
 
 function Get-RepoRoot {
     $scriptDir = Split-Path -Parent $PSCommandPath
@@ -352,6 +358,7 @@ $currentSnapshots = Join-Path $repoRoot "artifacts/snapshots/current"
 $expectations = Join-Path $repoRoot "tools/vle-ci/expectations"
 $compareTool = Join-Path $repoRoot "tools/vle-ci/Compare-Snapshots.py"
 $baselinePath = ""
+$performanceBaselinePath = ""
 
 if (!$SkipBuild) {
     $buildStopwatch = [System.Diagnostics.Stopwatch]::StartNew()
@@ -461,7 +468,39 @@ Add-CiTimingRecord -Name "Total" -Stopwatch $ciTotalStopwatch | Out-Null
 
 if (!$SkipSnapshots) {
     Add-RunInfoCiTimingMetadata -SnapshotDirectory $currentSnapshots
-    Format-JsonFile -Path (Join-Path $currentSnapshots "run-info.json")
+    $currentRunInfoPath = Join-Path $currentSnapshots "run-info.json"
+    Format-JsonFile -Path $currentRunInfoPath
+
+    if (![string]::IsNullOrWhiteSpace($PerformanceBaseline)) {
+        $performanceBaselinePath = Resolve-LocalCiPath `
+            -RepoRoot $repoRoot `
+            -Path $PerformanceBaseline
+
+        if (Test-Path -LiteralPath $performanceBaselinePath -PathType Leaf) {
+            $performanceResult = Compare-VlePerformanceBaseline `
+                -CurrentRunInfoPath $currentRunInfoPath `
+                -BaselinePath $performanceBaselinePath `
+                -SamePercent $PerformanceSamePercent `
+                -RegressionPercent $PerformanceRegressionPercent `
+                -MinimumRegressionSeconds $PerformanceMinimumRegressionSeconds `
+                -FailOnRegression:$FailOnPerformanceRegression
+
+            if (!$performanceResult.Passed) {
+                $message = (
+                    "Performance comparison found {0} regression(s) above " +
+                    "the configured threshold.") -f `
+                    $performanceResult.RegressionCount
+                throw $message
+            }
+        }
+        else {
+            $message = (
+                "Performance baseline not found: {0}. Create it with " +
+                ".\scripts\update-performance-baseline.ps1 after reviewing " +
+                "a completed ci-check run.") -f $performanceBaselinePath
+            Write-Warning $message
+        }
+    }
 }
 
 Write-Host "Local CI completed successfully."

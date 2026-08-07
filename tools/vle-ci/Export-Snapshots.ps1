@@ -529,6 +529,7 @@ function Add-SnapshotTimingRecord {
         $Stopwatch.Stop()
     }
 
+    $elapsedSeconds = [Math]::Round($Stopwatch.Elapsed.TotalSeconds, 3)
     $elapsedBucket = Get-ElapsedTimeBucket -ElapsedSeconds $Stopwatch.Elapsed.TotalSeconds
     $record = [ordered]@{
         Index = $Index
@@ -536,6 +537,7 @@ function Add-SnapshotTimingRecord {
         Path = $Path.Replace("\", "/")
         SnapshotFileName = $SnapshotFileName
         Status = $Status
+        ElapsedSeconds = $elapsedSeconds
         ElapsedBucket = $elapsedBucket
     }
 

@@ -20,4 +20,5 @@ Set-Location -LiteralPath $repoRoot
 & (Join-Path $repoRoot "tools\vle-ci\Run-LocalCI.ps1") `
     -Manifest tools\vle-ci\manifests\all-testfiles.json `
     -Baseline tests\snapshots\baselines\development-main\all-testfiles `
+    -PerformanceBaseline tests\snapshots\performance-baselines\development-main\all-testfiles.performance.json `
     -AllowNewSnapshots

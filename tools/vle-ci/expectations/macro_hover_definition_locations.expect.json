@@ -80,7 +80,7 @@
             "HoverContains": [
                 "defined with no value",
                 "macro_hover_definition_locations.sv",
-                "Line: 16"
+                "Line: 18"
             ],
             "HoverNotContains": [
                 "Value:"
@@ -94,7 +94,7 @@
                 "is defined",
                 "Value: \"Version 1.0\"",
                 "macro_hover_definition_locations.sv",
-                "Line: 20"
+                "Line: 23"
             ]
         },
         {
@@ -105,7 +105,7 @@
                 "is defined",
                 "Value: (`LOCAL_DEFINED_MACRO + 4)",
                 "macro_hover_definition_locations.sv",
-                "Line: 23"
+                "Line: 26"
             ]
         },
         {

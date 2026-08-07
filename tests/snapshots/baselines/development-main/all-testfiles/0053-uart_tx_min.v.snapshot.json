@@ -10921,7 +10921,7 @@
                      "Text":  "CLKS_PER_BIT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "localparam integer CLKS_PER_BIT = CLOCK_HZ / UART_BAUD"
+                     "HoverText":  null
                  },
                  {
                      "Start":  2754,
@@ -11011,7 +11011,7 @@
                      "Text":  "16\u0027d1",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "16\u0027D1 = (16 bit Decimal) 1; "
+                     "HoverText":  null
                  },
                  {
                      "Start":  2768,
@@ -11171,7 +11171,7 @@
                      "Text":  "CLKS_PER_BIT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "localparam integer CLKS_PER_BIT = CLOCK_HZ / UART_BAUD"
+                     "HoverText":  null
                  },
                  {
                      "Start":  2825,
@@ -11951,7 +11951,7 @@
                      "Text":  "shift_reg",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [7:0] shift_reg"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3174,
@@ -13261,7 +13261,7 @@
                      "Text":  "start",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input wire start"
+                     "HoverText":  null
                  },
                  {
                      "Start":  4037,

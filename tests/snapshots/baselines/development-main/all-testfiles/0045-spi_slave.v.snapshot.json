@@ -14731,7 +14731,7 @@
                      "Text":  "rx_next",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire [7:0] rx_next"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5425,
@@ -16561,7 +16561,7 @@
                      "Text":  "rx_next",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire [7:0] rx_next"
+                     "HoverText":  null
                  },
                  {
                      "Start":  7295,
@@ -17031,7 +17031,7 @@
                      "Text":  "ST_CMD",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "localparam [1:0] ST_CMD = 2\u0027d0"
+                     "HoverText":  null
                  },
                  {
                      "Start":  7848,
@@ -17231,7 +17231,7 @@
                      "Text":  "ST_DATA",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "localparam [1:0] ST_DATA = 2\u0027d1"
+                     "HoverText":  null
                  },
                  {
                      "Start":  8191,
@@ -17351,7 +17351,7 @@
                      "Text":  "state",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [1:0] state"
+                     "HoverText":  null
                  },
                  {
                      "Start":  8336,
@@ -17411,7 +17411,7 @@
                      "Text":  "state",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [1:0] state"
+                     "HoverText":  null
                  },
                  {
                      "Start":  8381,
@@ -17511,7 +17511,7 @@
                      "Text":  "byte_done",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire byte_done"
+                     "HoverText":  null
                  },
                  {
                      "Start":  8459,
@@ -17611,7 +17611,7 @@
                      "Text":  "spi_sck_rise",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire spi_sck_rise"
+                     "HoverText":  null
                  },
                  {
                      "Start":  8577,
@@ -18111,7 +18111,7 @@
                      "Text":  "spi_sck_fall",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire spi_sck_fall;"
+                     "HoverText":  null
                  },
                  {
                      "Start":  9040,
@@ -18191,7 +18191,7 @@
                      "Text":  "spi_cs_active",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire spi_cs_active;"
+                     "HoverText":  null
                  },
                  {
                      "Start":  9081,
@@ -18241,7 +18241,7 @@
                      "Text":  "spi_cs_start",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire spi_cs_start;"
+                     "HoverText":  null
                  },
                  {
                      "Start":  9099,
@@ -18321,7 +18321,7 @@
                      "Text":  "rst_n",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module tt_spi_slave( .. input wire rst_n .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  9125,
@@ -18451,7 +18451,7 @@
                      "Text":  "tt_spi_slave",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module tt_spi_slave(  wire clk,\r\n input wire rst_n,\r\n input wire spi_sck,\r\n input wire spi_cs_n,\r\n input wire spi_mosi,\r\n output reg spi_miso,\r\n output reg reg_wr_en,\r\n output reg [`SPI_ADDR_MSB:0] reg_addr,\r\n output reg [7:0] reg_wdata,\r\n input wire [7:0] reg_rdata)"
+                     "HoverText":  null
                  },
                  {
                      "Start":  9184,

@@ -6281,7 +6281,7 @@
                      "Text":  "sample_ctr",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [15:0] sample_ctr"
+                     "HoverText":  null
                  },
                  {
                      "Start":  1218,
@@ -6441,7 +6441,7 @@
                      "Text":  "lfsr",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [15:0] lfsr"
+                     "HoverText":  null
                  },
                  {
                      "Start":  1267,
@@ -7551,7 +7551,7 @@
                      "Text":  "reg_ctrl",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module trng_stub( .. input wire [7:0] reg_ctrl .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  1718,
@@ -8551,7 +8551,7 @@
                      "Text":  "reg_status",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module trng_stub( .. output reg [7:0] reg_status .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  2317,
@@ -9401,7 +9401,7 @@
                      "Text":  "sample_ctr",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [15:0] sample_ctr"
+                     "HoverText":  null
                  },
                  {
                      "Start":  2746,
@@ -10211,7 +10211,7 @@
                      "Text":  "reg_oscen",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module trng_stub( .. input wire reg_oscen .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3228,
@@ -10281,7 +10281,7 @@
                      "Text":  "reg_src",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module trng_stub( .. input wire [7:0] reg_src .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3243,
@@ -11171,7 +11171,7 @@
                      "Text":  "sample_ctr",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [15:0] sample_ctr"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3696,
@@ -11231,7 +11231,7 @@
                      "Text":  "8\u0027h00",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "8\u0027H00 = (8 bit Hex) 00; 00000000"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3706,
@@ -11261,7 +11261,7 @@
                      "Text":  "reg_div",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module trng_stub( .. input wire [7:0] reg_div .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3715,
@@ -11371,7 +11371,7 @@
                      "Text":  "trng_enable",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire trng_enable"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3755,
@@ -11721,7 +11721,7 @@
                      "Text":  "clk",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module trng_stub( .. input wire clk .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3859,
@@ -11791,7 +11791,7 @@
                      "Text":  "trng_stub",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module trng_stub(  wire clk,\r\n input wire rst_n,\r\n input wire [7:0] reg_ctrl,\r\n input wire [7:0] reg_src,\r\n input wire [7:0] reg_div,\r\n input wire [7:0] reg_mode,\r\n input wire reg_oscen,\r\n output reg [7:0] reg_status,\r\n output reg [7:0] reg_rawlo,\r\n output reg [7:0] reg_rawhi,\r\n`ifdef TRNG_BINARY_STREAM output reg [7:0] stream_sample_count,\r\n`endif output wire trng_bit)"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3887,

@@ -21031,7 +21031,7 @@
                      "Text":  "rst_n",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input wire rst_n)"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3522,
@@ -22191,7 +22191,7 @@
                      "Text":  "1\u0027b0",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "1\u0027B0 = (1 bit Binary) 0; "
+                     "HoverText":  null
                  },
                  {
                      "Start":  4499,
@@ -22221,7 +22221,7 @@
                      "Text":  "jtag_reg_addr",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire [`JTAG_ADDR_MSB:0] jtag_reg_addr"
+                     "HoverText":  null
                  },
                  {
                      "Start":  4514,
@@ -22271,7 +22271,7 @@
                      "Text":  "`SPI_ADDR_MSB",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire [`SPI_ADDR_MSB:0] spi_reg_addr"
+                     "HoverText":  null
                  },
                  {
                      "Start":  4531,
@@ -23141,7 +23141,7 @@
                      "Text":  "ui_in",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input wire [7:0] ui_in"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5241,
@@ -23501,7 +23501,7 @@
                      "Text":  "ui_in",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input wire [7:0] ui_in"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5377,
@@ -24781,7 +24781,7 @@
                      "Text":  "_unused_debug_regs",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire _unused_debug_regs = \u0026{ reg_ctrl, reg_src,`ifdef PIN_DIAG reg_div[7:5], reg_mode[4:0], reg_oscen, pin_id_active, pin_id_invalid_sel,`else reg_div, reg_mode, reg_oscen,`endif reg_status[7:3], reg_rawlo[7:3], reg_rawhi[3:0] }"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6336,
@@ -25071,7 +25071,7 @@
                      "Text":  "ena",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input wire ena"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6426,
@@ -25331,7 +25331,7 @@
                      "Text":  "uio_in",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input wire [7:0] uio_in"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6505,
@@ -25831,7 +25831,7 @@
                      "Text":  "rst_n",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input wire rst_n)"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6855,
@@ -25891,7 +25891,7 @@
                      "Text":  "rst_sync_n",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg rst_sync_n"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6874,
@@ -26681,7 +26681,7 @@
                      "Text":  "ui_in",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input wire [7:0] ui_in"
+                     "HoverText":  null
                  },
                  {
                      "Start":  7285,
@@ -26801,7 +26801,7 @@
                      "Text":  "clk",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input wire clk"
+                     "HoverText":  null
                  },
                  {
                      "Start":  7312,
@@ -28101,7 +28101,7 @@
                      "Text":  "ui_in",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input wire [7:0] ui_in"
+                     "HoverText":  null
                  },
                  {
                      "Start":  7940,
@@ -28671,7 +28671,7 @@
                      "Text":  "clk",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input wire clk"
+                     "HoverText":  null
                  },
                  {
                      "Start":  8071,
@@ -29601,7 +29601,7 @@
                      "Text":  "debug_is_jtag",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire debug_is_jtag"
+                     "HoverText":  null
                  },
                  {
                      "Start":  8726,
@@ -29641,7 +29641,7 @@
                      "Text":  "debug_sel_sync",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg debug_sel_sync"
+                     "HoverText":  null
                  },
                  {
                      "Start":  8744,
@@ -30671,7 +30671,7 @@
                      "Text":  "debug_sel_sync",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg debug_sel_sync"
+                     "HoverText":  null
                  },
                  {
                      "Start":  9166,
@@ -31071,7 +31071,7 @@
                      "Text":  "clk",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input wire clk"
+                     "HoverText":  null
                  },
                  {
                      "Start":  9290,
@@ -41051,7 +41051,7 @@
                      "Text":  "ui_in",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input wire [7:0] ui_in"
+                     "HoverText":  null
                  },
                  {
                      "Start":  13800,
@@ -41491,7 +41491,7 @@
                      "Text":  "ui_in",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input wire [7:0] ui_in"
+                     "HoverText":  null
                  },
                  {
                      "Start":  13889,
@@ -52461,7 +52461,7 @@
                      "Text":  "tt_um_main",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module tt_um_main #(  [31:0] CLOCK_HZ = `PROJECT_CLOCK_HZ,\r\n parameter [31:0] UART_BAUD = `PROJECT_UART_BAUD)"
+                     "HoverText":  null
                  },
                  {
                      "Start":  18690,

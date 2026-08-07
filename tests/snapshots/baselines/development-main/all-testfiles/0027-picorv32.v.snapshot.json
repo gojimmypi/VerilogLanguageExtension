@@ -104401,7 +104401,7 @@
                      "Text":  "DEBUGNETS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "macro condition:\r\n`ifdef DEBUGNETS"
+                     "HoverText":  null
                  },
                  {
                      "Start":  940,
@@ -104451,7 +104451,7 @@
                      "Text":  "DEBUGREGS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "macro condition:\r\n`ifdef DEBUGREGS"
+                     "HoverText":  null
                  },
                  {
                      "Start":  961,
@@ -104501,7 +104501,7 @@
                      "Text":  "DEBUGASM",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "macro condition:\r\n`ifdef DEBUGASM"
+                     "HoverText":  null
                  },
                  {
                      "Start":  981,
@@ -104551,7 +104551,7 @@
                      "Text":  "DEBUG",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "macro condition:\r\n`ifdef DEBUG"
+                     "HoverText":  null
                  },
                  {
                      "Start":  999,
@@ -105031,7 +105031,7 @@
                      "Text":  "PICORV32_REGS",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "macro condition:\r\n`ifndef PICORV32_REGS"
+                     "HoverText":  null
                  },
                  {
                      "Start":  1430,
@@ -112961,7 +112961,7 @@
                      "Text":  "`assert",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "macro definition:\r\n`define assert(assert_expr) assert(assert_expr)\r\n\r\ncondition:\r\n`ifdef FORMAL\r\n\r\nmacro definition:\r\n`define assert(assert_expr) empty_statement\r\n\r\ncondition:\r\n`else (from `ifdef FORMAL)"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6233,
@@ -142291,7 +142291,7 @@
                      "Text":  "instr_getq",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg instr_getq"
+                     "HoverText":  null
                  },
                  {
                      "Start":  29901,
@@ -142521,7 +142521,7 @@
                      "Text":  "instr_retirq",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg instr_retirq"
+                     "HoverText":  null
                  },
                  {
                      "Start":  30077,

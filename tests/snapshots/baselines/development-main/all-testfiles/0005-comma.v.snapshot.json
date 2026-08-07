@@ -1861,7 +1861,7 @@
                      "Text":  "adder",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module adder( [31:0] a)"
+                     "HoverText":  null
                  }
              ],
     "Tokens":  [

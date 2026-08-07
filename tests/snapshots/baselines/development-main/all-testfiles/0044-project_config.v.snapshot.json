@@ -6981,7 +6981,7 @@
                      "Text":  "CASE_INSENSITIVE",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "macro condition:\r\n`ifdef CASE_INSENSITIVE"
+                     "HoverText":  null
                  },
                  {
                      "Start":  1326,
@@ -7241,7 +7241,7 @@
                      "Text":  "CASE_INSENSITIVE_ALT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "macro condition:\r\n`ifdef CASE_INSENSITIVE_ALT"
+                     "HoverText":  null
                  },
                  {
                      "Start":  1445,
@@ -7741,7 +7741,7 @@
                      "Text":  "ULX3S_USE_GN12_50MHZ",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "macro condition:\r\n`ifdef ULX3S_USE_GN12_50MHZ"
+                     "HoverText":  null
                  },
                  {
                      "Start":  1685,
@@ -10791,7 +10791,7 @@
                      "Text":  "MAX_SPI_REG",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "macro condition:\r\n`ifdef MAX_SPI_REG"
+                     "HoverText":  null
                  },
                  {
                      "Start":  2640,
@@ -12161,7 +12161,7 @@
                      "Text":  "DEBUG_PAGE_SELECT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "macro condition:\r\n`ifdef DEBUG_PAGE_SELECT"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3197,
@@ -18851,7 +18851,7 @@
                      "Text":  "TRNG_CONDITIONED_STREAM_64_XOR",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_CONDITIONED_STREAM_64_XOR"
+                     "HoverText":  null
                  },
                  {
                      "Start":  4469,
@@ -23171,7 +23171,7 @@
                      "Text":  "TRNG_CONDITIONED_STREAM_CRC",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_CONDITIONED_STREAM_CRC"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5315,

@@ -9191,7 +9191,7 @@
                      "Text":  "4\u0027h1",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "4\u0027H1 = (4 bit Hex) 1; 0001"
+                     "HoverText":  null
                  },
                  {
                      "Start":  368,
@@ -9351,7 +9351,7 @@
                      "Text":  "4\u0027h2",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "4\u0027H2 = (4 bit Hex) 2; 0010"
+                     "HoverText":  null
                  },
                  {
                      "Start":  415,
@@ -9601,7 +9601,7 @@
                      "Text":  "4\u0027h3",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "4\u0027H3 = (4 bit Hex) 3; 0011"
+                     "HoverText":  null
                  },
                  {
                      "Start":  510,
@@ -9741,7 +9741,7 @@
                      "Text":  "4\u0027h4",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "4\u0027H4 = (4 bit Hex) 4; 0100"
+                     "HoverText":  null
                  },
                  {
                      "Start":  553,
@@ -9881,7 +9881,7 @@
                      "Text":  "4\u0027hF",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "4\u0027HF = (4 bit Hex) F; 1111"
+                     "HoverText":  null
                  },
                  {
                      "Start":  597,
@@ -16151,7 +16151,7 @@
                      "Text":  "dr_shift_q",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [31:0] dr_shift_q"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5890,
@@ -16211,7 +16211,7 @@
                      "Text":  "24\u0027h000000",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "24\u0027H000000 = (24 bit Hex) 000000; 000000000000000000000000"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5905,
@@ -16241,7 +16241,7 @@
                      "Text":  "reg_addr_o",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "output reg [`JTAG_ADDR_MSB:0]  reg_addr_o"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5917,

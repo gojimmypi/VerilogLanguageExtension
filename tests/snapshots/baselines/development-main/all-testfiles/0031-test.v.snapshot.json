@@ -6391,7 +6391,7 @@
                      "Text":  "i_clk",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire i_clk"
+                     "HoverText":  null
                  },
                  {
                      "Start":  1934,
@@ -7711,7 +7711,7 @@
                      "Text":  "i_ad_port_value",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [7:0] i_ad_port_value"
+                     "HoverText":  null
                  },
                  {
                      "Start":  2504,
@@ -7801,7 +7801,7 @@
                      "Text":  "J2_AD_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module top( .. input [7:0] J2_AD_PORT .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  2522,
@@ -8111,7 +8111,7 @@
                      "Text":  "i_clk",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire i_clk"
+                     "HoverText":  null
                  },
                  {
                      "Start":  2665,
@@ -8531,7 +8531,7 @@
                      "Text":  "i_clk",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire i_clk"
+                     "HoverText":  null
                  },
                  {
                      "Start":  2778,
@@ -8601,7 +8601,7 @@
                      "Text":  "J2_DA_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module top( .. output [7:0] J2_DA_PORT .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  2802,
@@ -8701,7 +8701,7 @@
                      "Text":  "i_ad_port_value",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [7:0] i_ad_port_value"
+                     "HoverText":  null
                  },
                  {
                      "Start":  2826,
@@ -9471,7 +9471,7 @@
                      "Text":  "o_value",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg[7:0] o_value"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3213,
@@ -9571,7 +9571,7 @@
                      "Text":  "i_ad_port_value",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [7:0] i_ad_port_value"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3237,
@@ -9621,7 +9621,7 @@
                      "Text":  "J2_AD_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module top( .. input [7:0] J2_AD_PORT .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3252,
@@ -9721,7 +9721,7 @@
                      "Text":  "ctr",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [ctr_width-1:0] ctr = 32\u0027b1111_1111_1111_1111_1111_1111_1111_1111"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3264,
@@ -9811,7 +9811,7 @@
                      "Text":  "o_led",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [7:0] o_led"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3282,
@@ -9911,7 +9911,7 @@
                      "Text":  "o_value",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg[7:0] o_value"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3298,
@@ -10011,7 +10011,7 @@
                      "Text":  "ctr",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [ctr_width-1:0] ctr = 32\u0027b1111_1111_1111_1111_1111_1111_1111_1111"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3311,
@@ -10131,7 +10131,7 @@
                      "Text":  "o_led",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [7:0] o_led"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3338,
@@ -10231,7 +10231,7 @@
                      "Text":  "ctr",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [ctr_width-1:0] ctr = 32\u0027b1111_1111_1111_1111_1111_1111_1111_1111"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3350,
@@ -10351,7 +10351,7 @@
                      "Text":  "o_led",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [7:0] o_led"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3377,
@@ -10451,7 +10451,7 @@
                      "Text":  "i_ad_port_value",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [7:0] i_ad_port_value"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3401,
@@ -10641,7 +10641,7 @@
                      "Text":  "J2_DA_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module top( .. output [7:0] J2_DA_PORT .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3463,
@@ -10741,7 +10741,7 @@
                      "Text":  "i_ad_port_value",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [7:0] i_ad_port_value"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3487,
@@ -10831,7 +10831,7 @@
                      "Text":  "o_led",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [7:0] o_led"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3505,
@@ -10931,7 +10931,7 @@
                      "Text":  "ctr",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [ctr_width-1:0] ctr = 32\u0027b1111_1111_1111_1111_1111_1111_1111_1111"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3518,
@@ -11021,7 +11021,7 @@
                      "Text":  "J2_AD_CLK",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module top( .. output J2_AD_CLK .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3542,
@@ -11071,7 +11071,7 @@
                      "Text":  "ctr",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [ctr_width-1:0] ctr = 32\u0027b1111_1111_1111_1111_1111_1111_1111_1111"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3549,
@@ -11161,7 +11161,7 @@
                      "Text":  "J2_DA_CLK",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module top( .. output J2_DA_CLK .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3571,
@@ -11211,7 +11211,7 @@
                      "Text":  "ctr",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [ctr_width-1:0] ctr = 32\u0027b1111_1111_1111_1111_1111_1111_1111_1111"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3580,

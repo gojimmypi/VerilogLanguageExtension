@@ -4,9 +4,9 @@
     "FilePath":  "TestFiles/systemverilog_keywords.sv",
     "FileRelativePath":  "TestFiles/systemverilog_keywords.sv",
     "ContentType":  "verilog",
-    "SnapshotLength":  1517,
+    "SnapshotLength":  1747,
     "SnapshotVersion":  2,
-    "TextSha256":  "d0740bfd975463921a66ede9e2134c39635392b992077a8809e6b396882ac3c8",
+    "TextSha256":  "2845d126450c24f796259107fd7e1caf62c8dda006567d4959cca2945c90c836",
     "Errors":  [
 
                ],
@@ -202,6 +202,16 @@
                                           ]
                             },
                             {
+                                "Start":  123,
+                                "Length":  8,
+                                "Line":  7,
+                                "Column":  21,
+                                "Text":  "sample_t",
+                                "Types":  [
+                                              "UserDefinedType"
+                                          ]
+                            },
+                            {
                                 "Start":  136,
                                 "Length":  3,
                                 "Line":  9,
@@ -242,6 +252,16 @@
                                           ]
                             },
                             {
+                                "Start":  171,
+                                "Length":  8,
+                                "Line":  11,
+                                "Column":  20,
+                                "Text":  "sample_t",
+                                "Types":  [
+                                              "UserDefinedType"
+                                          ]
+                            },
+                            {
                                 "Start":  180,
                                 "Length":  15,
                                 "Line":  11,
@@ -269,6 +289,16 @@
                                 "Text":  "input",
                                 "Types":  [
                                               "input"
+                                          ]
+                            },
+                            {
+                                "Start":  208,
+                                "Length":  8,
+                                "Line":  12,
+                                "Column":  11,
+                                "Text":  "sample_t",
+                                "Types":  [
+                                              "UserDefinedType"
                                           ]
                             },
                             {
@@ -642,6 +672,16 @@
                                           ]
                             },
                             {
+                                "Start":  538,
+                                "Length":  17,
+                                "Line":  33,
+                                "Column":  21,
+                                "Text":  "shared_scope_name",
+                                "Types":  [
+                                              "UserDefinedType"
+                                          ]
+                            },
+                            {
                                 "Start":  560,
                                 "Length":  9,
                                 "Line":  35,
@@ -789,6 +829,16 @@
                                 "Text":  "]",
                                 "Types":  [
                                               "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  721,
+                                "Length":  20,
+                                "Line":  45,
+                                "Column":  21,
+                                "Text":  "shared_no_ports_name",
+                                "Types":  [
+                                              "UserDefinedType"
                                           ]
                             },
                             {
@@ -999,6 +1049,16 @@
                                 "Text":  "]",
                                 "Types":  [
                                               "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  977,
+                                "Length":  34,
+                                "Line":  59,
+                                "Column":  29,
+                                "Text":  "shared_parameterized_no_ports_name",
+                                "Types":  [
+                                              "UserDefinedType"
                                           ]
                             },
                             {
@@ -1282,9 +1342,89 @@
                                           ]
                             },
                             {
+                                "Start":  1314,
+                                "Length":  31,
+                                "Line":  75,
+                                "Column":  29,
+                                "Text":  "shared_parameterized_ports_name",
+                                "Types":  [
+                                              "UserDefinedType"
+                                          ]
+                            },
+                            {
                                 "Start":  1350,
-                                "Length":  9,
+                                "Length":  31,
                                 "Line":  77,
+                                "Column":  1,
+                                "Text":  "shared_parameterized_ports_name",
+                                "Types":  [
+                                              "UserDefinedType"
+                                          ]
+                            },
+                            {
+                                "Start":  1384,
+                                "Length":  1,
+                                "Line":  77,
+                                "Column":  35,
+                                "Text":  "3",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  1387,
+                                "Length":  21,
+                                "Line":  77,
+                                "Column":  38,
+                                "Text":  "/* TODO lint check */",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  1412,
+                                "Length":  31,
+                                "Line":  79,
+                                "Column":  1,
+                                "Text":  "shared_parameterized_ports_name",
+                                "Types":  [
+                                              "UserDefinedType"
+                                          ]
+                            },
+                            {
+                                "Start":  1444,
+                                "Length":  5,
+                                "Line":  79,
+                                "Column":  33,
+                                "Text":  "myvar",
+                                "Types":  [
+                                              "UserDefinedTypeVariable"
+                                          ]
+                            },
+                            {
+                                "Start":  1454,
+                                "Length":  5,
+                                "Line":  81,
+                                "Column":  1,
+                                "Text":  "myvar",
+                                "Types":  [
+                                              "UserDefinedTypeVariable"
+                                          ]
+                            },
+                            {
+                                "Start":  1462,
+                                "Length":  1,
+                                "Line":  81,
+                                "Column":  9,
+                                "Text":  "5",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  1468,
+                                "Length":  9,
+                                "Line":  83,
                                 "Column":  1,
                                 "Text":  "endmodule",
                                 "Types":  [
@@ -1292,9 +1432,9 @@
                                           ]
                             },
                             {
-                                "Start":  1363,
+                                "Start":  1481,
                                 "Length":  6,
-                                "Line":  79,
+                                "Line":  85,
                                 "Column":  1,
                                 "Text":  "module",
                                 "Types":  [
@@ -1302,9 +1442,9 @@
                                           ]
                             },
                             {
-                                "Start":  1370,
+                                "Start":  1488,
                                 "Length":  48,
-                                "Line":  79,
+                                "Line":  85,
                                 "Column":  8,
                                 "Text":  "systemverilog_variable_owner_parameterized_ports",
                                 "Types":  [
@@ -1312,9 +1452,9 @@
                                           ]
                             },
                             {
-                                "Start":  1420,
+                                "Start":  1538,
                                 "Length":  1,
-                                "Line":  79,
+                                "Line":  85,
                                 "Column":  58,
                                 "Text":  "(",
                                 "Types":  [
@@ -1322,9 +1462,9 @@
                                           ]
                             },
                             {
-                                "Start":  1427,
+                                "Start":  1545,
                                 "Length":  9,
-                                "Line":  80,
+                                "Line":  86,
                                 "Column":  5,
                                 "Text":  "parameter",
                                 "Types":  [
@@ -1332,9 +1472,9 @@
                                           ]
                             },
                             {
-                                "Start":  1437,
+                                "Start":  1555,
                                 "Length":  7,
-                                "Line":  80,
+                                "Line":  86,
                                 "Column":  15,
                                 "Text":  "integer",
                                 "Types":  [
@@ -1342,9 +1482,9 @@
                                           ]
                             },
                             {
-                                "Start":  1445,
+                                "Start":  1563,
                                 "Length":  5,
-                                "Line":  80,
+                                "Line":  86,
                                 "Column":  23,
                                 "Text":  "WIDTH",
                                 "Types":  [
@@ -1352,9 +1492,9 @@
                                           ]
                             },
                             {
-                                "Start":  1453,
+                                "Start":  1571,
                                 "Length":  1,
-                                "Line":  80,
+                                "Line":  86,
                                 "Column":  31,
                                 "Text":  "8",
                                 "Types":  [
@@ -1362,9 +1502,9 @@
                                           ]
                             },
                             {
-                                "Start":  1456,
+                                "Start":  1574,
                                 "Length":  1,
-                                "Line":  81,
+                                "Line":  87,
                                 "Column":  1,
                                 "Text":  ")",
                                 "Types":  [
@@ -1372,9 +1512,9 @@
                                           ]
                             },
                             {
-                                "Start":  1458,
+                                "Start":  1576,
                                 "Length":  2,
-                                "Line":  81,
+                                "Line":  87,
                                 "Column":  3,
                                 "Text":  "()",
                                 "Types":  [
@@ -1382,9 +1522,9 @@
                                           ]
                             },
                             {
-                                "Start":  1465,
+                                "Start":  1583,
                                 "Length":  4,
-                                "Line":  83,
+                                "Line":  89,
                                 "Column":  1,
                                 "Text":  "wire",
                                 "Types":  [
@@ -1392,9 +1532,9 @@
                                           ]
                             },
                             {
-                                "Start":  1470,
+                                "Start":  1588,
                                 "Length":  31,
-                                "Line":  83,
+                                "Line":  89,
                                 "Column":  6,
                                 "Text":  "shared_parameterized_ports_name",
                                 "Types":  [
@@ -1402,9 +1542,69 @@
                                           ]
                             },
                             {
-                                "Start":  1506,
+                                "Start":  1624,
+                                "Length":  31,
+                                "Line":  91,
+                                "Column":  1,
+                                "Text":  "shared_parameterized_ports_name",
+                                "Types":  [
+                                              "Variable_wire"
+                                          ]
+                            },
+                            {
+                                "Start":  1658,
+                                "Length":  1,
+                                "Line":  91,
+                                "Column":  35,
+                                "Text":  "4",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  1661,
+                                "Length":  21,
+                                "Line":  91,
+                                "Column":  38,
+                                "Text":  "/* TODO lint check */",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  1686,
+                                "Length":  6,
+                                "Line":  93,
+                                "Column":  1,
+                                "Text":  "assign",
+                                "Types":  [
+                                              "assign"
+                                          ]
+                            },
+                            {
+                                "Start":  1693,
+                                "Length":  31,
+                                "Line":  93,
+                                "Column":  8,
+                                "Text":  "shared_parameterized_ports_name",
+                                "Types":  [
+                                              "Variable_wire"
+                                          ]
+                            },
+                            {
+                                "Start":  1727,
+                                "Length":  4,
+                                "Line":  93,
+                                "Column":  42,
+                                "Text":  "1\u0027b1",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  1736,
                                 "Length":  9,
-                                "Line":  85,
+                                "Line":  95,
                                 "Column":  1,
                                 "Text":  "endmodule",
                                 "Types":  [
@@ -1604,6 +1804,16 @@
                      "HoverText":  null
                  },
                  {
+                     "Start":  123,
+                     "Length":  8,
+                     "Line":  7,
+                     "Column":  21,
+                     "Text":  "sample_t",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_UserDefinedType",
+                     "HoverText":  "typedef sample_t\r\nunderlying type: logic [7:0]\r\nscope: systemverilog_keywords"
+                 },
+                 {
                      "Start":  136,
                      "Length":  3,
                      "Line":  9,
@@ -1644,6 +1854,16 @@
                      "HoverText":  "The Verilog reserved word automatic is used in task and function declarations to maximize memory space."
                  },
                  {
+                     "Start":  171,
+                     "Length":  8,
+                     "Line":  11,
+                     "Column":  20,
+                     "Text":  "sample_t",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_UserDefinedType",
+                     "HoverText":  "typedef sample_t\r\nunderlying type: logic [7:0]\r\nscope: systemverilog_keywords"
+                 },
+                 {
                      "Start":  180,
                      "Length":  15,
                      "Line":  11,
@@ -1672,6 +1892,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_input",
                      "HoverText":  "The reserved word input is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
+                 },
+                 {
+                     "Start":  208,
+                     "Length":  8,
+                     "Line":  12,
+                     "Column":  11,
+                     "Text":  "sample_t",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_UserDefinedType",
+                     "HoverText":  "typedef sample_t\r\nunderlying type: logic [7:0]\r\nscope: systemverilog_keywords"
                  },
                  {
                      "Start":  217,
@@ -2134,6 +2364,16 @@
                      "HoverText":  null
                  },
                  {
+                     "Start":  538,
+                     "Length":  17,
+                     "Line":  33,
+                     "Column":  21,
+                     "Text":  "shared_scope_name",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_UserDefinedType",
+                     "HoverText":  "typedef shared_scope_name\r\nunderlying type: logic [7:0]\r\nscope: systemverilog_type_owner"
+                 },
+                 {
                      "Start":  560,
                      "Length":  9,
                      "Line":  35,
@@ -2292,6 +2532,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  721,
+                     "Length":  20,
+                     "Line":  45,
+                     "Column":  21,
+                     "Text":  "shared_no_ports_name",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_UserDefinedType",
+                     "HoverText":  "typedef shared_no_ports_name\r\nunderlying type: logic [7:0]\r\nscope: systemverilog_type_owner_no_ports"
                  },
                  {
                      "Start":  746,
@@ -2502,6 +2752,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Bracket1",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  977,
+                     "Length":  34,
+                     "Line":  59,
+                     "Column":  29,
+                     "Text":  "shared_parameterized_no_ports_name",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_UserDefinedType",
+                     "HoverText":  "typedef shared_parameterized_no_ports_name\r\nunderlying type: logic [WIDTH - 1:0]\r\nscope: systemverilog_type_owner_parameterized_no_ports"
                  },
                  {
                      "Start":  1016,
@@ -2794,9 +3054,169 @@
                      "HoverText":  null
                  },
                  {
+                     "Start":  1314,
+                     "Length":  31,
+                     "Line":  75,
+                     "Column":  29,
+                     "Text":  "shared_parameterized_ports_name",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_UserDefinedType",
+                     "HoverText":  "typedef shared_parameterized_ports_name\r\nunderlying type: logic [WIDTH - 1:0]\r\nscope: systemverilog_type_owner_parameterized_ports"
+                 },
+                 {
                      "Start":  1350,
-                     "Length":  9,
+                     "Length":  31,
                      "Line":  77,
+                     "Column":  1,
+                     "Text":  "shared_parameterized_ports_name",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_UserDefinedType",
+                     "HoverText":  "typedef shared_parameterized_ports_name\r\nunderlying type: logic [WIDTH - 1:0]\r\nscope: systemverilog_type_owner_parameterized_ports"
+                 },
+                 {
+                     "Start":  1384,
+                     "Length":  1,
+                     "Line":  77,
+                     "Column":  35,
+                     "Text":  "3",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  1387,
+                     "Length":  2,
+                     "Line":  77,
+                     "Column":  38,
+                     "Text":  "/*",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  1389,
+                     "Length":  1,
+                     "Line":  77,
+                     "Column":  40,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  1390,
+                     "Length":  4,
+                     "Line":  77,
+                     "Column":  41,
+                     "Text":  "TODO",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  1394,
+                     "Length":  1,
+                     "Line":  77,
+                     "Column":  45,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  1395,
+                     "Length":  4,
+                     "Line":  77,
+                     "Column":  46,
+                     "Text":  "lint",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  1399,
+                     "Length":  1,
+                     "Line":  77,
+                     "Column":  50,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  1400,
+                     "Length":  5,
+                     "Line":  77,
+                     "Column":  51,
+                     "Text":  "check",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  1405,
+                     "Length":  1,
+                     "Line":  77,
+                     "Column":  56,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  1406,
+                     "Length":  2,
+                     "Line":  77,
+                     "Column":  57,
+                     "Text":  "*/",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  1412,
+                     "Length":  31,
+                     "Line":  79,
+                     "Column":  1,
+                     "Text":  "shared_parameterized_ports_name",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_UserDefinedType",
+                     "HoverText":  "typedef shared_parameterized_ports_name\r\nunderlying type: logic [WIDTH - 1:0]\r\nscope: systemverilog_type_owner_parameterized_ports"
+                 },
+                 {
+                     "Start":  1444,
+                     "Length":  5,
+                     "Line":  79,
+                     "Column":  33,
+                     "Text":  "myvar",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_UserDefinedTypeVariable",
+                     "HoverText":  "shared_parameterized_ports_name myvar"
+                 },
+                 {
+                     "Start":  1454,
+                     "Length":  5,
+                     "Line":  81,
+                     "Column":  1,
+                     "Text":  "myvar",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_UserDefinedTypeVariable",
+                     "HoverText":  "shared_parameterized_ports_name myvar"
+                 },
+                 {
+                     "Start":  1462,
+                     "Length":  1,
+                     "Line":  81,
+                     "Column":  9,
+                     "Text":  "5",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  1468,
+                     "Length":  9,
+                     "Line":  83,
                      "Column":  1,
                      "Text":  "endmodule",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2804,9 +3224,9 @@
                      "HoverText":  "The endmodule reserved word is used to close a module statement."
                  },
                  {
-                     "Start":  1363,
+                     "Start":  1481,
                      "Length":  6,
-                     "Line":  79,
+                     "Line":  85,
                      "Column":  1,
                      "Text":  "module",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2814,9 +3234,9 @@
                      "HoverText":  "The module declaration is the only design unit in Verilog. It describes both a design\u0027s interface to other designs in the same environment, and its functional composition."
                  },
                  {
-                     "Start":  1370,
+                     "Start":  1488,
                      "Length":  48,
-                     "Line":  79,
+                     "Line":  85,
                      "Column":  8,
                      "Text":  "systemverilog_variable_owner_parameterized_ports",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2824,9 +3244,9 @@
                      "HoverText":  "module systemverilog_variable_owner_parameterized_ports #(  integer WIDTH = 8)"
                  },
                  {
-                     "Start":  1420,
+                     "Start":  1538,
                      "Length":  1,
-                     "Line":  79,
+                     "Line":  85,
                      "Column":  58,
                      "Text":  "(",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2834,9 +3254,9 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  1427,
+                     "Start":  1545,
                      "Length":  9,
-                     "Line":  80,
+                     "Line":  86,
                      "Column":  5,
                      "Text":  "parameter",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2844,9 +3264,9 @@
                      "HoverText":  "Parameters are constants that can be modified with the defparam statement or through parameter passing in the module instance statement. Parameters are local to the module in which they have been declared."
                  },
                  {
-                     "Start":  1437,
+                     "Start":  1555,
                      "Length":  7,
-                     "Line":  80,
+                     "Line":  86,
                      "Column":  15,
                      "Text":  "integer",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2854,9 +3274,9 @@
                      "HoverText":  "The integer reserved word declares a 32-bit signed, four-state integral variable type."
                  },
                  {
-                     "Start":  1445,
+                     "Start":  1563,
                      "Length":  5,
-                     "Line":  80,
+                     "Line":  86,
                      "Column":  23,
                      "Text":  "WIDTH",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2864,9 +3284,9 @@
                      "HoverText":  "parameter integer WIDTH = 8"
                  },
                  {
-                     "Start":  1453,
+                     "Start":  1571,
                      "Length":  1,
-                     "Line":  80,
+                     "Line":  86,
                      "Column":  31,
                      "Text":  "8",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2874,9 +3294,9 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  1456,
+                     "Start":  1574,
                      "Length":  1,
-                     "Line":  81,
+                     "Line":  87,
                      "Column":  1,
                      "Text":  ")",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2884,9 +3304,9 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  1458,
+                     "Start":  1576,
                      "Length":  1,
-                     "Line":  81,
+                     "Line":  87,
                      "Column":  3,
                      "Text":  "(",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2894,9 +3314,9 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  1459,
+                     "Start":  1577,
                      "Length":  1,
-                     "Line":  81,
+                     "Line":  87,
                      "Column":  4,
                      "Text":  ")",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2904,9 +3324,9 @@
                      "HoverText":  null
                  },
                  {
-                     "Start":  1465,
+                     "Start":  1583,
                      "Length":  4,
-                     "Line":  83,
+                     "Line":  89,
                      "Column":  1,
                      "Text":  "wire",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2914,9 +3334,9 @@
                      "HoverText":  "Wire nets connect elements. The net-type wire is identical in syntax and function to the net-type tri. A wire net can be used for nets that are driven by a single gate or continuous assignment. Logical conflicts from multiple sources on a wire net result in unknown values unless the net is controlled by logic strength."
                  },
                  {
-                     "Start":  1470,
+                     "Start":  1588,
                      "Length":  31,
-                     "Line":  83,
+                     "Line":  89,
                      "Column":  6,
                      "Text":  "shared_parameterized_ports_name",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -2924,9 +3344,149 @@
                      "HoverText":  "wire shared_parameterized_ports_name"
                  },
                  {
-                     "Start":  1506,
+                     "Start":  1624,
+                     "Length":  31,
+                     "Line":  91,
+                     "Column":  1,
+                     "Text":  "shared_parameterized_ports_name",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "wire shared_parameterized_ports_name"
+                 },
+                 {
+                     "Start":  1658,
+                     "Length":  1,
+                     "Line":  91,
+                     "Column":  35,
+                     "Text":  "4",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  1661,
+                     "Length":  2,
+                     "Line":  91,
+                     "Column":  38,
+                     "Text":  "/*",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  1663,
+                     "Length":  1,
+                     "Line":  91,
+                     "Column":  40,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  1664,
+                     "Length":  4,
+                     "Line":  91,
+                     "Column":  41,
+                     "Text":  "TODO",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  1668,
+                     "Length":  1,
+                     "Line":  91,
+                     "Column":  45,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  1669,
+                     "Length":  4,
+                     "Line":  91,
+                     "Column":  46,
+                     "Text":  "lint",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  1673,
+                     "Length":  1,
+                     "Line":  91,
+                     "Column":  50,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  1674,
+                     "Length":  5,
+                     "Line":  91,
+                     "Column":  51,
+                     "Text":  "check",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  1679,
+                     "Length":  1,
+                     "Line":  91,
+                     "Column":  56,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  1680,
+                     "Length":  2,
+                     "Line":  91,
+                     "Column":  57,
+                     "Text":  "*/",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  1686,
+                     "Length":  6,
+                     "Line":  93,
+                     "Column":  1,
+                     "Text":  "assign",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_assign",
+                     "HoverText":  "The assign statement is used to express the first type of procedural continuous assignment. Assign of reg data types is not supported. "
+                 },
+                 {
+                     "Start":  1693,
+                     "Length":  31,
+                     "Line":  93,
+                     "Column":  8,
+                     "Text":  "shared_parameterized_ports_name",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_wire",
+                     "HoverText":  "wire shared_parameterized_ports_name"
+                 },
+                 {
+                     "Start":  1727,
+                     "Length":  4,
+                     "Line":  93,
+                     "Column":  42,
+                     "Text":  "1\u0027b1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  "1\u0027B1 = (1 bit Binary) 1; "
+                 },
+                 {
+                     "Start":  1736,
                      "Length":  9,
-                     "Line":  85,
+                     "Line":  95,
                      "Column":  1,
                      "Text":  "endmodule",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
@@ -5129,216 +5689,616 @@
                    },
                    {
                        "Start":  1350,
-                       "Length":  9,
+                       "Length":  31,
                        "Line":  77,
                        "Column":  1,
-                       "Text":  "endmodule",
+                       "Text":  "shared_parameterized_ports_name",
                        "Context":  "Undetermined"
                    },
                    {
-                       "Start":  1363,
-                       "Length":  6,
-                       "Line":  79,
-                       "Column":  1,
-                       "Text":  "module",
-                       "Context":  "Undetermined"
-                   },
-                   {
-                       "Start":  1369,
+                       "Start":  1381,
                        "Length":  1,
-                       "Line":  79,
-                       "Column":  7,
+                       "Line":  77,
+                       "Column":  32,
                        "Text":  " ",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  1370,
-                       "Length":  48,
-                       "Line":  79,
-                       "Column":  8,
-                       "Text":  "systemverilog_variable_owner_parameterized_ports",
+                       "Start":  1382,
+                       "Length":  1,
+                       "Line":  77,
+                       "Column":  33,
+                       "Text":  "=",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  1418,
+                       "Start":  1383,
                        "Length":  1,
-                       "Line":  79,
+                       "Line":  77,
+                       "Column":  34,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1384,
+                       "Length":  1,
+                       "Line":  77,
+                       "Column":  35,
+                       "Text":  "3",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1385,
+                       "Length":  1,
+                       "Line":  77,
+                       "Column":  36,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1386,
+                       "Length":  1,
+                       "Line":  77,
+                       "Column":  37,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1387,
+                       "Length":  2,
+                       "Line":  77,
+                       "Column":  38,
+                       "Text":  "/*",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1389,
+                       "Length":  1,
+                       "Line":  77,
+                       "Column":  40,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1390,
+                       "Length":  4,
+                       "Line":  77,
+                       "Column":  41,
+                       "Text":  "TODO",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1394,
+                       "Length":  1,
+                       "Line":  77,
+                       "Column":  45,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1395,
+                       "Length":  4,
+                       "Line":  77,
+                       "Column":  46,
+                       "Text":  "lint",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1399,
+                       "Length":  1,
+                       "Line":  77,
+                       "Column":  50,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1400,
+                       "Length":  5,
+                       "Line":  77,
+                       "Column":  51,
+                       "Text":  "check",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1405,
+                       "Length":  1,
+                       "Line":  77,
                        "Column":  56,
                        "Text":  " ",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  1419,
-                       "Length":  1,
-                       "Line":  79,
+                       "Start":  1406,
+                       "Length":  2,
+                       "Line":  77,
                        "Column":  57,
-                       "Text":  "#",
+                       "Text":  "*/",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  1420,
+                       "Start":  1412,
+                       "Length":  31,
+                       "Line":  79,
+                       "Column":  1,
+                       "Text":  "shared_parameterized_ports_name",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  1443,
                        "Length":  1,
                        "Line":  79,
-                       "Column":  58,
-                       "Text":  "(",
-                       "Context":  "RoundBracketOpen"
-                   },
-                   {
-                       "Start":  1423,
-                       "Length":  4,
-                       "Line":  80,
-                       "Column":  1,
-                       "Text":  "    ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  1427,
-                       "Length":  9,
-                       "Line":  80,
-                       "Column":  5,
-                       "Text":  "parameter",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  1436,
-                       "Length":  1,
-                       "Line":  80,
-                       "Column":  14,
+                       "Column":  32,
                        "Text":  " ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  1437,
-                       "Length":  7,
-                       "Line":  80,
-                       "Column":  15,
-                       "Text":  "integer",
                        "Context":  "Text"
                    },
                    {
                        "Start":  1444,
-                       "Length":  1,
-                       "Line":  80,
-                       "Column":  22,
-                       "Text":  " ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  1445,
                        "Length":  5,
-                       "Line":  80,
-                       "Column":  23,
-                       "Text":  "WIDTH",
+                       "Line":  79,
+                       "Column":  33,
+                       "Text":  "myvar",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  1450,
+                       "Start":  1449,
                        "Length":  1,
-                       "Line":  80,
-                       "Column":  28,
-                       "Text":  " ",
+                       "Line":  79,
+                       "Column":  38,
+                       "Text":  ";",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  1451,
-                       "Length":  1,
-                       "Line":  80,
-                       "Column":  29,
-                       "Text":  "=",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  1452,
-                       "Length":  1,
-                       "Line":  80,
-                       "Column":  30,
-                       "Text":  " ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  1453,
-                       "Length":  1,
-                       "Line":  80,
-                       "Column":  31,
-                       "Text":  "8",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  1456,
-                       "Length":  1,
+                       "Start":  1454,
+                       "Length":  5,
                        "Line":  81,
                        "Column":  1,
-                       "Text":  ")",
-                       "Context":  "RoundBracketClose"
-                   },
-                   {
-                       "Start":  1457,
-                       "Length":  1,
-                       "Line":  81,
-                       "Column":  2,
-                       "Text":  " ",
-                       "Context":  "Text"
-                   },
-                   {
-                       "Start":  1458,
-                       "Length":  1,
-                       "Line":  81,
-                       "Column":  3,
-                       "Text":  "(",
-                       "Context":  "RoundBracketOpen"
+                       "Text":  "myvar",
+                       "Context":  "Undetermined"
                    },
                    {
                        "Start":  1459,
                        "Length":  1,
                        "Line":  81,
-                       "Column":  4,
-                       "Text":  ")",
-                       "Context":  "RoundBracketClose"
+                       "Column":  6,
+                       "Text":  " ",
+                       "Context":  "Text"
                    },
                    {
                        "Start":  1460,
                        "Length":  1,
                        "Line":  81,
+                       "Column":  7,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1461,
+                       "Length":  1,
+                       "Line":  81,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1462,
+                       "Length":  1,
+                       "Line":  81,
+                       "Column":  9,
+                       "Text":  "5",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1463,
+                       "Length":  1,
+                       "Line":  81,
+                       "Column":  10,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1468,
+                       "Length":  9,
+                       "Line":  83,
+                       "Column":  1,
+                       "Text":  "endmodule",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  1481,
+                       "Length":  6,
+                       "Line":  85,
+                       "Column":  1,
+                       "Text":  "module",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  1487,
+                       "Length":  1,
+                       "Line":  85,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1488,
+                       "Length":  48,
+                       "Line":  85,
+                       "Column":  8,
+                       "Text":  "systemverilog_variable_owner_parameterized_ports",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1536,
+                       "Length":  1,
+                       "Line":  85,
+                       "Column":  56,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1537,
+                       "Length":  1,
+                       "Line":  85,
+                       "Column":  57,
+                       "Text":  "#",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1538,
+                       "Length":  1,
+                       "Line":  85,
+                       "Column":  58,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  1541,
+                       "Length":  4,
+                       "Line":  86,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1545,
+                       "Length":  9,
+                       "Line":  86,
+                       "Column":  5,
+                       "Text":  "parameter",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1554,
+                       "Length":  1,
+                       "Line":  86,
+                       "Column":  14,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1555,
+                       "Length":  7,
+                       "Line":  86,
+                       "Column":  15,
+                       "Text":  "integer",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1562,
+                       "Length":  1,
+                       "Line":  86,
+                       "Column":  22,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1563,
+                       "Length":  5,
+                       "Line":  86,
+                       "Column":  23,
+                       "Text":  "WIDTH",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1568,
+                       "Length":  1,
+                       "Line":  86,
+                       "Column":  28,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1569,
+                       "Length":  1,
+                       "Line":  86,
+                       "Column":  29,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1570,
+                       "Length":  1,
+                       "Line":  86,
+                       "Column":  30,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1571,
+                       "Length":  1,
+                       "Line":  86,
+                       "Column":  31,
+                       "Text":  "8",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1574,
+                       "Length":  1,
+                       "Line":  87,
+                       "Column":  1,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  1575,
+                       "Length":  1,
+                       "Line":  87,
+                       "Column":  2,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1576,
+                       "Length":  1,
+                       "Line":  87,
+                       "Column":  3,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  1577,
+                       "Length":  1,
+                       "Line":  87,
+                       "Column":  4,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  1578,
+                       "Length":  1,
+                       "Line":  87,
                        "Column":  5,
                        "Text":  ";",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  1465,
+                       "Start":  1583,
                        "Length":  4,
-                       "Line":  83,
+                       "Line":  89,
                        "Column":  1,
                        "Text":  "wire",
                        "Context":  "Undetermined"
                    },
                    {
-                       "Start":  1469,
+                       "Start":  1587,
                        "Length":  1,
-                       "Line":  83,
+                       "Line":  89,
                        "Column":  5,
                        "Text":  " ",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  1470,
+                       "Start":  1588,
                        "Length":  31,
-                       "Line":  83,
+                       "Line":  89,
                        "Column":  6,
                        "Text":  "shared_parameterized_ports_name",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  1501,
+                       "Start":  1619,
                        "Length":  1,
-                       "Line":  83,
+                       "Line":  89,
                        "Column":  37,
                        "Text":  ";",
                        "Context":  "Text"
                    },
                    {
-                       "Start":  1506,
+                       "Start":  1624,
+                       "Length":  31,
+                       "Line":  91,
+                       "Column":  1,
+                       "Text":  "shared_parameterized_ports_name",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  1655,
+                       "Length":  1,
+                       "Line":  91,
+                       "Column":  32,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1656,
+                       "Length":  1,
+                       "Line":  91,
+                       "Column":  33,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1657,
+                       "Length":  1,
+                       "Line":  91,
+                       "Column":  34,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1658,
+                       "Length":  1,
+                       "Line":  91,
+                       "Column":  35,
+                       "Text":  "4",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1659,
+                       "Length":  1,
+                       "Line":  91,
+                       "Column":  36,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1660,
+                       "Length":  1,
+                       "Line":  91,
+                       "Column":  37,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1661,
+                       "Length":  2,
+                       "Line":  91,
+                       "Column":  38,
+                       "Text":  "/*",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1663,
+                       "Length":  1,
+                       "Line":  91,
+                       "Column":  40,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1664,
+                       "Length":  4,
+                       "Line":  91,
+                       "Column":  41,
+                       "Text":  "TODO",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1668,
+                       "Length":  1,
+                       "Line":  91,
+                       "Column":  45,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1669,
+                       "Length":  4,
+                       "Line":  91,
+                       "Column":  46,
+                       "Text":  "lint",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1673,
+                       "Length":  1,
+                       "Line":  91,
+                       "Column":  50,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1674,
+                       "Length":  5,
+                       "Line":  91,
+                       "Column":  51,
+                       "Text":  "check",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1679,
+                       "Length":  1,
+                       "Line":  91,
+                       "Column":  56,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1680,
+                       "Length":  2,
+                       "Line":  91,
+                       "Column":  57,
+                       "Text":  "*/",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1686,
+                       "Length":  6,
+                       "Line":  93,
+                       "Column":  1,
+                       "Text":  "assign",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  1692,
+                       "Length":  1,
+                       "Line":  93,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1693,
+                       "Length":  31,
+                       "Line":  93,
+                       "Column":  8,
+                       "Text":  "shared_parameterized_ports_name",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1724,
+                       "Length":  1,
+                       "Line":  93,
+                       "Column":  39,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1725,
+                       "Length":  1,
+                       "Line":  93,
+                       "Column":  40,
+                       "Text":  "=",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1726,
+                       "Length":  1,
+                       "Line":  93,
+                       "Column":  41,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1727,
+                       "Length":  4,
+                       "Line":  93,
+                       "Column":  42,
+                       "Text":  "1\u0027b1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1731,
+                       "Length":  1,
+                       "Line":  93,
+                       "Column":  46,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  1736,
                        "Length":  9,
-                       "Line":  85,
+                       "Line":  95,
                        "Column":  1,
                        "Text":  "endmodule",
                        "Context":  "Undetermined"
@@ -5371,6 +6331,12 @@
                     },
                     {
                         "Scope":  "systemverilog_keywords",
+                        "Name":  "sample_t",
+                        "TokenType":  "Verilog_UserDefinedType",
+                        "HoverText":  "typedef sample_t\r\nunderlying type: logic [7:0]\r\nscope: systemverilog_keywords"
+                    },
+                    {
+                        "Scope":  "systemverilog_keywords",
                         "Name":  "enabled",
                         "TokenType":  "Verilog_Variable_SystemVerilog",
                         "HoverText":  "bit enabled"
@@ -5380,6 +6346,12 @@
                         "Name":  "sample_identity",
                         "TokenType":  "Verilog_FunctionName",
                         "HoverText":  "function automatic sample_t sample_identity"
+                    },
+                    {
+                        "Scope":  "systemverilog_type_owner",
+                        "Name":  "shared_scope_name",
+                        "TokenType":  "Verilog_UserDefinedType",
+                        "HoverText":  "typedef shared_scope_name\r\nunderlying type: logic [7:0]\r\nscope: systemverilog_type_owner"
                     },
                     {
                         "Scope":  "systemverilog_variable_owner",
@@ -5392,6 +6364,12 @@
                         "Name":  "systemverilog_type_owner_no_ports",
                         "TokenType":  "Verilog_Variable_module",
                         "HoverText":  "module systemverilog_type_owner_no_ports;"
+                    },
+                    {
+                        "Scope":  "systemverilog_type_owner_no_ports",
+                        "Name":  "shared_no_ports_name",
+                        "TokenType":  "Verilog_UserDefinedType",
+                        "HoverText":  "typedef shared_no_ports_name\r\nunderlying type: logic [7:0]\r\nscope: systemverilog_type_owner_no_ports"
                     },
                     {
                         "Scope":  "systemverilog_variable_owner_no_ports",
@@ -5416,6 +6394,12 @@
                         "Name":  "systemverilog_type_owner_parameterized_no_ports",
                         "TokenType":  "Verilog_Variable_module",
                         "HoverText":  "module systemverilog_type_owner_parameterized_no_ports #(  integer WIDTH = 8)"
+                    },
+                    {
+                        "Scope":  "systemverilog_type_owner_parameterized_no_ports",
+                        "Name":  "shared_parameterized_no_ports_name",
+                        "TokenType":  "Verilog_UserDefinedType",
+                        "HoverText":  "typedef shared_parameterized_no_ports_name\r\nunderlying type: logic [WIDTH - 1:0]\r\nscope: systemverilog_type_owner_parameterized_no_ports"
                     },
                     {
                         "Scope":  "systemverilog_variable_owner_parameterized_no_ports",
@@ -5448,6 +6432,18 @@
                         "HoverText":  "module systemverilog_type_owner_parameterized_ports #(  integer WIDTH = 8)"
                     },
                     {
+                        "Scope":  "systemverilog_type_owner_parameterized_ports",
+                        "Name":  "shared_parameterized_ports_name",
+                        "TokenType":  "Verilog_UserDefinedType",
+                        "HoverText":  "typedef shared_parameterized_ports_name\r\nunderlying type: logic [WIDTH - 1:0]\r\nscope: systemverilog_type_owner_parameterized_ports"
+                    },
+                    {
+                        "Scope":  "systemverilog_type_owner_parameterized_ports",
+                        "Name":  "myvar",
+                        "TokenType":  "Verilog_UserDefinedTypeVariable",
+                        "HoverText":  "shared_parameterized_ports_name myvar"
+                    },
+                    {
                         "Scope":  "systemverilog_variable_owner_parameterized_ports",
                         "Name":  "WIDTH",
                         "TokenType":  "Verilog_Variable_parameter",
@@ -5464,6 +6460,12 @@
                         "Name":  "shared_parameterized_ports_name",
                         "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "wire shared_parameterized_ports_name"
+                    },
+                    {
+                        "Scope":  "__CONST__",
+                        "Name":  "1\u0027b1",
+                        "TokenType":  "Verilog_Value",
+                        "HoverText":  "1\u0027B1 = (1 bit Binary) 1; "
                     },
                     {
                         "Scope":  "systemverilog_keywords::__FUNCTION__::sample_identity",

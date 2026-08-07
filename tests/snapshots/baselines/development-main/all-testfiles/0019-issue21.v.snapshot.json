@@ -1561,7 +1561,7 @@
                      "Text":  "mem_rdata_latched",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire [31:0] mem_rdata_latched = 32\u0027hffff_ffff "
+                     "HoverText":  null
                  },
                  {
                      "Start":  402,

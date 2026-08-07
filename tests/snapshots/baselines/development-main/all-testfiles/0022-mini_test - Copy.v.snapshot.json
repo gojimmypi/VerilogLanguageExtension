@@ -1211,7 +1211,7 @@
                      "Text":  "J2_AD_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input [7:0] J2_AD_PORT"
+                     "HoverText":  null
                  },
                  {
                      "Start":  40,
@@ -1801,7 +1801,7 @@
                      "Text":  "J2_AD_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input [7:0] J2_AD_PORT"
+                     "HoverText":  null
                  },
                  {
                      "Start":  251,
@@ -2201,7 +2201,7 @@
                      "Text":  "J2_AD_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input [7:0] J2_AD_PORT"
+                     "HoverText":  null
                  },
                  {
                      "Start":  360,
@@ -2601,7 +2601,7 @@
                      "Text":  "J2_AD_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input [7:0] J2_AD_PORT"
+                     "HoverText":  null
                  },
                  {
                      "Start":  469,
@@ -3001,7 +3001,7 @@
                      "Text":  "J2_AD_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input [7:0] J2_AD_PORT"
+                     "HoverText":  null
                  },
                  {
                      "Start":  578,
@@ -3401,7 +3401,7 @@
                      "Text":  "J2_AD_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input [7:0] J2_AD_PORT"
+                     "HoverText":  null
                  },
                  {
                      "Start":  687,
@@ -3801,7 +3801,7 @@
                      "Text":  "J2_AD_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input [7:0] J2_AD_PORT"
+                     "HoverText":  null
                  },
                  {
                      "Start":  796,

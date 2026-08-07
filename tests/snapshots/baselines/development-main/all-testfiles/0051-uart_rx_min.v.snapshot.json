@@ -11761,7 +11761,7 @@
                      "Text":  "CLKS_PER_BIT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "localparam integer CLKS_PER_BIT = CLOCK_HZ / UART_BAUD"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3001,
@@ -12741,7 +12741,7 @@
                      "Text":  "state",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [1:0] state"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3451,
@@ -13911,7 +13911,7 @@
                      "Text":  "data_valid",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "output reg data_valid)"
+                     "HoverText":  null
                  },
                  {
                      "Start":  4240,
@@ -14581,7 +14581,7 @@
                      "Text":  "state",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [1:0] state"
+                     "HoverText":  null
                  },
                  {
                      "Start":  4520,
@@ -16071,7 +16071,7 @@
                      "Text":  "bit_index",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [2:0] bit_index"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5850,
@@ -17031,7 +17031,7 @@
                      "Text":  "data_valid",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "output reg data_valid)"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6757,

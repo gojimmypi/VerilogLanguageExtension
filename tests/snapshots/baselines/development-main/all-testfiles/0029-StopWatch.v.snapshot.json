@@ -6931,7 +6931,7 @@
                      "Text":  "ledc",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module top( .. output [10:0] ledc .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  646,
@@ -7011,7 +7011,7 @@
                      "Text":  "nbtn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module top( .. input [7:0] nbtn .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  657,
@@ -7261,7 +7261,7 @@
                      "Text":  "ledc",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module top( .. output [10:0] ledc .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  709,
@@ -7331,7 +7331,7 @@
                      "Text":  "btn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire [7:0] btn = ~nbtn"
+                     "HoverText":  null
                  },
                  {
                      "Start":  718,
@@ -7411,7 +7411,7 @@
                      "Text":  "btn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire [7:0] btn = ~nbtn"
+                     "HoverText":  null
                  },
                  {
                      "Start":  728,
@@ -7641,7 +7641,7 @@
                      "Text":  "ledc",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module top( .. output [10:0] ledc .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  777,
@@ -7711,7 +7711,7 @@
                      "Text":  "btn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire [7:0] btn = ~nbtn"
+                     "HoverText":  null
                  },
                  {
                      "Start":  786,
@@ -7781,7 +7781,7 @@
                      "Text":  "btn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire [7:0] btn = ~nbtn"
+                     "HoverText":  null
                  },
                  {
                      "Start":  795,
@@ -8011,7 +8011,7 @@
                      "Text":  "ledc",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module top( .. output [10:0] ledc .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  845,
@@ -8081,7 +8081,7 @@
                      "Text":  "btn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire [7:0] btn = ~nbtn"
+                     "HoverText":  null
                  },
                  {
                      "Start":  854,
@@ -8171,7 +8171,7 @@
                      "Text":  "nbtn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module top( .. input [7:0] nbtn .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  866,
@@ -8381,7 +8381,7 @@
                      "Text":  "ledc",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module top( .. output [10:0] ledc .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  914,
@@ -8461,7 +8461,7 @@
                      "Text":  "btn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire [7:0] btn = ~nbtn"
+                     "HoverText":  null
                  },
                  {
                      "Start":  924,
@@ -8531,7 +8531,7 @@
                      "Text":  "btn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire [7:0] btn = ~nbtn"
+                     "HoverText":  null
                  },
                  {
                      "Start":  933,
@@ -8601,7 +8601,7 @@
                      "Text":  "btn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire [7:0] btn = ~nbtn"
+                     "HoverText":  null
                  },
                  {
                      "Start":  942,
@@ -10161,7 +10161,7 @@
                      "Text":  "btn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire [7:0] btn = ~nbtn"
+                     "HoverText":  null
                  },
                  {
                      "Start":  1441,
@@ -10711,7 +10711,7 @@
                      "Text":  "ledc",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module top( .. output [10:0] ledc .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  1575,
@@ -10781,7 +10781,7 @@
                      "Text":  "btn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire [7:0] btn = ~nbtn"
+                     "HoverText":  null
                  },
                  {
                      "Start":  1584,
@@ -10861,7 +10861,7 @@
                      "Text":  "btn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire [7:0] btn = ~nbtn"
+                     "HoverText":  null
                  },
                  {
                      "Start":  1594,
@@ -10941,7 +10941,7 @@
                      "Text":  "ledc",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module top( .. output [10:0] ledc .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  1613,
@@ -11011,7 +11011,7 @@
                      "Text":  "btn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire [7:0] btn = ~nbtn"
+                     "HoverText":  null
                  },
                  {
                      "Start":  1622,
@@ -11081,7 +11081,7 @@
                      "Text":  "btn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire [7:0] btn = ~nbtn"
+                     "HoverText":  null
                  },
                  {
                      "Start":  1631,
@@ -11161,7 +11161,7 @@
                      "Text":  "ledc",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module top( .. output [10:0] ledc .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  1650,
@@ -11231,7 +11231,7 @@
                      "Text":  "btn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire [7:0] btn = ~nbtn"
+                     "HoverText":  null
                  },
                  {
                      "Start":  1659,
@@ -11321,7 +11321,7 @@
                      "Text":  "nbtn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module top( .. input [7:0] nbtn .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  1671,
@@ -11401,7 +11401,7 @@
                      "Text":  "ledc",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module top( .. output [10:0] ledc .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  1690,
@@ -11481,7 +11481,7 @@
                      "Text":  "btn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire [7:0] btn = ~nbtn"
+                     "HoverText":  null
                  },
                  {
                      "Start":  1700,
@@ -11551,7 +11551,7 @@
                      "Text":  "btn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire [7:0] btn = ~nbtn"
+                     "HoverText":  null
                  },
                  {
                      "Start":  1709,
@@ -11621,7 +11621,7 @@
                      "Text":  "btn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire [7:0] btn = ~nbtn"
+                     "HoverText":  null
                  },
                  {
                      "Start":  1718,
@@ -12671,7 +12671,7 @@
                      "Text":  "display_value_inc",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire [7:0] display_value_inc"
+                     "HoverText":  null
                  },
                  {
                      "Start":  2239,
@@ -12711,7 +12711,7 @@
                      "Text":  "display_value",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [7:0] display_value = 0"
+                     "HoverText":  null
                  },
                  {
                      "Start":  2255,

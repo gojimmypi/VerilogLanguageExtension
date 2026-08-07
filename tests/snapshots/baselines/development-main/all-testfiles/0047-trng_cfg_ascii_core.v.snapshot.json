@@ -27021,7 +27021,7 @@
                      "Text":  "TRNG_CONDITIONED_STREAM",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module trng_cfg_ascii_core( .. input wire [7:0] reg_cond0 .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3213,
@@ -27451,7 +27451,7 @@
                      "Text":  "state",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [4:0] state"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3484,
@@ -30731,7 +30731,7 @@
                      "Text":  "cmd",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [7:0] cmd"
+                     "HoverText":  null
                  },
                  {
                      "Start":  8300,
@@ -30851,7 +30851,7 @@
                      "Text":  "hex1",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [3:0] hex1"
+                     "HoverText":  null
                  },
                  {
                      "Start":  8342,
@@ -30871,7 +30871,7 @@
                      "Text":  "hex2",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [3:0] hex2"
+                     "HoverText":  null
                  },
                  {
                      "Start":  8347,
@@ -31721,7 +31721,7 @@
                      "Text":  "to_hex_ascii",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "function [7:0] to_hex_ascii"
+                     "HoverText":  null
                  },
                  {
                      "Start":  8849,
@@ -32801,7 +32801,7 @@
                      "Text":  "queued_tx_byte",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [7:0] queued_tx_byte"
+                     "HoverText":  null
                  },
                  {
                      "Start":  9776,
@@ -34241,7 +34241,7 @@
                      "Text":  "hex_value",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "function [3:0] hex_value"
+                     "HoverText":  null
                  },
                  {
                      "Start":  10840,
@@ -34281,7 +34281,7 @@
                      "Text":  "c",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input [7:0] c"
+                     "HoverText":  null
                  },
                  {
                      "Start":  10844,
@@ -34721,7 +34721,7 @@
                      "Text":  "hex_value",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "function [3:0] hex_value"
+                     "HoverText":  null
                  },
                  {
                      "Start":  10978,
@@ -34771,7 +34771,7 @@
                      "Text":  "c",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input [7:0] c"
+                     "HoverText":  null
                  },
                  {
                      "Start":  10983,
@@ -35181,7 +35181,7 @@
                      "Text":  "hex_value",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "function [3:0] hex_value"
+                     "HoverText":  null
                  },
                  {
                      "Start":  11136,
@@ -35221,7 +35221,7 @@
                      "Text":  "c",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input [7:0] c"
+                     "HoverText":  null
                  },
                  {
                      "Start":  11140,
@@ -35301,7 +35301,7 @@
                      "Text":  "4\u0027d10",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "4\u0027D10 = (4 bit Decimal) 10; "
+                     "HoverText":  null
                  },
                  {
                      "Start":  11154,
@@ -35341,7 +35341,7 @@
                      "Text":  "hex_value",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "function [3:0] hex_value"
+                     "HoverText":  null
                  },
                  {
                      "Start":  11184,
@@ -35391,7 +35391,7 @@
                      "Text":  "c",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input [7:0] c"
+                     "HoverText":  null
                  },
                  {
                      "Start":  11189,
@@ -35471,7 +35471,7 @@
                      "Text":  "4\u0027d10",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "4\u0027D10 = (4 bit Decimal) 10; "
+                     "HoverText":  null
                  },
                  {
                      "Start":  11205,
@@ -38201,7 +38201,7 @@
                      "Text":  "nib",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input [3:0] nib"
+                     "HoverText":  null
                  },
                  {
                      "Start":  15142,
@@ -38291,7 +38291,7 @@
                      "Text":  "nib",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input [3:0] nib"
+                     "HoverText":  null
                  },
                  {
                      "Start":  15183,
@@ -38501,7 +38501,7 @@
                      "Text":  "nib",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input [3:0] nib"
+                     "HoverText":  null
                  },
                  {
                      "Start":  15306,
@@ -38621,7 +38621,7 @@
                      "Text":  "nib",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input [3:0] nib"
+                     "HoverText":  null
                  },
                  {
                      "Start":  15335,
@@ -41901,7 +41901,7 @@
                      "Text":  "TRNG_BINARY_STREAM",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module trng_cfg_ascii_core( .. input wire [7:0] stream_sample_count .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  19448,
@@ -42271,7 +42271,7 @@
                      "Text":  "tx_start",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module trng_cfg_ascii_core( .. output reg tx_start .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  20006,
@@ -45231,7 +45231,7 @@
                      "Text":  "reg_ctrl",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module trng_cfg_ascii_core( .. output reg [7:0] reg_ctrl .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  24409,
@@ -48001,7 +48001,7 @@
                      "Text":  "TRNG_BINARY_STREAM",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module trng_cfg_ascii_core( .. input wire [7:0] stream_sample_count .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  29162,
@@ -48201,7 +48201,7 @@
                      "Text":  "ADJUSTABLE_BAUD_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module trng_cfg_ascii_core( .. output reg [1:0] uart_baud_sel .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  29840,
@@ -51351,7 +51351,7 @@
                      "Text":  "ST_Q_BIN",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "localparam [4:0] ST_Q_BIN = 5\u0027d15"
+                     "HoverText":  null
                  },
                  {
                      "Start":  34093,
@@ -51371,7 +51371,7 @@
                      "Text":  "state",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [4:0] state"
+                     "HoverText":  null
                  },
                  {
                      "Start":  34099,
@@ -52031,7 +52031,7 @@
                      "Text":  "TRNG_BINARY_STREAM",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module trng_cfg_ascii_core( .. input wire [7:0] stream_sample_count .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  36816,
@@ -52821,7 +52821,7 @@
                      "Text":  "ADJUSTABLE_BAUD_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module trng_cfg_ascii_core( .. output reg [1:0] uart_baud_sel .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  37562,
@@ -53001,7 +53001,7 @@
                      "Text":  "trng_cfg_ascii_core",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module trng_cfg_ascii_core(  wire clk,\r\n input wire rst_n,\r\n input wire [7:0] rx_byte,\r\n input wire rx_valid,\r\n output reg [7:0] tx_byte,\r\n output reg tx_start,\r\n input wire tx_busy,\r\n`ifdef ADJUSTABLE_BAUD_ENABLED output reg [1:0] uart_baud_sel,\r\n`endif output reg [7:0] reg_ctrl,\r\n output reg [7:0] reg_src,\r\n output reg [7:0] reg_div,\r\n output reg [7:0] reg_mode,\r\n output reg [7:0] reg_oscen,\r\n input wire [7:0] reg_status,\r\n input wire [7:0] reg_rawlo,\r\n input wire [7:0] reg_rawhi,\r\n`ifdef BIG16_SPI_REG input wire [7:0] ui_in,\r\n input wire [7:0] uo_out,\r\n input wire [7:0] uio_in,\r\n input wire [7:0] uio_out,\r\n input wire [7:0] uio_oe,\r\n`endif`ifdef TRNG_BINARY_STREAM input wire [7:0] stream_sample_count,\r\n`endif`ifdef TRNG_CONDITIONED_STREAM `ifdef TRNG_CONDITIONED_STREAM_64_XOR input wire [7:0] reg_cond0,\r\n input wire [7:0] reg_cond1,\r\n input wire [7:0] reg_cond2,\r\n input wire [7:0] reg_cond3,\r\n input wire [7:0] reg_cond4,\r\n input wire [7:0] reg_cond5,\r\n input wire [7:0] reg_cond6,\r\n input wire [7:0] reg_cond7,\r\n `else input wire [7:0] reg_condlo,\r\n input wire [7:0] reg_condhi,\r\n `endif `endif input wire spi_reg_wr_en,\r\n input wire [`SPI_ADDR_MSB:0] spi_reg_addr,\r\n input wire [7:0] spi_reg_wdata,\r\n`ifdef JTAG_ENABLED output reg [7:0] spi_reg_rdata`else output wire [7:0] spi_reg_rdata`endif)"
+                     "HoverText":  null
                  },
                  {
                      "Start":  37830,

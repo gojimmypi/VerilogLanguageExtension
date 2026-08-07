@@ -11861,7 +11861,7 @@
                      "Text":  "FORCE_DEEP_LOOPBACK",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "macro condition:\r\n`ifdef FORCE_DEEP_LOOPBACK"
+                     "HoverText":  null
                  },
                  {
                      "Start":  815,
@@ -19801,7 +19801,7 @@
                      "Text":  "tx_busy",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire tx_busy"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6381,
@@ -19841,7 +19841,7 @@
                      "Text":  "uart_tx_raw",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire uart_tx_raw"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6395,
@@ -20011,7 +20011,7 @@
                      "Text":  "tx_busy",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire tx_busy"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6449,
@@ -20031,7 +20031,7 @@
                      "Text":  "uart_tx_raw",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire uart_tx_raw"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6462,
@@ -20051,7 +20051,7 @@
                      "Text":  "uart_tx_o",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "output wire uart_tx_o"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6474,

@@ -1890,7 +1890,7 @@ namespace VerilogLanguage
 
             /* See also type keyword declaration that is the same color. */
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = Colors.Thistle; // default color for dark background
+                ForegroundColor = Colors.Plum; // default color for dark background
             }
             else {
                 ForegroundColor = Colors.Purple; // default color for light background
@@ -3299,10 +3299,10 @@ namespace VerilogLanguage
 
             /* See also type keyword declaration that is the same color. */
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = Colors.Plum; // default color for dark background
+                ForegroundColor = Colors.Thistle; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.Purple; // default color for light background
+                ForegroundColor = Colors.Violet; // default color for light background
             }
         }
     }

@@ -1,0 +1,520 @@
+{
+    "File": "TestFiles/systemverilog_keywords.sv",
+    "MustHaveSymbols": [
+        {
+            "Name": "clk",
+            "Scope": "systemverilog_keywords",
+            "TokenType": "Verilog_Variable_input",
+            "HoverContains": [
+                "input",
+                "logic",
+                "clk"
+            ],
+            "HoverNotContains": [
+                "module systemverilog_keywords"
+            ]
+        },
+        {
+            "Name": "d",
+            "Scope": "systemverilog_keywords",
+            "TokenType": "Verilog_Variable_input",
+            "HoverContains": [
+                "input",
+                "logic",
+                "d"
+            ],
+            "HoverNotContains": [
+                "module systemverilog_keywords"
+            ]
+        },
+        {
+            "Name": "q",
+            "Scope": "systemverilog_keywords",
+            "TokenType": "Verilog_Variable_output",
+            "HoverContains": [
+                "output",
+                "logic",
+                "q"
+            ],
+            "HoverNotContains": [
+                "module systemverilog_keywords"
+            ]
+        },
+        {
+            "Name": "sample_t",
+            "Scope": "systemverilog_keywords",
+            "TokenType": "Verilog_UserDefinedType",
+            "HoverContains": [
+                "typedef sample_t",
+                "underlying type: logic [7:0]",
+                "scope: systemverilog_keywords"
+            ]
+        },
+        {
+            "Name": "shared_scope_name",
+            "Scope": "systemverilog_type_owner",
+            "TokenType": "Verilog_UserDefinedType",
+            "HoverContains": [
+                "typedef shared_scope_name",
+                "underlying type: logic [7:0]",
+                "scope: systemverilog_type_owner"
+            ]
+        },
+        {
+            "Name": "shared_no_ports_name",
+            "Scope": "systemverilog_type_owner_no_ports",
+            "TokenType": "Verilog_UserDefinedType",
+            "HoverContains": [
+                "typedef shared_no_ports_name",
+                "underlying type: logic [7:0]",
+                "scope: systemverilog_type_owner_no_ports"
+            ]
+        },
+        {
+            "Name": "shared_parameterized_no_ports_name",
+            "Scope": "systemverilog_type_owner_parameterized_no_ports",
+            "TokenType": "Verilog_UserDefinedType",
+            "HoverContains": [
+                "typedef shared_parameterized_no_ports_name",
+                "underlying type: logic [WIDTH - 1:0]",
+                "scope: systemverilog_type_owner_parameterized_no_ports"
+            ]
+        },
+        {
+            "Name": "shared_parameterized_ports_name",
+            "Scope": "systemverilog_type_owner_parameterized_ports",
+            "TokenType": "Verilog_UserDefinedType",
+            "HoverContains": [
+                "typedef shared_parameterized_ports_name",
+                "underlying type: logic [WIDTH - 1:0]",
+                "scope: systemverilog_type_owner_parameterized_ports"
+            ]
+        },
+        {
+            "Name": "myvar",
+            "Scope": "systemverilog_type_owner_parameterized_ports",
+            "TokenType": "Verilog_UserDefinedTypeVariable",
+            "HoverContains": [
+                "shared_parameterized_ports_name",
+                "myvar"
+            ]
+        },
+        {
+            "Name": "shared_scope_name",
+            "Scope": "systemverilog_variable_owner",
+            "TokenType": "Verilog_Variable_wire",
+            "HoverContains": [
+                "wire",
+                "shared_scope_name"
+            ]
+        },
+        {
+            "Name": "shared_no_ports_name",
+            "Scope": "systemverilog_variable_owner_no_ports",
+            "TokenType": "Verilog_Variable_wire",
+            "HoverContains": [
+                "wire",
+                "shared_no_ports_name"
+            ]
+        },
+        {
+            "Name": "shared_parameterized_no_ports_name",
+            "Scope": "systemverilog_variable_owner_parameterized_no_ports",
+            "TokenType": "Verilog_Variable_wire",
+            "HoverContains": [
+                "wire",
+                "shared_parameterized_no_ports_name"
+            ]
+        },
+        {
+            "Name": "shared_parameterized_ports_name",
+            "Scope": "systemverilog_variable_owner_parameterized_ports",
+            "TokenType": "Verilog_Variable_wire",
+            "HoverContains": [
+                "wire",
+                "shared_parameterized_ports_name"
+            ]
+        },
+        {
+            "Name": "WIDTH",
+            "Scope": "systemverilog_type_owner_parameterized_no_ports",
+            "TokenType": "Verilog_Variable_parameter",
+            "HoverContains": [
+                "parameter",
+                "integer",
+                "WIDTH"
+            ],
+            "HoverNotContains": [
+                "module "
+            ]
+        },
+        {
+            "Name": "WIDTH",
+            "Scope": "systemverilog_variable_owner_parameterized_no_ports",
+            "TokenType": "Verilog_Variable_parameter",
+            "HoverContains": [
+                "parameter",
+                "integer",
+                "WIDTH"
+            ],
+            "HoverNotContains": [
+                "module "
+            ]
+        },
+        {
+            "Name": "WIDTH",
+            "Scope": "systemverilog_type_owner_parameterized_ports",
+            "TokenType": "Verilog_Variable_parameter",
+            "HoverContains": [
+                "parameter",
+                "integer",
+                "WIDTH"
+            ],
+            "HoverNotContains": [
+                "module "
+            ]
+        },
+        {
+            "Name": "WIDTH",
+            "Scope": "systemverilog_variable_owner_parameterized_ports",
+            "TokenType": "Verilog_Variable_parameter",
+            "HoverContains": [
+                "parameter",
+                "integer",
+                "WIDTH"
+            ],
+            "HoverNotContains": [
+                "module "
+            ]
+        }
+    ],
+    "MustHaveTaggedText": [
+        {
+            "Text": "logic",
+            "Source": "Tags",
+            "TagDetail": "Verilog_SystemVerilogYosysSupported",
+            "HoverContains": [
+                "SystemVerilog",
+                "4-state",
+                "Yosys"
+            ]
+        },
+        {
+            "Text": "bit",
+            "Source": "Tags",
+            "TagDetail": "Verilog_SystemVerilogYosysSupported",
+            "HoverContains": [
+                "SystemVerilog",
+                "2-state",
+                "Yosys"
+            ]
+        },
+        {
+            "Text": "always_ff",
+            "Source": "Tags",
+            "TagDetail": "Verilog_SystemVerilogYosysSupported",
+            "HoverContains": [
+                "SystemVerilog",
+                "sequential",
+                "Yosys"
+            ]
+        },
+        {
+            "Text": "always_comb",
+            "Source": "Tags",
+            "TagDetail": "Verilog_SystemVerilogYosysSupported",
+            "HoverContains": [
+                "SystemVerilog",
+                "combinational",
+                "Yosys"
+            ]
+        },
+        {
+            "Text": "final",
+            "Source": "Tags",
+            "TagDetail": "Verilog_SystemVerilogYosysUnsupported",
+            "HoverContains": [
+                "SystemVerilog",
+                "end of simulation",
+                "not synthesized"
+            ]
+        },
+        {
+            "Text": "clk",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_input",
+            "HoverContains": [
+                "input",
+                "logic",
+                "clk"
+            ],
+            "HoverNotContains": [
+                "module systemverilog_keywords"
+            ]
+        },
+        {
+            "Text": "d",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_input",
+            "HoverContains": [
+                "input",
+                "logic",
+                "d"
+            ],
+            "HoverNotContains": [
+                "module systemverilog_keywords"
+            ]
+        },
+        {
+            "Text": "q",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_output",
+            "HoverContains": [
+                "output",
+                "logic",
+                "q"
+            ],
+            "HoverNotContains": [
+                "module systemverilog_keywords"
+            ]
+        },
+        {
+            "Text": "enabled",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_SystemVerilog",
+            "HoverContains": [
+                "bit",
+                "enabled"
+            ]
+        },
+        {
+            "Text": "value",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_input",
+            "HoverContains": [
+                "input",
+                "sample_t",
+                "value"
+            ]
+        },
+        {
+            "Text": "sample_identity",
+            "Source": "Tags",
+            "TagDetail": "Verilog_FunctionName",
+            "HoverContains": [
+                "function",
+                "sample_t",
+                "sample_identity"
+            ]
+        },
+        {
+            "Text": "shared_scope_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_wire",
+            "HoverContains": [
+                "wire",
+                "shared_scope_name"
+            ]
+        },
+        {
+            "Text": "shared_no_ports_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_wire",
+            "HoverContains": [
+                "wire",
+                "shared_no_ports_name"
+            ]
+        },
+        {
+            "Text": "shared_parameterized_no_ports_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_wire",
+            "HoverContains": [
+                "wire",
+                "shared_parameterized_no_ports_name"
+            ]
+        },
+        {
+            "Text": "shared_parameterized_ports_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_wire",
+            "HoverContains": [
+                "wire",
+                "shared_parameterized_ports_name"
+            ]
+        },
+        {
+            "Text": "sample_t",
+            "Source": "Tags",
+            "TagDetail": "Verilog_UserDefinedType",
+            "HoverContains": [
+                "typedef sample_t",
+                "underlying type: logic [7:0]"
+            ]
+        },
+        {
+            "Text": "shared_scope_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_UserDefinedType",
+            "HoverContains": [
+                "typedef shared_scope_name",
+                "underlying type: logic [7:0]"
+            ]
+        },
+        {
+            "Text": "shared_no_ports_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_UserDefinedType",
+            "HoverContains": [
+                "typedef shared_no_ports_name",
+                "underlying type: logic [7:0]"
+            ]
+        },
+        {
+            "Text": "shared_parameterized_no_ports_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_UserDefinedType",
+            "HoverContains": [
+                "typedef shared_parameterized_no_ports_name",
+                "underlying type: logic [WIDTH - 1:0]"
+            ]
+        },
+        {
+            "Text": "shared_parameterized_ports_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_UserDefinedType",
+            "HoverContains": [
+                "typedef shared_parameterized_ports_name",
+                "underlying type: logic [WIDTH - 1:0]"
+            ]
+        },
+        {
+            "Text": "myvar",
+            "Source": "Tags",
+            "TagDetail": "Verilog_UserDefinedTypeVariable",
+            "HoverContains": [
+                "shared_parameterized_ports_name",
+                "myvar"
+            ]
+        }
+    ],
+    "MustNotHaveTaggedText": [
+        {
+            "Text": "sample_t",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_input"
+        },
+        {
+            "Text": "sample_t",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_reg"
+        },
+        {
+            "Text": "sample_t",
+            "Source": "Tags",
+            "TagDetail": "Verilog_FunctionName"
+        },
+        {
+            "Text": "shared_scope_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_FunctionName"
+        },
+        {
+            "Text": "shared_scope_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_input"
+        },
+        {
+            "Text": "shared_scope_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_output"
+        },
+        {
+            "Text": "shared_scope_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_inout"
+        },
+        {
+            "Text": "shared_no_ports_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_FunctionName"
+        },
+        {
+            "Text": "shared_no_ports_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_input"
+        },
+        {
+            "Text": "shared_no_ports_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_output"
+        },
+        {
+            "Text": "shared_no_ports_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_inout"
+        },
+        {
+            "Text": "shared_parameterized_no_ports_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_FunctionName"
+        },
+        {
+            "Text": "shared_parameterized_no_ports_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_input"
+        },
+        {
+            "Text": "shared_parameterized_no_ports_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_output"
+        },
+        {
+            "Text": "shared_parameterized_no_ports_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_inout"
+        },
+        {
+            "Text": "shared_parameterized_ports_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_FunctionName"
+        },
+        {
+            "Text": "shared_parameterized_ports_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_input"
+        },
+        {
+            "Text": "shared_parameterized_ports_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_output"
+        },
+        {
+            "Text": "shared_parameterized_ports_name",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_inout"
+        }
+    ],
+    "MustNotHaveSymbols": [
+        {
+            "Name": "integer",
+            "Scope": "systemverilog_type_owner_parameterized_no_ports"
+        },
+        {
+            "Name": "integer",
+            "Scope": "systemverilog_variable_owner_parameterized_no_ports"
+        },
+        {
+            "Name": "integer",
+            "Scope": "systemverilog_type_owner_parameterized_ports"
+        },
+        {
+            "Name": "integer",
+            "Scope": "systemverilog_variable_owner_parameterized_ports"
+        },
+        {
+            "Name": "logic",
+            "Scope": "systemverilog_keywords"
+        }
+    ]
+}

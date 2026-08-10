@@ -364,6 +364,14 @@ namespace VerilogLanguage
 
 
         /// <summary>
+        /// Defines the "Verilog_integer" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("integer")]
+        internal static ClassificationTypeDefinition Verilog_integer = null;
+
+
+        /// <summary>
         /// Defines the "Verilog_instance" classification type.
         /// </summary>
         [Export(typeof(ClassificationTypeDefinition))]
@@ -685,14 +693,35 @@ namespace VerilogLanguage
 
         #endregion
 
-        #region System Verilog Type Definition
+        #region SystemVerilog Type Definition
 
         /// <summary>
-        /// Defines the "Verilog_bit" classification type.
+        /// Defines SystemVerilog-only keywords marked as synthesis-oriented Yosys/sv-elab guidance.
         /// </summary>
         [Export(typeof(ClassificationTypeDefinition))]
-        [Name("bit")]
-        internal static ClassificationTypeDefinition Verilog_bit = null;
+        [Name("SystemVerilogYosysSupported")]
+        internal static ClassificationTypeDefinition Verilog_SystemVerilogYosysSupported = null;
+
+        /// <summary>
+        /// Defines SystemVerilog-only keywords marked as unsupported, non-synthesizable, or unverified.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("SystemVerilogYosysUnsupported")]
+        internal static ClassificationTypeDefinition Verilog_SystemVerilogYosysUnsupported = null;
+
+        /// <summary>
+        /// Defines a resolved SystemVerilog typedef alias declaration or reference.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("UserDefinedType")]
+        internal static ClassificationTypeDefinition Verilog_UserDefinedType = null;
+
+        /// <summary>
+        /// Defines a variable declared using a resolved SystemVerilog typedef alias.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("UserDefinedTypeVariable")]
+        internal static ClassificationTypeDefinition Verilog_UserDefinedTypeVariable = null;
 
         #endregion
 
@@ -719,6 +748,13 @@ namespace VerilogLanguage
         internal static ClassificationTypeDefinition Verilog_MacroDefinition = null;
 
         /// <summary>
+        /// Defines the "Verilog_InactiveCode" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("InactiveCode")]
+        internal static ClassificationTypeDefinition Verilog_InactiveCode = null;
+
+        /// <summary>
         /// Defines the "Verilog_StaticString" classification type.
         /// </summary>
         [Export(typeof(ClassificationTypeDefinition))]
@@ -732,6 +768,29 @@ namespace VerilogLanguage
         [Name("FunctionName")]
         internal static ClassificationTypeDefinition Verilog_FunctionName = null;
 
+        /// <summary>
+        /// Defines the "Verilog_SystemTaskFunction" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("SystemTaskFunction")]
+        internal static ClassificationTypeDefinition Verilog_SystemTaskFunction = null;
+
+        /// <summary>
+        /// Defines the "Verilog_SystemTaskFatal" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("SystemTaskFatal")]
+        internal static ClassificationTypeDefinition Verilog_SystemTaskFatal = null;
+
+        #endregion
+
+        #region attributes
+        /// <summary>
+        /// Defines the "Verilog_Attribute" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Attribute")]
+        internal static ClassificationTypeDefinition Verilog_Attribute = null;
         #endregion
 
         #region comments
@@ -857,6 +916,13 @@ namespace VerilogLanguage
         [Export(typeof(ClassificationTypeDefinition))]
         [Name("Variable_reg")]
         internal static ClassificationTypeDefinition Verilog_Variable_reg = null;
+
+        /// <summary>
+        /// Defines the "Verilog_Variable_SystemVerilog" classification type.
+        /// </summary>
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name("Variable_SystemVerilog")]
+        internal static ClassificationTypeDefinition Verilog_Variable_SystemVerilog = null;
 
         /// <summary>
         /// Defines the "Verilog_Variable_localparam" classification type.

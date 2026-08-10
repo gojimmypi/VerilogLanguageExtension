@@ -170,7 +170,10 @@ Equivalent command:
     -UpdateBaseline
 ```
 
-Use this only after manually reviewing and approving the current snapshot output.
+Use this only after manually reviewing and approving the current snapshot
+output. The update is staged and written by `Write-SnapshotBaseline.ps1`, which
+requires Windows PowerShell 5.1, preserves the repository's historical JSON
+representation, and prevents Python- or PowerShell-7-format whole-file churn.
 
 ### `ci-check.ps1`
 
@@ -200,7 +203,7 @@ It performs these steps:
 3. Runs `Export-Snapshots.ps1` unless `-SkipSnapshots` is used.
 4. Runs `Compare-Snapshots.py` against targeted expectations.
 5. Optionally compares against a baseline.
-6. Optionally updates a baseline when `-UpdateBaseline` is used.
+6. Optionally validates expectations and delegates a staged baseline update to `Write-SnapshotBaseline.ps1` when `-UpdateBaseline` is used.
 
 Common usage:
 
@@ -236,6 +239,27 @@ Use a different Experimental Instance root suffix:
 .\tools\vle-ci\Run-LocalCI.ps1 `
     -RootSuffix Exp2
 ```
+
+
+### `tools/vle-ci/Write-SnapshotBaseline.ps1`
+
+Canonical snapshot-baseline writer. All full and single-file baseline update paths
+use the shared functions in `SnapshotBaseline.ps1`. The writer:
+
+- requires Windows PowerShell 5.1 for approved-baseline serialization;
+- uses an exclusive update lock and a uniquely named staging directory;
+- restores an interrupted `.old-update` backup before starting a new update;
+- stages and validates the complete destination before replacement;
+- removes per-snapshot release versions and volatile snapshot fields;
+- removes timestamps, timings, and Git identifiers from baseline `run-info.json`;
+- retains stable release versions, status, and snapshot-count metadata;
+- stores repository-relative `/` paths and portable `File:` hover locations;
+- writes CRLF JSON as UTF-8 without BOM.
+
+`Compare-Snapshots.py --update-baseline` delegates to this script and never writes
+approved JSON with Python. `Test-SnapshotBaselineWriter.ps1` verifies encoding,
+portability, metadata filtering, byte-identical repeated output, and recovery of
+an interrupted update.
 
 ### `tools\vle-ci\Export-Snapshots.ps1`
 
@@ -473,6 +497,53 @@ Snapshot files are named with a sequence prefix:
 
 The sequence prefix is intentional. It makes repeated-open scenarios testable.
 
+Per-file processing times are recorded in `run-info.json`, not in each
+`*.snapshot.json` file. Current snapshots are rewritten through the same
+portable-snapshot helper used by the approved baseline writer. This removes
+volatile fields such as `ExtensionVersion`, converts `FilePath` and
+`FileRelativePath` to the same repository-relative forward-slash path, and
+normalizes repository paths embedded in hover text. Therefore an unchanged
+current snapshot can compare byte-for-byte with its approved baseline; direct
+folder comparison highlights only real snapshot changes.
+
+## Performance baseline
+
+Semantic snapshots and performance measurements use separate baselines. This
+keeps `tests\snapshots\baselines` clean for direct folder comparison while
+still allowing CI to report whether processing became better, worse, or stayed
+within the normal variation range.
+
+The current run records exact per-file seconds and CI-stage seconds in:
+
+```text
+artifacts\snapshots\current\run-info.json
+```
+
+The approved performance reference is stored separately at:
+
+```text
+tests\snapshots\performance-baselines\development-main\all-testfiles.performance.json
+```
+
+After reviewing a completed `ci-check.ps1` run, create or update that reference
+explicitly:
+
+```powershell
+.\scripts\update-performance-baseline.ps1
+```
+
+`ci-check.ps1` compares the next run against the approved performance baseline.
+The default report treats changes within 10 percent as `SAME`, larger decreases
+as `BETTER`, and larger increases as `WORSE`. A regression threshold is also
+reported when the increase exceeds both 25 percent and 10 seconds. Performance
+regressions are report-only by default because Visual Studio startup and machine
+load can vary. Compare runs made with the same machine, Visual Studio instance,
+and build configuration. Pass `-FailOnPerformanceRegression` directly to
+`Run-LocalCI.ps1` when a blocking performance gate is wanted.
+
+The performance baseline is never updated by `ci-baseline.ps1`; semantic and
+performance approval remain separate explicit actions.
+
 Snapshot JSON includes data such as:
 
 ```json
@@ -566,12 +637,14 @@ Do not update the baseline. Fix the parser/classifier/tagger change and rerun
 Commit:
 
 ```text
+scripts\update-performance-baseline.ps1
 tools\vle-ci\*.ps1
 tools\vle-ci\*.py
 tools\vle-ci\README.md
 tools\vle-ci\manifests\*.json
 tools\vle-ci\expectations\*.expect.json
 tests\snapshots\baselines\...\*.snapshot.json
+tests\snapshots\performance-baselines\...\*.performance.json
 ```
 
 Do not commit:
@@ -598,10 +671,16 @@ Update all-testfiles baseline:
 .\ci-baseline.ps1
 ```
 
-Check current output against all-testfiles baseline:
+Check current output against all-testfiles baseline and report performance:
 
 ```powershell
 .\ci-check.ps1
+```
+
+Approve the latest completed run as the performance reference:
+
+```powershell
+.\scripts\update-performance-baseline.ps1
 ```
 
 Run cold-open only:

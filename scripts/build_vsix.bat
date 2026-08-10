@@ -30,7 +30,12 @@ if errorlevel 1 exit /b 1
 msbuild -version
 if errorlevel 1 exit /b 1
 
-msbuild VerilogLanguage.csproj /restore /t:Rebuild /p:Configuration=Debug /p:Platform=AnyCPU /v:minimal
+rem VerilogLanguage.csproj regenerates ProjectTemplates\CSharp\1033\VerilogProject.zip
+rem via the BuildProjectTemplateZip target before PrepareForBuild.
+rem powershell.exe -NoProfile -ExecutionPolicy Bypass -File tools\templates\Build-ProjectTemplates.ps1
+rem if errorlevel 1 exit /b 1
+
+msbuild VerilogLanguageExtension.sln /restore /t:Rebuild /p:Configuration=Debug /p:Platform="Any CPU" /v:minimal
 if errorlevel 1 exit /b 1
 
 mkdir .\bin\Debug\vsix-contents
@@ -40,6 +45,15 @@ if errorlevel 1 exit /b 1
 tar -xf  .\bin\Debug\VerilogLanguage.zip -C .\bin\Debug\vsix-contents
 if errorlevel 1 exit /b 1
 dir /s /b .\bin\Debug\vsix-contents
+if errorlevel 1 exit /b 1
+
+
+
+echo Project template files in VSIX:
+dir /s /b .\bin\Debug\vsix-contents\ProjectTemplates
+if errorlevel 1 exit /b 1
+
+findstr /s /i /m "Verilog Project VerilogProject" .\bin\Debug\vsix-contents\ProjectTemplates\*.vstemplate .\bin\Debug\vsix-contents\ProjectTemplates\*.vstman
 if errorlevel 1 exit /b 1
 
 echo extension.vsixmanifest contents:

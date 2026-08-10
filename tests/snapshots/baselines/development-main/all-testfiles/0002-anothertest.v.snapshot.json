@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.5",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\anothertest.v",
-    "FileRelativePath":  "TestFiles\\anothertest.v",
+    "FilePath":  "TestFiles/anothertest.v",
+    "FileRelativePath":  "TestFiles/anothertest.v",
     "ContentType":  "verilog",
     "SnapshotLength":  7901,
     "SnapshotVersion":  2,
@@ -16282,7 +16281,7 @@
                      "Text":  "sd_d",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] sd_d .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  4493,
@@ -16592,7 +16591,7 @@
                      "Text":  "sd_d",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] sd_d .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  4578,
@@ -17152,7 +17151,7 @@
                      "Text":  "sd_d",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] sd_d .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  4820,
@@ -17232,7 +17231,7 @@
                      "Text":  "S_prog_in",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire [1:0] S_prog_in"
+                     "HoverText":  null
                  },
                  {
                      "Start":  4836,
@@ -17302,7 +17301,7 @@
                      "Text":  "S_prog_in",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire [1:0] S_prog_in"
+                     "HoverText":  null
                  },
                  {
                      "Start":  4851,
@@ -17392,7 +17391,7 @@
                      "Text":  "1\u0027b1",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "1\u0027B1 = (1 bit Binary) 1; "
+                     "HoverText":  null
                  },
                  {
                      "Start":  4863,
@@ -17432,7 +17431,7 @@
                      "Text":  "1\u0027b0",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "1\u0027B0 = (1 bit Binary) 0; "
+                     "HoverText":  null
                  },
                  {
                      "Start":  4870,
@@ -17472,7 +17471,7 @@
                      "Text":  "1\u0027bZ",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "1\u0027BZ = (1 bit Binary) Z; "
+                     "HoverText":  null
                  },
                  {
                      "Start":  4877,
@@ -17522,7 +17521,7 @@
                      "Text":  "sd_d",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] sd_d .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  4886,
@@ -17632,7 +17631,7 @@
                      "Text":  "S_prog_in",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire [1:0] S_prog_in"
+                     "HoverText":  null
                  },
                  {
                      "Start":  4912,
@@ -17702,7 +17701,7 @@
                      "Text":  "S_prog_in",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire [1:0] S_prog_in"
+                     "HoverText":  null
                  },
                  {
                      "Start":  4929,
@@ -17922,7 +17921,7 @@
                      "Text":  "sd_d",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] sd_d .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  4980,
@@ -17992,7 +17991,7 @@
                      "Text":  "R_prog_release",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [C_prog_release_timeout:0] R_prog_release = 1\u0027b1"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5000,
@@ -18022,7 +18021,7 @@
                      "Text":  "C_prog_release_timeout",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "parameter C_prog_release_timeout = 17"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5024,
@@ -18092,7 +18091,7 @@
                      "Text":  "1\u0027b0",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "1\u0027B0 = (1 bit Binary) 0; "
+                     "HoverText":  null
                  },
                  {
                      "Start":  5034,
@@ -18132,7 +18131,7 @@
                      "Text":  "1\u0027b0",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "1\u0027B0 = (1 bit Binary) 0; "
+                     "HoverText":  null
                  },
                  {
                      "Start":  5041,
@@ -18172,7 +18171,7 @@
                      "Text":  "1\u0027bZ",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "1\u0027BZ = (1 bit Binary) Z; "
+                     "HoverText":  null
                  },
                  {
                      "Start":  5048,
@@ -18222,7 +18221,7 @@
                      "Text":  "sd_d",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] sd_d .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5057,
@@ -18332,7 +18331,7 @@
                      "Text":  "R_prog_release",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [C_prog_release_timeout:0] R_prog_release = 1\u0027b1"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5102,
@@ -18542,7 +18541,7 @@
                      "Text":  "sd_d",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] sd_d .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5155,
@@ -18612,7 +18611,7 @@
                      "Text":  "R_prog_release",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [C_prog_release_timeout:0] R_prog_release = 1\u0027b1"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5175,
@@ -18642,7 +18641,7 @@
                      "Text":  "C_prog_release_timeout",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "parameter C_prog_release_timeout = 17"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5199,
@@ -18712,7 +18711,7 @@
                      "Text":  "1\u0027b0",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "1\u0027B0 = (1 bit Binary) 0; "
+                     "HoverText":  null
                  },
                  {
                      "Start":  5209,
@@ -18752,7 +18751,7 @@
                      "Text":  "1\u0027b1",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "1\u0027B1 = (1 bit Binary) 1; "
+                     "HoverText":  null
                  },
                  {
                      "Start":  5216,
@@ -18792,7 +18791,7 @@
                      "Text":  "1\u0027bZ",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "1\u0027BZ = (1 bit Binary) Z; "
+                     "HoverText":  null
                  },
                  {
                      "Start":  5223,
@@ -18842,7 +18841,7 @@
                      "Text":  "sd_d",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] sd_d .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5232,
@@ -18952,7 +18951,7 @@
                      "Text":  "R_prog_release",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [C_prog_release_timeout:0] R_prog_release = 1\u0027b1"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5277,
@@ -19092,7 +19091,7 @@
                      "Text":  "sd_clk",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. input wire sd_clk .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5317,
@@ -19132,7 +19131,7 @@
                      "Text":  "R_prog_release",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [C_prog_release_timeout:0] R_prog_release = 1\u0027b1"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5334,
@@ -19162,7 +19161,7 @@
                      "Text":  "C_prog_release_timeout",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "parameter C_prog_release_timeout = 17"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5358,
@@ -19232,7 +19231,7 @@
                      "Text":  "1\u0027b0",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "1\u0027B0 = (1 bit Binary) 0; "
+                     "HoverText":  null
                  },
                  {
                      "Start":  5368,
@@ -19272,7 +19271,7 @@
                      "Text":  "clk_25mhz",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. input wire clk_25mhz .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5380,
@@ -19312,7 +19311,7 @@
                      "Text":  "1\u0027bZ",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "1\u0027BZ = (1 bit Binary) Z; "
+                     "HoverText":  null
                  },
                  {
                      "Start":  5387,
@@ -19362,7 +19361,7 @@
                      "Text":  "sd_clk",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. input wire sd_clk .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5398,
@@ -19412,7 +19411,7 @@
                      "Text":  "clk_25mhz",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. input wire clk_25mhz .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5411,
@@ -19452,7 +19451,7 @@
                      "Text":  "R_prog_release",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [C_prog_release_timeout:0] R_prog_release = 1\u0027b1"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5431,
@@ -19472,7 +19471,7 @@
                      "Text":  "R_prog_release",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [C_prog_release_timeout:0] R_prog_release = 1\u0027b1"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5446,
@@ -19682,7 +19681,7 @@
                      "Text":  "wifi_en",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire wifi_en .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5516,
@@ -19722,7 +19721,7 @@
                      "Text":  "ftdi_nrts",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire ftdi_nrts .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5528,
@@ -19772,7 +19771,7 @@
                      "Text":  "wifi_en",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire wifi_en .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5540,
@@ -19822,7 +19821,7 @@
                      "Text":  "ftdi_nrts",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire ftdi_nrts .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5553,
@@ -19882,7 +19881,7 @@
                      "Text":  "wifi_gpio0",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire wifi_gpio0 .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5576,
@@ -19922,7 +19921,7 @@
                      "Text":  "ftdi_ndtr",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire ftdi_ndtr .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5588,
@@ -19972,7 +19971,7 @@
                      "Text":  "wifi_gpio0",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire wifi_gpio0 .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5603,
@@ -20022,7 +20021,7 @@
                      "Text":  "ftdi_ndtr",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire ftdi_ndtr .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5616,
@@ -20642,7 +20641,7 @@
                      "Text":  "led",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. output wire [7:0] led .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5933,
@@ -20742,7 +20741,7 @@
                      "Text":  "S_oled_csn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire S_oled_csn"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5952,
@@ -20762,7 +20761,7 @@
                      "Text":  "R_spi_miso",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [7:0] R_spi_miso"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5963,
@@ -20812,7 +20811,7 @@
                      "Text":  "sd_clk",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. input wire sd_clk .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5973,
@@ -20832,7 +20831,7 @@
                      "Text":  "sd_d",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] sd_d .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5978,
@@ -20882,7 +20881,7 @@
                      "Text":  "sd_d",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] sd_d .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5986,
@@ -20932,7 +20931,7 @@
                      "Text":  "sd_cmd",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. input wire sd_cmd .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  5996,
@@ -20952,7 +20951,7 @@
                      "Text":  "sd_d",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] sd_d .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6001,
@@ -21002,7 +21001,7 @@
                      "Text":  "sd_d",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] sd_d .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6009,
@@ -21092,7 +21091,7 @@
                      "Text":  "led",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. output wire [7:0] led .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6021,
@@ -21172,7 +21171,7 @@
                      "Text":  "S_oled_csn",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire S_oled_csn"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6047,
@@ -21212,7 +21211,7 @@
                      "Text":  "R_spi_miso",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [7:0] R_spi_miso"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6060,
@@ -21282,7 +21281,7 @@
                      "Text":  "sd_clk",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. input wire sd_clk .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6072,
@@ -21322,7 +21321,7 @@
                      "Text":  "sd_d",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] sd_d .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6079,
@@ -21392,7 +21391,7 @@
                      "Text":  "sd_d",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] sd_d .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6089,
@@ -21462,7 +21461,7 @@
                      "Text":  "sd_cmd",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. input wire sd_cmd .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6101,
@@ -21502,7 +21501,7 @@
                      "Text":  "sd_d",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] sd_d .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6108,
@@ -21572,7 +21571,7 @@
                      "Text":  "sd_d",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] sd_d .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6118,
@@ -21782,7 +21781,7 @@
                      "Text":  "led",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. output wire [7:0] led .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6176,
@@ -21862,7 +21861,7 @@
                      "Text":  "R_prog_release",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [C_prog_release_timeout:0] R_prog_release = 1\u0027b1"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6198,
@@ -21892,7 +21891,7 @@
                      "Text":  "C_prog_release_timeout",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "parameter C_prog_release_timeout = 17"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6222,
@@ -22762,7 +22761,7 @@
                      "Text":  "led",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. output wire [7:0] led .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6539,
@@ -22832,7 +22831,7 @@
                      "Text":  "sd_d",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] sd_d .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6549,
@@ -22902,7 +22901,7 @@
                      "Text":  "led",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. output wire [7:0] led .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6559,
@@ -22982,7 +22981,7 @@
                      "Text":  "sd_d",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] sd_d .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6570,
@@ -23072,7 +23071,7 @@
                      "Text":  "sd_d",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] sd_d .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6582,
@@ -23482,7 +23481,7 @@
                      "Text":  "led",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. output wire [7:0] led .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6709,
@@ -23552,7 +23551,7 @@
                      "Text":  "sd_d",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] sd_d .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6719,
@@ -23622,7 +23621,7 @@
                      "Text":  "led",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. output wire [7:0] led .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6729,
@@ -23702,7 +23701,7 @@
                      "Text":  "sd_d",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] sd_d .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6740,
@@ -23792,7 +23791,7 @@
                      "Text":  "led",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. output wire [7:0] led .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6759,
@@ -23862,7 +23861,7 @@
                      "Text":  "sd_d",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] sd_d .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6769,
@@ -23932,7 +23931,7 @@
                      "Text":  "led",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. output wire [7:0] led .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6779,
@@ -24012,7 +24011,7 @@
                      "Text":  "sd_d",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] sd_d .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6790,
@@ -24102,7 +24101,7 @@
                      "Text":  "led",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. output wire [7:0] led .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6809,
@@ -24172,7 +24171,7 @@
                      "Text":  "sd_d",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] sd_d .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6819,
@@ -24242,7 +24241,7 @@
                      "Text":  "led",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. output wire [7:0] led .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6829,
@@ -24322,7 +24321,7 @@
                      "Text":  "sd_d",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module ulx3s_passthru_wifi( .. inout wire [3:0] sd_d .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  6840,

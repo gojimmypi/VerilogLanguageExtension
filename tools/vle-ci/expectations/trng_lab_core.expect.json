@@ -1,0 +1,23 @@
+{
+    "File": "TestFiles/src/TRNG/trng_lab_core.v",
+    "MustHaveSymbols": [
+        {
+            "Name": "STAGES",
+            "Scope": "trng_ro",
+            "TokenType": "Verilog_Variable_parameter",
+            "HoverContains": [
+                "parameter",
+                "integer",
+                "STAGES",
+                "3"
+            ]
+        }
+    ],
+    "MustNotHaveSymbols": [
+        {
+            "Name": "integer",
+            "Scope": "trng_ro",
+            "TokenType": "Verilog_Variable_parameter"
+        }
+    ]
+}

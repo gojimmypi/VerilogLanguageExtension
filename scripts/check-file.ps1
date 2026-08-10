@@ -8,7 +8,10 @@ param(
     [switch]$ResetVisualStudioBeforeRun,
     [switch]$ReuseExistingVisualStudio,
     [switch]$SkipExtensionPrep,
-    [switch]$SkipBuildAndDeploy
+    [switch]$SkipBuildAndDeploy,
+    [switch]$AllowBaselineDifference,
+    [ValidateRange(1, 3600)]
+    [int]$MaxWaitSeconds = 45
 )
 
 Set-StrictMode -Version Latest
@@ -193,21 +196,25 @@ function Invoke-CompareSnapshots {
     param(
         [string]$CompareScript,
         [string]$CurrentDir,
+        [string]$BaselineDir = "",
         [string]$ExpectationsDir = ""
     )
 
-    if ([string]::IsNullOrWhiteSpace($ExpectationsDir)) {
-        & python $CompareScript --current $CurrentDir
+    $compareArgs = @($CompareScript, "--current", $CurrentDir)
+    if (![string]::IsNullOrWhiteSpace($BaselineDir)) {
+        $compareArgs += @("--baseline", $BaselineDir)
     }
-    else {
-        & python $CompareScript --current $CurrentDir --expectations $ExpectationsDir
-    }
-
-    $exitCode = $LASTEXITCODE
-    if ($exitCode -ne 0) {
-        Write-Warning "Compare-Snapshots.py returned exit code $exitCode; continuing because check-file.ps1 is a one-file local check."
+    if (![string]::IsNullOrWhiteSpace($ExpectationsDir)) {
+        $compareArgs += @("--expectations", $ExpectationsDir)
     }
 
+    # Write native output to the host so callers can capture only the integer
+    # exit code without swallowing Compare-Snapshots.py's semantic diff.
+    & python @compareArgs 2>&1 | ForEach-Object {
+        Write-Host $_
+    }
+
+    $exitCode = [int]$LASTEXITCODE
     $global:LASTEXITCODE = 0
     return $exitCode
 }
@@ -455,14 +462,13 @@ $msBuildPath = Get-MsBuildPathForVisualStudio -ResolvedVisualStudioPath $resolve
 $hives = @(Get-ExperimentalHiveDirectories -VisualStudioMajor $visualStudioMajor -RootSuffix $RootSuffix)
 
 $effectiveCloseVisualStudioWhenDone = $false
+if ($LeaveVisualStudioOpen.IsPresent) {
+    $effectiveCloseVisualStudioWhenDone = $false
+}
+if ($CloseVisualStudioWhenDone.IsPresent) {
+    $effectiveCloseVisualStudioWhenDone = $true
+}
 
-#if ($LeaveVisualStudioOpen.IsPresent) {
-#    $effectiveCloseVisualStudioWhenDone = $false
-#}
-#if ($CloseVisualStudioWhenDone.IsPresent) {
-#    $effectiveCloseVisualStudioWhenDone = $true
-#}
-#
 $effectiveResetVisualStudioBeforeRun = $true
 if ($ReuseExistingVisualStudio.IsPresent) {
     $effectiveResetVisualStudioBeforeRun = $false
@@ -480,6 +486,7 @@ Write-Host "  Close Visual Studio when done:     $effectiveCloseVisualStudioWhen
 Write-Host "  Visual Studio:                     $resolvedVisualStudioPath"
 Write-Host "  Root suffix:                       $RootSuffix"
 Write-Host "  Hive pattern:                      $visualStudioMajor.0*$RootSuffix"
+Write-Host "  Maximum snapshot wait:             $MaxWaitSeconds seconds"
 
 if ($effectiveResetVisualStudioBeforeRun) {
     Stop-ExperimentalVisualStudio -ResolvedVisualStudioPath $resolvedVisualStudioPath -RootSuffix $RootSuffix
@@ -514,7 +521,8 @@ New-Item $outputDir -ItemType Directory -Force | Out-Null
 # RunName is kept as all-testfiles so snapshot content stays comparable
 # with the normal approved baseline naming/content.
 # DelayMs controls how long VS waits after opening the file.
-# FreshInstancePerFile is false because this manifest contains only one file.
+# FreshInstancePerFile matches the full all-testfiles CI path so a baseline
+# created here is comparable with a later ci-check.ps1 run.
 $baselineForSource = @(Find-BaselineSnapshotForSourceFile -SourceFile $SourceFile -BaselineDir $baselineDir)
 if ($baselineForSource.Count -gt 0) {
     $sourceManifestEntry = [ordered]@{
@@ -529,7 +537,7 @@ else {
 $manifest = @{
     RunName = "all-testfiles"
     DelayMs = 3000
-    FreshInstancePerFile = $false
+    FreshInstancePerFile = $true
     Files = @(
         $sourceManifestEntry
     )
@@ -542,7 +550,7 @@ $exportArgs = @{
     Manifest = $manifestPath
     OutputDir = $outputDir
     RootSuffix = $RootSuffix
-    MaxWaitSeconds = 45
+    MaxWaitSeconds = $MaxWaitSeconds
     SkipBackgroundProcessCleanup = $true
 }
 
@@ -580,7 +588,12 @@ $current = $currentSnapshots[0]
 # First run the built-in snapshot sanity checks on the isolated one-file output.
 # Do not pass the full expectations directory here; those expectations cover
 # other test files and would fail because this run intentionally exported one file.
-[void](Invoke-CompareSnapshots -CompareScript $compareScript -CurrentDir $outputDir)
+$sanityExitCode = Invoke-CompareSnapshots `
+    -CompareScript $compareScript `
+    -CurrentDir $outputDir
+if ($sanityExitCode -ne 0) {
+    throw "Compare-Snapshots.py sanity check failed with exit code $sanityExitCode"
+}
 
 # If there are targeted expectation files for this source, copy only those
 # expectations to a temporary directory and run them against the one-file output.
@@ -590,11 +603,15 @@ $matchedExpectations = New-FilteredExpectationDirectory `
     -FilteredExpectationsRoot $filteredExpectations
 
 if ($matchedExpectations -gt 0) {
-    Write-Host "Targeted expectations matched: $matchedExpectations"
-    [void](Invoke-CompareSnapshots `
+    Write-Host "Targeted expectation files found: $matchedExpectations"
+    $expectationExitCode = Invoke-CompareSnapshots `
         -CompareScript $compareScript `
         -CurrentDir $outputDir `
-        -ExpectationsDir $filteredExpectations)
+        -ExpectationsDir $filteredExpectations
+    if ($expectationExitCode -ne 0) {
+        throw "Compare-Snapshots.py targeted expectation check failed with exit code $expectationExitCode"
+    }
+    Write-Host "Targeted expectations passed: $matchedExpectations"
 }
 else {
     Write-Host "No targeted expectations matched $SourceFile; skipping expectation checks."
@@ -605,26 +622,37 @@ else {
 # for older baselines.
 $baseline = @(Find-BaselineSnapshotForSourceFile -SourceFile $SourceFile -BaselineDir $baselineDir)
 
+$baselineDifference = $false
+
 if ($baseline.Count -lt 1) {
     Write-Warning "No matching baseline snapshot found for $SourceFile; skipping baseline diff."
 }
 else {
-    # Compare the generated one-file snapshot against the approved baseline.
-    # --no-index lets git compare arbitrary files, not only tracked files.
-    & git -C $repoRoot diff --no-index -- $baseline[0].FullName $current.FullName
-    $diffExitCode = $LASTEXITCODE
+    # Compare through Compare-Snapshots.py so this targeted check uses the same
+    # semantic normalization as the full CI baseline comparison. In particular,
+    # volatile provenance and timing fields do not create false differences.
+    $isolatedBaselineDir = Join-RepoPath `
+        -RepoRoot $repoRoot `
+        -RelativePath "artifacts\snapshots\single-testfile-baseline"
 
-    if ($diffExitCode -eq 0) {
-        Write-Host "Baseline diff: no differences."
-    }
-    elseif ($diffExitCode -eq 1) {
-        Write-Host "Baseline diff: differences shown above."
+    Remove-Item $isolatedBaselineDir -Recurse -Force -ErrorAction SilentlyContinue
+    New-Item $isolatedBaselineDir -ItemType Directory -Force | Out-Null
+    Copy-Item `
+        -LiteralPath $baseline[0].FullName `
+        -Destination (Join-Path $isolatedBaselineDir $current.Name)
+
+    $baselineExitCode = Invoke-CompareSnapshots `
+        -CompareScript $compareScript `
+        -CurrentDir $outputDir `
+        -BaselineDir $isolatedBaselineDir
+
+    if ($baselineExitCode -eq 0) {
+        Write-Host "Baseline diff: no semantic differences."
     }
     else {
-        Write-Warning "git diff returned exit code $diffExitCode."
+        $baselineDifference = $true
+        Write-Host "Baseline diff: semantic differences reported above."
     }
-
-    $global:LASTEXITCODE = 0
 }
 
 Write-Host "One-file snapshot check complete:"
@@ -635,6 +663,10 @@ if ($baseline.Count -ge 1) {
 }
 else {
     Write-Host "  Baseline: not found"
+}
+
+if ($baselineDifference -and !$AllowBaselineDifference.IsPresent) {
+    throw "Snapshot baseline differs for $SourceFile. Review the semantic diff above."
 }
 
 $global:LASTEXITCODE = 0

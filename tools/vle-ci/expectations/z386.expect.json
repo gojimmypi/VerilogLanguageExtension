@@ -1,0 +1,532 @@
+{
+    "File": "TestFiles/z386.sv",
+    "MustHaveSymbols": [
+        {
+            "Name": "TMPB",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_reg",
+            "HoverContains": [
+                "reg",
+                "[31:0]",
+                "TMPB"
+            ],
+            "HoverNotContains": [
+                "duplicate?",
+                "div_op_by_size"
+            ]
+        },
+        {
+            "Name": "SIGMA",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_reg",
+            "HoverContains": [
+                "reg",
+                "[31:0]",
+                "SIGMA"
+            ],
+            "HoverNotContains": [
+                "duplicate?",
+                "div_op_by_size"
+            ]
+        },
+        {
+            "Name": "ind_linear",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_reg",
+            "HoverContains": [
+                "reg",
+                "[31:0]",
+                "ind_linear"
+            ],
+            "HoverNotContains": [
+                "duplicate?",
+                "calc_be"
+            ]
+        },
+        {
+            "Name": "op_size",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_reg",
+            "HoverContains": [
+                "reg",
+                "[1:0]",
+                "op_size"
+            ],
+            "HoverNotContains": [
+                "duplicate?",
+                "div_op_by_size"
+            ]
+        },
+        {
+            "Name": "RESULT",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_reg",
+            "HoverContains": [
+                "reg",
+                "[31:0]",
+                "RESULT"
+            ],
+            "HoverNotContains": [
+                "duplicate?"
+            ]
+        },
+        {
+            "Name": "fast_load_dst_byte",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_wire",
+            "HoverContains": [
+                "wire",
+                "fast_load_dst_byte",
+                "op_size"
+            ],
+            "HoverNotContains": [
+                "duplicate?",
+                "fast_gpr_overlap"
+            ]
+        },
+        {
+            "Name": "head_byte_op",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_wire",
+            "HoverContains": [
+                "wire",
+                "head_byte_op",
+                "fast_pop_fc.op_byte"
+            ],
+            "HoverNotContains": [
+                "duplicate?",
+                "fast_gpr_overlap"
+            ]
+        },
+        {
+            "Name": "br_jcc_taken",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_wire",
+            "HoverContains": [
+                "wire",
+                "br_jcc_taken",
+                "check_condition",
+                "eflags_fwd"
+            ],
+            "HoverNotContains": [
+                "duplicate?"
+            ]
+        },
+        {
+            "Name": "d2_agu_index",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_wire",
+            "HoverContains": [
+                "wire",
+                "[31:0]",
+                "d2_agu_index",
+                "onehot_gpr_mux"
+            ],
+            "HoverNotContains": [
+                "duplicate?",
+                "calc_ea_prep"
+            ]
+        },
+        {
+            "Name": "d2_agu_prep",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_wire",
+            "HoverContains": [
+                "wire",
+                "[63:0]",
+                "d2_agu_prep",
+                "d2_agu_base",
+                "d2_agu_index",
+                "d2_agu_dec.scale",
+                "d2_agu_dec.s2b"
+            ],
+            "HoverNotContains": [
+                "duplicate?"
+            ]
+        },
+        {
+            "Name": "d2_agu_seg",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_wire",
+            "HoverContains": [
+                "wire",
+                "[3:0]",
+                "d2_agu_seg",
+                "calc_default_seg_type",
+                "d2_entry.seg"
+            ],
+            "HoverNotContains": [
+                "duplicate?"
+            ]
+        },
+        {
+            "Name": "div_divisor",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_wire",
+            "HoverContains": [
+                "wire",
+                "[31:0]",
+                "div_divisor",
+                "DIV_OP_MASK",
+                "TMPB",
+                "op_size"
+            ],
+            "HoverNotContains": [
+                "duplicate?"
+            ]
+        },
+        {
+            "Name": "div_upper_dividend",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_wire",
+            "HoverContains": [
+                "wire",
+                "[31:0]",
+                "div_upper_dividend",
+                "DIV_OP_MASK",
+                "SIGMA",
+                "op_size"
+            ],
+            "HoverNotContains": [
+                "duplicate?"
+            ]
+        },
+        {
+            "Name": "ea_dec_base_idx_r",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_reg",
+            "HoverContains": [
+                "reg",
+                "[2:0]",
+                "ea_dec_base_idx_r"
+            ],
+            "HoverNotContains": [
+                "duplicate?",
+                "fwd_ea_gpr"
+            ]
+        },
+        {
+            "Name": "ea_dec_index_idx_r",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_reg",
+            "HoverContains": [
+                "reg",
+                "[2:0]",
+                "ea_dec_index_idx_r"
+            ],
+            "HoverNotContains": [
+                "duplicate?",
+                "fwd_ea_gpr"
+            ]
+        },
+        {
+            "Name": "ea_dec_scale_r",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_reg",
+            "HoverContains": [
+                "reg",
+                "[1:0]",
+                "ea_dec_scale_r"
+            ],
+            "HoverNotContains": [
+                "duplicate?",
+                "calc_ea_prep"
+            ]
+        },
+        {
+            "Name": "ea_dec_scale_to_base_r",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_reg",
+            "HoverContains": [
+                "reg",
+                "ea_dec_scale_to_base_r"
+            ],
+            "HoverNotContains": [
+                "duplicate?",
+                "calc_ea_prep"
+            ]
+        },
+        {
+            "Name": "target_sign",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_SystemVerilog",
+            "HoverContains": [
+                "logic",
+                "target_sign"
+            ],
+            "HoverNotContains": [
+                "duplicate?"
+            ]
+        },
+        {
+            "Name": "ovf",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_SystemVerilog",
+            "HoverContains": [
+                "logic",
+                "ovf"
+            ],
+            "HoverNotContains": [
+                "duplicate?"
+            ]
+        },
+        {
+            "Name": "stk",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_SystemVerilog",
+            "HoverContains": [
+                "logic",
+                "[31:0]",
+                "stk"
+            ],
+            "HoverNotContains": [
+                "duplicate?"
+            ]
+        },
+        {
+            "Name": "ind_next",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_SystemVerilog",
+            "HoverContains": [
+                "logic",
+                "[31:0]",
+                "ind_next"
+            ],
+            "HoverNotContains": [
+                "duplicate?"
+            ]
+        }
+    ],
+    "MustHaveTaggedText": [
+        {
+            "Text": "ea_dec_base_idx_r",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_reg"
+        },
+        {
+            "Text": "ea_dec_index_idx_r",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_reg"
+        },
+        {
+            "Text": "ea_dec_scale_r",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_reg"
+        },
+        {
+            "Text": "ea_dec_scale_to_base_r",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_reg"
+        },
+        {
+            "Text": "target_sign",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_SystemVerilog"
+        },
+        {
+            "Text": "ovf",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_SystemVerilog"
+        },
+        {
+            "Text": "stk",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_SystemVerilog",
+            "HoverContains": [
+                "logic",
+                "[31:0]",
+                "stk"
+            ],
+            "HoverNotContains": [
+                "duplicate?"
+            ]
+        },
+        {
+            "Text": "ind_next",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_SystemVerilog",
+            "HoverContains": [
+                "logic",
+                "[31:0]",
+                "ind_next"
+            ],
+            "HoverNotContains": [
+                "duplicate?"
+            ]
+        }
+    ],
+    "MustNotHaveSymbols": [
+        {
+            "Name": "TMPB",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_duplicate"
+        },
+        {
+            "Name": "SIGMA",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_duplicate"
+        },
+        {
+            "Name": "ind_linear",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_duplicate"
+        },
+        {
+            "Name": "op_size",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_duplicate"
+        },
+        {
+            "Name": "RESULT",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_duplicate"
+        },
+        {
+            "Name": "fast_load_dst_byte",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_duplicate"
+        },
+        {
+            "Name": "head_byte_op",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_duplicate"
+        },
+        {
+            "Name": "d2_agu_index",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_duplicate"
+        },
+        {
+            "Name": "ea_dec_base_idx_r",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_duplicate"
+        },
+        {
+            "Name": "ea_dec_index_idx_r",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_duplicate"
+        },
+        {
+            "Name": "ea_dec_scale_r",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_duplicate"
+        },
+        {
+            "Name": "ea_dec_scale_to_base_r",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_duplicate"
+        },
+        {
+            "Name": "FAST_COMMIT_ESP",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_wire"
+        },
+        {
+            "Name": "SEG_DS",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_wire"
+        },
+        {
+            "Name": "target_sign",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_duplicate"
+        },
+        {
+            "Name": "ovf",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_duplicate"
+        },
+        {
+            "Name": "stk",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_duplicate"
+        },
+        {
+            "Name": "ind_next",
+            "Scope": "z386",
+            "TokenType": "Verilog_Variable_duplicate"
+        }
+    ],
+    "MustNotHaveTaggedText": [
+        {
+            "Text": "TMPB",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_duplicate"
+        },
+        {
+            "Text": "SIGMA",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_duplicate"
+        },
+        {
+            "Text": "ind_linear",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_duplicate"
+        },
+        {
+            "Text": "op_size",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_duplicate"
+        },
+        {
+            "Text": "RESULT",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_duplicate"
+        },
+        {
+            "Text": "fast_load_dst_byte",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_duplicate"
+        },
+        {
+            "Text": "head_byte_op",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_duplicate"
+        },
+        {
+            "Text": "d2_agu_index",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_duplicate"
+        },
+        {
+            "Text": "ea_dec_base_idx_r",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_duplicate"
+        },
+        {
+            "Text": "ea_dec_index_idx_r",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_duplicate"
+        },
+        {
+            "Text": "ea_dec_scale_r",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_duplicate"
+        },
+        {
+            "Text": "ea_dec_scale_to_base_r",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_duplicate"
+        },
+        {
+            "Text": "target_sign",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_duplicate"
+        },
+        {
+            "Text": "ovf",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_duplicate"
+        },
+        {
+            "Text": "stk",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_duplicate"
+        },
+        {
+            "Text": "ind_next",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_duplicate"
+        }
+    ]
+}

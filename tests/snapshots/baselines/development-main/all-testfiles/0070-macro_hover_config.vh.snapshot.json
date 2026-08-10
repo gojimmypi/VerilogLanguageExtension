@@ -1,0 +1,127 @@
+{
+    "SchemaVersion":  3,
+    "RunName":  "all-testfiles",
+    "FilePath":  "TestFiles/macros/include-files/macro_hover_config.vh",
+    "FileRelativePath":  "TestFiles/macros/include-files/macro_hover_config.vh",
+    "ContentType":  "verilog",
+    "SnapshotLength":  34,
+    "SnapshotVersion":  2,
+    "TextSha256":  "b50d74c50f565d7ae51a82a6281daf03878a95fc9faa279af90410bed4f9c3fd",
+    "Errors":  [
+
+               ],
+    "Classifications":  [
+                            {
+                                "Start":  0,
+                                "Length":  7,
+                                "Line":  1,
+                                "Column":  1,
+                                "Text":  "`define",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  8,
+                                "Length":  22,
+                                "Line":  1,
+                                "Column":  9,
+                                "Text":  "INCLUDED_DEFINED_MACRO",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  31,
+                                "Length":  1,
+                                "Line":  1,
+                                "Column":  32,
+                                "Text":  "2",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            }
+                        ],
+    "Tags":  [
+                 {
+                     "Start":  0,
+                     "Length":  7,
+                     "Line":  1,
+                     "Column":  1,
+                     "Text":  "`define",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  8,
+                     "Length":  22,
+                     "Line":  1,
+                     "Column":  9,
+                     "Text":  "INCLUDED_DEFINED_MACRO",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "Macro `INCLUDED_DEFINED_MACRO` is defined.\r\nValue: 2\r\nFile: TestFiles/macros/include-files/macro_hover_config.vh\r\nLine: 1"
+                 },
+                 {
+                     "Start":  31,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  32,
+                     "Text":  "2",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 }
+             ],
+    "Tokens":  [
+                   {
+                       "Start":  0,
+                       "Length":  7,
+                       "Line":  1,
+                       "Column":  1,
+                       "Text":  "`define",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  7,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  8,
+                       "Length":  22,
+                       "Line":  1,
+                       "Column":  9,
+                       "Text":  "INCLUDED_DEFINED_MACRO",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  30,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  31,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  31,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  32,
+                       "Text":  "2",
+                       "Context":  "Text"
+                   }
+               ],
+    "Symbols":  [
+                    {
+                        "Scope":  "__MACRO__",
+                        "Name":  "INCLUDED_DEFINED_MACRO",
+                        "TokenType":  "Verilog_Macro",
+                        "HoverText":  "macro definition:\r\n`define INCLUDED_DEFINED_MACRO 2\r\n\r\ncondition:\r\n(unconditional)"
+                    }
+                ]
+}

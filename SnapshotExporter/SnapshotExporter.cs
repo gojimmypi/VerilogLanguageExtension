@@ -236,8 +236,14 @@ namespace VerilogLanguage.Testing
                         tr.TagDetail = mts.Tag.type.ToString();
                         FillSpanLocationAndText(s, tr);
 
-                        string hoverText;
-                        if (VerilogLanguage.VerilogHoverInfo.TryGetHoverText(mts.Tag.type, snapshot, s, out hoverText)) {
+                        string hoverText = mts.Tag.HoverText;
+                        if (!string.IsNullOrWhiteSpace(hoverText) ||
+                            VerilogLanguage.VerilogHoverInfo.TryGetHoverText(
+                                mts.Tag.type,
+                                snapshot,
+                                s,
+                                out hoverText)) {
+
                             tr.HoverText = hoverText;
                         }
 

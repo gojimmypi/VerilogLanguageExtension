@@ -1,0 +1,127 @@
+{
+    "SchemaVersion":  3,
+    "RunName":  "all-testfiles",
+    "FilePath":  "TestFiles/macros/include-files/nested/nested_config.vh",
+    "FileRelativePath":  "TestFiles/macros/include-files/nested/nested_config.vh",
+    "ContentType":  "verilog",
+    "SnapshotLength":  32,
+    "SnapshotVersion":  2,
+    "TextSha256":  "2a5574d3d774c00d93c1c828f8fe6982eee06e97bfa6f32e7d8d920c81e7ba78",
+    "Errors":  [
+
+               ],
+    "Classifications":  [
+                            {
+                                "Start":  0,
+                                "Length":  7,
+                                "Line":  1,
+                                "Column":  1,
+                                "Text":  "`define",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  8,
+                                "Length":  20,
+                                "Line":  1,
+                                "Column":  9,
+                                "Text":  "NESTED_CONFIG_ACTIVE",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  29,
+                                "Length":  1,
+                                "Line":  1,
+                                "Column":  30,
+                                "Text":  "1",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            }
+                        ],
+    "Tags":  [
+                 {
+                     "Start":  0,
+                     "Length":  7,
+                     "Line":  1,
+                     "Column":  1,
+                     "Text":  "`define",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  8,
+                     "Length":  20,
+                     "Line":  1,
+                     "Column":  9,
+                     "Text":  "NESTED_CONFIG_ACTIVE",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "Macro `NESTED_CONFIG_ACTIVE` is defined.\r\nValue: 1\r\nFile: TestFiles/macros/include-files/nested/nested_config.vh\r\nLine: 1"
+                 },
+                 {
+                     "Start":  29,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  30,
+                     "Text":  "1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 }
+             ],
+    "Tokens":  [
+                   {
+                       "Start":  0,
+                       "Length":  7,
+                       "Line":  1,
+                       "Column":  1,
+                       "Text":  "`define",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  7,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  8,
+                       "Length":  20,
+                       "Line":  1,
+                       "Column":  9,
+                       "Text":  "NESTED_CONFIG_ACTIVE",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  28,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  29,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  29,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  30,
+                       "Text":  "1",
+                       "Context":  "Text"
+                   }
+               ],
+    "Symbols":  [
+                    {
+                        "Scope":  "__MACRO__",
+                        "Name":  "NESTED_CONFIG_ACTIVE",
+                        "TokenType":  "Verilog_Macro",
+                        "HoverText":  "macro definition:\r\n`define NESTED_CONFIG_ACTIVE 1\r\n\r\ncondition:\r\n(unconditional)"
+                    }
+                ]
+}

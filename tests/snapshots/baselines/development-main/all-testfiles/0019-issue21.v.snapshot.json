@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.5",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\issue21.v",
-    "FileRelativePath":  "TestFiles\\issue21.v",
+    "FilePath":  "TestFiles/issue21.v",
+    "FileRelativePath":  "TestFiles/issue21.v",
     "ContentType":  "verilog",
     "SnapshotLength":  664,
     "SnapshotVersion":  2,
@@ -1562,7 +1561,7 @@
                      "Text":  "mem_rdata_latched",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire [31:0] mem_rdata_latched = 32\u0027hffff_ffff "
+                     "HoverText":  null
                  },
                  {
                      "Start":  402,

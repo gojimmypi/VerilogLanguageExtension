@@ -1,0 +1,35 @@
+ifdef_include_highlighting.sv
+==============================
+Expected normal syntax highlighting:
+  `timescale 1ns / 1ps
+  active_from_project_config
+  active_included_zero_value
+  active_from_nested_include
+  active_after_include_cycle_guard
+  active_from_second_cycle_file
+  active_inactive_include_did_not_leak
+
+Expected InactiveCode highlighting:
+  inactive_project_config_else
+  inactive_include_leaked_macro
+
+Expected behavior:
+  - project_config.v defines SIM_JTAG_CORE_TB for source following the include.
+  - INCLUDED_ZERO_VALUE remains defined even though its replacement value is 0.
+  - a macro-expanded nested include is resolved relative to project_config.v.
+  - cycle_a.vh -> cycle_b.vh -> cycle_a.vh terminates without recursion.
+  - an include inside an inactive branch is not processed and cannot leak macros.
+
+ifdef_include_source_order.sv
+====================================
+Expected InactiveCode highlighting:
+  `timescale 1ns / 1ps
+  inactive_before_project_config_include
+
+Expected normal syntax highlighting:
+  active_after_project_config_include
+
+Important language semantic:
+  Verilog compiler directives are processed in source order. A macro defined by
+  project_config.v cannot make an earlier `ifdef active. Place the `include before
+  the conditional whose branch it controls.

@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.5",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\testfile-5K.v",
-    "FileRelativePath":  "TestFiles\\testfile-5K.v",
+    "FilePath":  "TestFiles/testfile-5K.v",
+    "FileRelativePath":  "TestFiles/testfile-5K.v",
     "ContentType":  "verilog",
     "SnapshotLength":  1885,
     "SnapshotVersion":  2,
@@ -1443,6 +1442,16 @@
                                           ]
                             },
                             {
+                                "Start":  1303,
+                                "Length":  4,
+                                "Line":  90,
+                                "Column":  4,
+                                "Text":  "this",
+                                "Types":  [
+                                              "SystemVerilogYosysUnsupported"
+                                          ]
+                            },
+                            {
                                 "Start":  1322,
                                 "Length":  17,
                                 "Line":  91,
@@ -1450,6 +1459,16 @@
                                 "Text":  "// this is a test",
                                 "Types":  [
                                               "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  1347,
+                                "Length":  4,
+                                "Line":  92,
+                                "Column":  8,
+                                "Text":  "this",
+                                "Types":  [
+                                              "SystemVerilogYosysUnsupported"
                                           ]
                             },
                             {
@@ -5015,6 +5034,16 @@
                      "HoverText":  "duplicate? wire p1"
                  },
                  {
+                     "Start":  1303,
+                     "Length":  4,
+                     "Line":  90,
+                     "Column":  4,
+                     "Text":  "this",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemVerilogYosysUnsupported",
+                     "HoverText":  "SystemVerilog keyword \u0027this\u0027. VLE marks it as unsupported, non-synthesizable, or unverified for Yosys/sv-elab; actual handling depends on context and tool version."
+                 },
+                 {
                      "Start":  1322,
                      "Length":  2,
                      "Line":  91,
@@ -5103,6 +5132,16 @@
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
                      "HoverText":  null
+                 },
+                 {
+                     "Start":  1347,
+                     "Length":  4,
+                     "Line":  92,
+                     "Column":  8,
+                     "Text":  "this",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemVerilogYosysUnsupported",
+                     "HoverText":  "SystemVerilog keyword \u0027this\u0027. VLE marks it as unsupported, non-synthesizable, or unverified for Yosys/sv-elab; actual handling depends on context and tool version."
                  },
                  {
                      "Start":  1352,

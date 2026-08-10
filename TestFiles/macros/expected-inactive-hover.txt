@@ -1,0 +1,17 @@
+inactive_missing_sim_macro
+  Inactive because macro 'SIM_JTAG_CORE_TB' is not defined.
+  Hover suggests defining it before the conditional, including from an earlier include.
+
+inactive_because_macro_is_defined
+  Inactive because macro 'PRESENT_FEATURE' is defined.
+  Hover suggests undefining it before the `ifndef.
+
+inactive_elsif_after_selected_branch
+inactive_else_after_selected_branch
+  Inactive because the earlier PRESENT_FEATURE branch is active.
+  Hover suggests changing the controlling macros.
+
+nested_inactive_uses_outer_reason
+  Inactive because outer macro 'MISSING_OUTER' is not defined.
+
+All inactive hovers also suggest the file opt-out controls.

@@ -13,6 +13,7 @@ import argparse
 import json
 import re
 import shutil
+import subprocess
 import sys
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Tuple
@@ -20,8 +21,6 @@ from typing import Any, Dict, Iterable, List, Tuple
 
 Snapshot = Dict[str, Any]
 FailureList = List[str]
-RUN_INFO_FILE_NAME = "run-info.json"
-
 KEYWORD_TAG_TEXT = {
     "Verilog_always": "always",
     "Verilog_assign": "assign",
@@ -140,18 +139,163 @@ KEYWORD_TAG_TEXT = {
 IDENTIFIER_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_$]*$")
 ESCAPED_IDENTIFIER_RE = re.compile(r"^\\\S+$")
 
+LEGACY_SYSTEMVERILOG_CLASSIFICATION_TYPES = {
+    "bit",
+}
+
+
+
+MAX_DIFF_ITEMS_PER_SIDE = 12
+
+
+def stable_item_key(value: Any) -> str:
+    """Return a deterministic, compact representation for multiset comparison."""
+    return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=True)
+
+
+def describe_snapshot_item(category: str, item: Any) -> str:
+    """Format one normalized snapshot item as a short, reviewable line."""
+    if not isinstance(item, dict):
+        return repr(item)
+
+    if category == "Classifications":
+        return (
+            f"line {item.get('Line')}:{item.get('Column')} "
+            f"text={item.get('Text', '')!r} types={item.get('Types') or []}"
+        )
+
+    if category == "Tags":
+        detail = item.get("TagDetail", "")
+        hover = item.get("HoverText", "")
+        suffix = f" hover={hover!r}" if hover else ""
+        return (
+            f"line {item.get('Line')}:{item.get('Column')} "
+            f"text={item.get('Text', '')!r} tag={detail!r}{suffix}"
+        )
+
+    if category == "Tokens":
+        return (
+            f"line {item.get('Line')}:{item.get('Column')} "
+            f"text={item.get('Text', '')!r} context={item.get('Context', '')!r}"
+        )
+
+    if category == "Symbols":
+        hover = item.get("HoverText", "")
+        suffix = f" hover={hover!r}" if hover else ""
+        return (
+            f"scope={item.get('Scope', '')!r} name={item.get('Name', '')!r} "
+            f"token={item.get('TokenType', '')!r}{suffix}"
+        )
+
+    return stable_item_key(item)
+
+
+def summarize_sequence_difference(
+        category: str,
+        baseline_items: List[Any],
+        current_items: List[Any]) -> List[str]:
+    """Build a bounded O(n) summary without diffing the full JSON document."""
+    if baseline_items == current_items:
+        return []
+
+    baseline_counts: Dict[str, int] = {}
+    current_counts: Dict[str, int] = {}
+
+    for item in baseline_items:
+        key = stable_item_key(item)
+        baseline_counts[key] = baseline_counts.get(key, 0) + 1
+
+    for item in current_items:
+        key = stable_item_key(item)
+        current_counts[key] = current_counts.get(key, 0) + 1
+
+    removed_needed = {
+        key: count - current_counts.get(key, 0)
+        for key, count in baseline_counts.items()
+        if count > current_counts.get(key, 0)
+    }
+    added_needed = {
+        key: count - baseline_counts.get(key, 0)
+        for key, count in current_counts.items()
+        if count > baseline_counts.get(key, 0)
+    }
+
+    # Preserve the normalized source order in diagnostics. This keeps the first
+    # reported changes near the beginning of the source file instead of sorting
+    # JSON strings lexicographically.
+    removed: List[Any] = []
+    for item in baseline_items:
+        key = stable_item_key(item)
+        if removed_needed.get(key, 0) > 0:
+            removed.append(item)
+            removed_needed[key] -= 1
+
+    added: List[Any] = []
+    for item in current_items:
+        key = stable_item_key(item)
+        if added_needed.get(key, 0) > 0:
+            added.append(item)
+            added_needed[key] -= 1
+
+    lines = [
+        f"  {category}: baseline={len(baseline_items)} current={len(current_items)} "
+        f"removed={len(removed)} added={len(added)}"
+    ]
+
+    for label, items in (("removed", removed), ("added", added)):
+        for item in items[:MAX_DIFF_ITEMS_PER_SIDE]:
+            lines.append(f"    {label}: {describe_snapshot_item(category, item)}")
+        omitted = len(items) - MAX_DIFF_ITEMS_PER_SIDE
+        if omitted > 0:
+            lines.append(f"    ... {omitted} more {label} item(s) omitted")
+
+    return lines
+
+
+def summarize_snapshot_difference(
+        baseline_norm: Dict[str, Any],
+        current_norm: Dict[str, Any]) -> str:
+    """Return a bounded structural summary for two unequal snapshots."""
+    lines: List[str] = []
+    sequence_fields = {"Errors", "Classifications", "Tags", "Tokens", "Symbols"}
+
+    for field in (
+            "SchemaVersion",
+            "RunName",
+            "FileRelativePath",
+            "ContentType",
+            "TextSha256"):
+        baseline_value = baseline_norm.get(field)
+        current_value = current_norm.get(field)
+        if baseline_value != current_value:
+            lines.append(
+                f"  {field}: baseline={baseline_value!r} current={current_value!r}")
+
+    for field in ("Errors", "Classifications", "Tags", "Tokens", "Symbols"):
+        baseline_items = list(baseline_norm.get(field) or [])
+        current_items = list(current_norm.get(field) or [])
+        lines.extend(summarize_sequence_difference(field, baseline_items, current_items))
+
+    unexpected_fields = sorted(
+        (set(baseline_norm) | set(current_norm))
+        - sequence_fields
+        - {"SchemaVersion", "RunName", "FileRelativePath", "ContentType", "TextSha256"})
+    for field in unexpected_fields:
+        baseline_value = baseline_norm.get(field)
+        current_value = current_norm.get(field)
+        if baseline_value != current_value:
+            lines.append(
+                f"  {field}: baseline={baseline_value!r} current={current_value!r}")
+
+    if not lines:
+        lines.append("  Snapshots differ, but no structural summary was produced.")
+
+    return "\n".join(lines)
 
 
 def load_json(path: Path) -> Any:
     with path.open("r", encoding="utf-8-sig") as f:
         return json.load(f)
-
-
-def write_json(path: Path, value: Any) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8", newline="\n") as f:
-        json.dump(value, f, indent=4)
-        f.write("\n")
 
 
 def iter_snapshot_files(root: Path) -> Iterable[Path]:
@@ -164,28 +308,103 @@ def normalize_slashes(value: str) -> str:
     return value.replace("\\", "/")
 
 
-VOLATILE_SNAPSHOT_FIELDS = {
-    "GeneratedAtUtc",
-    "GitCommit",
-    "ProcessingTime",
-    "RunTiming",
-}
+def snapshot_repository_root(snapshot: Snapshot) -> str:
+    """Return the machine-specific repository root for one snapshot, if known."""
+    full_path = normalize_slashes(str(snapshot.get("FilePath") or ""))
+    relative_path = normalize_slashes(str(snapshot.get("FileRelativePath") or ""))
+
+    if not full_path or not relative_path:
+        return ""
+
+    full_lower = full_path.lower()
+    relative_lower = relative_path.lower()
+    if not full_lower.endswith(relative_lower):
+        return ""
+
+    return full_path[:-len(relative_path)].rstrip("/")
 
 
-def snapshot_for_baseline(snapshot: Snapshot) -> Snapshot:
-    cleaned = dict(snapshot)
-    for field in VOLATILE_SNAPSHOT_FIELDS:
-        cleaned.pop(field, None)
-    return cleaned
+def normalize_hover_text(hover_text: str, repository_root: str) -> str:
+    """Make absolute source locations in hover text repository-relative."""
+    if not hover_text:
+        return ""
+
+    root = normalize_slashes(repository_root).rstrip("/")
+    root_lower = root.lower()
+
+    normalized_lines: List[str] = []
+    for line in hover_text.splitlines(keepends=True):
+        line_ending = ""
+        line_body = line
+        if line.endswith("\r\n"):
+            line_body = line[:-2]
+            line_ending = "\r\n"
+        elif line.endswith("\n"):
+            line_body = line[:-1]
+            line_ending = "\n"
+        elif line.endswith("\r"):
+            line_body = line[:-1]
+            line_ending = "\r"
+
+        if line_body.startswith("File:"):
+            prefix, path_text = line_body.split(":", 1)
+            normalized_path = normalize_slashes(path_text.strip())
+
+            if root and normalized_path.lower().startswith(root_lower + "/"):
+                normalized_path = normalized_path[len(root) + 1:]
+            else:
+                testfiles_marker = "/TestFiles/"
+                marker_index = normalized_path.lower().find(testfiles_marker.lower())
+                if marker_index >= 0:
+                    normalized_path = normalized_path[marker_index + 1:]
+
+            line_body = prefix + ": " + normalized_path
+
+        normalized_lines.append(line_body + line_ending)
+
+    return "".join(normalized_lines)
 
 
-def copy_run_info(current_root: Path, baseline_root: Path) -> None:
-    src = current_root / RUN_INFO_FILE_NAME
-    if not src.exists():
-        return
+def find_powershell() -> str:
+    """Find a PowerShell host for the canonical baseline writer."""
+    for candidate in ("powershell.exe", "powershell"):
+        resolved = shutil.which(candidate)
+        if resolved:
+            return resolved
 
-    dst = baseline_root / RUN_INFO_FILE_NAME
-    write_json(dst, load_json(src))
+    raise RuntimeError(
+        "Baseline updates require Windows PowerShell 5.1. "
+        "Run scripts/ci-baseline.ps1 from a Visual Studio Windows environment.")
+
+
+def update_baseline(current_root: Path, baseline_root: Path) -> None:
+    """Delegate baseline serialization to the canonical PowerShell writer.
+
+    Python intentionally never writes approved snapshot JSON. The historical
+    baseline representation is Windows PowerShell 5.1 ConvertTo-Json with CRLF and
+    UTF-8 without BOM; using json.dump here would turn semantic changes into
+    whole-file whitespace and escaping diffs.
+    """
+    writer = Path(__file__).resolve().with_name("Write-SnapshotBaseline.ps1")
+    if not writer.is_file():
+        raise RuntimeError(f"Canonical baseline writer not found: {writer}")
+
+    command = [
+        find_powershell(),
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        str(writer),
+        "-CurrentDirectory",
+        str(current_root.resolve()),
+        "-BaselineDirectory",
+        str(baseline_root.resolve()),
+    ]
+    completed = subprocess.run(command, check=False)
+    if completed.returncode != 0:
+        raise RuntimeError(
+            f"Canonical baseline writer failed with exit code {completed.returncode}")
 
 
 def snapshot_key(snapshot_path: Path, snapshot_root: Path, snapshot: Snapshot) -> str:
@@ -200,7 +419,10 @@ def snapshot_key(snapshot_path: Path, snapshot_root: Path, snapshot: Snapshot) -
     return normalize_slashes(str(Path(str(run_name)) / base_name))
 
 
-def normalize_span(span: Dict[str, Any], include_types: bool) -> Dict[str, Any]:
+def normalize_span(
+        span: Dict[str, Any],
+        include_types: bool,
+        repository_root: str) -> Dict[str, Any]:
     normalized: Dict[str, Any] = {
         "Line": span.get("Line"),
         "Column": span.get("Column"),
@@ -213,7 +435,7 @@ def normalize_span(span: Dict[str, Any], include_types: bool) -> Dict[str, Any]:
         normalized["TagDetail"] = span.get("TagDetail", "")
         hover = span.get("HoverText")
         if hover:
-            normalized["HoverText"] = hover
+            normalized["HoverText"] = normalize_hover_text(str(hover), repository_root)
 
     return normalized
 
@@ -228,7 +450,9 @@ def normalize_token(token: Dict[str, Any]) -> Dict[str, Any]:
     return normalized
 
 
-def normalize_symbol(symbol: Dict[str, Any]) -> Dict[str, Any]:
+def normalize_symbol(
+        symbol: Dict[str, Any],
+        repository_root: str) -> Dict[str, Any]:
     normalized = {
         "Scope": symbol.get("Scope", ""),
         "Name": symbol.get("Name", ""),
@@ -237,12 +461,14 @@ def normalize_symbol(symbol: Dict[str, Any]) -> Dict[str, Any]:
 
     hover = symbol.get("HoverText")
     if hover:
-        normalized["HoverText"] = hover
+        normalized["HoverText"] = normalize_hover_text(str(hover), repository_root)
 
     return normalized
 
 
 def normalize_snapshot(snapshot: Snapshot) -> Dict[str, Any]:
+    repository_root = snapshot_repository_root(snapshot)
+
     normalized = {
         "SchemaVersion": snapshot.get("SchemaVersion"),
         "RunName": snapshot.get("RunName", ""),
@@ -250,10 +476,19 @@ def normalize_snapshot(snapshot: Snapshot) -> Dict[str, Any]:
         "ContentType": snapshot.get("ContentType", ""),
         "TextSha256": snapshot.get("TextSha256", ""),
         "Errors": snapshot.get("Errors") or [],
-        "Classifications": [normalize_span(item, True) for item in snapshot.get("Classifications") or []],
-        "Tags": [normalize_span(item, False) for item in snapshot.get("Tags") or []],
+        "Classifications": [
+            normalize_span(item, True, repository_root)
+            for item in snapshot.get("Classifications") or []
+        ],
+        "Tags": [
+            normalize_span(item, False, repository_root)
+            for item in snapshot.get("Tags") or []
+        ],
         "Tokens": [normalize_token(item) for item in snapshot.get("Tokens") or []],
-        "Symbols": [normalize_symbol(item) for item in snapshot.get("Symbols") or []],
+        "Symbols": [
+            normalize_symbol(item, repository_root)
+            for item in snapshot.get("Symbols") or []
+        ],
     }
 
     normalized["Classifications"].sort(key=lambda item: (item.get("Line") or 0, item.get("Column") or 0, item.get("Text") or "", str(item.get("Types") or "")))
@@ -302,54 +537,12 @@ def compare_snapshots(current_root: Path, baseline_root: Path, failures: Failure
         baseline_path, _, baseline_norm = baseline[key]
 
         if current_norm != baseline_norm:
+            summary = summarize_snapshot_difference(baseline_norm, current_norm)
             failures.append(
                 f"Snapshot differs: {key}\n"
                 f"  Baseline: {baseline_path}\n"
                 f"  Current:  {current_path}\n"
-                "  Diff output is intentionally not generated; review JSON changes in Git/Visual Studio.")
-
-
-def update_baseline(current_root: Path, baseline_root: Path) -> None:
-    """Replace a baseline only after a complete staged copy exists.
-
-    This avoids leaving a half-populated approved baseline if the refresh is
-    interrupted while JSON files are being written. The old baseline is kept
-    until the new one is fully staged.
-    """
-    parent = baseline_root.parent
-    parent.mkdir(parents=True, exist_ok=True)
-
-    staging_root = parent / f".{baseline_root.name}.tmp-update"
-    backup_root = parent / f".{baseline_root.name}.old-update"
-
-    if staging_root.exists():
-        shutil.rmtree(staging_root)
-    if backup_root.exists():
-        shutil.rmtree(backup_root)
-
-    staging_root.mkdir(parents=True, exist_ok=True)
-
-    try:
-        for src in iter_snapshot_files(current_root):
-            rel = src.relative_to(current_root)
-            dst = staging_root / rel
-            write_json(dst, snapshot_for_baseline(load_json(src)))
-
-        copy_run_info(current_root, staging_root)
-
-        if baseline_root.exists():
-            baseline_root.rename(backup_root)
-
-        staging_root.rename(baseline_root)
-
-        if backup_root.exists():
-            shutil.rmtree(backup_root)
-    except Exception:
-        if not baseline_root.exists() and backup_root.exists():
-            backup_root.rename(baseline_root)
-        if staging_root.exists():
-            shutil.rmtree(staging_root, ignore_errors=True)
-        raise
+                f"{summary}")
 
 
 def matching_snapshots_for_file(current: Dict[str, Tuple[Path, Snapshot, Dict[str, Any]]], expected_file: str) -> List[Tuple[Path, Snapshot, Dict[str, Any]]]:
@@ -375,6 +568,22 @@ def text_contains_all(haystack: str, needles: Any) -> bool:
         needles = []
     haystack_lower = (haystack or "").lower()
     return all(str(needle).lower() in haystack_lower for needle in needles)
+
+
+def text_contains_none(haystack: str, needles: Any) -> bool:
+    if isinstance(needles, str):
+        needles = [needles]
+    if needles is None:
+        needles = []
+    haystack_lower = (haystack or "").lower()
+    return all(str(needle).lower() not in haystack_lower for needle in needles)
+
+
+def hover_matches_requirement(hover_text: str, requirement: Dict[str, Any]) -> bool:
+    return (
+        text_contains_all(hover_text, requirement.get("HoverContains")) and
+        text_contains_none(hover_text, requirement.get("HoverNotContains"))
+    )
 
 
 def all_text_candidates(normalized: Dict[str, Any]) -> List[Dict[str, Any]]:
@@ -413,12 +622,39 @@ def check_required_text(path: Path, normalized: Dict[str, Any], required: Dict[s
         return
 
     candidates = [item for item in all_text_candidates(normalized) if item.get("Text") == text]
+
+    expected_source = required.get("Source")
+    if expected_source is not None:
+        candidates = [item for item in candidates if item.get("Source") == expected_source]
+
+    expected_tag_detail = required.get("TagDetail")
+    if expected_tag_detail is not None:
+        candidates = [item for item in candidates if item.get("TagDetail") == expected_tag_detail]
+
+    expected_types = required.get("Types")
+    if expected_types is not None:
+        if isinstance(expected_types, str):
+            expected_types = [expected_types]
+        expected_type_set = set(expected_types)
+        candidates = [
+            item for item in candidates
+            if expected_type_set.issubset(set(item.get("Types") or []))
+        ]
+
     if not candidates:
-        failures.append(f"{path}: missing text {text}")
+        filters = {
+            key: required.get(key)
+            for key in ("Source", "TagDetail", "Types")
+            if required.get(key) is not None
+        }
+        failures.append(f"{path}: missing text {text} matching {filters}")
         return
 
     hover_contains = required.get("HoverContains")
-    if hover_contains is not None and not any(text_contains_all(item.get("HoverText", ""), hover_contains) for item in candidates):
+    hover_not_contains = required.get("HoverNotContains")
+    if (hover_contains is not None or hover_not_contains is not None) and not any(
+            hover_matches_requirement(item.get("HoverText", ""), required)
+            for item in candidates):
         hover_values = [
             {
                 "Source": item.get("Source", ""),
@@ -427,7 +663,76 @@ def check_required_text(path: Path, normalized: Dict[str, Any], required: Dict[s
             }
             for item in candidates
         ]
-        failures.append(f"{path}: text {text} hover did not contain {hover_contains}; actual={hover_values}")
+        failures.append(
+            f"{path}: text {text} hover did not match "
+            f"contains={hover_contains} not_contains={hover_not_contains}; "
+            f"actual={hover_values}")
+
+
+def check_forbidden_text(
+        path: Path,
+        normalized: Dict[str, Any],
+        forbidden: Dict[str, Any],
+        failures: FailureList) -> None:
+    text = forbidden.get("Text")
+    if not text:
+        return
+
+    candidates = [
+        item for item in all_text_candidates(normalized)
+        if item.get("Text") == text
+    ]
+
+    expected_source = forbidden.get("Source")
+    if expected_source is not None:
+        candidates = [
+            item for item in candidates
+            if item.get("Source") == expected_source
+        ]
+
+    expected_tag_detail = forbidden.get("TagDetail")
+    if expected_tag_detail is not None:
+        candidates = [
+            item for item in candidates
+            if item.get("TagDetail") == expected_tag_detail
+        ]
+
+    expected_types = forbidden.get("Types")
+    if expected_types is not None:
+        if isinstance(expected_types, str):
+            expected_types = [expected_types]
+        expected_type_set = set(expected_types)
+        candidates = [
+            item for item in candidates
+            if expected_type_set.issubset(set(item.get("Types") or []))
+        ]
+
+    if candidates:
+        filters = {
+            key: forbidden.get(key)
+            for key in ("Source", "TagDetail", "Types")
+            if forbidden.get(key) is not None
+        }
+        failures.append(f"{path}: forbidden text {text} matched {filters}")
+
+
+def symbol_matches_requirement(
+        symbol: Dict[str, Any],
+        requirement: Dict[str, Any]) -> bool:
+    for key in ("Name", "Scope", "TokenType"):
+        expected = requirement.get(key)
+        if expected is not None and symbol.get(key) != expected:
+            return False
+    return True
+
+
+def describe_symbol_requirement(requirement: Dict[str, Any]) -> str:
+    filters = {
+        key: requirement.get(key)
+        for key in ("Name", "Scope", "TokenType")
+        if requirement.get(key) is not None
+    }
+    return repr(filters)
 
 
 def check_expectation(expectation_path: Path, current: Dict[str, Tuple[Path, Snapshot, Dict[str, Any]]], failures: FailureList) -> None:
@@ -454,20 +759,44 @@ def check_expectation(expectation_path: Path, current: Dict[str, Tuple[Path, Sna
             if not name:
                 continue
 
-            candidates = [item for item in symbols if item.get("Name") == name]
+            candidates = [
+                item for item in symbols
+                if symbol_matches_requirement(item, required)
+            ]
             if not candidates:
-                failures.append(f"{path}: missing symbol {name}")
+                failures.append(
+                    f"{path}: missing symbol matching "
+                    f"{describe_symbol_requirement(required)}")
                 continue
 
             hover_contains = required.get("HoverContains")
-            if hover_contains is not None and not any(text_contains_all(item.get("HoverText", ""), hover_contains) for item in candidates):
+            hover_not_contains = required.get("HoverNotContains")
+            if (hover_contains is not None or hover_not_contains is not None) and not any(
+                    hover_matches_requirement(item.get("HoverText", ""), required)
+                    for item in candidates):
                 hover_values = [item.get("HoverText", "") for item in candidates]
-                failures.append(f"{path}: symbol {name} hover did not contain {hover_contains}; actual={hover_values}")
+                failures.append(
+                    f"{path}: symbol {name} hover did not match "
+                    f"contains={hover_contains} not_contains={hover_not_contains}; "
+                    f"actual={hover_values}")
 
         for forbidden in expectation.get("MustNotHaveSymbols") or []:
-            found = [item for item in symbols if item.get("Name") == forbidden]
+            requirement = (
+                {"Name": forbidden}
+                if isinstance(forbidden, str)
+                else forbidden
+            )
+            if not isinstance(requirement, dict) or not requirement.get("Name"):
+                continue
+
+            found = [
+                item for item in symbols
+                if symbol_matches_requirement(item, requirement)
+            ]
             if found:
-                failures.append(f"{path}: forbidden symbol exists: {forbidden}")
+                failures.append(
+                    f"{path}: forbidden symbol exists matching "
+                    f"{describe_symbol_requirement(requirement)}")
 
         # Backward-compatible name: this now means "the expected text must be
         # visible in exported editor data". The text may come from tags,
@@ -478,6 +807,12 @@ def check_expectation(expectation_path: Path, current: Dict[str, Tuple[Path, Sna
 
         for required in expectation.get("MustHaveText") or []:
             check_required_text(path, normalized, required, failures)
+
+        for forbidden in expectation.get("MustNotHaveTaggedText") or []:
+            check_forbidden_text(path, normalized, forbidden, failures)
+
+        for forbidden in expectation.get("MustNotHaveText") or []:
+            check_forbidden_text(path, normalized, forbidden, failures)
 
 
 def check_expectations(current_root: Path, expectations_root: Path, failures: FailureList) -> None:
@@ -510,6 +845,22 @@ def check_snapshot_sanity(path: Path, normalized: Dict[str, Any], failures: Fail
             failures.append(
                 f"{path}: variable tag {tag_detail} covered non-identifier text {text!r}")
 
+    for item in normalized.get("Classifications") or []:
+        text = str(item.get("Text", ""))
+        types = set(item.get("Types") or [])
+        legacy_types = sorted(types & LEGACY_SYSTEMVERILOG_CLASSIFICATION_TYPES)
+
+        if legacy_types:
+            failures.append(
+                f"{path}: obsolete dedicated SystemVerilog classification {legacy_types} "
+                f"applied to {text!r}; use SystemVerilogYosysSupported or "
+                "SystemVerilogYosysUnsupported")
+
+        if text == "bit" and "SystemVerilogYosysSupported" not in types:
+            failures.append(
+                f"{path}: SystemVerilog keyword 'bit' must use "
+                "SystemVerilogYosysSupported classification")
+
 
 def check_all_snapshot_sanity(current_root: Path, failures: FailureList) -> None:
     current = load_snapshots(current_root)
@@ -540,6 +891,9 @@ def main(argv: List[str]) -> int:
 
     check_all_snapshot_sanity(args.current, failures)
 
+    if args.expectations:
+        check_expectations(args.current, args.expectations, failures)
+
     if args.update_baseline:
         if not args.baseline:
             print("--update-baseline requires --baseline", file=sys.stderr)
@@ -547,15 +901,15 @@ def main(argv: List[str]) -> int:
         if failures:
             print_failures(failures)
             return 1
-        update_baseline(args.current, args.baseline)
-        print(f"Updated baseline: {args.baseline}")
+        try:
+            update_baseline(args.current, args.baseline)
+        except (OSError, RuntimeError) as error:
+            print(str(error), file=sys.stderr)
+            return 1
         return 0
 
     if args.baseline:
         compare_snapshots(args.current, args.baseline, failures, args.allow_new_snapshots)
-
-    if args.expectations:
-        check_expectations(args.current, args.expectations, failures)
 
     if failures:
         print_failures(failures)

@@ -1,0 +1,126 @@
+{
+    "File": "TestFiles/macros/macro_hover_definition_locations.sv",
+    "MustHaveTaggedText": [
+        {
+            "Text": "NEVER_DEFINED_MACRO",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Macro",
+            "HoverContains": [
+                "not defined"
+            ],
+            "HoverNotContains": [
+                "File:",
+                "Line:",
+                "Value:",
+                "defined with no value"
+            ]
+        },
+        {
+            "Text": "LOCAL_DEFINED_MACRO",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Macro",
+            "HoverContains": [
+                "is defined",
+                "macro_hover_definition_locations.sv",
+                "Line: 5",
+                "Value: 1"
+            ]
+        },
+        {
+            "Text": "`LOCAL_DEFINED_MACRO",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Macro",
+            "HoverContains": [
+                "is defined",
+                "macro_hover_definition_locations.sv",
+                "Line: 5",
+                "Value: 1"
+            ]
+        },
+        {
+            "Text": "`MISSING_REFERENCE_MACRO",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Macro",
+            "HoverContains": [
+                "not defined"
+            ],
+            "HoverNotContains": [
+                "File:",
+                "Line:",
+                "Value:",
+                "defined with no value"
+            ]
+        },
+        {
+            "Text": "INCLUDED_DEFINED_MACRO",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Macro",
+            "HoverContains": [
+                "is defined",
+                "macro_hover_config.vh",
+                "Line: 1",
+                "Value: 2"
+            ]
+        },
+        {
+            "Text": "`INCLUDED_DEFINED_MACRO",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Macro",
+            "HoverContains": [
+                "is defined",
+                "macro_hover_config.vh",
+                "Line: 1",
+                "Value: 2"
+            ]
+        },
+        {
+            "Text": "FLAG_ONLY_MACRO",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Macro",
+            "HoverContains": [
+                "defined with no value",
+                "macro_hover_definition_locations.sv",
+                "Line: 18"
+            ],
+            "HoverNotContains": [
+                "Value:"
+            ]
+        },
+        {
+            "Text": "`STRING_VALUE_MACRO",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Macro",
+            "HoverContains": [
+                "is defined",
+                "Value: \"Version 1.0\"",
+                "macro_hover_definition_locations.sv",
+                "Line: 23"
+            ]
+        },
+        {
+            "Text": "`EXPRESSION_VALUE_MACRO",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Macro",
+            "HoverContains": [
+                "is defined",
+                "Value: (`LOCAL_DEFINED_MACRO + 4)",
+                "macro_hover_definition_locations.sv",
+                "Line: 26"
+            ]
+        },
+        {
+            "Text": "`REMOVED_MACRO",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Macro",
+            "HoverContains": [
+                "not defined"
+            ],
+            "HoverNotContains": [
+                "File:",
+                "Line:",
+                "Value:",
+                "defined with no value"
+            ]
+        }
+    ]
+}

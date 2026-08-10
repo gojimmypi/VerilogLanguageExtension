@@ -1,0 +1,28 @@
+{
+    "File": "TestFiles/macros/ifdef_include_source_order.sv",
+    "MustHaveTaggedText": [
+        {
+            "Text": "    logic inactive_before_project_config_include;",
+            "Source": "Tags",
+            "TagDetail": "Verilog_InactiveCode",
+            "HoverContains": [
+                "SIM_JTAG_CORE_TB",
+                "not defined",
+                "earlier included configuration file",
+                "SHOW_INACTIVE_CODE"
+            ]
+        },
+        {
+            "Text": "active_after_project_config_include",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_SystemVerilog"
+        }
+    ],
+    "MustNotHaveTaggedText": [
+        {
+            "Text": "inactive_before_project_config_include",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_SystemVerilog"
+        }
+    ]
+}

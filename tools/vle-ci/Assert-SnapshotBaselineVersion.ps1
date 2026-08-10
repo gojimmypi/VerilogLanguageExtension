@@ -5,7 +5,9 @@
 .DESCRIPTION
     Compares tests/snapshots/.../run-info.json against the current VSIX manifest,
     assembly versions, ProvideMenuResource value, and the actual number of
-    checked-in *.snapshot.json baseline files.
+    checked-in *.snapshot.json baseline files. It also verifies that approved
+    run-info contains only stable metadata rather than timestamps, timings, or
+    Git identifiers from the machine that generated it.
 #>
 
 [CmdletBinding()]
@@ -56,13 +58,34 @@ function Assert-RunInfoEqual {
 
     $actual = Get-ObjectPropertyValue -Object $RunInfo -Name $Name
     if ($null -eq $actual) {
-        Add-Failure -Failures $Failures -Message "run-info.json is missing $Name"
+        Add-Failure `
+            -Failures $Failures `
+            -Message "run-info.json is missing $Name"
     }
     elseif ([string]$actual -ne [string]$Expected) {
-        Add-Failure -Failures $Failures -Message "run-info.json $Name is '$actual', expected '$Expected'"
+        Add-Failure `
+            -Failures $Failures `
+            -Message "run-info.json $Name is '$actual', expected '$Expected'"
     }
     else {
         Write-Host "PASS: run-info.json $Name == $Expected"
+    }
+}
+
+function Assert-RunInfoPropertyAbsent {
+    param(
+        [System.Collections.Generic.List[string]]$Failures,
+        [object]$RunInfo,
+        [string]$Name
+    )
+
+    if ($null -ne $RunInfo.PSObject.Properties[$Name]) {
+        Add-Failure `
+            -Failures $Failures `
+            -Message "run-info.json contains volatile field $Name"
+    }
+    else {
+        Write-Host "PASS: run-info.json omits volatile field $Name"
     }
 }
 
@@ -85,48 +108,85 @@ if (!(Test-Path $runInfoPath)) {
 }
 
 $info = & $getInfoScript -RepoRoot $RepoRoot
-$runInfo = Get-Content -Raw -Encoding UTF8 -Path $runInfoPath | ConvertFrom-Json
+$runInfo = Get-Content -Raw -Encoding UTF8 -Path $runInfoPath |
+    ConvertFrom-Json
 $failures = New-Object 'System.Collections.Generic.List[string]'
 
-Assert-RunInfoEqual -Failures $failures -RunInfo $runInfo -Name "VsixManifestVersion" -Expected $info.VsixManifestVersion
-Assert-RunInfoEqual -Failures $failures -RunInfo $runInfo -Name "AssemblyVersion" -Expected $info.AssemblyVersion
-Assert-RunInfoEqual -Failures $failures -RunInfo $runInfo -Name "AssemblyFileVersion" -Expected $info.AssemblyFileVersion
-Assert-RunInfoEqual -Failures $failures -RunInfo $runInfo -Name "AssemblyInformationalVersion" -Expected $info.AssemblyInformationalVersion
-Assert-RunInfoEqual -Failures $failures -RunInfo $runInfo -Name "ProvideMenuResourceName" -Expected $info.ProvideMenuResourceName
-Assert-RunInfoEqual -Failures $failures -RunInfo $runInfo -Name "ProvideMenuResourceVersion" -Expected $info.ProvideMenuResourceVersion
+Assert-RunInfoEqual `
+    -Failures $failures `
+    -RunInfo $runInfo `
+    -Name "Status" `
+    -Expected "Completed"
+Assert-RunInfoEqual `
+    -Failures $failures `
+    -RunInfo $runInfo `
+    -Name "VsixManifestVersion" `
+    -Expected $info.VsixManifestVersion
+Assert-RunInfoEqual `
+    -Failures $failures `
+    -RunInfo $runInfo `
+    -Name "AssemblyVersion" `
+    -Expected $info.AssemblyVersion
+Assert-RunInfoEqual `
+    -Failures $failures `
+    -RunInfo $runInfo `
+    -Name "AssemblyFileVersion" `
+    -Expected $info.AssemblyFileVersion
+Assert-RunInfoEqual `
+    -Failures $failures `
+    -RunInfo $runInfo `
+    -Name "AssemblyInformationalVersion" `
+    -Expected $info.AssemblyInformationalVersion
+Assert-RunInfoEqual `
+    -Failures $failures `
+    -RunInfo $runInfo `
+    -Name "ProvideMenuResourceName" `
+    -Expected $info.ProvideMenuResourceName
+Assert-RunInfoEqual `
+    -Failures $failures `
+    -RunInfo $runInfo `
+    -Name "ProvideMenuResourceVersion" `
+    -Expected $info.ProvideMenuResourceVersion
 
-$snapshotCount = @(Get-ChildItem -Path $baselinePath -Filter "*.snapshot.json" -File -ErrorAction SilentlyContinue).Count
-Assert-RunInfoEqual -Failures $failures -RunInfo $runInfo -Name "SnapshotCount" -Expected $snapshotCount
-
-$processingTime = Get-ObjectPropertyValue -Object $runInfo -Name "ProcessingTime"
-if ($null -eq $processingTime) {
-    $processingTime = Get-ObjectPropertyValue -Object $runInfo -Name "ProcessingTimeBucket"
-}
-if ($null -ne $processingTime) {
-    Write-Host "INFO: baseline snapshot processing time == $processingTime"
-}
-else {
-    Write-Host "INFO: baseline snapshot processing time was not recorded"
-}
-
-$ciProcessingTime = Get-ObjectPropertyValue -Object $runInfo -Name "CiProcessingTime"
-if ($null -ne $ciProcessingTime) {
-    Write-Host "INFO: baseline CI processing time == $ciProcessingTime"
+$snapshotCount = @(Get-ChildItem `
+        -Path $baselinePath `
+        -Filter "*.snapshot.json" `
+        -File `
+        -ErrorAction SilentlyContinue).Count
+foreach ($name in @(
+        "ExpectedSnapshots",
+        "ActualSnapshots",
+        "SnapshotCount")) {
+    Assert-RunInfoEqual `
+        -Failures $failures `
+        -RunInfo $runInfo `
+        -Name $name `
+        -Expected $snapshotCount
 }
 
-$runTiming = Get-ObjectPropertyValue -Object $runInfo -Name "RunTiming"
-if ($null -ne $runTiming) {
-    $runTimingCount = @($runTiming).Count
-    Write-Host "INFO: baseline CI timing records == $runTimingCount"
-}
-
-$gitCommit = Get-ObjectPropertyValue -Object $runInfo -Name "GitCommit"
-if ($null -ne $gitCommit) {
-    Write-Host "INFO: baseline GitCommit == $gitCommit"
+foreach ($name in @(
+        "StartedAt",
+        "CompletedAt",
+        "ElapsedSeconds",
+        "Elapsed",
+        "Timings",
+        "ProcessingTime",
+        "ProcessingTimeBucket",
+        "RunTiming",
+        "CiProcessingTime",
+        "CiElapsedSeconds",
+        "GitCommit",
+        "GitCommitFull")) {
+    Assert-RunInfoPropertyAbsent `
+        -Failures $failures `
+        -RunInfo $runInfo `
+        -Name $name
 }
 
 if ($failures.Count -gt 0) {
-    throw "Snapshot baseline version check failed with $($failures.Count) issue(s). Regenerate and commit the approved baseline run-info.json."
+    throw (
+        "Snapshot baseline version check failed with $($failures.Count) " +
+        "issue(s). Regenerate and commit the approved baseline run-info.json.")
 }
 
 Write-Host "Snapshot baseline version check passed."

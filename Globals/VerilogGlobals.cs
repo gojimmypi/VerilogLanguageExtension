@@ -133,6 +133,13 @@ namespace VerilogLanguage
         }
 
         public static bool TryGetDeclarationVariableTypeFromText(string text, out VerilogTokenTypes variableType) {
+            return TryGetDeclarationVariableTypeFromText(text, true, out variableType);
+        }
+
+        public static bool TryGetDeclarationVariableTypeFromText(
+            string text,
+            bool allowSystemVerilog,
+            out VerilogTokenTypes variableType) {
             variableType = VerilogTokenTypes.Verilog_Variable;
 
             if (string.IsNullOrEmpty(text)) {
@@ -149,10 +156,41 @@ namespace VerilogLanguage
                 return true;
             }
 
+            bool hasSystemVerilogVariableType = allowSystemVerilog &&
+                (ContainsDeclarationKeyword(text, "logic") ||
+                 ContainsDeclarationKeyword(text, "bit") ||
+                 ContainsDeclarationKeyword(text, "byte") ||
+                 ContainsDeclarationKeyword(text, "shortint") ||
+                 ContainsDeclarationKeyword(text, "int") ||
+                 ContainsDeclarationKeyword(text, "longint"));
+
+            // In an ANSI-style SystemVerilog port declaration, the built-in data
+            // type and input/output/inout direction describe the same symbol.
+            // Preserve that direction instead of reducing every typed port to reg.
+            if (hasSystemVerilogVariableType) {
+                if (ContainsDeclarationKeyword(text, "inout")) {
+                    variableType = VerilogTokenTypes.Verilog_Variable_inout;
+                    return true;
+                }
+
+                if (ContainsDeclarationKeyword(text, "output")) {
+                    variableType = VerilogTokenTypes.Verilog_Variable_output;
+                    return true;
+                }
+
+                if (ContainsDeclarationKeyword(text, "input")) {
+                    variableType = VerilogTokenTypes.Verilog_Variable_input;
+                    return true;
+                }
+            }
+
+            if (hasSystemVerilogVariableType) {
+                variableType = VerilogTokenTypes.Verilog_Variable_SystemVerilog;
+                return true;
+            }
+
             if (ContainsDeclarationKeyword(text, "reg")
-                    || ContainsDeclarationKeyword(text, "integer")
-                    || ContainsDeclarationKeyword(text, "logic")
-                    || ContainsDeclarationKeyword(text, "bit")) {
+                    || ContainsDeclarationKeyword(text, "integer")) {
                 variableType = VerilogTokenTypes.Verilog_Variable_reg;
                 return true;
             }
@@ -272,6 +310,7 @@ namespace VerilogLanguage
             ["initial"] = VerilogTokenTypes.Verilog_initial,
             ["inout"] = VerilogTokenTypes.Verilog_inout,
             ["input"] = VerilogTokenTypes.Verilog_input,
+            ["integer"] = VerilogTokenTypes.Verilog_integer,
             ["instance"] = VerilogTokenTypes.Verilog_instance,
             ["join"] = VerilogTokenTypes.Verilog_join,
             ["liblist"] = VerilogTokenTypes.Verilog_liblist,
@@ -313,8 +352,139 @@ namespace VerilogLanguage
             ["while"] = VerilogTokenTypes.Verilog_while,
             ["wire"] = VerilogTokenTypes.Verilog_wire,
 
-            // Some System Verilog Specific keywords
-            ["bit"] = VerilogTokenTypes.Verilog_bit,
+            // SystemVerilog-only keywords. This is keyword-level guidance for the
+            // Yosys 0.67+ read_slang / sv-elab frontend, not a complete semantic
+            // validator. Support can still depend on context and feature details.
+            //
+            // Supported includes normal synthesizable RTL constructs and the plain
+            // assert/assume/cover statements that Yosys lowers to formal cells.
+            ["always_comb"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["always_ff"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["always_latch"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["assert"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["assume"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["bit"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["break"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["byte"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["continue"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["cover"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["do"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["endinterface"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["endpackage"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["enum"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["extern"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["foreach"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["import"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["inside"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["int"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["interface"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["let"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["logic"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["longint"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["modport"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["package"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["packed"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["priority"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["ref"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["return"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["shortint"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["static"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["struct"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["type"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["typedef"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["unique"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["unique0"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["var"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+            ["void"] = VerilogTokenTypes.Verilog_SystemVerilogYosysSupported,
+
+            // Non-synthesizable, SVA/coverage/OOP-oriented, explicitly unsupported,
+            // or not reliably lowered by read_slang. Slang may still parse these.
+            ["accept_on"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["alias"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["before"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["bind"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["bins"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["binsof"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["chandle"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["checker"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["class"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["clocking"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["const"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["constraint"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["context"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["covergroup"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["coverpoint"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["cross"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["dist"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["endchecker"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["endclass"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["endclocking"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["endgroup"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["endprogram"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["endproperty"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["endsequence"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["eventually"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["expect"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["export"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["extends"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["final"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["first_match"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["forkjoin"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["global"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["iff"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["ignore_bins"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["illegal_bins"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["implements"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["implies"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["interconnect"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["intersect"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["join_any"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["join_none"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["local"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["matches"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["nettype"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["new"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["nexttime"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["null"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["program"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["property"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["protected"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["pure"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["rand"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["randc"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["randcase"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["randsequence"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["reject_on"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["restrict"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["s_always"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["s_eventually"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["s_nexttime"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["s_until"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["s_until_with"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["sequence"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["shortreal"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["soft"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["solve"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["string"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["strong"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["super"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["sync_accept_on"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["sync_reject_on"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["tagged"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["this"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["throughout"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["timeprecision"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["timeunit"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["union"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["until"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["until_with"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["untyped"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["virtual"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["wait_order"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["weak"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["wildcard"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["with"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
+            ["within"] = VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported,
 
 
             // all of the Verilog directives are the same color
@@ -358,6 +528,7 @@ namespace VerilogLanguage
             ["variable_inout"] = VerilogTokenTypes.Verilog_Variable_inout,
             ["variable_wire"] = VerilogTokenTypes.Verilog_Variable_wire,
             ["variable_reg"] = VerilogTokenTypes.Verilog_Variable_reg,
+            ["variable_systemverilog"] = VerilogTokenTypes.Verilog_Variable_SystemVerilog,
             ["variable_localparam"] = VerilogTokenTypes.Verilog_Variable_localparam,
             ["variable_parameter"] = VerilogTokenTypes.Verilog_Variable_parameter,
             ["variable_duplicate"] = VerilogTokenTypes.Verilog_Variable_duplicate,
@@ -365,6 +536,10 @@ namespace VerilogLanguage
 
             ["static_string"] = VerilogTokenTypes.Verilog_StaticString,
             ["function_name"] = VerilogTokenTypes.Verilog_FunctionName,
+            ["user_defined_type"] = VerilogTokenTypes.Verilog_UserDefinedType,
+            ["user_defined_type_variable"] = VerilogTokenTypes.Verilog_UserDefinedTypeVariable,
+            ["system_task_function"] = VerilogTokenTypes.Verilog_SystemTaskFunction,
+            ["system_task_fatal"] = VerilogTokenTypes.Verilog_SystemTaskFatal,
 
             // primitives
             ["and"] = VerilogTokenTypes.Verilog_Primitive_and,
@@ -435,7 +610,11 @@ namespace VerilogLanguage
         private static string thisModuleName = string.Empty;
         private static string thisFunctionName = string.Empty;
         private static string thisFunctionScope = string.Empty;
+        private static string pendingFunctionName = string.Empty;
+        private static int pendingFunctionNameLineNumber = -1;
+        private static int pendingFunctionNameLinePosition = -1;
         private static string thisModuleDeclarationText = string.Empty;
+        private static bool thisModuleNamedSegmentHasCode = false;
         private static string thisModuleParameterText = string.Empty;
         private static string thisItemText = string.Empty;
         private static int thisItemLineNumber = -1;
@@ -446,6 +625,7 @@ namespace VerilogLanguage
         private static int thisModuleNameLinePosition = -1;
         private static bool IsInsideSquareBracket = false;
         private static bool IsInsideSquigglyBracket = false;
+        private static int thisVariableRoundBracketDepth = 0;
         private static VerilogTokenTypes thisVariableType = VerilogTokenTypes.Verilog_Variable;
         private sealed class ConditionalDefinitionCandidate
         {
@@ -526,10 +706,14 @@ namespace VerilogLanguage
             thisVariableDeclarationText = string.Empty; // this is only variable declaration, even if inside a module declaration
 
             thisModuleDeclarationText = string.Empty; // this is the full module declaration
+            thisModuleNamedSegmentHasCode = false;
             thisModuleParameterText = string.Empty;
             thisModuleName = string.Empty;
             thisFunctionName = string.Empty;
             thisFunctionScope = string.Empty;
+            pendingFunctionName = string.Empty;
+            pendingFunctionNameLineNumber = -1;
+            pendingFunctionNameLinePosition = -1;
             thisItemText = string.Empty;
             thisItemLineNumber = -1;
             thisItemLinePosition = -1;
@@ -542,6 +726,7 @@ namespace VerilogLanguage
             lastNonblankHoverItem = string.Empty;
             IsInsideSquareBracket = false;
             IsInsideSquigglyBracket = false;
+            thisVariableRoundBracketDepth = 0;
             thisVariableType = VerilogTokenTypes.Verilog_Variable;
 
             PreprocessorConditionStack.Clear();
@@ -674,6 +859,10 @@ namespace VerilogLanguage
                 case "reg":
                 case "logic":
                 case "bit":
+                case "byte":
+                case "shortint":
+                case "int":
+                case "longint":
                 case "integer":
                 case "parameter":
                 case "localparam":
@@ -684,8 +873,14 @@ namespace VerilogLanguage
             }
         }
 
+        private static bool IsDeclarationLifetimeKeyword(string itemText) {
+            return itemText == "automatic" || itemText == "static";
+        }
+
         private static bool IsDeclarationModifierKeyword(string itemText) {
-            return IsDeclarationStartKeyword(itemText) || IsVerilogVariableSigner(itemText);
+            return IsDeclarationStartKeyword(itemText) ||
+                IsDeclarationLifetimeKeyword(itemText) ||
+                IsVerilogVariableSigner(itemText);
         }
 
         private static string StripLineCommentForDuplicateScan(string lineText) {
@@ -787,20 +982,31 @@ namespace VerilogLanguage
             }
 
             int index = 0;
-            while (index < codeText.Length && char.IsWhiteSpace(codeText[index])) {
-                index++;
+            while (index < codeText.Length) {
+                while (index < codeText.Length && char.IsWhiteSpace(codeText[index])) {
+                    index++;
+                }
+
+                int start = index;
+                while (index < codeText.Length && IsVerilogIdentifierChar(codeText[index])) {
+                    index++;
+                }
+
+                if (index == start) {
+                    return false;
+                }
+
+                string itemText = codeText.Substring(start, index - start);
+                if (IsDeclarationStartKeyword(itemText)) {
+                    return true;
+                }
+
+                if (!IsDeclarationLifetimeKeyword(itemText)) {
+                    return false;
+                }
             }
 
-            int start = index;
-            while (index < codeText.Length && IsVerilogIdentifierChar(codeText[index])) {
-                index++;
-            }
-
-            if (index == start) {
-                return false;
-            }
-
-            return IsDeclarationStartKeyword(codeText.Substring(start, index - start));
+            return false;
         }
 
         private static bool TryGetRoutineNameFromLineText(string lineText, string keyword, out string routineName) {
@@ -814,12 +1020,13 @@ namespace VerilogLanguage
             string codeText = StripLineCommentForDuplicateScan(lineText);
             int index = keywordIndex + keyword.Length;
             int squareDepth = 0;
+            string candidateName = string.Empty;
 
             while (index < codeText.Length) {
                 char c = codeText[index];
 
-                if (c == ';') {
-                    return false;
+                if (squareDepth == 0 && (c == '(' || c == ';')) {
+                    break;
                 }
 
                 if (c == '[') {
@@ -852,12 +1059,15 @@ namespace VerilogLanguage
                 }
 
                 if (IsIdentifier(candidate)) {
-                    routineName = candidate;
-                    return true;
+                    // The final identifier before the argument list or semicolon is
+                    // the routine name. Earlier identifiers may be package-qualified
+                    // or user-defined return data types.
+                    candidateName = candidate;
                 }
             }
 
-            return false;
+            routineName = candidateName;
+            return !string.IsNullOrEmpty(routineName);
         }
 
         public static bool TryGetFunctionNameFromLineText(string lineText, out string functionName) {
@@ -906,10 +1116,327 @@ namespace VerilogLanguage
             countsByScope[scope][name]++;
         }
 
-        private static List<string> CollectDeclarationNamesInLine(string lineText) {
-            List<string> names = new List<string>();
+        private static List<string> CollectSnapshotDeclarationBlockTokens(
+            string lineText,
+            ref bool insideBlockComment,
+            ref bool insideAttribute,
+            out string declarationCodeText) {
+            List<string> blockTokens = new List<string>();
+            if (string.IsNullOrEmpty(lineText)) {
+                declarationCodeText = string.Empty;
+                return blockTokens;
+            }
+
+            // Keep source positions stable while removing comments and attributes from
+            // the text used by duplicate-declaration and routine-scope detection.
+            StringBuilder declarationCodeBuilder = new StringBuilder(lineText);
+            bool insideString = false;
+            bool escapedStringCharacter = false;
+            bool sawCode = false;
+
+            for (int index = 0; index < lineText.Length; index++) {
+                char current = lineText[index];
+                char next = index + 1 < lineText.Length ? lineText[index + 1] : '\0';
+
+                if (insideBlockComment) {
+                    declarationCodeBuilder[index] = ' ';
+                    if (current == '*' && next == '/') {
+                        declarationCodeBuilder[index + 1] = ' ';
+                        insideBlockComment = false;
+                        index++;
+                    }
+                    continue;
+                }
+
+                if (insideAttribute) {
+                    declarationCodeBuilder[index] = ' ';
+                    if (current == '*' && next == ')') {
+                        declarationCodeBuilder[index + 1] = ' ';
+                        insideAttribute = false;
+                        index++;
+                    }
+                    continue;
+                }
+
+                if (insideString) {
+                    if (escapedStringCharacter) {
+                        escapedStringCharacter = false;
+                    }
+                    else if (current == '\\') {
+                        escapedStringCharacter = true;
+                    }
+                    else if (current == '"') {
+                        insideString = false;
+                    }
+                    continue;
+                }
+
+                if (current == '/' && next == '/') {
+                    for (int commentIndex = index; commentIndex < lineText.Length; commentIndex++) {
+                        declarationCodeBuilder[commentIndex] = ' ';
+                    }
+                    break;
+                }
+
+                if (current == '/' && next == '*') {
+                    declarationCodeBuilder[index] = ' ';
+                    declarationCodeBuilder[index + 1] = ' ';
+                    insideBlockComment = true;
+                    index++;
+                    continue;
+                }
+
+                if (current == '(' && next == '*' &&
+                    index + 2 < lineText.Length && lineText[index + 2] == ')') {
+                    // Wildcard event control: always @(*) or always_comb-equivalent text.
+                    // The shared asterisk is not an attribute body.
+                    index += 2;
+                    continue;
+                }
+
+                if (current == '(' && next == '*') {
+                    declarationCodeBuilder[index] = ' ';
+                    declarationCodeBuilder[index + 1] = ' ';
+                    insideAttribute = true;
+                    index++;
+                    continue;
+                }
+
+                if (current == '"') {
+                    insideString = true;
+                    continue;
+                }
+
+                if (!sawCode && char.IsWhiteSpace(current)) {
+                    continue;
+                }
+
+                if (!sawCode && current == '`') {
+                    // A macro definition can contain begin/end text without opening
+                    // a lexical scope in the source file being scanned.
+                    break;
+                }
+
+                sawCode = true;
+
+                if (current == '\\') {
+                    // An escaped identifier may itself be named \begin or \end.
+                    // Skip it through the terminating whitespace.
+                    index++;
+                    while (index < lineText.Length && !char.IsWhiteSpace(lineText[index])) {
+                        index++;
+                    }
+                    continue;
+                }
+
+                if (!(current == '_' || char.IsLetter(current))) {
+                    continue;
+                }
+
+                int tokenStart = index;
+                while (index + 1 < lineText.Length && IsVerilogIdentifierChar(lineText[index + 1])) {
+                    index++;
+                }
+
+                string itemText = lineText.Substring(tokenStart, index - tokenStart + 1);
+                switch (itemText) {
+                    case "begin":
+                    case "end":
+                    case "fork":
+                    case "join":
+                    case "join_any":
+                    case "join_none":
+                        blockTokens.Add(itemText);
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+
+            declarationCodeText = declarationCodeBuilder.ToString();
+            return blockTokens;
+        }
+
+        private static Dictionary<int, string> CollectSnapshotDeclarationBlockScopeByLine(
+            ITextSnapshot snapshot) {
+            Dictionary<int, string> blockScopeByLine = new Dictionary<int, string>();
+            if (snapshot == null || snapshot.Length == 0) {
+                return blockScopeByLine;
+            }
+
+            List<string> activeBlockScopes = new List<string>();
+            bool insideBlockComment = false;
+            bool insideAttribute = false;
+            int nextBlockScopeId = 1;
+
+            foreach (ITextSnapshotLine line in snapshot.Lines) {
+                string declarationCodeText;
+                List<string> blockTokens = CollectSnapshotDeclarationBlockTokens(
+                    line.GetText(),
+                    ref insideBlockComment,
+                    ref insideAttribute,
+                    out declarationCodeText);
+
+                if (activeBlockScopes.Count > 0) {
+                    blockScopeByLine[line.LineNumber] =
+                        activeBlockScopes[activeBlockScopes.Count - 1];
+                }
+
+                if (blockTokens.Count == 0 &&
+                    string.IsNullOrWhiteSpace(declarationCodeText)) {
+                    continue;
+                }
+
+                foreach (string itemText in blockTokens) {
+                    switch (itemText) {
+                        case "begin":
+                        case "fork":
+                            string blockScope = "__BLOCK__::" +
+                                line.LineNumber.ToString() + ":" +
+                                nextBlockScopeId.ToString();
+                            nextBlockScopeId++;
+                            activeBlockScopes.Add(blockScope);
+                            break;
+
+                        case "end":
+                        case "join":
+                        case "join_any":
+                        case "join_none":
+                            if (activeBlockScopes.Count > 0) {
+                                activeBlockScopes.RemoveAt(activeBlockScopes.Count - 1);
+                            }
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+            }
+
+            return blockScopeByLine;
+        }
+
+        private static string SnapshotDeclarationLexicalScope(
+            string declarationScope,
+            int lineNumber,
+            Dictionary<int, string> blockScopeByLine,
+            Dictionary<string, string> declarationScopeByLexicalScope) {
+            declarationScope = NormalizeDeclarationDuplicateScope(declarationScope);
+
+            string blockScope;
+            string lexicalScope = declarationScope;
+            if (blockScopeByLine != null &&
+                blockScopeByLine.TryGetValue(lineNumber, out blockScope) &&
+                !string.IsNullOrEmpty(blockScope)) {
+                lexicalScope = declarationScope + "::" + blockScope;
+            }
+
+            declarationScopeByLexicalScope[lexicalScope] = declarationScope;
+            return lexicalScope;
+        }
+
+        private static void CaptureSnapshotDeclaration(
+            Dictionary<string, Dictionary<string, VerilogTokenTypes>> declarationTypesByScope,
+            Dictionary<string, Dictionary<string, string>> declarationHoverTextByScope,
+            string scope,
+            List<string> declarationNames,
+            string declarationText) {
+            if (!declarationTypesByScope.ContainsKey(scope)) {
+                declarationTypesByScope.Add(scope, new Dictionary<string, VerilogTokenTypes>());
+            }
+
+            if (!declarationHoverTextByScope.ContainsKey(scope)) {
+                declarationHoverTextByScope.Add(scope, new Dictionary<string, string>());
+            }
+
+            VerilogTokenTypes variableType = VerilogTokenTypes.Verilog_Variable;
+            TryGetDeclarationVariableTypeFromText(declarationText, out variableType);
+            string hoverText = BackfillDeclarationHoverText(declarationText);
+
+            foreach (string name in declarationNames) {
+                if (!declarationTypesByScope[scope].ContainsKey(name)) {
+                    declarationTypesByScope[scope].Add(name, variableType);
+                }
+
+                if (!string.IsNullOrEmpty(hoverText) &&
+                    !declarationHoverTextByScope[scope].ContainsKey(name)) {
+                    declarationHoverTextByScope[scope].Add(name, hoverText);
+                }
+            }
+        }
+
+        private static Dictionary<string, HashSet<string>> CollectSnapshotDuplicateNamesByScope(
+            Dictionary<string, Dictionary<string, int>> countsByLexicalScope,
+            Dictionary<string, string> declarationScopeByLexicalScope) {
+            Dictionary<string, HashSet<string>> duplicateNamesByScope =
+                new Dictionary<string, HashSet<string>>(StringComparer.Ordinal);
+
+            foreach (KeyValuePair<string, Dictionary<string, int>> lexicalScopeCounts in countsByLexicalScope) {
+                string declarationScope;
+                if (!declarationScopeByLexicalScope.TryGetValue(lexicalScopeCounts.Key, out declarationScope)) {
+                    continue;
+                }
+
+                foreach (KeyValuePair<string, int> nameCount in lexicalScopeCounts.Value) {
+                    if (nameCount.Value <= 1) {
+                        continue;
+                    }
+
+                    HashSet<string> duplicateNames;
+                    if (!duplicateNamesByScope.TryGetValue(declarationScope, out duplicateNames)) {
+                        duplicateNames = new HashSet<string>(StringComparer.Ordinal);
+                        duplicateNamesByScope.Add(declarationScope, duplicateNames);
+                    }
+
+                    duplicateNames.Add(nameCount.Key);
+                }
+            }
+
+            return duplicateNamesByScope;
+        }
+
+        private static void RestoreSnapshotDeclarationIfNotDuplicate(
+            Dictionary<string, Dictionary<string, VerilogTokenTypes>> declarationTypesByScope,
+            Dictionary<string, Dictionary<string, string>> declarationHoverTextByScope,
+            string scope,
+            string name) {
+            VerilogTokenTypes currentType;
+            if (!VerilogVariables[scope].TryGetValue(name, out currentType) ||
+                currentType != VerilogTokenTypes.Verilog_Variable_duplicate) {
+                return;
+            }
+
+            Dictionary<string, VerilogTokenTypes> declarationTypes;
+            VerilogTokenTypes declarationType;
+            if (declarationTypesByScope.TryGetValue(scope, out declarationTypes) &&
+                declarationTypes.TryGetValue(name, out declarationType)) {
+                VerilogVariables[scope][name] = declarationType;
+            }
+
+            Dictionary<string, string> declarationHoverText;
+            string hoverText;
+            if (declarationHoverTextByScope.TryGetValue(scope, out declarationHoverText) &&
+                declarationHoverText.TryGetValue(name, out hoverText)) {
+                VerilogVariableHoverText[scope][name] = hoverText;
+            }
+        }
+
+        private static void AddDeclarationIdentifierSegment(
+            List<List<string>> segments,
+            List<string> segmentIdentifiers) {
+            if (segmentIdentifiers.Count == 0) {
+                return;
+            }
+
+            segments.Add(new List<string>(segmentIdentifiers));
+            segmentIdentifiers.Clear();
+        }
+
+        private static List<List<string>> CollectDeclarationIdentifierSegments(string lineText) {
+            List<List<string>> segments = new List<List<string>>();
             if (!CodeLineStartsWithDeclarationKeyword(lineText)) {
-                return names;
+                return segments;
             }
 
             string codeText = StripLineCommentForDuplicateScan(lineText);
@@ -923,14 +1450,22 @@ namespace VerilogLanguage
                 }
             }
 
-            if (items.Count == 0 || !IsDeclarationStartKeyword(items[0])) {
-                return names;
+            int declarationStartIndex = 0;
+            while (declarationStartIndex < items.Count &&
+                IsDeclarationLifetimeKeyword(items[declarationStartIndex])) {
+                declarationStartIndex++;
+            }
+
+            if (declarationStartIndex >= items.Count ||
+                !IsDeclarationStartKeyword(items[declarationStartIndex])) {
+                return segments;
             }
 
             int squareDepth = 0;
             int roundDepth = 0;
             int squigglyDepth = 0;
             bool skippingInitializer = false;
+            List<string> segmentIdentifiers = new List<string>();
 
             for (int i = 0; i < items.Count; i++) {
                 string itemText = items[i];
@@ -976,10 +1511,12 @@ namespace VerilogLanguage
                 }
 
                 if (itemText == ";") {
+                    AddDeclarationIdentifierSegment(segments, segmentIdentifiers);
                     break;
                 }
 
                 if (itemText == ",") {
+                    AddDeclarationIdentifierSegment(segments, segmentIdentifiers);
                     skippingInitializer = false;
                     continue;
                 }
@@ -998,7 +1535,7 @@ namespace VerilogLanguage
                 }
 
                 if (IsIdentifier(itemText)) {
-                    names.Add(itemText);
+                    segmentIdentifiers.Add(itemText);
 
                     // A name can be followed by an unpacked dimension, as in:
                     //     wire rbit [7:0];
@@ -1007,7 +1544,33 @@ namespace VerilogLanguage
                 }
             }
 
+            AddDeclarationIdentifierSegment(segments, segmentIdentifiers);
+            return segments;
+        }
+
+        private static List<string> CollectDeclarationNamesInLine(string lineText) {
+            List<string> names = new List<string>();
+
+            foreach (List<string> segmentIdentifiers in CollectDeclarationIdentifierSegments(lineText)) {
+                names.Add(segmentIdentifiers[segmentIdentifiers.Count - 1]);
+            }
+
             return names;
+        }
+
+        private static List<string> CollectDeclarationTypeIdentifiersInLine(string lineText) {
+            List<string> typeIdentifiers = new List<string>();
+
+            foreach (List<string> segmentIdentifiers in CollectDeclarationIdentifierSegments(lineText)) {
+                if (segmentIdentifiers.Count > 1) {
+                    // The identifier immediately before the declared name is the
+                    // user-defined type in declarations such as:
+                    //     input package_name::sample_t value
+                    typeIdentifiers.Add(segmentIdentifiers[segmentIdentifiers.Count - 2]);
+                }
+            }
+
+            return typeIdentifiers;
         }
 
         private static void CountDeclarationNamesInLine(
@@ -1351,6 +1914,26 @@ namespace VerilogLanguage
             AddOrAppendHoverItem(NormalizeDeclarationDuplicateScope(scope), functionName, VerilogTokenTypes.Verilog_FunctionName, hoverText);
         }
 
+        private static void AddFunctionHoverItem(
+            string scope,
+            string functionName,
+            string hoverText,
+            int lineNumber,
+            int linePosition) {
+            string savedItemText = thisItemText;
+            int savedLineNumber = thisItemLineNumber;
+            int savedLinePosition = thisItemLinePosition;
+
+            thisItemText = functionName;
+            thisItemLineNumber = lineNumber;
+            thisItemLinePosition = linePosition;
+            AddFunctionHoverItem(scope, functionName, hoverText);
+
+            thisItemText = savedItemText;
+            thisItemLineNumber = savedLineNumber;
+            thisItemLinePosition = savedLinePosition;
+        }
+
         private static void AddConditionalDefinitionHoverItem(string scope, string itemName, string hoverText) {
             AddOrAppendHoverItem(scope, itemName, VerilogTokenTypes.Verilog_MacroDefinition, hoverText, false);
         }
@@ -1637,70 +2220,958 @@ namespace VerilogLanguage
             }
         }
 
+        private static void AddInferredTypeName(
+            Dictionary<string, HashSet<string>> inferredTypeNamesByScope,
+            string scope,
+            string typeName) {
+            if (inferredTypeNamesByScope == null || string.IsNullOrEmpty(typeName)) {
+                return;
+            }
+
+            scope = NormalizeDeclarationDuplicateScope(scope);
+            HashSet<string> typeNames;
+            if (!inferredTypeNamesByScope.TryGetValue(scope, out typeNames)) {
+                typeNames = new HashSet<string>(StringComparer.Ordinal);
+                inferredTypeNamesByScope.Add(scope, typeNames);
+            }
+
+            typeNames.Add(typeName);
+        }
+
+        private sealed class TypedefIdentifierCandidate
+        {
+            public string Name { get; private set; }
+            public int LineNumber { get; private set; }
+            public int LinePosition { get; private set; }
+
+            public TypedefIdentifierCandidate(string name, int lineNumber, int linePosition) {
+                Name = name ?? string.Empty;
+                LineNumber = lineNumber;
+                LinePosition = linePosition;
+            }
+        }
+
+        private sealed class TypedefAliasInfo
+        {
+            public string Scope { get; private set; }
+            public string Name { get; private set; }
+            public string UnderlyingType { get; private set; }
+            public int LineNumber { get; private set; }
+            public int LinePosition { get; private set; }
+
+            public TypedefAliasInfo(
+                string scope,
+                string name,
+                string underlyingType,
+                int lineNumber,
+                int linePosition) {
+
+                Scope = scope ?? string.Empty;
+                Name = name ?? string.Empty;
+                UnderlyingType = underlyingType ?? string.Empty;
+                LineNumber = lineNumber;
+                LinePosition = linePosition;
+            }
+        }
+
+        private static string NormalizeTypedefTextForHover(string text) {
+            if (string.IsNullOrWhiteSpace(text)) {
+                return string.Empty;
+            }
+
+            StringBuilder normalized = new StringBuilder(text.Length);
+            bool pendingSpace = false;
+
+            foreach (char c in text) {
+                if (char.IsWhiteSpace(c)) {
+                    pendingSpace = normalized.Length > 0;
+                    continue;
+                }
+
+                if (pendingSpace) {
+                    normalized.Append(' ');
+                    pendingSpace = false;
+                }
+
+                normalized.Append(c);
+            }
+
+            return normalized.ToString().Trim();
+        }
+
+        private static int FindLastStandaloneIdentifier(string text, string identifier) {
+            if (string.IsNullOrEmpty(text) || string.IsNullOrEmpty(identifier)) {
+                return -1;
+            }
+
+            int searchEnd = text.Length;
+            while (searchEnd > 0) {
+                int index = text.LastIndexOf(identifier, searchEnd - 1, StringComparison.Ordinal);
+                if (index < 0) {
+                    return -1;
+                }
+
+                bool validPrefix = index == 0 || !IsVerilogIdentifierChar(text[index - 1]);
+                int afterIndex = index + identifier.Length;
+                bool validSuffix = afterIndex >= text.Length || !IsVerilogIdentifierChar(text[afterIndex]);
+                if (validPrefix && validSuffix) {
+                    return index;
+                }
+
+                searchEnd = index;
+            }
+
+            return -1;
+        }
+
+        private static string GetTypedefUnderlyingType(string declarationText, string aliasName) {
+            string normalized = NormalizeTypedefTextForHover(declarationText);
+            if (string.IsNullOrEmpty(normalized) || string.IsNullOrEmpty(aliasName)) {
+                return string.Empty;
+            }
+
+            if (normalized.StartsWith("typedef", StringComparison.Ordinal)) {
+                normalized = normalized.Substring("typedef".Length).TrimStart();
+            }
+
+            normalized = normalized.TrimEnd().TrimEnd(';').TrimEnd();
+            int aliasIndex = FindLastStandaloneIdentifier(normalized, aliasName);
+            if (aliasIndex < 0) {
+                return normalized;
+            }
+
+            string beforeAlias = normalized.Substring(0, aliasIndex).TrimEnd();
+            string afterAlias = normalized.Substring(aliasIndex + aliasName.Length).TrimStart();
+            return NormalizeTypedefTextForHover(beforeAlias + " " + afterAlias);
+        }
+
+        private static string BuildTypedefHoverText(TypedefAliasInfo alias) {
+            if (alias == null || string.IsNullOrEmpty(alias.Name)) {
+                return string.Empty;
+            }
+
+            List<string> lines = new List<string> {
+                "typedef " + alias.Name
+            };
+
+            if (!string.IsNullOrEmpty(alias.UnderlyingType)) {
+                lines.Add("underlying type: " + alias.UnderlyingType);
+            }
+
+            if (!string.IsNullOrEmpty(alias.Scope)) {
+                lines.Add("scope: " + alias.Scope);
+            }
+
+            return string.Join(Environment.NewLine, lines.ToArray());
+        }
+
+        private static void RegisterTypedefAliases(IEnumerable<TypedefAliasInfo> aliases) {
+            if (aliases == null) {
+                return;
+            }
+
+            foreach (TypedefAliasInfo alias in aliases) {
+                if (alias == null || string.IsNullOrEmpty(alias.Name)) {
+                    continue;
+                }
+
+                string scope = NormalizeDeclarationDuplicateScope(alias.Scope);
+                EnsureHoverScope(scope);
+
+                string hoverText = BuildTypedefHoverText(alias);
+                VerilogVariables[scope][alias.Name] = VerilogTokenTypes.Verilog_UserDefinedType;
+                VerilogVariableHoverText[scope][alias.Name] = hoverText;
+                VerilogDefinitionLocations[scope][alias.Name] =
+                    new VerilogDefinitionLocation(
+                        scope,
+                        alias.Name,
+                        alias.LineNumber,
+                        alias.LinePosition,
+                        alias.Name.Length,
+                        VerilogTokenTypes.Verilog_UserDefinedType,
+                        hoverText);
+            }
+        }
+
+        private static Dictionary<string, HashSet<string>> CollectTypedefNamesFromSnapshot(
+            ITextSnapshot snapshot,
+            out List<TypedefAliasInfo> typedefAliases) {
+
+            Dictionary<string, HashSet<string>> typeNamesByScope =
+                new Dictionary<string, HashSet<string>>(StringComparer.Ordinal);
+            typedefAliases = new List<TypedefAliasInfo>();
+            bool insideTypedef = false;
+            int squareDepth = 0;
+            int roundDepth = 0;
+            int squigglyDepth = 0;
+            string typedefScope = string.Empty;
+            string activeLocalScope = string.Empty;
+            List<TypedefIdentifierCandidate> topLevelIdentifiers =
+                new List<TypedefIdentifierCandidate>();
+            StringBuilder typedefDeclaration = new StringBuilder();
+
+            foreach (ITextSnapshotLine line in snapshot.Lines) {
+                string lineText = line.GetText();
+                string moduleScope = NormalizeDeclarationDuplicateScope(TextModuleName(line.LineNumber, 0));
+                string functionName;
+                string taskName;
+
+                if (TryGetFunctionNameFromLineText(lineText, out functionName)) {
+                    activeLocalScope = FunctionLocalScopeName(moduleScope, functionName);
+                }
+                else if (TryGetTaskNameFromLineText(lineText, out taskName)) {
+                    activeLocalScope = TaskLocalScopeName(moduleScope, taskName);
+                }
+
+                string lineScope = string.IsNullOrEmpty(activeLocalScope)
+                    ? moduleScope
+                    : activeLocalScope;
+                string codeText = StripLineCommentForDuplicateScan(lineText);
+                VerilogToken[] lineTokens = VerilogKeywordSplit(codeText, new VerilogToken());
+                int tokenColumn = 0;
+
+                foreach (VerilogToken token in lineTokens) {
+                    string tokenText = token.Part ?? string.Empty;
+                    string itemText = tokenText.Trim();
+                    int leadingWhitespace = tokenText.Length - tokenText.TrimStart().Length;
+                    int itemColumn = tokenColumn + leadingWhitespace;
+                    tokenColumn += tokenText.Length;
+
+                    if (string.IsNullOrEmpty(itemText)) {
+                        if (insideTypedef) {
+                            typedefDeclaration.Append(tokenText);
+                        }
+                        continue;
+                    }
+
+                    if (!insideTypedef) {
+                        if (itemText == "typedef") {
+                            insideTypedef = true;
+                            squareDepth = 0;
+                            roundDepth = 0;
+                            squigglyDepth = 0;
+                            typedefScope = lineScope;
+                            topLevelIdentifiers.Clear();
+                            typedefDeclaration.Clear();
+                            typedefDeclaration.Append(tokenText.TrimStart());
+                        }
+                        continue;
+                    }
+
+                    typedefDeclaration.Append(tokenText);
+
+                    if (itemText == "[") {
+                        squareDepth++;
+                        continue;
+                    }
+
+                    if (itemText == "]") {
+                        if (squareDepth > 0) {
+                            squareDepth--;
+                        }
+                        continue;
+                    }
+
+                    if (itemText == "(") {
+                        roundDepth++;
+                        continue;
+                    }
+
+                    if (itemText == ")") {
+                        if (roundDepth > 0) {
+                            roundDepth--;
+                        }
+                        continue;
+                    }
+
+                    if (itemText == "{") {
+                        squigglyDepth++;
+                        continue;
+                    }
+
+                    if (itemText == "}") {
+                        if (squigglyDepth > 0) {
+                            squigglyDepth--;
+                        }
+                        continue;
+                    }
+
+                    if (squareDepth != 0 || roundDepth != 0 || squigglyDepth != 0) {
+                        continue;
+                    }
+
+                    if (itemText == ";") {
+                        if (topLevelIdentifiers.Count > 0) {
+                            TypedefIdentifierCandidate alias =
+                                topLevelIdentifiers[topLevelIdentifiers.Count - 1];
+                            AddInferredTypeName(typeNamesByScope, typedefScope, alias.Name);
+                            typedefAliases.Add(
+                                new TypedefAliasInfo(
+                                    typedefScope,
+                                    alias.Name,
+                                    GetTypedefUnderlyingType(typedefDeclaration.ToString(), alias.Name),
+                                    alias.LineNumber,
+                                    alias.LinePosition));
+                        }
+
+                        insideTypedef = false;
+                        typedefScope = string.Empty;
+                        topLevelIdentifiers.Clear();
+                        typedefDeclaration.Clear();
+                        continue;
+                    }
+
+                    if (IsIdentifier(itemText)) {
+                        topLevelIdentifiers.Add(
+                            new TypedefIdentifierCandidate(
+                                itemText,
+                                line.LineNumber,
+                                itemColumn));
+                    }
+                }
+
+                if (insideTypedef) {
+                    typedefDeclaration.Append(Environment.NewLine);
+                }
+
+                if (IsEndFunctionLineText(lineText) || IsEndTaskLineText(lineText)) {
+                    activeLocalScope = string.Empty;
+                }
+            }
+
+            return typeNamesByScope;
+        }
+
+        private static Dictionary<string, HashSet<string>> CopyScopedTypeNames(
+            Dictionary<string, HashSet<string>> source) {
+            Dictionary<string, HashSet<string>> copy =
+                new Dictionary<string, HashSet<string>>(StringComparer.Ordinal);
+
+            if (source == null) {
+                return copy;
+            }
+
+            foreach (KeyValuePair<string, HashSet<string>> scopedNames in source) {
+                copy.Add(
+                    scopedNames.Key,
+                    new HashSet<string>(scopedNames.Value, StringComparer.Ordinal));
+            }
+
+            return copy;
+        }
+
+        private static bool IsTypedefNameVisible(
+            Dictionary<string, HashSet<string>> typeNamesByScope,
+            string scope,
+            string typeName) {
+            if (typeNamesByScope == null || string.IsNullOrEmpty(typeName)) {
+                return false;
+            }
+
+            string normalizedScope = NormalizeDeclarationDuplicateScope(scope);
+            HashSet<string> typeNames;
+            if (typeNamesByScope.TryGetValue(normalizedScope, out typeNames) &&
+                typeNames.Contains(typeName)) {
+                return true;
+            }
+
+            string parentScope = ParentScopeName(normalizedScope);
+            if (parentScope != normalizedScope &&
+                typeNamesByScope.TryGetValue(parentScope, out typeNames) &&
+                typeNames.Contains(typeName)) {
+                return true;
+            }
+
+            string globalScope = NormalizeDeclarationDuplicateScope("global");
+            return globalScope != normalizedScope &&
+                globalScope != parentScope &&
+                typeNamesByScope.TryGetValue(globalScope, out typeNames) &&
+                typeNames.Contains(typeName);
+        }
+
+        private static bool IsTypedefVariableDeclarationPrefixModifier(string itemText) {
+            switch (itemText) {
+                case "automatic":
+                case "static":
+                case "const":
+                case "var":
+                case "rand":
+                case "randc":
+                    return true;
+
+                default:
+                    return false;
+            }
+        }
+
+        private static bool TryCollectTypedefVariableDeclarationNames(
+            string declarationText,
+            int lineNumber,
+            string scope,
+            Dictionary<string, HashSet<string>> typeNamesByScope,
+            out string typeName,
+            out List<TypedefIdentifierCandidate> declarationNames) {
+            typeName = string.Empty;
+            declarationNames = new List<TypedefIdentifierCandidate>();
+
+            string codeText = StripLineCommentForDuplicateScan(declarationText);
+            if (string.IsNullOrWhiteSpace(codeText)) {
+                return false;
+            }
+
+            VerilogToken[] lineTokens = VerilogKeywordSplit(codeText, new VerilogToken());
+            bool foundType = false;
+            bool expectingName = false;
+            bool skippingInitializer = false;
+            int squareDepth = 0;
+            int roundDepth = 0;
+            int squigglyDepth = 0;
+            int tokenColumn = 0;
+
+            foreach (VerilogToken token in lineTokens) {
+                string tokenText = token.Part ?? string.Empty;
+                string itemText = tokenText.Trim();
+                int leadingWhitespace = tokenText.Length - tokenText.TrimStart().Length;
+                int itemColumn = tokenColumn + leadingWhitespace;
+                tokenColumn += tokenText.Length;
+
+                if (string.IsNullOrEmpty(itemText)) {
+                    continue;
+                }
+
+                if (!foundType) {
+                    if (IsTypedefVariableDeclarationPrefixModifier(itemText)) {
+                        continue;
+                    }
+
+                    if (!IsIdentifier(itemText) ||
+                        !IsTypedefNameVisible(typeNamesByScope, scope, itemText)) {
+                        return false;
+                    }
+
+                    typeName = itemText;
+                    foundType = true;
+                    expectingName = true;
+                    continue;
+                }
+
+                if (itemText == "[") {
+                    squareDepth++;
+                    continue;
+                }
+
+                if (itemText == "]") {
+                    if (squareDepth > 0) {
+                        squareDepth--;
+                    }
+                    continue;
+                }
+
+                if (itemText == "(") {
+                    if (squareDepth == 0 && roundDepth == 0 && squigglyDepth == 0 &&
+                        expectingName && declarationNames.Count == 0) {
+                        // A cast or call beginning with a typedef name is not a declaration.
+                        return false;
+                    }
+                    roundDepth++;
+                    continue;
+                }
+
+                if (itemText == ")") {
+                    if (roundDepth > 0) {
+                        roundDepth--;
+                        continue;
+                    }
+
+                    // End of a routine argument list.
+                    break;
+                }
+
+                if (itemText == "{") {
+                    squigglyDepth++;
+                    continue;
+                }
+
+                if (itemText == "}") {
+                    if (squigglyDepth > 0) {
+                        squigglyDepth--;
+                    }
+                    continue;
+                }
+
+                if (squareDepth != 0 || roundDepth != 0 || squigglyDepth != 0) {
+                    continue;
+                }
+
+                if (itemText == ";") {
+                    break;
+                }
+
+                if (itemText == ",") {
+                    if (declarationNames.Count == 0) {
+                        return false;
+                    }
+
+                    expectingName = true;
+                    skippingInitializer = false;
+                    continue;
+                }
+
+                if (itemText == "=") {
+                    if (expectingName) {
+                        // For example: typedef_name = 3; is an invalid assignment to a type,
+                        // not a declaration of an object.
+                        return false;
+                    }
+
+                    skippingInitializer = true;
+                    continue;
+                }
+
+                if (skippingInitializer) {
+                    continue;
+                }
+
+                if (expectingName) {
+                    if (!IsIdentifier(itemText)) {
+                        return false;
+                    }
+
+                    declarationNames.Add(
+                        new TypedefIdentifierCandidate(
+                            itemText,
+                            lineNumber,
+                            itemColumn));
+                    expectingName = false;
+                }
+            }
+
+            return foundType && declarationNames.Count > 0;
+        }
+
+        private static bool TryGetRoutineReturnTypeIdentifier(
+            string lineText,
+            string keyword,
+            string routineName,
+            out string typeIdentifier) {
+            typeIdentifier = string.Empty;
+
+            int keywordIndex = FindStandaloneCodeKeyword(lineText, keyword);
+            if (keywordIndex < 0 || string.IsNullOrEmpty(routineName)) {
+                return false;
+            }
+
+            string codeText = StripLineCommentForDuplicateScan(lineText);
+            int openParenIndex = codeText.IndexOf('(', keywordIndex + keyword.Length);
+            if (openParenIndex < 0) {
+                openParenIndex = codeText.IndexOf(';', keywordIndex + keyword.Length);
+            }
+            if (openParenIndex < 0) {
+                openParenIndex = codeText.Length;
+            }
+
+            string declarationPrefix = codeText.Substring(
+                keywordIndex + keyword.Length,
+                openParenIndex - keywordIndex - keyword.Length);
+            VerilogToken[] prefixTokens = VerilogKeywordSplit(declarationPrefix, new VerilogToken());
+            List<string> identifiers = new List<string>();
+            int squareDepth = 0;
+
+            foreach (VerilogToken token in prefixTokens) {
+                string itemText = (token.Part ?? string.Empty).Trim();
+                if (string.IsNullOrEmpty(itemText)) {
+                    continue;
+                }
+
+                if (itemText == "[") {
+                    squareDepth++;
+                    continue;
+                }
+
+                if (itemText == "]") {
+                    if (squareDepth > 0) {
+                        squareDepth--;
+                    }
+                    continue;
+                }
+
+                if (squareDepth != 0 || IsFunctionReturnTypeToken(itemText)) {
+                    continue;
+                }
+
+                if (IsIdentifier(itemText)) {
+                    identifiers.Add(itemText);
+                }
+            }
+
+            int routineIndex = identifiers.LastIndexOf(routineName);
+            if (routineIndex <= 0) {
+                return false;
+            }
+
+            typeIdentifier = identifiers[routineIndex - 1];
+            return !string.IsNullOrEmpty(typeIdentifier);
+        }
+
+        private static string RoutineArgumentDeclarationText(string lineText, string keyword) {
+            int keywordIndex = FindStandaloneCodeKeyword(lineText, keyword);
+            if (keywordIndex < 0) {
+                return string.Empty;
+            }
+
+            string codeText = StripLineCommentForDuplicateScan(lineText);
+            int openParenIndex = codeText.IndexOf('(', keywordIndex + keyword.Length);
+            if (openParenIndex < 0 || openParenIndex + 1 >= codeText.Length) {
+                return string.Empty;
+            }
+
+            return codeText.Substring(openParenIndex + 1);
+        }
+
+        private static void ProcessSnapshotDeclarationLine(
+            Dictionary<string, Dictionary<string, int>> countsByScope,
+            Dictionary<string, Dictionary<string, int>> countsByLexicalScope,
+            Dictionary<string, string> declarationScopeByLexicalScope,
+            Dictionary<string, Dictionary<string, VerilogTokenTypes>> declarationTypesByScope,
+            Dictionary<string, Dictionary<string, string>> declarationHoverTextByScope,
+            Dictionary<string, HashSet<string>> inferredTypeNamesByScope,
+            string scope,
+            string lexicalScope,
+            string declarationText) {
+            declarationScopeByLexicalScope[lexicalScope] = scope;
+
+            List<string> declarationNames = CollectDeclarationNamesInLine(declarationText);
+            foreach (string name in declarationNames) {
+                AddDuplicateScanName(countsByScope, scope, name);
+                AddDuplicateScanName(countsByLexicalScope, lexicalScope, name);
+            }
+
+            CaptureSnapshotDeclaration(
+                declarationTypesByScope,
+                declarationHoverTextByScope,
+                scope,
+                declarationNames,
+                declarationText);
+
+            foreach (string typeIdentifier in CollectDeclarationTypeIdentifiersInLine(declarationText)) {
+                AddInferredTypeName(inferredTypeNamesByScope, scope, typeIdentifier);
+            }
+
+            VerilogTokenTypes variableType;
+            if (TryGetDeclarationVariableTypeFromText(declarationText, out variableType)) {
+                string hoverText = BackfillDeclarationHoverText(declarationText);
+                foreach (string name in declarationNames) {
+                    AddMissingDeclarationSymbol(scope, name, hoverText, variableType);
+                }
+            }
+        }
+
+        private static void ProcessSnapshotTypedefVariableDeclarationLine(
+            Dictionary<string, Dictionary<string, int>> countsByScope,
+            Dictionary<string, Dictionary<string, int>> countsByLexicalScope,
+            Dictionary<string, string> declarationScopeByLexicalScope,
+            Dictionary<string, Dictionary<string, VerilogTokenTypes>> declarationTypesByScope,
+            Dictionary<string, Dictionary<string, string>> declarationHoverTextByScope,
+            string scope,
+            string lexicalScope,
+            string declarationText,
+            string typedefTypeName,
+            List<TypedefIdentifierCandidate> declarationNames) {
+            if (string.IsNullOrEmpty(typedefTypeName) ||
+                declarationNames == null || declarationNames.Count == 0) {
+                return;
+            }
+
+            declarationScopeByLexicalScope[lexicalScope] = scope;
+
+            if (!declarationTypesByScope.ContainsKey(scope)) {
+                declarationTypesByScope.Add(scope, new Dictionary<string, VerilogTokenTypes>());
+            }
+
+            if (!declarationHoverTextByScope.ContainsKey(scope)) {
+                declarationHoverTextByScope.Add(scope, new Dictionary<string, string>());
+            }
+
+            string hoverText = BackfillDeclarationHoverText(declarationText);
+            EnsureHoverScope(scope);
+
+            foreach (TypedefIdentifierCandidate declarationName in declarationNames) {
+                string name = declarationName.Name;
+                if (string.IsNullOrEmpty(name)) {
+                    continue;
+                }
+
+                AddDuplicateScanName(countsByScope, scope, name);
+                AddDuplicateScanName(countsByLexicalScope, lexicalScope, name);
+
+                if (!declarationTypesByScope[scope].ContainsKey(name)) {
+                    declarationTypesByScope[scope].Add(
+                        name,
+                        VerilogTokenTypes.Verilog_UserDefinedTypeVariable);
+                }
+
+                if (!string.IsNullOrEmpty(hoverText) &&
+                    !declarationHoverTextByScope[scope].ContainsKey(name)) {
+                    declarationHoverTextByScope[scope].Add(name, hoverText);
+                }
+
+                VerilogVariables[scope][name] = VerilogTokenTypes.Verilog_UserDefinedTypeVariable;
+                if (!string.IsNullOrEmpty(hoverText)) {
+                    VerilogVariableHoverText[scope][name] = hoverText;
+                }
+
+                if (!VerilogDefinitionLocations[scope].ContainsKey(name)) {
+                    VerilogDefinitionLocations[scope].Add(
+                        name,
+                        new VerilogDefinitionLocation(
+                            scope,
+                            name,
+                            declarationName.LineNumber,
+                            declarationName.LinePosition,
+                            name.Length,
+                            VerilogTokenTypes.Verilog_UserDefinedTypeVariable,
+                            hoverText));
+                }
+            }
+        }
+
+        private static bool IsMisclassifiedUserDefinedTypeToken(VerilogTokenTypes tokenType) {
+            switch (tokenType) {
+                case VerilogTokenTypes.Verilog_FunctionName:
+                case VerilogTokenTypes.Verilog_Variable:
+                case VerilogTokenTypes.Verilog_Variable_input:
+                case VerilogTokenTypes.Verilog_Variable_output:
+                case VerilogTokenTypes.Verilog_Variable_inout:
+                case VerilogTokenTypes.Verilog_Variable_wire:
+                case VerilogTokenTypes.Verilog_Variable_reg:
+                case VerilogTokenTypes.Verilog_Variable_SystemVerilog:
+                case VerilogTokenTypes.Verilog_UserDefinedTypeVariable:
+                case VerilogTokenTypes.Verilog_Variable_localparam:
+                case VerilogTokenTypes.Verilog_Variable_parameter:
+                case VerilogTokenTypes.Verilog_Variable_duplicate:
+                case VerilogTokenTypes.Verilog_Variable_module:
+                    return true;
+
+                default:
+                    return false;
+            }
+        }
+
+        private static void RemoveHoverScope(string scope) {
+            VerilogVariables.Remove(scope);
+            VerilogVariableHoverText.Remove(scope);
+            VerilogDefinitionLocations.Remove(scope);
+        }
+
+        private static void RemoveMisclassifiedUserDefinedTypeSymbols(
+            Dictionary<string, HashSet<string>> inferredTypeNamesByScope,
+            HashSet<string> invalidFunctionScopes) {
+            foreach (string scope in invalidFunctionScopes) {
+                RemoveHoverScope(scope);
+            }
+
+            foreach (KeyValuePair<string, HashSet<string>> scopedTypeNames in inferredTypeNamesByScope) {
+                string scope = NormalizeDeclarationDuplicateScope(scopedTypeNames.Key);
+                if (!VerilogVariables.ContainsKey(scope)) {
+                    continue;
+                }
+
+                foreach (string typeName in scopedTypeNames.Value) {
+                    VerilogTokenTypes tokenType;
+                    if (!VerilogVariables[scope].TryGetValue(typeName, out tokenType) ||
+                        !IsMisclassifiedUserDefinedTypeToken(tokenType)) {
+                        continue;
+                    }
+
+                    VerilogVariables[scope].Remove(typeName);
+                    if (VerilogVariableHoverText.ContainsKey(scope)) {
+                        VerilogVariableHoverText[scope].Remove(typeName);
+                    }
+                    if (VerilogDefinitionLocations.ContainsKey(scope)) {
+                        VerilogDefinitionLocations[scope].Remove(typeName);
+                    }
+                }
+            }
+        }
+
         private static void MarkDuplicateDeclarationsFromSnapshot(ITextSnapshot snapshot) {
             if (snapshot == null || snapshot.Length == 0) {
                 return;
             }
 
             Dictionary<string, Dictionary<string, int>> countsByScope = new Dictionary<string, Dictionary<string, int>>();
+            Dictionary<string, Dictionary<string, int>> countsByLexicalScope = new Dictionary<string, Dictionary<string, int>>();
+            Dictionary<string, string> declarationScopeByLexicalScope =
+                new Dictionary<string, string>(StringComparer.Ordinal);
+            Dictionary<string, Dictionary<string, VerilogTokenTypes>> declarationTypesByScope =
+                new Dictionary<string, Dictionary<string, VerilogTokenTypes>>(StringComparer.Ordinal);
+            Dictionary<string, Dictionary<string, string>> declarationHoverTextByScope =
+                new Dictionary<string, Dictionary<string, string>>(StringComparer.Ordinal);
+            List<TypedefAliasInfo> typedefAliases;
+            Dictionary<string, HashSet<string>> typedefNamesByScope =
+                CollectTypedefNamesFromSnapshot(snapshot, out typedefAliases);
+            Dictionary<string, HashSet<string>> inferredTypeNamesByScope =
+                CopyScopedTypeNames(typedefNamesByScope);
+            HashSet<string> invalidFunctionScopes = new HashSet<string>(StringComparer.Ordinal);
+
+            Dictionary<int, string> blockScopeByLine =
+                CollectSnapshotDeclarationBlockScopeByLine(snapshot);
 
             string activeLocalScope = string.Empty;
+            bool insideBlockComment = false;
+            bool insideAttribute = false;
 
             foreach (ITextSnapshotLine line in snapshot.Lines) {
                 string lineText = line.GetText();
-                bool mayContainFunction = lineText.IndexOf("function", StringComparison.Ordinal) >= 0;
-                bool mayContainTask = lineText.IndexOf("task", StringComparison.Ordinal) >= 0;
-                bool mayContainDeclaration = CodeLineStartsWithDeclarationKeyword(lineText);
-                bool mayEndLocalScope = !string.IsNullOrEmpty(activeLocalScope) &&
-                    (lineText.IndexOf("endfunction", StringComparison.Ordinal) >= 0 ||
-                     lineText.IndexOf("endtask", StringComparison.Ordinal) >= 0);
+                string declarationCodeText;
+                CollectSnapshotDeclarationBlockTokens(
+                    lineText,
+                    ref insideBlockComment,
+                    ref insideAttribute,
+                    out declarationCodeText);
 
-                if (!mayContainFunction && !mayContainTask && !mayContainDeclaration && !mayEndLocalScope) {
+                string moduleScope = NormalizeDeclarationDuplicateScope(TextModuleName(line.LineNumber, 0));
+                string preliminaryDeclarationScope = string.IsNullOrEmpty(activeLocalScope)
+                    ? moduleScope
+                    : activeLocalScope;
+                string typedefVariableTypeName;
+                List<TypedefIdentifierCandidate> typedefVariableNames;
+                bool mayContainTypedefVariableDeclaration =
+                    TryCollectTypedefVariableDeclarationNames(
+                        declarationCodeText,
+                        line.LineNumber,
+                        preliminaryDeclarationScope,
+                        typedefNamesByScope,
+                        out typedefVariableTypeName,
+                        out typedefVariableNames);
+
+                bool mayContainFunction = declarationCodeText.IndexOf("function", StringComparison.Ordinal) >= 0;
+                bool mayContainTask = declarationCodeText.IndexOf("task", StringComparison.Ordinal) >= 0;
+                bool mayContainDeclaration = CodeLineStartsWithDeclarationKeyword(declarationCodeText);
+                bool mayEndLocalScope = !string.IsNullOrEmpty(activeLocalScope) &&
+                    (declarationCodeText.IndexOf("endfunction", StringComparison.Ordinal) >= 0 ||
+                     declarationCodeText.IndexOf("endtask", StringComparison.Ordinal) >= 0);
+
+                if (!mayContainFunction && !mayContainTask && !mayContainDeclaration &&
+                    !mayContainTypedefVariableDeclaration && !mayEndLocalScope) {
                     continue;
                 }
 
-                string moduleScope = string.Empty;
                 string functionName;
                 string taskName;
 
-                if (mayContainFunction && TryGetFunctionNameFromLineText(lineText, out functionName)) {
-                    moduleScope = NormalizeDeclarationDuplicateScope(TextModuleName(line.LineNumber, 0));
+                if (mayContainFunction && TryGetFunctionNameFromLineText(declarationCodeText, out functionName)) {
                     activeLocalScope = FunctionLocalScopeName(moduleScope, functionName);
+
+                    string returnTypeIdentifier;
+                    if (TryGetRoutineReturnTypeIdentifier(
+                            declarationCodeText,
+                            "function",
+                            functionName,
+                            out returnTypeIdentifier)) {
+                        AddInferredTypeName(
+                            inferredTypeNamesByScope,
+                            moduleScope,
+                            returnTypeIdentifier);
+
+                        string invalidFunctionScope = FunctionLocalScopeName(moduleScope, returnTypeIdentifier);
+                        if (invalidFunctionScope != activeLocalScope) {
+                            invalidFunctionScopes.Add(invalidFunctionScope);
+                        }
+                    }
+
+                    string argumentDeclarationText = RoutineArgumentDeclarationText(declarationCodeText, "function");
+                    if (CodeLineStartsWithDeclarationKeyword(argumentDeclarationText)) {
+                        string lexicalScope = SnapshotDeclarationLexicalScope(
+                            activeLocalScope,
+                            line.LineNumber,
+                            blockScopeByLine,
+                            declarationScopeByLexicalScope);
+                        ProcessSnapshotDeclarationLine(
+                            countsByScope,
+                            countsByLexicalScope,
+                            declarationScopeByLexicalScope,
+                            declarationTypesByScope,
+                            declarationHoverTextByScope,
+                            inferredTypeNamesByScope,
+                            activeLocalScope,
+                            lexicalScope,
+                            argumentDeclarationText);
+                    }
                 }
-                else if (mayContainTask && TryGetTaskNameFromLineText(lineText, out taskName)) {
-                    moduleScope = NormalizeDeclarationDuplicateScope(TextModuleName(line.LineNumber, 0));
+                else if (mayContainTask && TryGetTaskNameFromLineText(declarationCodeText, out taskName)) {
                     activeLocalScope = TaskLocalScopeName(moduleScope, taskName);
+
+                    string argumentDeclarationText = RoutineArgumentDeclarationText(declarationCodeText, "task");
+                    if (CodeLineStartsWithDeclarationKeyword(argumentDeclarationText)) {
+                        string lexicalScope = SnapshotDeclarationLexicalScope(
+                            activeLocalScope,
+                            line.LineNumber,
+                            blockScopeByLine,
+                            declarationScopeByLexicalScope);
+                        ProcessSnapshotDeclarationLine(
+                            countsByScope,
+                            countsByLexicalScope,
+                            declarationScopeByLexicalScope,
+                            declarationTypesByScope,
+                            declarationHoverTextByScope,
+                            inferredTypeNamesByScope,
+                            activeLocalScope,
+                            lexicalScope,
+                            argumentDeclarationText);
+                    }
                 }
 
+                string declarationScope = string.IsNullOrEmpty(activeLocalScope)
+                    ? moduleScope
+                    : activeLocalScope;
                 if (mayContainDeclaration) {
-                    string scope = activeLocalScope;
-                    if (string.IsNullOrEmpty(scope)) {
-                        if (string.IsNullOrEmpty(moduleScope)) {
-                            moduleScope = NormalizeDeclarationDuplicateScope(TextModuleName(line.LineNumber, 0));
-                        }
-                        scope = moduleScope;
-                    }
-
-                    List<string> declarationNames = CollectDeclarationNamesInLine(lineText);
-                    foreach (string name in declarationNames) {
-                        AddDuplicateScanName(countsByScope, scope, name);
-                    }
-
-                    VerilogTokenTypes variableType;
-                    if (TryGetDeclarationVariableTypeFromText(lineText, out variableType)) {
-                        string hoverText = BackfillDeclarationHoverText(lineText);
-                        foreach (string name in declarationNames) {
-                            AddMissingDeclarationSymbol(scope, name, hoverText, variableType);
-                        }
-                    }
+                    string lexicalScope = SnapshotDeclarationLexicalScope(
+                        declarationScope,
+                        line.LineNumber,
+                        blockScopeByLine,
+                        declarationScopeByLexicalScope);
+                    ProcessSnapshotDeclarationLine(
+                        countsByScope,
+                        countsByLexicalScope,
+                        declarationScopeByLexicalScope,
+                        declarationTypesByScope,
+                        declarationHoverTextByScope,
+                        inferredTypeNamesByScope,
+                        declarationScope,
+                        lexicalScope,
+                        declarationCodeText);
+                }
+                else if (mayContainTypedefVariableDeclaration) {
+                    string lexicalScope = SnapshotDeclarationLexicalScope(
+                        declarationScope,
+                        line.LineNumber,
+                        blockScopeByLine,
+                        declarationScopeByLexicalScope);
+                    ProcessSnapshotTypedefVariableDeclarationLine(
+                        countsByScope,
+                        countsByLexicalScope,
+                        declarationScopeByLexicalScope,
+                        declarationTypesByScope,
+                        declarationHoverTextByScope,
+                        declarationScope,
+                        lexicalScope,
+                        declarationCodeText,
+                        typedefVariableTypeName,
+                        typedefVariableNames);
                 }
 
-                if (mayEndLocalScope && (IsEndFunctionLineText(lineText) || IsEndTaskLineText(lineText))) {
+                if (mayEndLocalScope && (IsEndFunctionLineText(declarationCodeText) || IsEndTaskLineText(declarationCodeText))) {
                     activeLocalScope = string.Empty;
                 }
             }
 
             ApplyConditionalDefinitionCandidates(countsByScope);
+
+            Dictionary<string, HashSet<string>> duplicateNamesByScope =
+                CollectSnapshotDuplicateNamesByScope(
+                    countsByLexicalScope,
+                    declarationScopeByLexicalScope);
 
             foreach (KeyValuePair<string, Dictionary<string, int>> scopeCounts in countsByScope) {
                 string scope = NormalizeDeclarationDuplicateScope(scopeCounts.Key);
@@ -1713,17 +3184,30 @@ namespace VerilogLanguage
                     VerilogVariableHoverText.Add(scope, new Dictionary<string, string>());
                 }
 
-                foreach (KeyValuePair<string, int> nameCount in scopeCounts.Value) {
-                    if (nameCount.Value <= 1) {
-                        continue;
-                    }
+                HashSet<string> duplicateNames;
+                duplicateNamesByScope.TryGetValue(scope, out duplicateNames);
 
+                foreach (KeyValuePair<string, int> nameCount in scopeCounts.Value) {
                     if (VerilogVariables[scope].ContainsKey(nameCount.Key) &&
                         VerilogVariables[scope][nameCount.Key] == VerilogTokenTypes.Verilog_MacroDefinition) {
                         continue;
                     }
 
                     if (IsConditionalDuplicateSuppressed(scope, nameCount.Key)) {
+                        continue;
+                    }
+
+                    bool isDuplicateInSameLexicalScope =
+                        nameCount.Value > 1 &&
+                        duplicateNames != null &&
+                        duplicateNames.Contains(nameCount.Key);
+
+                    if (!isDuplicateInSameLexicalScope) {
+                        RestoreSnapshotDeclarationIfNotDuplicate(
+                            declarationTypesByScope,
+                            declarationHoverTextByScope,
+                            scope,
+                            nameCount.Key);
                         continue;
                     }
 
@@ -1739,6 +3223,35 @@ namespace VerilogLanguage
                     }
                 }
             }
+
+            RemoveMisclassifiedUserDefinedTypeSymbols(inferredTypeNamesByScope, invalidFunctionScopes);
+            RegisterTypedefAliases(typedefAliases);
+        }
+
+        private static bool HasNewDeclarationModifierBeforeName(string declarationText, string itemName) {
+            if (string.IsNullOrEmpty(declarationText) || string.IsNullOrEmpty(itemName)) {
+                return false;
+            }
+
+            VerilogToken[] declarationTokens = VerilogKeywordSplit(declarationText, new VerilogToken());
+            foreach (VerilogToken token in declarationTokens) {
+                string itemText = (token.Part ?? string.Empty).Trim();
+                if (string.IsNullOrEmpty(itemText)) {
+                    continue;
+                }
+
+                if (itemText == itemName) {
+                    break;
+                }
+
+                if (IsDeclarationModifierKeyword(itemText) &&
+                    !IsVerilogNamerKeyword(itemText) &&
+                    !IsVerilogVariableSigner(itemText)) {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private static void AddHoverItem(string thisScope, string ItemName, string HoverText) {
@@ -1810,7 +3323,14 @@ namespace VerilogLanguage
                         // e.g. "module myModule( thisHoverText )"
                         case BuildHoverStates.ModuleParameterNaming:
                         case BuildHoverStates.ModuleParameterMimicNaming:
-                            thisHoverText = "module " + thisModuleName + "( .. " + thisHoverText + " .. )";
+                            // Preserve the concise declaration hover when the identifier was
+                            // reached only because a declaration type/modifier is now skipped.
+                            // This avoids changing existing ANSI-port and typed-parameter hovers
+                            // while still preventing type keywords such as logic or integer from
+                            // becoming symbols.
+                            if (!HasNewDeclarationModifierBeforeName(thisHoverText, ItemName)) {
+                                thisHoverText = "module " + thisModuleName + "( .. " + thisHoverText + " .. )";
+                            }
                             // there may be more parameters, so we're not adding it how
                             break;
 
@@ -1868,6 +3388,27 @@ namespace VerilogLanguage
             }
         }
 
+        private static void SetVariableRoundBracketContentStatus_For(string ItemText) {
+            switch (ItemText) {
+                case "(":
+                    thisVariableRoundBracketDepth++;
+                    break;
+
+                case ")":
+                    if (thisVariableRoundBracketDepth > 0) {
+                        thisVariableRoundBracketDepth--;
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        private static bool IsInsideVariableRoundBracket() {
+            return thisVariableRoundBracketDepth > 0;
+        }
+
         private static bool Is_BracketContent_For(string thisScope, string ItemText) {
             return IsInsideSquareBracket && IsDefinedVerilogVariable(thisScope, ItemText);
         }
@@ -1883,14 +3424,19 @@ namespace VerilogLanguage
                     break;
 
                 case "module":
+                case "macromodule":
                     // we're naming a module
                     BuildHoverState = BuildHoverStates.ModuleStart;
                     thisModuleDeclarationText = ItemText;
+                    thisModuleNamedSegmentHasCode = false;
                     break;
 
                 case "function":
                     BuildHoverState = BuildHoverStates.FunctionNaming;
                     thisVariableDeclarationText = ItemText;
+                    pendingFunctionName = string.Empty;
+                    pendingFunctionNameLineNumber = -1;
+                    pendingFunctionNameLinePosition = -1;
                     break;
 
                 case "task":
@@ -1903,9 +3449,17 @@ namespace VerilogLanguage
                 case "inout":
                 case "wire":
                 case "reg":
+                case "logic":
+                case "bit":
+                case "byte":
+                case "shortint":
+                case "int":
+                case "longint":
+                case "integer":
                 case "localparam":
                 case "parameter":
                     // the same keywords could be used for module parameters, or variables:
+                    thisVariableRoundBracketDepth = 0;
                     switch (BuildHoverState) {
                         case BuildHoverStates.ModuleStart:
                             BuildHoverState = BuildHoverStates.ModuleParameterNaming;
@@ -1938,6 +3492,9 @@ namespace VerilogLanguage
                     BuildHoverState = BuildHoverStates.UndefinedState;
                     thisFunctionName = string.Empty;
                     thisFunctionScope = string.Empty;
+                    pendingFunctionName = string.Empty;
+                    pendingFunctionNameLineNumber = -1;
+                    pendingFunctionNameLinePosition = -1;
                     break;
 
                 case "endtask":
@@ -1950,6 +3507,7 @@ namespace VerilogLanguage
                     if (VerilogVariables.ContainsKey(ItemText)) {
                         // a scope-level module name is defined, so treat it like a variable type
                         BuildHoverState = BuildHoverStates.VariableNaming; // actually, we are module naming. TODO different color for modules?
+                        thisVariableRoundBracketDepth = 0;
 
                         // a module instantiation will have the work "module" manually prepended
                         thisVariableDeclarationText = "module " + ItemText;
@@ -1980,6 +3538,7 @@ namespace VerilogLanguage
                 default:
                     thisModuleName = ItemText;
                     thisModuleDeclarationText += ItemText;
+                    thisModuleNamedSegmentHasCode = false;
                     //editingBufferModuleAttributes.Add(new BufferModuleAttribute { LineStart = 0,
                     //                                                               ModuleName = thisModuleName });
                     BuildHoverState = BuildHoverStates.ModuleNamed;
@@ -2003,8 +3562,28 @@ namespace VerilogLanguage
                     BuildHoverState = BuildHoverStates.ModuleOpenParen;
                     break;
 
+                case ";":
+                    thisModuleDeclarationText += ItemText;
+                    if (thisModuleNamedSegmentHasCode) {
+                        // A package import inside a module header ends with its own
+                        // semicolon. Stay in the header so a following parameter or
+                        // port list is still parsed:
+                        //     module name import package_name::*; #( ... ) ( ... );
+                        thisModuleNamedSegmentHasCode = false;
+                    }
+                    else {
+                        // An immediate semicolon after the module name (or after the
+                        // final package-import declaration) is the no-port module
+                        // header terminator.
+                        AddHoverItem(thisModuleName, thisModuleName, thisModuleDeclarationText);
+                        thisHoverName = string.Empty;
+                        BuildHoverState = BuildHoverStates.UndefinedState;
+                    }
+                    break;
+
                 default:
                     thisModuleDeclarationText += ItemText;
+                    thisModuleNamedSegmentHasCode = true;
                     // BuildHoverState = BuildHoverStates.ModuleNamed; no state change
                     break;
             }
@@ -2026,6 +3605,13 @@ namespace VerilogLanguage
                 case "inout":
                 case "wire":
                 case "reg":
+                case "logic":
+                case "bit":
+                case "byte":
+                case "shortint":
+                case "int":
+                case "longint":
+                case "integer":
                 case "localparam":
                 case "parameter":
                     // the same keywords could be used for module parameters, or variables:
@@ -2134,11 +3720,11 @@ namespace VerilogLanguage
                     thisModuleDeclarationText += ItemText;
                     UpdateCurrentDeclarationVariableType(thisModuleParameterText);
 
-                    if (thisHoverName == string.Empty && IsIdentifier(ItemText) && !IsVerilogNamerKeyword(ItemText) && !IsVerilogVariableSigner(ItemText)) {
+                    if (thisHoverName == string.Empty && IsIdentifier(ItemText) && !IsVerilogNamerKeyword(ItemText) && !IsDeclarationModifierKeyword(ItemText)) {
                         thisHoverName = ItemText;
                     }
 
-                    if (IsVerilogNamerKeyword(ItemText) || IsVerilogVariableSigner(ItemText) || IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || IsDelimiter(ItemText)) {
+                    if (IsVerilogNamerKeyword(ItemText) || IsDeclarationModifierKeyword(ItemText) || IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || IsDelimiter(ItemText)) {
                         SetBracketContentStatus_For(ItemText);
                         // nothing at this time; we are still bulding the declaration part
                         // thisModuleParameterText += ItemText;
@@ -2225,7 +3811,7 @@ namespace VerilogLanguage
                     // thisModuleParameterText += ItemText;
                     thisModuleDeclarationText += ItemText;
 
-                    if (IsVerilogNamerKeyword(ItemText) || IsVerilogVariableSigner(ItemText) || IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || IsDelimiter(ItemText)) {
+                    if (IsVerilogNamerKeyword(ItemText) || IsDeclarationModifierKeyword(ItemText) || IsVerilogBracket(ItemText) || IsNumeric(ItemText) || IsVerilogValue(ItemText) || IsDelimiter(ItemText)) {
                         SetBracketContentStatus_For(ItemText);
 
                         // no longer mimic naming
@@ -2237,7 +3823,7 @@ namespace VerilogLanguage
                         UpdateCurrentDeclarationVariableType(thisModuleParameterText);
                     }
                     else {
-                        if (thisHoverName == string.Empty && IsIdentifier(ItemText) && !IsVerilogNamerKeyword(ItemText) && !IsVerilogVariableSigner(ItemText)) {
+                        if (thisHoverName == string.Empty && IsIdentifier(ItemText) && !IsVerilogNamerKeyword(ItemText) && !IsDeclarationModifierKeyword(ItemText)) {
                             thisHoverName = ItemText;
                         }
                         thisModuleParameterText += ItemText;
@@ -2262,20 +3848,54 @@ namespace VerilogLanguage
         private static bool IsFunctionReturnTypeToken(string itemText) {
             switch (itemText) {
                 case "automatic":
+                case "static":
+                case "virtual":
+                case "local":
+                case "protected":
+                case "extern":
+                case "pure":
                 case "signed":
                 case "unsigned":
                 case "reg":
                 case "logic":
                 case "bit":
+                case "byte":
+                case "shortint":
+                case "int":
+                case "longint":
                 case "integer":
                 case "time":
+                case "shortreal":
                 case "real":
                 case "realtime":
+                case "string":
+                case "chandle":
+                case "void":
                     return true;
 
                 default:
                     return false;
             }
+        }
+
+        private static bool FinalizePendingFunctionName() {
+            if (string.IsNullOrEmpty(pendingFunctionName)) {
+                return false;
+            }
+
+            string hoverText = thisVariableDeclarationText.TrimEnd();
+            AddFunctionHoverItem(
+                thisModuleName,
+                pendingFunctionName,
+                hoverText,
+                pendingFunctionNameLineNumber,
+                pendingFunctionNameLinePosition);
+            thisFunctionName = pendingFunctionName;
+            thisFunctionScope = FunctionLocalScopeName(thisModuleName, thisFunctionName);
+            pendingFunctionName = string.Empty;
+            pendingFunctionNameLineNumber = -1;
+            pendingFunctionNameLinePosition = -1;
+            return true;
         }
 
         /// <summary>
@@ -2291,7 +3911,22 @@ namespace VerilogLanguage
                     }
                     break;
 
+                case "(":
+                    FinalizePendingFunctionName();
+                    thisVariableDeclarationText = string.Empty;
+                    BuildHoverState = BuildHoverStates.FunctionDeclarationRemainder;
+                    break;
+
                 case ";":
+                    FinalizePendingFunctionName();
+                    thisVariableDeclarationText = string.Empty;
+                    BuildHoverState = BuildHoverStates.UndefinedState;
+                    break;
+
+                case "endfunction":
+                    pendingFunctionName = string.Empty;
+                    pendingFunctionNameLineNumber = -1;
+                    pendingFunctionNameLinePosition = -1;
                     thisVariableDeclarationText = string.Empty;
                     BuildHoverState = BuildHoverStates.UndefinedState;
                     break;
@@ -2309,11 +3944,9 @@ namespace VerilogLanguage
 
                     if (IsIdentifier(ItemText)) {
                         thisVariableDeclarationText += ItemText;
-                        AddFunctionHoverItem(thisModuleName, ItemText, thisVariableDeclarationText);
-                        thisFunctionName = ItemText;
-                        thisFunctionScope = FunctionLocalScopeName(thisModuleName, thisFunctionName);
-                        thisVariableDeclarationText = string.Empty;
-                        BuildHoverState = BuildHoverStates.FunctionDeclarationRemainder;
+                        pendingFunctionName = ItemText;
+                        pendingFunctionNameLineNumber = thisItemLineNumber;
+                        pendingFunctionNameLinePosition = thisItemLinePosition;
                         break;
                     }
 
@@ -2412,30 +4045,31 @@ namespace VerilogLanguage
                 case ";":
                     AddHoverItem(thisModuleName, thisHoverName, thisVariableDeclarationText);
                     thisVariableDeclarationText = string.Empty; // reminder we do this manually, as AddHoverItem does not know *what* it is adding
+                    thisVariableRoundBracketDepth = 0;
                     BuildHoverState = BuildHoverStates.UndefinedState;
                     break;
 
                 case ",":
-                    if (thisHoverName == string.Empty) {
+                    if (IsInsideVariableRoundBracket() || IsInsideSquigglyBracket) {
+                        // Commas inside an initializer expression, function call,
+                        // concatenation, or module connection list do not begin
+                        // another declaration.
+                        thisVariableDeclarationText += ItemText;
+                    }
+                    else if (thisHoverName == string.Empty) {
                         // string a = "breakpoint";
                         // no hovername = nothing to do
 
                         BuildHoverState = BuildHoverStates.VariableMimicNaming; // Mimic naming is the same declaration but comma-delimited (e.g. input a,b // b has the input "mimic'd" )
                     }
                     else {
-                        if (IsInsideSquigglyBracket) {
-                            thisVariableDeclarationText += ItemText;
-                            // BuildHoverState remains variable building
-                        }
-                        else {
-                            AddHoverItem(thisModuleName, thisHoverName, thisVariableDeclarationText);
-                            // since we encountered a comma, we will use the same declaration text for a new name, so replace this name with a blank
-                            thisVariableDeclarationText = thisVariableDeclarationText.Replace(thisHoverName, "");
+                        AddHoverItem(thisModuleName, thisHoverName, thisVariableDeclarationText);
+                        // since we encountered a comma, we will use the same declaration text for a new name, so replace this name with a blank
+                        thisVariableDeclarationText = thisVariableDeclarationText.Replace(thisHoverName, "");
 
-                            thisHoverName = string.Empty; // IMPORTANT: next identifier is the next variable name
+                        thisHoverName = string.Empty; // IMPORTANT: next identifier is the next variable name
 
-                            BuildHoverState = BuildHoverStates.VariableMimicNaming; // Mimic naming is the same declaration but comma-delimited (e.g. input a,b // b has the input "mimic'd" )
-                        }
+                        BuildHoverState = BuildHoverStates.VariableMimicNaming; // Mimic naming is the same declaration but comma-delimited (e.g. input a,b // b has the input "mimic'd" )
                     }
                     break;
 
@@ -2448,6 +4082,10 @@ namespace VerilogLanguage
                 case "parameter":
                 case "bit":
                 case "logic":
+                case "byte":
+                case "shortint":
+                case "int":
+                case "longint":
                 case "integer":
                     thisVariableDeclarationText += ItemText;
                     UpdateCurrentDeclarationVariableType(thisVariableDeclarationText);
@@ -2463,9 +4101,12 @@ namespace VerilogLanguage
                     thisFunctionName = string.Empty;
                     thisFunctionScope = string.Empty;
                     thisModuleParameterText = string.Empty;
+                    thisVariableRoundBracketDepth = 0;
                     break;
 
                 default:
+                    SetVariableRoundBracketContentStatus_For(ItemText);
+
                     if (thisHoverName == string.Empty && IsIdentifier(ItemText) && !IsVerilogVariableSigner(ItemText)) {
                         if (IsInsideSquareBracket || IsInsideSquigglyBracket) {
                             // Identifier used in a range or concatenation is not a declared name
@@ -2517,13 +4158,18 @@ namespace VerilogLanguage
                     break;
 
                 case ",":
-                    AddHoverItem(thisModuleName, thisHoverName, thisVariableDeclarationText);
-                    if (thisHoverName == string.Empty) {
-                        // nothing to do!
+                    if (IsInsideVariableRoundBracket() || IsInsideSquigglyBracket) {
+                        thisVariableDeclarationText += ItemText;
                     }
                     else {
-                        thisVariableDeclarationText = thisVariableDeclarationText.Replace(thisHoverName, "");
-                        thisHoverName = string.Empty;
+                        AddHoverItem(thisModuleName, thisHoverName, thisVariableDeclarationText);
+                        if (thisHoverName == string.Empty) {
+                            // nothing to do!
+                        }
+                        else {
+                            thisVariableDeclarationText = thisVariableDeclarationText.Replace(thisHoverName, "");
+                            thisHoverName = string.Empty;
+                        }
                     }
                     break;
 
@@ -2531,6 +4177,7 @@ namespace VerilogLanguage
                     AddHoverItem(thisModuleName, thisHoverName, thisVariableDeclarationText);
                     thisHoverName = string.Empty;
                     thisVariableDeclarationText = string.Empty;
+                    thisVariableRoundBracketDepth = 0;
                     BuildHoverState = BuildHoverStates.UndefinedState;
                     break;
 
@@ -2538,6 +4185,7 @@ namespace VerilogLanguage
                     BuildHoverState = BuildHoverStates.UndefinedState;
                     thisFunctionName = string.Empty;
                     thisFunctionScope = string.Empty;
+                    thisVariableRoundBracketDepth = 0;
                     // we're done naming a module
                     //AddHoverItem(thisModuleName, thisHoverName, thisModuleParameterText);
                     //BuildHoverState = BuildHoverStates.ModuleNamed;
@@ -2548,10 +4196,12 @@ namespace VerilogLanguage
                     break;
 
                 default:
+                    SetVariableRoundBracketContentStatus_For(ItemText);
+
                     // if we encounter a NamerKeyword during a sequence of comma-delimited vars, then this is a new type!
                     // e.g.  input a,b,  // this is input a; input b;
                     //       output c    // this is output c;
-                    if (IsVerilogNamerKeyword(ItemText)) {
+                    if (IsVerilogNamerKeyword(ItemText) || IsDeclarationStartKeyword(ItemText)) {
                         Process_UndefinedState_For(ItemText);
                     }
                     else {

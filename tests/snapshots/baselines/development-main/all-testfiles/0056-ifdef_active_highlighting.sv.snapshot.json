@@ -1,0 +1,2167 @@
+{
+    "SchemaVersion":  3,
+    "RunName":  "all-testfiles",
+    "FilePath":  "TestFiles/macros/ifdef_active_highlighting.sv",
+    "FileRelativePath":  "TestFiles/macros/ifdef_active_highlighting.sv",
+    "ContentType":  "verilog",
+    "SnapshotLength":  746,
+    "SnapshotVersion":  2,
+    "TextSha256":  "f704d9a4ed8842995d3ea67031de69faa0f7421ad753d2a9d1ad8fffe9322e7b",
+    "Errors":  [
+
+               ],
+    "Classifications":  [
+                            {
+                                "Start":  0,
+                                "Length":  7,
+                                "Line":  1,
+                                "Column":  1,
+                                "Text":  "`define",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  8,
+                                "Length":  12,
+                                "Line":  1,
+                                "Column":  9,
+                                "Text":  "FEATURE_ZERO",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  21,
+                                "Length":  1,
+                                "Line":  1,
+                                "Column":  22,
+                                "Text":  "0",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  24,
+                                "Length":  7,
+                                "Line":  2,
+                                "Column":  1,
+                                "Text":  "`define",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  32,
+                                "Length":  16,
+                                "Line":  2,
+                                "Column":  9,
+                                "Text":  "SELECTED_FEATURE",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  49,
+                                "Length":  1,
+                                "Line":  2,
+                                "Column":  26,
+                                "Text":  "1",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  52,
+                                "Length":  7,
+                                "Line":  3,
+                                "Column":  1,
+                                "Text":  "`define",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  60,
+                                "Length":  5,
+                                "Line":  3,
+                                "Column":  9,
+                                "Text":  "SCALE",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  65,
+                                "Length":  1,
+                                "Line":  3,
+                                "Column":  14,
+                                "Text":  "(",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  71,
+                                "Length":  1,
+                                "Line":  3,
+                                "Column":  20,
+                                "Text":  ")",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  73,
+                                "Length":  1,
+                                "Line":  3,
+                                "Column":  22,
+                                "Text":  "(",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  74,
+                                "Length":  1,
+                                "Line":  3,
+                                "Column":  23,
+                                "Text":  "(",
+                                "Types":  [
+                                              "Bracket2"
+                                          ]
+                            },
+                            {
+                                "Start":  80,
+                                "Length":  1,
+                                "Line":  3,
+                                "Column":  29,
+                                "Text":  ")",
+                                "Types":  [
+                                              "Bracket2"
+                                          ]
+                            },
+                            {
+                                "Start":  84,
+                                "Length":  1,
+                                "Line":  3,
+                                "Column":  33,
+                                "Text":  "2",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  85,
+                                "Length":  1,
+                                "Line":  3,
+                                "Column":  34,
+                                "Text":  ")",
+                                "Types":  [
+                                              "Bracket1"
+                                          ]
+                            },
+                            {
+                                "Start":  90,
+                                "Length":  6,
+                                "Line":  5,
+                                "Column":  1,
+                                "Text":  "module",
+                                "Types":  [
+                                              "module"
+                                          ]
+                            },
+                            {
+                                "Start":  97,
+                                "Length":  25,
+                                "Line":  5,
+                                "Column":  8,
+                                "Text":  "ifdef_active_highlighting",
+                                "Types":  [
+                                              "Variable_module"
+                                          ]
+                            },
+                            {
+                                "Start":  127,
+                                "Length":  6,
+                                "Line":  7,
+                                "Column":  1,
+                                "Text":  "`ifdef",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  134,
+                                "Length":  12,
+                                "Line":  7,
+                                "Column":  8,
+                                "Text":  "FEATURE_ZERO",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  152,
+                                "Length":  5,
+                                "Line":  8,
+                                "Column":  5,
+                                "Text":  "logic",
+                                "Types":  [
+                                              "SystemVerilogYosysSupported"
+                                          ]
+                            },
+                            {
+                                "Start":  158,
+                                "Length":  36,
+                                "Line":  8,
+                                "Column":  11,
+                                "Text":  "active_even_when_macro_value_is_zero",
+                                "Types":  [
+                                              "Variable_SystemVerilog"
+                                          ]
+                            },
+                            {
+                                "Start":  197,
+                                "Length":  5,
+                                "Line":  9,
+                                "Column":  1,
+                                "Text":  "`else",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  204,
+                                "Length":  36,
+                                "Line":  10,
+                                "Column":  1,
+                                "Text":  "    wire inactive_feature_zero_else;",
+                                "Types":  [
+                                              "InactiveCode"
+                                          ]
+                            },
+                            {
+                                "Start":  242,
+                                "Length":  6,
+                                "Line":  11,
+                                "Column":  1,
+                                "Text":  "`endif",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  252,
+                                "Length":  6,
+                                "Line":  13,
+                                "Column":  1,
+                                "Text":  "`undef",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  259,
+                                "Length":  12,
+                                "Line":  13,
+                                "Column":  8,
+                                "Text":  "FEATURE_ZERO",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  275,
+                                "Length":  6,
+                                "Line":  15,
+                                "Column":  1,
+                                "Text":  "`ifdef",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  282,
+                                "Length":  12,
+                                "Line":  15,
+                                "Column":  8,
+                                "Text":  "FEATURE_ZERO",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  296,
+                                "Length":  29,
+                                "Line":  16,
+                                "Column":  1,
+                                "Text":  "    reg inactive_after_undef;",
+                                "Types":  [
+                                              "InactiveCode"
+                                          ]
+                            },
+                            {
+                                "Start":  327,
+                                "Length":  6,
+                                "Line":  17,
+                                "Column":  1,
+                                "Text":  "`elsif",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  334,
+                                "Length":  16,
+                                "Line":  17,
+                                "Column":  8,
+                                "Text":  "SELECTED_FEATURE",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  356,
+                                "Length":  5,
+                                "Line":  18,
+                                "Column":  5,
+                                "Text":  "logic",
+                                "Types":  [
+                                              "SystemVerilogYosysSupported"
+                                          ]
+                            },
+                            {
+                                "Start":  362,
+                                "Length":  19,
+                                "Line":  18,
+                                "Column":  11,
+                                "Text":  "active_elsif_branch",
+                                "Types":  [
+                                              "Variable_SystemVerilog"
+                                          ]
+                            },
+                            {
+                                "Start":  384,
+                                "Length":  5,
+                                "Line":  19,
+                                "Column":  1,
+                                "Text":  "`else",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  391,
+                                "Length":  32,
+                                "Line":  20,
+                                "Column":  1,
+                                "Text":  "    integer inactive_final_else;",
+                                "Types":  [
+                                              "InactiveCode"
+                                          ]
+                            },
+                            {
+                                "Start":  425,
+                                "Length":  6,
+                                "Line":  21,
+                                "Column":  1,
+                                "Text":  "`endif",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  435,
+                                "Length":  6,
+                                "Line":  23,
+                                "Column":  1,
+                                "Text":  "`ifdef",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  442,
+                                "Length":  13,
+                                "Line":  23,
+                                "Column":  8,
+                                "Text":  "UNKNOWN_OUTER",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  457,
+                                "Length":  24,
+                                "Line":  24,
+                                "Column":  1,
+                                "Text":  "    `define INNER_ONLY 1",
+                                "Types":  [
+                                              "InactiveCode"
+                                          ]
+                            },
+                            {
+                                "Start":  483,
+                                "Length":  31,
+                                "Line":  25,
+                                "Column":  1,
+                                "Text":  "    wire inactive_outer_branch;",
+                                "Types":  [
+                                              "InactiveCode"
+                                          ]
+                            },
+                            {
+                                "Start":  516,
+                                "Length":  5,
+                                "Line":  26,
+                                "Column":  1,
+                                "Text":  "`else",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  527,
+                                "Length":  7,
+                                "Line":  27,
+                                "Column":  5,
+                                "Text":  "`ifndef",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  535,
+                                "Length":  10,
+                                "Line":  27,
+                                "Column":  13,
+                                "Text":  "INNER_ONLY",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  555,
+                                "Length":  5,
+                                "Line":  28,
+                                "Column":  9,
+                                "Text":  "logic",
+                                "Types":  [
+                                              "SystemVerilogYosysSupported"
+                                          ]
+                            },
+                            {
+                                "Start":  561,
+                                "Length":  20,
+                                "Line":  28,
+                                "Column":  15,
+                                "Text":  "active_nested_ifndef",
+                                "Types":  [
+                                              "Variable_SystemVerilog"
+                                          ]
+                            },
+                            {
+                                "Start":  588,
+                                "Length":  5,
+                                "Line":  29,
+                                "Column":  5,
+                                "Text":  "`else",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  595,
+                                "Length":  35,
+                                "Line":  30,
+                                "Column":  1,
+                                "Text":  "        logic inactive_nested_else;",
+                                "Types":  [
+                                              "InactiveCode"
+                                          ]
+                            },
+                            {
+                                "Start":  636,
+                                "Length":  6,
+                                "Line":  31,
+                                "Column":  5,
+                                "Text":  "`endif",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  644,
+                                "Length":  6,
+                                "Line":  32,
+                                "Column":  1,
+                                "Text":  "`endif",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  654,
+                                "Length":  36,
+                                "Line":  34,
+                                "Column":  1,
+                                "Text":  "/* `ifdef COMMENTED_OUT_DIRECTIVE */",
+                                "Types":  [
+                                              "comment"
+                                          ]
+                            },
+                            {
+                                "Start":  692,
+                                "Length":  5,
+                                "Line":  35,
+                                "Column":  1,
+                                "Text":  "logic",
+                                "Types":  [
+                                              "SystemVerilogYosysSupported"
+                                          ]
+                            },
+                            {
+                                "Start":  698,
+                                "Length":  32,
+                                "Line":  35,
+                                "Column":  7,
+                                "Text":  "active_after_commented_directive",
+                                "Types":  [
+                                              "Variable_SystemVerilog"
+                                          ]
+                            },
+                            {
+                                "Start":  735,
+                                "Length":  9,
+                                "Line":  37,
+                                "Column":  1,
+                                "Text":  "endmodule",
+                                "Types":  [
+                                              "endmodule"
+                                          ]
+                            }
+                        ],
+    "Tags":  [
+                 {
+                     "Start":  0,
+                     "Length":  7,
+                     "Line":  1,
+                     "Column":  1,
+                     "Text":  "`define",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  8,
+                     "Length":  12,
+                     "Line":  1,
+                     "Column":  9,
+                     "Text":  "FEATURE_ZERO",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "Macro `FEATURE_ZERO` is defined.\r\nValue: 0\r\nFile: TestFiles/macros/ifdef_active_highlighting.sv\r\nLine: 1"
+                 },
+                 {
+                     "Start":  21,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  22,
+                     "Text":  "0",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  24,
+                     "Length":  7,
+                     "Line":  2,
+                     "Column":  1,
+                     "Text":  "`define",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  32,
+                     "Length":  16,
+                     "Line":  2,
+                     "Column":  9,
+                     "Text":  "SELECTED_FEATURE",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "Macro `SELECTED_FEATURE` is defined.\r\nValue: 1\r\nFile: TestFiles/macros/ifdef_active_highlighting.sv\r\nLine: 2"
+                 },
+                 {
+                     "Start":  49,
+                     "Length":  1,
+                     "Line":  2,
+                     "Column":  26,
+                     "Text":  "1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  52,
+                     "Length":  7,
+                     "Line":  3,
+                     "Column":  1,
+                     "Text":  "`define",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  60,
+                     "Length":  5,
+                     "Line":  3,
+                     "Column":  9,
+                     "Text":  "SCALE",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "Macro `SCALE` is defined.\r\nValue: ((value) * 2)\r\nFile: TestFiles/macros/ifdef_active_highlighting.sv\r\nLine: 3"
+                 },
+                 {
+                     "Start":  65,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  14,
+                     "Text":  "(",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  71,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  20,
+                     "Text":  ")",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  73,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  22,
+                     "Text":  "(",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  74,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  23,
+                     "Text":  "(",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket2",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  80,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  29,
+                     "Text":  ")",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket2",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  84,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  33,
+                     "Text":  "2",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  85,
+                     "Length":  1,
+                     "Line":  3,
+                     "Column":  34,
+                     "Text":  ")",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Bracket1",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  90,
+                     "Length":  6,
+                     "Line":  5,
+                     "Column":  1,
+                     "Text":  "module",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_module",
+                     "HoverText":  "The module declaration is the only design unit in Verilog. It describes both a design\u0027s interface to other designs in the same environment, and its functional composition."
+                 },
+                 {
+                     "Start":  97,
+                     "Length":  25,
+                     "Line":  5,
+                     "Column":  8,
+                     "Text":  "ifdef_active_highlighting",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_module",
+                     "HoverText":  "module ifdef_active_highlighting;"
+                 },
+                 {
+                     "Start":  127,
+                     "Length":  6,
+                     "Line":  7,
+                     "Column":  1,
+                     "Text":  "`ifdef",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  134,
+                     "Length":  12,
+                     "Line":  7,
+                     "Column":  8,
+                     "Text":  "FEATURE_ZERO",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "Macro `FEATURE_ZERO` is defined.\r\nValue: 0\r\nFile: TestFiles/macros/ifdef_active_highlighting.sv\r\nLine: 1"
+                 },
+                 {
+                     "Start":  152,
+                     "Length":  5,
+                     "Line":  8,
+                     "Column":  5,
+                     "Text":  "logic",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemVerilogYosysSupported",
+                     "HoverText":  "SystemVerilog 4-state variable data type. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version."
+                 },
+                 {
+                     "Start":  158,
+                     "Length":  36,
+                     "Line":  8,
+                     "Column":  11,
+                     "Text":  "active_even_when_macro_value_is_zero",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_SystemVerilog",
+                     "HoverText":  "logic active_even_when_macro_value_is_zero"
+                 },
+                 {
+                     "Start":  197,
+                     "Length":  5,
+                     "Line":  9,
+                     "Column":  1,
+                     "Text":  "`else",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  204,
+                     "Length":  36,
+                     "Line":  10,
+                     "Column":  1,
+                     "Text":  "    wire inactive_feature_zero_else;",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027FEATURE_ZERO\u0027 is defined, so the earlier `ifdef branch is active. Change the controlling macro definitions to select this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
+                 },
+                 {
+                     "Start":  242,
+                     "Length":  6,
+                     "Line":  11,
+                     "Column":  1,
+                     "Text":  "`endif",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  252,
+                     "Length":  6,
+                     "Line":  13,
+                     "Column":  1,
+                     "Text":  "`undef",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  259,
+                     "Length":  12,
+                     "Line":  13,
+                     "Column":  8,
+                     "Text":  "FEATURE_ZERO",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "Macro `FEATURE_ZERO` is defined.\r\nValue: 0\r\nFile: TestFiles/macros/ifdef_active_highlighting.sv\r\nLine: 1"
+                 },
+                 {
+                     "Start":  275,
+                     "Length":  6,
+                     "Line":  15,
+                     "Column":  1,
+                     "Text":  "`ifdef",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  282,
+                     "Length":  12,
+                     "Line":  15,
+                     "Column":  8,
+                     "Text":  "FEATURE_ZERO",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "Macro `FEATURE_ZERO` is not defined."
+                 },
+                 {
+                     "Start":  296,
+                     "Length":  29,
+                     "Line":  16,
+                     "Column":  1,
+                     "Text":  "    reg inactive_after_undef;",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027FEATURE_ZERO\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
+                 },
+                 {
+                     "Start":  327,
+                     "Length":  6,
+                     "Line":  17,
+                     "Column":  1,
+                     "Text":  "`elsif",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  334,
+                     "Length":  16,
+                     "Line":  17,
+                     "Column":  8,
+                     "Text":  "SELECTED_FEATURE",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "Macro `SELECTED_FEATURE` is defined.\r\nValue: 1\r\nFile: TestFiles/macros/ifdef_active_highlighting.sv\r\nLine: 2"
+                 },
+                 {
+                     "Start":  356,
+                     "Length":  5,
+                     "Line":  18,
+                     "Column":  5,
+                     "Text":  "logic",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemVerilogYosysSupported",
+                     "HoverText":  "SystemVerilog 4-state variable data type. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version."
+                 },
+                 {
+                     "Start":  362,
+                     "Length":  19,
+                     "Line":  18,
+                     "Column":  11,
+                     "Text":  "active_elsif_branch",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_SystemVerilog",
+                     "HoverText":  "logic active_elsif_branch"
+                 },
+                 {
+                     "Start":  384,
+                     "Length":  5,
+                     "Line":  19,
+                     "Column":  1,
+                     "Text":  "`else",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  391,
+                     "Length":  32,
+                     "Line":  20,
+                     "Column":  1,
+                     "Text":  "    integer inactive_final_else;",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027SELECTED_FEATURE\u0027 is defined, so an earlier `elsif branch is active. Change the controlling macro definitions to select this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
+                 },
+                 {
+                     "Start":  425,
+                     "Length":  6,
+                     "Line":  21,
+                     "Column":  1,
+                     "Text":  "`endif",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  435,
+                     "Length":  6,
+                     "Line":  23,
+                     "Column":  1,
+                     "Text":  "`ifdef",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  442,
+                     "Length":  13,
+                     "Line":  23,
+                     "Column":  8,
+                     "Text":  "UNKNOWN_OUTER",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "Macro `UNKNOWN_OUTER` is not defined."
+                 },
+                 {
+                     "Start":  457,
+                     "Length":  24,
+                     "Line":  24,
+                     "Column":  1,
+                     "Text":  "    `define INNER_ONLY 1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027UNKNOWN_OUTER\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
+                 },
+                 {
+                     "Start":  483,
+                     "Length":  31,
+                     "Line":  25,
+                     "Column":  1,
+                     "Text":  "    wire inactive_outer_branch;",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027UNKNOWN_OUTER\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
+                 },
+                 {
+                     "Start":  516,
+                     "Length":  5,
+                     "Line":  26,
+                     "Column":  1,
+                     "Text":  "`else",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  527,
+                     "Length":  7,
+                     "Line":  27,
+                     "Column":  5,
+                     "Text":  "`ifndef",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  535,
+                     "Length":  10,
+                     "Line":  27,
+                     "Column":  13,
+                     "Text":  "INNER_ONLY",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "Macro `INNER_ONLY` is not defined."
+                 },
+                 {
+                     "Start":  555,
+                     "Length":  5,
+                     "Line":  28,
+                     "Column":  9,
+                     "Text":  "logic",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemVerilogYosysSupported",
+                     "HoverText":  "SystemVerilog 4-state variable data type. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version."
+                 },
+                 {
+                     "Start":  561,
+                     "Length":  20,
+                     "Line":  28,
+                     "Column":  15,
+                     "Text":  "active_nested_ifndef",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_SystemVerilog",
+                     "HoverText":  "logic active_nested_ifndef"
+                 },
+                 {
+                     "Start":  588,
+                     "Length":  5,
+                     "Line":  29,
+                     "Column":  5,
+                     "Text":  "`else",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  595,
+                     "Length":  35,
+                     "Line":  30,
+                     "Column":  1,
+                     "Text":  "        logic inactive_nested_else;",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027INNER_ONLY\u0027 is not defined, so the earlier `ifndef branch is active. Change the controlling macro definitions to select this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
+                 },
+                 {
+                     "Start":  636,
+                     "Length":  6,
+                     "Line":  31,
+                     "Column":  5,
+                     "Text":  "`endif",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  644,
+                     "Length":  6,
+                     "Line":  32,
+                     "Column":  1,
+                     "Text":  "`endif",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  654,
+                     "Length":  2,
+                     "Line":  34,
+                     "Column":  1,
+                     "Text":  "/*",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  656,
+                     "Length":  1,
+                     "Line":  34,
+                     "Column":  3,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  657,
+                     "Length":  6,
+                     "Line":  34,
+                     "Column":  4,
+                     "Text":  "`ifdef",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  663,
+                     "Length":  1,
+                     "Line":  34,
+                     "Column":  10,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  664,
+                     "Length":  23,
+                     "Line":  34,
+                     "Column":  11,
+                     "Text":  "COMMENTED_OUT_DIRECTIVE",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  687,
+                     "Length":  1,
+                     "Line":  34,
+                     "Column":  34,
+                     "Text":  " ",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  688,
+                     "Length":  2,
+                     "Line":  34,
+                     "Column":  35,
+                     "Text":  "*/",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Comment",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  692,
+                     "Length":  5,
+                     "Line":  35,
+                     "Column":  1,
+                     "Text":  "logic",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemVerilogYosysSupported",
+                     "HoverText":  "SystemVerilog 4-state variable data type. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version."
+                 },
+                 {
+                     "Start":  698,
+                     "Length":  32,
+                     "Line":  35,
+                     "Column":  7,
+                     "Text":  "active_after_commented_directive",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_SystemVerilog",
+                     "HoverText":  "logic active_after_commented_directive"
+                 },
+                 {
+                     "Start":  735,
+                     "Length":  9,
+                     "Line":  37,
+                     "Column":  1,
+                     "Text":  "endmodule",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_endmodule",
+                     "HoverText":  "The endmodule reserved word is used to close a module statement."
+                 }
+             ],
+    "Tokens":  [
+                   {
+                       "Start":  0,
+                       "Length":  7,
+                       "Line":  1,
+                       "Column":  1,
+                       "Text":  "`define",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  7,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  8,
+                       "Length":  12,
+                       "Line":  1,
+                       "Column":  9,
+                       "Text":  "FEATURE_ZERO",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  20,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  21,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  21,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  22,
+                       "Text":  "0",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  24,
+                       "Length":  7,
+                       "Line":  2,
+                       "Column":  1,
+                       "Text":  "`define",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  31,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  32,
+                       "Length":  16,
+                       "Line":  2,
+                       "Column":  9,
+                       "Text":  "SELECTED_FEATURE",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  48,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  25,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  49,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  26,
+                       "Text":  "1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  52,
+                       "Length":  7,
+                       "Line":  3,
+                       "Column":  1,
+                       "Text":  "`define",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  59,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  60,
+                       "Length":  5,
+                       "Line":  3,
+                       "Column":  9,
+                       "Text":  "SCALE",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  65,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  14,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  66,
+                       "Length":  5,
+                       "Line":  3,
+                       "Column":  15,
+                       "Text":  "value",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  71,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  20,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  72,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  21,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  73,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  22,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  74,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  23,
+                       "Text":  "(",
+                       "Context":  "RoundBracketOpen"
+                   },
+                   {
+                       "Start":  75,
+                       "Length":  5,
+                       "Line":  3,
+                       "Column":  24,
+                       "Text":  "value",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  80,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  29,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  81,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  30,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  82,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  31,
+                       "Text":  "*",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  83,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  32,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  84,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  33,
+                       "Text":  "2",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  85,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  34,
+                       "Text":  ")",
+                       "Context":  "RoundBracketClose"
+                   },
+                   {
+                       "Start":  90,
+                       "Length":  6,
+                       "Line":  5,
+                       "Column":  1,
+                       "Text":  "module",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  96,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  97,
+                       "Length":  25,
+                       "Line":  5,
+                       "Column":  8,
+                       "Text":  "ifdef_active_highlighting",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  122,
+                       "Length":  1,
+                       "Line":  5,
+                       "Column":  33,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  127,
+                       "Length":  6,
+                       "Line":  7,
+                       "Column":  1,
+                       "Text":  "`ifdef",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  133,
+                       "Length":  1,
+                       "Line":  7,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  134,
+                       "Length":  12,
+                       "Line":  7,
+                       "Column":  8,
+                       "Text":  "FEATURE_ZERO",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  148,
+                       "Length":  4,
+                       "Line":  8,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  152,
+                       "Length":  5,
+                       "Line":  8,
+                       "Column":  5,
+                       "Text":  "logic",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  157,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  10,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  158,
+                       "Length":  36,
+                       "Line":  8,
+                       "Column":  11,
+                       "Text":  "active_even_when_macro_value_is_zero",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  194,
+                       "Length":  1,
+                       "Line":  8,
+                       "Column":  47,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  197,
+                       "Length":  5,
+                       "Line":  9,
+                       "Column":  1,
+                       "Text":  "`else",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  204,
+                       "Length":  4,
+                       "Line":  10,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  208,
+                       "Length":  4,
+                       "Line":  10,
+                       "Column":  5,
+                       "Text":  "wire",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  212,
+                       "Length":  1,
+                       "Line":  10,
+                       "Column":  9,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  213,
+                       "Length":  26,
+                       "Line":  10,
+                       "Column":  10,
+                       "Text":  "inactive_feature_zero_else",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  239,
+                       "Length":  1,
+                       "Line":  10,
+                       "Column":  36,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  242,
+                       "Length":  6,
+                       "Line":  11,
+                       "Column":  1,
+                       "Text":  "`endif",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  252,
+                       "Length":  6,
+                       "Line":  13,
+                       "Column":  1,
+                       "Text":  "`undef",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  258,
+                       "Length":  1,
+                       "Line":  13,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  259,
+                       "Length":  12,
+                       "Line":  13,
+                       "Column":  8,
+                       "Text":  "FEATURE_ZERO",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  275,
+                       "Length":  6,
+                       "Line":  15,
+                       "Column":  1,
+                       "Text":  "`ifdef",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  281,
+                       "Length":  1,
+                       "Line":  15,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  282,
+                       "Length":  12,
+                       "Line":  15,
+                       "Column":  8,
+                       "Text":  "FEATURE_ZERO",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  296,
+                       "Length":  4,
+                       "Line":  16,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  300,
+                       "Length":  3,
+                       "Line":  16,
+                       "Column":  5,
+                       "Text":  "reg",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  303,
+                       "Length":  1,
+                       "Line":  16,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  304,
+                       "Length":  20,
+                       "Line":  16,
+                       "Column":  9,
+                       "Text":  "inactive_after_undef",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  324,
+                       "Length":  1,
+                       "Line":  16,
+                       "Column":  29,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  327,
+                       "Length":  6,
+                       "Line":  17,
+                       "Column":  1,
+                       "Text":  "`elsif",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  333,
+                       "Length":  1,
+                       "Line":  17,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  334,
+                       "Length":  16,
+                       "Line":  17,
+                       "Column":  8,
+                       "Text":  "SELECTED_FEATURE",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  352,
+                       "Length":  4,
+                       "Line":  18,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  356,
+                       "Length":  5,
+                       "Line":  18,
+                       "Column":  5,
+                       "Text":  "logic",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  361,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  10,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  362,
+                       "Length":  19,
+                       "Line":  18,
+                       "Column":  11,
+                       "Text":  "active_elsif_branch",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  381,
+                       "Length":  1,
+                       "Line":  18,
+                       "Column":  30,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  384,
+                       "Length":  5,
+                       "Line":  19,
+                       "Column":  1,
+                       "Text":  "`else",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  391,
+                       "Length":  4,
+                       "Line":  20,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  395,
+                       "Length":  7,
+                       "Line":  20,
+                       "Column":  5,
+                       "Text":  "integer",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  402,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  12,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  403,
+                       "Length":  19,
+                       "Line":  20,
+                       "Column":  13,
+                       "Text":  "inactive_final_else",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  422,
+                       "Length":  1,
+                       "Line":  20,
+                       "Column":  32,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  425,
+                       "Length":  6,
+                       "Line":  21,
+                       "Column":  1,
+                       "Text":  "`endif",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  435,
+                       "Length":  6,
+                       "Line":  23,
+                       "Column":  1,
+                       "Text":  "`ifdef",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  441,
+                       "Length":  1,
+                       "Line":  23,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  442,
+                       "Length":  13,
+                       "Line":  23,
+                       "Column":  8,
+                       "Text":  "UNKNOWN_OUTER",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  457,
+                       "Length":  4,
+                       "Line":  24,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  461,
+                       "Length":  7,
+                       "Line":  24,
+                       "Column":  5,
+                       "Text":  "`define",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  468,
+                       "Length":  1,
+                       "Line":  24,
+                       "Column":  12,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  469,
+                       "Length":  10,
+                       "Line":  24,
+                       "Column":  13,
+                       "Text":  "INNER_ONLY",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  479,
+                       "Length":  1,
+                       "Line":  24,
+                       "Column":  23,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  480,
+                       "Length":  1,
+                       "Line":  24,
+                       "Column":  24,
+                       "Text":  "1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  483,
+                       "Length":  4,
+                       "Line":  25,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  487,
+                       "Length":  4,
+                       "Line":  25,
+                       "Column":  5,
+                       "Text":  "wire",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  491,
+                       "Length":  1,
+                       "Line":  25,
+                       "Column":  9,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  492,
+                       "Length":  21,
+                       "Line":  25,
+                       "Column":  10,
+                       "Text":  "inactive_outer_branch",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  513,
+                       "Length":  1,
+                       "Line":  25,
+                       "Column":  31,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  516,
+                       "Length":  5,
+                       "Line":  26,
+                       "Column":  1,
+                       "Text":  "`else",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  523,
+                       "Length":  4,
+                       "Line":  27,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  527,
+                       "Length":  7,
+                       "Line":  27,
+                       "Column":  5,
+                       "Text":  "`ifndef",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  534,
+                       "Length":  1,
+                       "Line":  27,
+                       "Column":  12,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  535,
+                       "Length":  10,
+                       "Line":  27,
+                       "Column":  13,
+                       "Text":  "INNER_ONLY",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  547,
+                       "Length":  8,
+                       "Line":  28,
+                       "Column":  1,
+                       "Text":  "        ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  555,
+                       "Length":  5,
+                       "Line":  28,
+                       "Column":  9,
+                       "Text":  "logic",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  560,
+                       "Length":  1,
+                       "Line":  28,
+                       "Column":  14,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  561,
+                       "Length":  20,
+                       "Line":  28,
+                       "Column":  15,
+                       "Text":  "active_nested_ifndef",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  581,
+                       "Length":  1,
+                       "Line":  28,
+                       "Column":  35,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  584,
+                       "Length":  4,
+                       "Line":  29,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  588,
+                       "Length":  5,
+                       "Line":  29,
+                       "Column":  5,
+                       "Text":  "`else",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  595,
+                       "Length":  8,
+                       "Line":  30,
+                       "Column":  1,
+                       "Text":  "        ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  603,
+                       "Length":  5,
+                       "Line":  30,
+                       "Column":  9,
+                       "Text":  "logic",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  608,
+                       "Length":  1,
+                       "Line":  30,
+                       "Column":  14,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  609,
+                       "Length":  20,
+                       "Line":  30,
+                       "Column":  15,
+                       "Text":  "inactive_nested_else",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  629,
+                       "Length":  1,
+                       "Line":  30,
+                       "Column":  35,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  632,
+                       "Length":  4,
+                       "Line":  31,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  636,
+                       "Length":  6,
+                       "Line":  31,
+                       "Column":  5,
+                       "Text":  "`endif",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  644,
+                       "Length":  6,
+                       "Line":  32,
+                       "Column":  1,
+                       "Text":  "`endif",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  654,
+                       "Length":  2,
+                       "Line":  34,
+                       "Column":  1,
+                       "Text":  "/*",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  656,
+                       "Length":  1,
+                       "Line":  34,
+                       "Column":  3,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  657,
+                       "Length":  6,
+                       "Line":  34,
+                       "Column":  4,
+                       "Text":  "`ifdef",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  663,
+                       "Length":  1,
+                       "Line":  34,
+                       "Column":  10,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  664,
+                       "Length":  23,
+                       "Line":  34,
+                       "Column":  11,
+                       "Text":  "COMMENTED_OUT_DIRECTIVE",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  687,
+                       "Length":  1,
+                       "Line":  34,
+                       "Column":  34,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  688,
+                       "Length":  2,
+                       "Line":  34,
+                       "Column":  35,
+                       "Text":  "*/",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  692,
+                       "Length":  5,
+                       "Line":  35,
+                       "Column":  1,
+                       "Text":  "logic",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  697,
+                       "Length":  1,
+                       "Line":  35,
+                       "Column":  6,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  698,
+                       "Length":  32,
+                       "Line":  35,
+                       "Column":  7,
+                       "Text":  "active_after_commented_directive",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  730,
+                       "Length":  1,
+                       "Line":  35,
+                       "Column":  39,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  735,
+                       "Length":  9,
+                       "Line":  37,
+                       "Column":  1,
+                       "Text":  "endmodule",
+                       "Context":  "Undetermined"
+                   }
+               ],
+    "Symbols":  [
+                    {
+                        "Scope":  "__MACRO__",
+                        "Name":  "FEATURE_ZERO",
+                        "TokenType":  "Verilog_Macro",
+                        "HoverText":  "macro definition:\r\n`define FEATURE_ZERO 0\r\n\r\ncondition:\r\n(unconditional)\r\n\r\nmacro condition:\r\n`ifdef FEATURE_ZERO\r\n\r\nmacro undef:\r\n`undef FEATURE_ZERO"
+                    },
+                    {
+                        "Scope":  "__MACRO__",
+                        "Name":  "SELECTED_FEATURE",
+                        "TokenType":  "Verilog_Macro",
+                        "HoverText":  "macro definition:\r\n`define SELECTED_FEATURE 1\r\n\r\ncondition:\r\n(unconditional)\r\n\r\nmacro condition:\r\n`elsif SELECTED_FEATURE"
+                    },
+                    {
+                        "Scope":  "__MACRO__",
+                        "Name":  "SCALE",
+                        "TokenType":  "Verilog_Macro",
+                        "HoverText":  "macro definition:\r\n`define SCALE(value) ((value) * 2)\r\n\r\ncondition:\r\n(unconditional)"
+                    },
+                    {
+                        "Scope":  "__MACRO__",
+                        "Name":  "UNKNOWN_OUTER",
+                        "TokenType":  "Verilog_Macro",
+                        "HoverText":  "macro condition:\r\n`ifdef UNKNOWN_OUTER"
+                    },
+                    {
+                        "Scope":  "__MACRO__",
+                        "Name":  "INNER_ONLY",
+                        "TokenType":  "Verilog_Macro",
+                        "HoverText":  "macro definition:\r\n`define INNER_ONLY 1\r\n\r\ncondition:\r\n`ifdef UNKNOWN_OUTER\r\n\r\nmacro condition:\r\n`ifndef INNER_ONLY"
+                    },
+                    {
+                        "Scope":  "ifdef_active_highlighting",
+                        "Name":  "ifdef_active_highlighting",
+                        "TokenType":  "Verilog_Variable_module",
+                        "HoverText":  "module ifdef_active_highlighting;"
+                    },
+                    {
+                        "Scope":  "ifdef_active_highlighting",
+                        "Name":  "active_even_when_macro_value_is_zero",
+                        "TokenType":  "Verilog_Variable_SystemVerilog",
+                        "HoverText":  "logic active_even_when_macro_value_is_zero"
+                    },
+                    {
+                        "Scope":  "ifdef_active_highlighting",
+                        "Name":  "inactive_feature_zero_else",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "wire inactive_feature_zero_else"
+                    },
+                    {
+                        "Scope":  "ifdef_active_highlighting",
+                        "Name":  "inactive_after_undef",
+                        "TokenType":  "Verilog_Variable_reg",
+                        "HoverText":  "reg inactive_after_undef"
+                    },
+                    {
+                        "Scope":  "ifdef_active_highlighting",
+                        "Name":  "active_elsif_branch",
+                        "TokenType":  "Verilog_Variable_SystemVerilog",
+                        "HoverText":  "logic active_elsif_branch"
+                    },
+                    {
+                        "Scope":  "ifdef_active_highlighting",
+                        "Name":  "inactive_final_else",
+                        "TokenType":  "Verilog_Variable_reg",
+                        "HoverText":  "integer inactive_final_else"
+                    },
+                    {
+                        "Scope":  "ifdef_active_highlighting",
+                        "Name":  "inactive_outer_branch",
+                        "TokenType":  "Verilog_Variable_wire",
+                        "HoverText":  "wire inactive_outer_branch"
+                    },
+                    {
+                        "Scope":  "ifdef_active_highlighting",
+                        "Name":  "active_nested_ifndef",
+                        "TokenType":  "Verilog_Variable_SystemVerilog",
+                        "HoverText":  "logic active_nested_ifndef"
+                    },
+                    {
+                        "Scope":  "ifdef_active_highlighting",
+                        "Name":  "inactive_nested_else",
+                        "TokenType":  "Verilog_Variable_SystemVerilog",
+                        "HoverText":  "logic inactive_nested_else"
+                    },
+                    {
+                        "Scope":  "ifdef_active_highlighting",
+                        "Name":  "active_after_commented_directive",
+                        "TokenType":  "Verilog_Variable_SystemVerilog",
+                        "HoverText":  "logic active_after_commented_directive"
+                    }
+                ]
+}

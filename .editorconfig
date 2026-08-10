@@ -8,6 +8,7 @@ insert_final_newline = true
 
 # C# files
 [*.cs]
+spelling_exclusion_path = vle_exclusion.dic
 
 #### Core EditorConfig Options ####
 

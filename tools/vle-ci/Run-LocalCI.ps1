@@ -13,8 +13,13 @@ param(
     [string]$Configuration = "Debug",
     [string]$Manifest = "tools/vle-ci/manifests/cold-open.json",
     [string]$Baseline = "",
+    [string]$PerformanceBaseline = "",
     [switch]$UpdateBaseline,
     [switch]$AllowNewSnapshots,
+    [switch]$FailOnPerformanceRegression,
+    [double]$PerformanceSamePercent = 10.0,
+    [double]$PerformanceRegressionPercent = 25.0,
+    [double]$PerformanceMinimumRegressionSeconds = 10.0,
     [switch]$SkipBuild,
     [switch]$SkipSnapshots,
     [string]$RootSuffix = "Exp"
@@ -22,6 +27,9 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+. (Join-Path $PSScriptRoot "SnapshotBaseline.ps1")
+. (Join-Path $PSScriptRoot "PerformanceBaseline.ps1")
 
 function Get-RepoRoot {
     $scriptDir = Split-Path -Parent $PSCommandPath
@@ -59,6 +67,88 @@ function Get-MSBuildPath {
     throw "Could not find MSBuild.exe. Run from a Visual Studio Developer PowerShell or install VS Build Tools."
 }
 
+
+function Get-VisualStudioMajorFromPath {
+    param([string]$Path)
+
+    if ([string]::IsNullOrWhiteSpace($Path)) {
+        return ""
+    }
+
+    $match = [regex]::Match($Path, "(?i)\\Microsoft Visual Studio\\(?<Major>\d+)\\")
+    if ($match.Success) {
+        return $match.Groups["Major"].Value
+    }
+
+    return ""
+}
+
+function Stop-ExperimentalDevenvForLocalCi {
+    param([string]$RequestedRootSuffix)
+
+    if ([string]::IsNullOrWhiteSpace($RequestedRootSuffix)) {
+        return
+    }
+
+    $escapedRootSuffix = [regex]::Escape($RequestedRootSuffix)
+    $rootSuffixPattern = '(?i)(?:^|\s)/RootSuffix(?:\s+|[:=])(?:"{0}"|{0})(?=\s|$)' -f $escapedRootSuffix
+
+    $processes = @(Get-CimInstance Win32_Process -Filter "Name = 'devenv.exe'" -ErrorAction SilentlyContinue)
+    foreach ($process in $processes) {
+        $commandLine = [string]$process.CommandLine
+        if ([string]::IsNullOrWhiteSpace($commandLine)) {
+            continue
+        }
+
+        if ($commandLine -match $rootSuffixPattern) {
+            try {
+                Stop-Process -Id ([int]$process.ProcessId) -Force -ErrorAction SilentlyContinue
+            }
+            catch {
+                Write-Warning "Could not stop Experimental Instance process $($process.ProcessId): $_"
+            }
+        }
+    }
+}
+
+function Clear-ExperimentalMefStateForLocalCi {
+    param(
+        [string]$VisualStudioMajor,
+        [string]$RootSuffix
+    )
+
+    if ([string]::IsNullOrWhiteSpace($VisualStudioMajor)) {
+        Write-Warning "Could not determine Visual Studio major version; skipping Experimental Instance MEF cleanup."
+        return
+    }
+
+    Stop-ExperimentalDevenvForLocalCi -RequestedRootSuffix $RootSuffix
+
+    $hivePattern = "{0}.0*{1}" -f $VisualStudioMajor, $RootSuffix
+    $baseDirs = @(
+        (Join-Path $env:APPDATA "Microsoft\VisualStudio"),
+        (Join-Path $env:LOCALAPPDATA "Microsoft\VisualStudio")
+    )
+
+    foreach ($baseDir in $baseDirs) {
+        if (!(Test-Path -LiteralPath $baseDir)) {
+            continue
+        }
+
+        foreach ($hive in @(Get-ChildItem -LiteralPath $baseDir -Directory -Filter $hivePattern -ErrorAction SilentlyContinue)) {
+            $componentModelCache = Join-Path $hive.FullName "ComponentModelCache"
+            if (Test-Path -LiteralPath $componentModelCache) {
+                Remove-Item -LiteralPath $componentModelCache -Recurse -Force -ErrorAction SilentlyContinue
+            }
+
+            $extensionRoot = Join-Path $hive.FullName "Extensions\gojimmypi\Verilog Language Extension"
+            if (Test-Path -LiteralPath $extensionRoot) {
+                Remove-Item -LiteralPath $extensionRoot -Recurse -Force -ErrorAction SilentlyContinue
+            }
+        }
+    }
+}
+
 function Format-JsonFile {
     param([string]$Path)
 
@@ -67,11 +157,8 @@ function Format-JsonFile {
     }
 
     try {
-        $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
-        $rawJson = [System.IO.File]::ReadAllText($Path, [System.Text.Encoding]::UTF8)
-        $json = $rawJson | ConvertFrom-Json
-        $text = $json | ConvertTo-Json -Depth 100
-        [System.IO.File]::WriteAllText($Path, ($text + [Environment]::NewLine), $utf8NoBom)
+        $json = Read-VleJsonFile -Path $Path
+        Write-VleJsonFile -Path $Path -Value $json
     }
     catch {
         Write-Warning "Could not format JSON $Path`: $_"
@@ -238,9 +325,7 @@ function Add-RunInfoVersionMetadata {
         Write-Warning "Could not record Git commit in run-info.json: $_"
     }
 
-    $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
-    $text = $runInfo | ConvertTo-Json -Depth 100
-    [System.IO.File]::WriteAllText($runInfoPath, ($text + [Environment]::NewLine), $utf8NoBom)
+    Write-VleJsonFile -Path $runInfoPath -Value $runInfo
 }
 
 function Add-RunInfoCiTimingMetadata {
@@ -261,9 +346,7 @@ function Add-RunInfoCiTimingMetadata {
         Add-NoteProperty -Object $runInfo -Name "CiElapsedSeconds" -Value $totalRecord[0].ElapsedSeconds
     }
 
-    $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
-    $text = $runInfo | ConvertTo-Json -Depth 100
-    [System.IO.File]::WriteAllText($runInfoPath, ($text + [Environment]::NewLine), $utf8NoBom)
+    Write-VleJsonFile -Path $runInfoPath -Value $runInfo
 }
 
 $script:ciTimingRecords = New-Object 'System.Collections.Generic.List[object]'
@@ -275,12 +358,19 @@ $currentSnapshots = Join-Path $repoRoot "artifacts/snapshots/current"
 $expectations = Join-Path $repoRoot "tools/vle-ci/expectations"
 $compareTool = Join-Path $repoRoot "tools/vle-ci/Compare-Snapshots.py"
 $baselinePath = ""
+$performanceBaselinePath = ""
 
 if (!$SkipBuild) {
     $buildStopwatch = [System.Diagnostics.Stopwatch]::StartNew()
     try {
         $msbuild = Get-MSBuildPath
         Write-Host "MSBuild: $msbuild"
+
+        # Local CI depends on DEBUG-only MEF exports being discovered by the
+        # selected Experimental Instance. Clear stale MEF and local-deployment
+        # state before MSBuild deploys the freshly built VSIX.
+        $visualStudioMajor = Get-VisualStudioMajorFromPath -Path $msbuild
+        Clear-ExperimentalMefStateForLocalCi -VisualStudioMajor $visualStudioMajor -RootSuffix $RootSuffix
 
         # Build the solution explicitly because this repo has both solution and project files.
         & $msbuild $solution /restore /m /p:Configuration=$Configuration
@@ -374,29 +464,42 @@ catch {
     throw
 }
 
-if ($UpdateBaseline -and ![string]::IsNullOrWhiteSpace($baselinePath)) {
-    Add-RunInfoVersionMetadata -RepoRoot $repoRoot -SnapshotDirectory $baselinePath
-
-    $formatBaselineStopwatch = [System.Diagnostics.Stopwatch]::StartNew()
-    try {
-        Format-GeneratedJsonFiles -Directory $baselinePath
-        Add-CiTimingRecord -Name "Format baseline JSON" -Stopwatch $formatBaselineStopwatch | Out-Null
-    }
-    catch {
-        Add-CiTimingRecord -Name "Format baseline JSON" -Stopwatch $formatBaselineStopwatch -Status "Failed" | Out-Null
-        throw
-    }
-}
-
 Add-CiTimingRecord -Name "Total" -Stopwatch $ciTotalStopwatch | Out-Null
 
 if (!$SkipSnapshots) {
     Add-RunInfoCiTimingMetadata -SnapshotDirectory $currentSnapshots
-    Format-JsonFile -Path (Join-Path $currentSnapshots "run-info.json")
+    $currentRunInfoPath = Join-Path $currentSnapshots "run-info.json"
+    Format-JsonFile -Path $currentRunInfoPath
 
-    if ($UpdateBaseline -and ![string]::IsNullOrWhiteSpace($baselinePath)) {
-        Add-RunInfoCiTimingMetadata -SnapshotDirectory $baselinePath
-        Format-JsonFile -Path (Join-Path $baselinePath "run-info.json")
+    if (![string]::IsNullOrWhiteSpace($PerformanceBaseline)) {
+        $performanceBaselinePath = Resolve-LocalCiPath `
+            -RepoRoot $repoRoot `
+            -Path $PerformanceBaseline
+
+        if (Test-Path -LiteralPath $performanceBaselinePath -PathType Leaf) {
+            $performanceResult = Compare-VlePerformanceBaseline `
+                -CurrentRunInfoPath $currentRunInfoPath `
+                -BaselinePath $performanceBaselinePath `
+                -SamePercent $PerformanceSamePercent `
+                -RegressionPercent $PerformanceRegressionPercent `
+                -MinimumRegressionSeconds $PerformanceMinimumRegressionSeconds `
+                -FailOnRegression:$FailOnPerformanceRegression
+
+            if (!$performanceResult.Passed) {
+                $message = (
+                    "Performance comparison found {0} regression(s) above " +
+                    "the configured threshold.") -f `
+                    $performanceResult.RegressionCount
+                throw $message
+            }
+        }
+        else {
+            $message = (
+                "Performance baseline not found: {0}. Create it with " +
+                ".\scripts\update-performance-baseline.ps1 after reviewing " +
+                "a completed ci-check run.") -f $performanceBaselinePath
+            Write-Warning $message
+        }
     }
 }
 

@@ -1,5 +1,6 @@
 [![VLE Headless CI](https://github.com/gojimmypi/VerilogLanguageExtension/actions/workflows/validate-manifest-snapshots.yml/badge.svg)](https://github.com/gojimmypi/VerilogLanguageExtension/actions/workflows/validate-manifest-snapshots.yml)
 [![Build Verilog Language Extension](https://github.com/gojimmypi/VerilogLanguageExtension/actions/workflows/build-verilog-language-extension.yml/badge.svg)](https://github.com/gojimmypi/VerilogLanguageExtension/actions/workflows/build-verilog-language-extension.yml)
+[![VLE board FPGA build](https://github.com/gojimmypi/VerilogLanguageExtension/actions/workflows/vle-board-fpga-build.yml/badge.svg)](https://github.com/gojimmypi/VerilogLanguageExtension/actions/workflows/vle-board-fpga-build.yml)
 [![Text hygiene](https://github.com/gojimmypi/VerilogLanguageExtension/actions/workflows/text-hygiene.yml/badge.svg)](https://github.com/gojimmypi/VerilogLanguageExtension/actions/workflows/text-hygiene.yml)
 
 # Verilog Language Extension
@@ -270,6 +271,14 @@ From [Microsoft System.Windows.Media.Colors Class](https://docs.microsoft.com/en
 
 ![art-color-table.png](./images/art-color-table.png)
 
+## Development
+
+Remove "experimental" directories, probably called something like `18.0_83ca6b20Exp` in both:
+
+```
+C:\Users\%USERNAME%\AppData\Roaming\Microsoft\VisualStudio
+C:\Users\%USERNAME%\AppData\Local\Microsoft\VisualStudio
+```
 
 ## Troubleshooting
 

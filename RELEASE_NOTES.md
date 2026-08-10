@@ -6,9 +6,47 @@ For prior versions, see:
 
 https://github.com/gojimmypi/VerilogLanguageExtension/blob/main/releases/README.md
 
-Release date: 2026-07-05
+## Overview
+
+The current published release version is v0.5.1.67 with the `.67` as a nod to the 
+[yosys 0.67](https://github.com/YosysHQ/yosys/releases#release-v0.67) release: in particular
+the "_SystemVerilog support now using sv-elab, built on top of slang library_.
 
 ## Overview
+
+Release date: August 10, 2026
+
+## Changes
+
+* Expanded SystemVerilog syntax highlighting, with recognition of additional SystemVerilog types and constructs including `logic`, `bit`, `byte`, `shortint`, `int`, and `longint`.
+* Added distinct coloring for variables declared with SystemVerilog data types, keeping variable names visually separate from the SystemVerilog type keyword itself.
+* Added SystemVerilog `typedef` alias colorization, including separate classifications for the typedef type name and variables declared using that typedef.
+* Improved typedef resolution and hover behavior, including scoped typedef aliases and correct classification of typedef-based variable references.
+* Corrected erroneous Verilog comment hover behavior.
+* Added dedicated highlighting for Verilog/SystemVerilog system tasks and functions such as `$display`, `$write`, `$clog2`, `$test$plusargs`, `$value$plusargs`, and related `$...` constructs.
+* Added distinctive `$fatal` highlighting so fatal simulation/error calls are visually differentiated from ordinary system tasks and functions.
+* Expanded Quick Info / hover documentation for system tasks and functions, providing descriptions directly in the editor for commonly used `$...` built-ins.
+* Improved preprocessor and macro handling, including more accurate macro evaluation and highlighting as conditional-preprocessor state changes.
+* Improved inactive preprocessor-region highlighting, with inactive branches classified as inactive code and nested conditional directives handled according to their active/inactive state.
+* Added controls for displaying otherwise inactive macro code, including support for `NO_INACTIVE_MACRO_CODE`, `VLE: SHOW_INACTIVE_CODE`, and `VLE_SHOW_INACTIVE_CODE`.
+* Improved local and lexical-scope variable colorization, including more accurate declaration tracking inside functions, tasks, and nested scopes.
+* Added proper declaration handling for `automatic` and `static` lifetime qualifiers, improving classification of SystemVerilog local declarations.
+* Prevented comments and attributes from being interpreted as declarations, reducing false declaration, scope, and duplicate-symbol detection.
+* Improved attribute handling for `(* ... *)` constructs, including integration with declaration parsing so attribute text does not interfere with symbol detection.
+* Enabled SystemVerilog keyword highlighting in `.v` files, rather than assuming SystemVerilog syntax can only appear in `.sv` and `.svh` files.
+* Expanded navigation support to `.verilog` files in addition to `.v`, `.sv`, `.vh`, and `.svh`.
+* Improved Find References and definition searching by excluding generated `build` directories, avoiding irrelevant matches from build output.
+* Refined syntax-color defaults for dark and light themes, including SystemVerilog types, typedef aliases, typedef-declared variables, macros, registers, and register variables.
+* Improved visual distinction between `reg` keywords and register variables, with updated dark- and light-theme register colors.
+* Expanded SystemVerilog and macro regression coverage, including additional syntax, hover, declaration, typedef, and preprocessor test cases.
+* Hardened snapshot-based CI and regression testing with more deterministic and portable baselines, repository-relative source locations, reduced volatile metadata, and improved baseline/performance tooling.
+* Advanced the VLE pre-release version to `0.4.1.16`.
+
+The v0.4.1.6 not published but is avilable for download.
+
+Release date: 2026-07-05
+
+## Overview for v0.4.1.5 
 
 v0.4.1.5 is a navigation, release-polish, and CI-health update. The main user-visible improvement is expanded Verilog navigation support, including Peek Definition and Find All References, along with improved definition lookup across parsed files. This release also tightens VSIX metadata, release version checks, snapshot baseline validation, and local script organization.
 

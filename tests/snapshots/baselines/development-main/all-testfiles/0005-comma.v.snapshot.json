@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.5",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\comma.v",
-    "FileRelativePath":  "TestFiles\\comma.v",
+    "FilePath":  "TestFiles/comma.v",
+    "FileRelativePath":  "TestFiles/comma.v",
     "ContentType":  "verilog",
     "SnapshotLength":  609,
     "SnapshotVersion":  2,
@@ -509,7 +508,7 @@
                                 "Column":  13,
                                 "Text":  "integer",
                                 "Types":  [
-                                              "Variable_localparam"
+                                              "integer"
                                           ]
                             },
                             {
@@ -559,7 +558,7 @@
                                 "Column":  13,
                                 "Text":  "integer",
                                 "Types":  [
-                                              "Variable_localparam"
+                                              "integer"
                                           ]
                             },
                             {
@@ -1511,8 +1510,8 @@
                      "Column":  13,
                      "Text":  "integer",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_localparam",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_integer",
+                     "HoverText":  "The integer reserved word declares a 32-bit signed, four-state integral variable type."
                  },
                  {
                      "Start":  339,
@@ -1561,8 +1560,8 @@
                      "Column":  13,
                      "Text":  "integer",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_localparam",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_integer",
+                     "HoverText":  "The integer reserved word declares a 32-bit signed, four-state integral variable type."
                  },
                  {
                      "Start":  405,
@@ -1862,7 +1861,7 @@
                      "Text":  "adder",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module adder( [31:0] a)"
+                     "HoverText":  null
                  }
              ],
     "Tokens":  [

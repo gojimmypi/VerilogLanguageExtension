@@ -1,0 +1,10 @@
+Each of these files should emit normal syntax classifications for both branches
+and should emit no Verilog_InactiveCode tag:
+
+  ifdef_optout_pragma.sv
+  ifdef_optout_attribute.sv
+  ifdef_optout_macro.sv
+  ifdef_optout_include_macro.sv
+
+The preprocessor evaluator should still report UNDEFINED_FEATURE as undefined;
+only inactive-code presentation is suppressed.

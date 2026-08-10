@@ -43,10 +43,16 @@ namespace VerilogLanguage.VerilogToken
     public class VerilogTokenTag : ITag
     {
         public VerilogTokenTypes type { get; private set; }
+        public string HoverText { get; private set; }
 
-        public VerilogTokenTag(VerilogTokenTypes type) {
+        public VerilogTokenTag(VerilogTokenTypes type)
+            : this(type, string.Empty) {
+        }
+
+        public VerilogTokenTag(VerilogTokenTypes type, string hoverText) {
             VerilogGlobals.PerfMon.VerilogTokenTag_Count++;
             this.type = type;
+            HoverText = hoverText ?? string.Empty;
         }
     }
 

@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.5",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\src\\TRNG\\trng_stub.v",
-    "FileRelativePath":  "TestFiles\\src\\TRNG\\trng_stub.v",
+    "FilePath":  "TestFiles/src/TRNG/trng_stub.v",
+    "FileRelativePath":  "TestFiles/src/TRNG/trng_stub.v",
     "ContentType":  "verilog",
     "SnapshotLength":  3952,
     "SnapshotVersion":  2,
@@ -243,13 +242,13 @@
                                           ]
                             },
                             {
-                                "Start":  675,
-                                "Length":  42,
+                                "Start":  671,
+                                "Length":  46,
                                 "Line":  23,
-                                "Column":  5,
-                                "Text":  "/* stub not used when TRNG is disabled. */",
+                                "Column":  1,
+                                "Text":  "    /* stub not used when TRNG is disabled. */",
                                 "Types":  [
-                                              "comment"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -903,73 +902,13 @@
                                           ]
                             },
                             {
-                                "Start":  1113,
-                                "Length":  6,
+                                "Start":  1109,
+                                "Length":  42,
                                 "Line":  39,
-                                "Column":  5,
-                                "Text":  "output",
+                                "Column":  1,
+                                "Text":  "    output reg  [7:0] stream_sample_count,",
                                 "Types":  [
-                                              "output"
-                                          ]
-                            },
-                            {
-                                "Start":  1120,
-                                "Length":  3,
-                                "Line":  39,
-                                "Column":  12,
-                                "Text":  "reg",
-                                "Types":  [
-                                              "reg"
-                                          ]
-                            },
-                            {
-                                "Start":  1125,
-                                "Length":  1,
-                                "Line":  39,
-                                "Column":  17,
-                                "Text":  "[",
-                                "Types":  [
-                                              "Bracket2"
-                                          ]
-                            },
-                            {
-                                "Start":  1126,
-                                "Length":  1,
-                                "Line":  39,
-                                "Column":  18,
-                                "Text":  "7",
-                                "Types":  [
-                                              "Value"
-                                          ]
-                            },
-                            {
-                                "Start":  1128,
-                                "Length":  1,
-                                "Line":  39,
-                                "Column":  20,
-                                "Text":  "0",
-                                "Types":  [
-                                              "Value"
-                                          ]
-                            },
-                            {
-                                "Start":  1129,
-                                "Length":  1,
-                                "Line":  39,
-                                "Column":  21,
-                                "Text":  "]",
-                                "Types":  [
-                                              "Bracket2"
-                                          ]
-                            },
-                            {
-                                "Start":  1131,
-                                "Length":  19,
-                                "Line":  39,
-                                "Column":  23,
-                                "Text":  "stream_sample_count",
-                                "Types":  [
-                                              "Variable_reg"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -1713,23 +1652,13 @@
                                           ]
                             },
                             {
-                                "Start":  2007,
-                                "Length":  19,
+                                "Start":  1995,
+                                "Length":  41,
                                 "Line":  68,
-                                "Column":  13,
-                                "Text":  "stream_sample_count",
+                                "Column":  1,
+                                "Text":  "            stream_sample_count \u003c= 8\u0027h00;",
                                 "Types":  [
-                                              "Variable_reg"
-                                          ]
-                            },
-                            {
-                                "Start":  2030,
-                                "Length":  5,
-                                "Line":  68,
-                                "Column":  36,
-                                "Text":  "8\u0027h00",
-                                "Types":  [
-                                              "Value"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -2523,33 +2452,13 @@
                                           ]
                             },
                             {
-                                "Start":  2991,
-                                "Length":  19,
+                                "Start":  2971,
+                                "Length":  71,
                                 "Line":  93,
-                                "Column":  21,
-                                "Text":  "stream_sample_count",
+                                "Column":  1,
+                                "Text":  "                    stream_sample_count \u003c= stream_sample_count + 8\u0027h01;",
                                 "Types":  [
-                                              "Variable_reg"
-                                          ]
-                            },
-                            {
-                                "Start":  3014,
-                                "Length":  19,
-                                "Line":  93,
-                                "Column":  44,
-                                "Text":  "stream_sample_count",
-                                "Types":  [
-                                              "Variable_reg"
-                                          ]
-                            },
-                            {
-                                "Start":  3036,
-                                "Length":  5,
-                                "Line":  93,
-                                "Column":  66,
-                                "Text":  "8\u0027h01",
-                                "Types":  [
-                                              "Value"
+                                              "InactiveCode"
                                           ]
                             },
                             {
@@ -5542,177 +5451,17 @@
                      "Text":  "TRNG_ENABLED",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "macro condition:\r\n`ifdef TRNG_ENABLED"
+                     "HoverText":  "Macro `TRNG_ENABLED` is not defined."
                  },
                  {
-                     "Start":  675,
-                     "Length":  2,
+                     "Start":  671,
+                     "Length":  46,
                      "Line":  23,
-                     "Column":  5,
-                     "Text":  "/*",
+                     "Column":  1,
+                     "Text":  "    /* stub not used when TRNG is disabled. */",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  677,
-                     "Length":  1,
-                     "Line":  23,
-                     "Column":  7,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  678,
-                     "Length":  4,
-                     "Line":  23,
-                     "Column":  8,
-                     "Text":  "stub",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  682,
-                     "Length":  1,
-                     "Line":  23,
-                     "Column":  12,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  683,
-                     "Length":  3,
-                     "Line":  23,
-                     "Column":  13,
-                     "Text":  "not",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  686,
-                     "Length":  1,
-                     "Line":  23,
-                     "Column":  16,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  687,
-                     "Length":  4,
-                     "Line":  23,
-                     "Column":  17,
-                     "Text":  "used",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  691,
-                     "Length":  1,
-                     "Line":  23,
-                     "Column":  21,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  692,
-                     "Length":  4,
-                     "Line":  23,
-                     "Column":  22,
-                     "Text":  "when",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  696,
-                     "Length":  1,
-                     "Line":  23,
-                     "Column":  26,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  697,
-                     "Length":  4,
-                     "Line":  23,
-                     "Column":  27,
-                     "Text":  "TRNG",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  701,
-                     "Length":  1,
-                     "Line":  23,
-                     "Column":  31,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  702,
-                     "Length":  2,
-                     "Line":  23,
-                     "Column":  32,
-                     "Text":  "is",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  704,
-                     "Length":  1,
-                     "Line":  23,
-                     "Column":  34,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  705,
-                     "Length":  9,
-                     "Line":  23,
-                     "Column":  35,
-                     "Text":  "disabled.",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  714,
-                     "Length":  1,
-                     "Line":  23,
-                     "Column":  44,
-                     "Text":  " ",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  715,
-                     "Length":  2,
-                     "Line":  23,
-                     "Column":  45,
-                     "Text":  "*/",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Comment",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_ENABLED\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  718,
@@ -6152,7 +5901,7 @@
                      "Text":  "oscillator",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input  wire       reg_oscen, /* oscillator enable */"
+                     "HoverText":  null
                  },
                  {
                      "Start":  972,
@@ -6172,7 +5921,7 @@
                      "Text":  "enable",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "input  wire       reg_oscen, /* oscillator enable */"
+                     "HoverText":  null
                  },
                  {
                      "Start":  979,
@@ -6422,77 +6171,17 @@
                      "Text":  "TRNG_BINARY_STREAM",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "module trng_stub( .. output reg [7:0] stream_sample_count .. )"
+                     "HoverText":  "Macro `TRNG_BINARY_STREAM` is not defined."
                  },
                  {
-                     "Start":  1113,
-                     "Length":  6,
+                     "Start":  1109,
+                     "Length":  42,
                      "Line":  39,
-                     "Column":  5,
-                     "Text":  "output",
+                     "Column":  1,
+                     "Text":  "    output reg  [7:0] stream_sample_count,",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_output",
-                     "HoverText":  "The reserved word output is a port definition providing a means of interconnecting hardware descriptions consisting of modules, primitives, and macromodules. For example, module X can instantiate module Y, using port connections appropriate to module X. These port names can differ from the names of the internal nets and registers specified in the definition of module Y."
-                 },
-                 {
-                     "Start":  1120,
-                     "Length":  3,
-                     "Line":  39,
-                     "Column":  12,
-                     "Text":  "reg",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_reg",
-                     "HoverText":  "A reg is an abstraction of a data storage element. The reg stores a value from one assignment to the next. An assignment statement in a procedure acts as a trigger that changes the value in the data storage element. Reg data types can only be assigned inside of the procedural, initial, always blocks or when they are declared."
-                 },
-                 {
-                     "Start":  1125,
-                     "Length":  1,
-                     "Line":  39,
-                     "Column":  17,
-                     "Text":  "[",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket2",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  1126,
-                     "Length":  1,
-                     "Line":  39,
-                     "Column":  18,
-                     "Text":  "7",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Value",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  1128,
-                     "Length":  1,
-                     "Line":  39,
-                     "Column":  20,
-                     "Text":  "0",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Value",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  1129,
-                     "Length":  1,
-                     "Line":  39,
-                     "Column":  21,
-                     "Text":  "]",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Bracket2",
-                     "HoverText":  null
-                 },
-                 {
-                     "Start":  1131,
-                     "Length":  19,
-                     "Line":  39,
-                     "Column":  23,
-                     "Text":  "stream_sample_count",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
-                     "HoverText":  "output reg  [7:0] stream_sample_count"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_BINARY_STREAM\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  1152,
@@ -6592,7 +6281,7 @@
                      "Text":  "sample_ctr",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [15:0] sample_ctr"
+                     "HoverText":  null
                  },
                  {
                      "Start":  1218,
@@ -6752,7 +6441,7 @@
                      "Text":  "lfsr",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [15:0] lfsr"
+                     "HoverText":  null
                  },
                  {
                      "Start":  1267,
@@ -7862,7 +7551,7 @@
                      "Text":  "reg_ctrl",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module trng_stub( .. input wire [7:0] reg_ctrl .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  1718,
@@ -8562,27 +8251,17 @@
                      "Text":  "TRNG_BINARY_STREAM",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "module trng_stub( .. output reg [7:0] stream_sample_count .. )"
+                     "HoverText":  "Macro `TRNG_BINARY_STREAM` is not defined."
                  },
                  {
-                     "Start":  2007,
-                     "Length":  19,
+                     "Start":  1995,
+                     "Length":  41,
                      "Line":  68,
-                     "Column":  13,
-                     "Text":  "stream_sample_count",
+                     "Column":  1,
+                     "Text":  "            stream_sample_count \u003c= 8\u0027h00;",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
-                     "HoverText":  "output reg  [7:0] stream_sample_count"
-                 },
-                 {
-                     "Start":  2030,
-                     "Length":  5,
-                     "Line":  68,
-                     "Column":  36,
-                     "Text":  "8\u0027h00",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Value",
-                     "HoverText":  "8\u0027H00 = (8 bit Hex) 00; 00000000"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_BINARY_STREAM\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  2037,
@@ -8872,7 +8551,7 @@
                      "Text":  "reg_status",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module trng_stub( .. output reg [7:0] reg_status .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  2317,
@@ -9722,7 +9401,7 @@
                      "Text":  "sample_ctr",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [15:0] sample_ctr"
+                     "HoverText":  null
                  },
                  {
                      "Start":  2746,
@@ -10242,37 +9921,17 @@
                      "Text":  "TRNG_BINARY_STREAM",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Macro",
-                     "HoverText":  "module trng_stub( .. output reg [7:0] stream_sample_count .. )"
+                     "HoverText":  "Macro `TRNG_BINARY_STREAM` is not defined."
                  },
                  {
-                     "Start":  2991,
-                     "Length":  19,
+                     "Start":  2971,
+                     "Length":  71,
                      "Line":  93,
-                     "Column":  21,
-                     "Text":  "stream_sample_count",
+                     "Column":  1,
+                     "Text":  "                    stream_sample_count \u003c= stream_sample_count + 8\u0027h01;",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
-                     "HoverText":  "output reg  [7:0] stream_sample_count"
-                 },
-                 {
-                     "Start":  3014,
-                     "Length":  19,
-                     "Line":  93,
-                     "Column":  44,
-                     "Text":  "stream_sample_count",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_reg",
-                     "HoverText":  "output reg  [7:0] stream_sample_count"
-                 },
-                 {
-                     "Start":  3036,
-                     "Length":  5,
-                     "Line":  93,
-                     "Column":  66,
-                     "Text":  "8\u0027h01",
-                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Value",
-                     "HoverText":  "8\u0027H01 = (8 bit Hex) 01; 00000001"
+                     "TagDetail":  "Verilog_InactiveCode",
+                     "HoverText":  "Inactive preprocessor code: macro \u0027TRNG_BINARY_STREAM\u0027 is not defined. Define it before this conditional (for example in an earlier included configuration file) to enable this branch. To show all branches with normal syntax coloring in this file, add \u0027// VLE: SHOW_INACTIVE_CODE\u0027, \u0027(* NO_INACTIVE_MACRO_CODE *)\u0027, or define \u0027VLE_SHOW_INACTIVE_CODE\u0027."
                  },
                  {
                      "Start":  3043,
@@ -10552,7 +10211,7 @@
                      "Text":  "reg_oscen",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module trng_stub( .. input wire reg_oscen .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3228,
@@ -10622,7 +10281,7 @@
                      "Text":  "reg_src",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module trng_stub( .. input wire [7:0] reg_src .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3243,
@@ -11512,7 +11171,7 @@
                      "Text":  "sample_ctr",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "reg [15:0] sample_ctr"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3696,
@@ -11572,7 +11231,7 @@
                      "Text":  "8\u0027h00",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "8\u0027H00 = (8 bit Hex) 00; 00000000"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3706,
@@ -11602,7 +11261,7 @@
                      "Text":  "reg_div",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module trng_stub( .. input wire [7:0] reg_div .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3715,
@@ -11712,7 +11371,7 @@
                      "Text":  "trng_enable",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "wire trng_enable"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3755,
@@ -12062,7 +11721,7 @@
                      "Text":  "clk",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module trng_stub( .. input wire clk .. )"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3859,
@@ -12132,7 +11791,7 @@
                      "Text":  "trng_stub",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "module trng_stub(  wire clk,\r\n input wire rst_n,\r\n input wire [7:0] reg_ctrl,\r\n input wire [7:0] reg_src,\r\n input wire [7:0] reg_div,\r\n input wire [7:0] reg_mode,\r\n input wire reg_oscen,\r\n output reg [7:0] reg_status,\r\n output reg [7:0] reg_rawlo,\r\n output reg [7:0] reg_rawhi,\r\n`ifdef TRNG_BINARY_STREAM output reg [7:0] stream_sample_count,\r\n`endif output wire trng_bit)"
+                     "HoverText":  null
                  },
                  {
                      "Start":  3887,
@@ -21983,18 +21642,6 @@
                         "Name":  "_unused_reg_mode",
                         "TokenType":  "Verilog_Variable_wire",
                         "HoverText":  "wire _unused_reg_mode = \u0026reg_mode[7:3]"
-                    },
-                    {
-                        "Scope":  "trng_stub",
-                        "Name":  "oscillator",
-                        "TokenType":  "Verilog_Variable_wire",
-                        "HoverText":  "input  wire       reg_oscen, /* oscillator enable */"
-                    },
-                    {
-                        "Scope":  "trng_stub",
-                        "Name":  "enable",
-                        "TokenType":  "Verilog_Variable_wire",
-                        "HoverText":  "input  wire       reg_oscen, /* oscillator enable */"
                     },
                     {
                         "Scope":  "trng_stub",

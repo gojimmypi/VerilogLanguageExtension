@@ -47,9 +47,9 @@ namespace VerilogLanguage
         public static System.Windows.Media.Color DarkThemeInputOutput = Colors.Thistle;
         public static System.Windows.Media.Color DarkThemeEdge = Colors.Khaki;
 
-        public static System.Windows.Media.Color LightThemeDefault = Colors.Thistle;
+        public static System.Windows.Media.Color LightThemeDefault = Colors.RoyalBlue;
         public static System.Windows.Media.Color LightThemeInputOutput = Colors.DarkMagenta;
-        public static System.Windows.Media.Color LightThemeEdge = Colors.Yellow;
+        public static System.Windows.Media.Color LightThemeEdge = Colors.DarkOliveGreen;
 
         /// <summary>
         ///   IsDarkTheme - returns true if the current color scheme is dark (background brightness < 0.5)
@@ -148,7 +148,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.Orange; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.DarkOrange; // default color for light background
+                ForegroundColor = Colors.Sienna; // default color for light background
             }
         }
     }
@@ -207,10 +207,10 @@ namespace VerilogLanguage
         public Verilog_begin() {
             DisplayName = "Verilog - begin"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
+                ForegroundColor = Colors.Turquoise; // default color for dark background
             }
             else {
-                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
+                ForegroundColor = Colors.Teal; // default color for light background
             }
         }
     }
@@ -238,10 +238,10 @@ namespace VerilogLanguage
         public Verilog_case() {
             DisplayName = "Verilog - case"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
+                ForegroundColor = Colors.Turquoise; // default color for dark background
             }
             else {
-                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
+                ForegroundColor = Colors.Teal; // default color for light background
             }
         }
     }
@@ -269,10 +269,10 @@ namespace VerilogLanguage
         public Verilog_casex() {
             DisplayName = "Verilog - casex"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
+                ForegroundColor = Colors.Turquoise; // default color for dark background
             }
             else {
-                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
+                ForegroundColor = Colors.Teal; // default color for light background
             }
         }
     }
@@ -300,10 +300,10 @@ namespace VerilogLanguage
         public Verilog_casez() {
             DisplayName = "Verilog - casez"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
+                ForegroundColor = Colors.Turquoise; // default color for dark background
             }
             else {
-                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
+                ForegroundColor = Colors.Teal; // default color for light background
             }
         }
     }
@@ -396,7 +396,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.Orange; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.DarkOrange; // default color for light background
+                ForegroundColor = Colors.Sienna; // default color for light background
             }
         }
     }
@@ -610,10 +610,10 @@ namespace VerilogLanguage
         public Verilog_end() {
             DisplayName = "Verilog - end"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
+                ForegroundColor = Colors.Turquoise; // default color for dark background
             }
             else {
-                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
+                ForegroundColor = Colors.Teal; // default color for light background
             }
         }
     }
@@ -641,10 +641,10 @@ namespace VerilogLanguage
         public Verilog_endcase() {
             DisplayName = "Verilog - endcase"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
+                ForegroundColor = Colors.Turquoise; // default color for dark background
             }
             else {
-                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
+                ForegroundColor = Colors.Teal; // default color for light background
             }
         }
     }
@@ -800,7 +800,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.PeachPuff; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.DarkKhaki; // default color for light background
+                ForegroundColor = Colors.SaddleBrown; // default color for light background
             }
         }
     }
@@ -863,7 +863,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.PeachPuff; // default color for light background
             }
             else {
-                ForegroundColor = Colors.DarkKhaki; // default color for light background
+                ForegroundColor = Colors.SaddleBrown; // default color for light background
             }
         }
     }
@@ -926,7 +926,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.PeachPuff; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.DarkKhaki; // default color for light background
+                ForegroundColor = Colors.SaddleBrown; // default color for light background
             }
         }
     }
@@ -989,7 +989,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.PeachPuff; // default color for light background
             }
             else {
-                ForegroundColor = Colors.DarkKhaki; // default color for light background
+                ForegroundColor = Colors.SaddleBrown; // default color for light background
             }
         }
     }
@@ -1052,7 +1052,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.PeachPuff; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.DarkKhaki; // default color for light background
+                ForegroundColor = Colors.SaddleBrown; // default color for light background
             }
         }
     }
@@ -1301,7 +1301,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.PeachPuff; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.DarkKhaki; // default color for light background
+                ForegroundColor = Colors.SaddleBrown; // default color for light background
             }
         }
     }
@@ -1372,6 +1372,35 @@ namespace VerilogLanguage
 
 
 
+    #region Keyword integer
+    /// <summary>
+    /// Defines the editor format for the Verilog_integer classification type.
+    /// </summary>
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "integer")]
+    [Name("integer")]
+    [UserVisible(true)]
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_integer : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the "integer" classification type.
+        /// </summary>
+        public Verilog_integer() {
+            DisplayName = "Verilog - integer";
+            if (ColorThemeAttribute.IsDarkTheme()) {
+                ForegroundColor = ColorThemeAttribute.DarkThemeDefault;
+            }
+            else {
+                ForegroundColor = ColorThemeAttribute.LightThemeDefault;
+            }
+        }
+    }
+
+    #endregion // Keyword integer
+
+
+
     #region Keyword instance
     /// <summary>
     /// Defines the editor format for the Verilog_instance classification type. Text is colored CornflowerBlue
@@ -1426,7 +1455,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.PeachPuff; // default color for light background
             }
             else {
-                ForegroundColor = Colors.DarkKhaki; // default color for light background
+                ForegroundColor = Colors.SaddleBrown; // default color for light background
             }
         }
     }
@@ -1768,7 +1797,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.PeachPuff; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.DarkKhaki; // default color for light background
+                ForegroundColor = Colors.SaddleBrown; // default color for light background
             }
         }
     }
@@ -1831,7 +1860,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.PeachPuff; // default color for light background
             }
             else {
-                ForegroundColor = Colors.DarkKhaki; // default color for light background
+                ForegroundColor = Colors.SaddleBrown; // default color for light background
             }
         }
     }
@@ -1858,11 +1887,13 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_reg() {
             DisplayName = "Verilog - reg"; //human readable version of the name
+
+            /* See also type keyword declaration that is the same color. */
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
+                ForegroundColor = Colors.Plum; // default color for dark background
             }
             else {
-                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
+                ForegroundColor = Colors.Purple; // default color for light background
             }
         }
     }
@@ -1894,7 +1925,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.PeachPuff; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.DarkKhaki; // default color for light background
+                ForegroundColor = Colors.SaddleBrown; // default color for light background
             }
         }
     }
@@ -2143,7 +2174,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.PeachPuff; // default color for light background
             }
             else {
-                ForegroundColor = Colors.DarkKhaki; // default color for light background
+                ForegroundColor = Colors.SaddleBrown; // default color for light background
             }
         }
     }
@@ -2604,11 +2635,13 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_wire() {
             DisplayName = "Verilog - wire"; //human readable version of the name
+
+            /* See also variable declarations that are the same/similar color. */
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
+                ForegroundColor = Colors.LightBlue; // default color for dark background
             }
             else {
-                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
+                ForegroundColor = Colors.SlateBlue; // default color for light background
             }
         }
     }
@@ -2618,36 +2651,95 @@ namespace VerilogLanguage
 
     #endregion //Format definition
 
-    #region System Verilog Format Definition
+    #region SystemVerilog Format Definition
 
-    #region Keyword bit
     /// <summary>
-    /// Defines the editor format for the Verilog_bit classification type. Text is colored CornflowerBlue
+    /// Defines the editor format for SystemVerilog-only keywords that VLE marks as
+    /// synthesis-oriented guidance for Yosys read_slang / sv-elab.
     /// </summary>
     [Export(typeof(EditorFormatDefinition))]
-    [ClassificationType(ClassificationTypeNames = "bit")]
-    [Name("bit")]
-    //this should be visible to the end user
-    [UserVisible(true)] // sets this editor format definition visible for the user (in Tools>Options>Environment>Fonts and Colors>Text Editor
-    //set the priority to be after the default classifiers
+    [ClassificationType(ClassificationTypeNames = "SystemVerilogYosysSupported")]
+    [Name("SystemVerilogYosysSupported")]
+    [UserVisible(true)]
     [Order(Before = Priority.Default)]
-    internal sealed class Verilog_bit : ClassificationFormatDefinition
+    internal sealed class Verilog_SystemVerilogYosysSupported : ClassificationFormatDefinition
     {
-        /// <summary>
-        /// Defines the visual format for the "bit" classification type
-        /// </summary>
-        public Verilog_bit() {
-            DisplayName = "Verilog - bit"; //human readable version of the name
+        public Verilog_SystemVerilogYosysSupported() {
+            DisplayName = "SystemVerilog - synthesis-oriented Yosys/sv-elab guidance";
+            IsBold = true;
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = ColorThemeAttribute.DarkThemeDefault; // default color for dark background
+                ForegroundColor = Colors.Gold;
             }
             else {
-                ForegroundColor = ColorThemeAttribute.LightThemeDefault; // default color for light background
+                ForegroundColor = Colors.DarkOliveGreen;
             }
         }
     }
 
-    #endregion // Keyword bit
+    /// <summary>
+    /// Defines the editor format for SystemVerilog-only keywords that VLE marks as
+    /// unsupported, non-synthesizable, or unverified for Yosys read_slang / sv-elab.
+    /// </summary>
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "SystemVerilogYosysUnsupported")]
+    [Name("SystemVerilogYosysUnsupported")]
+    [UserVisible(true)]
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_SystemVerilogYosysUnsupported : ClassificationFormatDefinition
+    {
+        public Verilog_SystemVerilogYosysUnsupported() {
+            DisplayName = "SystemVerilog - unsupported, non-synthesizable, or unverified";
+            IsBold = true;
+            if (ColorThemeAttribute.IsDarkTheme()) {
+                ForegroundColor = Colors.HotPink;
+            }
+            else {
+                ForegroundColor = Colors.Crimson;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Defines the editor format for resolved SystemVerilog typedef alias names.
+    /// </summary>
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "UserDefinedType")]
+    [Name("UserDefinedType")]
+    [UserVisible(true)]
+    [Order(After = Priority.Default)]
+    internal sealed class Verilog_UserDefinedType : ClassificationFormatDefinition
+    {
+        public Verilog_UserDefinedType() {
+            DisplayName = "Verilog - User-defined type (typedef alias)";
+            if (ColorThemeAttribute.IsDarkTheme()) {
+                ForegroundColor = Colors.Yellow; // close to, but distinct from, the Gold SystemVerilog type keyword
+            }
+            else {
+                ForegroundColor = Colors.DarkGoldenrod;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Defines the editor format for variables declared using a SystemVerilog typedef alias.
+    /// </summary>
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "UserDefinedTypeVariable")]
+    [Name("UserDefinedTypeVariable")]
+    [UserVisible(true)]
+    [Order(After = Priority.Default)]
+    internal sealed class Verilog_UserDefinedTypeVariable : ClassificationFormatDefinition
+    {
+        public Verilog_UserDefinedTypeVariable() {
+            DisplayName = "Verilog - Variable declared with typedef alias";
+            if (ColorThemeAttribute.IsDarkTheme()) {
+                ForegroundColor = Colors.LemonChiffon;
+            }
+            else {
+                ForegroundColor = Colors.Chocolate;
+            }
+        }
+    }
 
     #endregion
 
@@ -2669,10 +2761,10 @@ namespace VerilogLanguage
         public Verilog_directive() {
             DisplayName = "Verilog - Directive"; //human readable version of the name
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = Colors.Salmon; // default color for dark background
+                ForegroundColor = Colors.Peru; // .Gray; // default color for dark background MColor.FromRgb(0x9B, 0x9B, 0x9B);
             }
             else {
-                ForegroundColor = Colors.IndianRed; // default color for light background
+                ForegroundColor = Colors.DimGray; // default color for light background
             }
         }
     }
@@ -2714,7 +2806,28 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.Goldenrod;
             }
             else {
-                ForegroundColor = Colors.DarkGoldenrod;
+                ForegroundColor = Colors.Brown;
+            }
+        }
+    }
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "InactiveCode")]
+    [Name("InactiveCode")]
+    [UserVisible(true)]
+    [Order(After = Priority.Default, Before = Priority.High)]
+    internal sealed class Verilog_InactiveCode : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for source excluded by compiler conditionals.
+        /// </summary>
+        public Verilog_InactiveCode() {
+            DisplayName = "Verilog - Inactive Preprocessor Code";
+            if (ColorThemeAttribute.IsDarkTheme()) {
+                ForegroundColor = Colors.Gray;
+            }
+            else {
+                ForegroundColor = Colors.DimGray;
             }
         }
     }
@@ -2756,10 +2869,80 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.MediumSpringGreen;
             }
             else {
-                ForegroundColor = Colors.SeaGreen;
+                ForegroundColor = Colors.Teal;
             }
         }
     }
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "SystemTaskFunction")]
+    [Name("SystemTaskFunction")]
+    [UserVisible(true)]
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_SystemTaskFunction : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for built-in Verilog/SystemVerilog $name tasks and functions.
+        /// </summary>
+        public Verilog_SystemTaskFunction() {
+            DisplayName = "Verilog - System Task / Function ($name)";
+            IsBold = true;
+            if (ColorThemeAttribute.IsDarkTheme()) {
+                ForegroundColor = Colors.DeepSkyBlue;
+            }
+            else {
+                ForegroundColor = Colors.MediumBlue;
+            }
+        }
+    }
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "SystemTaskFatal")]
+    [Name("SystemTaskFatal")]
+    [UserVisible(true)]
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_SystemTaskFatal : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for the $fatal system task.
+        /// </summary>
+        public Verilog_SystemTaskFatal() {
+            DisplayName = "Verilog - System Task - $fatal";
+            IsBold = true;
+            if (ColorThemeAttribute.IsDarkTheme()) {
+                ForegroundColor = Colors.OrangeRed;
+            }
+            else {
+                ForegroundColor = Colors.DarkRed;
+            }
+        }
+    }
+    #endregion
+
+    #region attributes
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "Attribute")]
+    [Name("Attribute")]
+    [UserVisible(true)]
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_Attribute : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for Verilog/SystemVerilog (* ... *) attributes.
+        /// </summary>
+        public Verilog_Attribute() {
+            DisplayName = "Verilog - Attribute (* ... *)";
+            IsBold = true;
+            if (ColorThemeAttribute.IsDarkTheme()) {
+                ForegroundColor = Colors.Khaki;
+            }
+            else {
+                ForegroundColor = Colors.DarkViolet;
+            }
+        }
+    }
+
     #endregion
 
     #region comments
@@ -2782,7 +2965,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.LightSeaGreen; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.LimeGreen; // default color for light background
+                ForegroundColor = Colors.Green; // default color for light background
             }
         }
     }
@@ -2808,7 +2991,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.Cornsilk;
             }
             else {
-                ForegroundColor = Colors.Brown;
+                ForegroundColor = Colors.DarkSlateGray;
             }
         }
     }
@@ -2831,7 +3014,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.SkyBlue;
             }
             else {
-                ForegroundColor = Colors.RoyalBlue;
+                ForegroundColor = Colors.MediumBlue;
             }
         }
     }
@@ -2854,7 +3037,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.LightCoral;
             }
             else {
-                ForegroundColor = Colors.Brown;
+                ForegroundColor = Colors.Firebrick;
             }
         }
     }
@@ -2874,10 +3057,10 @@ namespace VerilogLanguage
         public Verilog_Bracket2() {
             DisplayName = "Verilog - Bracket Depth 2"; //human readable version of the name (in Tools>Options>Environment>Fonts and Colors>Text Editor
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = Colors.Khaki;
+                ForegroundColor = Colors.Tan;
             }
             else {
-                ForegroundColor = Colors.Brown;
+                ForegroundColor = Colors.SaddleBrown;
             }
         }
     }
@@ -2900,7 +3083,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.SteelBlue;
             }
             else {
-                ForegroundColor = Colors.Brown;
+                ForegroundColor = Colors.SlateBlue;
             }
         }
     }
@@ -2923,7 +3106,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.Orange;
             }
             else {
-                ForegroundColor = Colors.Brown;
+                ForegroundColor = Colors.Sienna;
             }
         }
     }
@@ -2946,7 +3129,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.PaleTurquoise;
             }
             else {
-                ForegroundColor = Colors.Brown;
+                ForegroundColor = Colors.Teal;
             }
         }
     }
@@ -2971,7 +3154,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.Cornsilk;
             }
             else {
-                ForegroundColor = Colors.Brown;
+                ForegroundColor = Colors.DarkSlateGray;
             }
         }
     }
@@ -3069,7 +3252,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.Red; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.DarkBlue; // default color for light background
+                ForegroundColor = Colors.Firebrick; // default color for light background
             }
         }
     }
@@ -3088,11 +3271,13 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_Variable_wire() {
             DisplayName = "Verilog - Variable - wire"; //human readable version of the name
+
+            /* See also type keyword declaration that is the same color. */
             if (ColorThemeAttribute.IsDarkTheme()) {
                 ForegroundColor = Colors.LightSteelBlue; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.DarkBlue; // default color for light background
+                ForegroundColor = Colors.SlateBlue; // default color for light background
             }
         }
     }
@@ -3111,11 +3296,38 @@ namespace VerilogLanguage
         /// </summary>
         public Verilog_Variable_reg() {
             DisplayName = "Verilog - Variable - reg"; //human readable version of the name
+
+            /* See also type keyword declaration that is the same color. */
             if (ColorThemeAttribute.IsDarkTheme()) {
-                ForegroundColor = Colors.Plum; // default color for dark background
+                ForegroundColor = Colors.Thistle; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.DarkBlue; // default color for light background
+                ForegroundColor = Colors.Violet; // default color for light background
+            }
+        }
+    }
+
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "Variable_SystemVerilog")]
+    [Name("variable_systemverilog")]
+    //this should be visible to the end user
+    [UserVisible(true)]
+    //set the priority to be after the default classifiers
+    [Order(Before = Priority.Default)]
+    internal sealed class Verilog_Variable_SystemVerilog : ClassificationFormatDefinition
+    {
+        /// <summary>
+        /// Defines the visual format for variables declared with a SystemVerilog data type
+        /// </summary>
+        public Verilog_Variable_SystemVerilog() {
+            DisplayName = "Verilog - Variable - SystemVerilog"; //human readable version of the name
+
+            /* Keep the variable distinct from the bold SystemVerilog type keyword. */
+            if (ColorThemeAttribute.IsDarkTheme()) {
+                ForegroundColor = Colors.Khaki; // slightly lighter than the Gold type keyword
+            }
+            else {
+                ForegroundColor = Colors.DarkGoldenrod; // default color for light background
             }
         }
     }
@@ -3184,7 +3396,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.Red; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.Red; // default color for light background
+                ForegroundColor = Colors.DarkRed; // default color for light background
             }
         }
     }
@@ -3208,7 +3420,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.Cyan; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.DarkCyan; // default color for light background
+                ForegroundColor = Colors.Teal; // default color for light background
             }
         }
     }
@@ -3234,7 +3446,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.LightGreen; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.Navy; // default color for light background
+                ForegroundColor = Colors.DarkGreen; // default color for light background
             }
         }
     }
@@ -3257,7 +3469,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.LightGreen; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.Navy; // default color for light background
+                ForegroundColor = Colors.DarkGreen; // default color for light background
             }
         }
     }
@@ -3280,7 +3492,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.LightGreen; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.Navy; // default color for light background
+                ForegroundColor = Colors.DarkGreen; // default color for light background
             }
         }
     }
@@ -3303,7 +3515,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.LightGreen; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.Navy; // default color for light background
+                ForegroundColor = Colors.DarkGreen; // default color for light background
             }
         }
     }
@@ -3326,7 +3538,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.LightGreen; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.Navy; // default color for light background
+                ForegroundColor = Colors.DarkGreen; // default color for light background
             }
         }
     }
@@ -3349,7 +3561,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.LightGreen; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.Navy; // default color for light background
+                ForegroundColor = Colors.DarkGreen; // default color for light background
             }
         }
     }
@@ -3372,7 +3584,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.LightGreen; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.Navy; // default color for light background
+                ForegroundColor = Colors.DarkGreen; // default color for light background
             }
         }
     }
@@ -3400,7 +3612,7 @@ namespace VerilogLanguage
                 ForegroundColor = Colors.Peru; // default color for dark background
             }
             else {
-                ForegroundColor = Colors.Peru; // default color for light background
+                ForegroundColor = Colors.Maroon; // default color for light background
             }
         }
     }

@@ -1,0 +1,521 @@
+{
+    "SchemaVersion":  3,
+    "RunName":  "all-testfiles",
+    "FilePath":  "TestFiles/macros/ifdef_optout_include_macro.sv",
+    "FileRelativePath":  "TestFiles/macros/ifdef_optout_include_macro.sv",
+    "ContentType":  "verilog",
+    "SnapshotLength":  217,
+    "SnapshotVersion":  2,
+    "TextSha256":  "d0a0288cd8e96b811906e4a3ccb2c6809f460de644b39e7c4996388c2e0e37ff",
+    "Errors":  [
+
+               ],
+    "Classifications":  [
+                            {
+                                "Start":  0,
+                                "Length":  8,
+                                "Line":  1,
+                                "Column":  1,
+                                "Text":  "`include",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  9,
+                                "Length":  39,
+                                "Line":  1,
+                                "Column":  10,
+                                "Text":  "\"include-files/show_inactive_config.vh\"",
+                                "Types":  [
+                                              "StaticString"
+                                          ]
+                            },
+                            {
+                                "Start":  50,
+                                "Length":  6,
+                                "Line":  2,
+                                "Column":  1,
+                                "Text":  "module",
+                                "Types":  [
+                                              "module"
+                                          ]
+                            },
+                            {
+                                "Start":  57,
+                                "Length":  26,
+                                "Line":  2,
+                                "Column":  8,
+                                "Text":  "ifdef_optout_include_macro",
+                                "Types":  [
+                                              "Variable_module"
+                                          ]
+                            },
+                            {
+                                "Start":  86,
+                                "Length":  6,
+                                "Line":  3,
+                                "Column":  1,
+                                "Text":  "`ifdef",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  93,
+                                "Length":  17,
+                                "Line":  3,
+                                "Column":  8,
+                                "Text":  "UNDEFINED_FEATURE",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  116,
+                                "Length":  5,
+                                "Line":  4,
+                                "Column":  5,
+                                "Text":  "logic",
+                                "Types":  [
+                                              "SystemVerilogYosysSupported"
+                                          ]
+                            },
+                            {
+                                "Start":  122,
+                                "Length":  40,
+                                "Line":  4,
+                                "Column":  11,
+                                "Text":  "normally_colored_despite_inactive_branch",
+                                "Types":  [
+                                              "Variable_SystemVerilog"
+                                          ]
+                            },
+                            {
+                                "Start":  165,
+                                "Length":  5,
+                                "Line":  5,
+                                "Column":  1,
+                                "Text":  "`else",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  176,
+                                "Length":  5,
+                                "Line":  6,
+                                "Column":  5,
+                                "Text":  "logic",
+                                "Types":  [
+                                              "SystemVerilogYosysSupported"
+                                          ]
+                            },
+                            {
+                                "Start":  182,
+                                "Length":  13,
+                                "Line":  6,
+                                "Column":  11,
+                                "Text":  "active_branch",
+                                "Types":  [
+                                              "Variable_SystemVerilog"
+                                          ]
+                            },
+                            {
+                                "Start":  198,
+                                "Length":  6,
+                                "Line":  7,
+                                "Column":  1,
+                                "Text":  "`endif",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  206,
+                                "Length":  9,
+                                "Line":  8,
+                                "Column":  1,
+                                "Text":  "endmodule",
+                                "Types":  [
+                                              "endmodule"
+                                          ]
+                            }
+                        ],
+    "Tags":  [
+                 {
+                     "Start":  0,
+                     "Length":  8,
+                     "Line":  1,
+                     "Column":  1,
+                     "Text":  "`include",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  9,
+                     "Length":  39,
+                     "Line":  1,
+                     "Column":  10,
+                     "Text":  "\"include-files/show_inactive_config.vh\"",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_StaticString",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  50,
+                     "Length":  6,
+                     "Line":  2,
+                     "Column":  1,
+                     "Text":  "module",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_module",
+                     "HoverText":  "The module declaration is the only design unit in Verilog. It describes both a design\u0027s interface to other designs in the same environment, and its functional composition."
+                 },
+                 {
+                     "Start":  57,
+                     "Length":  26,
+                     "Line":  2,
+                     "Column":  8,
+                     "Text":  "ifdef_optout_include_macro",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_module",
+                     "HoverText":  "module ifdef_optout_include_macro;"
+                 },
+                 {
+                     "Start":  86,
+                     "Length":  6,
+                     "Line":  3,
+                     "Column":  1,
+                     "Text":  "`ifdef",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  93,
+                     "Length":  17,
+                     "Line":  3,
+                     "Column":  8,
+                     "Text":  "UNDEFINED_FEATURE",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "Macro `UNDEFINED_FEATURE` is not defined."
+                 },
+                 {
+                     "Start":  116,
+                     "Length":  5,
+                     "Line":  4,
+                     "Column":  5,
+                     "Text":  "logic",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemVerilogYosysSupported",
+                     "HoverText":  "SystemVerilog 4-state variable data type. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version."
+                 },
+                 {
+                     "Start":  122,
+                     "Length":  40,
+                     "Line":  4,
+                     "Column":  11,
+                     "Text":  "normally_colored_despite_inactive_branch",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_SystemVerilog",
+                     "HoverText":  "logic normally_colored_despite_inactive_branch"
+                 },
+                 {
+                     "Start":  165,
+                     "Length":  5,
+                     "Line":  5,
+                     "Column":  1,
+                     "Text":  "`else",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  176,
+                     "Length":  5,
+                     "Line":  6,
+                     "Column":  5,
+                     "Text":  "logic",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemVerilogYosysSupported",
+                     "HoverText":  "SystemVerilog 4-state variable data type. VLE marks this keyword as synthesis-oriented guidance for Yosys read_slang/sv-elab; actual support depends on context and tool version."
+                 },
+                 {
+                     "Start":  182,
+                     "Length":  13,
+                     "Line":  6,
+                     "Column":  11,
+                     "Text":  "active_branch",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Variable_SystemVerilog",
+                     "HoverText":  "logic active_branch"
+                 },
+                 {
+                     "Start":  198,
+                     "Length":  6,
+                     "Line":  7,
+                     "Column":  1,
+                     "Text":  "`endif",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  206,
+                     "Length":  9,
+                     "Line":  8,
+                     "Column":  1,
+                     "Text":  "endmodule",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_endmodule",
+                     "HoverText":  "The endmodule reserved word is used to close a module statement."
+                 }
+             ],
+    "Tokens":  [
+                   {
+                       "Start":  0,
+                       "Length":  8,
+                       "Line":  1,
+                       "Column":  1,
+                       "Text":  "`include",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  8,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  9,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  9,
+                       "Length":  8,
+                       "Line":  1,
+                       "Column":  10,
+                       "Text":  "\"include",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  17,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  18,
+                       "Text":  "-",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  18,
+                       "Length":  5,
+                       "Line":  1,
+                       "Column":  19,
+                       "Text":  "files",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  23,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  24,
+                       "Text":  "/",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  24,
+                       "Length":  24,
+                       "Line":  1,
+                       "Column":  25,
+                       "Text":  "show_inactive_config.vh\"",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  50,
+                       "Length":  6,
+                       "Line":  2,
+                       "Column":  1,
+                       "Text":  "module",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  56,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  57,
+                       "Length":  26,
+                       "Line":  2,
+                       "Column":  8,
+                       "Text":  "ifdef_optout_include_macro",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  83,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  34,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  86,
+                       "Length":  6,
+                       "Line":  3,
+                       "Column":  1,
+                       "Text":  "`ifdef",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  92,
+                       "Length":  1,
+                       "Line":  3,
+                       "Column":  7,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  93,
+                       "Length":  17,
+                       "Line":  3,
+                       "Column":  8,
+                       "Text":  "UNDEFINED_FEATURE",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  112,
+                       "Length":  4,
+                       "Line":  4,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  116,
+                       "Length":  5,
+                       "Line":  4,
+                       "Column":  5,
+                       "Text":  "logic",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  121,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  10,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  122,
+                       "Length":  40,
+                       "Line":  4,
+                       "Column":  11,
+                       "Text":  "normally_colored_despite_inactive_branch",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  162,
+                       "Length":  1,
+                       "Line":  4,
+                       "Column":  51,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  165,
+                       "Length":  5,
+                       "Line":  5,
+                       "Column":  1,
+                       "Text":  "`else",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  172,
+                       "Length":  4,
+                       "Line":  6,
+                       "Column":  1,
+                       "Text":  "    ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  176,
+                       "Length":  5,
+                       "Line":  6,
+                       "Column":  5,
+                       "Text":  "logic",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  181,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  10,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  182,
+                       "Length":  13,
+                       "Line":  6,
+                       "Column":  11,
+                       "Text":  "active_branch",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  195,
+                       "Length":  1,
+                       "Line":  6,
+                       "Column":  24,
+                       "Text":  ";",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  198,
+                       "Length":  6,
+                       "Line":  7,
+                       "Column":  1,
+                       "Text":  "`endif",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  206,
+                       "Length":  9,
+                       "Line":  8,
+                       "Column":  1,
+                       "Text":  "endmodule",
+                       "Context":  "Undetermined"
+                   }
+               ],
+    "Symbols":  [
+                    {
+                        "Scope":  "__MACRO__",
+                        "Name":  "UNDEFINED_FEATURE",
+                        "TokenType":  "Verilog_Macro",
+                        "HoverText":  "macro condition:\r\n`ifdef UNDEFINED_FEATURE"
+                    },
+                    {
+                        "Scope":  "ifdef_optout_include_macro",
+                        "Name":  "ifdef_optout_include_macro",
+                        "TokenType":  "Verilog_Variable_module",
+                        "HoverText":  "module ifdef_optout_include_macro;"
+                    },
+                    {
+                        "Scope":  "ifdef_optout_include_macro",
+                        "Name":  "normally_colored_despite_inactive_branch",
+                        "TokenType":  "Verilog_Variable_SystemVerilog",
+                        "HoverText":  "logic normally_colored_despite_inactive_branch"
+                    },
+                    {
+                        "Scope":  "ifdef_optout_include_macro",
+                        "Name":  "active_branch",
+                        "TokenType":  "Verilog_Variable_SystemVerilog",
+                        "HoverText":  "logic active_branch"
+                    }
+                ]
+}

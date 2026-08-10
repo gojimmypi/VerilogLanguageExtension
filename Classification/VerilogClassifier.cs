@@ -170,6 +170,7 @@ namespace VerilogLanguage.VerilogToken
                 [VerilogTokenTypes.Verilog_initial] = typeService.GetClassificationType("initial"),
                 [VerilogTokenTypes.Verilog_inout] = typeService.GetClassificationType("inout"),
                 [VerilogTokenTypes.Verilog_input] = typeService.GetClassificationType("input"),
+                [VerilogTokenTypes.Verilog_integer] = typeService.GetClassificationType("integer"),
                 [VerilogTokenTypes.Verilog_instance] = typeService.GetClassificationType("instance"),
                 [VerilogTokenTypes.Verilog_join] = typeService.GetClassificationType("join"),
                 [VerilogTokenTypes.Verilog_liblist] = typeService.GetClassificationType("liblist"),
@@ -211,13 +212,20 @@ namespace VerilogLanguage.VerilogToken
                 [VerilogTokenTypes.Verilog_while] = typeService.GetClassificationType("while"),
                 [VerilogTokenTypes.Verilog_wire] = typeService.GetClassificationType("wire"),
 
-                [VerilogTokenTypes.Verilog_bit] = typeService.GetClassificationType("bit"),
+                [VerilogTokenTypes.Verilog_SystemVerilogYosysSupported] = typeService.GetClassificationType("SystemVerilogYosysSupported"),
+                [VerilogTokenTypes.Verilog_SystemVerilogYosysUnsupported] = typeService.GetClassificationType("SystemVerilogYosysUnsupported"),
+                [VerilogTokenTypes.Verilog_UserDefinedType] = typeService.GetClassificationType("UserDefinedType"),
+                [VerilogTokenTypes.Verilog_UserDefinedTypeVariable] = typeService.GetClassificationType("UserDefinedTypeVariable"),
 
                 [VerilogTokenTypes.Verilog_Directive] = typeService.GetClassificationType("directive"), // type must be one of VerilogTokenTagger
+                [VerilogTokenTypes.Verilog_Attribute] = typeService.GetClassificationType("Attribute"),
                 [VerilogTokenTypes.Verilog_Macro] = typeService.GetClassificationType("Macro"),
                 [VerilogTokenTypes.Verilog_MacroDefinition] = typeService.GetClassificationType("MacroDefinition"),
+                [VerilogTokenTypes.Verilog_InactiveCode] = typeService.GetClassificationType("InactiveCode"),
                 [VerilogTokenTypes.Verilog_StaticString] = typeService.GetClassificationType("StaticString"),
                 [VerilogTokenTypes.Verilog_FunctionName] = typeService.GetClassificationType("FunctionName"),
+                [VerilogTokenTypes.Verilog_SystemTaskFunction] = typeService.GetClassificationType("SystemTaskFunction"),
+                [VerilogTokenTypes.Verilog_SystemTaskFatal] = typeService.GetClassificationType("SystemTaskFatal"),
                 [VerilogTokenTypes.Verilog_Comment] = typeService.GetClassificationType("Comment"), // GetClassificationType string must be defined in ClassificationType.cs
                 [VerilogTokenTypes.Verilog_Bracket] = typeService.GetClassificationType("Bracket"),
                 [VerilogTokenTypes.Verilog_Bracket0] = typeService.GetClassificationType("Bracket0"),
@@ -233,6 +241,7 @@ namespace VerilogLanguage.VerilogToken
                 [VerilogTokenTypes.Verilog_Variable_output] = typeService.GetClassificationType("Variable_output"),
                 [VerilogTokenTypes.Verilog_Variable_inout] = typeService.GetClassificationType("Variable_inout"),
                 [VerilogTokenTypes.Verilog_Variable_reg] = typeService.GetClassificationType("Variable_reg"),
+                [VerilogTokenTypes.Verilog_Variable_SystemVerilog] = typeService.GetClassificationType("Variable_SystemVerilog"),
                 [VerilogTokenTypes.Verilog_Variable_wire] = typeService.GetClassificationType("Variable_wire"),
                 [VerilogTokenTypes.Verilog_Variable_localparam] = typeService.GetClassificationType("Variable_localparam"),
                 [VerilogTokenTypes.Verilog_Variable_parameter] = typeService.GetClassificationType("Variable_parameter"),

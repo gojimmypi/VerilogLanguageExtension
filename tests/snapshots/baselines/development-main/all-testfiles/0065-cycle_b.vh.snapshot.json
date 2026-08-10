@@ -1,0 +1,191 @@
+{
+    "SchemaVersion":  3,
+    "RunName":  "all-testfiles",
+    "FilePath":  "TestFiles/macros/include-files/cycle_b.vh",
+    "FileRelativePath":  "TestFiles/macros/include-files/cycle_b.vh",
+    "ContentType":  "verilog",
+    "SnapshotLength":  50,
+    "SnapshotVersion":  2,
+    "TextSha256":  "4a7f8f011fdf24341442e1987e6999e8354141978413d7e8563921b11d2140c0",
+    "Errors":  [
+
+               ],
+    "Classifications":  [
+                            {
+                                "Start":  0,
+                                "Length":  7,
+                                "Line":  1,
+                                "Column":  1,
+                                "Text":  "`define",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  8,
+                                "Length":  15,
+                                "Line":  1,
+                                "Column":  9,
+                                "Text":  "CYCLE_B_REACHED",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            },
+                            {
+                                "Start":  24,
+                                "Length":  1,
+                                "Line":  1,
+                                "Column":  25,
+                                "Text":  "1",
+                                "Types":  [
+                                              "Value"
+                                          ]
+                            },
+                            {
+                                "Start":  27,
+                                "Length":  8,
+                                "Line":  2,
+                                "Column":  1,
+                                "Text":  "`include",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  36,
+                                "Length":  12,
+                                "Line":  2,
+                                "Column":  10,
+                                "Text":  "\"cycle_a.vh\"",
+                                "Types":  [
+                                              "StaticString"
+                                          ]
+                            }
+                        ],
+    "Tags":  [
+                 {
+                     "Start":  0,
+                     "Length":  7,
+                     "Line":  1,
+                     "Column":  1,
+                     "Text":  "`define",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  8,
+                     "Length":  15,
+                     "Line":  1,
+                     "Column":  9,
+                     "Text":  "CYCLE_B_REACHED",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "Macro `CYCLE_B_REACHED` is defined.\r\nValue: 1\r\nFile: TestFiles/macros/include-files/cycle_b.vh\r\nLine: 1"
+                 },
+                 {
+                     "Start":  24,
+                     "Length":  1,
+                     "Line":  1,
+                     "Column":  25,
+                     "Text":  "1",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Value",
+                     "HoverText":  null
+                 },
+                 {
+                     "Start":  27,
+                     "Length":  8,
+                     "Line":  2,
+                     "Column":  1,
+                     "Text":  "`include",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  36,
+                     "Length":  12,
+                     "Line":  2,
+                     "Column":  10,
+                     "Text":  "\"cycle_a.vh\"",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_StaticString",
+                     "HoverText":  null
+                 }
+             ],
+    "Tokens":  [
+                   {
+                       "Start":  0,
+                       "Length":  7,
+                       "Line":  1,
+                       "Column":  1,
+                       "Text":  "`define",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  7,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  8,
+                       "Length":  15,
+                       "Line":  1,
+                       "Column":  9,
+                       "Text":  "CYCLE_B_REACHED",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  23,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  24,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  24,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  25,
+                       "Text":  "1",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  27,
+                       "Length":  8,
+                       "Line":  2,
+                       "Column":  1,
+                       "Text":  "`include",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  35,
+                       "Length":  1,
+                       "Line":  2,
+                       "Column":  9,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  36,
+                       "Length":  12,
+                       "Line":  2,
+                       "Column":  10,
+                       "Text":  "\"cycle_a.vh\"",
+                       "Context":  "Text"
+                   }
+               ],
+    "Symbols":  [
+                    {
+                        "Scope":  "__MACRO__",
+                        "Name":  "CYCLE_B_REACHED",
+                        "TokenType":  "Verilog_Macro",
+                        "HoverText":  "macro definition:\r\n`define CYCLE_B_REACHED 1\r\n\r\ncondition:\r\n(unconditional)"
+                    }
+                ]
+}

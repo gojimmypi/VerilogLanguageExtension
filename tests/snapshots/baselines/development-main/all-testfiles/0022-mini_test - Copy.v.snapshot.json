@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.5",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\mini_test - Copy.v",
-    "FileRelativePath":  "TestFiles\\mini_test - Copy.v",
+    "FilePath":  "TestFiles/mini_test - Copy.v",
+    "FileRelativePath":  "TestFiles/mini_test - Copy.v",
     "ContentType":  "verilog",
     "SnapshotLength":  865,
     "SnapshotVersion":  2,
@@ -100,6 +99,16 @@
                                 "Text":  "assign",
                                 "Types":  [
                                               "assign"
+                                          ]
+                            },
+                            {
+                                "Start":  91,
+                                "Length":  4,
+                                "Line":  11,
+                                "Column":  1,
+                                "Text":  "this",
+                                "Types":  [
+                                              "SystemVerilogYosysUnsupported"
                                           ]
                             },
                             {
@@ -209,7 +218,7 @@
                                 "Column":  14,
                                 "Text":  "J2_AD_PORT",
                                 "Types":  [
-                                              "Variable_duplicate"
+                                              "Variable_input"
                                           ]
                             },
                             {
@@ -1202,7 +1211,7 @@
                      "Text":  "J2_AD_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "duplicate? input [7:0] J2_AD_PORT"
+                     "HoverText":  null
                  },
                  {
                      "Start":  40,
@@ -1365,6 +1374,16 @@
                      "HoverText":  "The assign statement is used to express the first type of procedural continuous assignment. Assign of reg data types is not supported. "
                  },
                  {
+                     "Start":  91,
+                     "Length":  4,
+                     "Line":  11,
+                     "Column":  1,
+                     "Text":  "this",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_SystemVerilogYosysUnsupported",
+                     "HoverText":  "SystemVerilog keyword \u0027this\u0027. VLE marks it as unsupported, non-synthesizable, or unverified for Yosys/sv-elab; actual handling depends on context and tool version."
+                 },
+                 {
                      "Start":  112,
                      "Length":  1,
                      "Line":  13,
@@ -1471,8 +1490,8 @@
                      "Column":  14,
                      "Text":  "J2_AD_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_duplicate",
-                     "HoverText":  "duplicate? input [7:0] J2_AD_PORT"
+                     "TagDetail":  "Verilog_Variable_input",
+                     "HoverText":  "input [7:0] J2_AD_PORT"
                  },
                  {
                      "Start":  144,
@@ -1782,7 +1801,7 @@
                      "Text":  "J2_AD_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "duplicate? input [7:0] J2_AD_PORT"
+                     "HoverText":  null
                  },
                  {
                      "Start":  251,
@@ -2182,7 +2201,7 @@
                      "Text":  "J2_AD_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "duplicate? input [7:0] J2_AD_PORT"
+                     "HoverText":  null
                  },
                  {
                      "Start":  360,
@@ -2582,7 +2601,7 @@
                      "Text":  "J2_AD_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "duplicate? input [7:0] J2_AD_PORT"
+                     "HoverText":  null
                  },
                  {
                      "Start":  469,
@@ -2982,7 +3001,7 @@
                      "Text":  "J2_AD_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "duplicate? input [7:0] J2_AD_PORT"
+                     "HoverText":  null
                  },
                  {
                      "Start":  578,
@@ -3382,7 +3401,7 @@
                      "Text":  "J2_AD_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "duplicate? input [7:0] J2_AD_PORT"
+                     "HoverText":  null
                  },
                  {
                      "Start":  687,
@@ -3782,7 +3801,7 @@
                      "Text":  "J2_AD_PORT",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
                      "TagDetail":  "Verilog_Comment",
-                     "HoverText":  "duplicate? input [7:0] J2_AD_PORT"
+                     "HoverText":  null
                  },
                  {
                      "Start":  796,
@@ -6557,8 +6576,8 @@
                     {
                         "Scope":  "global",
                         "Name":  "J2_AD_PORT",
-                        "TokenType":  "Verilog_Variable_duplicate",
-                        "HoverText":  "duplicate? input [7:0] J2_AD_PORT"
+                        "TokenType":  "Verilog_Variable_input",
+                        "HoverText":  "input [7:0] J2_AD_PORT"
                     }
                 ]
 }

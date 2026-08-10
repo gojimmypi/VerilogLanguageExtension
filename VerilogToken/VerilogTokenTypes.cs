@@ -70,6 +70,7 @@ namespace VerilogLanguage.VerilogToken
         Verilog_initial, // Used only in test benches.
         Verilog_inout,
         Verilog_input,
+        Verilog_integer,
         Verilog_instance,
         Verilog_join,  // Not Supported in Synthesis; Use nonblocking assignments to get same effect.
         Verilog_liblist,
@@ -112,10 +113,16 @@ namespace VerilogLanguage.VerilogToken
         Verilog_wire,
 
         Verilog_Directive, // note that all directives are colorized the same
+        Verilog_Attribute, // complete Verilog/SystemVerilog attribute instance: (* ... *)
         Verilog_Macro, // macro name/reference from `define, `ifdef, `ifndef, `elsif, or `MACRO use
         Verilog_MacroDefinition, // declaration name defined by macro-controlled conditional branches
+        Verilog_InactiveCode, // source excluded by `ifdef / `ifndef / `elsif / `else evaluation
         Verilog_StaticString, // static double-quoted string literal
         Verilog_FunctionName, // function declaration name and references
+        Verilog_UserDefinedType, // SystemVerilog typedef alias declaration and references
+        Verilog_UserDefinedTypeVariable, // variable declared using a SystemVerilog typedef alias
+        Verilog_SystemTaskFunction, // built-in $name system task or function
+        Verilog_SystemTaskFatal, // $fatal system task
 
         //
         Verilog_Comment,
@@ -134,6 +141,7 @@ namespace VerilogLanguage.VerilogToken
         Verilog_Variable_inout,
         Verilog_Variable_wire,
         Verilog_Variable_reg,
+        Verilog_Variable_SystemVerilog,
         Verilog_Variable_localparam,
         Verilog_Variable_parameter,
         Verilog_Variable_duplicate, // special highlight value if a duplicate declaration is detected
@@ -149,7 +157,8 @@ namespace VerilogLanguage.VerilogToken
 
         Verilog_Value,
 
-        /* System Verilog */
-        Verilog_bit
+        /* SystemVerilog-only keywords */
+        Verilog_SystemVerilogYosysSupported,
+        Verilog_SystemVerilogYosysUnsupported
     }
 }

@@ -268,6 +268,96 @@
                       "Path":  "TestFiles/src/UART/uart_tx_min.v",
                       "SnapshotFileName":  "0053-uart_tx_min.v.snapshot.json",
                       "IsNew":  false
+                  },
+                  {
+                      "Path":  "TestFiles/z386.sv",
+                      "SnapshotFileName":  "0054-z386.sv.snapshot.json",
+                      "IsNew":  false
+                  },
+                  {
+                      "Path":  "TestFiles/systemverilog_keywords.sv",
+                      "SnapshotFileName":  "0055-systemverilog_keywords.sv.snapshot.json",
+                      "IsNew":  false
+                  },
+                  {
+                      "Path":  "TestFiles/macros/ifdef_active_highlighting.sv",
+                      "SnapshotFileName":  "0056-ifdef_active_highlighting.sv.snapshot.json",
+                      "IsNew":  false
+                  },
+                  {
+                      "Path":  "TestFiles/macros/ifdef_inactive_hover.sv",
+                      "SnapshotFileName":  "0057-ifdef_inactive_hover.sv.snapshot.json",
+                      "IsNew":  false
+                  },
+                  {
+                      "Path":  "TestFiles/macros/ifdef_include_highlighting.sv",
+                      "SnapshotFileName":  "0058-ifdef_include_highlighting.sv.snapshot.json",
+                      "IsNew":  false
+                  },
+                  {
+                      "Path":  "TestFiles/macros/ifdef_include_source_order.sv",
+                      "SnapshotFileName":  "0059-ifdef_include_source_order.sv.snapshot.json",
+                      "IsNew":  false
+                  },
+                  {
+                      "Path":  "TestFiles/macros/ifdef_optout_attribute.sv",
+                      "SnapshotFileName":  "0060-ifdef_optout_attribute.sv.snapshot.json",
+                      "IsNew":  false
+                  },
+                  {
+                      "Path":  "TestFiles/macros/ifdef_optout_include_macro.sv",
+                      "SnapshotFileName":  "0061-ifdef_optout_include_macro.sv.snapshot.json",
+                      "IsNew":  false
+                  },
+                  {
+                      "Path":  "TestFiles/macros/ifdef_optout_macro.sv",
+                      "SnapshotFileName":  "0062-ifdef_optout_macro.sv.snapshot.json",
+                      "IsNew":  false
+                  },
+                  {
+                      "Path":  "TestFiles/macros/ifdef_optout_pragma.sv",
+                      "SnapshotFileName":  "0063-ifdef_optout_pragma.sv.snapshot.json",
+                      "IsNew":  false
+                  },
+                  {
+                      "Path":  "TestFiles/macros/include-files/cycle_a.vh",
+                      "SnapshotFileName":  "0064-cycle_a.vh.snapshot.json",
+                      "IsNew":  false
+                  },
+                  {
+                      "Path":  "TestFiles/macros/include-files/cycle_b.vh",
+                      "SnapshotFileName":  "0065-cycle_b.vh.snapshot.json",
+                      "IsNew":  false
+                  },
+                  {
+                      "Path":  "TestFiles/macros/include-files/inactive_config.vh",
+                      "SnapshotFileName":  "0066-inactive_config.vh.snapshot.json",
+                      "IsNew":  false
+                  },
+                  {
+                      "Path":  "TestFiles/macros/include-files/nested/nested_config.vh",
+                      "SnapshotFileName":  "0067-nested_config.vh.snapshot.json",
+                      "IsNew":  false
+                  },
+                  {
+                      "Path":  "TestFiles/macros/include-files/project_config.v",
+                      "SnapshotFileName":  "0068-project_config.v.snapshot.json",
+                      "IsNew":  false
+                  },
+                  {
+                      "Path":  "TestFiles/macros/include-files/show_inactive_config.vh",
+                      "SnapshotFileName":  "0069-show_inactive_config.vh.snapshot.json",
+                      "IsNew":  false
+                  },
+                  {
+                      "Path":  "TestFiles/macros/include-files/macro_hover_config.vh",
+                      "SnapshotFileName":  "0070-macro_hover_config.vh.snapshot.json",
+                      "IsNew":  false
+                  },
+                  {
+                      "Path":  "TestFiles/macros/macro_hover_definition_locations.sv",
+                      "SnapshotFileName":  "0071-macro_hover_definition_locations.sv.snapshot.json",
+                      "IsNew":  false
                   }
               ]
 }

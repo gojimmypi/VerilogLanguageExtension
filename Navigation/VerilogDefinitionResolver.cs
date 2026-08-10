@@ -441,7 +441,8 @@ namespace VerilogLanguage.Navigation
 
         private static bool IsVerilogSourceFile(string filePath) {
             string extension = Path.GetExtension(filePath);
-            return string.Equals(extension, ".v", StringComparison.OrdinalIgnoreCase) ||
+            return string.Equals(extension, ".verilog", StringComparison.OrdinalIgnoreCase) || 
+                string.Equals(extension, ".v", StringComparison.OrdinalIgnoreCase) ||
                 string.Equals(extension, ".sv", StringComparison.OrdinalIgnoreCase) ||
                 string.Equals(extension, ".vh", StringComparison.OrdinalIgnoreCase) ||
                 string.Equals(extension, ".svh", StringComparison.OrdinalIgnoreCase);
@@ -453,6 +454,7 @@ namespace VerilogLanguage.Navigation
                 string.Equals(name, ".vs", StringComparison.OrdinalIgnoreCase) ||
                 string.Equals(name, "bin", StringComparison.OrdinalIgnoreCase) ||
                 string.Equals(name, "obj", StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(name, "build", StringComparison.OrdinalIgnoreCase) ||
                 string.Equals(name, "packages", StringComparison.OrdinalIgnoreCase);
         }
 

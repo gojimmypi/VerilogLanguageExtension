@@ -1,0 +1,105 @@
+{
+    "File": "TestFiles/macros/ifdef_active_highlighting.sv",
+    "MustHaveTaggedText": [
+        {
+            "Text": "active_even_when_macro_value_is_zero",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_SystemVerilog"
+        },
+        {
+            "Text": "active_elsif_branch",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_SystemVerilog"
+        },
+        {
+            "Text": "active_nested_ifndef",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_SystemVerilog"
+        },
+        {
+            "Text": "active_after_commented_directive",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_SystemVerilog"
+        },
+        {
+            "Text": "    wire inactive_feature_zero_else;",
+            "Source": "Tags",
+            "TagDetail": "Verilog_InactiveCode",
+            "HoverContains": [
+                "FEATURE_ZERO",
+                "defined",
+                "earlier `ifdef branch is active",
+                "SHOW_INACTIVE_CODE"
+            ]
+        },
+        {
+            "Text": "    reg inactive_after_undef;",
+            "Source": "Tags",
+            "TagDetail": "Verilog_InactiveCode",
+            "HoverContains": [
+                "FEATURE_ZERO",
+                "not defined",
+                "earlier included configuration file",
+                "SHOW_INACTIVE_CODE"
+            ]
+        },
+        {
+            "Text": "    integer inactive_final_else;",
+            "Source": "Tags",
+            "TagDetail": "Verilog_InactiveCode",
+            "HoverContains": [
+                "SELECTED_FEATURE",
+                "earlier `elsif branch is active",
+                "SHOW_INACTIVE_CODE"
+            ]
+        },
+        {
+            "Text": "    wire inactive_outer_branch;",
+            "Source": "Tags",
+            "TagDetail": "Verilog_InactiveCode",
+            "HoverContains": [
+                "UNKNOWN_OUTER",
+                "not defined",
+                "SHOW_INACTIVE_CODE"
+            ]
+        },
+        {
+            "Text": "        logic inactive_nested_else;",
+            "Source": "Tags",
+            "TagDetail": "Verilog_InactiveCode",
+            "HoverContains": [
+                "INNER_ONLY",
+                "not defined",
+                "earlier `ifndef branch is active",
+                "SHOW_INACTIVE_CODE"
+            ]
+        }
+    ],
+    "MustNotHaveTaggedText": [
+        {
+            "Text": "inactive_feature_zero_else",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_wire"
+        },
+        {
+            "Text": "inactive_after_undef",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_reg"
+        },
+        {
+            "Text": "inactive_final_else",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_integer"
+        },
+        {
+            "Text": "inactive_outer_branch",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_wire"
+        },
+        {
+            "Text": "inactive_nested_else",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_SystemVerilog"
+        }
+    ]
+}

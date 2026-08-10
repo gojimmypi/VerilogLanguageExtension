@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.5",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\din _test3.v",
-    "FileRelativePath":  "TestFiles\\din _test3.v",
+    "FilePath":  "TestFiles/din _test3.v",
+    "FileRelativePath":  "TestFiles/din _test3.v",
     "ContentType":  "verilog",
     "SnapshotLength":  802,
     "SnapshotVersion":  2,
@@ -699,7 +698,7 @@
                                 "Column":  13,
                                 "Text":  "integer",
                                 "Types":  [
-                                              "Variable_localparam"
+                                              "integer"
                                           ]
                             },
                             {
@@ -739,7 +738,7 @@
                                 "Column":  13,
                                 "Text":  "integer",
                                 "Types":  [
-                                              "Variable_localparam"
+                                              "integer"
                                           ]
                             },
                             {
@@ -779,7 +778,7 @@
                                 "Column":  12,
                                 "Text":  "integer",
                                 "Types":  [
-                                              "Variable_parameter"
+                                              "integer"
                                           ]
                             },
                             {
@@ -2011,8 +2010,8 @@
                      "Column":  13,
                      "Text":  "integer",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_localparam",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_integer",
+                     "HoverText":  "The integer reserved word declares a 32-bit signed, four-state integral variable type."
                  },
                  {
                      "Start":  363,
@@ -2051,8 +2050,8 @@
                      "Column":  13,
                      "Text":  "integer",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_localparam",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_integer",
+                     "HoverText":  "The integer reserved word declares a 32-bit signed, four-state integral variable type."
                  },
                  {
                      "Start":  398,
@@ -2091,8 +2090,8 @@
                      "Column":  12,
                      "Text":  "integer",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_parameter",
-                     "HoverText":  null
+                     "TagDetail":  "Verilog_integer",
+                     "HoverText":  "The integer reserved word declares a 32-bit signed, four-state integral variable type."
                  },
                  {
                      "Start":  433,

@@ -1,0 +1,519 @@
+{
+    "SchemaVersion":  1,
+    "RunName":  "all-testfiles",
+    "Manifest":  "tools/vle-ci/manifests/all-testfiles.json",
+    "ExpectedSnapshots":  71,
+    "SnapshotCount":  71,
+    "Source":  {
+                   "VsixManifestVersion":  "0.4.1.16",
+                   "AssemblyVersion":  "0.4.0.0",
+                   "AssemblyFileVersion":  "0.4.1.16",
+                   "AssemblyInformationalVersion":  "0.4.1.16",
+                   "GitCommit":  "9bd02a6"
+               },
+    "Metrics":  {
+                    "SnapshotExportSeconds":  971.003,
+                    "SnapshotExportBucket":  "10-30m",
+                    "TotalCiSeconds":  1011.708,
+                    "TotalCiBucket":  "10-30m"
+                },
+    "Timings":  [
+                    {
+                        "Index":  1,
+                        "Path":  "TestFiles/anothertest - Copy.v",
+                        "SnapshotFileName":  "0001-anothertest - Copy.v.snapshot.json",
+                        "ElapsedSeconds":  28.233,
+                        "ElapsedBucket":  "25-29s"
+                    },
+                    {
+                        "Index":  2,
+                        "Path":  "TestFiles/anothertest.v",
+                        "SnapshotFileName":  "0002-anothertest.v.snapshot.json",
+                        "ElapsedSeconds":  12.022,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  3,
+                        "Path":  "TestFiles/asterisk_issue_16.v",
+                        "SnapshotFileName":  "0003-asterisk_issue_16.v.snapshot.json",
+                        "ElapsedSeconds":  11.648,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  4,
+                        "Path":  "TestFiles/bracketest.v",
+                        "SnapshotFileName":  "0004-bracketest.v.snapshot.json",
+                        "ElapsedSeconds":  11.636,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  5,
+                        "Path":  "TestFiles/comma.v",
+                        "SnapshotFileName":  "0005-comma.v.snapshot.json",
+                        "ElapsedSeconds":  11.6,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  6,
+                        "Path":  "TestFiles/const.v",
+                        "SnapshotFileName":  "0006-const.v.snapshot.json",
+                        "ElapsedSeconds":  11.527,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  7,
+                        "Path":  "TestFiles/current_bracket_issue.v",
+                        "SnapshotFileName":  "0007-current_bracket_issue.v.snapshot.json",
+                        "ElapsedSeconds":  11.503,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  8,
+                        "Path":  "TestFiles/declaration_text.v",
+                        "SnapshotFileName":  "0008-declaration_text.v.snapshot.json",
+                        "ElapsedSeconds":  11.523,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  9,
+                        "Path":  "TestFiles/din _test3.v",
+                        "SnapshotFileName":  "0009-din _test3.v.snapshot.json",
+                        "ElapsedSeconds":  11.588,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  10,
+                        "Path":  "TestFiles/din_test.v",
+                        "SnapshotFileName":  "0010-din_test.v.snapshot.json",
+                        "ElapsedSeconds":  11.64,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  11,
+                        "Path":  "TestFiles/din_test2.v",
+                        "SnapshotFileName":  "0011-din_test2.v.snapshot.json",
+                        "ElapsedSeconds":  11.675,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  12,
+                        "Path":  "TestFiles/din_test4.v",
+                        "SnapshotFileName":  "0012-din_test4.v.snapshot.json",
+                        "ElapsedSeconds":  11.435,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  13,
+                        "Path":  "TestFiles/EmptyFile.v",
+                        "SnapshotFileName":  "0013-EmptyFile.v.snapshot.json",
+                        "ElapsedSeconds":  11.515,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  14,
+                        "Path":  "TestFiles/file1.v",
+                        "SnapshotFileName":  "0014-file1.v.snapshot.json",
+                        "ElapsedSeconds":  11.552,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  15,
+                        "Path":  "TestFiles/file2.v",
+                        "SnapshotFileName":  "0015-file2.v.snapshot.json",
+                        "ElapsedSeconds":  11.56,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  16,
+                        "Path":  "TestFiles/issue10.v",
+                        "SnapshotFileName":  "0016-issue10.v.snapshot.json",
+                        "ElapsedSeconds":  11.785,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  17,
+                        "Path":  "TestFiles/issue12.v",
+                        "SnapshotFileName":  "0017-issue12.v.snapshot.json",
+                        "ElapsedSeconds":  11.782,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  18,
+                        "Path":  "TestFiles/issue16.v",
+                        "SnapshotFileName":  "0018-issue16.v.snapshot.json",
+                        "ElapsedSeconds":  11.617,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  19,
+                        "Path":  "TestFiles/issue21.v",
+                        "SnapshotFileName":  "0019-issue21.v.snapshot.json",
+                        "ElapsedSeconds":  11.547,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  20,
+                        "Path":  "TestFiles/issue21_mini.v",
+                        "SnapshotFileName":  "0020-issue21_mini.v.snapshot.json",
+                        "ElapsedSeconds":  11.312,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  21,
+                        "Path":  "TestFiles/JanGray.v",
+                        "SnapshotFileName":  "0021-JanGray.v.snapshot.json",
+                        "ElapsedSeconds":  11.544,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  22,
+                        "Path":  "TestFiles/mini_test - Copy.v",
+                        "SnapshotFileName":  "0022-mini_test - Copy.v.snapshot.json",
+                        "ElapsedSeconds":  11.691,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  23,
+                        "Path":  "TestFiles/mini_test.v",
+                        "SnapshotFileName":  "0023-mini_test.v.snapshot.json",
+                        "ElapsedSeconds":  11.594,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  24,
+                        "Path":  "TestFiles/module_name.v",
+                        "SnapshotFileName":  "0024-module_name.v.snapshot.json",
+                        "ElapsedSeconds":  11.648,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  25,
+                        "Path":  "TestFiles/new_test.v",
+                        "SnapshotFileName":  "0025-new_test.v.snapshot.json",
+                        "ElapsedSeconds":  11.447,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  26,
+                        "Path":  "TestFiles/otherfile.verilog",
+                        "SnapshotFileName":  "0026-otherfile.verilog.snapshot.json",
+                        "ElapsedSeconds":  11.475,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  27,
+                        "Path":  "TestFiles/picorv32.v",
+                        "SnapshotFileName":  "0027-picorv32.v.snapshot.json",
+                        "ElapsedSeconds":  26.559,
+                        "ElapsedBucket":  "25-29s"
+                    },
+                    {
+                        "Index":  28,
+                        "Path":  "TestFiles/primitives_test.v",
+                        "SnapshotFileName":  "0028-primitives_test.v.snapshot.json",
+                        "ElapsedSeconds":  11.477,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  29,
+                        "Path":  "TestFiles/StopWatch.v",
+                        "SnapshotFileName":  "0029-StopWatch.v.snapshot.json",
+                        "ElapsedSeconds":  11.905,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  30,
+                        "Path":  "TestFiles/test - bigfile.v",
+                        "SnapshotFileName":  "0030-test - bigfile.v.snapshot.json",
+                        "ElapsedSeconds":  24.973,
+                        "ElapsedBucket":  "20-24s"
+                    },
+                    {
+                        "Index":  31,
+                        "Path":  "TestFiles/test.v",
+                        "SnapshotFileName":  "0031-test.v.snapshot.json",
+                        "ElapsedSeconds":  11.771,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  32,
+                        "Path":  "TestFiles/test2.v",
+                        "SnapshotFileName":  "0032-test2.v.snapshot.json",
+                        "ElapsedSeconds":  11.535,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  33,
+                        "Path":  "TestFiles/testfile-1K.v",
+                        "SnapshotFileName":  "0033-testfile-1K.v.snapshot.json",
+                        "ElapsedSeconds":  11.535,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  34,
+                        "Path":  "TestFiles/testfile-4K.v",
+                        "SnapshotFileName":  "0034-testfile-4K.v.snapshot.json",
+                        "ElapsedSeconds":  11.768,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  35,
+                        "Path":  "TestFiles/testfile-5K.v",
+                        "SnapshotFileName":  "0035-testfile-5K.v.snapshot.json",
+                        "ElapsedSeconds":  11.695,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  36,
+                        "Path":  "TestFiles/vert_bar.v",
+                        "SnapshotFileName":  "0036-vert_bar.v.snapshot.json",
+                        "ElapsedSeconds":  11.687,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  37,
+                        "Path":  "TestFiles/wiretest.verilog",
+                        "SnapshotFileName":  "0037-wiretest.verilog.snapshot.json",
+                        "ElapsedSeconds":  11.642,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  38,
+                        "Path":  "TestFiles/wow.v",
+                        "SnapshotFileName":  "0038-wow.v.snapshot.json",
+                        "ElapsedSeconds":  11.61,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  39,
+                        "Path":  "TestFiles/wow2.sv",
+                        "SnapshotFileName":  "0039-wow2.sv.snapshot.json",
+                        "ElapsedSeconds":  11.601,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  40,
+                        "Path":  "TestFiles/wow3.svh",
+                        "SnapshotFileName":  "0040-wow3.svh.snapshot.json",
+                        "ElapsedSeconds":  11.563,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  41,
+                        "Path":  "TestFiles/src/JTAG/jtag_core.v",
+                        "SnapshotFileName":  "0041-jtag_core.v.snapshot.json",
+                        "ElapsedSeconds":  12.103,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  42,
+                        "Path":  "TestFiles/src/PINS/pin_id_core.v",
+                        "SnapshotFileName":  "0042-pin_id_core.v.snapshot.json",
+                        "ElapsedSeconds":  12.066,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  43,
+                        "Path":  "TestFiles/src/project.v",
+                        "SnapshotFileName":  "0043-project.v.snapshot.json",
+                        "ElapsedSeconds":  12.098,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  44,
+                        "Path":  "TestFiles/src/project_config.v",
+                        "SnapshotFileName":  "0044-project_config.v.snapshot.json",
+                        "ElapsedSeconds":  12.605,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  45,
+                        "Path":  "TestFiles/src/SPI/spi_slave.v",
+                        "SnapshotFileName":  "0045-spi_slave.v.snapshot.json",
+                        "ElapsedSeconds":  12.106,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  46,
+                        "Path":  "TestFiles/src/target_pdk.v",
+                        "SnapshotFileName":  "0046-target_pdk.v.snapshot.json",
+                        "ElapsedSeconds":  11.74,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  47,
+                        "Path":  "TestFiles/src/TRNG/trng_cfg_ascii_core.v",
+                        "SnapshotFileName":  "0047-trng_cfg_ascii_core.v.snapshot.json",
+                        "ElapsedSeconds":  13.824,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  48,
+                        "Path":  "TestFiles/src/TRNG/trng_lab_core.v",
+                        "SnapshotFileName":  "0048-trng_lab_core.v.snapshot.json",
+                        "ElapsedSeconds":  13.389,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  49,
+                        "Path":  "TestFiles/src/TRNG/trng_stub.v",
+                        "SnapshotFileName":  "0049-trng_stub.v.snapshot.json",
+                        "ElapsedSeconds":  11.88,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  50,
+                        "Path":  "TestFiles/src/tt_um_main.v",
+                        "SnapshotFileName":  "0050-tt_um_main.v.snapshot.json",
+                        "ElapsedSeconds":  13.907,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  51,
+                        "Path":  "TestFiles/src/UART/uart_rx_min.v",
+                        "SnapshotFileName":  "0051-uart_rx_min.v.snapshot.json",
+                        "ElapsedSeconds":  11.926,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  52,
+                        "Path":  "TestFiles/src/UART/uart_trng_ascii_core.v",
+                        "SnapshotFileName":  "0052-uart_trng_ascii_core.v.snapshot.json",
+                        "ElapsedSeconds":  12.227,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  53,
+                        "Path":  "TestFiles/src/UART/uart_tx_min.v",
+                        "SnapshotFileName":  "0053-uart_tx_min.v.snapshot.json",
+                        "ElapsedSeconds":  11.891,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  54,
+                        "Path":  "TestFiles/z386.sv",
+                        "SnapshotFileName":  "0054-z386.sv.snapshot.json",
+                        "ElapsedSeconds":  42.246,
+                        "ElapsedBucket":  "40-44s"
+                    },
+                    {
+                        "Index":  55,
+                        "Path":  "TestFiles/systemverilog_keywords.sv",
+                        "SnapshotFileName":  "0055-systemverilog_keywords.sv.snapshot.json",
+                        "ElapsedSeconds":  12.329,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  56,
+                        "Path":  "TestFiles/macros/ifdef_active_highlighting.sv",
+                        "SnapshotFileName":  "0056-ifdef_active_highlighting.sv.snapshot.json",
+                        "ElapsedSeconds":  11.496,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  57,
+                        "Path":  "TestFiles/macros/ifdef_inactive_hover.sv",
+                        "SnapshotFileName":  "0057-ifdef_inactive_hover.sv.snapshot.json",
+                        "ElapsedSeconds":  11.578,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  58,
+                        "Path":  "TestFiles/macros/ifdef_include_highlighting.sv",
+                        "SnapshotFileName":  "0058-ifdef_include_highlighting.sv.snapshot.json",
+                        "ElapsedSeconds":  11.444,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  59,
+                        "Path":  "TestFiles/macros/ifdef_include_source_order.sv",
+                        "SnapshotFileName":  "0059-ifdef_include_source_order.sv.snapshot.json",
+                        "ElapsedSeconds":  11.533,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  60,
+                        "Path":  "TestFiles/macros/ifdef_optout_attribute.sv",
+                        "SnapshotFileName":  "0060-ifdef_optout_attribute.sv.snapshot.json",
+                        "ElapsedSeconds":  11.554,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  61,
+                        "Path":  "TestFiles/macros/ifdef_optout_include_macro.sv",
+                        "SnapshotFileName":  "0061-ifdef_optout_include_macro.sv.snapshot.json",
+                        "ElapsedSeconds":  11.483,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  62,
+                        "Path":  "TestFiles/macros/ifdef_optout_macro.sv",
+                        "SnapshotFileName":  "0062-ifdef_optout_macro.sv.snapshot.json",
+                        "ElapsedSeconds":  11.461,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  63,
+                        "Path":  "TestFiles/macros/ifdef_optout_pragma.sv",
+                        "SnapshotFileName":  "0063-ifdef_optout_pragma.sv.snapshot.json",
+                        "ElapsedSeconds":  11.497,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  64,
+                        "Path":  "TestFiles/macros/include-files/cycle_a.vh",
+                        "SnapshotFileName":  "0064-cycle_a.vh.snapshot.json",
+                        "ElapsedSeconds":  11.443,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  65,
+                        "Path":  "TestFiles/macros/include-files/cycle_b.vh",
+                        "SnapshotFileName":  "0065-cycle_b.vh.snapshot.json",
+                        "ElapsedSeconds":  11.382,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  66,
+                        "Path":  "TestFiles/macros/include-files/inactive_config.vh",
+                        "SnapshotFileName":  "0066-inactive_config.vh.snapshot.json",
+                        "ElapsedSeconds":  11.571,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  67,
+                        "Path":  "TestFiles/macros/include-files/nested/nested_config.vh",
+                        "SnapshotFileName":  "0067-nested_config.vh.snapshot.json",
+                        "ElapsedSeconds":  11.572,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  68,
+                        "Path":  "TestFiles/macros/include-files/project_config.v",
+                        "SnapshotFileName":  "0068-project_config.v.snapshot.json",
+                        "ElapsedSeconds":  11.675,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  69,
+                        "Path":  "TestFiles/macros/include-files/show_inactive_config.vh",
+                        "SnapshotFileName":  "0069-show_inactive_config.vh.snapshot.json",
+                        "ElapsedSeconds":  11.241,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  70,
+                        "Path":  "TestFiles/macros/include-files/macro_hover_config.vh",
+                        "SnapshotFileName":  "0070-macro_hover_config.vh.snapshot.json",
+                        "ElapsedSeconds":  11.566,
+                        "ElapsedBucket":  "10-14s"
+                    },
+                    {
+                        "Index":  71,
+                        "Path":  "TestFiles/macros/macro_hover_definition_locations.sv",
+                        "SnapshotFileName":  "0071-macro_hover_definition_locations.sv.snapshot.json",
+                        "ElapsedSeconds":  11.608,
+                        "ElapsedBucket":  "10-14s"
+                    }
+                ]
+}

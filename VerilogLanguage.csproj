@@ -110,6 +110,10 @@
     <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.14.2120" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColorSettings\SettingsProfile.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ColorSettings\SettingsRegistrationPackage.cs" />
     <Compile Include="Classification\ClassificationFormat.cs" />
     <Compile Include="Classification\ClassificationType.cs" />
     <Compile Include="Classification\VerilogClassifier.cs" />
@@ -143,6 +147,7 @@
     <Compile Include="Intellisense\QuickInfoControllerProvider.cs" />
     <Compile Include="Outlining\VerilogOutliningTagger.cs" />
     <Compile Include="Outlining\VerilogOutliningTaggerProvider.cs" />
+    <Compile Include="VerilogToken\VerilogPreprocessorEvaluator.cs" />
     <Compile Include="VerilogToken\VerilogTokenTag.cs" />
     <Compile Include="VerilogToken\VerilogTokenTypes.cs" />
     <Compile Include="VerilogToken\VerilogTokenTagger.cs" />
@@ -150,6 +155,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".github\workflows\build-verilog-language-extension.yml" />
+    <None Include="tools\Refresh-Baseline.ps1" />
+    <None Include="tools\vle-ci\ci-Audit.ps1" />
     <None Include="tools\vle-ci\Compare-Snapshots.py" />
     <None Include="tools\vle-ci\Export-Snapshots.ps1" />
     <None Include="tools\vle-ci\Run-LocalCI.ps1" />
@@ -165,13 +172,21 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="ProjectTemplates\Verilog Project.zip">
+    <Content Include="ProjectTemplates\CSharp\1033\VerilogProject.zip">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="AddedExtensionProjectTemplates\VerilogProject\VerilogProjectTemplate.csproj">
+      <Project>{8E669251-2F2E-4F2C-8627-0365D35B8A8B}</Project>
+      <Name>VerilogProjectTemplate</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <Private>false</Private>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <VSCTCompile Include="VerilogLanguagePackage.vsct">
@@ -188,6 +203,9 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="VSSDK_DIAG_VsSDKTargetsMissing" BeforeTargets="Build" Condition="'$(DesignTimeBuild)' != 'true' And !Exists('$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets')">
     <Message Importance="high" Text="VSSDK DIAGNOSTIC: Microsoft.VsSDK.targets NOT FOUND at: $(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets. Result will be DLL-only (no VSIX, no CTMENU embedding)." />
+  </Target>
+  <Target Name="BuildProjectTemplateZip" BeforeTargets="PrepareForBuild" Condition="'$(DesignTimeBuild)' != 'true'">
+    <Exec Command="powershell.exe -NoProfile -ExecutionPolicy Bypass -File &quot;$(MSBuildProjectDirectory)\tools\templates\Build-ProjectTemplates.ps1&quot; -RepoRoot &quot;$(MSBuildProjectDirectory)&quot;" />
   </Target>
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="Exists('$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets')" />
   <!--

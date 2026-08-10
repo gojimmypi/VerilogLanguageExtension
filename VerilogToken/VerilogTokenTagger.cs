@@ -59,6 +59,26 @@ namespace VerilogLanguage.VerilogToken
         private ITextSnapshot _blockCommentStateSnapshot;
         private readonly List<bool> _blockCommentStateAtLineStart = new List<bool>();
 
+        private struct AttributeScanState
+        {
+            internal bool IsAttributeOpen;
+            internal bool IsBlockCommentOpen;
+        }
+
+        private readonly object _attributeStateLock = new object();
+        private ITextSnapshot _attributeStateSnapshot;
+        private readonly List<AttributeScanState> _attributeStateAtLineStart = new List<AttributeScanState>();
+
+        private readonly object _preprocessorStateLock = new object();
+        private ITextSnapshot _preprocessorStateSnapshot;
+        private const int PreprocessorDependencyCheckIntervalMilliseconds = 1000;
+        private List<VerilogPreprocessorEvaluator.LineState> _preprocessorLineStates =
+            new List<VerilogPreprocessorEvaluator.LineState>();
+        private List<VerilogPreprocessorEvaluator.IncludeDependency> _preprocessorIncludeDependencies =
+            new List<VerilogPreprocessorEvaluator.IncludeDependency>();
+        private bool _preprocessorSuppressInactiveCodeHighlighting;
+        private int _preprocessorDependencyCheckTick = int.MinValue;
+
         // ITextView View { get; set; }
         private readonly ITextBuffer _buffer;
 
@@ -150,6 +170,9 @@ namespace VerilogLanguage.VerilogToken
             }
 
             if (snapshot != null) {
+                // Parse publication can come from an included file. Re-evaluate include
+                // dependencies before repainting this buffer.
+                InvalidatePreprocessorStateCache();
                 InvalidateAll(snapshot);
             }
         }
@@ -201,7 +224,11 @@ namespace VerilogLanguage.VerilogToken
                 return;
             }
 
+            bool preprocessorStateChanged = ChangeTouchesPreprocessorDirective(e);
+
             InvalidateBlockCommentStateCache();
+            InvalidateAttributeStateCache();
+            InvalidatePreprocessorStateCache();
 
             // If this isn't the most up-to-date version of the buffer, then ignore it for now (we'll eventually get another change event).
             if (e.After != _buffer.CurrentSnapshot) {
@@ -216,7 +243,13 @@ namespace VerilogLanguage.VerilogToken
             // Always invalidate the affected span so classification refreshes reliably (even when we do not do a full reparse).
             InvalidateChangedSpan(e);
 
-            bool forceReparse = false;
+            bool forceReparse = preprocessorStateChanged;
+
+            if (preprocessorStateChanged) {
+                // A macro definition or conditional can change highlighting far beyond
+                // the edited line, so repaint the complete snapshot immediately.
+                InvalidateAll(e.After);
+            }
 
             foreach (ITextChange change in e.Changes) {
                 string theNewText = change.NewText;
@@ -314,6 +347,330 @@ namespace VerilogLanguage.VerilogToken
             }
         }
 
+        private AttributeScanState GetAttributeStateAtLineStart(ITextSnapshot snapshot, int lineNumber) {
+            if (snapshot == null || lineNumber <= 0) {
+                return new AttributeScanState();
+            }
+
+            lock (_attributeStateLock) {
+                if (!object.ReferenceEquals(_attributeStateSnapshot, snapshot)) {
+                    _attributeStateSnapshot = snapshot;
+                    _attributeStateAtLineStart.Clear();
+                    _attributeStateAtLineStart.Add(new AttributeScanState());
+                }
+
+                while (_attributeStateAtLineStart.Count <= lineNumber) {
+                    int previousLineNumber = _attributeStateAtLineStart.Count - 1;
+                    AttributeScanState previousLineState = _attributeStateAtLineStart[previousLineNumber];
+                    ITextSnapshotLine previousLine = snapshot.GetLineFromLineNumber(previousLineNumber);
+                    AttributeScanState nextLineState;
+                    GetAttributeLineSpans(previousLine.GetText(), previousLineState, out nextLineState);
+                    _attributeStateAtLineStart.Add(nextLineState);
+                }
+
+                return _attributeStateAtLineStart[lineNumber];
+            }
+        }
+
+        private static List<Span> GetAttributeLineSpans(
+            string lineText,
+            AttributeScanState lineStartState,
+            out AttributeScanState lineEndState) {
+            List<Span> attributeSpans = null;
+            bool isAttributeOpen = lineStartState.IsAttributeOpen;
+            bool isBlockCommentOpen = lineStartState.IsBlockCommentOpen;
+            bool isStringOpen = false;
+            bool isEscaped = false;
+            bool isEscapedIdentifierOpen = false;
+            int attributeStart = isAttributeOpen ? 0 : -1;
+
+            if (lineText == null) {
+                lineText = string.Empty;
+            }
+
+            for (int i = 0; i < lineText.Length; i++) {
+                char currentChar = lineText[i];
+                char nextChar = (i + 1 < lineText.Length) ? lineText[i + 1] : '\0';
+
+                if (isBlockCommentOpen) {
+                    if (currentChar == '*' && nextChar == '/') {
+                        isBlockCommentOpen = false;
+                        i++;
+                    }
+
+                    continue;
+                }
+
+                if (isStringOpen) {
+                    if (isEscaped) {
+                        isEscaped = false;
+                    }
+                    else if (currentChar == '\\') {
+                        isEscaped = true;
+                    }
+                    else if (currentChar == '"') {
+                        isStringOpen = false;
+                    }
+
+                    continue;
+                }
+
+                if (isEscapedIdentifierOpen) {
+                    if (char.IsWhiteSpace(currentChar)) {
+                        isEscapedIdentifierOpen = false;
+                    }
+
+                    continue;
+                }
+
+                if (currentChar == '\\') {
+                    isEscapedIdentifierOpen = true;
+                    continue;
+                }
+
+                if (currentChar == '/' && nextChar == '/') {
+                    break;
+                }
+
+                if (currentChar == '/' && nextChar == '*') {
+                    isBlockCommentOpen = true;
+                    i++;
+                    continue;
+                }
+
+                if (currentChar == '"') {
+                    isStringOpen = true;
+                    isEscaped = false;
+                    continue;
+                }
+
+                // Do not confuse a wildcard event control such as @(*) or @(* )
+                // with an attribute opener. Both forms begin with the same (* pair.
+                bool isWildcardEventControl = IsWildcardEventControlStart(lineText, i);
+                if (!isAttributeOpen && currentChar == '(' && nextChar == '*' && !isWildcardEventControl) {
+                    isAttributeOpen = true;
+                    attributeStart = i;
+                    i++;
+                    continue;
+                }
+
+                if (isAttributeOpen && currentChar == '*' && nextChar == ')') {
+                    int attributeEnd = i + 2;
+                    AddAttributeLineSpan(ref attributeSpans, attributeStart, attributeEnd);
+                    isAttributeOpen = false;
+                    attributeStart = -1;
+                    i++;
+                }
+            }
+
+            if (isAttributeOpen && attributeStart >= 0) {
+                AddAttributeLineSpan(ref attributeSpans, attributeStart, lineText.Length);
+            }
+
+            lineEndState = new AttributeScanState {
+                IsAttributeOpen = isAttributeOpen,
+                IsBlockCommentOpen = isBlockCommentOpen
+            };
+
+            return attributeSpans;
+        }
+
+        private static bool IsWildcardEventControlStart(string lineText, int openParenIndex) {
+            if (string.IsNullOrEmpty(lineText) ||
+                openParenIndex < 0 ||
+                openParenIndex + 1 >= lineText.Length ||
+                lineText[openParenIndex] != '(' ||
+                lineText[openParenIndex + 1] != '*') {
+                return false;
+            }
+
+            for (int i = openParenIndex - 1; i >= 0; i--) {
+                if (!char.IsWhiteSpace(lineText[i])) {
+                    return lineText[i] == '@';
+                }
+            }
+
+            return false;
+        }
+
+        private static void AddAttributeLineSpan(ref List<Span> spans, int start, int end) {
+            int length = end - start;
+            if (start < 0 || length <= 0) {
+                return;
+            }
+
+            if (spans == null) {
+                spans = new List<Span>();
+            }
+
+            spans.Add(new Span(start, length));
+        }
+
+        private static bool IntersectsLineSpan(
+            SnapshotSpan snapshotSpan,
+            ITextSnapshotLine containingLine,
+            List<Span> lineSpans) {
+            if (containingLine == null || lineSpans == null || lineSpans.Count == 0) {
+                return false;
+            }
+
+            int relativeStart = snapshotSpan.Start.Position - containingLine.Start.Position;
+            int relativeEnd = relativeStart + snapshotSpan.Length;
+
+            foreach (Span lineSpan in lineSpans) {
+                if (relativeStart < lineSpan.End && lineSpan.Start < relativeEnd) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private void InvalidateAttributeStateCache() {
+            lock (_attributeStateLock) {
+                _attributeStateSnapshot = null;
+                _attributeStateAtLineStart.Clear();
+            }
+        }
+
+        private VerilogPreprocessorEvaluator.LineState GetPreprocessorLineState(
+            ITextSnapshot snapshot,
+            int lineNumber) {
+
+            if (snapshot == null || lineNumber < 0 || lineNumber >= snapshot.LineCount) {
+                return new VerilogPreprocessorEvaluator.LineState(true, false);
+            }
+
+            lock (_preprocessorStateLock) {
+                bool snapshotChanged = !object.ReferenceEquals(_preprocessorStateSnapshot, snapshot);
+                bool includeDependencyChanged = !snapshotChanged && HaveIncludeDependenciesChanged();
+                if (snapshotChanged || includeDependencyChanged) {
+                    List<string> lines = new List<string>(snapshot.LineCount);
+                    for (int currentLine = 0; currentLine < snapshot.LineCount; currentLine++) {
+                        lines.Add(snapshot.GetLineFromLineNumber(currentLine).GetText());
+                    }
+
+                    string sourceFilePath = VerilogLanguage.VerilogGlobals.GetDocumentPath(snapshot);
+                    VerilogPreprocessorEvaluator.AnalysisResult analysis =
+                        VerilogPreprocessorEvaluator.Analyze(lines, sourceFilePath);
+
+                    _preprocessorStateSnapshot = snapshot;
+                    _preprocessorLineStates = analysis.LineStates;
+                    _preprocessorIncludeDependencies = analysis.IncludeDependencies;
+                    _preprocessorSuppressInactiveCodeHighlighting = analysis.SuppressInactiveCodeHighlighting;
+                    _preprocessorDependencyCheckTick = Environment.TickCount;
+                }
+
+                if (lineNumber >= _preprocessorLineStates.Count) {
+                    return new VerilogPreprocessorEvaluator.LineState(true, false);
+                }
+
+                return _preprocessorLineStates[lineNumber];
+            }
+        }
+
+        private bool HaveIncludeDependenciesChanged() {
+            int currentTick = Environment.TickCount;
+            if (_preprocessorDependencyCheckTick != int.MinValue) {
+                uint elapsedMilliseconds = unchecked((uint)(currentTick - _preprocessorDependencyCheckTick));
+                if (elapsedMilliseconds < PreprocessorDependencyCheckIntervalMilliseconds) {
+                    return false;
+                }
+            }
+
+            _preprocessorDependencyCheckTick = currentTick;
+            return !VerilogPreprocessorEvaluator.AreIncludeDependenciesCurrent(
+                _preprocessorIncludeDependencies);
+        }
+
+        private void InvalidatePreprocessorStateCache() {
+            lock (_preprocessorStateLock) {
+                _preprocessorStateSnapshot = null;
+                _preprocessorLineStates.Clear();
+                _preprocessorIncludeDependencies.Clear();
+                _preprocessorSuppressInactiveCodeHighlighting = false;
+                _preprocessorDependencyCheckTick = int.MinValue;
+            }
+        }
+
+        private static bool ChangeTouchesPreprocessorDirective(TextContentChangedEventArgs e) {
+            if (e == null || e.Changes == null) {
+                return false;
+            }
+
+            foreach (ITextChange change in e.Changes) {
+                if (change == null) {
+                    continue;
+                }
+
+                if (ContainsPreprocessorControlMarker(change.OldText) ||
+                    ContainsPreprocessorControlMarker(change.NewText) ||
+                    SnapshotRangeContainsPreprocessorMarker(e.Before, change.OldPosition, change.OldLength) ||
+                    SnapshotRangeContainsPreprocessorMarker(e.After, change.NewPosition, change.NewLength)) {
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool SnapshotRangeContainsPreprocessorMarker(
+            ITextSnapshot snapshot,
+            int position,
+            int length) {
+
+            if (snapshot == null || snapshot.LineCount == 0) {
+                return false;
+            }
+
+            if (snapshot.Length == 0) {
+                return false;
+            }
+
+            int startPosition = position;
+            if (startPosition < 0) {
+                startPosition = 0;
+            }
+            if (startPosition >= snapshot.Length) {
+                startPosition = snapshot.Length - 1;
+            }
+
+            int endPosition = position + length;
+            if (endPosition < startPosition) {
+                endPosition = startPosition;
+            }
+            if (endPosition >= snapshot.Length) {
+                endPosition = snapshot.Length - 1;
+            }
+
+            int startLine = snapshot.GetLineFromPosition(startPosition).LineNumber;
+            int endLine = snapshot.GetLineFromPosition(endPosition).LineNumber;
+            startLine = Math.Max(0, startLine - 1);
+            endLine = Math.Min(snapshot.LineCount - 1, endLine + 1);
+
+            for (int lineNumber = startLine; lineNumber <= endLine; lineNumber++) {
+                if (ContainsPreprocessorControlMarker(
+                    snapshot.GetLineFromLineNumber(lineNumber).GetText())) {
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool ContainsPreprocessorControlMarker(string text) {
+            if (string.IsNullOrEmpty(text)) {
+                return false;
+            }
+
+            return text.IndexOf('`') >= 0 ||
+                text.IndexOf("NO_INACTIVE_MACRO_CODE", StringComparison.OrdinalIgnoreCase) >= 0 ||
+                text.IndexOf("VLE: SHOW_INACTIVE_CODE", StringComparison.OrdinalIgnoreCase) >= 0 ||
+                text.IndexOf("VLE_SHOW_INACTIVE_CODE", StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+
         private void StopReparseCompletionWatcher() {
             Timer timerToDispose;
 
@@ -349,6 +706,8 @@ namespace VerilogLanguage.VerilogToken
             VerilogGlobals.ParseDataPublished -= ParseDataPublished;
             StopReparseCompletionWatcher();
             InvalidateBlockCommentStateCache();
+            InvalidateAttributeStateCache();
+            InvalidatePreprocessorStateCache();
         }
 
         private void RaiseTagsChanged(SnapshotSpan span) {
@@ -544,6 +903,8 @@ namespace VerilogLanguage.VerilogToken
 
             VerilogGlobals.VerilogToken[] tokens = null;
             VerilogGlobals.VerilogToken priorToken = new VerilogGlobals.VerilogToken();
+            HashSet<Span> yieldedAttributeSpans = new HashSet<Span>();
+            HashSet<Span> yieldedInactiveCodeSpans = new HashSet<Span>();
 
             // look at each span for tokens, comments, etc
             foreach (SnapshotSpan curSpan in spans) {
@@ -584,6 +945,7 @@ namespace VerilogLanguage.VerilogToken
                 }
 
                 ITextSnapshotLine line = snapshot.GetLineFromPosition(startPos);
+                AttributeScanState attributeState = GetAttributeStateAtLineStart(snapshot, line.LineNumber);
                 string activeLocalScope = string.Empty;
                 if (haveParseData && parseData != null) {
                     TryFindActiveLocalScope(line.Snapshot, line.LineNumber, parseData, out activeLocalScope);
@@ -595,12 +957,66 @@ namespace VerilogLanguage.VerilogToken
                     }
 
                     string lineText = line.GetText();
+                    VerilogPreprocessorEvaluator.LineState preprocessorLineState =
+                        GetPreprocessorLineState(snapshot, line.LineNumber);
+
+                    List<Span> attributeLineSpans = GetAttributeLineSpans(lineText, attributeState, out attributeState);
+                    tokens = VerilogGlobals.VerilogKeywordSplit(lineText, priorToken);
+
+                    if (!preprocessorLineState.IsActiveForHighlighting &&
+                        !_preprocessorSuppressInactiveCodeHighlighting) {
+                        // Keep lexical continuation state correct across inactive lines,
+                        // but suppress all normal syntax classifications for their text.
+                        // Conditional directives nested below an inactive parent are
+                        // inactive whole lines; active branch transitions and their matching
+                        // closing directives remain normal through the evaluator line state.
+                        CommentHelper inactiveCommentHelper =
+                            new CommentHelper(lineText, false, isContinuedBlockComment);
+                        isContinuedBlockComment = inactiveCommentHelper.HasBlockStartComment;
+
+                        SnapshotSpan inactiveCodeSpan = line.Extent;
+                        Span inactiveSpan = inactiveCodeSpan.Span;
+                        if (inactiveCodeSpan.Length > 0 &&
+                            inactiveCodeSpan.IntersectsWith(curSpan) &&
+                            yieldedInactiveCodeSpans.Add(inactiveSpan)) {
+
+                            yield return new TagSpan<VerilogTokenTag>(
+                                inactiveCodeSpan,
+                                new VerilogTokenTag(
+                                    VerilogTokenTypes.Verilog_InactiveCode,
+                                    preprocessorLineState.InactiveHoverText));
+                        }
+
+                        if (line.LineBreakLength == 0) {
+                            break;
+                        }
+
+                        int inactiveNextLineStart = line.EndIncludingLineBreak.Position;
+                        if (inactiveNextLineStart >= snapshot.Length) {
+                            break;
+                        }
+
+                        line = snapshot.GetLineFromPosition(inactiveNextLineStart);
+                        continue;
+                    }
+
                     if (haveParseData && parseData != null) {
                         UpdateActiveLocalScopeForLineStart(line, parseData, ref activeLocalScope);
                     }
 
                     List<Span> staticStringLineSpans = GetStaticStringLineSpans(lineText);
-                    tokens = VerilogGlobals.VerilogKeywordSplit(lineText, priorToken);
+
+                    if (attributeLineSpans != null) {
+                        foreach (Span lineSpan in attributeLineSpans) {
+                            Span absoluteSpan = new Span(line.Start.Position + lineSpan.Start, lineSpan.Length);
+                            SnapshotSpan attributeSnapshotSpan = new SnapshotSpan(line.Snapshot, absoluteSpan);
+                            if (attributeSnapshotSpan.IntersectsWith(curSpan) && yieldedAttributeSpans.Add(absoluteSpan)) {
+                                yield return new TagSpan<VerilogTokenTag>(
+                                    attributeSnapshotSpan,
+                                    new VerilogTokenTag(VerilogTokenTypes.Verilog_Attribute));
+                            }
+                        }
+                    }
 
                     int curLoc = line.Start.Position;
                     bool isContinuedLineComment = false; // comments with "//" are only effective for the current line, but /* can span multiple lines
@@ -635,7 +1051,8 @@ namespace VerilogLanguage.VerilogToken
                                 continue;
                             }
 
-                            if (directTokenSpan.IntersectsWith(curSpan)) {
+                            if (directTokenSpan.IntersectsWith(curSpan) &&
+                                !IntersectsLineSpan(directTokenSpan, line, attributeLineSpans)) {
                                 yield return new TagSpan<VerilogTokenTag>(
                                     directTokenSpan,
                                     new VerilogTokenTag(VerilogTokenTypes.Verilog_Value));
@@ -691,7 +1108,8 @@ namespace VerilogLanguage.VerilogToken
                                 curLoc += len;
                                 continue;
                             }
-                            if (tokenSpan.IntersectsWith(curSpan)) {
+                            if (tokenSpan.IntersectsWith(curSpan) &&
+                                !IntersectsLineSpan(tokenSpan, line, attributeLineSpans)) {
                                 foreach (ITagSpan<VerilogTokenTag> tag in ProcessTokenSpan(
                                     curSpan,
                                     line,
@@ -701,7 +1119,8 @@ namespace VerilogLanguage.VerilogToken
                                     curLoc,
                                     haveParseData ? parseData : null,
                                     activeLocalScope,
-                                    staticStringLineSpans)) {
+                                    staticStringLineSpans,
+                                    preprocessorLineState)) {
 
                                     yield return tag;
                                 }
@@ -753,7 +1172,8 @@ namespace VerilogLanguage.VerilogToken
             int curLoc,
             VerilogGlobals.ParseDataSnapshot parseData,
             string activeLocalScope,
-            List<Span> staticStringLineSpans) {
+            List<Span> staticStringLineSpans,
+            VerilogPreprocessorEvaluator.LineState preprocessorLineState) {
             // is this item a comment? If so, color as appropriate. comments take highest priority: no other condition will change color of a comment
             if (item.IsComment) {
 #if TAG_DEBUG
@@ -796,7 +1216,17 @@ namespace VerilogLanguage.VerilogToken
                 }
             }
 
-            foreach (ITagSpan<VerilogTokenTag> tag in ProcessLookupText(containingLine, verilogToken, tokenSpan, lookupSpan, lookupText, curLoc, leadingTrim, parseData, activeLocalScope)) {
+            foreach (ITagSpan<VerilogTokenTag> tag in ProcessLookupText(
+                containingLine,
+                verilogToken,
+                tokenSpan,
+                lookupSpan,
+                lookupText,
+                curLoc,
+                leadingTrim,
+                parseData,
+                activeLocalScope,
+                preprocessorLineState)) {
                 yield return tag;
             }
 
@@ -914,6 +1344,10 @@ namespace VerilogLanguage.VerilogToken
                 case "reg":
                 case "logic":
                 case "bit":
+                case "byte":
+                case "shortint":
+                case "int":
+                case "longint":
                 case "integer":
                 case "time":
                 case "real":
@@ -960,116 +1394,84 @@ namespace VerilogLanguage.VerilogToken
             return !string.IsNullOrEmpty(lineText) && lineText.IndexOf(itemText, StringComparison.Ordinal) >= 0;
         }
 
-        private static bool IsFunctionDeclarationNameContext(ITextSnapshotLine containingLine, int lookupColumn, string lookupText) {
+        private static int FindStandaloneCodeItem(string lineText, string itemText) {
+            if (string.IsNullOrEmpty(lineText) || string.IsNullOrEmpty(itemText)) {
+                return -1;
+            }
+
+            int searchStart = 0;
+            while (searchStart < lineText.Length) {
+                int index = lineText.IndexOf(itemText, searchStart, StringComparison.Ordinal);
+                if (index < 0) {
+                    return -1;
+                }
+
+                bool validPrefix = index == 0 || IsVerilogIdentifierBoundary(lineText[index - 1]);
+                int afterIndex = index + itemText.Length;
+                bool validSuffix = afterIndex >= lineText.Length || IsVerilogIdentifierBoundary(lineText[afterIndex]);
+                if (validPrefix && validSuffix) {
+                    return index;
+                }
+
+                searchStart = index + itemText.Length;
+            }
+
+            return -1;
+        }
+
+        private static bool IsRoutineDeclarationNameContext(
+            ITextSnapshotLine containingLine,
+            int lookupColumn,
+            string lookupText,
+            string routineKeyword) {
             if (containingLine == null || !IsVerilogIdentifierText(lookupText)) {
                 return false;
             }
 
             string lineText = containingLine.GetText();
-            if (!LineTextMayContainItem(lineText, "function")) {
+            if (lookupColumn < 0 || lookupColumn + lookupText.Length > lineText.Length) {
                 return false;
             }
 
-            if (lookupColumn < 0 || lookupColumn > lineText.Length) {
+            string routineName;
+            bool foundRoutine = routineKeyword == "function"
+                ? VerilogGlobals.TryGetFunctionNameFromLineText(lineText, out routineName)
+                : VerilogGlobals.TryGetTaskNameFromLineText(lineText, out routineName);
+            if (!foundRoutine || !string.Equals(routineName, lookupText, StringComparison.Ordinal)) {
                 return false;
             }
 
-            List<string> prefixItems = GetSimpleCodeItems(lineText.Substring(0, lookupColumn));
-            int functionIndex = -1;
-            for (int i = 0; i < prefixItems.Count; i++) {
-                if (prefixItems[i] == "function") {
-                    functionIndex = i;
-                }
-            }
-
-            if (functionIndex < 0) {
+            int keywordIndex = FindStandaloneCodeItem(lineText, routineKeyword);
+            if (keywordIndex < 0 || lookupColumn <= keywordIndex) {
                 return false;
             }
 
-            int squareDepth = 0;
-            for (int i = functionIndex + 1; i < prefixItems.Count; i++) {
-                string item = prefixItems[i];
+            int declarationEnd = lineText.IndexOf('(', keywordIndex + routineKeyword.Length);
+            if (declarationEnd < 0) {
+                declarationEnd = lineText.IndexOf(';', keywordIndex + routineKeyword.Length);
+            }
+            if (declarationEnd < 0) {
+                declarationEnd = lineText.Length;
+            }
 
-                if (item == "[") {
-                    squareDepth++;
-                    continue;
-                }
-
-                if (item == "]") {
-                    if (squareDepth > 0) {
-                        squareDepth--;
-                    }
-                    continue;
-                }
-
-                if (squareDepth > 0) {
-                    continue;
-                }
-
-                if (item == ":" || item == "," || IsFunctionReturnTypeText(item) || IsVerilogValueText(item)) {
-                    continue;
-                }
-
+            if (lookupColumn >= declarationEnd) {
                 return false;
             }
 
-            return true;
+            int lastNameIndex = lineText.LastIndexOf(
+                routineName,
+                declarationEnd - 1,
+                declarationEnd - keywordIndex,
+                StringComparison.Ordinal);
+            return lastNameIndex == lookupColumn;
+        }
+
+        private static bool IsFunctionDeclarationNameContext(ITextSnapshotLine containingLine, int lookupColumn, string lookupText) {
+            return IsRoutineDeclarationNameContext(containingLine, lookupColumn, lookupText, "function");
         }
 
         private static bool IsTaskDeclarationNameContext(ITextSnapshotLine containingLine, int lookupColumn, string lookupText) {
-            if (containingLine == null || !IsVerilogIdentifierText(lookupText)) {
-                return false;
-            }
-
-            string lineText = containingLine.GetText();
-            if (!LineTextMayContainItem(lineText, "task")) {
-                return false;
-            }
-
-            if (lookupColumn < 0 || lookupColumn > lineText.Length) {
-                return false;
-            }
-
-            List<string> prefixItems = GetSimpleCodeItems(lineText.Substring(0, lookupColumn));
-            int taskIndex = -1;
-            for (int i = 0; i < prefixItems.Count; i++) {
-                if (prefixItems[i] == "task") {
-                    taskIndex = i;
-                }
-            }
-
-            if (taskIndex < 0) {
-                return false;
-            }
-
-            int squareDepth = 0;
-            for (int i = taskIndex + 1; i < prefixItems.Count; i++) {
-                string item = prefixItems[i];
-
-                if (item == "[") {
-                    squareDepth++;
-                    continue;
-                }
-
-                if (item == "]") {
-                    if (squareDepth > 0) {
-                        squareDepth--;
-                    }
-                    continue;
-                }
-
-                if (squareDepth > 0) {
-                    continue;
-                }
-
-                if (item == ":" || item == "," || IsFunctionReturnTypeText(item) || IsVerilogValueText(item)) {
-                    continue;
-                }
-
-                return false;
-            }
-
-            return true;
+            return IsRoutineDeclarationNameContext(containingLine, lookupColumn, lookupText, "task");
         }
 
         private static string ResolveVariableScope(
@@ -1236,6 +1638,24 @@ namespace VerilogLanguage.VerilogToken
             return true;
         }
 
+        private static bool IsVerilogSystemTaskOrFunctionText(string text) {
+            if (string.IsNullOrEmpty(text) || text.Length < 2 || text[0] != '$') {
+                return false;
+            }
+
+            if (!(char.IsLetter(text[1]) || text[1] == '_')) {
+                return false;
+            }
+
+            for (int i = 2; i < text.Length; i++) {
+                if (!IsVerilogIdentifierContinuation(text[i])) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         private static bool IsKnownModuleName(string lookupText, VerilogGlobals.ParseDataSnapshot parseData) {
             if (string.IsNullOrEmpty(lookupText)) {
                 return false;
@@ -1307,6 +1727,32 @@ namespace VerilogLanguage.VerilogToken
             }
 
             return false;
+        }
+
+        private static string BuildMacroHoverText(
+            VerilogPreprocessorEvaluator.LineState lineState,
+            string macroName,
+            bool useStateAfterLine) {
+
+            VerilogPreprocessorEvaluator.MacroDefinitionInfo definition;
+            if (lineState == null ||
+                !lineState.TryGetMacroDefinition(macroName, useStateAfterLine, out definition)) {
+
+                return "Macro `" + macroName + "` is not defined.";
+            }
+
+            string filePath = string.IsNullOrEmpty(definition.FilePath)
+                ? "(current buffer)"
+                : definition.FilePath;
+
+            string valueText = string.IsNullOrEmpty(definition.Value)
+                ? "Macro `" + macroName + "` is defined with no value."
+                : "Macro `" + macroName + "` is defined." + Environment.NewLine +
+                    "Value: " + definition.Value;
+
+            return valueText + Environment.NewLine +
+                "File: " + filePath + Environment.NewLine +
+                "Line: " + definition.LineNumber.ToString();
         }
 
         private static bool IsVerilogIdentifierContinuation(char c) {
@@ -1430,7 +1876,134 @@ namespace VerilogLanguage.VerilogToken
             return hasAssignment;
         }
 
-        private static bool TryGetDeclarationVariableType(
+        private static string CodeBeforeLineComment(string lineText) {
+            if (string.IsNullOrEmpty(lineText)) {
+                return string.Empty;
+            }
+
+            int commentIndex = lineText.IndexOf("//", StringComparison.Ordinal);
+            return commentIndex >= 0 ? lineText.Substring(0, commentIndex) : lineText;
+        }
+
+        private static bool IsTypedefAliasIdentifierContext(
+            ITextSnapshotLine containingLine,
+            int lookupColumn,
+            string lookupText) {
+            if (containingLine == null || !IsVerilogIdentifierText(lookupText)) {
+                return false;
+            }
+
+            string lineText = CodeBeforeLineComment(containingLine.GetText());
+            int typedefIndex = FindStandaloneCodeItem(lineText, "typedef");
+            int semicolonIndex = lineText.LastIndexOf(';');
+            if (typedefIndex < 0 || semicolonIndex <= typedefIndex || lookupColumn >= semicolonIndex) {
+                return false;
+            }
+
+            int aliasEnd = semicolonIndex;
+            while (aliasEnd > typedefIndex && char.IsWhiteSpace(lineText[aliasEnd - 1])) {
+                aliasEnd--;
+            }
+
+            int aliasStart = aliasEnd;
+            while (aliasStart > typedefIndex && IsVerilogIdentifierContinuation(lineText[aliasStart - 1])) {
+                aliasStart--;
+            }
+
+            return aliasStart == lookupColumn &&
+                   aliasEnd - aliasStart == lookupText.Length &&
+                   string.CompareOrdinal(lineText, aliasStart, lookupText, 0, lookupText.Length) == 0;
+        }
+
+        private static bool HasLaterDeclaratorIdentifier(
+            ITextSnapshotLine containingLine,
+            int lookupColumn,
+            string lookupText) {
+            if (containingLine == null || !IsVerilogIdentifierText(lookupText)) {
+                return false;
+            }
+
+            string lineText = CodeBeforeLineComment(containingLine.GetText());
+            int tokenEnd = lookupColumn + lookupText.Length;
+            if (lookupColumn < 0 || tokenEnd > lineText.Length) {
+                return false;
+            }
+
+            int squareDepth = 0;
+            foreach (string item in GetSimpleCodeItems(lineText.Substring(0, lookupColumn))) {
+                if (item == "[") {
+                    squareDepth++;
+                }
+                else if (item == "]" && squareDepth > 0) {
+                    squareDepth--;
+                }
+            }
+
+            if (squareDepth > 0) {
+                return true;
+            }
+
+            squareDepth = 0;
+            int roundDepth = 0;
+            int squigglyDepth = 0;
+            foreach (string item in GetSimpleCodeItems(lineText.Substring(tokenEnd))) {
+                bool atTopLevel = squareDepth == 0 && roundDepth == 0 && squigglyDepth == 0;
+                if (atTopLevel && (item == "," || item == ";" || item == "=" || item == ")")) {
+                    break;
+                }
+
+                switch (item) {
+                    case "[":
+                        squareDepth++;
+                        continue;
+                    case "]":
+                        if (squareDepth > 0) {
+                            squareDepth--;
+                        }
+                        continue;
+                    case "(":
+                        roundDepth++;
+                        continue;
+                    case ")":
+                        if (roundDepth > 0) {
+                            roundDepth--;
+                        }
+                        continue;
+                    case "{":
+                        squigglyDepth++;
+                        continue;
+                    case "}":
+                        if (squigglyDepth > 0) {
+                            squigglyDepth--;
+                        }
+                        continue;
+                }
+
+                if (squareDepth == 0 && roundDepth == 0 && squigglyDepth == 0 &&
+                    IsVerilogIdentifierText(item)) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private bool TryGetDeclarationVariableTypeForLookup(
+            ITextSnapshotLine containingLine,
+            int column,
+            string lookupText,
+            out VerilogTokenTypes variableType) {
+            variableType = VerilogTokenTypes.Verilog_Variable;
+
+            if (IsTypedefAliasIdentifierContext(containingLine, column, lookupText) ||
+                HasLaterDeclaratorIdentifier(containingLine, column, lookupText)) {
+                return false;
+            }
+
+            return TryGetDeclarationVariableType(containingLine, column, out variableType);
+        }
+
+        private bool TryGetDeclarationVariableType(
             ITextSnapshotLine containingLine,
             int column,
             out VerilogTokenTypes variableType) {
@@ -1455,7 +2028,9 @@ namespace VerilogLanguage.VerilogToken
                 return false;
             }
 
-            return VerilogGlobals.TryGetDeclarationVariableTypeFromText(prefixText, out variableType);
+            return VerilogGlobals.TryGetDeclarationVariableTypeFromText(
+                prefixText,
+                out variableType);
         }
 
         private IEnumerable<ITagSpan<VerilogTokenTag>> ProcessLookupText(
@@ -1467,7 +2042,8 @@ namespace VerilogLanguage.VerilogToken
             int curLoc,
             int leadingWhitespace,
             VerilogGlobals.ParseDataSnapshot parseData,
-            string activeLocalScope) {
+            string activeLocalScope,
+            VerilogPreprocessorEvaluator.LineState preprocessorLineState) {
             if (IsStaticStringText(lookupText)) {
                 yield return new TagSpan<VerilogTokenTag>(
                     lookupSpan,
@@ -1475,14 +2051,31 @@ namespace VerilogLanguage.VerilogToken
                 yield break;
             }
 
-            // check for standard keyword syntax higlighting
-            if (VerilogGlobals.VerilogTypes.ContainsKey(lookupText)) {
+            if (IsVerilogSystemTaskOrFunctionText(lookupText)) {
+                VerilogTokenTypes systemTaskType = string.Equals(
+                    lookupText,
+                    "$fatal",
+                    StringComparison.Ordinal)
+                    ? VerilogTokenTypes.Verilog_SystemTaskFatal
+                    : VerilogTokenTypes.Verilog_SystemTaskFunction;
+
+                yield return new TagSpan<VerilogTokenTag>(
+                    lookupSpan,
+                    new VerilogTokenTag(systemTaskType));
+                yield break;
+            }
+
+            // Apply recognized Verilog and SystemVerilog keyword classifications in
+            // every VLE-supported source file. File extensions are conventions and
+            // do not reliably identify which language features the build enables.
+            VerilogTokenTypes keywordType;
+            if (VerilogGlobals.VerilogTypes.TryGetValue(lookupText, out keywordType)) {
 #if TAG_DEBUG
                 System.Diagnostics.Debug.WriteLine("IEnumerable VerilogTokenTag yield " + lookupText);
 #endif
                 yield return new TagSpan<VerilogTokenTag>(
                     lookupSpan,
-                    new VerilogTokenTag(VerilogGlobals.VerilogTypes[lookupText]));
+                    new VerilogTokenTag(keywordType));
                 yield break;
             }
 
@@ -1497,7 +2090,9 @@ namespace VerilogLanguage.VerilogToken
             if (TryGetMacroNameFromLookupText(lookupText, out macroName)) {
                 yield return new TagSpan<VerilogTokenTag>(
                     lookupSpan,
-                    new VerilogTokenTag(VerilogTokenTypes.Verilog_Macro));
+                    new VerilogTokenTag(
+                        VerilogTokenTypes.Verilog_Macro,
+                        BuildMacroHoverText(preprocessorLineState, macroName, false)));
                 yield break;
             }
 
@@ -1509,9 +2104,17 @@ namespace VerilogLanguage.VerilogToken
                     (curLoc + leadingWhitespace) - containingLine.Start.Position,
                     lookupText)) {
 
+                bool useStateAfterLine = preprocessorLineState != null &&
+                    preprocessorLineState.DirectiveName == "define";
+
                 yield return new TagSpan<VerilogTokenTag>(
                     lookupSpan,
-                    new VerilogTokenTag(VerilogTokenTypes.Verilog_Macro));
+                    new VerilogTokenTag(
+                        VerilogTokenTypes.Verilog_Macro,
+                        BuildMacroHoverText(
+                            preprocessorLineState,
+                            lookupText,
+                            useStateAfterLine)));
                 yield break;
             }
 
@@ -1565,9 +2168,10 @@ namespace VerilogLanguage.VerilogToken
             if (parseData == null) {
                 VerilogTokenTypes declarationVariableType;
                 if (lookupTextIsIdentifier &&
-                    TryGetDeclarationVariableType(
+                    TryGetDeclarationVariableTypeForLookup(
                         containingLine,
                         (curLoc + leadingWhitespace) - containingLine.Start.Position,
+                        lookupText,
                         out declarationVariableType)) {
 
                     yield return new TagSpan<VerilogTokenTag>(
@@ -1623,9 +2227,10 @@ namespace VerilogLanguage.VerilogToken
 
                 VerilogTokenTypes declarationVariableType;
                 if (lookupTextIsIdentifier &&
-                    TryGetDeclarationVariableType(
+                    TryGetDeclarationVariableTypeForLookup(
                         containingLine,
                         (curLoc + leadingWhitespace) - containingLine.Start.Position,
+                        lookupText,
                         out declarationVariableType)) {
 
                     yield return new TagSpan<VerilogTokenTag>(
@@ -1654,9 +2259,10 @@ namespace VerilogLanguage.VerilogToken
 
             VerilogTokenTypes fallbackDeclarationVariableType;
             if (lookupTextIsIdentifier &&
-                TryGetDeclarationVariableType(
+                TryGetDeclarationVariableTypeForLookup(
                     containingLine,
                     (curLoc + leadingWhitespace) - containingLine.Start.Position,
+                    lookupText,
                     out fallbackDeclarationVariableType)) {
 
                 yield return new TagSpan<VerilogTokenTag>(

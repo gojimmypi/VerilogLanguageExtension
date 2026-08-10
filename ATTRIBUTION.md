@@ -93,6 +93,17 @@ References considered include:
 - Verilog/SystemVerilog language and tooling behavior as observed from public
   editor extensions, linters, simulators, and user workflows.
 
+## Individual acknowledgments
+
+The author gratefully acknowledges Barry Nolte, who has helped over the years
+with guidance, technical discussions, answers to technical questions, and
+encouragement related to Microsoft development tools and Visual Studio extension
+work.
+
+- Barry Nolte
+  - https://bsky.app/profile/barrynolte.bsky.social
+  - https://x.com/BarryNolte
+
 ## Trademarks and names
 
 Microsoft, Visual Studio, Visual Studio Code, VSIX, and related marks are

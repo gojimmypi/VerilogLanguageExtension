@@ -1,9 +1,8 @@
 {
     "SchemaVersion":  3,
     "RunName":  "all-testfiles",
-    "ExtensionVersion":  "0.4.1.5",
-    "FilePath":  "C:\\workspace\\VerilogLanguageExtension\\TestFiles\\test2.v",
-    "FileRelativePath":  "TestFiles\\test2.v",
+    "FilePath":  "TestFiles/test2.v",
+    "FileRelativePath":  "TestFiles/test2.v",
     "ContentType":  "verilog",
     "SnapshotLength":  575,
     "SnapshotVersion":  2,
@@ -39,7 +38,7 @@
                                 "Column":  8,
                                 "Text":  "global",
                                 "Types":  [
-                                              "Variable_module"
+                                              "SystemVerilogYosysUnsupported"
                                           ]
                             },
                             {
@@ -671,8 +670,8 @@
                      "Column":  8,
                      "Text":  "global",
                      "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
-                     "TagDetail":  "Verilog_Variable_module",
-                     "HoverText":  "module global  (  wire k1,\r\n h1,\r\n i1,\r\n output wire eq )"
+                     "TagDetail":  "Verilog_SystemVerilogYosysUnsupported",
+                     "HoverText":  "SystemVerilog keyword \u0027global\u0027. VLE marks it as unsupported, non-synthesizable, or unverified for Yosys/sv-elab; actual handling depends on context and tool version."
                  },
                  {
                      "Start":  32,

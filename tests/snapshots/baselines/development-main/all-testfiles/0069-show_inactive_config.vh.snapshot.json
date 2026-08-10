@@ -1,0 +1,91 @@
+{
+    "SchemaVersion":  3,
+    "RunName":  "all-testfiles",
+    "FilePath":  "TestFiles/macros/include-files/show_inactive_config.vh",
+    "FileRelativePath":  "TestFiles/macros/include-files/show_inactive_config.vh",
+    "ContentType":  "verilog",
+    "SnapshotLength":  32,
+    "SnapshotVersion":  2,
+    "TextSha256":  "94b144ad4b56e20daaa73809662b867b6efe83ad8ed73b8fa38b2ec0c1c3b7da",
+    "Errors":  [
+
+               ],
+    "Classifications":  [
+                            {
+                                "Start":  0,
+                                "Length":  7,
+                                "Line":  1,
+                                "Column":  1,
+                                "Text":  "`define",
+                                "Types":  [
+                                              "Directive"
+                                          ]
+                            },
+                            {
+                                "Start":  8,
+                                "Length":  22,
+                                "Line":  1,
+                                "Column":  9,
+                                "Text":  "NO_INACTIVE_MACRO_CODE",
+                                "Types":  [
+                                              "Macro"
+                                          ]
+                            }
+                        ],
+    "Tags":  [
+                 {
+                     "Start":  0,
+                     "Length":  7,
+                     "Line":  1,
+                     "Column":  1,
+                     "Text":  "`define",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Directive",
+                     "HoverText":  "Verilog directive"
+                 },
+                 {
+                     "Start":  8,
+                     "Length":  22,
+                     "Line":  1,
+                     "Column":  9,
+                     "Text":  "NO_INACTIVE_MACRO_CODE",
+                     "TagType":  "VerilogLanguage.VerilogToken.VerilogTokenTag",
+                     "TagDetail":  "Verilog_Macro",
+                     "HoverText":  "Macro `NO_INACTIVE_MACRO_CODE` is defined with no value.\r\nFile: TestFiles/macros/include-files/show_inactive_config.vh\r\nLine: 1"
+                 }
+             ],
+    "Tokens":  [
+                   {
+                       "Start":  0,
+                       "Length":  7,
+                       "Line":  1,
+                       "Column":  1,
+                       "Text":  "`define",
+                       "Context":  "Undetermined"
+                   },
+                   {
+                       "Start":  7,
+                       "Length":  1,
+                       "Line":  1,
+                       "Column":  8,
+                       "Text":  " ",
+                       "Context":  "Text"
+                   },
+                   {
+                       "Start":  8,
+                       "Length":  22,
+                       "Line":  1,
+                       "Column":  9,
+                       "Text":  "NO_INACTIVE_MACRO_CODE",
+                       "Context":  "Text"
+                   }
+               ],
+    "Symbols":  [
+                    {
+                        "Scope":  "__MACRO__",
+                        "Name":  "NO_INACTIVE_MACRO_CODE",
+                        "TokenType":  "Verilog_Macro",
+                        "HoverText":  "macro definition:\r\n`define NO_INACTIVE_MACRO_CODE\r\n\r\ncondition:\r\n(unconditional)"
+                    }
+                ]
+}

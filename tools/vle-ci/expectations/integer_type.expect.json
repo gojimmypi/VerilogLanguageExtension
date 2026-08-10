@@ -1,0 +1,32 @@
+{
+    "File": "TestFiles/src/UART/uart_tx_min.v",
+    "MustHaveTaggedText": [
+        {
+            "Text": "integer",
+            "Source": "Tags",
+            "TagDetail": "Verilog_integer",
+            "HoverContains": [
+                "32-bit",
+                "signed",
+                "four-state"
+            ]
+        },
+        {
+            "Text": "CLKS_PER_BIT",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_localparam"
+        }
+    ],
+    "MustNotHaveTaggedText": [
+        {
+            "Text": "integer",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_localparam"
+        },
+        {
+            "Text": "integer",
+            "Source": "Tags",
+            "TagDetail": "Verilog_Variable_parameter"
+        }
+    ]
+}

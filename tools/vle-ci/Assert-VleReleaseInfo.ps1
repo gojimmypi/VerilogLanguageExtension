@@ -12,7 +12,7 @@
 param(
     [string]$RepoRoot = "",
     [string]$ExpectedVersion = "",
-    [string]$ExpectedAssemblyVersion = "0.4.0.0"
+    [string]$ExpectedAssemblyVersion = "0.5.0.0"
 )
 
 Set-StrictMode -Version Latest

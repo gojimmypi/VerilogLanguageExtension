@@ -1,0 +1,14 @@
+\
+/* Keep long Windows paths and command examples readable on narrow screens. */
+.wy-nav-content {
+    max-width: 1100px;
+}
+
+.rst-content pre {
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.rst-content code.literal {
+    white-space: normal;
+}
